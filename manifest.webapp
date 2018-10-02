@@ -1,7 +1,7 @@
 {
     "version": "0.1",
-    "name": "Commodities Dashboard +",
-    "description": "Commodities Dashboard",
+    "name": "Health Commodities Dashboard +",
+    "description": "Health Commodities Dashboard",
     "launch_path": "/html/ltr/index.html",
     "appType": "APP",
     "icons": {
