@@ -14854,3 +14854,6 @@ File: scss
 .m-b-15{
   margin-bottom: 15px !important;
 }
+.highcharts-credits{
+  display: none;
+}
