@@ -261,7 +261,7 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                Tables
+                                Reporting Rates
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
@@ -271,31 +271,15 @@
                                 <div class="col-md-11 col-sm-11 col-xs-12">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5">
-                                                <option value="null" selected>County:</option>
-                                                <option value="Mombasa">Mombasa</option>
-                                                <option value="Nairobi">Nairobi</option>
-                                                <option value="Nakuru">Nakuru</option>
-                                                <option value="Eldoret">Eldoret</option>
-                                                <option value="Kisumu">Kisumu</option>
+                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                             </select>
-                                        </div>
+                                        </div>										
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5">
-                                                <option value="null" selected>OtherOption:</option>
-                                                <option value="1">Option One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                                <option value="4">Four</option>
+                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5">
-                                                <option value="null" selected>YetAnotherOption:</option>
-                                                <option value="5">Option Five</option>
-                                                <option value="6">Six</option>
-                                                <option value="7">Seven</option>
-                                                <option value="8">Eight</option>
+                                            <select class="form-control m-r-5" id="period-dropdown" name="period">                                                
                                             </select> 
                                         </div> 
                                     </div>
@@ -1044,6 +1028,86 @@
          ****************************************/
         $('#zero_config').DataTable();
     </script>
+	
+	<script>
+		$(document).ready(function() 
+		{
+			var dropdown = $('#county-dropdown');
+			
+			var subcounty = $('#subcounty-dropdown');
+			
+			var perioddwn = $('#period-dropdown');
+
+			dropdown.empty();
+			subcounty.empty();
+			perioddwn.empty();
+
+			dropdown.append('<option selected="true" disabled>Select County</option>');
+			dropdown.prop('selectedIndex', 0);
+			
+			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+			subcounty.prop('selectedIndex', 0);
+			
+			perioddwn.append('<option selected="true" disabled>Select Period</option>');
+			perioddwn.prop('selectedIndex', 0);
+
+			//const url = 'https://api.myjson.com/bins/7xq2x';
+
+			//populate dropdown with list of counties
+			$.getJSON('https://test.hiskenya.org/kenya/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			{
+				//console.log(data.organisationUnits);
+				$.each(data.organisationUnits, function (key, entry) 
+				{						
+					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
+				})		 
+			});
+			
+			$("#county-dropdown").change(function() 
+			{  
+				subcounty.empty();
+				var countyid = $(this).val();		
+				// Populate dropdown with list of sub counties
+				$.getJSON('https://test.hiskenya.org/kenya/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				{			
+					$.each(data.organisationUnits, function (key, entry) 
+					{				
+						if(entry.parent.id==countyid)
+						{
+							subcounty.append($('<option></option>').attr('value', entry.abbreviation).text(entry.name));
+						}				
+					})		 
+				});		
+			});
+			
+			
+			// Populate dropdown with list of periods
+			//set the period
+			var currentTime = new Date();
+			
+			console.log(currentTime);
+
+			var month = currentTime.getMonth()+1;
+
+			var day = currentTime.getDate();
+
+			var year = currentTime.getFullYear();
+			
+			console.log(year);
+			console.log(month);
+			console.log(day);
+			
+			for(var i = month-1; i >=1; i--) 
+			{		
+				if(i<=9)
+				{
+					i = '0'+i;
+				}		
+				perioddwn.append($('<option></option>').attr('value', year+''+i).text(year+''+i));
+			}
+			
+		});
+	</script>
 
 </body>
 

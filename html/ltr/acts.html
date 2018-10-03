@@ -259,14 +259,46 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">ACTs</h4>
-                        <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                </ol>
-                            </nav>
+                        <div class="col-md-2 col-sm-3 col-xs-12">
+                            <h4 class="page-title m-t-10">
+                                Reporting Rates
+                                &nbsp; &nbsp;
+                            </h4>
+                        </div>
+                        <div class="col-md-7 col-sm-6 col-xs-12">
+                            <small class="">Filter:</small>
+                            <div class="row">
+                                <div class="col-md-11 col-sm-11 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
+                                            </select>
+                                        </div>										
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
+                                            </select> 
+                                        </div> 
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <select class="form-control m-r-5" id="period-dropdown" name="period">                                                
+                                            </select> 
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col-xs-12">
+                                    <input type="submit" value="Go" class="btn btn-info"/>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
+                            <div class="ml-auto text-right m-t-10">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                    </ol>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -360,6 +392,86 @@
          ****************************************/
         $('#zero_config').DataTable();
     </script>
+	
+	<script>
+		$(document).ready(function() 
+		{
+			var dropdown = $('#county-dropdown');
+			
+			var subcounty = $('#subcounty-dropdown');
+			
+			var perioddwn = $('#period-dropdown');
+
+			dropdown.empty();
+			subcounty.empty();
+			perioddwn.empty();
+
+			dropdown.append('<option selected="true" disabled>Select County</option>');
+			dropdown.prop('selectedIndex', 0);
+			
+			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+			subcounty.prop('selectedIndex', 0);
+			
+			perioddwn.append('<option selected="true" disabled>Select Period</option>');
+			perioddwn.prop('selectedIndex', 0);
+
+			//const url = 'https://api.myjson.com/bins/7xq2x';
+
+			//populate dropdown with list of counties
+			$.getJSON('https://test.hiskenya.org/kenya/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			{
+				//console.log(data.organisationUnits);
+				$.each(data.organisationUnits, function (key, entry) 
+				{						
+					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
+				})		 
+			});
+			
+			$("#county-dropdown").change(function() 
+			{  
+				subcounty.empty();
+				var countyid = $(this).val();		
+				// Populate dropdown with list of sub counties
+				$.getJSON('https://test.hiskenya.org/kenya/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				{			
+					$.each(data.organisationUnits, function (key, entry) 
+					{				
+						if(entry.parent.id==countyid)
+						{
+							subcounty.append($('<option></option>').attr('value', entry.abbreviation).text(entry.name));
+						}				
+					})		 
+				});		
+			});
+			
+			
+			// Populate dropdown with list of periods
+			//set the period
+			var currentTime = new Date();
+			
+			console.log(currentTime);
+
+			var month = currentTime.getMonth()+1;
+
+			var day = currentTime.getDate();
+
+			var year = currentTime.getFullYear();
+			
+			console.log(year);
+			console.log(month);
+			console.log(day);
+			
+			for(var i = month-1; i >=1; i--) 
+			{		
+				if(i<=9)
+				{
+					i = '0'+i;
+				}		
+				perioddwn.append($('<option></option>').attr('value', year+''+i).text(year+''+i));
+			}
+			
+		});
+	</script>
 
 </body>
 
