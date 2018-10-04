@@ -1,4 +1,3 @@
-// --- fetching JSON data
         $.ajax({
             type: 'GET',
             url: 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:201805;LAST_12_MONTHS&filter=ou:N7YETT3A9r1&displayProperty=NAME&outputIdScheme=NAME',
@@ -90,6 +89,9 @@
                     chart: {
                         type: 'line'
                     },
+                    exporting: {
+                        enabled: false
+                    },
                     title: {
                         text: thetitle
                     },
@@ -133,10 +135,7 @@
 
             },
             error: function (request, status, error) {
-                // alert(error);
                 console.log('RRates: error fetching json. :- '+error);
                 $('#rrchart').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             }
         });
-        
-// end fetching JSON data
