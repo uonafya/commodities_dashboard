@@ -1,6 +1,7 @@
         $.ajax({
             type: 'GET',
             url: 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:201805;LAST_12_MONTHS&filter=ou:N7YETT3A9r1&displayProperty=NAME&outputIdScheme=NAME',
+            
             success: function (data) {
                 var rrjson = data;
                 var thetitle = rrjson.metaData.items['JPaviRmSsJW.REPORTING_RATE'].name;

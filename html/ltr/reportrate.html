@@ -459,8 +459,16 @@
 				{
 					i = '0'+i;
 				}		
-				perioddwn.append($('<option></option>').attr('value', year+''+i).text(year+''+i));
+                perioddwn.append($('<option></option>').attr('value', year+''+i).text(year+''+i));
 			}
+            var ix = 0;
+            zx = 13;
+            // while(ix<3){
+                perioddwn.append($('<option></option>').attr('value', year-1+''+12).text(year-1+''+12));
+                perioddwn.append($('<option></option>').attr('value', year-1+''+11).text(year-1+''+11));
+                perioddwn.append($('<option></option>').attr('value', year-1+''+10).text(year-1+''+10));
+                // ix++
+            // }
 			
 		});
 	</script>
