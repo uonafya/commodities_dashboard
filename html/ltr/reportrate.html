@@ -449,9 +449,9 @@
 
 			var year = currentTime.getFullYear();
 			
-			console.log(year);
-			console.log(month);
-			console.log(day);
+			console.log("yearni: "+year);
+			console.log("monthni: "+month);
+			console.log("dayni: "+day);
 			
 			for(var i = month-1; i >=1; i--) 
 			{		
@@ -461,14 +461,19 @@
 				}		
                 perioddwn.append($('<option></option>').attr('value', year+''+i).text(year+''+i));
 			}
-            var ix = 0;
+            var ix = 3;
             zx = 13;
-            // while(ix<3){
-                perioddwn.append($('<option></option>').attr('value', year-1+''+12).text(year-1+''+12));
-                perioddwn.append($('<option></option>').attr('value', year-1+''+11).text(year-1+''+11));
-                perioddwn.append($('<option></option>').attr('value', year-1+''+10).text(year-1+''+10));
-                // ix++
-            // }
+            ld = 0;
+            while(ix>0){
+                if(month>=9){
+                    month = month + 2;
+                    while(ld<3){
+                        perioddwn.append($('<option></option>').attr('value', year-1+''+12).text(year-1+''+month--));
+                        ld++
+                    }
+                }
+                ix--
+            }
 			
 		});
 	</script>
