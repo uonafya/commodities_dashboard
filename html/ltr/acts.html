@@ -495,11 +495,29 @@
 	<script>
 	$(document).ready(function() 
 	{
+		var ounit = 'tAbBVBbueqD';
+		var period = 'LAST_12_MONTHS';
 		
-		//const url = 'https://api.myjson.com/bins/7xq2x';
-
+		$("#county-dropdown").change(function() 
+		{
+			ounit = $(this).val();
+		});
+		
+		$("#subcounty-dropdown").change(function() 
+		{
+			ounit = $(this).val();
+		});
+		
+		$("#period-dropdown").change(function() 
+		{
+			period = $(this).val();
+		});
+		
+		var url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:OAYqtaeLuTi;bXnJlrmTre8;zLR3PBVPgN5;cNL3Q3UyKkg;bJILAolJsSJ;K4PyibOTukm;jtGNoWcdNcx;aUgA9xJuv2k;p2aNqT2HVyr;VbLyYVe69gU&dimension=ou:'+ounit+';LEVEL-5&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+		
+		
 		//populate dropdown with list of counties
-		$.getJSON('https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:OAYqtaeLuTi;bXnJlrmTre8;zLR3PBVPgN5;cNL3Q3UyKkg;bJILAolJsSJ;K4PyibOTukm;jtGNoWcdNcx;aUgA9xJuv2k;p2aNqT2HVyr;VbLyYVe69gU&dimension=ou:tAbBVBbueqD;LEVEL-5&filter=pe:LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) 
+		$.getJSON(url, function (data) 
 		{
 			//create the org units array
 			var orgunits = [];
@@ -615,13 +633,6 @@
 			
 	});
 	</script>
-	
-	<script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
-        //$('#zero_config').DataTable();
-    </script>
 
 </body>
 
