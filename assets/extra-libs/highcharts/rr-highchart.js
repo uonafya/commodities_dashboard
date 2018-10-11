@@ -2,6 +2,7 @@
     function fetchRR(rrurl){
         $.ajax({
             type: 'GET',
+            crossDomain: true,
             url: rrurl,
             
             success: function (data) {

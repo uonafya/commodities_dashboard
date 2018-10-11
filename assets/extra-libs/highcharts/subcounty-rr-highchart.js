@@ -1,6 +1,7 @@
 function fetchScRR(scurl){
     $.ajax({
         type: 'GET',
+        crossDomain: true,
         url: scurl,
         success: function (data) {
             var scjson = data;
