@@ -440,31 +440,7 @@
 			
 			
 			// Populate dropdown with list of periods
-			//set the period
-			// var currentTime = new Date();
-			// console.log(currentTime);
-			// var month = currentTime.getMonth()+1;
-			// var day = currentTime.getDate();
-			// var year = currentTime.getFullYear();
-
-			// for(var i = month-1; i >=1; i--) 
-			// {		
-			// 	if(i<=9)
-			// 	{
-			// 		i = '0'+i;
-			// 	}		
-            //     perioddwn.append($('<option></option>').attr('value', year+''+i).text(year+''+i));
-			// }
-            // var ix = 12-month;
-            // ld = 0;
-            // while(ix>0){
-            //         // month = month + 2;
-            //         while(ld<ix){
-            //             perioddwn.append($('<option></option>').attr('value', year-1+''+12).text(year-1+''+month++));
-            //             ld++
-            //         }
-            //     ix--
-            // }
+			
             var date = new Date();
             var currentMonth = date.getMonth();
             var currentYear = date.getFullYear();
@@ -496,6 +472,16 @@
                 }else{
                     cmA = currentMonth;
                 }
+				
+				if(cmA-1<0)
+				{
+					cmA = 0;
+				}
+				else
+				{
+					cmA = cmA-1;
+				}
+				
                 perioddwn.append($('<option></option>').attr('value', currentYear+''+cM).text(month[cmA]+" "+currentYear));
                 currentMonth--;
             }
@@ -517,17 +503,56 @@
     <script src="../../assets/extra-libs/highcharts/subcounty-rr-highchart.js"></script>
     <script>
         var rrurl = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:201805;LAST_12_MONTHS&filter=ou:N7YETT3A9r1&displayProperty=NAME&outputIdScheme=NAME';
-        // var rrurl = 'http://127.0.0.1/pmi/json/reportingrates.json';
+        
         fetchRR(rrurl);
-        var scurl = 'http://127.0.0.1/pmi/json/subcountiesrates.json';
+        var scurl = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:N7YETT3A9r1;LEVEL-3&filter=pe:LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
         fetchScRR(scurl);
     </script>
     <!-- end HIGHCHARTS -->
     
     <script>
-        $('#period-dropdown').change(function() {
-            var filtered_url = 'URL with filter parameters here such as ?date='+$("#period-dropdown").val()+'etc. etc.';
-            fetchScRR(filtered_url);
+	
+		//change of county
+        $('#county-dropdown').change(function() {
+            			
+			var countyou = $("#county-dropdown").val();
+			var subcountyou = $("#subcounty-dropdown").val();
+			var periodval = $("#period-dropdown").val();
+			
+			var filtered_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
+			console.log(filtered_url);
+			var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
+            console.log(filtersub_url);
+			fetchScRR(filtersub_url);
+            fetchRR(filtered_url);
+        });
+		
+		//change of subcounty
+		$('#subcounty-dropdown').change(function() 
+		{
+            var countyou = $("#county-dropdown").val();
+			var subcountyou = $("#subcounty-dropdown").val();
+			var periodval = $("#period-dropdown").val();
+			
+			var filtered_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
+			console.log(filtered_url);
+			var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+';LEVEL-3&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
+            console.log(filtersub_url);
+			fetchScRR(filtersub_url);
+            fetchRR(filtered_url);
+        });
+		
+		//change of period
+		$('#period-dropdown').change(function() {
+            var countyou = $("#county-dropdown").val();
+			var subcountyou = $("#subcounty-dropdown").val();
+			var periodval = $("#period-dropdown").val();
+						
+			var filtered_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
+			console.log(filtered_url);
+			var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
+            console.log(filtersub_url);
+			fetchScRR(filtersub_url);
             fetchRR(filtered_url);
         });
     </script>

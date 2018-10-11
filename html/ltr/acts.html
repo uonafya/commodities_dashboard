@@ -465,29 +465,51 @@
 			
 			
 			// Populate dropdown with list of periods
-			//set the period
-			var currentTime = new Date();
 			
-			console.log(currentTime);
+            var date = new Date();
+            var currentMonth = date.getMonth();
+            var currentYear = date.getFullYear();
+            console.log(currentYear)
+            var month = ["January","February","March","April","May","June","July",
+                        "August","September","October","November","December"];
+            var simpleDate = [];
+            var myArray = [];
 
-			var month = currentTime.getMonth()+1;
-
-			var day = currentTime.getDate();
-
-			var year = currentTime.getFullYear();
-			
-			console.log(year);
-			console.log(month);
-			console.log(day);
-			
-			for(var i = month-1; i >=1; i--) 
-			{		
-				if(i<=9)
+            for(var i = 0; i < 12; i++){
+                if(currentMonth == - 1){
+                    currentMonth = 11;
+                    date.setFullYear(parseInt(currentYear) - 1);
+                    currentYear = date.getFullYear();
+                }
+                simpleDate.push(currentYear+''+currentMonth);  
+                myArray.push(month[currentMonth]+" "+currentYear);
+                
+                if(currentMonth == 0){
+                    cM = 12;
+                }else{
+                    cM = currentMonth;
+                }
+                if(cM < 10){
+                    cM = '0'+currentMonth;
+                }
+                if(cM == 12){
+                    cmA = 0;
+                }else{
+                    cmA = currentMonth;
+                }
+				
+				if(cmA-1<0)
 				{
-					i = '0'+i;
-				}		
-				perioddwn.append($('<option></option>').attr('value', year+''+i).text(year+''+i));
-			}
+					cmA = 0;
+				}
+				else
+				{
+					cmA = cmA-1;
+				}
+				
+                perioddwn.append($('<option></option>').attr('value', currentYear+''+cM).text(month[cmA]+" "+currentYear));
+                currentMonth--;
+            }
 			
 		});
 	</script>
@@ -495,11 +517,29 @@
 	<script>
 	$(document).ready(function() 
 	{
+		var ounit = 'tAbBVBbueqD';
+		var period = 'LAST_12_MONTHS';
 		
-		//const url = 'https://api.myjson.com/bins/7xq2x';
-
+		$("#county-dropdown").change(function() 
+		{
+			ounit = $(this).val();
+		});
+		
+		$("#subcounty-dropdown").change(function() 
+		{
+			ounit = $(this).val();
+		});
+		
+		$("#period-dropdown").change(function() 
+		{
+			period = $(this).val();
+		});
+		
+		var url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:OAYqtaeLuTi;bXnJlrmTre8;zLR3PBVPgN5;cNL3Q3UyKkg;bJILAolJsSJ;K4PyibOTukm;jtGNoWcdNcx;aUgA9xJuv2k;p2aNqT2HVyr;VbLyYVe69gU&dimension=ou:'+ounit+';LEVEL-5&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+		
+		
 		//populate dropdown with list of counties
-		$.getJSON('https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:OAYqtaeLuTi;bXnJlrmTre8;zLR3PBVPgN5;cNL3Q3UyKkg;bJILAolJsSJ;K4PyibOTukm;jtGNoWcdNcx;aUgA9xJuv2k;p2aNqT2HVyr;VbLyYVe69gU&dimension=ou:tAbBVBbueqD;LEVEL-5&filter=pe:LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) 
+		$.getJSON(url, function (data) 
 		{
 			//create the org units array
 			var orgunits = [];
@@ -615,13 +655,6 @@
 			
 	});
 	</script>
-	
-	<script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
-        //$('#zero_config').DataTable();
-    </script>
 
 </body>
 
