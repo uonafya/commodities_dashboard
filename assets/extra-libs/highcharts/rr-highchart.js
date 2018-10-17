@@ -7,8 +7,11 @@
             
             success: function (data) {
                 var rrjson = data;
+				var ouid = rrjson.metaData.dimensions.ou[0];
+				console.log(ouid);
                 var thetitle = rrjson.metaData.items['JPaviRmSsJW.REPORTING_RATE'].name;
-                var thesubtitle = rrjson.metaData.items.N7YETT3A9r1.name;
+                var thesubtitle = rrjson.metaData.items[ouid].name;
+				console.log(thesubtitle);
                 var dimes_pe = rrjson.metaData.dimensions.pe;
                 var rr_rows = rrjson.rows;
                 

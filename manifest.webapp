@@ -15,7 +15,7 @@
     "activities": {
         "dhis": {
             "href": "*",
-            "namespace": "health_commodities_v7"
+            "namespace": "health_commodities_v13"
         }
     }
 }
