@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -281,8 +283,9 @@
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="period-dropdown" name="period">                                                
-                                            </select> 
+                                            <!-- <select class="form-control m-r-5" id="period-dropdown" name="period">                  
+                                            </select>  -->
+                                            <input type="text" class="form-control" id="period-picker"/>
                                         </div> 
                                     </div>
                                 </div>
@@ -386,7 +389,7 @@
          ****************************************/
         $('#zero_config').DataTable();
     </script>
-	
+
 	<script>
 		$(document).ready(function() 
 		{
@@ -454,49 +457,69 @@
             var simpleDate = [];
             var myArray = [];
 
-            for(var i = 0; i < 12; i++){
-                if(currentMonth == - 1){
-                    currentMonth = 11;
-                    date.setFullYear(parseInt(currentYear) - 1);
-                    currentYear = date.getFullYear();
-                }
-                simpleDate.push(currentYear+''+currentMonth);  
-                myArray.push(month[currentMonth]+" "+currentYear);
+            // for(var i = 0; i < 12; i++){
+            //     if(currentMonth == - 1){
+            //         currentMonth = 11;
+            //         date.setFullYear(parseInt(currentYear) - 1);
+            //         currentYear = date.getFullYear();
+            //     }
+            //     simpleDate.push(currentYear+''+currentMonth);  
+            //     myArray.push(month[currentMonth]+" "+currentYear);
                 
-                if(currentMonth == 0){
-                    cM = 12;
-                }else{
-                    cM = currentMonth;
-                }
-                if(cM < 10){
-                    cM = '0'+currentMonth;
-                }
-                if(cM == 12){
-                    cmA = 0;
-                }else{
-                    cmA = currentMonth;
-                }
+            //     if(currentMonth == 0){
+            //         cM = 12;
+            //     }else{
+            //         cM = currentMonth;
+            //     }
+            //     if(cM < 10){
+            //         cM = '0'+currentMonth;
+            //     }
+            //     if(cM == 12){
+            //         cmA = 0;
+            //     }else{
+            //         cmA = currentMonth;
+            //     }
 				
-				if(cmA-1<0)
-				{
-					cmA = 0;
-				}
-				else
-				{
-					cmA = cmA-1;
-				}
+			// 	if(cmA-1<0)
+			// 	{
+			// 		cmA = 0;
+			// 	}
+			// 	else
+			// 	{
+			// 		cmA = cmA-1;
+			// 	}
 				
-                perioddwn.append($('<option></option>').attr('value', currentYear+''+cM).text(month[cmA]+" "+currentYear));
-                currentMonth--;
-            }
+            //     perioddwn.append($('<option></option>').attr('value', currentYear+''+cM).text(month[cmA]+" "+currentYear));
+            //     currentMonth--;
+            // }
 
-            // alert(myArray);
-            // $.each(simpleDate, function (index, sDate) {
-            //     perioddwn.append($('<option></option>').attr('value', sDate).text(sDate));
-            // });
+
 			
 		});
-	</script>
+    </script>
+    
+    <!-- *********** MonthPicker ************** -->
+    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
+
+    <script>
+        $('#period-picker').MonthPicker({ 
+            Button: false,
+            MinMonth: '-1y',
+            MaxMonth: 0,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePicked(sDate);
+            }
+        });
+        
+    </script>
+    <!-- *********** end MonthPicker ************** -->
+	
 
 
     <!-- HIGHCHARTS -->
@@ -587,6 +610,39 @@
 			fetchScRR(filtersub_url);
             fetchRR(filtered_url);
         });
+
+        function datePicked(sDate){
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var countyou = $("#county-dropdown").val();
+			var subcountyou = $("#subcounty-dropdown").val();
+			var periodval = therdate;
+			
+			if(countyou == null)
+			{
+				countyou = 'N7YETT3A9r1';
+			}
+			
+			if(subcountyou != null)
+			{
+				countyou = subcountyou;
+			}
+									
+			var filtered_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
+			console.log(filtered_url);
+			
+			var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
+			
+			if(subcountyou != null)
+			{
+			
+				var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
+			}
+			
+            console.log(filtersub_url);
+			fetchScRR(filtersub_url);
+            fetchRR(filtered_url);
+        }
     </script>
 </body>
 
