@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -279,14 +281,11 @@
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="period-dropdown" name="period">                                                
-                                            </select> 
+                                            <input type="text" class="form-control" id="period-dropdown"/> 
                                         </div> 
                                     </div>
                                 </div>
-                                <div class="col-md-1 col-sm-1 col-xs-12">
-                                    <input type="submit" value="Go" class="btn btn-info"/>
-                                </div>
+                                
                             </div>
                             
                         </div>
@@ -821,6 +820,27 @@
         $('#zero_config').DataTable();
     </script>
 	
+	<!-- *********** MonthPicker ************** -->
+    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
+
+    <script>
+        $('#period-dropdown').MonthPicker({ 
+            Button: false,
+            MinMonth: '-1y',
+            MaxMonth: -1,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePicked(sDate);
+            }
+        });        
+    </script>
+    <!-- *********** end MonthPicker ************** -->
+	
 	<script>
 		$(document).ready(function() 
 		{
@@ -870,35 +890,18 @@
 						}				
 					})		 
 				});		
-			});
-			
-			
-			// Populate dropdown with list of periods
-			//set the period
-			var currentTime = new Date();
-			
-			console.log(currentTime);
-
-			var month = currentTime.getMonth()+1;
-
-			var day = currentTime.getDate();
-
-			var year = currentTime.getFullYear();
-			
-			console.log(year);
-			console.log(month);
-			console.log(day);
-			
-			for(var i = month-1; i >=1; i--) 
-			{		
-				if(i<=9)
-				{
-					i = '0'+i;
-				}		
-				perioddwn.append($('<option></option>').attr('value', year+''+i).text(year+''+i));
-			}
-			
+			});	
 		});
+		
+		//change of period		
+		function datePicked(sDate)
+		{
+			var dateparts = sDate.split('/', 2);
+			var therdate = dateparts[1]+''+dateparts[0];
+			var countyou = $("#county-dropdown").val();
+			var subcountyou = $("#subcounty-dropdown").val();
+			var periodval = therdate;			
+		}
 	</script>
 
 </body>
