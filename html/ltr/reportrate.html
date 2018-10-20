@@ -285,11 +285,11 @@
                                         <div class="col-md-4 col-sm-4 col-xs-12">
                                             <!-- <select class="form-control m-r-5" id="period-dropdown" name="period">                  
                                             </select>  -->
-                                            <input type="text" class="form-control" id="period-picker"/>
+                                            <input type="text" class="form-control" id="period-dropdown"/>
                                         </div> 
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-1 col-sm-1 col-xs-12">
+                                <!-- 
                                     <input type="submit" value="Go" class="btn btn-info"/>
                                 </div> -->
                             </div>
@@ -443,58 +443,7 @@
 						}				
 					})		 
 				});		
-			});
-			
-			
-			// Populate dropdown with list of periods
-			
-            var date = new Date();
-            var currentMonth = date.getMonth();
-            var currentYear = date.getFullYear();
-            console.log(currentYear)
-            var month = ["January","February","March","April","May","June","July",
-                        "August","September","October","November","December"];
-            var simpleDate = [];
-            var myArray = [];
-
-            // for(var i = 0; i < 12; i++){
-            //     if(currentMonth == - 1){
-            //         currentMonth = 11;
-            //         date.setFullYear(parseInt(currentYear) - 1);
-            //         currentYear = date.getFullYear();
-            //     }
-            //     simpleDate.push(currentYear+''+currentMonth);  
-            //     myArray.push(month[currentMonth]+" "+currentYear);
-                
-            //     if(currentMonth == 0){
-            //         cM = 12;
-            //     }else{
-            //         cM = currentMonth;
-            //     }
-            //     if(cM < 10){
-            //         cM = '0'+currentMonth;
-            //     }
-            //     if(cM == 12){
-            //         cmA = 0;
-            //     }else{
-            //         cmA = currentMonth;
-            //     }
-				
-			// 	if(cmA-1<0)
-			// 	{
-			// 		cmA = 0;
-			// 	}
-			// 	else
-			// 	{
-			// 		cmA = cmA-1;
-			// 	}
-				
-            //     perioddwn.append($('<option></option>').attr('value', currentYear+''+cM).text(month[cmA]+" "+currentYear));
-            //     currentMonth--;
-            // }
-
-
-			
+			});						
 		});
     </script>
     
@@ -505,7 +454,7 @@
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
-        $('#period-picker').MonthPicker({ 
+        $('#period-dropdown').MonthPicker({ 
             Button: false,
             MinMonth: '-1y',
             MaxMonth: -1,
@@ -579,38 +528,7 @@
             fetchRR(filtered_url);
         });
 		
-		//change of period
-		$('#period-dropdown').change(function() {
-            var countyou = $("#county-dropdown").val();
-			var subcountyou = $("#subcounty-dropdown").val();
-			var periodval = $("#period-dropdown").val();
-			
-			if(countyou == null)
-			{
-				countyou = 'N7YETT3A9r1';
-			}
-			
-			if(subcountyou != null)
-			{
-				countyou = subcountyou;
-			}
-									
-			var filtered_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
-			console.log(filtered_url);
-			
-			var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
-			
-			if(subcountyou != null)
-			{
-			
-				var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
-			}
-			
-            console.log(filtersub_url);
-			fetchScRR(filtersub_url);
-            fetchRR(filtered_url);
-        });
-
+		//change of period		
         function datePicked(sDate){
             var dateparts = sDate.split('/', 2);
             var therdate = dateparts[1]+''+dateparts[0];
