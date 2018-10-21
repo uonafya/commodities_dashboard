@@ -415,7 +415,7 @@
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://test.hiskenya.org/kenya/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -433,7 +433,7 @@
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://test.hiskenya.org/kenya/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -478,11 +478,15 @@
     <script src="../../assets/extra-libs/highcharts/rr-highchart.js"></script>
     <script src="../../assets/extra-libs/highcharts/subcounty-rr-highchart.js"></script>
     <script>
-        var rrurl = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:201805;LAST_12_MONTHS&filter=ou:N7YETT3A9r1&displayProperty=NAME&outputIdScheme=NAME';
+        $(document).ready(function() 
+	{
+    var rrurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:tAbBVBbueqD&displayProperty=NAME&outputIdScheme=NAME';
         
         fetchRR(rrurl);
-        var scurl = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:N7YETT3A9r1;LEVEL-3&filter=pe:LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
+    var scurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:tAbBVBbueqD;LEVEL-3&filter=pe:;LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
         fetchScRR(scurl);
+        });
+        
     </script>
     <!-- end HIGHCHARTS -->
     
@@ -497,12 +501,12 @@
 			
 			if(periodval == null)
 			{
-				periodval = '201805';
+                            periodval = '201805';
 			}
 			
-			var filtered_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
+			var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
 			console.log(filtered_url);
-			var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+';LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
+			var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+';LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
             fetchRR(filtered_url);
@@ -520,9 +524,9 @@
 				periodval = '201805';
 			}
 			
-			var filtered_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
+			var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
 			console.log(filtered_url);
-			var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&filter=pe:'+periodval+';LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
+			var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&filter=pe:'+periodval+';LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
             fetchRR(filtered_url);
@@ -546,15 +550,15 @@
 				countyou = subcountyou;
 			}
 									
-			var filtered_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
+			var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
 			console.log(filtered_url);
 			
-			var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
+			var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
 			
 			if(subcountyou != null)
 			{
 			
-				var filtersub_url = 'https://test.hiskenya.org/kenya/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
+				var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
 			}
 			
             console.log(filtersub_url);

@@ -878,7 +878,10 @@
 			$("#county-dropdown").change(function() 
 			{  
 				subcounty.empty();
-				var countyid = $(this).val();		
+				var countyid = $(this).val();	
+				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+				subcounty.prop('selectedIndex', 0);
+				
 				// Populate dropdown with list of sub counties
 				$.getJSON('https://test.hiskenya.org/kenya/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			

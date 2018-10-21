@@ -1,7 +1,7 @@
 {
     "version": "0.1",
     "name": "Health Commodities Dashboard +",
-    "description": "Health Commodities Dashboard",
+    "description": "An App to visualize Malaria commodities data",
     "launch_path": "/html/ltr/index.html",
     "appType": "APP",
     "icons": {
@@ -14,8 +14,9 @@
     "default_locale": "en",
     "activities": {
         "dhis": {
-            "href": "*",
-            "namespace": "health_commodities_v13"
+            "href": "*"            
         }
     }
 }
+
+
