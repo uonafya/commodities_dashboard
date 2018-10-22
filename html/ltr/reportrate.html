@@ -285,7 +285,7 @@
                                         <div class="col-md-4 col-sm-4 col-xs-12">
                                             <!-- <select class="form-control m-r-5" id="period-dropdown" name="period">                  
                                             </select>  -->
-                                            <input type="text" class="form-control" id="period-dropdown"/>
+                                            <!-- <input type="text" class="form-control" id="period-dropdown"/> -->
                                         </div> 
                                     </div>
                                 </div>
@@ -506,7 +506,7 @@
 			
 			var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
 			console.log(filtered_url);
-			var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+';LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
+			var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=NAME';
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
             fetchRR(filtered_url);
@@ -526,13 +526,13 @@
 			
             // var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
             
-            var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             
             console.log(filtered_url);
             
             // var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&filter=pe:'+periodval+';LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
             
-            var filteredsub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+subcountyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filteredsub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&displayProperty=NAME&outputIdScheme=UID';
             
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
