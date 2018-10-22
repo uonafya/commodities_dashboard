@@ -2,47 +2,6 @@
 <html dir="ltr" lang="en">
 
 <head>
-   
-
-    <script>
-        window.onload = function () {
-            
-        var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: false,
-            
-            title:{
-                text:"MOS by commodity"
-            },
-            axisX:{
-                interval: 1
-            },
-            axisY2:{
-                interlacedColor: "rgba(1,77,101,.2)",
-                gridColor: "rgba(1,77,101,.1)",
-                title: ""
-            },
-            data: [{
-                type: "bar",
-                name: "MOS by commodities",
-                axisYType: "primary",
-                color: "#014D65",
-                dataPoints: [
-                    { y: 4, label: "RDTs" },	
-                    { y: 0, label: "SP tabs" },
-                    { y: 10.5, label: "AS inj" },
-                    { y: 13, label: "AL all" },
-                    { y: 11.5, label: "AL 24" },
-                    { y: 13.5, label: "AL 18" },
-                    { y: 22, label: "AL 12" },
-                    { y: 7, label: "AL 6" }
-                   	
-                ]
-            }]
-        });
-        chart.render();
-        
-        }
-        </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
@@ -56,7 +15,8 @@
     <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
+	<link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -312,6 +272,32 @@
                             </nav>
                         </div>
                     </div>
+					<div class="col-md-7 col-sm-6 col-xs-12">
+						<small class="">Filter:</small>
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="row">
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<select class="form-control m-r-5" id="county-dropdown" name="county">                                                
+										</select>
+									</div>										
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
+										</select> 
+									</div> 
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<!-- <select class="form-control m-r-5" id="period-dropdown" name="period">                  
+										</select>  -->
+										<input type="text" class="form-control" id="period-dropdown"/>
+									</div> 
+								</div>
+							</div>
+							<!-- 
+								<input type="submit" value="Go" class="btn btn-info"/>
+							</div> -->
+						</div>
+						
+					</div>
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -324,117 +310,7 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!-- Chart-1 -->
-               <!-- <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Real Time Chart</h5>
-                                 <div id="real-time" style="height:400px;"></div>
-                                <p>Time between updates:
-                                    <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 ENd chart-1 -->
-                <!-- Chart-2 -->
-               <!-- <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Turning-series chart</h5>
-                                <div id="placeholder" style="height: 400px;"></div>
-                                <p id="choices" class="m-t-20"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Chart-2 -->
-                <!-- Cards -->
-                <!--<div class="row">
-                    <div class="col-md-3">
-                        <div class="card m-t-0">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="peity_line_neutral left text-center m-t-10"><span><span style="display: none;">10,15,8,14,13,10,10</span>
-                                        <canvas width="50" height="24"></canvas>
-                                        </span>
-                                        <h6>30%</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 border-left text-center p-t-10">
-                                    <h3 class="mb-0 font-weight-bold">150</h3>
-                                    <span class="text-muted">New Users</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card m-t-0">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="peity_bar_bad left text-center m-t-10"><span><span style="display: none;">3,5,6,16,8,10,6</span>
-                                        <canvas width="50" height="24"></canvas>
-                                        </span>
-                                        <h6>-40%</h6></div>
-                                </div>
-                                <div class="col-md-6 border-left text-center p-t-10">
-                                    <h3 class="mb-0 font-weight-bold">4560</h3>
-                                    <span class="text-muted">Orders</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card m-t-0">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="peity_line_good left text-center m-t-10"><span><span style="display: none;">12,6,9,23,14,10,17</span>
-                                        <canvas width="50" height="24"></canvas>
-                                        </span>
-                                        <h6>+60%</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 border-left text-center p-t-10">
-                                    <h3 class="mb-0 ">5672</h3>
-                                    <span class="text-muted">Active Users</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card m-t-0">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="peity_bar_good left text-center m-t-10"><span>12,6,9,23,14,10,13</span>
-                                        <h6>+30%</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 border-left text-center p-t-10">
-                                    <h3 class="mb-0 font-weight-bold">2560</h3>
-                                    <span class="text-muted">Register</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End cards -->
-                <!-- Chart-3 -->
-              <!--  <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Bar Chart</h5>
-                                <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flot-line-chart"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End chart-3 -->
+                
                 <!-- Charts -->
                 <div class="row">
                     <div class="col-md-6">
@@ -508,9 +384,8 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"></h5>
-                                <div id="chartContainer" style="height: 500px;"></div>
-                                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                                <h5 class="card-title"></h5>                                
+								<div id="mosbycombox" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
                             </div>
                         </div>
                     </div>
@@ -519,9 +394,9 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Percentage of health facilities with</h5>
+                                    <h5 class="card-title">Percentage of health facilities</h5>
                                     <div class="malaria_commodity_table" style="height: 450px;">
-                                            <table class = "table">
+                                        <table class = "table percent_healthfa">
                                                     <thead>
                                                     <tr>
                                                         <th scope="col">items</th>
@@ -531,49 +406,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>AL 6</td>
-                                                    <td>53%</td>
-                                                    <td>10%</td>
-                                                    <td>3%</td>
-                                                </tr>  
-                                                <tr>
-                                                        <td>AL 12</td>
-                                                        <td>58%</td>
-                                                        <td>4%</td>
-                                                        <td>5%</td>
-                                                    </tr> 
-                                                <tr>
-                                                    <td>AL 18</td>
-                                                    <td>38%</td>
-                                                    <td>3%</td>
-                                                    <td>2%</td>
-                                                 </tr> 
-                                                 <tr>
-                                                    <td>AL 24</td>
-                                                    <td>61%</td>
-                                                    <td>5%</td>
-                                                    <td>6%</td>
-                                                </tr> 
-                                            <tr>
-                                                    <td>As Inj</td>
-                                                    <td>23%</td>
-                                                    <td>2%</td>
-                                                    <td>5%</td>
-                                            </tr>
-                                            <tr>
-                                                <td>SP tabs</td>
-                                                <td>0%</td>
-                                                <td>0%</td>
-                                                <td>0%</td>
-                                            </tr> 
-                                            <tr>
-                                                    <td>RDTs</td>
-                                                    <td>26%</td>
-                                                    <td>7%</td>
-                                                    <td>13%</td>
-                                                </tr>        
-                                                
                                                 </tbody>
                                         </table>
                                     </div>
@@ -583,9 +415,9 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">No of health facilities with</h5>
+                                        <h5 class="card-title">No of health facilities with:</h5>
                                                 <div class="malaria_commodity_table" style="height: 450px;">
-                                                <table class="table">
+                                                <table class="table number_healthfa">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Item</th>
@@ -598,69 +430,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>AL6</td>
-                                                            <td>69</td>
-                                                            <td>13</td>
-                                                            <td>4</td>
-                                                            <td>31</td>
-                                                            <td>13</td>
-                                                            <td>130</td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td>AL12</td>
-                                                                <td>76</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>30</td>
-                                                                <td>13</td>
-                                                                <td>130</td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td>AL18</td>
-                                                                <td>49</td>
-                                                                <td>4</td>
-                                                                <td>3</td>
-                                                                <td>61</td>
-                                                                <td>13</td>
-                                                                <td>130</td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td>AL24</td>
-                                                                <td>79</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>23</td>
-                                                                <td>13</td>
-                                                                <td>130</td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td>AS inj</td>
-                                                                <td>30</td>
-                                                                <td>2</td>
-                                                                <td>6</td>
-                                                                <td>15</td>
-                                                                <td>77</td>
-                                                                <td>130</td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td>SP tabs</td>
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                                <td>130</td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td>RDTs</td>
-                                                                <td>34</td>
-                                                                <td>9</td>
-                                                                <td>17</td>
-                                                                <td>38</td>
-                                                                <td>32</td>
-                                                                <td>130</td>
-                                                        </tr>
+                                                        
                                                     </tbody>
                                                 </table>
                                                 
@@ -741,6 +511,355 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="../../assets/libs/chart/chart.js"></script>
+	
+	<script>
+		$(document).ready(function() 
+		{
+			var dropdown = $('#county-dropdown');
+			
+			var subcounty = $('#subcounty-dropdown');
+			
+			var perioddwn = $('#period-dropdown');
+
+			dropdown.empty();
+			subcounty.empty();
+			perioddwn.empty();
+
+			dropdown.append('<option selected="true" disabled>Select County</option>');
+			dropdown.prop('selectedIndex', 0);
+			
+			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+			subcounty.prop('selectedIndex', 0);
+			
+			perioddwn.append('<option selected="true" disabled>Select Period</option>');
+			perioddwn.prop('selectedIndex', 0);
+
+			//const url = 'https://api.myjson.com/bins/7xq2x';
+
+			//populate dropdown with list of counties
+			$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			{
+				//console.log(data.organisationUnits);
+				$.each(data.organisationUnits, function (key, entry) 
+				{						
+					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
+				})		 
+			});
+			
+			$("#county-dropdown").change(function() 
+			{  
+				subcounty.empty();
+				var countyid = $(this).val();	
+
+				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+				subcounty.prop('selectedIndex', 0);
+				
+				// Populate dropdown with list of sub counties
+				$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				{			
+					$.each(data.organisationUnits, function (key, entry) 
+					{				
+						if(entry.parent.id==countyid)
+						{							
+							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+						}				
+					})		 
+				});		
+			});						
+		});
+    </script>
+    
+    <!-- *********** MonthPicker ************** -->
+    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
+
+    <script>
+        $('#period-dropdown').MonthPicker({ 
+            Button: false,
+            MinMonth: '-1y',
+            MaxMonth: -1,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePicked(sDate);
+            }
+        });
+		
+		//period function				
+        function datePicked(sDate)
+		{
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var countyou = $("#county-dropdown").val();
+			var subcountyou = $("#subcounty-dropdown").val();
+			var periodval = therdate;
+			
+			if(countyou == null)
+			{
+				countyou = 'N7YETT3A9r1';
+			}
+			
+			if(subcountyou != null)
+			{
+				countyou = subcountyou;
+			}
+        }
+        
+    </script>
+    <!-- *********** end MonthPicker ************** -->
+	
+	<!-- MOS by Commodity -->
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script type="text/javascript">
+	
+	//process the json
+	$(document).ready(function() 
+	{
+		//load the mos by commodity
+		var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
+		
+		
+		//populate dropdown with list of counties
+		$.getJSON('mos-per-commodity.json', function (data) 
+		{
+			//create the org units array
+			var orgunits = [];
+			var dxids = [];
+			var mosVals = new Array();   
+							
+			//var tableData = '<table>';
+			var tableData = '';
+			
+			//console.log(data.rows);
+			//loop through the org units							
+			$.each(data.metaData.dimensions.dx, function (key, entry) 
+			{				
+				$.each(data.rows, function (rkey, rentry) 
+				{		
+					var dxcode = rentry[0];
+					if(dxcode==entry)
+					{
+						mosVals.push(parseFloat(rentry[2]));
+					}									
+				})
+			})	
+
+			//draw the chart
+			Highcharts.chart('mosbycombox', {
+				chart: {
+					type: 'bar'
+				},
+				title: {
+					text: 'MOS By Commodity'
+				},
+				subtitle: {
+					text: 'Source: HIS Kenya'
+				},
+				xAxis: {
+					categories: ['AL6', 'AL12', 'AL18', 'AL24','AL all', 'AS inj','SP tabs', 'RDTs'],
+					title: {
+						text: null
+					}
+				},
+				yAxis: {
+					min: 0,
+					title: {
+						text: 'Months of Stock',
+						align: 'high'
+					},
+					labels: {
+						overflow: 'justify'
+					}
+				},
+				tooltip: {
+					valueSuffix: ' MOS'
+				},
+				plotOptions: {
+					bar: {
+						dataLabels: {
+							enabled: true
+						}
+					}
+				},
+				legend: {
+					layout: 'vertical',
+					align: 'right',
+					verticalAlign: 'top',
+					x: -40,
+					y: 80,
+					floating: true,
+					borderWidth: 1,
+					backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+					shadow: true
+				},
+				credits: {
+					enabled: false
+				},
+				series: [{
+					name: 'MOS',
+					data: mosVals
+				}]
+			});
+		});
+		
+		
+		//% of health facilities
+		var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
+		
+		
+		//parse the data for mos percentage
+		$.getJSON('mos-per-facility-monthly.json', function (data) 
+		{
+			var orgunits = data.metaData.dimensions.ou;
+			console.log(orgunits.length);
+			
+							
+			//var tableData = '<table>';
+			var tableData = '';
+			
+			//console.log(data.rows);
+			//loop through the org units							
+			$.each(data.metaData.dimensions.dx, function (key, entry) 
+			{		
+				//define the variables to hold the counter
+				var overstock = 0;
+				var stockok = 0;
+				var understock = 0;
+				
+				//define the table
+				tableData += '<tr>';
+				tableData += '<td>'+data.metaData.items[entry].name+'</td>';							
+				//console.log(data.metaData.items[entry].name);
+				
+				//for each dimension get the value
+				$.each(data.rows, function (rkey, rentry) 
+				{	
+					var dxid = rentry[0];
+					var mosval = parseFloat(rentry[2]);
+					
+					if(dxid==entry)
+					{
+						console.log(mosval);
+						if(mosval>6)
+						{
+							overstock++;
+						}
+						if(mosval>=3 && mosval<=6)
+						{
+							stockok++;
+						}
+						if(mosval>0 && mosval<3)
+						{
+							understock++;
+						}						
+					}					
+				})	
+				var overpercent = (overstock/orgunits.length)*100;
+				var okpercent = (stockok/orgunits.length)*100;
+				var underpercent = (understock/orgunits.length)*100;
+				
+				tableData += '<td>'+overpercent.toFixed(1)+'%</td>';
+				tableData += '<td>'+okpercent.toFixed(1)+'%</td>';
+				tableData += '<td>'+underpercent.toFixed(1)+'%</td>';				
+				tableData += '</tr>';	
+			})
+
+			//tableData += '<table>';	
+			//console.log(tableData)			
+			$("table.percent_healthfa tbody").append(tableData);	
+			//$('#zero_config').DataTable();
+		});
+		
+		
+		//parse the data for mos number
+		$.getJSON('mos-per-facility-monthly.json', function (data) 
+		{
+			var orgunits = data.metaData.dimensions.ou;
+			console.log(orgunits.length);
+			var totalfa = orgunits.length;
+							
+			//var tableData = '<table>';
+			var tableData = '';
+			
+			//console.log(data.rows);
+			//loop through the org units							
+			$.each(data.metaData.dimensions.dx, function (key, entry) 
+			{		
+				//define the variables to hold the counter
+				var overstock = 0;
+				var stockok = 0;
+				var understock = 0;
+				var stockout = 0;
+				var nomos = 0;				
+				
+				//define the table
+				tableData += '<tr>';
+				tableData += '<td>'+data.metaData.items[entry].name+'</td>';							
+				//console.log(data.metaData.items[entry].name);
+				
+				//for each dimension get the value
+				$.each(data.rows, function (rkey, rentry) 
+				{	
+					var dxid = rentry[0];
+					var mosval = parseFloat(rentry[2]);
+					
+					if(dxid==entry)
+					{
+						console.log(mosval);
+						if(mosval>6)
+						{
+							overstock++;
+						}
+						if(mosval>=3 && mosval<=6)
+						{
+							stockok++;
+						}
+						if(mosval>0 && mosval<3)
+						{
+							understock++;
+						}
+						if(mosval<=0)
+						{
+							stockout++;
+						}						
+					}					
+				})	
+				
+				nomos = totalfa-(overstock+stockok+understock+stockout)
+				
+				tableData += '<td>'+overstock+'</td>';
+				tableData += '<td>'+stockok+'</td>';
+				tableData += '<td>'+understock+'</td>';
+				tableData += '<td>'+stockout+'</td>';	
+				tableData += '<td>'+nomos+'</td>';	
+				tableData += '<td>'+totalfa+'</td>';					
+				
+				tableData += '</tr>';	
+			})
+
+			//tableData += '<table>';	
+			//console.log(tableData)			
+			$("table.number_healthfa tbody").append(tableData);	
+			//$('#zero_config').DataTable();
+		});
+		
+		
+		
+	});
+	
+	
+
+	</script>
+	<!-- end MOS by Commodity -->
+	
+	
+	
+	
 </body>
 
 </html>
