@@ -22,4 +22,10 @@
 .table th{
     font-weight: bold !important;
 }
+.hidden{
+    display: none !important;
+    max-width: 0px !important;
+    max-height: 0px !important;
+    visibility: hidden !important;
+}
  /* CUSTOM */
