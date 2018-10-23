@@ -14,15 +14,13 @@
     <!-- Custom CSS -->
     <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
-    <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
-    <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
 	
-	<script type="text/javascript" src="../../assets/libs/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="../../jqplot/jquery.jqplot.js"></script>
 <script type="text/javascript" src="../../jqplot/plugins/jqplot.barRenderer.js"></script>
 <script type="text/javascript" src="../../jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
@@ -75,16 +73,26 @@
   height: 400px;
   margin: 0 auto
 }
+</style>
 
-.highcharts-credits,
+<style>
+.highcharts-credits{
+display: none !important;
+width: 0px !important;
+height: 0px !important
+visibility: hidden !important;
+opacity: 0 !important
+color: transparent;}
+</style>
+
+<style>
 .highcharts-button-symbol{
-  display: none !important;
-  width: 0px !important;
-  height: 0px !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  color: transparent;
-}
+display: none !important;
+width: 0px !important;
+height: 0px !important
+visibility: hidden !important;
+opacity: 0 !important
+color: transparent;}
 </style>
  
  
@@ -175,7 +183,7 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item search-box hidden"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search position-absolute">
                                 <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
                             </form>
@@ -189,7 +197,7 @@
                         <!-- Comment -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown hidden">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark hidden" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
                             </a>
                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Action</a>
@@ -205,7 +213,7 @@
                         <!-- Messages -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown hidden">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark hidden" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi hidden mdi-comment-processing"></i>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
                                 <ul class="list-style-none">
@@ -297,17 +305,17 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="weightbands.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Weight Band</span></a></li>
+                        <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="weightbands.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Weight Band</span></a></li> --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Stock Status </span></a><ul aria-expanded="false" class="collapse  first-level">
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">ACTs</span></a></li>
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li>
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate</span></a></li>
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RR-Details</span></a></li>
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sssummary.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">SS Summary</span></a></li>
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ</span></a></li>
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Indicators Summary</span></a></li>
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	
+						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li></ul></li>
+						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting Rate </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate</span></a></li>
+						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Details</span></a></li></ul></li>
+						<!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sssummary.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">SS Summary</span></a></li> -->
+						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Data Quality </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Completeness</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Concordance</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consistency</span></a></li> </ul></li>
+						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Supply Chain Performance </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Detailed</span></a></li></ul></li>
+						<!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	 -->	
 					</ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -327,47 +335,14 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <h4 class="page-title m-t-10">
-                                Data Quality
-                                &nbsp; &nbsp;
-                            </h4>
-                        </div>
-                        <div class="col-md-7 col-sm-6 col-xs-12">
-                            <small class="">Filter:</small>
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
-                                            </select>
-                                        </div>										
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
-                                            </select> 
-                                        </div> 
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <!-- <select class="form-control m-r-5" id="period-dropdown" name="period">                  
-                                            </select>  -->
-                                            <input type="text" class="form-control" id="period-picker"/>
-                                        </div> 
-                                    </div>
-                                </div>
-                                <!-- <div class="col-md-1 col-sm-1 col-xs-12">
-                                    <input type="submit" value="Go" class="btn btn-info"/>
-                                </div> -->
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
-                            <div class="ml-auto text-right m-t-10">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Data Quality</li>
-                                    </ol>
-                                </nav>
-                            </div>
+                        <h4 class="page-title">Charts</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -384,55 +359,217 @@
                 <!-- ============================================================== -->
                 <!-- Chart-1 -->
                 <div class="row">
-                    <div class="col-md-6">
-                        <div id="wbdata" class="col-md-12"></div>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="pc1" class="col-md-12" style="min-width: 310px; height: 350px;"></div>
+                    <div class="col-md-12">					
+						<div id="container"></div>
                     </div>
                 </div>
-                
-                <div class="row m-t-10">
-                    <div class="col-6 m-t-10">
-                        <div class="card">
-                            <div class="row">
-                                <div id="dq-column" class="col-md-12"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 m-t-10">
-                        <div class="card">
-                            <div class="row">
-                                <div id="pc2" class="col-md-12" style="min-width: 310px; height: 350px;"></div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- ENd chart-1 -->
+                <!-- Chart-2 -->
+				<div class="row">
+                    <div class="col-md-12">                        
+                                         
+                 </div>
                 </div>
                 
+                <!-- End Chart-2 -->
+                <!-- Cards -->
+                
+                <!-- End cards -->
+                <!-- Chart-3 -->
+                
+                <!-- End chart-3 -->
+                <!-- Charts -->
                 <div class="row">
-                    <div class="col-6">
-                        <div class="card">
-                            <div class="row">
-                                <div id="pc3" class="col-md-12" style="min-width: 310px; height: 350px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="card">
-                            <div class="row">
-                                <div id="pc4" class="col-md-12" style="min-width: 310px; height: 350px;"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="col-md-12">                        
+                <!--Table and divs that hold the pie charts-->
+				<table class="columns">
+					<tr>
+						<td><div id="Sarah_chart_div" style="border: 1px solid #ccc"></div></td>
+						<td><div id="Anthony_chart_div" style="border: 1px solid #ccc"></div></td>
+					</tr>					
+				</table>                           
+                 </div>
                 </div>
-            </div>  
+				<div class="row">
+                    <div class="col-md-12">                        
+                <!--Table and divs that hold the pie charts-->
+				<table class="columns">
+					<tr>
+						<td><div id="Sarah_chart_div2" style="border: 1px solid #ccc"></div></td>
+						<td><div id="Anthony_chart_div2" style="border: 1px solid #ccc"></div></td>
+					</tr>					
+				</table>                           
+                 </div>
+                </div>
+                    
+        
+<svg class="chartx"></svg>
+<script src="../../d3/d3.v3.min.js"></script>
+<script>
+
+var data = {
+  labels: [
+    '2018 05', '2018 04', '2018 03'
+  ],
+  series: [
+    {
+      label: '#patients',
+      values: [140, 136, 244]
+    },
+    {
+      label: '#doses',
+      values: [195, 154, 364]
+    },
+    {
+      label: '#dosesAdj',
+      values: [225, 182, 371]
+    },]
+};
+
+var chartWidth       = 500,
+    barHeight        = 40,
+    groupHeight      = barHeight * data.series.length,
+    gapBetweenGroups = 20,
+    spaceForLabels   = 150,
+    spaceForLegend   = 150;
+
+// Zip the series data together (first values, second values, etc.)
+var zippedData = [];
+for (var i=0; i<data.labels.length; i++) {
+  for (var j=0; j<data.series.length; j++) {
+    zippedData.push(data.series[j].values[i]);
+  }
+}
+
+// Color scale
+var color = d3.scale.category20();
+var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
+
+var x = d3.scale.linear()
+    .domain([0, d3.max(zippedData)])
+    .range([0, chartWidth]);
+
+var y = d3.scale.linear()
+    .range([chartHeight + gapBetweenGroups, 0]);
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .tickFormat('')
+    .tickSize(0)
+    .orient("left");
+
+// Specify the chart area and dimensions
+var chart = d3.select(".chartx")
+    .attr("width", spaceForLabels + chartWidth + spaceForLegend)
+    .attr("height", chartHeight);
+
+// Create bars
+var bar = chart.selectAll("g")
+    .data(zippedData)
+    .enter().append("g")
+    .attr("transform", function(d, i) {
+      return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i/data.series.length))) + ")";
+    });
+
+// Create rectangles of the correct width
+bar.append("rect")
+    .attr("fill", function(d,i) { return color(i % data.series.length); })
+    .attr("class", "bar")
+    .attr("width", x)
+    .attr("height", barHeight - 1);
+
+// Add text label in bar
+bar.append("text")
+    .attr("x", function(d) { return x(d) - 1; })
+    .attr("y", barHeight / 2)
+    .attr("fill", "red")
+    .attr("dy", ".35em")
+    .text(function(d) { return d; });
+
+// Draw labels
+bar.append("text")
+    .attr("class", "label")
+    .attr("x", function(d) { return - 50; })
+    .attr("y", groupHeight / 2)
+    .attr("dy", ".35em")
+    .text(function(d,i) {
+      if (i % data.series.length === 0)
+        return data.labels[Math.floor(i/data.series.length)];
+      else
+        return ""});
+
+chart.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")
+      .call(yAxis);
+
+// Draw legend
+var legendRectSize = 18,
+    legendSpacing  = 4;
+
+var legend = chart.selectAll('.legend')
+    .data(data.series)
+    .enter()
+    .append('g')
+    .attr('transform', function (d, i) {
+        var height = legendRectSize + legendSpacing;
+        var offset = -gapBetweenGroups/2;
+        var horz = spaceForLabels + chartWidth + 40 - legendRectSize;
+        var vert = i * height - offset;
+        return 'translate(' + horz + ',' + vert + ')';
+    });
+
+legend.append('rect')
+    .attr('width', legendRectSize)
+    .attr('height', legendRectSize)
+    .style('fill', function (d, i) { return color(i); })
+    .style('stroke', function (d, i) { return color(i); });
+
+legend.append('text')
+    .attr('class', 'legend')
+    .attr('x', legendRectSize + legendSpacing)
+    .attr('y', legendRectSize - legendSpacing)
+    .text(function (d) { return d.label; });
+	</script>
+                           
+                </div>
+                <!-- End Charts -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                All Rights Reserved by UoN HealthIT- Admin. Designed and Developed by <a href="">UoN HealthIT</a>.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
         </div>
-        <footer class="footer text-center">
-            All Rights Reserved by UoN HealthIT- Admin. Designed and Developed by <a href="">UoN HealthIT</a>.
-        </footer>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
     </div>
-</div>
-   
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <!-- <script src="../../assets/libs/jquery/dist/jquery.min.js"></script> -->
+    <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
@@ -461,21 +598,154 @@
 	
 	
 	
-    <script src="../../code/highcharts.js"></script>
-    <script src="../../code/modules/series-label.js"></script>
-    <script src="../../code/modules/exporting.js"></script>
-    <script src="../../code/modules/export-data.js"></script>
-    <script src="../../assets/extra-libs/highcharts/dq-highcharts.js"></script>
+<script src="../../code/highcharts.js"></script>
+<script src="../../code/modules/series-label.js"></script>
+<script src="../../code/modules/exporting.js"></script>
+<script src="../../code/modules/export-data.js"></script>
  
+<script type="text/javascript">
+  window.onload = function () {
+    Highcharts.chart('container', {
+  chart: {
+    type: 'line'
+  },
+  title: {
+    text: 'Reporting health facilities that had patient'
+  },
+  subtitle: {
+    text: 'weight band data in DHIS'
+  },
+  xAxis: {
+    categories: ['2018 03', '2018 04', '2018 05']
+  },
+  yAxis: {
+    title: {
+      text: ''
+    }
+  },
+  plotOptions: {
+    line: {
+      dataLabels: {
+        enabled: true
+      },
+      enableMouseTracking: false
+    }
+  },
+  series: [{
+    name: 'Yes',
+    data: [60, 65, 65]
+  }, {
+    name: 'No',
+    data: [60, 52, 54]
+  }]
+});
+}
+  </script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        pieOne('');
-        pieTwo('');
-        pieThree('');
-        pieFour('');
-        columnOne('');
-        lineOne('');
-    </script>
-	
+
+      // Load Charts and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Draw the pie chart for Sarah's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawSarahChart);
+
+      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawAnthonyChart);
+	  
+      // Draw the pie chart for Sarah's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawSarahChart2);
+
+      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawAnthonyChart2);
+
+      // Callback that draws the pie chart for Sarah's pizza.
+      function drawSarahChart() {
+
+        // Create the data table for Sarah's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Opening SOH = Closing SOH previous month', 3],
+          ['Opening SOH != Closing SOH previous month', 12]
+        ]);
+
+        // Set options for Sarah's pie chart.
+        var options = {title:'AL 24',
+                       width:400,
+                       height:300};
+
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.PieChart(document.getElementById('Sarah_chart_div'));
+        chart.draw(data, options);
+      }
+	  function drawSarahChart2() {
+
+        // Create the data table for Sarah's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['No discrepancy', 4],
+          ['Discrepancy', 11]
+        ]);
+
+        // Set options for Sarah's pie chart.
+        var options = {title:'Internal Data Consistency AL 24',
+                       width:400,
+                       height:300};
+
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.PieChart(document.getElementById('Sarah_chart_div2'));
+        chart.draw(data, options);
+      }
+
+      // Callback that draws the pie chart for Anthony's pizza.
+      function drawAnthonyChart2() {
+
+        // Create the data table for Anthony's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['No discrepancy', 1],
+          ['Discrepancy', 14]
+        ]);
+
+        // Set options for Anthony's pie chart.
+        var options = {title:'Internal Data Consistency Artesunate inj',
+                       width:400,
+                       height:300};
+
+        // Instantiate and draw the chart for Anthony's pizza.
+        var chart = new google.visualization.PieChart(document.getElementById('Anthony_chart_div2'));
+        chart.draw(data, options);
+      }
+      // Callback that draws the pie chart for Anthony's pizza.
+      function drawAnthonyChart() {
+
+        // Create the data table for Anthony's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Opening SOH = Closing SOH previous month', 3],
+          ['Opening SOH != Closing SOH previous month', 12]
+        ]);
+
+        // Set options for Anthony's pie chart.
+        var options = {title:'Internal Data Consistency Artesunate inj',
+                       width:400,
+                       height:300};
+
+        // Instantiate and draw the chart for Anthony's pizza.
+        var chart = new google.visualization.PieChart(document.getElementById('Anthony_chart_div'));
+        chart.draw(data, options);
+      }
+    </script>	
 </body>
 
 </html>
