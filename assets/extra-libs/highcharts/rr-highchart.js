@@ -194,9 +194,6 @@
                 ondatalength++
             }
             //////////////////////////////////////////end ontime
-            console.log('onDataArr:-> '+JSON.stringify(ondatarr));
-            console.log('actualDataArr:-> '+JSON.stringify(actualdatarr));
-            console.log('actualDataArr2:-> '+JSON.stringify(actualdatarr2));
             // Highcharts
             Highcharts.chart('rrchart', {
                 chart: {
@@ -241,7 +238,8 @@
                     data: actualdatarr
                 }, {
                     name: 'OT: '+thesubtitle,
-                    data: ondatarr
+                    data: ondatarr,
+                    color: '#f93535'
                 }]
             });
             // end Highcharts
