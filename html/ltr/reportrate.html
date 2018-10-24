@@ -238,12 +238,12 @@
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li></ul></li>
-						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting Rate </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate</span></a></li>
+						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate</span></a></li>
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Details</span></a></li></ul></li>
 						<!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sssummary.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">SS Summary</span></a></li> -->
 						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Data Quality </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Completeness</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Concordance</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consistency</span></a></li> </ul></li>
 						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Supply Chain Performance </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Detailed</span></a></li></ul></li>
-						<!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	 -->
+						<!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	 --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li></ul></li>
 					</ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -479,13 +479,14 @@
     <script src="../../assets/extra-libs/highcharts/subcounty-rr-highchart.js"></script>
     <script>
         $(document).ready(function() {
-            // var rrurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:tAbBVBbueqD&displayProperty=NAME&outputIdScheme=NAME';
-            var rrurl = 'http://localhost/pmi/json/reportingrates.json';
-            var onurl = 'http://localhost/pmi/json/ontime-reporting.json';
+            var rrurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:tAbBVBbueqD&displayProperty=NAME&outputIdScheme=NAME';
+            var onurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
+            // var rrurl = 'http://localhost/pmi/json/reportingrates.json';
+            // var onurl = 'http://localhost/pmi/json/ontime-reporting.json';
             fetchRR(rrurl, onurl);
 
-            // var scurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
-            var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
+            var scurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
+            // var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
             fetchScRR(scurl);
         });
         
@@ -508,10 +509,11 @@
 			
 			var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
 			console.log(filtered_url);
-			var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=NAME';
+            var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=NAME';
+            var filtered_onurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
-            fetchRR(filtered_url, onurl);
+            fetchRR(filtered_url, filtered_onurl);
         });
 		
 		//change of subcounty
@@ -529,6 +531,7 @@
             // var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
             
             var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_onurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             
             console.log(filtered_url);
             
@@ -538,7 +541,7 @@
             
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
-            fetchRR(filtered_url, onurl);
+            fetchRR(filtered_url, filtered_onurl);
         });
 		
 		//change of period		
@@ -560,19 +563,20 @@
 			}
 									
 			var filtered_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
+			var filtered_onurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
 			console.log(filtered_url);
+			console.log(filtered_onurl);
 			
 			var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
 			
 			if(subcountyou != null)
 			{
-			
 				var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
 			}
 			
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
-            fetchRR(filtered_url, onurl);
+            fetchRR(filtered_url, filtered_onurl);
         }
     </script>
 </body>

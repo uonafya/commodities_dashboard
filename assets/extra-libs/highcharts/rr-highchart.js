@@ -44,6 +44,7 @@
             var matched_data=[];
             var fulldate_arr=[];
             var actualdatarr=[];
+            
             $.each(rr_rows, function (index, ydate) {
                 var date8 = ydate[1];
                 var data8 = ydate[2];
@@ -121,9 +122,12 @@
             var matched_data2=[];
             var fulldate_arr2=[];
             var actualdatarr2=[];
+            var ondatarr=[];
             $.each(rr_rows2, function (index, ydate2) {
                 var date82 = ydate2[1];
                 var data82 = ydate2[2];
+                var ondt = parseFloat(ydate2[3]);
+                ondatarr.push(ondt);
                 theorigdate2.push(date82);
                 var ydata2 = parseFloat(ydate2[2]).toFixed(2);
                 matched_data2.push(ydata2);
@@ -182,8 +186,17 @@
                 actualdatarr2.push(zer02);
                 mchdl2++
             }
-            //////////////////////////////////////////end ontime
 
+            var ondatalength = ondatarr.length;
+            while (ondatalength < 12) {
+                var addedZero = parseFloat(0);
+                ondatarr.push(addedZero);
+                ondatalength++
+            }
+            //////////////////////////////////////////end ontime
+            console.log('onDataArr:-> '+JSON.stringify(ondatarr));
+            console.log('actualDataArr:-> '+JSON.stringify(actualdatarr));
+            console.log('actualDataArr2:-> '+JSON.stringify(actualdatarr2));
             // Highcharts
             Highcharts.chart('rrchart', {
                 chart: {
@@ -228,7 +241,7 @@
                     data: actualdatarr
                 }, {
                     name: 'OT: '+thesubtitle,
-                    data: actualdatarr2
+                    data: ondatarr
                 }]
             });
             // end Highcharts
