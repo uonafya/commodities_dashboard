@@ -479,11 +479,13 @@
     <script src="../../assets/extra-libs/highcharts/subcounty-rr-highchart.js"></script>
     <script>
         $(document).ready(function() {
-            var rrurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:tAbBVBbueqD&displayProperty=NAME&outputIdScheme=NAME';
-            fetchRR(rrurl);
+            // var rrurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:tAbBVBbueqD&displayProperty=NAME&outputIdScheme=NAME';
+            var rrurl = 'http://localhost/pmi/json/reportingrates.json';
+            var onurl = 'http://localhost/pmi/json/ontime-reporting.json';
+            fetchRR(rrurl, onurl);
 
-            // var scurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:tAbBVBbueqD;LEVEL-3&filter=pe:;LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
-            var scurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
+            // var scurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
+            var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
             fetchScRR(scurl);
         });
         
@@ -509,7 +511,7 @@
 			var filtersub_url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=NAME';
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
-            fetchRR(filtered_url);
+            fetchRR(filtered_url, onurl);
         });
 		
 		//change of subcounty
@@ -536,7 +538,7 @@
             
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
-            fetchRR(filtered_url);
+            fetchRR(filtered_url, onurl);
         });
 		
 		//change of period		
@@ -570,7 +572,7 @@
 			
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
-            fetchRR(filtered_url);
+            fetchRR(filtered_url, onurl);
         }
     </script>
 </body>
