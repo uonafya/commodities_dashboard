@@ -491,16 +491,11 @@
 	// $(document).ready(function() 
 	// {
 		var ounit = 'tAbBVBbueqD';
-<<<<<<< HEAD
-		var period = '201805';
-		
-=======
         var period = 'LAST_12_MONTHS';
         
 		var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:OAYqtaeLuTi;bXnJlrmTre8;zLR3PBVPgN5;cNL3Q3UyKkg;bJILAolJsSJ;K4PyibOTukm;jtGNoWcdNcx;aUgA9xJuv2k;p2aNqT2HVyr;VbLyYVe69gU&dimension=ou:'+ounit+';LEVEL-5&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
         // var url = 'http://localhost/pmi/json/acts.json'
         fetchACTs(url);
->>>>>>> 36fd5cfdebd502bdfc5ddb79c5ba6b9c6f6a846b
 		$("#county-dropdown").change(function() 
 		{
             ounit = $(this).val();
@@ -509,18 +504,6 @@
 		
 		$("#subcounty-dropdown").change(function() 
 		{
-<<<<<<< HEAD
-			ounit = $(this).val();
-		});	               
-                
-                var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-		
-		//var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:OAYqtaeLuTi;bXnJlrmTre8;zLR3PBVPgN5;cNL3Q3UyKkg;bJILAolJsSJ;K4PyibOTukm;jtGNoWcdNcx;aUgA9xJuv2k;p2aNqT2HVyr;VbLyYVe69gU&dimension=ou:'+ounit+';LEVEL-5&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-		// var url = 'http://localhost/pmi/json/acts.json'
-		
-		//populate dropdown with list of counties
-		$.getJSON(url, function (data) 
-=======
             ounit = $(this).val();
             fetchACTs(url);
 		});
@@ -551,12 +534,11 @@
 
     function fetchACTs(acturl){
         $.getJSON(acturl, function (data) 
->>>>>>> 36fd5cfdebd502bdfc5ddb79c5ba6b9c6f6a846b
 		{
 			//create the org units array
 			var orgunits = [];
 			var dxids = [];
-                        
+				
 			//var tableData = '<table>';
 			var tableData = '';
 			
