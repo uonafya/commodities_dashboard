@@ -533,6 +533,7 @@
 
 
     function fetchACTs(acturl){
+        $('#zero_config').dataTable().clear();
         $.getJSON(acturl, function (data) 
 		{
 			//create the org units array
