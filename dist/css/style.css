@@ -14831,6 +14831,19 @@ File: scss
   .do-block {
     display: block !important; } }
 
+    .slimtable td,
+    .slimtable th{
+        padding: 4px 8px !important;
+    }
+    .table th{
+        font-weight: bold !important;
+    }
+    .hidden{
+        display: none !important;
+        max-width: 0px !important;
+        max-height: 0px !important;
+        visibility: hidden !important;
+    }
 .m-t-5{
   margin-top: 5px !important;
 }
@@ -14856,4 +14869,10 @@ File: scss
 }
 .highcharts-credits{
   display: none;
+}
+.m-l-0{
+  margin-left: 0 !important;
+}
+.width-100{
+  width: 100% !important;
 }
