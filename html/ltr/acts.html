@@ -491,7 +491,7 @@
 	$(document).ready(function() 
 	{
 		var ounit = 'tAbBVBbueqD';
-		var period = 'LAST_12_MONTHS';
+		var period = '201805';
 		
 		$("#county-dropdown").change(function() 
 		{
@@ -501,23 +501,20 @@
 		$("#subcounty-dropdown").change(function() 
 		{
 			ounit = $(this).val();
-		});
+		});	               
+                
+                var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
 		
-		$("#period-dropdown").change(function() 
-		{
-			period = $(this).val();
-		});
-		
-		var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:OAYqtaeLuTi;bXnJlrmTre8;zLR3PBVPgN5;cNL3Q3UyKkg;bJILAolJsSJ;K4PyibOTukm;jtGNoWcdNcx;aUgA9xJuv2k;p2aNqT2HVyr;VbLyYVe69gU&dimension=ou:'+ounit+';LEVEL-5&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+		//var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:OAYqtaeLuTi;bXnJlrmTre8;zLR3PBVPgN5;cNL3Q3UyKkg;bJILAolJsSJ;K4PyibOTukm;jtGNoWcdNcx;aUgA9xJuv2k;p2aNqT2HVyr;VbLyYVe69gU&dimension=ou:'+ounit+';LEVEL-5&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
 		// var url = 'http://localhost/pmi/json/acts.json'
 		
 		//populate dropdown with list of counties
-		$.getJSON('acts.json', function (data) 
+		$.getJSON(url, function (data) 
 		{
 			//create the org units array
 			var orgunits = [];
 			var dxids = [];
-				
+                        
 			//var tableData = '<table>';
 			var tableData = '';
 			

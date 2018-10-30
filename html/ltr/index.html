@@ -313,6 +313,9 @@
                 
                 <!-- Charts -->
                 <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="titlelabel"></h4>
+                    </div>
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
@@ -465,7 +468,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="../../assets/libs/chart/chart.js"></script>
     <script src="../../assets/extra-libs/landing/filter.js"></script>
-    
 	
 	<script>
 		$(document).ready(function() 
@@ -584,7 +586,17 @@
 			//create the org units array
 			var orgunits = [];
 			var dxids = [];
-			var mosVals = new Array();   
+			var mosVals = new Array();  
+                        
+                        //apply the lableing to the data
+                        var theperiod = data.metaData.dimensions.pe[0];
+                        var theorgunit = data.metaData.dimensions.ou[0];
+                        
+                        var curorg = data.metaData.items[theorgunit].name;
+                        var curpe = data.metaData.items[theperiod].name;
+                        
+                        $("h4.titlelabel").html(curorg+' - '+curpe);
+                        //end apply labeling to the data
 							
 			//var tableData = '<table>';
 			var tableData = '';
@@ -830,8 +842,7 @@
                             $.each(data.rows, function (rkey, rentry) 
                             {	
                                 if(entry==rentry[0])
-                                {
-                                    
+                                {                                    
                                     sohval.push(rentry[2]);
                                 }                            					
                             })
@@ -840,7 +851,7 @@
                     })
                 });
                 
-                console.log(sohval);
+                //console.log(sohval);
                 
 		$.getJSON(urlcon, function (data) 
 		{										
@@ -870,6 +881,7 @@
                                     {
                                         adjc = rentry[2];
                                         phycount = sohval[countercon];
+                                        console.log(phycount);
                                     }
                                 })	
 
@@ -902,7 +914,7 @@
         <!--- apply the filters -->
         <script type="text/javascript">
 	
-		//change of county
+	//change of county
         $('#county-dropdown').change(function() 
         {            			
             var countyou = $("#county-dropdown").val();
@@ -915,7 +927,8 @@
             }
             else
             {
-                var dateparts = periodval;
+                var dateparts = periodval.split('/', 2);
+                
                 var therdate = dateparts[1]+''+dateparts[0];                
                 var periodval = therdate;
             }
@@ -935,12 +948,13 @@
                 periodval = '201805';
             }
             else
-            {
-                var dateparts = periodval;
+            {                
+                var dateparts = periodval.split('/', 2);
+                
                 var therdate = dateparts[1]+''+dateparts[0];                
                 var periodval = therdate;
             }
-
+            
             filterMain(countyou,subcountyou,periodval);
         });
 		
