@@ -28,4 +28,56 @@
     max-height: 0px !important;
     visibility: hidden !important;
 }
+.m-t-5{
+    margin-top: 5px !important;
+  }
+  
+  .m-t-10{
+    margin-top: 10px !important;
+  }
+  
+  .m-t-15{
+    margin-top: 15px !important;
+  }
+  
+  .m-b-5{
+    margin-bottom: 5px !important;
+  }
+  .centr{
+      margin-left: auto !important;
+      margin-right: auto !important;
+      display: block !important;
+      float: none !important;
+  }
+  .landing-card{
+      
+  }
+  .landing-card > a:not(.active){
+      color: #333 !important;
+  }
+  .landing-card > a.active label,
+  .landing-card > a.active{
+    font-weight: bold !important;
+    /* text-decoration: underline !important; */
+  }
+  .m-b-10{
+    margin-bottom: 10px !important;
+  }
+  .width-100{
+    width: 100% !important;
+  }
+  .m-b-15{
+    margin-bottom: 15px !important;
+  }
+  .highcharts-credits{
+    display: none;
+  }
+  .page-wrapper.fullw{
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  .m-l-0{
+    margin-left: 0 !important;
+  }
+  
  /* CUSTOM */

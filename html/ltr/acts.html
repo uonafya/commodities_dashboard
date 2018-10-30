@@ -488,18 +488,28 @@
 	</script>
 			
 	<script>
-	$(document).ready(function() 
-	{
+	// $(document).ready(function() 
+	// {
 		var ounit = 'tAbBVBbueqD';
+<<<<<<< HEAD
 		var period = '201805';
 		
+=======
+        var period = 'LAST_12_MONTHS';
+        
+		var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:OAYqtaeLuTi;bXnJlrmTre8;zLR3PBVPgN5;cNL3Q3UyKkg;bJILAolJsSJ;K4PyibOTukm;jtGNoWcdNcx;aUgA9xJuv2k;p2aNqT2HVyr;VbLyYVe69gU&dimension=ou:'+ounit+';LEVEL-5&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+        // var url = 'http://localhost/pmi/json/acts.json'
+        fetchACTs(url);
+>>>>>>> 36fd5cfdebd502bdfc5ddb79c5ba6b9c6f6a846b
 		$("#county-dropdown").change(function() 
 		{
-			ounit = $(this).val();
+            ounit = $(this).val();
+            fetchACTs(url);
 		});
 		
 		$("#subcounty-dropdown").change(function() 
 		{
+<<<<<<< HEAD
 			ounit = $(this).val();
 		});	               
                 
@@ -510,6 +520,38 @@
 		
 		//populate dropdown with list of counties
 		$.getJSON(url, function (data) 
+=======
+            ounit = $(this).val();
+            fetchACTs(url);
+		});
+	
+        //change of period		
+        function datePicked(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var period = dateparts[1]+''+dateparts[0];
+            fetchACTs(url);
+        }
+
+		// $("#period-dropdown").change(function() 
+		// {
+        //     period = $(this).val();
+        //     fetchACTs(url);
+		// });
+		
+		
+	// });
+    
+    
+
+
+
+
+
+
+    function fetchACTs(acturl){
+        $.getJSON(acturl, function (data) 
+>>>>>>> 36fd5cfdebd502bdfc5ddb79c5ba6b9c6f6a846b
 		{
 			//create the org units array
 			var orgunits = [];
@@ -621,19 +663,8 @@
 			//console.log(tableData)
 			$("table.actsbox tbody").append(tableData);	
 			$('#zero_config').DataTable();
-		});			
-	});
-	
-	//change of period		
-	function datePicked(sDate)
-	{
-		var dateparts = sDate.split('/', 2);
-		var therdate = dateparts[1]+''+dateparts[0];
-		var countyou = $("#county-dropdown").val();
-		var subcountyou = $("#subcounty-dropdown").val();
-		var periodval = therdate;	
-		
-	}
+		})
+    }
 	</script>
 
 </body>
