@@ -479,7 +479,7 @@
 					{				
 						if(entry.parent.id==countyid)
 						{
-							subcounty.append($('<option></option>').attr('value', entry.abbreviation).text(entry.name));
+							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
 						}				
 					})		 
 				});		
@@ -488,166 +488,172 @@
 	</script>
 			
 	<script>
-	// $(document).ready(function() 
-	// {
-		var ounit = 'tAbBVBbueqD';
-        var period = 'LAST_12_MONTHS';
+	$(document).ready(function() 
+	{
+            var ounit = 'tAbBVBbueqD';
+            var period = '201805';
         
-		var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:OAYqtaeLuTi;bXnJlrmTre8;zLR3PBVPgN5;cNL3Q3UyKkg;bJILAolJsSJ;K4PyibOTukm;jtGNoWcdNcx;aUgA9xJuv2k;p2aNqT2HVyr;VbLyYVe69gU&dimension=ou:'+ounit+';LEVEL-5&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-        // var url = 'http://localhost/pmi/json/acts.json'
-        fetchACTs(url);
-		$("#county-dropdown").change(function() 
-		{
-            ounit = $(this).val();
+            var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            
             fetchACTs(url);
-		});
-		
-		$("#subcounty-dropdown").change(function() 
-		{
-            ounit = $(this).val();
-            fetchACTs(url);
-		});
+            $("#county-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchACTs(url);
+                
+            });
+
+            $("#subcounty-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchACTs(url);
+                
+            });
+					
+	});
+	
 	
         //change of period		
         function datePicked(sDate)
         {
             var dateparts = sDate.split('/', 2);
-            var period = dateparts[1]+''+dateparts[0];
+            var therdate = dateparts[1]+''+dateparts[0];
+            var ounit = $("#county-dropdown").val();
+            var subcountyou = $("#subcounty-dropdown").val();
+            var period = therdate;
+            
+            if(subcountyou!=null)
+            {
+                var ounit = subcountyou;
+            }
+            
+            var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            
             fetchACTs(url);
         }
+        
+        //function toprocess the acts url
+        function fetchACTs(acturl)
+        {
+            $.getJSON(acturl, function (data) 
+            {
+                    //create the org units array
+                    var orgunits = [];
+                    var dxids = [];
 
-		// $("#period-dropdown").change(function() 
-		// {
-        //     period = $(this).val();
-        //     fetchACTs(url);
-		// });
-		
-		
-	// });
-    
-    
+                    //var tableData = '<table>';
+                    var tableData = '';
+
+                    //console.log(data.rows);
+
+                    //push only if not in
+                    $.each(data.rows, function (rowkey, rowentry) 
+                    {
+                            //console.log(rowentry[1]);
+                            //console.log(orgunits.indexOf(rowentry[1]))
+                            if(orgunits.indexOf(rowentry[1])>=0)
+                            {
+                                    //console.log(orgunits);
+                            }
+                            else
+                            {
+                                    orgunits.push(rowentry[1]);
+                            }	
+
+                    })
+
+                    //console.log(orgunits.length);
+                    $.each(data.metaData.dimensions.ou, function (key, entry) 
+                    {
+                            //define the table
+                            tableData += '<tr>';	
+                            tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                            tableData += '<td>'+entry+'</td>';
+                            //console.log(data.metaData.items[entry].name);
+                            //console.log(entry);
+                            //console.log(entry);	
+
+                            //get all the dimensions for the given orgunit
+                            dxids = [];
+                            $.each(data.rows, function (rkey, rentry) 
+                            {
+                                    var dxcode = rentry[1];
+
+                                    if(dxcode==entry)
+                                    {
+                                            dxids.push(rentry[0]);
+                                    }												
+                            })
+
+                            //console.log(dxids);
 
 
+                            //console.log(data.rows);
+                            //for each dimension get the value
+                            var count = 0;
+                            $.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
+                            {
+                                    //console.log(orgunits.indexOf(entry));
+                                    //console.log(dxids.indexOf(dxentry));
+                                    //console.log(orgunits);	
+                                    //console.log(data.metaData.items[dxentry].name);
+                                    if(orgunits.indexOf(entry)<0)
+                                    {
+                                            tableData += '<td bgcolor="#ff0000"> - </td>';
+                                    }
+                                    else if(dxids.indexOf(dxentry)<0)
+                                    {
+                                            tableData += '<td bgcolor="#ff0000"> - </td>';
+                                    }
+                                    else
+                                    {										
+                                            $.each(data.rows, function (rkey, rentry) 
+                                            {					
+                                                    var dxid = rentry[0];
+                                                    var dxcode = rentry[1];
+                                                    var dxval = rentry[2];
 
+                                                    if(dxentry==dxid)
+                                                    {						
+                                                            if(dxcode==entry)
+                                                            {
+                                                                    //console.log(rentry);		
+                                                                    //var notfoundRow = false;
+                                                                    var bgcolor = '#ffffff';
+                                                                    if(dxval<0)
+                                                                            bgcolor = '#ffcccc'
+                                                                    if (dxval >= 0 && dxval< 3)
+                                                                            bgcolor = '#ffc7ce'
+                                                                    if (dxval >= 3 && dxval<= 6)
+                                                                            bgcolor = '#c6efce'
+                                                                    if(dxval>6)
+                                                                            bgcolor = '#ffeb9c'
 
+                                                                    tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
+                                                            }						
+                                                    }						
+                                            })				
 
+                                    }
+                                    count++;
+                            })					
 
-    function fetchACTs(acturl){
-        $.getJSON(acturl, function (data) 
-		{
-			//create the org units array
-			var orgunits = [];
-			var dxids = [];
-				
-			//var tableData = '<table>';
-			var tableData = '';
-			
-			//console.log(data.rows);
-			
-			//push only if not in
-			$.each(data.rows, function (rowkey, rowentry) 
-			{
-				//console.log(rowentry[1]);
-				//console.log(orgunits.indexOf(rowentry[1]))
-				if(orgunits.indexOf(rowentry[1])>=0)
-				{
-					//console.log(orgunits);
-				}
-				else
-				{
-					orgunits.push(rowentry[1]);
-				}	
-				
-			})
+                            tableData += '</tr>';	
+                    })
 
-			//console.log(orgunits.length);
-			
-					
-			$.each(data.metaData.dimensions.ou, function (key, entry) 
-			{
-				//define the table
-				tableData += '<tr>';	
-				tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-				tableData += '<td>'+entry+'</td>';
-				//console.log(data.metaData.items[entry].name);
-				//console.log(entry);
-				//console.log(entry);	
-				
-				//get all the dimensions for the given orgunit
-				dxids = [];
-				$.each(data.rows, function (rkey, rentry) 
-				{
-					var dxcode = rentry[1];
-															
-					if(dxcode==entry)
-					{
-						dxids.push(rentry[0]);
-					}												
-				})
-				
-				//console.log(dxids);
-				
-							
-				//console.log(data.rows);
-				//for each dimension get the value
-				var count = 0;
-				$.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
-				{
-					//console.log(orgunits.indexOf(entry));
-					//console.log(dxids.indexOf(dxentry));
-					//console.log(orgunits);	
-					//console.log(data.metaData.items[dxentry].name);
-					if(orgunits.indexOf(entry)<0)
-					{
-						tableData += '<td bgcolor="#ff0000"> - </td>';
-					}
-					else if(dxids.indexOf(dxentry)<0)
-					{
-						tableData += '<td bgcolor="#ff0000"> - </td>';
-					}
-					else
-					{										
-						$.each(data.rows, function (rkey, rentry) 
-						{					
-							var dxid = rentry[0];
-							var dxcode = rentry[1];
-							var dxval = rentry[2];
-													
-							if(dxentry==dxid)
-							{						
-								if(dxcode==entry)
-								{
-									//console.log(rentry);		
-									//var notfoundRow = false;
-									var bgcolor = '#ffffff';
-									if(dxval<0)
-										bgcolor = '#ffcccc'
-									if (dxval >= 0 && dxval< 3)
-										bgcolor = '#ffc7ce'
-									if (dxval >= 3 && dxval<= 6)
-										bgcolor = '#c6efce'
-									if(dxval>6)
-										bgcolor = '#ffeb9c'
-										
-									tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
-								}						
-							}						
-						})				
-						
-					}
-					count++;
-				})					
-				
-				tableData += '</tr>';	
-			})
-
-			//tableData += '<table>';	
-			//console.log(tableData)
-			$("table.actsbox tbody").append(tableData);	
-			$('#zero_config').DataTable();
-		})
+                    //tableData += '<table>';	
+                    //console.log(tableData)
+                    
+                    $('#zero_config').DataTable().destroy();
+                    $("table.actsbox tbody").empty();
+                    $("table.actsbox tbody").append(tableData);	
+                    //$('#zero_config').DataTable();                                                          
+                    $('#zero_config').DataTable().fnDraw();
+            })
     }
-	</script>
+</script>
 
 </body>
 
