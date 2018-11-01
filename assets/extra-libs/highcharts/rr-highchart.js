@@ -29,27 +29,27 @@
         function plotGraph(rrData, onData){
             var rrjson = rrData;
             var ouid = rrjson.metaData.dimensions.ou[0];
-            console.log(ouid);
             var thetitle = rrjson.metaData.items['JPaviRmSsJW.REPORTING_RATE'].name;
             var thesubtitle = rrjson.metaData.items[ouid].name;
-            console.log(thesubtitle);
-            var dimes_pe = rrjson.metaData.dimensions.pe;
-            var rr_rows = rrjson.rows;
+            var allmonths = rrjson.metaData.dimensions.pe;
+            var monthswithdata = rrjson.rows;
             
             var dummydata =[];
             var theorigdate = [];
-            var converted_date_arr = [];
-            var matchd8s=[];
-            var matched_full_dates=[];
+            var minid8=[];
             var matched_data=[];
             var fulldate_arr=[];
+            var theinfo=[];
             var actualdatarr=[];
+            var filez = [];
+            var alld8=[];
+
             
-            $.each(rr_rows, function (index, ydate) {
+            $.each(monthswithdata, function (index, ydate) {
                 var date8 = ydate[1];
-                var data8 = ydate[2];
+                var data8 = ydate[3];
                 theorigdate.push(date8);
-                var ydata = parseFloat(ydate[2]).toFixed(2);
+                var ydata = parseFloat(data8).toFixed(2);
                 matched_data.push(ydata);
                 var month8 = date8.substr(0, date8.indexOf(" "));
                 var year8 = date8.replace(month8+' ','');
@@ -78,122 +78,121 @@
                 } if(month8 == 'December'){ 
                     var nudate = year8+'12';
                 }
-                converted_date_arr.push(nudate);
+                minid8.push(date8);
+                // converted_date_arr.push(nudate);
             });
+            var xc = 0;
+            var finalRRdata = [];
+            var finalRRmonths = [];
+            $.each(allmonths, function (index, eachallmonths) {
+                // theinfo = giveVal(monthswithdata, eachallmonths);
 
-            $.each(dimes_pe, function (index, exdate) {
-                var dateful = rrjson.metaData.items[exdate].name;
-                fulldate_arr.push(dateful);
-                
-            });
-
-            $.each(fulldate_arr, function(idx, fulldate_val) {
-                if ($.inArray(fulldate_val, theorigdate) !== -1) {
-                    matched_full_dates.push(fulldate_val);
+                for(x=0;x<monthswithdata.length;x++){
+                    var array1=monthswithdata[x];
+                    if(array1[1]==eachallmonths){
+                        var findata = parseFloat(array1[3]);
+                        finalRRdata.push(findata);
+                        finalRRmonths.push(array1[1]);
+                        xc=0;
+                        break;
+                    }else xc=1;
+                 
                 }
-                var seriesval = 0;
-                $.each(rr_rows, function (index, rr_row1) {
-                    if(fulldate_val == rr_row1[1]){
-                        seriesval = rr_row1[2];
-                        actualdatarr.push(parseFloat(seriesval));
-                    }
-                });
+                if(xc == 1){
+                    finalRRdata.push(parseFloat(0));
+                    finalRRmonths.push(eachallmonths);
+                    xc = 0;
+                }
             });
+            console.log('final: '+JSON.stringify(finalRRdata));
+            console.log('months: '+JSON.stringify(finalRRmonths));
 
-            var mchdl = actualdatarr.length;
-            while (mchdl < 12) {
-                var zer0 = parseFloat(0);
-                actualdatarr.push(zer0);
-                mchdl++
-            }
-
-            //////////////////////////////////////////ontime
-            var onjson = onData;
-            var ouid2 = onjson.metaData.dimensions.ou[0];
-            console.log(ouid2);
-            var dimes_pe2 = onjson.metaData.dimensions.pe;
-            var rr_rows2 = onjson.rows;
             
-            var dummydata22 =[];
-            var theorigdate2 = [];
-            var converted_date_arr2 = [];
-            var matchd8s2=[];
-            var matched_full_dates2=[];
-            var matched_data2=[];
-            var fulldate_arr2=[];
-            var actualdatarr2=[];
-            var ondatarr=[];
-            $.each(rr_rows2, function (index, ydate2) {
-                var date82 = ydate2[1];
-                var data82 = ydate2[2];
-                var ondt = parseFloat(ydate2[3]);
-                ondatarr.push(ondt);
-                theorigdate2.push(date82);
-                var ydata2 = parseFloat(ydate2[2]).toFixed(2);
-                matched_data2.push(ydata2);
-                var month82 = date82.substr(0, date82.indexOf(" "));
-                var year82 = date82.replace(month82+' ','');
-                if(month82 == 'January'){ 
-                    var nudate2 = year82+'01';
-                } if(month82 == 'February'){ 
-                    var nudate2 = year82+'02';
-                } if(month82 == 'March'){ 
-                    var nudate2 = year82+'03';
-                } if(month82 == 'April'){ 
-                    var nudate2 = year82+'04';
-                } if(month82 == 'May'){ 
-                    var nudate2 = year82+'05';
-                } if(month82 == 'June'){ 
-                    var nudate2 = year82+'06';
-                } if(month82 == 'July'){ 
-                    var nudate2 = year82+'07';
-                } if(month82 == 'August'){ 
-                    var nudate2 = year82+'08';
-                } if(month82 == 'September'){ 
-                    var nudate2 = year82+'09';
-                } if(month82 == 'October'){ 
-                    var nudate2 = year82+'10';
-                } if(month82 == 'November'){ 
-                    var nudate2 = year82+'11';
-                } if(month82 == 'December'){ 
-                    var nudate2 = year82+'12';
-                }
-                converted_date_arr2.push(nudate2);
-            });
-
-            $.each(dimes_pe2, function (index, exdate22) {
-                var dateful2 = onjson.metaData.items[exdate22].name;
-                fulldate_arr2.push(dateful2);
+            //////////////////////////////////////////ontime
+                var onjson = onData;
+                var ouid2 = onjson.metaData.dimensions.ou[0];
+                var allmonths2 = onjson.metaData.dimensions.pe;
+                var monthswithdata2 = onjson.rows;
                 
-            });
-
-            $.each(fulldate_arr2, function(idx, fulldate_val2) {
-                if ($.inArray(fulldate_val2, theorigdate2) !== -1) {
-                    matched_full_dates2.push(fulldate_val2);
-                }
-                var seriesval2 = 0;
-                $.each(rr_rows2, function (index, rr_row12) {
-                    if(fulldate_val2 == rr_row12[1]){
-                        seriesval2 = rr_row12[2];
-                        actualdatarr2.push(parseFloat(seriesval2));
+                var theorigdate2 = [];
+                var converted_date_arr2 = [];
+                var matched_full_dates2=[];
+                var matched_data2=[];
+                var fulldate_arr2=[];
+                var actualdatarr2=[];
+                var ondatarr=[];
+                $.each(monthswithdata2, function (index, ydate2) {
+                    var date82 = ydate2[1];
+                    var data82 = ydate2[2];
+                    var ondt = parseFloat(ydate2[3]);
+                    ondatarr.push(ondt);
+                    theorigdate2.push(date82);
+                    var ydata2 = parseFloat(ydate2[2]).toFixed(2);
+                    matched_data2.push(ydata2);
+                    var month82 = date82.substr(0, date82.indexOf(" "));
+                    var year82 = date82.replace(month82+' ','');
+                    if(month82 == 'January'){ 
+                        var nudate2 = year82+'01';
+                    } if(month82 == 'February'){ 
+                        var nudate2 = year82+'02';
+                    } if(month82 == 'March'){ 
+                        var nudate2 = year82+'03';
+                    } if(month82 == 'April'){ 
+                        var nudate2 = year82+'04';
+                    } if(month82 == 'May'){ 
+                        var nudate2 = year82+'05';
+                    } if(month82 == 'June'){ 
+                        var nudate2 = year82+'06';
+                    } if(month82 == 'July'){ 
+                        var nudate2 = year82+'07';
+                    } if(month82 == 'August'){ 
+                        var nudate2 = year82+'08';
+                    } if(month82 == 'September'){ 
+                        var nudate2 = year82+'09';
+                    } if(month82 == 'October'){ 
+                        var nudate2 = year82+'10';
+                    } if(month82 == 'November'){ 
+                        var nudate2 = year82+'11';
+                    } if(month82 == 'December'){ 
+                        var nudate2 = year82+'12';
                     }
+                    converted_date_arr2.push(nudate2);
                 });
-            });
 
-            var mchdl2 = actualdatarr2.length;
-            while (mchdl2 < 12) {
-                var zer02 = parseFloat(0);
-                actualdatarr2.push(zer02);
-                mchdl2++
-            }
+                $.each(allmonths2, function (index, eachallmonths22) {
+                    var dateful2 = onjson.metaData.items[eachallmonths22].name;
+                    fulldate_arr2.push(dateful2);
+                });
 
-            var ondatalength = ondatarr.length;
-            while (ondatalength < 12) {
-                var addedZero = parseFloat(0);
-                ondatarr.push(addedZero);
-                ondatalength++
-            }
+                $.each(fulldate_arr2, function(idx, fulldate_val2) {
+                    if ($.inArray(fulldate_val2, theorigdate2) !== -1) {
+                        matched_full_dates2.push(fulldate_val2);
+                    }
+                    var seriesval2 = 0;
+                    $.each(monthswithdata2, function (index, rr_row12) {
+                        if(fulldate_val2 == rr_row12[1]){
+                            seriesval2 = rr_row12[2];
+                            actualdatarr2.push(parseFloat(seriesval2));
+                        }
+                    });
+                });
+
+                var mchdl2 = actualdatarr2.length;
+                while (mchdl2 < 12) {
+                    var zer02 = parseFloat(0);
+                    actualdatarr2.push(zer02);
+                    mchdl2++
+                }
+
+                var ondatalength = ondatarr.length;
+                while (ondatalength < 12) {
+                    var addedZero = parseFloat(0);
+                    ondatarr.push(addedZero);
+                    ondatalength++
+                }
             //////////////////////////////////////////end ontime
+
+
             // Highcharts
             Highcharts.chart('rrchart', {
                 chart: {
@@ -215,7 +214,7 @@
                     title: {
                         text: 'Period'
                     },
-                    categories: dimes_pe
+                    categories: finalRRmonths
                 },
                 yAxis: {
                     title: {
@@ -235,7 +234,7 @@
                 },
                 series: [{
                     name: 'RR: '+thesubtitle,
-                    data: actualdatarr
+                    data: finalRRdata
                 }, {
                     name: 'OT: '+thesubtitle,
                     data: ondatarr,
