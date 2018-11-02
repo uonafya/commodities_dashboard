@@ -315,43 +315,64 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"></h5>
-                                <div class="table-responsive">
-                                    <table id="zero_config" class="table table-condensed slimtable table-bordered actsbox">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Code</th>
-											<th>RR%</th>
-											<th>AL6 Latest SOH</th>
-											<th>AL6 MOS</th>
-											<th>AL12 Latest SOH</th>
-											<th>AL12 MOS</th>
-											<th>AL18 Latest SOH</th>
-											<th>AL18 MOS</th>
-											<th>AL24 Latest SOH</th>
-											<th>AL24 MOS</th>
-											<th>ACTs MOS</th>
-										</tr>		
-									</thead>
-									<tbody>
-									</tbody>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Code</th>
-											<th>RR%</th>
-											<th>AL6 Latest SOH</th>
-											<th>AL6 MOS</th>
-											<th>AL12 Latest SOH</th>
-											<th>AL12 MOS</th>
-											<th>AL18 Latest SOH</th>
-											<th>AL18 MOS</th>
-											<th>AL24 Latest SOH</th>
-											<th>AL24 MOS</th>
-											<th>ACTs MOS</th>
-										</tr>		
-									</tfoot>
-									</table>
+                                <div class="acstatus row"></div>
+                                <div class="row">
+                                    <div class="loader-sp">
+                                        <div class="loader loader--style3" title="2">
+                                            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                <animateTransform attributeType="xml"
+                                                attributeName="transform"
+                                                type="rotate"
+                                                from="0 25 25"
+                                                to="360 25 25"
+                                                dur="0.6s"
+                                                repeatCount="indefinite"/>
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row actdata">
+                                    <div class="table-responsive">
+                                        <table id="zero_config" class="table table-condensed slimtable table-bordered actsbox hidden">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Code</th>
+                                                <th>RR%</th>
+                                                <th>AL6 Latest SOH</th>
+                                                <th>AL6 MOS</th>
+                                                <th>AL12 Latest SOH</th>
+                                                <th>AL12 MOS</th>
+                                                <th>AL18 Latest SOH</th>
+                                                <th>AL18 MOS</th>
+                                                <th>AL24 Latest SOH</th>
+                                                <th>AL24 MOS</th>
+                                                <th>ACTs MOS</th>
+                                            </tr>		
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Code</th>
+                                                <th>RR%</th>
+                                                <th>AL6 Latest SOH</th>
+                                                <th>AL6 MOS</th>
+                                                <th>AL12 Latest SOH</th>
+                                                <th>AL12 MOS</th>
+                                                <th>AL18 Latest SOH</th>
+                                                <th>AL18 MOS</th>
+                                                <th>AL24 Latest SOH</th>
+                                                <th>AL24 MOS</th>
+                                                <th>ACTs MOS</th>
+                                            </tr>		
+                                        </tfoot>
+                                        </table>
+                                    </div>
                                 </div>
 
                             </div>
@@ -494,7 +515,7 @@
             var period = '201805';
         
             var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            
+            var url = 'http://localhost/pmi/json/acts3.json'
             fetchACTs(url);
             $("#county-dropdown").change(function() 
             {
@@ -530,15 +551,20 @@
             }
             
             var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            
+            var url = 'http://localhost/pmi/json/acts3.json'
             fetchACTs(url);
         }
         
         //function toprocess the acts url
         function fetchACTs(acturl)
         {
-            $.getJSON(acturl, function (data) 
-            {
+            // $.getJSON(acturl, function (data){
+            $.ajax({
+                type: 'GET',
+                crossDomain: true,
+                url: acturl,                    
+                success: function (data) {
+
                     //create the org units array
                     var orgunits = [];
                     var dxids = [];
@@ -645,13 +671,27 @@
 
                     //tableData += '<table>';	
                     //console.log(tableData)
-                    
+                    $('#zero_config').removeClass('hidden');
+                    $('.actdata').removeClass('hidden');
+                    $('.loader-sp').addClass('hidden');
+                    $('.loader-sp').css('display','none');
+                    console.log('YAASS success!!');
                     $('#zero_config').DataTable().destroy();
                     $("table.actsbox tbody").empty();
                     $("table.actsbox tbody").append(tableData);	
                     //$('#zero_config').DataTable();                                                          
                     $('#zero_config').DataTable().fnDraw();
-            })
+
+                    
+                },
+                error: function (request, status, error) {
+                    $('.loader-sp').addClass('hidden');
+                    $('#zero_config').addClass('hidden');
+                    console.log('ACTs: error fetching json. :- '+error);
+                    $('actdata').addClass('hidden');
+                    $('.acstatus').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                }
+            });
     }
 </script>
 

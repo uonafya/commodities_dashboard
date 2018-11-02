@@ -4,23 +4,23 @@
             type: 'GET',
             crossDomain: true,
             url: rrurl,
-            
             success: function (rrData) {
                 $.ajax({
                     type: 'GET',
                     crossDomain: true,
-                    url: onurl,
-                    
+                    url: onurl,                    
                     success: function (onData) {
                         plotGraph(rrData, onData);
                     },
                     error: function (request, status, error) {
+                        $('.loader-sp').addClass('hidden');
                         console.log('RRates: error fetching json. :- '+error);
                         $('#rrchart').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                     }
                 });
             },
             error: function (request, status, error) {
+                $('.loader-sp').addClass('hidden');
                 console.log('RRates: error fetching json. :- '+error);
                 $('#rrchart').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             }
@@ -243,4 +243,7 @@
             });
             // end Highcharts
         }
+
+        $('.loader-sp').addClass('hidden');
+        $('.rrdata').removeClass('hidden');
     }

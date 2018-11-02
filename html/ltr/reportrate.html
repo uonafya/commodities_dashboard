@@ -325,6 +325,24 @@
                                 <h5 class="card-title m-b-0">Reporting Rates</h5>
                             </div>
                             <div class="row">
+                                <div class="loader-sp">
+                                    <div class="loader loader--style3" title="2">
+                                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                            <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                            <animateTransform attributeType="xml"
+                                            attributeName="transform"
+                                            type="rotate"
+                                            from="0 25 25"
+                                            to="360 25 25"
+                                            dur="0.6s"
+                                            repeatCount="indefinite"/>
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row rrdata hidden">
                                 <div id="rrchart" class="col-md-9" style="min-width: 310px; height: 500px;"></div>
                                 <div id="sc_rrchart" class="col-md-3" style="min-width: 90px; height: 500px;"></div>
                             </div>
@@ -481,12 +499,12 @@
         $(document).ready(function() {
             var rrurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:tAbBVBbueqD&displayProperty=NAME&outputIdScheme=NAME';
             var onurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
-            // var rrurl = 'http://localhost/pmi/json/reportingrates.json';
-            // var onurl = 'http://localhost/pmi/json/ontime-reporting.json';
+            var rrurl = 'http://localhost/pmi/json/reporting-kisumu.json';
+            var onurl = 'http://localhost/pmi/json/ontime-reporting.json';
             fetchRR(rrurl, onurl);
 
             var scurl = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
-            // var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
+            var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
             fetchScRR(scurl);
         });
         
