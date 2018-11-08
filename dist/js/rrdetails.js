@@ -35,7 +35,12 @@ function plotRRDetable(rdData){
                 trows+='<tr>';
                     trows+='<td>'+eachrow[2]+'</td>';
                     $.each(period, function(indexz, eachnesperiod){
-                        trows+='<td>'+checkPeriod(eachrow,eachnesperiod)+'</td>';
+                        var theval = checkPeriod(eachrow,eachnesperiod);
+                        if(theval == 1){
+                            trows+='<td>'+theval+'</td>';
+                        }else{
+                            trows+='<td style="background: #ffc7ce;"></td>';
+                        }
                     });
                 trows+='</tr>';
             }
@@ -55,5 +60,6 @@ function plotRRDetable(rdData){
             return '';
         }
     }
+
     // console.log('Hiii! :->  '+JSON.stringify(rdRows));
 }
