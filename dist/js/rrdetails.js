@@ -1,6 +1,6 @@
 var rrdettable = $('#rrdettable');
 var rrdettable_body = $('#rrdettable tbody');
-var rdurl = 'http://localhost/pmi/json/reportingdetails.json'
+var rdurl = 'http://localhost/hcdlive/commodities_dashboard/html/ltr/reportingdetails.json'
 $.ajax({
     type: 'GET',
     crossDomain: true,
