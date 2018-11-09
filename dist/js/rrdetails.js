@@ -1,8 +1,11 @@
 //function toprocess the acts url
 function fetchRRDetails(rdurl)
 {
-    $.getJSON(rdurl, function (data) 
-    {                    
+    $.ajax({
+        type: 'GET',
+        crossDomain: true,
+        url: rdurl,                    
+        success: function (data) {                    
             var header = '';
             var footer = '';
             var tableData = '';
@@ -60,13 +63,20 @@ function fetchRRDetails(rdurl)
             //footer line
             tableData += '</tbody>';
             tableData += footer;
-                                
+                    
+            $('#zero_config').removeClass('hidden');
             //$('#zero_config').DataTable().destroy();
             $("table.rrdetailsbox").empty();
             $("table.rrdetailsbox").append(tableData);	
             $('#zero_config').DataTable();                                                          
             $('#zero_config').DataTable().draw();
-    })
+    },
+    error: function (request, status, error) {
+        $('.loader-sp').addClass('hidden');
+        console.log('Reporting Rate Details: error fetching json. :- '+error);
+        $('.rdstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+    }
+});
 }
 
 
