@@ -259,14 +259,38 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Tables</h4>
-                        <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                </ol>
-                            </nav>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <h4 class="page-title m-t-10">
+                                Reporting Rate Details
+                                &nbsp; &nbsp;
+                            </h4>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <small class="">Filter:</small>
+                            <div class="row">
+                                <div class="col-md-11 col-sm-11 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
+                                            </select>
+                                        </div>										
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
+                                            </select> 
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
+                            <div class="ml-auto text-right m-t-10">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                    </ol>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -327,13 +351,7 @@
                                             <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                 width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                                 <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-                                                <animateTransform attributeType="xml"
-                                                attributeName="transform"
-                                                type="rotate"
-                                                from="0 25 25"
-                                                to="360 25 25"
-                                                dur="0.6s"
-                                                repeatCount="indefinite"/>
+                                                <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
                                                 </path>
                                             </svg>
                                         </div>
@@ -342,7 +360,6 @@
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-condensed slimtable table-bordered rrdetailsbox"></table>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -406,20 +423,6 @@
     <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
-    <script>
-        $('#period-dropdown').MonthPicker({ 
-            Button: false,
-            MinMonth: '-1y',
-            MaxMonth: -1,
-            MinYear: 0,
-            MaxYear: 0,
-            OnAfterChooseMonth: function() {  
-                var sDate = $(this).val();
-                datePicked(sDate);
-            }
-        });        
-    </script>
-    <!-- *********** end MonthPicker ************** -->
 		
 	<script>
 		$(document).ready(function() 
@@ -428,11 +431,10 @@
 			
 			var subcounty = $('#subcounty-dropdown');
 			
-			var perioddwn = $('#period-dropdown');
-
 			dropdown.empty();
 			subcounty.empty();
-			perioddwn.empty();
+			dropdown.empty();
+			subcounty.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
 			dropdown.prop('selectedIndex', 0);
@@ -440,8 +442,6 @@
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 			subcounty.prop('selectedIndex', 0);
 			
-			perioddwn.append('<option selected="true" disabled>Select Period</option>');
-			perioddwn.prop('selectedIndex', 0);
 
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
@@ -481,62 +481,43 @@
 	$(document).ready(function() 
 	{
             var ounit = 'tAbBVBbueqD';
-            var period = '201805';
+            var period = 'LAST_6_MONTHS';
             
             //get the org name
             getOrgUnit(ounit, period);
-        
-            var url = 'reportingdetails.json';
+
+            // var url = 'http://localhost/pmi/json/reportingdetails.json';
+            var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-3;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             
-            fetchACTs(url);
+            fetchRRDetails(url);
             
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
-                period = getPeriod();
+                period = 'LAST_6_MONTHS';
                 getOrgUnit(ounit, period);
-                var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchACTs(url);
+                var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+period+'&dimension=ou:'+ounit+';LEVEL-3;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                fetchRRDetails(url);
                 
             });
 
             $("#subcounty-dropdown").change(function() 
             {
                 ounit = $(this).val();
-                period = getPeriod();
+                period = 'LAST_6_MONTHS';
                 getOrgUnit(ounit, period);
-                var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchACTs(url);
+                var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+period+'&dimension=ou:'+ounit+';LEVEL-3;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                fetchRRDetails(url);
                 
             });
 					
 	});
 	
-	
-        //change of period		
-        function datePicked(sDate)
-        {
-            var dateparts = sDate.split('/', 2);
-            var therdate = dateparts[1]+''+dateparts[0];
-            var ounit = $("#county-dropdown").val();
-            var subcountyou = $("#subcounty-dropdown").val();
-            var period = therdate;
-            
-            if(subcountyou!=null)
-            {
-                var ounit = subcountyou;
-            }
-            
-            var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            
-            getOrgUnit(ounit, period);
-            fetchACTs(url);
-        }
-        
+	    
         //function toprocess the acts url
-        function fetchACTs(acturl)
+        function fetchRRDetails(rdurl)
         {
-            $.getJSON(acturl, function (data) 
+            $.getJSON(rdurl, function (data) 
             {                    
                     var header = '';
                     var footer = '';
@@ -604,25 +585,6 @@
             })
     }
     
-    //get the period
-    function getPeriod()
-    {
-        var periodval = $("#period-dropdown").val();
-
-        if(periodval == null || periodval=='')
-        {
-            periodval = '201805';
-        }
-        else
-        {
-            var dateparts = periodval.split('/', 2);
-
-            var therdate = dateparts[1]+''+dateparts[0];                
-            var periodval = therdate;
-        }
-
-        return periodval;
-    }
 
     //get the org unit
     function getOrgUnit(uid, period)
@@ -638,7 +600,6 @@
           }
         });    
     }
-    
 	
 	//get the report details
     function getReport(rows,period,orgunit) 

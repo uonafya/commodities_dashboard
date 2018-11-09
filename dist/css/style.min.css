@@ -106,4 +106,7 @@
     display: inline-block;
     vertical-align: top;
   }
+  nav .breadcrumb{
+    display: none !important;
+  }
  /* CUSTOM */
