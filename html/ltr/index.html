@@ -320,28 +320,63 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">County Malaria Commodity Stock Status</h5>
+                                <div class="col-md-12 adjc_soh_mos_state"></div>
+                                <div class="loader-sp adjc_soh_mos_loader">
+                                    <div class="loader loader--style3" title="2">
+                                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                            <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                            <animateTransform attributeType="xml"
+                                            attributeName="transform"
+                                            type="rotate"
+                                            from="0 25 25"
+                                            to="360 25 25"
+                                            dur="0.6s"
+                                            repeatCount="indefinite"/>
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </div>
                                 <div class="malaria_commodity_table" style="height: 380px;">
-                        <table class = "table adjc_soh_mos">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">items</th>
-                                        <th scope="col">adjusted AMC</th>
-                                        <th scope="col">Latest SOH</th>
-                                        <th scope="col">MOS</th> 
-                                    </tr>
-                                </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table></div>
+                                    <table class="hidden table adjc_soh_mos">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">items</th>
+                                                    <th scope="col">adjusted AMC</th>
+                                                    <th scope="col">Latest SOH</th>
+                                                    <th scope="col">MOS</th> 
+                                                </tr>
+                                            </thead>
+                                        <tbody>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"></h5>                                
-								<div id="mosbycombox" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+                                <h5 class="card-title"></h5>
+                                <div class="col-md-12 mosbycombox_state"></div>
+                                <div class="loader-sp mosbycombox_loader">
+                                    <div class="loader loader--style3" title="2">
+                                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                            <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                            <animateTransform attributeType="xml"
+                                            attributeName="transform"
+                                            type="rotate"
+                                            from="0 25 25"
+                                            to="360 25 25"
+                                            dur="0.6s"
+                                            repeatCount="indefinite"/>
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </div>                      
+								<div id="mosbycombox" class="hidden" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
                             </div>
                         </div>
                     </div>
@@ -351,8 +386,25 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Percentage of health facilities</h5>
+                                    <div class="col-md-12 percent_healthfa_state"></div>
+                                    <div class="loader-sp percent_healthfa_loader">
+                                        <div class="loader loader--style3" title="2">
+                                            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                <animateTransform attributeType="xml"
+                                                attributeName="transform"
+                                                type="rotate"
+                                                from="0 25 25"
+                                                to="360 25 25"
+                                                dur="0.6s"
+                                                repeatCount="indefinite"/>
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
                                     <div class="malaria_commodity_table" style="height: 450px;">
-                                        <table class = "table percent_healthfa">
+                                        <table class="table percent_healthfa hidden">
                                                     <thead>
                                                     <tr>
                                                         <th scope="col">items</th>
@@ -372,8 +424,25 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">No of health facilities with:</h5>
+                                            <div class="col-md-12 number_healthfa_state"></div>
+                                                <div class="loader-sp number_healthfa_loader">
+                                                    <div class="loader loader--style3" title="2">
+                                                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                            width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                            <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                            <animateTransform attributeType="xml"
+                                                            attributeName="transform"
+                                                            type="rotate"
+                                                            from="0 25 25"
+                                                            to="360 25 25"
+                                                            dur="0.6s"
+                                                            repeatCount="indefinite"/>
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
                                                 <div class="malaria_commodity_table" style="height: 450px;">
-                                                <table class="table number_healthfa">
+                                                <table class="table number_healthfa hidden">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Item</th>
@@ -581,8 +650,11 @@
 		var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:tAbBVBbueqD&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
 				
 		//populate dropdown with list of counties
-		$.getJSON(url, function (data) 
-		{
+		$.ajax({
+        type: 'GET',
+        crossDomain: true,
+        url: url,                    
+        success: function (data) { 
 			//create the org units array
 			var orgunits = [];
 			var dxids = [];
@@ -671,7 +743,16 @@
 					data: mosVals
 				}]
 			});
-		});
+            $('.mosbycombox_loader').addClass('hidden');
+            $('#mosbycombox').removeClass('hidden');
+
+		},
+    error: function (request, status, error) {
+        $('.mosbycombox_loader').addClass('hidden');
+        console.log('Error fetching json. :- '+error);
+        $('.mosbycombox_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+    }
+});
 		
 		
 		//% of health facilities
@@ -681,8 +762,11 @@
                 var alnames = ["AL6","AL12","AL18","AL24"];
 		
 		//parse the data for mos percentage
-		$.getJSON(urlfa, function (data) 
-		{
+		$.ajax({
+        type: 'GET',
+        crossDomain: true,
+        url: urlfa,                    
+        success: function (data) {
 			var orgunits = data.metaData.dimensions.ou;
 			//console.log(orgunits.length);
 			
@@ -741,14 +825,25 @@
 
 			//tableData += '<table>';	
 			//console.log(tableData)			
-			$("table.percent_healthfa tbody").append(tableData);	
-			//$('#zero_config').DataTable();
-		});
+                $("table.percent_healthfa tbody").append(tableData);  
+            $('.percent_healthfa_loader').addClass('hidden');
+            $('.percent_healthfa').removeClass('hidden');
+
+		},
+        error: function (request, status, error) {
+            $('.percent_healthfa_loader').addClass('hidden');
+            console.log('Error fetching json. :- '+error);
+            $('.percent_healthfa_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        }
+});
 		
 		
 		//parse the data for mos number
-		$.getJSON(urlfa, function (data) 
-		{
+		$.ajax({
+        type: 'GET',
+        crossDomain: true,
+        url: urlfa,                    
+        success: function (data) {
 			var orgunits = data.metaData.dimensions.ou;
 			//console.log(orgunits.length);
 			var totalfa = orgunits.length;
@@ -813,11 +908,17 @@
 				tableData += '</tr>';	
 			})
 
-			//tableData += '<table>';	
-			//console.log(tableData)			
-			$("table.number_healthfa tbody").append(tableData);	
-			//$('#zero_config').DataTable();
-		});
+            $("table.number_healthfa tbody").append(tableData);
+            $('.number_healthfa_loader').addClass('hidden');
+            $('.number_healthfa').removeClass('hidden');
+
+		},
+        error: function (request, status, error) {
+            $('.number_healthfa_loader').addClass('hidden');
+            console.log('Error fetching json. :- '+error);
+            $('.number_healthfa_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        }
+});
                 
                 
                 
@@ -853,18 +954,21 @@
                 
                 //console.log(sohval);
                 
-		$.getJSON(urlcon, function (data) 
-		{										
-			//var tableData = '<table>';
-			var tableData = '';
-                        var phycount = '';
-                        var adjc = '';
-                        var mos = '';
-			var countercon = 0;
-			//console.log(data.rows);
-			//loop through the org units							
-			$.each(data.metaData.dimensions.dx, function (key, entry) 
-			{
+            $.ajax({
+                type: 'GET',
+                crossDomain: true,
+                url: urlfa,                    
+                success: function (data) {										
+                //var tableData = '<table>';
+                var tableData = '';
+                            var phycount = '';
+                            var adjc = '';
+                            var mos = '';
+                var countercon = 0;
+                //console.log(data.rows);
+                //loop through the org units							
+                $.each(data.metaData.dimensions.dx, function (key, entry) 
+                {
                             //define the table
                             if(countercon<4)
                             {
@@ -898,8 +1002,16 @@
 
 			//tableData += '<table>';	
 			//console.log(tableData)			
-			$("table.adjc_soh_mos tbody").append(tableData);	
-			//$('#zero_config').DataTable();
+            $("table.adjc_soh_mos tbody").append(tableData);
+            $('.adjc_soh_mos_loader').addClass('hidden');
+            $('.adjc_soh_mos').removeClass('hidden');	
+            //$('#zero_config').DataTable();
+        },
+        error: function (request, status, error) {
+            $('.adjc_soh_mos_loader').addClass('hidden');
+            console.log('Error fetching json. :- '+error);
+            $('.adjc_soh_mos_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        }
 		});
 		
 		
