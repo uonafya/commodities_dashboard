@@ -306,46 +306,12 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-									<div class="col-12">
-										<div class="card">
-											<div class="card-body">
-												<h5 class="card-title">Reporting Rate Details</h5>
-												<div class="state col-md-12"></div>
-												<div class="row">
-													<div class="col-12 d-flex no-block align-items-center">
-										
-										<div class="col-md-7 col-sm-6 col-xs-12">
-											<small class="">Filter:</small>
-											<div class="row">
-												<div class="col-md-11 col-sm-11 col-xs-12">
-													<div class="row">
-														<div class="col-md-4 col-sm-4 col-xs-12">
-															<select class="form-control m-r-5" id="county-dropdown" name="county">                                                
-															</select>
-														</div>										
-														<div class="col-md-4 col-sm-4 col-xs-12">
-															<select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
-															</select> 
-														</div> 
-														<div class="col-md-4 col-sm-4 col-xs-12">
-															<input type="text" class="form-control" id="period-dropdown"/> 
-														</div> 
-													</div>
-												</div>                                
-											</div>
-											
-										</div>
-										<div class="col-md-3 col-sm-3 col-xs-12 text-right">
-											<div class="ml-auto text-right m-t-10">
-												<nav aria-label="breadcrumb">
-													<ol class="breadcrumb">
-														<li class="breadcrumb-item"><a href="#">Home</a></li>
-														<li class="breadcrumb-item active" aria-current="page">Library</li>
-													</ol>
-												</nav>
-											</div>
-										</div>
-									</div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Reporting Rate Details</h5>
+                                <div class="state col-md-12"></div>
+                                <div class="row">
                                     <div class="loader-sp" style="display: none;">
                                         <div class="loader loader--style3" title="2">
                                             <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -358,7 +324,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table id="zero_config" class="table table-condensed slimtable table-bordered rrdetailsbox"></table>
+                                    <table id="zero_config" class="table table-bordered table-bordered rrdetailsbox"></table>
                                 </div>
                             </div>
                         </div>
@@ -415,7 +381,7 @@
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-    <!--<script src="../../dist/js/rrdetails.js"></script>-->
+    <script src="../../dist/js/rrdetails.js"></script>
 	
 	<!-- *********** MonthPicker ************** -->
     <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
@@ -486,8 +452,8 @@
             //get the org name
             getOrgUnit(ounit, period);
 
-            // var url = 'http://localhost/pmi/json/reportingdetails.json';
             var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-3;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'http://localhost/pmi/json/reportingdetails.json';
             
             fetchRRDetails(url);
             
@@ -513,111 +479,6 @@
 					
 	});
 	
-	    
-        //function toprocess the acts url
-        function fetchRRDetails(rdurl)
-        {
-            $.getJSON(rdurl, function (data) 
-            {                    
-                    var header = '';
-                    var footer = '';
-                    var tableData = '';
-					
-                    //put the header
-                    header += '<thead><tr>';	
-                    header += '<th>Name</th>';
-
-                    $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-                    {
-                            header += '<th>'+pentry+'</th>';			
-                    })
-
-                    header += '</tr></thead>';
-
-                    //put the footer
-                    footer += '<tfoot><tr>';	
-                    footer += '<th>Name</th>';
-
-                    $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-                    {
-                            footer += '<th>'+pentry+'</th>';			
-                    })
-
-                    footer += '</tr></tfoot>';
-
-                    tableData += header;
-
-                    //start body
-                    tableData += '<tbody>';
-
-                    //console.log(orgunits.length);
-                    $.each(data.metaData.dimensions.ou, function (key, entry) 
-                    {                                                        
-                        tableData += '<tr>';	
-                        tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-
-                        $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-                        {
-                                var reportval = getReport(data.rows,pentry,entry);
-                                if(reportval)
-                                {
-                                    tableData += '<td>'+reportval+'</td>';	
-                                }
-                                else
-                                {
-                                    var bgcolor = '#ffc7ce';
-                                    tableData += '<td bgcolor="'+bgcolor+'">'+reportval+'</td>';
-                                }
-                        })
-
-                        tableData += '</tr>';	
-                    })
-
-                    //footer line
-                    tableData += '</tbody>';
-                    tableData += footer;
-					                    
-                    //$('#zero_config').DataTable().destroy();
-                    $("table.rrdetailsbox").empty();
-                    $("table.rrdetailsbox").append(tableData);	
-                    $('#zero_config').DataTable();                                                          
-                    $('#zero_config').DataTable().draw();
-            })
-    }
-    
-
-    //get the org unit
-    function getOrgUnit(uid, period)
-    {
-        var url = 'https://testhis.uonbi.ac.ke/dhis/api/organisationUnits/'+uid+'.json?fields=id,name';
-
-        $.ajax({      
-          dataType: "json",
-          url: url, //Relative or absolute path to response.php file      
-          success: function(data) 
-          {          
-              $("h5.card-title").html(data['name']+' - '+period);
-          }
-        });    
-    }
-	
-	//get the report details
-    function getReport(rows,period,orgunit) 
-    {	
-        var rowval = '';
-
-        //loop through the rows
-        $.each(rows, function (rkey, rentry) 
-        {
-                //check for orgunit and period
-                if(orgunit==rentry[2] && period==rentry[1])
-                {                                    
-                        rowval = parseInt(rentry[3]);
-                }								
-        })		
-
-        return rowval;
-    }
 	
 </script>
 </body>
