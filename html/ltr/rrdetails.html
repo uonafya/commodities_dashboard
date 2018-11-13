@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -308,24 +309,60 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Reporting Rate Details</h5>
-                                <div class="rdstate col-md-12"></div>
-                                <div class="row">
-                                    <div class="loader-sp">
-                                        <div class="loader loader--style3" title="2">
-                                            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-                                                <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-                                                <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
-                                                </path>
-                                            </svg>
+                            <div class="card-body">                                
+                                <div role="tabpanel">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="#sub_county" aria-controls="sub_county" role="tab" data-toggle="tab">Sub-county</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#facilityc" aria-controls="facilityc" role="tab" data-toggle="tab">Facility</a>
+                                        </li>
+                                    </ul>
+                                
+                                    <!-- Tab panes -->
+                                    <div class="tab-content cardz">
+                                        <div role="tabpanel" class="tab-pane active" id="sub_county">
+                                            <div class="rdstate col-md-12"></div>
+                                            <div class="col-md-12 p-10">
+                                                <div class="loader-sp">
+                                                    <div class="loader loader--style3" title="2">
+                                                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                            width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                            <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                            <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table id="zero_config" class="table table-bordered table-bordered rrdetailsbox hidden"></table>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="facilityc">
+                                            <!-- <div class="rdstate col-md-12"></div>
+                                            <div class="col-md-12 p-10">
+                                                <div class="loader-sp">
+                                                    <div class="loader loader--style3" title="2">
+                                                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                            width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                            <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                            <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table id="zero_config" class="table table-bordered table-bordered rrdetailsbox hidden"></table>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive">
-                                    <table id="zero_config" class="table table-bordered table-bordered rrdetailsbox hidden"></table>
-                                </div>
+                                
+                                
                             </div>
                         </div>
                     </div>
@@ -363,6 +400,7 @@
     <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- All Jquery -->
+    <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- ============================================================== -->
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
