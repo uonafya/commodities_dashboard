@@ -59,6 +59,7 @@
   .landing-card > a.active{
     font-weight: bold !important;
     /* text-decoration: underline !important; */
+    cursor: pointer;
   }
   .m-b-10{
     margin-bottom: 10px !important;
