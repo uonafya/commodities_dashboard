@@ -70,6 +70,8 @@ function fetchRRDetails(rdurl)
             $("table.rrdetailsbox").append(tableData);	
             $('#zero_config').DataTable();                                                          
             $('#zero_config').DataTable().draw();
+            $('.loader-sp').addClass('hidden');
+
     },
     error: function (request, status, error) {
         $('.loader-sp').addClass('hidden');
