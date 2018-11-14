@@ -281,7 +281,7 @@
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" class="form-control" id="period-dropdown"/> 
+                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown"/> 
                                         </div> 
                                     </div>
                                 </div>                                
@@ -315,7 +315,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"></h5>
-                                <div class="acstatus row"></div>
+                                <div class="act_status row"></div>
                                 <div class="row">
                                     <div class="loader-sp">
                                         <div class="loader loader--style3" title="2">
@@ -336,7 +336,7 @@
                                 </div>
                                 <div class="row actdata">
                                     <div class="table-responsive">
-                                        <table id="zero_config" class="table table-condensed slimtable table-bordered actsbox hidden">
+                                        <table id="acts_table" class="table table-condensed slimtable table-bordered actsbox hidden">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -671,25 +671,25 @@
 
                     //tableData += '<table>';	
                     //console.log(tableData)
-                    $('#zero_config').removeClass('hidden');
+                    $('#acts_table').removeClass('hidden');
                     $('.actdata').removeClass('hidden');
                     $('.loader-sp').addClass('hidden');
                     $('.loader-sp').css('display','none');
-                    console.log('YAASS success!!');
-                    $('#zero_config').DataTable().destroy();
+                    
+                    $('#acts_table').DataTable().destroy();
                     $("table.actsbox tbody").empty();
                     $("table.actsbox tbody").append(tableData);	
-                    //$('#zero_config').DataTable();                                                          
-                    $('#zero_config').DataTable().fnDraw();
+                    //$('#acts_table').DataTable();                                                          
+                    $('#acts_table').DataTable().fnDraw();
 
                     
                 },
                 error: function (request, status, error) {
                     $('.loader-sp').addClass('hidden');
-                    $('#zero_config').addClass('hidden');
+                    $('#acts_table').addClass('hidden');
                     console.log('ACTs: error fetching json. :- '+error);
                     $('actdata').addClass('hidden');
-                    $('.acstatus').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                    $('.act_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                 }
             });
     }
