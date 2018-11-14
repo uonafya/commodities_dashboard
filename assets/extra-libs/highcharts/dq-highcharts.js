@@ -1,6 +1,6 @@
             //-------------------1--------------------------
             // Highcharts
-            function pieOne(url){
+            function pieOne(x,y){
                 Highcharts.chart('pc1', {
                     chart: {
                         plotBackgroundColor: null,
@@ -42,7 +42,7 @@
 
             //-------------------2--------------------------
              
-            function pieTwo(url){
+            function pieTwo(x,y){
                 Highcharts.chart('pc2', {
                     chart: {
                         plotBackgroundColor: null,
@@ -83,7 +83,7 @@
 
 
             //-------------------3--------------------------
-            function pieThree(url){
+            function pieThree(x,y){
                 Highcharts.chart('pc3', {
                     chart: {
                         plotBackgroundColor: null,
@@ -128,7 +128,7 @@
 
             //-------------------4--------------------------
             // Build the chart
-            function pieFour(url){
+            function pieFour(x,y){
                 Highcharts.chart('pc4', {
                     chart: {
                         plotBackgroundColor: null,
@@ -171,7 +171,7 @@
 
 
             //-------------------column--------------------------
-            function columnOne(url){
+            function columnOne(per_arr,pop_title,totadj_title,totdisp_title,pop_arr,totadj_arr,totdisp_arr){
                 Highcharts.chart('dq-column', {
                     chart: {
                         type: 'bar'
@@ -183,7 +183,7 @@
                         text: null
                     },
                     xAxis: {
-                        categories: ['201805', '201804', '201803'],
+                        categories: per_arr,
                         title: {
                             text: null
                         }
@@ -209,12 +209,6 @@
                         }
                     },
                     legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x: -40,
-                        y: 80,
-                        floating: true,
                         borderWidth: 1,
                         backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
                         shadow: true
@@ -223,14 +217,14 @@
                         enabled: false
                     },
                     series: [{
-                        name: '# Patients',
-                        data: [107, 31, 635]
+                        name: pop_title,
+                        data: pop_arr
                     }, {
-                        name: '# Doses',
-                        data: [133, 156, 947]
+                        name: totdisp_title,
+                        data: totdisp_arr
                     }, {
-                        name: '# Doses adj.',
-                        data: [1216, 738, 40]
+                        name: totadj_title,
+                        data: totadj_arr
                     }]
                 });
             };
