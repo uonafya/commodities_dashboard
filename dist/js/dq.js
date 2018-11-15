@@ -1,14 +1,21 @@
-    var url = 'http://localhost/pmi/json/physical-opening.json';
-    var month_from = '201806';
-    var month_to = '201807';
-    var commodity = 'iOARK31NdLp.HWtHCLAwprR'
+function getDQ(dqurl,commodity){
 $.ajax({
     type: 'GET',
     crossDomain: true,
-    url: url,                    
+    url: dqurl,                    
     success: function (data) {
+        //populate commodities filter
+
         var theItems = data.metaData.items;
         var theDims = data.metaData.dimensions;
+        var theComms = data.metaData.dimensions.dx;
+        var comm_filter_html = '<option selected value="">Select Commodity</option>';
+        $.each(theComms, function(indx, onecomm){
+            var appnd = '<option value="'+onecomm+'">'+theItems[onecomm].name+'</option>';
+            comm_filter_html += appnd;
+        });
+        $('#commodity-dropdown').html(comm_filter_html);
+        
         // var thedx = theDims.dx;
         // var theperiod = theDims.pe;
         var theous = theDims.ou;
@@ -42,7 +49,7 @@ $.ajax({
         console.log("total_facilities = "+facility_count);
         console.log("compliant_facilities = "+compliant_facility_count);
         console.log("NON_compliant_facilities = "+non_compliant_facility_count);
-        
+        pieOne(theItems[commodity].name,compliant_facility_count,non_compliant_facility_count);
     },
     error: function (request, status, error) {
         // $('.loader-sp').addClass('hidden');
@@ -50,8 +57,14 @@ $.ajax({
         // $('.rdstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
-
-
+}
+$("#commodity-dropdown").change(function() 
+    {  
+        commodity = $(this).val();
+        getDQ(dqurl,commodity);
+        
+    }
+);
 
   var adj_url = 'http://localhost/pmi/json/totalpopdisadj.json';
   $.ajax({

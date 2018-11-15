@@ -1,6 +1,6 @@
             //-------------------1--------------------------
             // Highcharts
-            function pieOne(x,y){
+            function pieOne(thename,compliant_facility_count,non_compliant_facility_count){
                 Highcharts.chart('pc1', {
                     chart: {
                         plotBackgroundColor: null,
@@ -9,7 +9,7 @@
                         type: 'pie'
                     },
                     title: {
-                        text: 'AL 24'
+                        text: thename
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -29,10 +29,10 @@
                         colorByPoint: true,
                         data: [{
                             name: 'Opening SOH = Closing SOH previous month',
-                            y: 4.18
+                            y: compliant_facility_count
                         }, {
                             name: 'Opening SOH ≠ Closing SOH previous month',
-                            y: 7.05
+                            y: non_compliant_facility_count
                         }]
                     }]
                 });

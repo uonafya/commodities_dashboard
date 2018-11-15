@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+    <title>Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
     <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
@@ -309,7 +309,7 @@ color: transparent;}
 						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate</span></a></li>
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Details</span></a></li></ul></li>
 						<!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sssummary.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">SS Summary</span></a></li> -->
-						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Data Quality </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Completeness</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Concordance</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consistency</span></a></li> </ul></li>
+						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Data Quality </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Completeness</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Concordance</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-consistency.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consistency</span></a></li> </ul></li>
 						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Supply Chain Performance </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Detailed</span></a></li></ul></li>
 						<!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	 --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li></ul></li>
 					</ul>
@@ -351,9 +351,17 @@ color: transparent;}
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <!-- <select class="form-control m-r-5" id="period-dropdown" name="period">                  
-                                            </select>  -->
-                                            <input type="text" placeholder="Period" aria-placeholder="Period" class="form-control" id="period-picker"/>
+                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commodity"> 
+                                                <option selected="" value="">Select Commodity</option>
+                                                <option value="AL6">Artemether-Lumefantrine Tabs 6s</option>
+                                                <option value="AL12">Artemether-Lumefantrine Tabs 12s</option>
+                                                <option value="AL18">Artemether-Lumefantrine Tabs 18s</option>
+                                                <option value="AL24">Artemether-Lumefantrine Tabs 24s</option>
+                                                <option value="AS">Artesunate Injection</option>
+                                                <option value="SP">Sulphadoxine Pyrimethamine Tabs</option>
+                                                <option value="RDT">Rapid Diagnostic Tests</option>                 
+                                            </select>
+                                            <!-- <input type="text" placeholder="Period" aria-placeholder="Period" class="form-control" id="period-picker"/> -->
                                         </div> 
                                     </div>
                                 </div>
@@ -388,43 +396,43 @@ color: transparent;}
                 <!-- ============================================================== -->
                 <!-- Chart-1 -->
                 <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div id="wbdata" class="col-md-12"></div>
                         </div>
-                        <div class="col-md-3 m-t-10">
+                        <div class="col-md-4 m-t-10">
                             <div id="pc1" class="col-md-12" style="min-width: 280px; height: 350px;"></div>
                         </div>
-                        <div class="col-md-3 m-t-10">
+                        <!-- <div class="col-md-3 m-t-10">
                             <div class="card">
                                 <div class="row">
                                     <div id="pc2" class="col-md-12" style="min-width: 280px; height: 350px;"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     
                     <div class="row m-t-10">
-                        <div class="col-6 m-t-10">
+                        <div class="col-8 m-t-10">
                             <div class="card">
                                 <div class="row">
                                     <div id="dq-column" class="col-md-12"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 m-t-10">
+                        <div class="col-md-4 m-t-10">
                             <div class="card">
                                 <div class="row">
                                     <div id="pc3" class="col-md-12" style="min-width: 280px; height: 350px;"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 m-t-10">
+                        <!-- <div class="col-md-3 m-t-10">
                             <div class="card">
                                 <div class="row">
                                     <div id="pc4" class="col-md-12" style="min-width: 280px; height: 350px;"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>  
             </div>
@@ -472,12 +480,18 @@ color: transparent;}
     <script src="../../assets/extra-libs/highcharts/dq-highcharts.js"></script>
  
     <script type="text/javascript">
-        pieOne('');
-        pieTwo('');
+        // pieOne('');
+        // pieTwo('');
         pieThree('');
-        pieFour('');
+        // pieFour('');
         // columnOne('');
         lineOne('');
+
+        var dqurl = 'http://localhost/pmi/json/physical-opening.json';
+        var month_from = '201806';
+        var month_to = '201807';
+        var commodity = 'iOARK31NdLp.HWtHCLAwprR';
+        getDQ(dqurl,commodity);
     </script>
 	
 </body>
