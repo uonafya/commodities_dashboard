@@ -466,6 +466,35 @@
                         
 		});
     </script>
+
+<!-- *********** DataTable ************** -->
+<script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <!-- <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script> -->
+
+    
+    <script src="../../dist/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../dist/js/datatables//dataTables.buttons.min.js"></script>
+    <script src="../../dist/js/datatables/buttons.flash.min.js"></script>
+    <script src="../../dist/js/datatables/jszip.min.js"></script>
+    <script src="../../dist/js/datatables/pdfmake.min.js"></script>
+    <script src="../../dist/js/datatables/vfs_fonts.js"></script>
+    <script src="../../dist/js/datatables/buttons.html5.min.js"></script>
+    <script src="../../dist/js/datatables/buttons.print.min.js"></script>
+
+    <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable(
+            {
+                dom: 'Bfrtip',
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            }
+        );
+    </script>
+<!-- *********** end DataTable ************** -->
+
     
     <!-- *********** MonthPicker ************** -->
     <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
