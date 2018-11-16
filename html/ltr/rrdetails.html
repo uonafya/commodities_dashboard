@@ -323,7 +323,7 @@
                                 
                                     <!-- Tab panes -->
                                     <div class="tab-content cardz">
-                                        <div role="tabpanel" class="tab-pane active" id="sub_county">
+                                        <div role="tabpanel" class="tab-pane active" id="facilityc">
                                             <div class="rdstate col-md-12"></div>
                                             <div class="col-md-12 p-10">
                                                 <div class="loader-sp">
@@ -341,8 +341,8 @@
                                                 <table id="zero_config" class="table table-bordered table-bordered rrdetailsbox hidden"></table>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane" id="facilityc">
-                                            <!-- <div class="rdstate col-md-12"></div>
+                                        <div role="tabpanel" class="tab-pane" id="sub_county">
+                                            <div class="rdstate-sub col-md-12"></div>
                                             <div class="col-md-12 p-10">
                                                 <div class="loader-sp">
                                                     <div class="loader loader--style3" title="2">
@@ -356,8 +356,8 @@
                                                 </div>
                                             </div>
                                             <div class="table-responsive">
-                                                <table id="zero_config" class="table table-bordered table-bordered rrdetailsbox hidden"></table>
-                                            </div> -->
+                                                <table id="zero_config-sub" class="table table-bordered table-bordered rrdetailsbox-sub hidden"></table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -486,9 +486,8 @@
             
             //get the org name
             getOrgUnit(ounit, period);
-            var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-3;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'http://localhost/pmi/json/reportingdetails.json';
-            
+            var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                        
             fetchRRDetails(url);
             
             $("#county-dropdown").change(function() 
@@ -496,7 +495,8 @@
                 ounit = $(this).val();
                 period = 'LAST_6_MONTHS';
                 getOrgUnit(ounit, period);
-                var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+period+'&dimension=ou:'+ounit+';LEVEL-3;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                
+                var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 fetchRRDetails(url);
                 
             });
@@ -505,7 +505,7 @@
                 ounit = $(this).val();
                 period = 'LAST_6_MONTHS';
                 getOrgUnit(ounit, period);
-                var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+period+'&dimension=ou:'+ounit+';LEVEL-3;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 fetchRRDetails(url);
                 
             });
