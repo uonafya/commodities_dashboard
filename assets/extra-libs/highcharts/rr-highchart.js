@@ -86,11 +86,11 @@
             var finalRRmonths = [];
             $.each(allmonths, function (index, eachallmonths) {
                 // theinfo = giveVal(monthswithdata, eachallmonths);
-
                 for(x=0;x<monthswithdata.length;x++){
                     var array1=monthswithdata[x];
                     if(array1[1]==eachallmonths){
-                        var findata = parseFloat(array1[3]);
+                        var findata = parseFloat(array1[2]);
+                        console.log('findata: '+JSON.stringify(findata));
                         finalRRdata.push(findata);
                         finalRRmonths.push(array1[1]);
                         xc=0;
@@ -104,6 +104,10 @@
                     xc = 0;
                 }
             });
+            // console.log('allmonths: '+JSON.stringify(monthswithdata));
+            // console.log('allmonths.Length: '+JSON.stringify(allmonths.length));
+            // console.log('monthswithdata: '+JSON.stringify(monthswithdata));
+            // console.log('monthswithdata.Length: '+JSON.stringify(monthswithdata.length));
             console.log('final: '+JSON.stringify(finalRRdata));
             console.log('months: '+JSON.stringify(finalRRmonths));
 
@@ -156,6 +160,9 @@
                     } if(month82 == 'December'){ 
                         var nudate2 = year82+'12';
                     }
+                    //UID Fix
+                    nudate2 = date82;
+                    //End UID Fix
                     converted_date_arr2.push(nudate2);
                 });
 
