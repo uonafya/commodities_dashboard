@@ -112,3 +112,6 @@
   .sidebar-nav ul .sidebar-item:hover {
     background: rgba(200,207,255,0.1);
   }
+  .hidden{
+    display: none !important;
+  }

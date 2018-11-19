@@ -50,11 +50,13 @@ $.ajax({
         console.log("compliant_facilities = "+compliant_facility_count);
         console.log("NON_compliant_facilities = "+non_compliant_facility_count);
         pieOne(theItems[commodity].name,compliant_facility_count,non_compliant_facility_count);
+        $('.loader-sp.pieone').addClass('hidden');
     },
     error: function (request, status, error) {
-        // $('.loader-sp').addClass('hidden');
+        $('.loader-sp.pieone').addClass('hidden');
+        $('#pc1').addClass('hidden');
         console.log('DQ: error fetching json. :- '+error);
-        // $('.rdstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        $('.pieone_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
 }
@@ -126,11 +128,14 @@ $("#commodity-dropdown").change(function()
         console.log("FINAL LINE:totdisp_arr ni: "+totdisp_arr_fin);
 
         columnOne(per_arr,pop_title,totadj_title,totdisp_title,pop_arr_fin,totadj_arr_fin,totdisp_arr_fin);
+        $('#dq-column').removeClass('hidden');
+        $('.loader-sp.dqcol').addClass('hidden');
     },
     error: function (request, status, error) {
-        // $('.loader-sp').addClass('hidden');
+        $('.loader-sp.dqcol').addClass('hidden');
+        $('#dq-column').addClass('hidden');
         console.log('DQ: error fetching json. :- '+error);
-        // $('.rdstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        $('.dqcol_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
 

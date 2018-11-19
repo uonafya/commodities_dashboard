@@ -727,7 +727,7 @@
                                 tableData += '<td>'+target+ '%</td>';
                                 tableData += '<td>'+acceptable+ '%</td>';
                                 tableData += '</tr>';
-			})
+			            })
 				
                         $("table.indicatorsumm tbody").empty();
 			            $("table.indicatorsumm tbody").append(tableData);
@@ -740,7 +740,7 @@
                     $('.indicatorsumm').addClass('hidden');
                     $('.table-responsive').addClass('hidden');
                     $('.loader-sp').addClass('hidden');
-                    console.log('RRates: error fetching json. :- '+error);
+                    console.log('IndicatorSumm: error fetching json. :- '+error);
                     $('.isstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             }
         });
