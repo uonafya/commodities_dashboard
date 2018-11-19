@@ -12,17 +12,87 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
     <title>Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
-    <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet"><link href="../../dist/css/custom.css" rel="stylesheet">
-	<link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
+    <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../../jqplot/jquery.jqplot.js"></script>
+<script type="text/javascript" src="../../jqplot/plugins/jqplot.barRenderer.js"></script>
+<script type="text/javascript" src="../../jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+<script type="text/javascript" src="../../jqplot/plugins/jqplot.pointLabels.js"></script>
+<link rel="stylesheet" type="text/css" href="../../jqplot/jquery.jqplot.css" />
+
+                        <style>
+/*
+.chart rect {
+  fill: steelblue;
+}
+*/
+.chart .legend {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: start;
+  font-size: 12px;
+}
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+.chart .label {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: end;
+}
+.bar:hover {
+  fill: brown;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+</style>
+<style>
+#container {
+  min-width: 310px;
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto
+}
+</style>
+
+<style>
+.highcharts-credits{
+display: none !important;
+width: 0px !important;
+height: 0px !important
+visibility: hidden !important;
+opacity: 0 !important
+color: transparent;}
+</style>
+
+<style>
+.highcharts-button-symbol{
+display: none !important;
+width: 0px !important;
+height: 0px !important
+visibility: hidden !important;
+opacity: 0 !important
+color: transparent;}
+</style>
+ 
+ 
+
 </head>
 
 <body>
@@ -118,7 +188,7 @@
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right"><li class="nav-item search-box hidden"><a href="https://testhis.uonbi.ac.ke/dhis/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <ul class="navbar-nav float-right">
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
@@ -263,28 +333,41 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                ACTs
+                                Reporting Rates
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
                         <div class="col-md-7 col-sm-6 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
-                                <div class="col-md-11 col-sm-11 col-xs-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
+                                            <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">                                                
                                             </select>
                                         </div>										
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
+                                            <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown"/> 
+                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commodity"> 
+                                                <option selected="" value="">Select Commodity</option>
+                                                <option value="AL6">Artemether-Lumefantrine Tabs 6s</option>
+                                                <option value="AL12">Artemether-Lumefantrine Tabs 12s</option>
+                                                <option value="AL18">Artemether-Lumefantrine Tabs 18s</option>
+                                                <option value="AL24">Artemether-Lumefantrine Tabs 24s</option>
+                                                <option value="AS">Artesunate Injection</option>
+                                                <option value="SP">Sulphadoxine Pyrimethamine Tabs</option>
+                                                <option value="RDT">Rapid Diagnostic Tests</option>                 
+                                            </select>
+                                            <!-- <input type="text" placeholder="Period" aria-placeholder="Period" class="form-control" id="period-picker"/> -->
                                         </div> 
                                     </div>
-                                </div>                                
+                                </div>
+                                <!-- <div class="col-md-1 col-sm-1 col-xs-12">
+                                    <input type="submit" value="Go" class="btn btn-info"/>
+                                </div> -->
                             </div>
                             
                         </div>
@@ -293,7 +376,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Data Quality</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -311,110 +394,25 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-               
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"></h5>
-                                <div class="act_status row"></div>
+                <!-- Chart-1 -->
+                    
+                    <div class="row m-t-10">
+                        <div class="col-12 m-t-10">
+                            <div class="card">
                                 <div class="row">
-                                    <div class="loader-sp">
-                                        <div class="loader loader--style3" title="2">
-                                            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-                                                <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-                                                <animateTransform attributeType="xml"
-                                                attributeName="transform"
-                                                type="rotate"
-                                                from="0 25 25"
-                                                to="360 25 25"
-                                                dur="0.6s"
-                                                repeatCount="indefinite"/>
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </div>
+                                    <div id="dq-column" class="col-md-12"></div>
                                 </div>
-                                <div class="row actdata">
-                                    <div class="table-responsive">
-                                        <table id="acts_table" class="table table-condensed slimtable table-bordered actsbox hidden">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Code</th>
-                                                <th>RR%</th>
-                                                <th>AL6 Latest SOH</th>
-                                                <th>AL6 MOS</th>
-                                                <th>AL12 Latest SOH</th>
-                                                <th>AL12 MOS</th>
-                                                <th>AL18 Latest SOH</th>
-                                                <th>AL18 MOS</th>
-                                                <th>AL24 Latest SOH</th>
-                                                <th>AL24 MOS</th>
-                                                <th>ACTs MOS</th>
-                                            </tr>		
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Code</th>
-                                                <th>RR%</th>
-                                                <th>AL6 Latest SOH</th>
-                                                <th>AL6 MOS</th>
-                                                <th>AL12 Latest SOH</th>
-                                                <th>AL12 MOS</th>
-                                                <th>AL18 Latest SOH</th>
-                                                <th>AL18 MOS</th>
-                                                <th>AL24 Latest SOH</th>
-                                                <th>AL24 MOS</th>
-                                                <th>ACTs MOS</th>
-                                            </tr>		
-                                        </tfoot>
-                                        </table>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
+                </div>  
             </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer text-center">
-                All Rights Reserved. Malaria Commodities Dashboard &copy 2018
-            </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
+        <footer class="footer text-center">
+            All Rights Reserved by UoN HealthIT- Admin. Designed and Developed by <a href="">UoN HealthIT</a>.
+        </footer>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
+</div>
+   
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
@@ -426,275 +424,47 @@
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="../../dist/js/custom.min.js"></script>
+    <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
+    
     <!-- this page js -->
-    <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-    <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-    <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-    	
-	<!-- *********** MonthPicker ************** -->
-    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
-    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
-    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
-    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
+    <script src="../../assets/libs/chart/matrix.interface.js"></script>
+    <script src="../../assets/libs/chart/excanvas.min.js"></script>
+    <script src="../../assets/libs/flot/jquery.flot.js"></script>
+    <script src="../../assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="../../assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="../../assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="../../assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="../../assets/libs/chart/jquery.peity.min.js"></script>
+    <script src="../../assets/libs/chart/matrix.charts.js"></script>
+    <script src="../../assets/libs/chart/jquery.flot.pie.min.js"></script>
+    <script src="../../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="../../assets/libs/chart/turning-series.js"></script>
+    <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
+	
+	
+	
+    <script src="../../code/highcharts.js"></script>
+    <script src="../../code/modules/series-label.js"></script>
+    <script src="../../code/modules/exporting.js"></script>
+    <script src="../../code/modules/export-data.js"></script>
+    <script src="../../dist/js/dq.js"></script>
+    <script src="../../assets/extra-libs/highcharts/dq-highcharts.js"></script>
+ 
+    <script type="text/javascript">
+        // pieOne('');
+        // pieTwo('');
+        // pieThree('');
+        // pieFour('');
+        // columnOne('');
+        lineOne('');
 
-    <script>
-        $('#period-dropdown').MonthPicker({ 
-            Button: false,
-            MinMonth: '-1y',
-            MaxMonth: -1,
-            MinYear: 0,
-            MaxYear: 0,
-            OnAfterChooseMonth: function() {  
-                var sDate = $(this).val();
-                datePicked(sDate);
-            }
-        });        
+        var dqurl = 'http://localhost/pmi/json/physical-opening.json';
+        var month_from = '201806';
+        var month_to = '201807';
+        var commodity = 'iOARK31NdLp.HWtHCLAwprR';
+        getDQ(dqurl,commodity);
     </script>
-    <!-- *********** end MonthPicker ************** -->
-		
-	<script>
-		$(document).ready(function() 
-		{
-			var dropdown = $('#county-dropdown');
-			
-			var subcounty = $('#subcounty-dropdown');
-			
-			var perioddwn = $('#period-dropdown');
-
-			dropdown.empty();
-			subcounty.empty();
-			perioddwn.empty();
-
-			dropdown.append('<option selected="true" disabled>Select County</option>');
-			dropdown.prop('selectedIndex', 0);
-			
-			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-			subcounty.prop('selectedIndex', 0);
-			
-			perioddwn.append('<option selected="true" disabled>Select Period</option>');
-			perioddwn.prop('selectedIndex', 0);
-
-			//const url = 'https://api.myjson.com/bins/7xq2x';
-
-			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
-			{
-				//console.log(data.organisationUnits);
-				$.each(data.organisationUnits, function (key, entry) 
-				{						
-					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
-				})		 
-			});
-			
-			$("#county-dropdown").change(function() 
-			{  
-				subcounty.empty();
-				var countyid = $(this).val();
-				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-				subcounty.prop('selectedIndex', 0);
-				
-				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
-				{			
-					$.each(data.organisationUnits, function (key, entry) 
-					{				
-						if(entry.parent.id==countyid)
-						{
-							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
-						}				
-					})		 
-				});		
-			});
-		});
-	</script>
-			
-	<script>
-	$(document).ready(function() 
-	{
-            var ounit = 'tAbBVBbueqD';
-            var period = '201805';
-        
-            var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            // var url = 'http://localhost/pmi/json/acts3.json'
-            fetchACTs(url);
-            $("#county-dropdown").change(function() 
-            {
-                ounit = $(this).val();
-                var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchACTs(url);
-                
-            });
-
-            $("#subcounty-dropdown").change(function() 
-            {
-                ounit = $(this).val();
-                var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchACTs(url);
-                
-            });
-					
-	});
 	
-	
-        //change of period		
-        function datePicked(sDate)
-        {
-            var dateparts = sDate.split('/', 2);
-            var therdate = dateparts[1]+''+dateparts[0];
-            var ounit = $("#county-dropdown").val();
-            var subcountyou = $("#subcounty-dropdown").val();
-            var period = therdate;
-            
-            if(subcountyou!=null)
-            {
-                var ounit = subcountyou;
-            }
-            
-            var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            // var url = 'http://localhost/pmi/json/acts3.json'
-            fetchACTs(url);
-        }
-        
-        //function toprocess the acts url
-        function fetchACTs(acturl)
-        {
-            // $.getJSON(acturl, function (data){
-            $.ajax({
-                type: 'GET',
-                crossDomain: true,
-                url: acturl,                    
-                success: function (data) {
-
-                    //create the org units array
-                    var orgunits = [];
-                    var dxids = [];
-
-                    //var tableData = '<table>';
-                    var tableData = '';
-
-                    //console.log(data.rows);
-
-                    //push only if not in
-                    $.each(data.rows, function (rowkey, rowentry) 
-                    {
-                            //console.log(rowentry[1]);
-                            //console.log(orgunits.indexOf(rowentry[1]))
-                            if(orgunits.indexOf(rowentry[1])>=0)
-                            {
-                                    //console.log(orgunits);
-                            }
-                            else
-                            {
-                                    orgunits.push(rowentry[1]);
-                            }	
-
-                    })
-
-                    //console.log(orgunits.length);
-                    $.each(data.metaData.dimensions.ou, function (key, entry) 
-                    {
-                            //define the table
-                            tableData += '<tr>';	
-                            tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                            tableData += '<td>'+entry+'</td>';
-                            //console.log(data.metaData.items[entry].name);
-                            //console.log(entry);
-                            //console.log(entry);	
-
-                            //get all the dimensions for the given orgunit
-                            dxids = [];
-                            $.each(data.rows, function (rkey, rentry) 
-                            {
-                                    var dxcode = rentry[1];
-
-                                    if(dxcode==entry)
-                                    {
-                                            dxids.push(rentry[0]);
-                                    }												
-                            })
-
-                            //console.log(dxids);
-
-
-                            //console.log(data.rows);
-                            //for each dimension get the value
-                            var count = 0;
-                            $.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
-                            {
-                                    //console.log(orgunits.indexOf(entry));
-                                    //console.log(dxids.indexOf(dxentry));
-                                    //console.log(orgunits);	
-                                    //console.log(data.metaData.items[dxentry].name);
-                                    if(orgunits.indexOf(entry)<0)
-                                    {
-                                            tableData += '<td bgcolor="#ff0000"> - </td>';
-                                    }
-                                    else if(dxids.indexOf(dxentry)<0)
-                                    {
-                                            tableData += '<td bgcolor="#ff0000"> - </td>';
-                                    }
-                                    else
-                                    {										
-                                            $.each(data.rows, function (rkey, rentry) 
-                                            {					
-                                                    var dxid = rentry[0];
-                                                    var dxcode = rentry[1];
-                                                    var dxval = rentry[2];
-
-                                                    if(dxentry==dxid)
-                                                    {						
-                                                            if(dxcode==entry)
-                                                            {
-                                                                    //console.log(rentry);		
-                                                                    //var notfoundRow = false;
-                                                                    var bgcolor = '#ffffff';
-                                                                    if(dxval<0)
-                                                                            bgcolor = '#ffcccc'
-                                                                    if (dxval >= 0 && dxval< 3)
-                                                                            bgcolor = '#ffc7ce'
-                                                                    if (dxval >= 3 && dxval<= 6)
-                                                                            bgcolor = '#c6efce'
-                                                                    if(dxval>6)
-                                                                            bgcolor = '#ffeb9c'
-
-                                                                    tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
-                                                            }						
-                                                    }						
-                                            })				
-
-                                    }
-                                    count++;
-                            })					
-
-                            tableData += '</tr>';	
-                    })
-
-                    //tableData += '<table>';	
-                    //console.log(tableData)
-                    $('#acts_table').removeClass('hidden');
-                    $('.actdata').removeClass('hidden');
-                    $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');
-                    
-                    $('#acts_table').DataTable().destroy();
-                    $("table.actsbox tbody").empty();
-                    $("table.actsbox tbody").append(tableData);	
-                    //$('#acts_table').DataTable();                                                          
-                    $('#acts_table').DataTable().fnDraw();
-
-                    
-                },
-                error: function (request, status, error) {
-                    $('.loader-sp').addClass('hidden');
-                    $('#acts_table').addClass('hidden');
-                    console.log('ACTs: error fetching json. :- '+error);
-                    $('actdata').addClass('hidden');
-                    $('.act_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-                }
-            });
-    }
-</script>
-
 </body>
 
 </html>

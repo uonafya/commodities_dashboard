@@ -102,3 +102,13 @@
   ul.collapse.first-level ul.collapse.first-level{
     margin-left: 12px;
   }
+  a.sidebar-link:hover,
+  a.sidebar-link:focus,
+  a.sidebar-link:active{
+    text-decoration: none !important;
+  }
+  .first-level .sidebar-item a.sidebar-link:active,
+  .first-level .sidebar-item a.sidebar-link:focus,
+  .sidebar-nav ul .sidebar-item:hover {
+    background: rgba(200,207,255,0.1);
+  }
