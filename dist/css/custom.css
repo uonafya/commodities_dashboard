@@ -99,3 +99,6 @@
       background: #ff0000 !important;
       color: #ffffff !important;
   }
+  ul.collapse.first-level ul.collapse.first-level{
+    margin-left: 12px;
+  }
