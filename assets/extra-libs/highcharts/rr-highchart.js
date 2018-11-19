@@ -11,6 +11,7 @@
                     url: onurl,                    
                     success: function (onData) {
                         plotGraph(rrData, onData);
+                        $('.loader-sp').addClass('hidden');
                     },
                     error: function (request, status, error) {
                         $('.loader-sp').addClass('hidden');
@@ -18,6 +19,7 @@
                         $('#rrchart').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                     }
                 });
+                $('.loader-sp').addClass('hidden');
             },
             error: function (request, status, error) {
                 $('.loader-sp').addClass('hidden');

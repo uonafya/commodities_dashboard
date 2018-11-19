@@ -542,7 +542,7 @@
 	$(document).ready(function() 
 	{
             var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;tAbBVBbueqD&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
-            // var url = 'http://localhost/pmi/json/indicatorsummary.json';
+            var url = 'http://localhost/pmi/json/indicatorsummary.json';
 		//parse the data for mos percentage
         $.ajax({
             type: 'GET',
@@ -732,10 +732,32 @@
                         $('.loader-sp').addClass('hidden');
                         $('.table-responsive').removeClass('hidden');
                         $('.indicatorsumm').removeClass('hidden');
-
                         $('.indicatorsumm').DataTable().destroy();
                         $("table.indicatorsumm tbody").empty();
-                        $("table.indicatorsumm tbody").append(tableData);	                                                        
+
+                        $("table.indicatorsumm tbody").append(tableData);
+                        $('.indicatorsumm').DataTable( {
+                            initComplete: function () {
+                                this.api().columns().every( function () {
+                                    var column = this;
+                                    var select = $('<select><option value=""></option></select>')
+                                        .appendTo( $(column.header()).empty() )
+                                        .on( 'change', function () {
+                                            var val = $.fn.dataTable.util.escapeRegex(
+                                                $(this).val()
+                                            );
+                    
+                                            column
+                                                .search( val ? '^'+val+'$' : '', true, false )
+                                                .draw();
+                                        } );
+                    
+                                    column.data().unique().sort().each( function ( d, j ) {
+                                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                                    } );
+                                } );
+                            }
+                        });	                                                        
                         $('.indicatorsumm').DataTable().fnDraw();
 
                 },
