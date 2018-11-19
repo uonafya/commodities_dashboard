@@ -285,11 +285,11 @@
                                         <div class="col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" class="form-control" placeholder="Period" id="period-dropdown"/> 
                                         </div> 
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <!-- <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="parameter-dropdown" name="county">                             <option>Select parameter</option>
 
                                             </select>
-                                        </div> 
+                                        </div>  -->
                                     </div>
                                 </div>
                                 
@@ -542,7 +542,7 @@
 	$(document).ready(function() 
 	{
             var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;tAbBVBbueqD&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'http://127.0.0.1/pmi/json/indicatorsummary.json';
+            // var url = 'http://localhost/pmi/json/indicatorsummary.json';
 		//parse the data for mos percentage
         $.ajax({
             type: 'GET',
@@ -561,7 +561,7 @@
                         
                         getOrgUnit(theorgunit, curpe);
 	
-			var tableData = '';                        
+			            var tableData = '';                        
                         
                         //stocked according to plan
                         $.each(data.metaData.dimensions.dx, function (key, entry) 
@@ -729,12 +729,15 @@
                                 tableData += '</tr>';
 			            })
 				
-                        $("table.indicatorsumm tbody").empty();
-			            $("table.indicatorsumm tbody").append(tableData);
-                        //$('#zero_config').DataTable();
                         $('.loader-sp').addClass('hidden');
                         $('.table-responsive').removeClass('hidden');
                         $('.indicatorsumm').removeClass('hidden');
+
+                        $('.indicatorsumm').DataTable().destroy();
+                        $("table.indicatorsumm tbody").empty();
+                        $("table.indicatorsumm tbody").append(tableData);	                                                        
+                        $('.indicatorsumm').DataTable().fnDraw();
+
                 },
                 error: function (request, status, error) {
                     $('.indicatorsumm').addClass('hidden');
