@@ -139,6 +139,51 @@ $("#commodity-dropdown").change(function()
     }
 });
 
+
+var wb_url='http://localhost/pmi/json/weightband/weightband.json';
+$.ajax({
+    type: 'GET',
+    crossDomain: true,
+    url: wb_url,                    
+    success: function (wb_data) {
+        const json_data = wb_data;
+        // Total number of facilities
+        const total_facilities= json_data.metaData.dimensions.ou.length;
+        let reported = [];
+        // loops though the period
+        $.each(json_data.metaData.dimensions.pe,(index,value)=>{
+            let period = value;
+            let total = 0;
+            // Prints out the periods in the row key
+            $.each(json_data.rows,(i_index,i_value)=>{
+                if (period === i_value[1]){
+                    total = total+ 1;
+                }
+            });
+            reported.push(total);
+        });
+        let didNotReport = [];
+        $.each(reported,(index,value)=>{
+            const facilities = total_facilities
+            let empty_reports = facilities - value
+            didNotReport.push(empty_reports)
+        });
+        let wbdataset = [];
+        wbdataset.push(json_data.metaData.dimensions.pe);
+        wbdataset.push(reported);
+        wbdataset.push(didNotReport);
+
+        lineOne(wbdataset);
+    },error: function (request, status, error) {
+        $('.loader-sp.wbdata').addClass('hidden');
+        $('#wbdata').addClass('hidden');
+        console.log('DQ: error fetching json. :- '+error);
+        $('.wbdata_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+    }
+});
+
+
+
 function filterItems(array,query) {
     return array.filter(function(el) {
         return el.indexOf(query) > -1;
@@ -148,3 +193,6 @@ function makeList(name){
     window[name] = [];
     return window[name];
  }
+
+
+ 

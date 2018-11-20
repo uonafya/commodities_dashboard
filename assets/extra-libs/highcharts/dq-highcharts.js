@@ -230,41 +230,68 @@
             };
             //-------------------end column--------------------------
 
-            function lineOne(url){
+            function lineOne(wbdataset){
+                var perd = wbdataset[0];
+                var reported = wbdataset[1];
+                var didNotReport = wbdataset[2];
                 Highcharts.chart('wbdata', {
-                    chart: {
-                        type: 'line'
-                    },
+
                     title: {
-                        text: 'Reporting health facilities that had patient'
+                        text: 'Reporting health facilities that had weight band data in DHIS'
                     },
+            
                     subtitle: {
-                        text: 'weight band data in DHIS'
+                        text: 'Source: DHIS2'
                     },
-                    xAxis: {
-                        categories: ['2018 03', '2018 04', '2018 05']
-                    },
+            
                     yAxis: {
                         title: {
-                        text: ''
+                            text: 'Total Facilities'
                         }
                     },
+                    xAxis:{
+                      categories: perd
+                    }
+                    ,
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle'
+                    },
+            
                     plotOptions: {
-                        line: {
-                        dataLabels: {
-                            enabled: true
-                        },
-                        enableMouseTracking: false
+                        series: {
+                            label: {
+                                connectorAllowed: false
+                            }
                         }
                     },
+            
                     series: [{
                         name: 'Yes',
-                        data: [60, 65, 65]
+                        data: reported
                     }, {
                         name: 'No',
-                        data: [60, 52, 54]
-                    }]
+                        data: didNotReport
+                    }],
+            
+                    responsive: {
+                        rules: [{
+                            condition: {
+                                maxWidth: 500
+                            },
+                            chartOptions: {
+                                legend: {
+                                    layout: 'horizontal',
+                                    align: 'center',
+                                    verticalAlign: 'bottom'
+                                }
+                            }
+                        }]
+                    }
+            
                 });
+            
             };
             // end Highcharts
         
