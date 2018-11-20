@@ -153,10 +153,10 @@ function fetchSubRRDetails(scrdurl)
             //subcounty
             $('#zero_config-sub').removeClass('hidden');
 
-            $('#zero_config-sub').DataTable().destroy();
+            $('#zero_config-sub').dataTable().destroy();
             $("table.rrdetailsbox-sub tbody").empty();
             $("table.rrdetailsbox-sub tbody").append(tableData);                                                        
-            $('#zero_config-sub').DataTable().fnDraw();
+            $('#zero_config-sub').dataTable().fnDraw();
 
     },
     error: function (request, status, error) {
