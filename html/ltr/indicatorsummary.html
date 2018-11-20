@@ -343,7 +343,15 @@
                                         <tbody>                                            
                                         </tbody>
                                         <tfoot>
-                                            
+                                            <tr>                                                
+                                                <th><b>Parameter</b></th>
+                                                <th><b>Item</b></th>
+                                                <th><b>Num</b></th>
+                                                <th><b>Den</b></th>
+                                                <th><b>Result</b></th>
+                                                <th><b>Target</b></th>
+                                                <th><b>Acceptable</b></th>
+                                            </tr>
                                         </tfoot>
                                     </table>
                                 </div>
@@ -741,7 +749,7 @@
                                 this.api().columns().every( function () {
                                     var column = this;
                                     var select = $('<select><option value=""></option></select>')
-                                        .appendTo( $(column.header()).empty() )
+                                        .appendTo( $(column.footer()).empty() )
                                         .on( 'change', function () {
                                             var val = $.fn.dataTable.util.escapeRegex(
                                                 $(this).val()
