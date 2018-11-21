@@ -272,31 +272,50 @@
                             </nav>
                         </div>
                     </div>
-					<div class="col-md-7 col-sm-6 col-xs-12">
-						<small class="">Filter:</small>
-						<div class="row">
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="row">
-									<div class="col-md-4 col-sm-4 col-xs-12">
-										<select class="form-control m-r-5" id="county-dropdown" name="county">                                                
-										</select>
-									</div>										
-									<div class="col-md-4 col-sm-4 col-xs-12">
-										<select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
-										</select> 
-									</div> 
-									<div class="col-md-4 col-sm-4 col-xs-12">
-										<!-- <select class="form-control m-r-5" id="period-dropdown" name="period">                  
-										</select>  -->
-										<input type="text" class="form-control" id="period-dropdown"/>
-									</div> 
-								</div>
-							</div>
-							<!-- 
-								<input type="submit" value="Go" class="btn btn-info"/>
-							</div> -->
-						</div>
-						
+					<div class="col-md-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                <small class="">Filter:</small>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
+                                                </select>
+                                            </div>										
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
+                                                </select> 
+                                            </div> 
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <!-- <select class="form-control m-r-5" id="period-dropdown" name="period">                  
+                                                </select>  -->
+                                                <input type="text" class="form-control" id="period-dropdown"/>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <!--  <input type="submit" value="Go" class="btn btn-info"/> -->
+                                </div>
+                            </div>
+                            <div class="col-md-1 col-sm-1 hidden-xs"></div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <small class="">Legend:</small>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="row">
+                                            <table class="table">
+                                                <tr>
+                                                    <td bgcolor="#c6efce">MOS 3-6</td>
+                                                    <td bgcolor="#ffeb9c">MOS>6</td>
+                                                    <td bgcolor="#ffc7ce">MOS<3</td>
+                                                    <td bgcolor="#ff0000" style="color: #ffffff; line-height: 0.97;"><span>Stocked<br/>Out</small></td>
+                                                </tr>
+                                            </table> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 					</div>
                 </div>
             </div>
@@ -333,8 +352,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="malaria_commodity_table t_three" style="height: 380px;">
-                                    <table class = "table adjc_soh_mos">
+                                <div class="malaria_commodity_table t_three hidden" style="height: 450px; overflow-y:auto;">
+                                    <table class = "table adjc_soh_mos" style="position:relative;">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Items</th>
@@ -392,8 +411,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="malaria_commodity_table t_one" style="height: 450px;">
-                                        <table class = "table percent_healthfa">
+                                    <div class="malaria_commodity_table t_one hidden" style="height: 450px; overflow-y:auto;">
+                                        <table class = "table percent_healthfa" style="position:relative;">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Items</th>
@@ -426,8 +445,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="malaria_commodity_table t_two" style="height: 450px;">
-                                                <table class="table number_healthfa">
+                                            <div class="malaria_commodity_table t_two hidden" style="height: 450px; overflow-y:auto;">
+                                                <table class="table number_healthfa" style="position:relative;">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Item</th>
@@ -628,7 +647,7 @@
 	{
 		//load the mos by commodity
 		var url = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
-				
+		var url = 'http://localhost/pmi/json/maindash.json';
 		//populate dropdown with list of counties
 		$.ajax({
             type: 'GET',
@@ -739,7 +758,7 @@
 		
 		//% of health facilities
 		var urlfa = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:HfVjCurKxh2;LEVEL-5&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
-		
+		var urlfa = 'http://localhost/pmi/json/maindash.json';
         //define the name holder
         var alnames = ["AL6","AL12","AL18","AL24"];
 		
@@ -888,7 +907,7 @@
 				tableData += '<td bgcolor="#ffeb9c">'+overstock+'</td>';
 				tableData += '<td bgcolor="#c6efce">'+stockok+'</td>';
 				tableData += '<td bgcolor="#ffc7ce">'+understock+'</td>';
-				tableData += '<td bgcolor="#ff0000">'+stockout+'</td>';	
+				tableData += '<td bgcolor="#ff0000" style="color: #ffffff;">'+stockout+'</td>';	
 				tableData += '<td>'+nomos+'</td>';	
 				tableData += '<td>'+totalfa+'</td>';					
 				
@@ -900,6 +919,7 @@
 			$("table.number_healthfa tbody").append(tableData);	
             //$('#zero_config').DataTable();
             $('.t_two.loader-sp').addClass('hidden');
+            $('.malaria_commodity_table.t_two').removeClass('hidden');
             $('.number_healthfa').removeClass('hidden');
 		},
         error: function (request, status, error) {
@@ -917,6 +937,8 @@
                 //parse the data for mos number
                 var urlcon = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;S6El8jHnxmg;oHXAfN5JvmX;EL7u4q2euB3;BxTfT7tyUHF;tmH2lX4c9HT;iMHDfVvYm0W;f5mBCkj0aSu&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
                 var urlphy = 'https://testhis.uonbi.ac.ke/dhis/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;lRdys3z7YNI.rPAsF4cpNxm;wja80wk33jw.rPAsF4cpNxm;TH5xz4WcRI7.rPAsF4cpNxm;EjdfgUUAfJO.rPAsF4cpNxm;qeK4CnBmpBQ.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+                var urlcon = 'http://localhost/pmi/json/urlcon.json';
+                var urlphy = 'http://localhost/pmi/json/urlphy.json';
                 
                 //get the physical count into an array
                 var sohval = [];
@@ -994,8 +1016,10 @@
                             
                             //set the bg color for the MOS
                             var bgcolor = '#ffffff';
+                            var fcolor = 'inherit';
                             if(mos<=0)
                                 bgcolor = '#ff0000'
+                                fcolor = '#ffffff'
                             if (mos > 0 && mos< 3)
                                 bgcolor = '#ffc7ce'
                             if (mos >= 3 && mos<= 6)
@@ -1005,7 +1029,7 @@
 
                             tableData += '<td>'+adjc.toFixed(0)+'</td>';
                             tableData += '<td>'+phycount.toFixed(0)+'</td>';
-                            tableData += '<td bgcolor="'+bgcolor+'">'+mos.toFixed(1)+'</td>';                            					
+                            tableData += '<td style="color:'+fcolor+'" bgcolor="'+bgcolor+'">'+mos.toFixed(1)+'</td>';                            					
 
                             tableData += '</tr>';
                         }
