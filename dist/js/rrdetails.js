@@ -67,11 +67,11 @@ function fetchRRDetails(rdurl)
             //facility
             
             $('.loader-sp').addClass('hidden');
-            // $("table.rrdetailsbox tbody").html('');
+            $("table.rrdetailsbox tbody").html('');
             // $('#zero_config').DataTable();                                                          
-            $("table.rrdetailsbox tbody").append(tableData);	
+            $("table.rrdetailsbox").append(tableData);	
             $("table.rrdetailsbox").removeClass('hidden');
-            $('table.rrdetailsbox tbody').DataTable().clear().draw();
+            $('#zero_config').DataTable().draw();
             $('.loader-sp').addClass('hidden');
             
     },
@@ -154,11 +154,11 @@ function fetchSubRRDetails(scrdurl)
             tableData += footer;
             //subcounty
             $('.loader-sp.sp-sub').addClass('hidden');
-            // $("table.rrdetailsbox-sub tbody").html('');
+            $("table.rrdetailsbox-sub tbody").html('');
             // $('#zero_config-sub').DataTable();                                                          
-            $("table.rrdetailsbox-sub tbody").append(tableData);	
+            $("table.rrdetailsbox-sub").append(tableData);	
             $("table.rrdetailsbox-sub").removeClass('hidden');
-            $('table.rrdetailsbox-sub tbody').DataTable().clear().draw();
+            $('#zero_config-sub').DataTable().draw();
             $('.loader-sp.sp-sub').addClass('hidden');
 
     },
