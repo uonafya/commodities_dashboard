@@ -67,7 +67,7 @@ function fetchRRDetails(rdurl)
             //facility
             
             $('.loader-sp').addClass('hidden');
-            $("table.rrdetailsbox").empty();
+            $("table.rrdetailsbox tbody").html('');
             // $('#zero_config').DataTable();                                                          
             $("table.rrdetailsbox").append(tableData);	
             $("table.rrdetailsbox").removeClass('hidden');
@@ -154,7 +154,7 @@ function fetchSubRRDetails(scrdurl)
             tableData += footer;
             //subcounty
             $('.loader-sp.sp-sub').addClass('hidden');
-            $("table.rrdetailsbox-sub").empty();
+            $("table.rrdetailsbox-sub").html('');
             // $('#zero_config-sub').DataTable();                                                          
             $("table.rrdetailsbox-sub").append(tableData);	
             $("table.rrdetailsbox-sub").removeClass('hidden');
