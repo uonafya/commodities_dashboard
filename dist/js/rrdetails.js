@@ -68,7 +68,7 @@ function fetchRRDetails(rdurl)
             
             $('#zero_config').DataTable().destroy();
             $('.loader-sp').addClass('hidden');
-            $("table.rrdetailsbox tbody").empty();
+            $("table.rrdetailsbox").empty();
             // $("table.rrdetailsbox tbody").html('');
             // $('#zero_config').DataTable();                                                          
             $("table.rrdetailsbox").append(tableData);	
@@ -158,7 +158,7 @@ function fetchSubRRDetails(scrdurl)
             
             $('#zero_config').DataTable().destroy();
             $('.loader-sp').addClass('hidden');
-            $("table.rrdetailsbox-sub tbody").empty();
+            $("table.rrdetailsbox-sub").empty();
             // $("table.rrdetailsbox tbody").html('');
             // $('#zero_config').DataTable();                                                          
             $("table.rrdetailsbox-sub").append(tableData);	
