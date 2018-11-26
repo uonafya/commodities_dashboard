@@ -907,7 +907,7 @@
                     tableData += '<td bgcolor="#ffeb9c">'+overstock+'</td>';
                     tableData += '<td bgcolor="#c6efce">'+stockok+'</td>';
                     tableData += '<td bgcolor="#ffc7ce">'+understock+'</td>';
-                    tableData += '<td bgcolor="#ff0000">'+stockout+'</td>';	
+                    tableData += '<td style="color: #ffffff;" bgcolor="#ff0000">'+stockout+'</td>';	
                     tableData += '<td>'+nomos+'</td>';	
                     tableData += '<td>'+totalfa+'</td>';					
                     
@@ -993,8 +993,10 @@
     
                             //set the bg color for the MOS
                             var bgcolor = '#ffffff';
+                            var fcolor = 'initial';
                             if(mos<=0)
                                 bgcolor = '#ff0000'
+                                fcolor = '#ffffff';
                             if (mos > 0 && mos< 3)
                                 bgcolor = '#ffc7ce'
                             if (mos >= 3 && mos<= 6)
@@ -1004,7 +1006,7 @@
     
                             tableData += '<td>'+adjc.toFixed(0)+'</td>';
                             tableData += '<td>'+phycount.toFixed(0)+'</td>';
-                            tableData += '<td bgcolor="'+bgcolor+'">'+mos.toFixed(1)+'</td>';                            					
+                            tableData += '<td style="color: '+fcolor+';" bgcolor="'+bgcolor+'">'+mos.toFixed(1)+'</td>';                            					
     
                             tableData += '</tr>';
                             

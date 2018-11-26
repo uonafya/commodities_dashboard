@@ -53,7 +53,7 @@ function fetchRRDetails(rdurl)
                         else
                         {
                             var bgcolor = '#ffc7ce';
-                            tableData += '<td bgcolor="'+bgcolor+'">'+reportval+'</td>';
+                            tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
                         }
                 })
 
@@ -64,19 +64,17 @@ function fetchRRDetails(rdurl)
             tableData += '</tbody>';
             tableData += footer;
                     
+            $('.loader-sp.rrdp').addClass('hidden');
             //facility
-            
-            $('#zero_config').DataTable().destroy();
-            $('.loader-sp').addClass('hidden');
-            $("table.rrdetailsbox").empty();
-            // $("table.rrdetailsbox tbody").html('');
-            // $('#zero_config').DataTable();                                                          
-            $("table.rrdetailsbox").append(tableData);	
-            $("table.rrdetailsbox").removeClass('hidden');
-            $('#sp_table').DataTable().fnDraw();
+            // $('#zero_config').DataTable().destroy();
+            $("#zero_config.rrdetailsbox").empty();                                                
+            $("#zero_config.rrdetailsbox").append(tableData);	
+            $("#zero_config.rrdetailsbox").removeClass('hidden');
+            $('#zero_config.rrdetailsbox').DataTable().fnDraw();
             // $('#zero_config').DataTable().draw();
-            $('.loader-sp').addClass('hidden');
-    },
+            $('#zero_config.rrdetailsbox').DataTable();
+
+        },
     error: function (request, status, error) {
         $('.loader-sp').addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
@@ -84,6 +82,8 @@ function fetchRRDetails(rdurl)
     }
 });
 }
+
+
 
 
 
@@ -99,7 +99,7 @@ function fetchSubRRDetails(scrdurl)
         success: function (data) {                    
             var header = '';
             var footer = '';
-            var tableData = '';
+            var tableDataSub = '';
             
             //put the header
             header += '<thead><tr>';	
@@ -123,49 +123,51 @@ function fetchSubRRDetails(scrdurl)
 
             footer += '</tr></tfoot>';
 
-            tableData += header;
+            tableDataSub += header;
 
             //start body
-            tableData += '<tbody>';
+            tableDataSub += '<tbody>';
 
             //console.log(orgunits.length);
             $.each(data.metaData.dimensions.ou, function (key, entry) 
             {                                                        
-                tableData += '<tr>';	
-                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                tableDataSub += '<tr>';	
+                tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
 
                 $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
                 {
                         var reportval = getReport(data.rows,pentry,entry);
                         if(reportval)
                         {
-                            tableData += '<td>'+reportval+'</td>';	
+                            tableDataSub += '<td>'+reportval+'</td>';	
                         }
                         else
                         {
                             var bgcolor = '#ffc7ce';
-                            tableData += '<td bgcolor="'+bgcolor+'">'+reportval+'</td>';
+                            tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
                         }
                 })
 
-                tableData += '</tr>';	
+                tableDataSub += '</tr>';	
             })
 
             //footer line
-            tableData += '</tbody>';
-            tableData += footer;
+            tableDataSub += '</tbody>';
+            tableDataSub += footer;
             //subcounty
             
-            $('#zero_config').DataTable().destroy();
-            $('.loader-sp').addClass('hidden');
-            $("table.rrdetailsbox-sub").empty();
-            // $("table.rrdetailsbox tbody").html('');
-            // $('#zero_config').DataTable();                                                          
-            $("table.rrdetailsbox-sub").append(tableData);	
-            $("table.rrdetailsbox-sub").removeClass('hidden');
-            $('#zero_config-sub').DataTable().fnDraw();
-            // $('#zero_config').DataTable().draw();
+            
+            // $('#zero_config-sub').DataTable().destroy();
             $('.loader-sp.sp-sub').addClass('hidden');
+            $("#zero_config-sub.rrdetailsbox-sub").empty();
+            // $("table.rrdetailsbox-sub tbody").html('');
+            // $('#zero_config').DataTable();                                                          
+            $("#zero_config-sub.rrdetailsbox-sub").append(tableDataSub);	
+            $("#zero_config-sub.rrdetailsbox-sub").removeClass('hidden');
+            $('#zero_config-sub').DataTable().fnDraw();
+            // $('#zero_config-sub').DataTable().draw();
+            $('.loader-sp.sp-sub').addClass('hidden');
+            $('#zero_config-sub').DataTable();
 
     },
     error: function (request, status, error) {
