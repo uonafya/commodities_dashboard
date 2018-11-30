@@ -350,19 +350,7 @@ color: transparent;}
                                             <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commodity"> 
-                                                <option selected="" value="">Select Commodity</option>
-                                                <option value="AL6">Artemether-Lumefantrine Tabs 6s</option>
-                                                <option value="AL12">Artemether-Lumefantrine Tabs 12s</option>
-                                                <option value="AL18">Artemether-Lumefantrine Tabs 18s</option>
-                                                <option value="AL24">Artemether-Lumefantrine Tabs 24s</option>
-                                                <option value="AS">Artesunate Injection</option>
-                                                <option value="SP">Sulphadoxine Pyrimethamine Tabs</option>
-                                                <option value="RDT">Rapid Diagnostic Tests</option>                 
-                                            </select>
-                                            <!-- <input type="text" placeholder="Period" aria-placeholder="Period" class="form-control" id="period-picker"/> -->
-                                        </div> 
+                                         
                                     </div>
                                 </div>
                                 <!-- <div class="col-md-1 col-sm-1 col-xs-12">
@@ -479,7 +467,7 @@ color: transparent;}
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -496,7 +484,7 @@ color: transparent;}
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				

@@ -474,7 +474,7 @@ color: transparent;}
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -491,7 +491,7 @@ color: transparent;}
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -522,7 +522,7 @@ color: transparent;}
         // columnOne('');
         // lineOne('');
 
-        var dqurl = 'http://localhost/pmi/json/physical-opening.json';
+        var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;tAbBVBbueqD&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
         var month_from = '201806';
         var month_to = '201807';
         var commodity = 'iOARK31NdLp.HWtHCLAwprR';
