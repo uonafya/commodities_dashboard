@@ -1,4 +1,6 @@
+
 function getDQ(dqurl,commodity){
+// alert('dqurl: '+dqurl+' & commodity: '+commodity);
 $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -68,7 +70,8 @@ $("#commodity-dropdown").change(function()
     }
 );
 
-  var adj_url = 'http://localhost/pmi/json/totalpopdisadj.json';
+function getCompa(courl){
+  var adj_url = courl;
   $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -138,7 +141,7 @@ $("#commodity-dropdown").change(function()
         $('.dqcol_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
-
+}
 
 var wb_url='http://localhost/pmi/json/weightband/weightband.json';
 $.ajax({

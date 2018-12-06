@@ -343,11 +343,13 @@ color: transparent;}
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">                                                
+                                            <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">
+                                                                                                
                                             </select>
                                         </div>										
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">                                                
+                                            <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">       
+                                                                                   
                                             </select> 
                                         </div> 
                                          
@@ -442,7 +444,23 @@ color: transparent;}
     <script src="../../assets/libs/chart/turning-series.js"></script>
     <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
 	
-	<script>
+	
+	
+	
+	
+    <script src="../../code/highcharts.js"></script>
+    <script src="../../code/modules/series-label.js"></script>
+    <script src="../../code/modules/exporting.js"></script>
+    <script src="../../code/modules/export-data.js"></script>
+    <script src="../../dist/js/dq.js"></script>
+    <script src="../../assets/extra-libs/highcharts/dq-highcharts.js"></script>
+ 
+    <script type="text/javascript">
+        var courl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:u4t9H8XyU9P&displayProperty=NAME&outputIdScheme=UID';
+        getCompa(courl);
+    </script>
+
+<script>
 		$(document).ready(function() 
 		{
 			var dropdown = $('#county-dropdown');
@@ -464,7 +482,7 @@ color: transparent;}
 			perioddwn.append('<option selected="true" disabled>Select Period</option>');
 			perioddwn.prop('selectedIndex', 0);
 
-			//const url = 'https://api.myjson.com/bins/7xq2x';
+			// const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
 			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
@@ -478,10 +496,11 @@ color: transparent;}
 			
 			$("#county-dropdown").change(function() 
 			{  
+                
 				subcounty.empty();
 				var countyid = $(this).val();
 				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-				subcounty.prop('selectedIndex', 0);
+                subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
 				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
@@ -493,54 +512,23 @@ color: transparent;}
 							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
 						}				
 					})		 
-				});		
+                });
+                
+                
+                var theou = $(this).val();
+                var courl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
+                getCompa(courl);
+                
+            });
+            
+            $("#subcounty-dropdown").change(function() 
+			{  
+                var theou = $(this).val();
+                var courl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
+                getCompa(courl);
 			});
 		});
 	</script>
-	
-	
-	
-    <script src="../../code/highcharts.js"></script>
-    <script src="../../code/modules/series-label.js"></script>
-    <script src="../../code/modules/exporting.js"></script>
-    <script src="../../code/modules/export-data.js"></script>
-    <script src="../../dist/js/dq.js"></script>
-    <script src="../../assets/extra-libs/highcharts/dq-highcharts.js"></script>
- 
-    <script type="text/javascript">
-        // pieOne('');
-        // pieTwo('');
-        // pieThree('');
-        // pieFour('');
-        // columnOne('');
-        lineOne('');
-
-        var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:u4t9H8XyU9P&displayProperty=NAME&outputIdScheme=UID';
-        var month_from = '201806';
-        var month_to = '201807';
-        var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-        getDQ(dqurl,commodity);
-
-
-        
-
-        $("#county-dropdown").change(function() 
-            {  
-                var theou = $(this).val();
-                var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
-                getDQ(dqurl,commodity);
-            }
-        );
-
-        $("#subcounty-dropdown").change(function() 
-            {  
-                var theou = $(this).val();
-                var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
-                getDQ(dqurl,commodity);
-            }
-        );
-
-    </script>
 	
 </body>
 
