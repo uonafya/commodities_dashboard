@@ -143,11 +143,12 @@ function getCompa(courl){
 });
 }
 
-var wb_url='http://localhost/pmi/json/weightband/weightband.json';
+function getWBData(wburl){
 $.ajax({
     type: 'GET',
     crossDomain: true,
-    url: wb_url,                    
+    url: wburl,                    
+    // url: 'http://localhost/pmi/json/completeness.json',                    
     success: function (wb_data) {
         const json_data = wb_data;
         // Total number of facilities
@@ -180,11 +181,11 @@ $.ajax({
     },error: function (request, status, error) {
         $('.loader-sp.wbdata').addClass('hidden');
         $('#wbdata').addClass('hidden');
-        console.log('DQ: error fetching json. :- '+error);
+        console.log('DQ WB Completeness: error fetching json. Status: '+status+' & Error:- '+error);
         $('.wbdata_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
-
+}
 
 
 function filterItems(array,query) {

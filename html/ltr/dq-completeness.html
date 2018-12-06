@@ -343,11 +343,13 @@ color: transparent;}
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">                                                
+                                            <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">
+                                                                                           
                                             </select>
                                         </div>										
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">                                                
+                                            <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">  
+                                                                                              
                                             </select> 
                                         </div>                                        
                                     </div>
@@ -432,18 +434,18 @@ color: transparent;}
 			
 			var perioddwn = $('#period-dropdown');
 
-			dropdown.empty();
-			subcounty.empty();
-			perioddwn.empty();
+			// dropdown.empty();
+			// subcounty.empty();
+			// perioddwn.empty();
 
-			dropdown.append('<option selected="true" disabled>Select County</option>');
-			dropdown.prop('selectedIndex', 0);
+			// dropdown.append('<option selected="true" disabled>Select County</option>');
+			// dropdown.prop('selectedIndex', 0);
 			
-			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-			subcounty.prop('selectedIndex', 0);
+			// subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+			// subcounty.prop('selectedIndex', 0);
 			
-			perioddwn.append('<option selected="true" disabled>Select Period</option>');
-			perioddwn.prop('selectedIndex', 0);
+			// perioddwn.append('<option selected="true" disabled>Select Period</option>');
+			// perioddwn.prop('selectedIndex', 0);
 
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
@@ -504,27 +506,25 @@ color: transparent;}
     <script src="../../assets/extra-libs/highcharts/dq-highcharts.js"></script>
  
     <script type="text/javascript">
-        var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-        var month_from = '201806';
-        var month_to = '201807';
-        var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-        getDQ(dqurl,commodity);
+        var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+        // var wburl = 'http://localhost/pmi/json/completeness.json';
+        getWBData(wburl);
 
         
 
         $("#county-dropdown").change(function() 
             {  
                 var theou = $(this).val();
-                var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                getDQ(dqurl,commodity);
+                var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                getWBData(wburl);
             }
         );
 
         $("#subcounty-dropdown").change(function() 
             {  
                 var theou = $(this).val();
-                var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                getDQ(dqurl,commodity);
+                var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                getWBData(wburl);
             }
         );
 
