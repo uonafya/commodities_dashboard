@@ -189,6 +189,64 @@ $.ajax({
 }
 
 
+
+
+function getConsist(consturl,commd){
+    $.ajax({
+        type: 'GET',
+        crossDomain: true,
+        url: consturl,                    
+        success: function (data) {
+            //populate commodities filter
+    
+            var theItems = data.metaData.items;
+            var theDims = data.metaData.dimensions;
+            var theDx = data.metaData.dimensions.dx;
+            
+            // var comm_filter_html = '<option selected value="">Select Dimension</option>';
+            // $.each(theDx, function(indx, onecomm){
+            //     var appnd = '<option value="'+onecomm+'">'+theItems[onecomm].name+'</option>';
+            //     comm_filter_html += appnd;
+            // });
+            // $('#commodity-dropdown').html(comm_filter_html);
+            
+            // var thedx = theDims.dx;
+            // var theperiod = theDims.pe;
+            var theous = theDims.ou;
+            var therows = data.rows;
+            var facility_count = theous.length;
+            var compliant_facility_count = 0;
+
+            $.each(theous, function(index, oneou){
+                var ou_filtered = filterItems(therows,oneou);
+                
+                        var the_dx_0 = filterItems(ou_filtered,theDx[0]);
+                        var the_dx_1 = filterItems(ou_filtered,theDx[1]);
+                        // console.log("the Dx 1 ni: "+theDx[1]);
+                        if(the_dx_0[0] != undefined && the_dx_1[0] != undefined){
+                            if(the_dx_0[0][3]==the_dx_1[0][3]){
+                                compliant_facility_count = compliant_facility_count+1;
+                            }
+                        }
+                        
+            });
+            var non_compliant_facility_count = facility_count - compliant_facility_count;
+            console.log("total_facilities = "+facility_count);
+            console.log("compliant_facilities = "+compliant_facility_count);
+            console.log("NON_compliant_facilities = "+non_compliant_facility_count);
+            pieThree('Internal Data Consistency (AL 24)',compliant_facility_count,non_compliant_facility_count);
+            $('.loader-sp.piethree').addClass('hidden');
+        },
+        error: function (request, status, error) {
+            $('.loader-sp.piethree').addClass('hidden');
+            $('#pc3').addClass('hidden');
+            console.log('DQ Consistency: error fetching json. :- '+error);
+            $('.piethree_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        }
+    });
+}
+
+
 function filterItems(array,query) {
     return array.filter(function(el) {
         return el.indexOf(query) > -1;

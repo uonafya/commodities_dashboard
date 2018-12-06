@@ -343,7 +343,8 @@ color: transparent;}
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">                                                
+                                            <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">   
+                                                                                             
                                             </select>
                                         </div>										
                                         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -351,7 +352,7 @@ color: transparent;}
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commodity"> 
+                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commd"> 
                                                 <option selected="" value="">Select Commodity</option>
                                                 <option value="AL6">Artemether-Lumefantrine Tabs 6s</option>
                                                 <option value="AL12">Artemether-Lumefantrine Tabs 12s</option>
@@ -400,7 +401,22 @@ color: transparent;}
                         <div class="col-md-12 m-t-10">
                             <div class="card">
                                 <div class="row">
-                                    <div id="pc3" class="col-md-12" style="min-width: 280px; height: 350px;"></div>
+                                    <div class="col-md-12 m-t-10">
+                                        <div class="piethree_state col-md-12"></div>                              
+                                        <div class="col-md-12 p-10">
+                                            <div class="loader-sp piethree">
+                                                <div class="loader loader--style3" title="2">
+                                                    <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                        width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                        <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="pc3" class="col-md-12" style="min-width: 280px; height: 350px;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -441,61 +457,6 @@ color: transparent;}
     <script src="../../assets/libs/chart/turning-series.js"></script>
     <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
 	
-	<script>
-		$(document).ready(function() 
-		{
-			var dropdown = $('#county-dropdown');
-			
-			var subcounty = $('#subcounty-dropdown');
-			
-			var perioddwn = $('#period-dropdown');
-
-			dropdown.empty();
-			subcounty.empty();
-			perioddwn.empty();
-
-			dropdown.append('<option selected="true" disabled>Select County</option>');
-			dropdown.prop('selectedIndex', 0);
-			
-			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-			subcounty.prop('selectedIndex', 0);
-			
-			perioddwn.append('<option selected="true" disabled>Select Period</option>');
-			perioddwn.prop('selectedIndex', 0);
-
-			//const url = 'https://api.myjson.com/bins/7xq2x';
-
-			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
-			{
-				//console.log(data.organisationUnits);
-				$.each(data.organisationUnits, function (key, entry) 
-				{						
-					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
-				})		 
-			});
-			
-			$("#county-dropdown").change(function() 
-			{  
-				subcounty.empty();
-				var countyid = $(this).val();
-				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-				subcounty.prop('selectedIndex', 0);
-				
-				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
-				{			
-					$.each(data.organisationUnits, function (key, entry) 
-					{				
-						if(entry.parent.id==countyid)
-						{
-							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
-						}				
-					})		 
-				});		
-			});
-		});
-	</script>
 	
 	
 	
@@ -506,42 +467,120 @@ color: transparent;}
     <script src="../../dist/js/dq.js"></script>
     <script src="../../assets/extra-libs/highcharts/dq-highcharts.js"></script>
  
-    <script type="text/javascript">
-        // pieOne('');
-        // pieTwo('');
-        pieThree('');
-        // pieFour('');
-        // columnOne('');
-        // lineOne('');
 
-        var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+    
+	<script>
+            $(document).ready(function() 
+            {
+                var dropdown = $('#county-dropdown');
+                
+                var subcounty = $('#subcounty-dropdown');
+                
+                var perioddwn = $('#period-dropdown');
+                
+                var commdwn = $('#commodity-dropdown');
+    
+                dropdown.empty();
+                subcounty.empty();
+                perioddwn.empty();
+                commdwn.empty();
+    
+                dropdown.append('<option selected="true" disabled>Select County</option>');
+                dropdown.prop('selectedIndex', 0);
+                
+                subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+                subcounty.prop('selectedIndex', 0);
+                
+                perioddwn.append('<option selected="true" disabled>Select Period</option>');
+                perioddwn.prop('selectedIndex', 0);
+                
+                commdwn.append('<option selected="true" disabled>Select Commodity</option>');
+                commdwn.prop('selectedIndex', 0);
+    
+                //const url = 'https://api.myjson.com/bins/7xq2x';
+    
+                //populate dropdown with list of counties
+                $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+                {
+                    //console.log(data.organisationUnits);
+                    $.each(data.organisationUnits, function (key, entry) 
+                    {						
+                        dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
+                    })		 
+                });
+                
+                $.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;tAbBVBbueqD&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) 
+                {			
+                    $.each(data.metaData.dimensions.dx, function (key, entry) 
+                    {				
+                        commdown.append($('<option></option>').attr('value', entry).text(data.metaData.items[entry].name));
+                    });	
+                            
+                });
+                
+                $("#county-dropdown").change(function() 
+                {  
+                    subcounty.empty();
+                    var countyid = $(this).val();
+                    subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+                    subcounty.prop('selectedIndex', 0);
+                    
+                    // Populate dropdown with list of sub counties
+                    $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+                    {			
+                        $.each(data.organisationUnits, function (key, entry) 
+                        {				
+                            if(entry.parent.id==countyid)
+                            {
+                                subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                            }				
+                        })		 
+                    });		
+                });
+            });
+        </script>
+
+
+    <script type="text/javascript">
+
+        var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+        // var consturl = 'http://localhost/pmi/json/consistency.json';
         var month_from = '201806';
         var month_to = '201807';
-        var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-        getDQ(dqurl,commodity);
+        var commd = 'iOARK31NdLp.HWtHCLAwprR';
+        getConsist(consturl,commd);
 
 
         $("#county-dropdown").change(function() 
             {  
                 var theou = $(this).val();
-                var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                getDQ(dqurl,commodity);
+                var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                getConsist(consturl,commd);
             }
         );
+        
 
         $("#subcounty-dropdown").change(function() 
             {  
                 var theou = $(this).val();
-                var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                getDQ(dqurl,commodity);
+                var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                getConsist(consturl,commd);
             }
         );
 
         $("#commodity-dropdown").change(function() 
             {  
-                var commodity = $(this).val();
-                var dqurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                getDQ(dqurl,commodity);
+                var commd = $(this).val();
+                var theou = $('#subcounty-dropdown').val();
+                if(theou == null || theou == ''){
+                    var theou = $('#county-dropdown').val();
+                    if(theou == null || theou == ''){
+                        var theou = 'tAbBVBbueqD';
+                    }
+                }
+                alert('theou: '+theou);
+                var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                getConsist(consturl,commd);
             }
         );
     </script>
