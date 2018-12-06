@@ -1,10 +1,10 @@
 
-function getDQ(dqurl,commodity){
+function getConco(ccurl,commodity){
 // alert('dqurl: '+dqurl+' & commodity: '+commodity);
 $.ajax({
     type: 'GET',
     crossDomain: true,
-    url: dqurl,                    
+    url: ccurl,                    
     success: function (data) {
         //populate commodities filter
 
@@ -12,11 +12,12 @@ $.ajax({
         var theDims = data.metaData.dimensions;
         var theComms = data.metaData.dimensions.dx;
         var comm_filter_html = '<option selected value="">Select Commodity</option>';
-        $.each(theComms, function(indx, onecomm){
-            var appnd = '<option value="'+onecomm+'">'+theItems[onecomm].name+'</option>';
-            comm_filter_html += appnd;
-        });
-        $('#commodity-dropdown').html(comm_filter_html);
+        
+        // $.each(theComms, function(indx, onecomm){
+        //     var appnd = '<option value="'+onecomm+'">'+theItems[onecomm].name+'</option>';
+        //     comm_filter_html += appnd;
+        // });
+        // $('#commodity-dropdown').html(comm_filter_html);
         
         // var thedx = theDims.dx;
         // var theperiod = theDims.pe;
@@ -31,8 +32,8 @@ $.ajax({
             var ou_filtered = filterItems(therows_filtered_by_commodity,oneou);
             // if(ou_filtered == [] || ou_filtered == ''){}else{
                 // $.each(ou_filtered, function(idx, ou_fl){
-                    var ou_fil_from = filterItems(ou_filtered,month_from);
-                    var ou_fil_to = filterItems(ou_filtered,month_to);
+                    var ou_fil_from = filterItems(ou_filtered,'201806');
+                    var ou_fil_to = filterItems(ou_filtered,'201807');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
                         console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
                         console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
@@ -62,13 +63,13 @@ $.ajax({
     }
 });
 }
-$("#commodity-dropdown").change(function() 
-    {  
-        commodity = $(this).val();
-        getDQ(dqurl,commodity);
+// $("#commodity-dropdown").change(function() 
+//     {  
+//         commodity = $(this).val();
+//         getDQ(dqurl,commodity);
         
-    }
-);
+//     }
+// );
 
 function getCompa(courl){
   var adj_url = courl;
