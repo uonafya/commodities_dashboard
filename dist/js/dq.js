@@ -271,8 +271,7 @@ function popComms(commarr){
     
     var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
     $.each(commodity_id_arrays_clean, function (index, commodity_id) {
-        // $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data) 
-        $.getJSON('http://localhost/pmi/json/commodities/'+commodity_id+'.json', function (data) 
+        $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data) 
         {
            var commodity_name = data.displayName; 
            var commodity_id = data.id;
