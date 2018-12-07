@@ -1,6 +1,7 @@
 
 function getConco(ccurl,commodity){
-// alert('dqurl: '+dqurl+' & commodity: '+commodity);
+$('.loader-sp.pieone').removeClass('hidden');
+$('#pc1').addClass('hidden');
 $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -11,13 +12,7 @@ $.ajax({
         var theItems = data.metaData.items;
         var theDims = data.metaData.dimensions;
         var theComms = data.metaData.dimensions.dx;
-        var comm_filter_html = '<option selected value="">Select Commodity</option>';
-        
-        // $.each(theComms, function(indx, onecomm){
-        //     var appnd = '<option value="'+onecomm+'">'+theItems[onecomm].name+'</option>';
-        //     comm_filter_html += appnd;
-        // });
-        // $('#commodity-dropdown').html(comm_filter_html);
+        popComms(theComms);
         
         // var thedx = theDims.dx;
         // var theperiod = theDims.pe;
@@ -54,6 +49,7 @@ $.ajax({
         console.log("NON_compliant_facilities = "+non_compliant_facility_count);
         pieOne(theItems[commodity].name,compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
+        $('#pc1').removeClass('hidden');
     },
     error: function (request, status, error) {
         $('.loader-sp.pieone').addClass('hidden');
@@ -72,6 +68,8 @@ $.ajax({
 // );
 
 function getCompa(courl){
+$('.loader-sp.dqcol').removeClass('hidden');
+$('#dq-column').addClass('hidden');
   var adj_url = courl;
   $.ajax({
     type: 'GET',
@@ -145,6 +143,8 @@ function getCompa(courl){
 }
 
 function getWBData(wburl){
+$('#wbdata').addClass('hidden');
+$('.loader-sp.wbdata').removeClass('hidden');
 $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -179,6 +179,8 @@ $.ajax({
         wbdataset.push(didNotReport);
 
         lineOne(wbdataset);
+        $('#wbdata').removeClass('hidden');
+        $('.loader-sp.wbdata').addClass('hidden');
     },error: function (request, status, error) {
         $('.loader-sp.wbdata').addClass('hidden');
         $('#wbdata').addClass('hidden');
@@ -192,6 +194,8 @@ $.ajax({
 
 
 function getConsist(consturl,commd){
+    $('#pc3').removeClass('hidden');
+    $('.loader-sp.piethree').addClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -202,13 +206,11 @@ function getConsist(consturl,commd){
             var theItems = data.metaData.items;
             var theDims = data.metaData.dimensions;
             var theDx = data.metaData.dimensions.dx;
+            $.getJSON('http://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
+                var theComms = data.metaData.dimensions.dx;                
+                popComms(theComms);
+            });
             
-            // var comm_filter_html = '<option selected value="">Select Dimension</option>';
-            // $.each(theDx, function(indx, onecomm){
-            //     var appnd = '<option value="'+onecomm+'">'+theItems[onecomm].name+'</option>';
-            //     comm_filter_html += appnd;
-            // });
-            // $('#commodity-dropdown').html(comm_filter_html);
             
             // var thedx = theDims.dx;
             // var theperiod = theDims.pe;
@@ -236,6 +238,7 @@ function getConsist(consturl,commd){
             console.log("NON_compliant_facilities = "+non_compliant_facility_count);
             pieThree('Internal Data Consistency (AL 24)',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
+            $('#pc3').removeClass('hidden');
         },
         error: function (request, status, error) {
             $('.loader-sp.piethree').addClass('hidden');
@@ -257,5 +260,41 @@ function makeList(name){
     return window[name];
  }
 
+function popComms(commarr){
+    var comm_id_arr = [];
+    $('#commodity-picker').append('<option selected value="">Select Commodity</option>');
+    $.each(commarr, function(indx, comm_id_long){
+        var comm_id = comm_id_long.split('.')[0];
+        comm_id_arr.push(comm_id);
+        console.log("comm_id:  "+comm_id);
+    });
+    
+    var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
+    $.each(commodity_id_arrays_clean, function (index, commodity_id) {
+        // $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data) 
+        $.getJSON('http://localhost/pmi/json/commodities/'+commodity_id+'.json', function (data) 
+        {
+           var commodity_name = data.displayName; 
+           var commodity_id = data.id;
+           $('#commodity-picker').append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
+           console.log("CommNames:  "+commodity_name);
+        });
+    });
+}
 
- 
+//remove duplicates
+function eliminateDuplicates(arr) {
+    var i,
+        len = arr.length,
+        out = [],
+        obj = {};
+  
+    for (i = 0; i < len; i++) {
+      obj[arr[i]] = 0;
+    }
+    for (i in obj) {
+      out.push(i);
+    }
+    return out;
+  }
+//end remove duplicates

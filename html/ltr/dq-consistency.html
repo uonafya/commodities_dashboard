@@ -352,17 +352,8 @@ color: transparent;}
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commd"> 
-                                                <option selected="" value="">Select Commodity</option>
-                                                <option value="AL6">Artemether-Lumefantrine Tabs 6s</option>
-                                                <option value="AL12">Artemether-Lumefantrine Tabs 12s</option>
-                                                <option value="AL18">Artemether-Lumefantrine Tabs 18s</option>
-                                                <option value="AL24">Artemether-Lumefantrine Tabs 24s</option>
-                                                <option value="AS">Artesunate Injection</option>
-                                                <option value="SP">Sulphadoxine Pyrimethamine Tabs</option>
-                                                <option value="RDT">Rapid Diagnostic Tests</option>                 
+                                            <select class="form-control m-r-5" id="commodity-picker" name="commd">             
                                             </select>
-                                            <!-- <input type="text" placeholder="Period" aria-placeholder="Period" class="form-control" id="period-picker"/> -->
                                         </div> 
                                     </div>
                                 </div>
@@ -478,12 +469,12 @@ color: transparent;}
                 
                 var perioddwn = $('#period-dropdown');
                 
-                var commdwn = $('#commodity-dropdown');
+                // var commdwn = $('#commodity-dropdown');
     
                 dropdown.empty();
                 subcounty.empty();
                 perioddwn.empty();
-                commdwn.empty();
+                // commdwn.empty();
     
                 dropdown.append('<option selected="true" disabled>Select County</option>');
                 dropdown.prop('selectedIndex', 0);
@@ -494,8 +485,8 @@ color: transparent;}
                 perioddwn.append('<option selected="true" disabled>Select Period</option>');
                 perioddwn.prop('selectedIndex', 0);
                 
-                commdwn.append('<option selected="true" disabled>Select Commodity</option>');
-                commdwn.prop('selectedIndex', 0);
+                // commdwn.append('<option selected="true" disabled>Select Commodity</option>');
+                // commdwn.prop('selectedIndex', 0);
     
                 //const url = 'https://api.myjson.com/bins/7xq2x';
     
@@ -509,14 +500,7 @@ color: transparent;}
                     })		 
                 });
                 
-                $.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;tAbBVBbueqD&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) 
-                {			
-                    $.each(data.metaData.dimensions.dx, function (key, entry) 
-                    {				
-                        commdown.append($('<option></option>').attr('value', entry).text(data.metaData.items[entry].name));
-                    });	
-                            
-                });
+                
                 
                 $("#county-dropdown").change(function() 
                 {  
@@ -568,7 +552,7 @@ color: transparent;}
             }
         );
 
-        $("#commodity-dropdown").change(function() 
+        $("#commodity-picker").change(function() 
             {  
                 var commd = $(this).val();
                 var theou = $('#subcounty-dropdown').val();
