@@ -117,4 +117,10 @@
   }
   .table td, .table th {
     padding: 0.85rem !important;
-}
+  }
+  i.mdi{
+    display: none !important;
+  }
+  i.mdi.mdi-menu.font-24{
+    display: block !important;
+  }
