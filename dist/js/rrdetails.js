@@ -48,7 +48,7 @@ function fetchRRDetails(rdurl)
                         var reportval = getReport(data.rows,pentry,entry);
                         if(reportval)
                         {
-                            tableData += '<td>'+reportval+'</td>';	
+                            tableData += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
                         }
                         else
                         {
@@ -139,7 +139,7 @@ function fetchSubRRDetails(scrdurl)
                         var reportval = getReport(data.rows,pentry,entry);
                         if(reportval)
                         {
-                            tableDataSub += '<td>'+reportval+'</td>';	
+                            tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
                         }
                         else
                         {
