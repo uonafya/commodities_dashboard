@@ -91,7 +91,7 @@
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left mr-auto">
-                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i><i class="fa fa-bars"></i></a></li>
+                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
@@ -119,7 +119,7 @@
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/dhis/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
@@ -228,7 +228,7 @@
         <aside class="left-sidebar" data-sidebarbg="skin5">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
+                <!-- Sidebar navigation-->                
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
@@ -533,7 +533,7 @@
     <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script src="../../assets/libs/chart/chart.js"></script>
+    <!--<script src="../../assets/libs/chart/chart.js"></script>-->
     <script src="../../assets/extra-libs/landing/filter.js"></script>
 	
 	<script>
@@ -562,7 +562,7 @@
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -580,7 +580,7 @@
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/dhis/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -646,7 +646,7 @@
         $(document).ready(function() 
         {
             //load the mos by commodity 
-                    var url = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+                    var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
                     
             //populate dropdown with list of counties
             $.ajax({
@@ -757,10 +757,10 @@
             
             
             //% of health facilities                
-            var urlfa = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2;LEVEL-5&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+            var urlfa = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2;LEVEL-5&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
             
             //define the name holder
-            var alnames = ["AL6","AL12","AL18","AL24","AS inj","SP tabs","RDTs"];
+            var itemnames = ["AL6","AL12","AL18","AL24","AS inj","SP tabs","RDTs"];
             
             //parse the data for mos percentage
             $.ajax({
@@ -787,7 +787,7 @@
                     
                     //define the table
                     tableData += '<tr>';
-                    tableData += '<td>'+alnames[countname]+'</td>';							
+                    tableData += '<td>'+itemnames[countname]+'</td>';							
                     //console.log(data.metaData.items[entry].name);
                     
                     //for each dimension get the value
@@ -871,7 +871,7 @@
                     
                     //define the table
                     tableData += '<tr>';
-                    tableData += '<td>'+alnames[countname]+'</td>';							
+                    tableData += '<td>'+itemnames[countname]+'</td>';							
                     //console.log(data.metaData.items[entry].name);
                     
                     //for each dimension get the value
@@ -907,7 +907,7 @@
                     tableData += '<td bgcolor="#ffeb9c">'+overstock+'</td>';
                     tableData += '<td bgcolor="#c6efce">'+stockok+'</td>';
                     tableData += '<td bgcolor="#ffc7ce">'+understock+'</td>';
-                    tableData += '<td style="color: #ffffff;" bgcolor="#ff0000">'+stockout+'</td>';	
+                    tableData += '<td bgcolor="#ff0000">'+stockout+'</td>';	
                     tableData += '<td>'+nomos+'</td>';	
                     tableData += '<td>'+totalfa+'</td>';					
                     
@@ -920,6 +920,7 @@
                 //$('#zero_config').DataTable();
                 $('.t_two.loader-sp').addClass('hidden');
                 $('.number_healthfa').removeClass('hidden');
+                $('.malaria_commodity_table.t_two').removeClass('hidden');
             },
             error: function (request, status, error) {
                     $('.loader-sp.t_two').addClass('hidden');
@@ -936,10 +937,10 @@
                     //parse the data for mos number
                     
                     //adjc FA
-                    var urlcon = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;iMHDfVvYm0W&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+                    var urlcon = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;iMHDfVvYm0W&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
                     
                     //physical count/SOH                
-                    var urlphy = 'https://testhis.uonbi.ac.ke/dhis/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+                    var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
                     
                     //get the physical count into an array
                     var sohval = [];
@@ -960,8 +961,8 @@
                         })
                     });
                     //delay for a few seconds 3 seconds
-                    console.log(sohval);
-                    sleep(3000);
+                    //console.log(sohval);
+                    sleep(4000);
                                     
                     $.ajax({
                         type: 'GET',
@@ -987,16 +988,14 @@
     
                             //get the consumption value
                             adjc = getConsumption(data.rows,entry);
-                            phycount = sohval[countercon];
+                            phycount = parseFloat(sohval[countercon]);
     
                             mos = parseFloat(phycount/adjc);
     
                             //set the bg color for the MOS
                             var bgcolor = '#ffffff';
-                            var fcolor = 'initial';
                             if(mos<=0)
                                 bgcolor = '#ff0000'
-                                fcolor = '#ffffff';
                             if (mos > 0 && mos< 3)
                                 bgcolor = '#ffc7ce'
                             if (mos >= 3 && mos<= 6)
@@ -1006,7 +1005,7 @@
     
                             tableData += '<td>'+adjc.toFixed(0)+'</td>';
                             tableData += '<td>'+phycount.toFixed(0)+'</td>';
-                            tableData += '<td style="color: '+fcolor+';" bgcolor="'+bgcolor+'">'+mos.toFixed(1)+'</td>';                            					
+                            tableData += '<td bgcolor="'+bgcolor+'">'+mos.toFixed(1)+'</td>';                            					
     
                             tableData += '</tr>';
                             

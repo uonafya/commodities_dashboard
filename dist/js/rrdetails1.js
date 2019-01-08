@@ -53,7 +53,7 @@ function fetchRRDetails(rdurl)
                         else
                         {
                             var bgcolor = '#ffc7ce';
-                            tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
+                            tableData += '<td bgcolor="'+bgcolor+'">'+reportval+'</td>';
                         }
                 })
 
@@ -64,17 +64,17 @@ function fetchRRDetails(rdurl)
             tableData += '</tbody>';
             tableData += footer;
                     
-            $('.loader-sp').addClass('hidden');
             //facility
-            // $('#zero_config').DataTable().destroy();
-            $("#zero_config.rrdetailsbox").empty();                                                
-            $("#zero_config.rrdetailsbox").append(tableData);	
-            $("#zero_config.rrdetailsbox").removeClass('hidden');
-            $('#zero_config.rrdetailsbox').DataTable().fnDraw();
-            // $('#zero_config').DataTable().draw();
-            $('#zero_config.rrdetailsbox').DataTable();
-
-        },
+            
+            $('.loader-sp').addClass('hidden');
+            $("table.rrdetailsbox").empty();
+            // $('#zero_config').DataTable();                                                          
+            $("table.rrdetailsbox").append(tableData);	
+            $("table.rrdetailsbox").removeClass('hidden');
+            $('#zero_config').DataTable().draw();
+            $('.loader-sp').addClass('hidden');
+            
+    },
     error: function (request, status, error) {
         $('.loader-sp').addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
@@ -82,8 +82,6 @@ function fetchRRDetails(rdurl)
     }
 });
 }
-
-
 
 
 
@@ -99,7 +97,7 @@ function fetchSubRRDetails(scrdurl)
         success: function (data) {                    
             var header = '';
             var footer = '';
-            var tableDataSub = '';
+            var tableData = '';
             
             //put the header
             header += '<thead><tr>';	
@@ -123,51 +121,45 @@ function fetchSubRRDetails(scrdurl)
 
             footer += '</tr></tfoot>';
 
-            tableDataSub += header;
+            tableData += header;
 
             //start body
-            tableDataSub += '<tbody>';
+            tableData += '<tbody>';
 
             //console.log(orgunits.length);
             $.each(data.metaData.dimensions.ou, function (key, entry) 
             {                                                        
-                tableDataSub += '<tr>';	
-                tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
+                tableData += '<tr>';	
+                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
 
                 $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
                 {
                         var reportval = getReport(data.rows,pentry,entry);
                         if(reportval)
                         {
-                            tableDataSub += '<td>'+reportval+'</td>';	
+                            tableData += '<td>'+reportval+'</td>';	
                         }
                         else
                         {
                             var bgcolor = '#ffc7ce';
-                            tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
+                            tableData += '<td bgcolor="'+bgcolor+'">'+reportval+'</td>';
                         }
                 })
 
-                tableDataSub += '</tr>';	
+                tableData += '</tr>';	
             })
 
             //footer line
-            tableDataSub += '</tbody>';
-            tableDataSub += footer;
+            tableData += '</tbody>';
+            tableData += footer;
             //subcounty
-            
-            
-            // $('#zero_config-sub').DataTable().destroy();
             $('.loader-sp.sp-sub').addClass('hidden');
-            $("#zero_config-sub.rrdetailsbox-sub").empty();
-            // $("table.rrdetailsbox-sub tbody").html('');
-            // $('#zero_config').DataTable();                                                          
-            $("#zero_config-sub.rrdetailsbox-sub").append(tableDataSub);	
-            $("#zero_config-sub.rrdetailsbox-sub").removeClass('hidden');
-            $('#zero_config-sub').DataTable().fnDraw();
-            // $('#zero_config-sub').DataTable().draw();
+            $("table.rrdetailsbox-sub").empty();
+            // $('#zero_config-sub').DataTable();                                                          
+            $("table.rrdetailsbox-sub").append(tableData);	
+            $("table.rrdetailsbox-sub").removeClass('hidden');
+            $('#zero_config-sub').DataTable().draw();
             $('.loader-sp.sp-sub').addClass('hidden');
-            $('#zero_config-sub').DataTable();
 
     },
     error: function (request, status, error) {
@@ -187,7 +179,7 @@ function fetchSubRRDetails(scrdurl)
 //get the org unit
 function getOrgUnit(uid, period)
 {
-var url = 'https://testhis.uonbi.ac.ke/dhis/api/organisationUnits/'+uid+'.json?fields=id,name';
+var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+uid+'.json?fields=id,name';
 
 $.ajax({      
   dataType: "json",

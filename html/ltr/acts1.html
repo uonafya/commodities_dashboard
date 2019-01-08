@@ -3,8 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    <header name = "Access-Control-Allow-Origin" value = "*" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
+	<link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -118,7 +118,7 @@
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/dhis-web-dashboard-integration/index.html" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
@@ -263,14 +263,14 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                Pie Charts
+                                ACTs
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
                         <div class="col-md-7 col-sm-6 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-11 col-sm-11 col-xs-12">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
@@ -281,14 +281,10 @@
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="period-dropdown" name="period">                                                
-                                            </select> 
+                                            <input type="text" class="form-control" id="period-dropdown"/> 
                                         </div> 
                                     </div>
-                                </div>
-                                <!-- 
-                                    <input type="submit" value="Go" class="btn btn-info"/>
-                                </div> -->
+                                </div>                                
                             </div>
                             
                         </div>
@@ -297,7 +293,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Pie Charts</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -315,56 +311,53 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title m-b-0">Pie Charts</h5>
-                                    </div>
-                                    <div class="row">
-                                        <div id="pc1" class="col-md-12" style="min-width: 310px; height: 350px;"></div>
-                                    </div>
+               
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"></h5>
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table table-condensed slimtable table-bordered actsbox">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>MFL Code</th>
+											<th>RR%</th>
+                                                                                        <th>RR% OT</th>
+											<th>AL6 Latest SOH</th>
+											<th>AL6 MOS</th>
+											<th>AL12 Latest SOH</th>
+											<th>AL12 MOS</th>
+											<th>AL18 Latest SOH</th>
+											<th>AL18 MOS</th>
+											<th>AL24 Latest SOH</th>
+											<th>AL24 MOS</th>
+											<th>ACTs MOS</th>
+										</tr>		
+									</thead>
+									<tbody>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Name</th>
+											<th>MFL Code</th>
+											<th>RR%</th>
+                                                                                        <th>RR% OT</th>
+											<th>AL6 Latest SOH</th>
+											<th>AL6 MOS</th>
+											<th>AL12 Latest SOH</th>
+											<th>AL12 MOS</th>
+											<th>AL18 Latest SOH</th>
+											<th>AL18 MOS</th>
+											<th>AL24 Latest SOH</th>
+											<th>AL24 MOS</th>
+											<th>ACTs MOS</th>
+										</tr>		
+									</tfoot>
+									</table>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title m-b-0">Pie Charts 2</h5>
-                                    </div>
-                                    <div class="row">
-                                        <div id="pc2" class="col-md-12" style="min-width: 310px; height: 350px;"></div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
-                        
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title m-b-0">Pie Charts 3</h5>
-                                    </div>
-                                    <div class="row">
-                                        <div id="pc3" class="col-md-12" style="min-width: 310px; height: 350px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title m-b-0">Pie Charts 4</h5>
-                                    </div>
-                                    <div class="row">
-                                        <div id="pc4" class="col-md-12" style="min-width: 310px; height: 350px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -418,13 +411,319 @@
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-    <!-- HIGHCHARTS -->
-    <script src="../../assets/extra-libs/highcharts/highcharts.js"></script>
-    <script src="../../assets/extra-libs/highcharts/exporting.js"></script>
-    <script src="../../assets/extra-libs/highcharts/export-data.js"></script>
-    <script src="../../assets/extra-libs/highcharts/pie-highcharts.js"></script>
-    <!-- end HIGHCHARTS -->
+    	
+	<!-- *********** MonthPicker ************** -->
+    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
+
+    <script>
+        $('#period-dropdown').MonthPicker({ 
+            Button: false,
+            MinMonth: '-1y',
+            MaxMonth: -1,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePicked(sDate);
+            }
+        });        
+    </script>
+    <!-- *********** end MonthPicker ************** -->
+		
+	<script>
+		$(document).ready(function() 
+		{
+			var dropdown = $('#county-dropdown');
+			
+			var subcounty = $('#subcounty-dropdown');
+			
+			var perioddwn = $('#period-dropdown');
+
+			dropdown.empty();
+			subcounty.empty();
+			perioddwn.empty();
+
+			dropdown.append('<option selected="true" disabled>Select County</option>');
+			dropdown.prop('selectedIndex', 0);
+			
+			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+			subcounty.prop('selectedIndex', 0);
+			
+			perioddwn.append('<option selected="true" disabled>Select Period</option>');
+			perioddwn.prop('selectedIndex', 0);
+
+			//const url = 'https://api.myjson.com/bins/7xq2x';
+
+			//populate dropdown with list of counties
+			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			{
+				//console.log(data.organisationUnits);
+				$.each(data.organisationUnits, function (key, entry) 
+				{						
+					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
+				})		 
+			});
+			
+			$("#county-dropdown").change(function() 
+			{  
+				subcounty.empty();
+				var countyid = $(this).val();
+				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+				subcounty.prop('selectedIndex', 0);
+				
+				// Populate dropdown with list of sub counties
+				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				{			
+					$.each(data.organisationUnits, function (key, entry) 
+					{				
+						if(entry.parent.id==countyid)
+						{
+							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+						}				
+					})		 
+				});		
+			});
+		});
+	</script>
+			
+	<script>
+	$(document).ready(function() 
+	{
+            var ounit = 'tAbBVBbueqD';
+            var period = '201805';
+            
+            //get the org name
+            getOrgUnit(ounit, period);
+        
+            var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            
+            fetchACTs(url);
+            
+            $("#county-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                period = getPeriod();
+                getOrgUnit(ounit, period);
+                var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchACTs(url);
+                
+            });
+
+            $("#subcounty-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                period = getPeriod();
+                getOrgUnit(ounit, period);
+                var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchACTs(url);
+                
+            });
+					
+	});
+	
+	
+        //change of period		
+        function datePicked(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var ounit = $("#county-dropdown").val();
+            var subcountyou = $("#subcounty-dropdown").val();
+            var period = therdate;
+            
+            if(subcountyou!=null)
+            {
+                var ounit = subcountyou;
+            }
+            
+            var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            
+            getOrgUnit(ounit, period);
+            fetchACTs(url);
+        }
+        
+        //function toprocess the acts url
+        function fetchACTs(acturl)
+        {
+            $.getJSON(acturl, function (data) 
+            {
+                    //create the org units array
+                    var orgunits = [];
+                    var dxids = [];
+
+                    //var tableData = '<table>';
+                    var tableData = '';
+
+                    //console.log(data.rows);
+
+                    //push only if not in
+                    $.each(data.rows, function (rowkey, rowentry) 
+                    {
+                            //console.log(rowentry[1]);
+                            //console.log(orgunits.indexOf(rowentry[1]))
+                            if(orgunits.indexOf(rowentry[1])>=0)
+                            {
+                                    //console.log(orgunits);
+                            }
+                            else
+                            {
+                                    orgunits.push(rowentry[1]);
+                            }	
+
+                    })
+
+                    //console.log(orgunits.length);
+                    $.each(data.metaData.dimensions.ou, function (key, entry) 
+                    {
+                            //define the table
+                            var mflcode = getMflCode(entry);
+                            
+                            tableData += '<tr>';	
+                            tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                            tableData += '<td>'+mflcode+'</td>';
+                            //console.log(data.metaData.items[entry].name);
+                            //console.log(entry);
+                            //console.log(entry);	
+
+                            //get all the dimensions for the given orgunit
+                            dxids = [];
+                            $.each(data.rows, function (rkey, rentry) 
+                            {
+                                    var dxcode = rentry[1];
+
+                                    if(dxcode==entry)
+                                    {
+                                            dxids.push(rentry[0]);
+                                    }												
+                            })
+
+                            //console.log(dxids);
+
+
+                            //console.log(data.rows);
+                            //for each dimension get the value
+                            var count = 0;
+                            $.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
+                            {
+                                    //console.log(orgunits.indexOf(entry));
+                                    //console.log(dxids.indexOf(dxentry));
+                                    //console.log(orgunits);	
+                                    //console.log(data.metaData.items[dxentry].name);
+                                    if(orgunits.indexOf(entry)<0)
+                                    {
+                                            tableData += '<td bgcolor="#ff0000"> - </td>';
+                                    }
+                                    else if(dxids.indexOf(dxentry)<0)
+                                    {
+                                            tableData += '<td bgcolor="#ff0000"> - </td>';
+                                    }
+                                    else
+                                    {										
+                                            $.each(data.rows, function (rkey, rentry) 
+                                            {					
+                                                    var dxid = rentry[0];
+                                                    var dxcode = rentry[1];
+                                                    var dxval = rentry[2];
+
+                                                    if(dxentry==dxid)
+                                                    {						
+                                                            if(dxcode==entry)
+                                                            {
+                                                                    //console.log(rentry);		
+                                                                    //var notfoundRow = false;
+                                                                    var bgcolor = '#ffffff';
+                                                                    if(dxval<0)
+                                                                            bgcolor = '#ffcccc'
+                                                                    if (dxval >= 0 && dxval< 3)
+                                                                            bgcolor = '#ffc7ce'
+                                                                    if (dxval >= 3 && dxval<= 6)
+                                                                            bgcolor = '#c6efce'
+                                                                    if(dxval>6)
+                                                                            bgcolor = '#ffeb9c'
+
+                                                                    tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
+                                                            }						
+                                                    }						
+                                            })				
+
+                                    }
+                                    count++;
+                            })					
+
+                            tableData += '</tr>';	
+                    })
+
+                    //tableData += '<table>';	
+                    //console.log(tableData)
+                    
+                    $('#zero_config').DataTable().destroy();
+                    $("table.actsbox tbody").empty();
+                    $("table.actsbox tbody").append(tableData);	
+                    //$('#zero_config').DataTable();                                                          
+                    $('#zero_config').DataTable().fnDraw();
+            })
+    }
     
+    //get the period
+    function getPeriod()
+    {
+        var periodval = $("#period-dropdown").val();
+
+        if(periodval == null || periodval=='')
+        {
+            periodval = '201805';
+        }
+        else
+        {
+            var dateparts = periodval.split('/', 2);
+
+            var therdate = dateparts[1]+''+dateparts[0];                
+            var periodval = therdate;
+        }
+
+        return periodval;
+    }
+
+    //get the org unit
+    function getOrgUnit(uid, period)
+    {
+        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+uid+'.json?fields=id,name';
+
+        $.ajax({      
+          dataType: "json",
+          url: url, //Relative or absolute path to response.php file      
+          success: function(data) 
+          {          
+              $("h5.card-title").html(data['name']+' - '+period);
+          }
+        });    
+    }
+    
+    //get mfl code
+    function getMflCode(uid)
+    { 
+        var mflcode = '';
+        
+        $.getJSON('orgunits.json', function (data) 
+        {			
+            $.each(data.organisationUnits, function (key, entry) 
+            {                
+                if(entry.id==uid)
+                {
+                    mflcode = entry.code;
+                }                
+            })		 
+        });
+        
+        return mflcode;
+    }
+    
+    
+</script>
+
 </body>
 
 </html>

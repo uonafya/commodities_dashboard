@@ -194,19 +194,19 @@ $.ajax({
 
 
 function getConsist(consturl,commd){
-    $('#pc3').removeClass('hidden');
-    $('.loader-sp.piethree').addClass('hidden');
+    $('#pc3').addClass('hidden');
+    $('.loader-sp.piethree').removeClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: consturl,                    
         success: function (data) {
             //populate commodities filter
-    
+			var theou = 'tAbBVBbueqD';
             var theItems = data.metaData.items;
             var theDims = data.metaData.dimensions;
             var theDx = data.metaData.dimensions.dx;
-            $.getJSON('http://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
+            $.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
                 var theComms = data.metaData.dimensions.dx;                
                 popComms(theComms);
             });
@@ -261,6 +261,7 @@ function makeList(name){
  }
 
 function popComms(commarr){
+	$('#commodity-picker').empty();
     var comm_id_arr = [];
     $('#commodity-picker').append('<option selected value="">Select Commodity</option>');
     $.each(commarr, function(indx, comm_id_long){
