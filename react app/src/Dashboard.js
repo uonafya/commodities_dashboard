@@ -24,13 +24,13 @@ class Dashboard extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr><td>AL6</td><td>147586</td><td>1360145</td><td bgcolor="#ffeb9c">9.2</td></tr>
-                      <tr><td>AL12</td><td>390681</td><td>750127</td><td bgcolor="#ffc7ce">1.9</td></tr>
-                      <tr><td>AL18</td><td>172258</td><td>352998</td><td bgcolor="#ffc7ce">2.0</td></tr>
-                      <tr><td>AL24</td><td>90110</td><td>1447010</td><td bgcolor="#ffeb9c">16.1</td></tr><tr><td>AL all</td><td>800635</td><td>3910279</td><td bgcolor="#c6efce">4.9</td></tr>
-                      <tr><td>AS inj</td><td>638803</td><td>363371</td><td bgcolor="#ffc7ce">0.6</td></tr>
-                      <tr><td>SP tabs</td><td>251024</td><td>3923695</td><td bgcolor="#ffeb9c">15.6</td></tr>
-                      <tr><td>RDTs</td><td>4158</td><td>1401874</td><td bgcolor="#ffeb9c">337.2</td></tr>
+                      <tr><td>AL6</td><td>147586</td><td>1360145</td><td bgcolor="#85bfe0">9.2</td></tr>
+                      <tr><td>AL12</td><td>390681</td><td>750127</td><td bgcolor="#ffbf00">1.9</td></tr>
+                      <tr><td>AL18</td><td>172258</td><td>352998</td><td bgcolor="#ffbf00">2.0</td></tr>
+                      <tr><td>AL24</td><td>90110</td><td>1447010</td><td bgcolor="#85bfe0">16.1</td></tr><tr><td>AL all</td><td>800635</td><td>3910279</td><td bgcolor="#20b43d">4.9</td></tr>
+                      <tr><td>AS inj</td><td>638803</td><td>363371</td><td bgcolor="#ffbf00">0.6</td></tr>
+                      <tr><td>SP tabs</td><td>251024</td><td>3923695</td><td bgcolor="#85bfe0">15.6</td></tr>
+                      <tr><td>RDTs</td><td>4158</td><td>1401874</td><td bgcolor="#85bfe0">337.2</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -55,7 +55,7 @@ class Dashboard extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                    <tr><td>AL6</td><td bgcolor="#ffeb9c">12.0%</td><td bgcolor="#c6efce">3.7%</td><td bgcolor="#ffc7ce">4.6%</td></tr><tr><td>AL12</td><td bgcolor="#ffeb9c">6.3%</td><td bgcolor="#c6efce">3.3%</td><td bgcolor="#ffc7ce">9.9%</td></tr><tr><td>AL18</td><td bgcolor="#ffeb9c">6.0%</td><td bgcolor="#c6efce">2.7%</td><td bgcolor="#ffc7ce">7.2%</td></tr><tr><td>AL24</td><td bgcolor="#ffeb9c">15.6%</td><td bgcolor="#c6efce">2.3%</td><td bgcolor="#ffc7ce">2.8%</td></tr><tr><td>AS inj</td><td bgcolor="#ffeb9c">0.7%</td><td bgcolor="#c6efce">0.6%</td><td bgcolor="#ffc7ce">8.1%</td></tr><tr><td>SP tabs</td><td bgcolor="#ffeb9c">7.6%</td><td bgcolor="#c6efce">1.0%</td><td bgcolor="#ffc7ce">1.2%</td></tr><tr><td>RDTs</td><td bgcolor="#ffeb9c">0.1%</td><td bgcolor="#c6efce">0.0%</td><td bgcolor="#ffc7ce">0.0%</td></tr></tbody>
+                    <tr><td>AL6</td><td bgcolor="#85bfe0">12.0%</td><td bgcolor="#20b43d">3.7%</td><td bgcolor="#ffbf00">4.6%</td></tr><tr><td>AL12</td><td bgcolor="#85bfe0">6.3%</td><td bgcolor="#20b43d">3.3%</td><td bgcolor="#ffbf00">9.9%</td></tr><tr><td>AL18</td><td bgcolor="#85bfe0">6.0%</td><td bgcolor="#20b43d">2.7%</td><td bgcolor="#ffbf00">7.2%</td></tr><tr><td>AL24</td><td bgcolor="#85bfe0">15.6%</td><td bgcolor="#20b43d">2.3%</td><td bgcolor="#ffbf00">2.8%</td></tr><tr><td>AS inj</td><td bgcolor="#85bfe0">0.7%</td><td bgcolor="#20b43d">0.6%</td><td bgcolor="#ffbf00">8.1%</td></tr><tr><td>SP tabs</td><td bgcolor="#85bfe0">7.6%</td><td bgcolor="#20b43d">1.0%</td><td bgcolor="#ffbf00">1.2%</td></tr><tr><td>RDTs</td><td bgcolor="#85bfe0">0.1%</td><td bgcolor="#20b43d">0.0%</td><td bgcolor="#ffbf00">0.0%</td></tr></tbody>
                   </table>
                 </div>
               </div>
@@ -79,13 +79,13 @@ class Dashboard extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr><td>AL6</td><td bgcolor="#ffeb9c">1392</td><td bgcolor="#c6efce">424</td><td bgcolor="#ffc7ce">537</td><td bgcolor="#ff0000" style={{color:'#fff'}}>587</td><td>8647</td><td>11587</td></tr>
-                      <tr><td>AL12</td><td bgcolor="#ffeb9c">727</td><td bgcolor="#c6efce">386</td><td bgcolor="#ffc7ce">1146</td><td bgcolor="#ff0000" style={{color:'#fff'}}>761</td><td>8567</td><td>11587</td></tr>
-                      <tr><td>AL18</td><td bgcolor="#ffeb9c">691</td><td bgcolor="#c6efce">315</td><td bgcolor="#ffc7ce">837</td><td bgcolor="#ff0000" style={{color:'#fff'}}>1014</td><td>8730</td><td>11587</td></tr>
-                      <tr><td>AL24</td><td bgcolor="#ffeb9c">1811</td><td bgcolor="#c6efce">261</td><td bgcolor="#ffc7ce">327</td><td bgcolor="#ff0000" style={{color:'#fff'}}>298</td><td>8890</td><td>11587</td></tr>
-                      <tr><td>AS inj</td><td bgcolor="#ffeb9c">81</td><td bgcolor="#c6efce">65</td><td bgcolor="#ffc7ce">935</td><td bgcolor="#ff0000" style={{color:'#fff'}}>1582</td><td>8924</td><td>11587</td></tr>
-                      <tr><td>SP tabs</td><td bgcolor="#ffeb9c">882</td><td bgcolor="#c6efce">121</td><td bgcolor="#ffc7ce">143</td><td bgcolor="#ff0000" style={{color:'#fff'}}>40</td><td>10401</td><td>11587</td></tr>
-                      <tr><td>RDTs</td><td bgcolor="#ffeb9c">14</td><td bgcolor="#c6efce">2</td><td bgcolor="#ffc7ce">5</td><td bgcolor="#ff0000" style={{color:'#fff'}}>32</td><td>11534</td><td>11587</td></tr>
+                      <tr><td>AL6</td><td bgcolor="#85bfe0">1392</td><td bgcolor="#20b43d">424</td><td bgcolor="#ffbf00">537</td><td bgcolor="#ff0000" style={{color:'#fff'}}>587</td><td>8647</td><td>11587</td></tr>
+                      <tr><td>AL12</td><td bgcolor="#85bfe0">727</td><td bgcolor="#20b43d">386</td><td bgcolor="#ffbf00">1146</td><td bgcolor="#ff0000" style={{color:'#fff'}}>761</td><td>8567</td><td>11587</td></tr>
+                      <tr><td>AL18</td><td bgcolor="#85bfe0">691</td><td bgcolor="#20b43d">315</td><td bgcolor="#ffbf00">837</td><td bgcolor="#ff0000" style={{color:'#fff'}}>1014</td><td>8730</td><td>11587</td></tr>
+                      <tr><td>AL24</td><td bgcolor="#85bfe0">1811</td><td bgcolor="#20b43d">261</td><td bgcolor="#ffbf00">327</td><td bgcolor="#ff0000" style={{color:'#fff'}}>298</td><td>8890</td><td>11587</td></tr>
+                      <tr><td>AS inj</td><td bgcolor="#85bfe0">81</td><td bgcolor="#20b43d">65</td><td bgcolor="#ffbf00">935</td><td bgcolor="#ff0000" style={{color:'#fff'}}>1582</td><td>8924</td><td>11587</td></tr>
+                      <tr><td>SP tabs</td><td bgcolor="#85bfe0">882</td><td bgcolor="#20b43d">121</td><td bgcolor="#ffbf00">143</td><td bgcolor="#ff0000" style={{color:'#fff'}}>40</td><td>10401</td><td>11587</td></tr>
+                      <tr><td>RDTs</td><td bgcolor="#85bfe0">14</td><td bgcolor="#20b43d">2</td><td bgcolor="#ffbf00">5</td><td bgcolor="#ff0000" style={{color:'#fff'}}>32</td><td>11534</td><td>11587</td></tr>
                     </tbody>
                   </table>
                 </div>

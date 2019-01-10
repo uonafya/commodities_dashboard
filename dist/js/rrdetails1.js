@@ -52,7 +52,7 @@ function fetchRRDetails(rdurl)
                         }
                         else
                         {
-                            var bgcolor = '#ffc7ce';
+                            var bgcolor = '#ffbf00';
                             tableData += '<td bgcolor="'+bgcolor+'">'+reportval+'</td>';
                         }
                 })
@@ -141,7 +141,7 @@ function fetchSubRRDetails(scrdurl)
                         }
                         else
                         {
-                            var bgcolor = '#ffc7ce';
+                            var bgcolor = '#ffbf00';
                             tableData += '<td bgcolor="'+bgcolor+'">'+reportval+'</td>';
                         }
                 })

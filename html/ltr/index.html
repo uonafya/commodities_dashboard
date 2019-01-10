@@ -305,10 +305,10 @@
                                         <div class="row">
                                             <table class="table">
                                                 <tr>
-                                                    <td bgcolor="#c6efce">MOS 3-6</td>
-                                                    <td bgcolor="#ffeb9c">MOS>6</td>
-                                                    <td bgcolor="#ffc7ce">MOS<3</td>
-                                                    <td bgcolor="#ff0000" style="color: #ffffff; line-height: 0.97;"><span>Stocked<br/>Out</small></td>
+                                                    <td bgcolor="#ff0000" style="color: #ffffff; line-height: 0.97;"><b>Stocked<br/>Out</b></td>
+                                                    <td bgcolor="#ffbf00"><b>MOS<3</b></td>
+                                                    <td style="color: #ffffff; line-height: 0.97;" bgcolor="#20b43d"><b>MOS 3-6</b></td>
+                                                    <td bgcolor="#85bfe0"><b>MOS>6</b></td>
                                                 </tr>
                                             </table> 
                                         </div>
@@ -397,7 +397,7 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Percentage of health facilities</h5>
+                                    <h5 class="card-title">Health Facilities Stock Status (%)</h5>
                                     <div class="t_one_state col-md-12"></div>                              
                                     <div class="col-md-12 p-10">
                                         <div class="loader-sp t_one">
@@ -431,7 +431,7 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">No of health facilities with:</h5>
+                                        <h5 class="card-title">Health Facilities Stock Status (Count)</h5>
                                             <div class="t_two_state col-md-12"></div>                              
                                             <div class="col-md-12 p-10">
                                                 <div class="loader-sp t_two">
@@ -818,9 +818,9 @@
                     var okpercent = (stockok/orgunits.length)*100;
                     var underpercent = (understock/orgunits.length)*100;
                     
-                    tableData += '<td bgcolor="#ffeb9c">'+overpercent.toFixed(1)+'%</td>';
-                    tableData += '<td bgcolor="#c6efce">'+okpercent.toFixed(1)+'%</td>';
-                    tableData += '<td bgcolor="#ffc7ce">'+underpercent.toFixed(1)+'%</td>';				
+                    tableData += '<td bgcolor="#85bfe0">'+overpercent.toFixed(1)+'%</td>';
+                    tableData += '<td bgcolor="#20b43d">'+okpercent.toFixed(1)+'%</td>';
+                    tableData += '<td bgcolor="#ffbf00">'+underpercent.toFixed(1)+'%</td>';				
                     tableData += '</tr>';	
                 })
     
@@ -904,9 +904,9 @@
                     countname++;
                     nomos = totalfa-(overstock+stockok+understock+stockout)
                     
-                    tableData += '<td bgcolor="#ffeb9c">'+overstock+'</td>';
-                    tableData += '<td bgcolor="#c6efce">'+stockok+'</td>';
-                    tableData += '<td bgcolor="#ffc7ce">'+understock+'</td>';
+                    tableData += '<td bgcolor="#85bfe0">'+overstock+'</td>';
+                    tableData += '<td bgcolor="#20b43d">'+stockok+'</td>';
+                    tableData += '<td bgcolor="#ffbf00">'+understock+'</td>';
                     tableData += '<td bgcolor="#ff0000">'+stockout+'</td>';	
                     tableData += '<td>'+nomos+'</td>';	
                     tableData += '<td>'+totalfa+'</td>';					
@@ -997,11 +997,11 @@
                             if(mos<=0)
                                 bgcolor = '#ff0000'
                             if (mos > 0 && mos< 3)
-                                bgcolor = '#ffc7ce'
+                                bgcolor = '#ffbf00'
                             if (mos >= 3 && mos<= 6)
-                                bgcolor = '#c6efce'
+                                bgcolor = '#20b43d'
                             if(mos>6)
-                                bgcolor = '#ffeb9c'
+                                bgcolor = '#85bfe0'
     
                             tableData += '<td>'+adjc.toFixed(0)+'</td>';
                             tableData += '<td>'+phycount.toFixed(0)+'</td>';
