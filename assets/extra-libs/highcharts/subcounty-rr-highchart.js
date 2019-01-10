@@ -1,4 +1,6 @@
 function fetchScRR(scurl){
+    $('.rrates.loader-sp').removeClass('hidden');
+    $('#sc_rrchart').addClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -95,8 +97,12 @@ function fetchScRR(scurl){
                 }]
             });
             // end Highcharts
+            $('.rrates.loader-sp').addClass('hidden');
+            $('#sc_rrchart').removeClass('hidden');
         },
         error: function (request, status, error) {
+            $('.rrates.loader-sp').addClass('hidden');
+            $('#sc_rrchart').addClass('hidden');
             console.log('Subcounty-RRates: error fetching json. :- '+error);
             $('#sc_rrchart').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }

@@ -1,4 +1,6 @@
 function getDQconcord(dqurl,commodity){
+    $('#zero_config-dqcc').removeClass('hidden');
+    $('.loader-sp.sp-dqcc').removeClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,

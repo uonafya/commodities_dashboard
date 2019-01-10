@@ -1,4 +1,6 @@
 function getDQ(dqurl,commodity){
+    $('#pc3').addClass('hidden');
+    $('.piethree.loader-sp').removeClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -41,8 +43,12 @@ function getDQ(dqurl,commodity){
             console.log("compliant_facilities = "+compliant_facility_count);
             console.log("NON_compliant_facilities = "+non_compliant_facility_count);
             pieThree('Internal Data Consistency (AL 24)',compliant_facility_count,non_compliant_facility_count);
+            $('#pc3').removeClass('hidden');
+            $('.piethree.loader-sp').addClass('hidden');
         },
         error: function (request, status, error) {
+            $('#pc3').addClass('hidden');
+            $('.piethree.loader-sp').addClass('hidden');
             // $('.loader-sp').addClass('hidden');
             console.log('DQ: error fetching json. :- '+error);
             // $('.rdstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
@@ -57,7 +63,8 @@ function getDQ(dqurl,commodity){
         }
     );
     
-      var adj_url = 'http://localhost/pmi/json/totalpopdisadj.json';
+    //   var adj_url = 'http://localhost/pmi/json/totalpopdisadj.json';
+      var adj_url = '';
       $.ajax({
         type: 'GET',
         crossDomain: true,

@@ -125,3 +125,10 @@
     /*display: block !important;*/
     
   }
+  .table tr td:first-child{
+    font-weight: bold !important;
+    color: #232323;
+    font-size: 1.1em;
+  }
+  
+

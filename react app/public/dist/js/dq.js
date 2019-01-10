@@ -1,6 +1,8 @@
 
 function getConco(ccurl,commodity){
 // alert('dqurl: '+dqurl+' & commodity: '+commodity);
+$('.loader-sp.pieone').removeClass('hidden');
+$('#pc1').addClass('hidden');
 $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -54,6 +56,8 @@ $.ajax({
         console.log("NON_compliant_facilities = "+non_compliant_facility_count);
         pieOne(theItems[commodity].name,compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
+        $('.loader-sp.pieone').addClass('hidden');
+        $('#pc1').removeClass('hidden');
     },
     error: function (request, status, error) {
         $('.loader-sp.pieone').addClass('hidden');

@@ -1,11 +1,13 @@
 //function toprocess the acts url
 function fetchRRDetails(rdurl)
 {
+    $('.loader-sp').removeClass('hidden');
+    $('#zero_config.rrdetailsbox').removeClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: rdurl,                    
-        success: function (data) {                    
+        success: function (data) {                  
             var header = '';
             var footer = '';
             var tableData = '';
@@ -65,6 +67,7 @@ function fetchRRDetails(rdurl)
             tableData += footer;
                     
             $('.loader-sp').addClass('hidden');
+            $("#zero_config.rrdetailsbox").removeClass('hidden');
             //facility
             // $('#zero_config').DataTable().destroy();
             $("#zero_config.rrdetailsbox").empty();                                                
@@ -77,6 +80,7 @@ function fetchRRDetails(rdurl)
         },
     error: function (request, status, error) {
         $('.loader-sp').addClass('hidden');
+        $('#zero_config.rrdetailsbox').addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
         $('.rdstate').html('<div class ="alert alert-danger"><strong>Facility Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
@@ -92,6 +96,8 @@ function fetchRRDetails(rdurl)
 
 function fetchSubRRDetails(scrdurl)
 {
+    $('.loader-sp.sp-sub').removeClass('hidden');
+    $("#zero_config-sub.rrdetailsbox-sub").addClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -172,6 +178,7 @@ function fetchSubRRDetails(scrdurl)
     },
     error: function (request, status, error) {
         $('.loader-sp.sp-sub').addClass('hidden');
+        $("#zero_config-sub.rrdetailsbox-sub").addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
         $('.rdstate-sub').html('<div class ="alert alert-danger"><strong>Sub-county Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }

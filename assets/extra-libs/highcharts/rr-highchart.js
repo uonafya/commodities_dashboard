@@ -1,5 +1,7 @@
     
     function fetchRR(rrurl, onurl){
+        $('.rrates.loader-sp').removeClass('hidden');
+        $('#rrchart').addClass('hidden');
         $.ajax({
             type: 'GET',
             crossDomain: true,
@@ -19,10 +21,12 @@
                         $('#rrchart').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                     }
                 });
-                $('.loader-sp').addClass('hidden');
+                $('.rrates.loader-sp').addClass('hidden');
+                $('#rrchart').removeClass('hidden');
             },
             error: function (request, status, error) {
-                $('.loader-sp').addClass('hidden');
+                $('.rrates.loader-sp').addClass('hidden');
+                $('#rrchart').addClass('hidden');
                 console.log('RRates: error fetching json. :- '+error);
                 $('#rrchart').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             }

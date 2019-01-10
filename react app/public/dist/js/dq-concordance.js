@@ -1,4 +1,6 @@
 function getDQconcord(dqurl,commodity){
+    $('#zero_config-dqcc').addClass('hidden');
+    $('.loader-sp.sp-dqcc').removeClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -57,6 +59,7 @@ function getDQconcord(dqurl,commodity){
         },
         error: function (request, status, error) {
             $('.loader-sp').addClass('hidden');
+            $('#zero_config-dqcc').addClass('hidden');
             console.log('DQ: error fetching json. :- '+error);
             $('.rdstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }

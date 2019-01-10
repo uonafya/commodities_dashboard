@@ -1,4 +1,6 @@
 function getDQ(dqurl,commodity){
+    $('#pc3').addClass('hidden');
+    $('.piethree.loader-sp').removeClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -57,7 +59,8 @@ function getDQ(dqurl,commodity){
         }
     );
     
-      var adj_url = 'http://localhost/pmi/json/totalpopdisadj.json';
+    //   var adj_url = 'http://localhost/pmi/json/totalpopdisadj.json';
+      var adj_url = '';
       $.ajax({
         type: 'GET',
         crossDomain: true,
