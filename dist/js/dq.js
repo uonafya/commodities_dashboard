@@ -128,8 +128,11 @@ $('#dq-column').addClass('hidden');
         console.log("FINAL LINE:pop_arr ni: "+pop_arr_fin);
         console.log("FINAL LINE:totadj_arr ni: "+totadj_arr_fin);
         console.log("FINAL LINE:totdisp_arr ni: "+totdisp_arr_fin);
-
-        columnOne(per_arr,pop_title,totadj_title,totdisp_title,pop_arr_fin,totadj_arr_fin,totdisp_arr_fin);
+        var pearry = [];
+        $.each(per_arr,(ind,val)=>{
+            pearry.push(dateToStr(val));
+        });
+        columnOne(pearry,pop_title,totadj_title,totdisp_title,pop_arr_fin,totadj_arr_fin,totdisp_arr_fin);
         $('#dq-column').removeClass('hidden');
         $('.loader-sp.dqcol').addClass('hidden');
     },
@@ -174,7 +177,12 @@ $.ajax({
             didNotReport.push(empty_reports)
         });
         let wbdataset = [];
-        wbdataset.push(json_data.metaData.dimensions.pe);
+        alert(json_data.metaData.dimensions.pe);
+        var pearr = [];
+        $.each(json_data.metaData.dimensions.pe,(ind,val)=>{
+            pearr.push(dateToStr(val));
+        });
+        wbdataset.push(pearr);
         wbdataset.push(reported);
         wbdataset.push(didNotReport);
 
@@ -298,3 +306,38 @@ function eliminateDuplicates(arr) {
     return out;
   }
 //end remove duplicates
+
+
+function dateToStr(ledate){
+    var leyear = ledate.substr(0,4);
+    var lemonth = ledate.substr(4,5);
+    // console.log('leyear ni: '+leyear);
+    // console.log('lemonth ni: '+lemonth);
+    if(lemonth == '01'){ 
+        var numonth = 'Jan';
+    } if(lemonth == '02'){ 
+        var numonth = 'Feb';
+    } if(lemonth == '03'){ 
+        var numonth = 'Mar';
+    } if(lemonth == '04'){ 
+        var numonth = 'Apr';
+    } if(lemonth == '05'){ 
+        var numonth = 'May';
+    } if(lemonth == '06'){ 
+        var numonth = 'Jun';
+    } if(lemonth == '07'){ 
+        var numonth = 'Jul';
+    } if(lemonth == '08'){ 
+        var numonth = 'Aug';
+    } if(lemonth == '09'){ 
+        var numonth = 'Sept';
+    } if(lemonth == '10'){ 
+        var numonth = 'Oct';
+    } if(lemonth == '11'){ 
+        var numonth = 'Nov';
+    } if(lemonth == '12'){ 
+        var numonth = 'Dec';
+    }
+    var lenudate = numonth+' '+leyear;
+    return lenudate;
+}

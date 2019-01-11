@@ -18,7 +18,7 @@ function fetchRRDetails(rdurl)
 
             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
             {
-                    header += '<th>'+pentry+'</th>';			
+                    header += '<th>'+dateToStr(pentry)+'</th>';			
             })
 
             header += '</tr></thead>';
@@ -29,7 +29,7 @@ function fetchRRDetails(rdurl)
 
             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
             {
-                    footer += '<th>'+pentry+'</th>';			
+                    footer += '<th>'+dateToStr(pentry)+'</th>';			
             })
 
             footer += '</tr></tfoot>';
@@ -113,7 +113,7 @@ function fetchSubRRDetails(scrdurl)
 
             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
             {
-                    header += '<th>'+pentry+'</th>';			
+                    header += '<th>'+dateToStr(pentry)+'</th>';			
             })
 
             header += '</tr></thead>';
@@ -124,7 +124,7 @@ function fetchSubRRDetails(scrdurl)
 
             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
             {
-                    footer += '<th>'+pentry+'</th>';			
+                    footer += '<th>'+dateToStr(pentry)+'</th>';			
             })
 
             footer += '</tr></tfoot>';
@@ -222,4 +222,38 @@ $.each(rows, function (rkey, rentry)
 })		
 
 return rowval;
+}
+
+function dateToStr(ledate){
+    var leyear = ledate.substr(0,4);
+    var lemonth = ledate.substr(4,5);
+    // console.log('leyear ni: '+leyear);
+    // console.log('lemonth ni: '+lemonth);
+    if(lemonth == '01'){ 
+        var numonth = 'Jan';
+    } if(lemonth == '02'){ 
+        var numonth = 'Feb';
+    } if(lemonth == '03'){ 
+        var numonth = 'Mar';
+    } if(lemonth == '04'){ 
+        var numonth = 'Apr';
+    } if(lemonth == '05'){ 
+        var numonth = 'May';
+    } if(lemonth == '06'){ 
+        var numonth = 'Jun';
+    } if(lemonth == '07'){ 
+        var numonth = 'Jul';
+    } if(lemonth == '08'){ 
+        var numonth = 'Aug';
+    } if(lemonth == '09'){ 
+        var numonth = 'Sept';
+    } if(lemonth == '10'){ 
+        var numonth = 'Oct';
+    } if(lemonth == '11'){ 
+        var numonth = 'Nov';
+    } if(lemonth == '12'){ 
+        var numonth = 'Dec';
+    }
+    var lenudate = numonth+' '+leyear;
+    return lenudate;
 }

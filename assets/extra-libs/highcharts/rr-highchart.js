@@ -2,6 +2,7 @@
     function fetchRR(rrurl, onurl){
         $('.rrates.loader-sp').removeClass('hidden');
         $('#rrchart').addClass('hidden');
+        $('.rrdata').addClass('hidden');
         $.ajax({
             type: 'GET',
             crossDomain: true,
@@ -23,12 +24,14 @@
                 });
                 $('.rrates.loader-sp').addClass('hidden');
                 $('#rrchart').removeClass('hidden');
+                $('.rrdata').removeClass('hidden');
             },
             error: function (request, status, error) {
                 $('.rrates.loader-sp').addClass('hidden');
                 $('#rrchart').addClass('hidden');
+                $('.rrdata').addClass('hidden');
                 console.log('RRates: error fetching json. :- '+error);
-                $('#rrchart').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                $('.rrstate').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             }
         });
 
@@ -97,8 +100,9 @@
                     if(array1[1]==eachallmonths){
                         var findata = parseFloat(array1[2]);
                         console.log('findata: '+JSON.stringify(findata));
+                        var lenudate = dateToStr(array1[1]);
                         finalRRdata.push(findata);
-                        finalRRmonths.push(array1[1]);
+                        finalRRmonths.push(lenudate);
                         xc=0;
                         break;
                     }else xc=1;
@@ -106,7 +110,7 @@
                 }
                 if(xc == 1){
                     finalRRdata.push(parseFloat(0));
-                    finalRRmonths.push(eachallmonths);
+                    finalRRmonths.push(dateToStr(eachallmonths));
                     xc = 0;
                 }
             });
@@ -259,4 +263,38 @@
 
         $('.loader-sp').addClass('hidden');
         $('.rrdata').removeClass('hidden');
+    }
+
+    function dateToStr(ledate){
+        var leyear = ledate.substr(0,4);
+        var lemonth = ledate.substr(4,5);
+        // console.log('leyear ni: '+leyear);
+        // console.log('lemonth ni: '+lemonth);
+        if(lemonth == '01'){ 
+            var numonth = 'Jan';
+        } if(lemonth == '02'){ 
+            var numonth = 'Feb';
+        } if(lemonth == '03'){ 
+            var numonth = 'Mar';
+        } if(lemonth == '04'){ 
+            var numonth = 'Apr';
+        } if(lemonth == '05'){ 
+            var numonth = 'May';
+        } if(lemonth == '06'){ 
+            var numonth = 'Jun';
+        } if(lemonth == '07'){ 
+            var numonth = 'Jul';
+        } if(lemonth == '08'){ 
+            var numonth = 'Aug';
+        } if(lemonth == '09'){ 
+            var numonth = 'Sept';
+        } if(lemonth == '10'){ 
+            var numonth = 'Oct';
+        } if(lemonth == '11'){ 
+            var numonth = 'Nov';
+        } if(lemonth == '12'){ 
+            var numonth = 'Dec';
+        }
+        var lenudate = numonth+' '+leyear;
+        return lenudate;
     }
