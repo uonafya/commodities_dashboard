@@ -130,5 +130,23 @@
     color: #232323;
     font-size: 1.1em;
   }
-  
-
+  .highcharts-title{
+    text-transform: uppercase;
+    color: #131522;
+    font-weight: 600 !important;
+  }
+  .highcharts-subtitle{
+    color: #142c6b !important;
+    fill: #142c6b !important;
+    font-size: 1.33em !important;
+    letter-spacing: 1px;
+    font-weight: 600 !important;
+    text-decoration: underline;
+  }
+  .highcharts-axis-title{
+    color: #142c6b !important;
+    fill: #142c6b !important;
+    font-weight: 600 !important;
+    font-size: 1.1em !important;
+    text-transform: uppercase;
+  }
