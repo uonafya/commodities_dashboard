@@ -13,6 +13,7 @@
     <title>Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
     <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet"><link href="../../dist/css/custom.css" rel="stylesheet">
     <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
@@ -386,25 +387,88 @@ color: transparent;}
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!-- Chart-1 -->
-                <div class="row">
-                        <div class="col-md-12 m-t-10">
-                            <div class="pieone_state col-md-12"></div>                              
-                            <div class="col-md-12 p-10">
-                                <div class="loader-sp pieone">
-                                    <div class="loader loader--style3" title="2">
-                                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                            width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-                                            <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-                                            <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
-                                            </path>
-                                        </svg>
+
+                
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#overview" class="active" aria-controls="overview" role="tab" data-toggle="tab">Overview</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a>
+                        </li>
+                    </ul>
+                
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="overview">
+                            <!-- Chart-1 -->
+                            <div class="row">
+                                <div class="col-md-12 m-t-10">
+                                    <div class="pieone_state col-md-12"></div>                              
+                                    <div class="col-md-12 p-10">
+                                        <div class="loader-sp pieone">
+                                            <div class="loader loader--style3" title="2">
+                                                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                    <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div id="pc1" class="col-md-12" style="min-width: 280px; height: 350px;"></div>
                                 </div>
                             </div>
-                            <div id="pc1" class="col-md-12" style="min-width: 280px; height: 350px;"></div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="details">
+                            <div class="row">
+                                <div class="pieone_state col-md-12"></div>
+                            </div>
+                            <div class="row detailsrow">
+                                <div class="col-md-12" style="padding-top: 10px;">
+                                    <h3 id="detailTitle"></h3>
+                                    <hr/>
+                                </div>                           
+                                <div class="col-md-6">
+                                    <div class="col-md-12 bcwhite br3 p-5">
+                                        <h4><u>Opening Balance <span class="text-bold" style="color: green">==</span> Closing Balance (<span id="equalCount"></span>)</u></h4>
+                                        <table class="table table-striped table-hover table-condensed slimtable" id="equalSOH">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Code</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-12 bcwhite br3 p-5">
+                                        <h4><u>Opening Balance <span class="text-bold" style="color: red">≠≠</span> Closing Balance (<span id="notEqualCount"></span>)</u></h4>
+                                        <table class="table table-striped table-hover table-condensed slimtable" id="notEqualSOH">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Code</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
+                </div>
+                
+                
                 </div>  
             </div>
         <footer class="footer text-center">
@@ -426,6 +490,12 @@ color: transparent;}
     <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
     <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
     
+
+    <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
+
+
     <!-- this page js -->
     <script src="../../assets/libs/chart/matrix.interface.js"></script>
     <script src="../../assets/libs/chart/excanvas.min.js"></script>
@@ -524,7 +594,7 @@ color: transparent;}
 
         var theou = 'tAbBVBbueqD';
         var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-        // var ccurl = 'http://localhost/pmi/json/concordance1.json'
+        var ccurl = 'http://localhost/pmi/json/concordance1.json'
         var commodity = 'iOARK31NdLp.HWtHCLAwprR';
         getConco(ccurl,commodity);
 

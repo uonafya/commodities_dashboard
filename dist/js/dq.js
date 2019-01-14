@@ -12,6 +12,7 @@ $.ajax({
         var theItems = data.metaData.items;
         var theDims = data.metaData.dimensions;
         var theComms = data.metaData.dimensions.dx;
+        var thePer = data.metaData.dimensions.pe;
         popComms(theComms);
         
         // var thedx = theDims.dx;
@@ -20,8 +21,13 @@ $.ajax({
         var therows = data.rows;
         var facility_count = theous.length;
         var compliant_facility_count = 0;
+        var compliant_facilities_names = [];
+        var compliant_facilities_codes = [];
+        var non_compliant_facilities_names = [];
+        var non_compliant_facilities_codes = [];
         var therows_filtered_by_commodity = filterItems(therows,commodity);
         // console.log("filtered ROWS ni: "+JSON.stringify(therows_filtered_by_commodity));
+        var equaltbl = '';
         $.each(theous, function(index, oneou){
             // var ou_name = theItems[oneou].name;
             var ou_filtered = filterItems(therows_filtered_by_commodity,oneou);
@@ -29,12 +35,18 @@ $.ajax({
                 // $.each(ou_filtered, function(idx, ou_fl){
                     var ou_fil_from = filterItems(ou_filtered,'201806');
                     var ou_fil_to = filterItems(ou_filtered,'201807');
+                    // var ou_fil_from = filterItems(ou_filtered,thePer[thePer.length - 2]);
+                    // var ou_fil_to = filterItems(ou_filtered,thePer[thePer.length - 1]);
+                    $('#detailTitle').html('Closing: '+ou_fil_from + '& Opening' + ou_fil_to);
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
                         console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
                         console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
                         // if(1==1){
                         if(ou_fil_from[0][3]==ou_fil_to[0][3]){
                             compliant_facility_count = compliant_facility_count+1;
+                            compliant_facilities_names.push(theItems[oneou].name);
+                            compliant_facilities_codes.push(oneou);
+                            equaltbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+oneou+'</td></tr>';
                         }
                         // }
                         // console.log("ou_fil_from: "+JSON.stringify(ou_fil_from));
@@ -43,6 +55,26 @@ $.ajax({
                 // });
             // }
         });
+        $('#equalSOH tbody').append(equaltbl);
+        var nonequaltbl = '';
+        // alert(JSON.stringify(compliant_facilities_codes));
+        $.each(theDims.ou,(inex,valou)=>{
+            let the_ou = valou;
+            if(!compliant_facilities_codes.includes(the_ou)){
+                non_compliant_facilities_codes.push(the_ou);
+                non_compliant_facilities_names.push(theItems[the_ou].name);
+                nonequaltbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+the_ou+'</td></tr>';
+            }
+        });
+        // alert(JSON.stringify(non_compliant_facilities_codes));
+        $('#notEqualSOH tbody').append(nonequaltbl);
+        $(document).ready(function() {
+            $('#equalSOH').DataTable();
+            $('#notEqualSOH').DataTable();
+        });
+        $('#equalCount').html(compliant_facilities_codes.length);
+        $('#notEqualCount').html(non_compliant_facilities_codes.length);
+
         var non_compliant_facility_count = facility_count - compliant_facility_count;
         console.log("total_facilities = "+facility_count);
         console.log("compliant_facilities = "+compliant_facility_count);
@@ -50,10 +82,12 @@ $.ajax({
         pieOne(theItems[commodity].name,compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
         $('#pc1').removeClass('hidden');
+        $('.detailsrow').removeClass('hidden');
     },
     error: function (request, status, error) {
         $('.loader-sp.pieone').addClass('hidden');
         $('#pc1').addClass('hidden');
+        $('.detailsrow').addClass('hidden');
         console.log('DQ: error fetching json. :- '+error);
         $('.pieone_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
@@ -281,6 +315,8 @@ function wbDetail(json_data, lastperiod){
             }
         });
         $('#detailTableNotReport tbody').append(tbldata2);
+        $('#reportCount').html(rp_fac_codes.length);
+        $('#notReportCount').html(not_rp_fac_codes.length);
         // alert(JSON.stringify(not_rp_fac_codes));
         $(document).ready(function() {
             // $('#detailTableNotReport tbody').empty();

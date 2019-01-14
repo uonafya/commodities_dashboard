@@ -421,9 +421,9 @@ color: transparent;}
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="details">
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="wbdata_state col-md-12"></div>
-                            </div> -->
+                            </div>
                             <div class="row detailsrow">
 
                                 <div class="col-md-12" style="padding-top: 10px;">
@@ -453,7 +453,7 @@ color: transparent;}
                                                                         
                                 <div class="col-md-6">
                                     <div class="col-md-12 bcwhite br3 p-5">
-                                        <h4><u>Facilities that reported data</u></h4>
+                                        <h4><u>Facilities that reported data (<span id="reportCount"></span>)</u></h4>
                                         <table class="table table-striped table-hover table-condensed slimtable" id="detailTableReported">
                                             <thead>
                                                 <tr>
@@ -468,7 +468,7 @@ color: transparent;}
                                 </div>
                                 <div class="col-md-6">
                                     <div class="col-md-12 bcwhite br3 p-5">
-                                        <h4><u>Facilities that <span style="color: red">DID NOT</span> report data</u></h4>
+                                        <h4><u>Facilities that <span style="color: red">DID NOT</span> report data (<span id="notReportCount"></span>)</u></h4>
                                         <table class="table table-striped table-hover table-condensed slimtable" id="detailTableNotReport">
                                             <thead>
                                                 <tr>
@@ -594,7 +594,7 @@ color: transparent;}
  
     <script type="text/javascript">
         var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-        // var wburl = 'http://localhost/pmi/json/completeness.json';
+        var wburl = 'http://localhost/pmi/json/completeness.json';
         getWBData(wburl);
 
         
