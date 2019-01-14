@@ -177,7 +177,6 @@ $.ajax({
             didNotReport.push(empty_reports)
         });
         let wbdataset = [];
-        alert(json_data.metaData.dimensions.pe);
         var pearr = [];
         $.each(json_data.metaData.dimensions.pe,(ind,val)=>{
             pearr.push(dateToStr(val));
@@ -185,13 +184,77 @@ $.ajax({
         wbdataset.push(pearr);
         wbdataset.push(reported);
         wbdataset.push(didNotReport);
+        
+        
+        //-----------------------------------------------------detail 
+        
+        // ~~~~~~~~~~~~~~~~~~~~~~~~REPORTED~~~~~~~~~~~~~~~~~~~~~~~~
+        var lastperiod = json_data.metaData.dimensions.pe[json_data.metaData.dimensions.pe.length - 1];
+        $('#detailTitle').html('Period: '+dateToStr(lastperiod));
+        var rp_fac_codes = [];
+        var rp_fac_names = [];
+        var tbldata = '';
+        //find all reported facilities (CODE) for the lastperiod
+        $.each(json_data.rows,(i_index,row_val)=>{
+            if (lastperiod === row_val[1]){
+                rp_fac_codes.push(row_val[2]);
+            }
+        });
+        //find all reported facilities (NAME) for the lastperiod
+        $.each(rp_fac_codes,(i_index,rpfc_val)=>{
+            rp_fac_names.push(json_data.metaData.items[rpfc_val].name);
+            tbldata += '<tr>';
+            tbldata += '<td>' + json_data.metaData.items[rpfc_val].name + '</td><td>' + rpfc_val + '</td>'
+            tbldata += '</tr>';
+        });
+        // alert(JSON.stringify(rp_fac_codes));
+        // alert(JSON.stringify(rp_fac_names));
+        $('#detailTableReported tbody').append(tbldata);
+        $(document).ready(function() {
+            $('#detailTableReported').DataTable({
+                "pageLength": 20
+            });
+        } );
+        // ~~~~~~~~~~~~~~~~~~~~~~~~NOT~~REPORTED~~~~~~~~~~~~~~~~~~~~~~
+
+        var not_rp_fac_codes = [];
+        var tbldata2 = '';
+        $.each(json_data.metaData.dimensions.ou,(inex,valou)=>{
+            let the_ou = valou;
+            // $.each(rp_fac_codes,(inde,i_rpf)=>{
+            //     if (the_ou === i_rpf){
+            //         not_rp_fac_codes.push(the_ou);
+            //     }else{
+            //     }
+            // });
+            if(!rp_fac_codes.includes(the_ou)){
+                not_rp_fac_codes.push(the_ou);
+                tbldata2 += '<tr>';
+                tbldata2 += '<td>' + json_data.metaData.items[the_ou].name + '</td><td>' + the_ou + '</td>'
+                tbldata2 += '</tr>';
+            }
+        });
+        $('#detailTableNotReport tbody').append(tbldata2);
+        // alert(JSON.stringify(not_rp_fac_codes));
+        $(document).ready(function() {
+            $('#detailTableNotReport').DataTable({
+                "pageLength": 20
+            });
+        } );
+        //-------------------------------------------------------detail 
+
 
         lineOne(wbdataset);
         $('#wbdata').removeClass('hidden');
         $('.loader-sp.wbdata').addClass('hidden');
+        $('#detailsTabBtn').removeClass('disabled');
+        $('#detailsTabBtn').removeClass('disabledTab');
     },error: function (request, status, error) {
         $('.loader-sp.wbdata').addClass('hidden');
         $('#wbdata').addClass('hidden');
+        $('.detailsrow').addClass('hidden');
+        $('#detailsTabBtn').addClass('disabled').removeClass('active');
+        $('#detailsTabBtn').addClass('disabledTab').removeClass('active');
         console.log('DQ WB Completeness: error fetching json. Status: '+status+' & Error:- '+error);
         $('.wbdata_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }

@@ -68,6 +68,12 @@
   .bcwhite{
     background-color: #fff !important;
   }
+  .br3{
+    border-radius: 3px;
+  }
+  .p-5{
+    padding: 5px;
+  }
   .loader-sp{
     height: 200px;
     max-height: 100vh !important;
@@ -150,3 +156,55 @@
     font-size: 1.1em !important;
     text-transform: uppercase;
   }
+  .highcharts-container,
+  .highcharts-container svg{
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+  .disabledTab{
+    pointer-events: none;
+  }
+  .table-condensed tr td{
+    padding: 0.25rem !important;
+    font-size: 0.95em !important;
+  }
+
+  .nav-tabs li a.active.show{
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: rgb(221, 221, 221);
+    border-bottom-color: transparent;
+  }
+
+  .nav-tabs > li.active > a.active, .nav-tabs > li.active > a.active:focus, .nav-tabs > li.active > a.active:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+        border-bottom-color: rgb(221, 221, 221);
+    border-bottom-color: transparent;
+  }
+
+  .nav-tabs > li.active > a:not(.active.show):focus,
+  .nav-tabs > li.active > a:not(.active.show):hover,
+  .nav-tabs > li.active > a:not(.active.show),
+  .nav-tabs li a:not(.active.show){
+    text-decoration: none !important;
+    background-color: #eee !important;
+  }
+
+  .nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+   
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
