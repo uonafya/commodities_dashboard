@@ -426,9 +426,31 @@ color: transparent;}
                             </div> -->
                             <div class="row detailsrow">
 
-                                <div class="col-md-12">
-                                    <h3 id="detailTitle"></h3>                                    
+                                <div class="col-md-12" style="padding-top: 10px;">
+                                    <h3>Period: &nbsp; <a class="btn btn-default text-bold" data-toggle="modal" id="detailTitle" href='#prdmodal'></a></h3>
+                                    <hr/>
+                                    <div class="modal fade" id="prdmodal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Change period</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="pfform" action="#">
+                                                    <select name="period" class="form-control fcblack text-bold" required="required" id="periodfilter">
+                                                    </select>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="#" data-dismiss="modal" aria-hidden="true">Cancel</a>
+                                                    <input type="submit" class="btn btn-primary" value="&#128269; Filter"/>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                    
+                                                                        
                                 <div class="col-md-6">
                                     <div class="col-md-12 bcwhite br3 p-5">
                                         <h4><u>Facilities that reported data</u></h4>

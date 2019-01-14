@@ -208,3 +208,10 @@
   display: block;
   padding: 10px 15px;
 }
+
+.fcblack{
+  color: #121212 !important;
+}
+.text-bold{
+  font-weight: bold !important;
+}

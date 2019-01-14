@@ -185,64 +185,27 @@ $.ajax({
         wbdataset.push(reported);
         wbdataset.push(didNotReport);
         
-        
-        //-----------------------------------------------------detail 
-        
-        // ~~~~~~~~~~~~~~~~~~~~~~~~REPORTED~~~~~~~~~~~~~~~~~~~~~~~~
-        var lastperiod = json_data.metaData.dimensions.pe[json_data.metaData.dimensions.pe.length - 1];
-        $('#detailTitle').html('Period: '+dateToStr(lastperiod));
-        var rp_fac_codes = [];
-        var rp_fac_names = [];
-        var tbldata = '';
-        //find all reported facilities (CODE) for the lastperiod
-        $.each(json_data.rows,(i_index,row_val)=>{
-            if (lastperiod === row_val[1]){
-                rp_fac_codes.push(row_val[2]);
-            }
+        var prdoptn = '<option selected="true" disabled>Select period</option>';
+        $.each(json_data.metaData.dimensions.pe,(inx,prd)=>{
+            prdoptn += '<option value='+prd+'>'+dateToStr(prd)+'</option>';
         });
-        //find all reported facilities (NAME) for the lastperiod
-        $.each(rp_fac_codes,(i_index,rpfc_val)=>{
-            rp_fac_names.push(json_data.metaData.items[rpfc_val].name);
-            tbldata += '<tr>';
-            tbldata += '<td>' + json_data.metaData.items[rpfc_val].name + '</td><td>' + rpfc_val + '</td>'
-            tbldata += '</tr>';
-        });
-        // alert(JSON.stringify(rp_fac_codes));
-        // alert(JSON.stringify(rp_fac_names));
-        $('#detailTableReported tbody').append(tbldata);
-        $(document).ready(function() {
-            $('#detailTableReported').DataTable({
-                "pageLength": 20
-            });
-        } );
-        // ~~~~~~~~~~~~~~~~~~~~~~~~NOT~~REPORTED~~~~~~~~~~~~~~~~~~~~~~
+        $('#periodfilter').append(prdoptn);
 
-        var not_rp_fac_codes = [];
-        var tbldata2 = '';
-        $.each(json_data.metaData.dimensions.ou,(inex,valou)=>{
-            let the_ou = valou;
-            // $.each(rp_fac_codes,(inde,i_rpf)=>{
-            //     if (the_ou === i_rpf){
-            //         not_rp_fac_codes.push(the_ou);
-            //     }else{
-            //     }
-            // });
-            if(!rp_fac_codes.includes(the_ou)){
-                not_rp_fac_codes.push(the_ou);
-                tbldata2 += '<tr>';
-                tbldata2 += '<td>' + json_data.metaData.items[the_ou].name + '</td><td>' + the_ou + '</td>'
-                tbldata2 += '</tr>';
-            }
-        });
-        $('#detailTableNotReport tbody').append(tbldata2);
-        // alert(JSON.stringify(not_rp_fac_codes));
-        $(document).ready(function() {
-            $('#detailTableNotReport').DataTable({
-                "pageLength": 20
-            });
-        } );
-        //-------------------------------------------------------detail 
+        wbDetail(json_data, '');
 
+        $(document).ready(function() {
+            $('#pfform').submit(function(event){
+                $('#prdmodal').modal('toggle');
+                event.preventDefault();
+                var nuldate = $('#pfform :input').val();
+                $('#detailTableNotReport').DataTable().destroy();
+                $('#detailTableReported').DataTable().destroy();
+                $('#detailTableNotReport tbody').empty();
+                $('#detailTableReported tbody').empty();
+                wbDetail(json_data, nuldate);
+                // console.log($('#pfform :input').val());
+            });
+        });
 
         lineOne(wbdataset);
         $('#wbdata').removeClass('hidden');
@@ -260,6 +223,79 @@ $.ajax({
     }
 });
 }
+
+
+
+
+function wbDetail(json_data, lastperiod){
+    //-----------------------------------------------------detail 
+        
+        // ~~~~~~~~~~~~~~~~~~~~~~~~REPORTED~~~~~~~~~~~~~~~~~~~~~~~~
+        if(lastperiod == null || lastperiod == ''){
+            var lastperd = json_data.metaData.dimensions.pe[json_data.metaData.dimensions.pe.length - 1];
+        }else{
+            var lastperd = lastperiod;
+        }
+        $('#detailTitle').html(dateToStr(lastperd)+'&#9662;');
+        var rp_fac_codes = [];
+        var rp_fac_names = [];
+        var tbldata = '';
+        //find all reported facilities (CODE) for the lastperiod
+        $.each(json_data.rows,(i_index,row_val)=>{
+            if (lastperd === row_val[1]){
+                rp_fac_codes.push(row_val[2]);
+            }
+        });
+        //find all reported facilities (NAME) for the lastperiod
+        $.each(rp_fac_codes,(i_index,rpfc_val)=>{
+            rp_fac_names.push(json_data.metaData.items[rpfc_val].name);
+            tbldata += '<tr>';
+            tbldata += '<td>' + json_data.metaData.items[rpfc_val].name + '</td><td>' + rpfc_val + '</td>'
+            tbldata += '</tr>';
+        });
+        // alert(JSON.stringify(rp_fac_codes));
+        // alert(JSON.stringify(rp_fac_names));
+        $('#detailTableReported tbody').append(tbldata);
+        $(document).ready(function() {
+            // $('#detailTableReported tbody').empty();
+            $('#detailTableReported').DataTable({
+                "pageLength": 15
+            });
+
+            // $('#detailTableReported').DataTable().destroy();
+            // $("#detailTableReported tbody").empty();
+            // $("#detailTableReported tbody").append(tblData);	                                                        
+            // $('#detailTableReported').DataTable().fnDraw();
+        } );
+        // ~~~~~~~~~~~~~~~~~~~~~~~~NOT~~REPORTED~~~~~~~~~~~~~~~~~~~~~~
+
+        var not_rp_fac_codes = [];
+        var tbldata2 = '';
+        $.each(json_data.metaData.dimensions.ou,(inex,valou)=>{
+            let the_ou = valou;
+            if(!rp_fac_codes.includes(the_ou)){
+                not_rp_fac_codes.push(the_ou);
+                tbldata2 += '<tr>';
+                tbldata2 += '<td>' + json_data.metaData.items[the_ou].name + '</td><td>' + the_ou + '</td>'
+                tbldata2 += '</tr>';
+            }
+        });
+        $('#detailTableNotReport tbody').append(tbldata2);
+        // alert(JSON.stringify(not_rp_fac_codes));
+        $(document).ready(function() {
+            // $('#detailTableNotReport tbody').empty();
+            $('#detailTableNotReport').DataTable({
+                "pageLength": 15
+            });
+
+            // $('#detailTableNotReport').DataTable().destroy();
+            // $("#detailTableNotReport tbody").empty();
+            // $("#detailTableNotReport tbody").append(tblData2);	                                                        
+            // $('#detailTableNotReport').DataTable().fnDraw();
+        } );
+        //-------------------------------------------------------detail 
+}
+
 
 
 
