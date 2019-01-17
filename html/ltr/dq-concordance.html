@@ -14,6 +14,7 @@
     <!-- Custom CSS -->
     <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet"><link href="../../dist/css/custom.css" rel="stylesheet">
     <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
@@ -353,7 +354,7 @@ color: transparent;}
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="commodity-picker" name="commodity"> 
+                                            <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commodity"> 
                                             </select>
                                         </div> 
                                     </div>
@@ -594,7 +595,7 @@ color: transparent;}
 
         var theou = 'tAbBVBbueqD';
         var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-        var ccurl = 'http://localhost/pmi/json/concordance1.json'
+        // var ccurl = 'http://localhost/pmi/json/concordance1.json'
         var commodity = 'iOARK31NdLp.HWtHCLAwprR';
         getConco(ccurl,commodity);
 

@@ -83,7 +83,7 @@
 
 
             //-------------------3--------------------------
-            function pieThree(x,y){
+            function pieThree(title,disc,nodisc){
                 Highcharts.chart('pc3', {
                     chart: {
                         plotBackgroundColor: null,
@@ -92,7 +92,7 @@
                         type: 'pie'
                     },
                     title: {
-                        text: 'Internal Data Consistency (AL 24)'
+                        text: title
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -107,17 +107,20 @@
                             showInLegend: true
                         }
                     },
+                    legend: {
+                        align: 'center'
+                    },
                     series: [{
-                        name: 'Brands',
+                        name: 'Consistency',
                         colorByPoint: true,
                         data: [{
                             name: 'No discrepancy',
-                            y: 61.41,
+                            y: nodisc,
                             sliced: true,
                             selected: true
                         }, {
                             name: 'Discrepancy',
-                            y: 11.84
+                            y: disc
                         }]
                     }]
                 });
