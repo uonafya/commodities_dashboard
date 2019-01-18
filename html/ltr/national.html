@@ -294,8 +294,8 @@
                             <div class="ml-auto text-right m-t-10">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">National Summary</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -314,13 +314,140 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"></h5>                                
-                                  <div id="national-container" style="width: 600px; height: 400px; margin: 0 auto"></div>                         
+                
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#overview" class="active" aria-controls="overview" role="tab" data-toggle="tab">Overview</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a>
+                            </li>
+                        </ul>
+                    
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="overview">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title"></h5>                                
+                                                <div id="national-container" style="width: 600px; height: 400px; margin: 0 auto"></div>                         
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="details">
+                                <div class="row">
+                                    <div class="col-md-12" style="border-bottom: 2px solid #115">
+                                        <div class="card">
+                                            <div class="card-body"></div>
+                                                <div role="col-md-12">
+                                                  
+                                                        <tr>
+                                                            <td>
+                                                                <span class="control-label">County:</label><br/>
+                                                                <h5 class="m-b-0">(All)</h5>
+                                                            </td>
+                                                            <td>
+                                                                <span class="control-label">Sub-county:</label><br/>
+                                                                <h5 class="m-b-0">(All)</h5>
+                                                            </td>
+                                                            <td>
+                                                                <span class="control-label">Health facility:</label><br/>
+                                                                <h5 class="m-b-0">(All)</h5>
+                                                            </td>
+                                                            <td>
+                                                                <span class="control-label">Month:</label><br/>
+                                                                <h5 class="m-b-0">Jan 2018</h5>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <table class="table table" >
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Description</th>
+                                                                <th>Unit of <br/>measure</th>
+                                                                <th>Quantity <br/>issued</th>
+                                                                <th>Quantity <br/>received</th>
+                                                                <th>Difference</th>
+                                                                <th>% Difference</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Artemether-Lumefantrine (12s) 15-25kg</td>
+                                                                <td>doses</td>
+                                                                <td>380</td>
+                                                                <td>280</td>
+                                                                <td>100</td>
+                                                                <td>26%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Artemether-Lumefantrine (18s) 25-34kg</td>
+                                                                <td>doses</td>
+                                                                <td>190</td>
+                                                                <td>190</td>
+                                                                <td>0</td>
+                                                                <td>0%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Artemether-Lumefantrine (24s) 35+kg</td>
+                                                                <td>doses</td>
+                                                                <td>700</td>
+                                                                <td>700</td>
+                                                                <td>0</td>
+                                                                <td>0%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Artemether-Lumefantrine (6s) 5-14kg</td>
+                                                                <td>doses</td>
+                                                                <td>500</td>
+                                                                <td>500</td>
+                                                                <td>0</td>
+                                                                <td>0%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Injectable Artesunate 60mg</td>
+                                                                <td>vials</td>
+                                                                <td>300</td>
+                                                                <td>-</td>
+                                                                <td>300</td>
+                                                                <td>100%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Malaria Rapid Diagnostic Test (RDTs)</td>
+                                                                <td>tests</td>
+                                                                <td>700</td>
+                                                                <td>700</td>
+                                                                <td>0</td>
+                                                                <td>0%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Sulphadoxine-Pyrimethamine tabs 500mg/25mg</td>
+                                                                <td>tablets</td>
+                                                                <td>3,000</td>
+                                                                <td>3,000</td>
+                                                                <td>0</td>
+                                                                <td>0%</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+            </div>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
