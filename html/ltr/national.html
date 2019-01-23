@@ -368,7 +368,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <table class="table table" >
+                                                    <table class="table table-condensed slimtable" id="natnl">
                                                         <thead>
                                                             <tr>
                                                                 <th>Description</th>
@@ -380,7 +380,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
+                                                            <!-- <tr>
                                                                 <td>Artemether-Lumefantrine (12s) 15-25kg</td>
                                                                 <td>doses</td>
                                                                 <td>380</td>
@@ -435,7 +435,7 @@
                                                                 <td>3,000</td>
                                                                 <td>0</td>
                                                                 <td>0%</td>
-                                                            </tr>
+                                                            </tr> -->
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -495,7 +495,9 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+    <script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/national.js"></script>
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
@@ -694,6 +696,12 @@ $(function () {
         }
    });
 });
+
+
+
+
+
+getDetails('http://localhost/pmi/json/issuedreceived.json');
 </script>
 </body>
 </html>
