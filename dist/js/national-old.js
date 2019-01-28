@@ -6,38 +6,37 @@ function getDetails(url) {
         data: "data",
         crossDomain: true,
         success: function (data) {
-            $('#perdd').html(dateToStr(data.metaData.dimensions.pe[0]));
-            $('#ounit').html(data.metaData.items[data.metaData.dimensions.ou[0]].name);
-            var thedxreceived = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length/2);
-            var thedxissued = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length);
-            $.each(thedxissued, function (index, issdId) {
+            $('#dettitle span').html(dateToStr(data.metaData.dimensions.pe[0]));
+            $('#perd').html(dateToStr(data.metaData.dimensions.pe[0]));
+            var thedx = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length/2);
+            var thedxreceived = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length);
+            $.each(thedx, function (index, thedx) {
                 var recvdId = thedxreceived[index];
-                
-                var iss_val = getVal(data.rows, issdId);
-                var recvd_val = getVal(data.rows, recvdId);
-
-                if(iss_val>recvd_val){
-                    var diff_val = iss_val-recvd_val;
-                }else{
-                    var diff_val = 0;
-                }
-
+                var iss_val = 300;
+                var recvd_val = getRecvd(data.rows,'APdt9R69Ycb',data.metaData.dimensions.pe,recvdId);
+                var diff_val = iss_val-recvd_val;
                 var diff_perc = (diff_val/iss_val)*100;
-                tdata+='<tr><td>'+data.metaData.items[issdId].name+'</td><td>'+iss_val+'</td><td>'+recvd_val+'</td><td>'+diff_val+'</td><td>'+diff_perc+'%</td></tr>';
+                tdata+='<tr><td>'+data.metaData.items[thedx].name+'</td><td>'+iss_val+'</td><td>'+recvd_val+'</td><td>'+diff_val+'</td><td>'+diff_perc+'%</td></tr>';
             })
             $('#natnl tbody').append(tdata);
+            alert(getRecvd(data.rows,'APdt9R69Ycb','201805','BnGDrFwyQp9.yuvCdaFqdCW'));
         },
         error: function(error){
 
         }
     });
 }
-function getVal(arry,commo){
-    var valu = filterItems(arry,commo);
-    if(valu[0] != undefined){
-        var thevalue = valu[0][3];
-    }
-    return thevalue;
+
+
+function getRecvd(arr,ou,per,com) {
+    var rows = arr;
+    var with_ou = filterItems(rows,ou);
+    console.log('with OU: ->  '+JSON.stringify(with_ou));
+    var with_ou_per = filterItems(with_ou,per);
+    console.log('with OU&PER: ->  '+JSON.stringify(with_ou_per));
+    var with_ou_per_com = filterItems(with_ou_per,com);
+    console.log('with OU&PER&COM: ->  '+JSON.stringify(with_ou_per_com));
+    return parseFloat(with_ou_per_com[0][3]);
 }
 function filterItems(array,query) {
     return array.filter(function(el) {

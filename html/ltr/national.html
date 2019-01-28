@@ -318,17 +318,17 @@
                     <div role="tabpanel">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#overview" class="active" aria-controls="overview" role="tab" data-toggle="tab">Overview</a>
-                            </li>
                             <li role="presentation">
-                                <a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a>
+                                <a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a>
+                            </li>
+                            <li role="presentation" class="active">
+                                <a href="#details" class="active" aria-controls="details" role="tab" data-toggle="tab">Details</a>
                             </li>
                         </ul>
                     
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="overview">
+                            <div role="tabpanel" class="tab-pane" id="overview">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="card">
@@ -340,30 +340,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="details">
+                            <div role="tabpanel" class="tab-pane active" id="details">
                                 <div class="row">
                                     <div class="col-md-12" style="border-bottom: 2px solid #115">
+                                        <h3 class="text-center m-t-5 m-b-5" id="dettitle">KEMSA Issues vs. Facility Receipts</h3>
                                         <div class="card">
-                                            <div class="card-body"></div>
-                                                <div role="col-md-12">
-                                                  
+                                            <div class="card-body">
+                                                <div class="col-md-12">
+                                                    <table class="tablez">
                                                         <tr>
-                                                            <td>
-                                                                <span class="control-label">County:</label><br/>
-                                                                <h5 class="m-b-0">(All)</h5>
-                                                            </td>
-                                                            <td>
-                                                                <span class="control-label">Sub-county:</label><br/>
-                                                                <h5 class="m-b-0">(All)</h5>
-                                                            </td>
-                                                            <td>
-                                                                <span class="control-label">Health facility:</label><br/>
-                                                                <h5 class="m-b-0">(All)</h5>
-                                                            </td>
-                                                            <td>
-                                                                <span class="control-label">Month:</label><br/>
-                                                                <h5 class="m-b-0">Jan 2018</h5>
-                                                            </td>
+                                                            <th>Org. Unit:</th>
+                                                            <td id="ounit"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Period:</th>
+                                                            <td id="perdd"></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -372,7 +363,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>Description</th>
-                                                                <th>Unit of <br/>measure</th>
+                                                                <!-- <th>Unit of <br/>measure</th> -->
                                                                 <th>Quantity <br/>issued</th>
                                                                 <th>Quantity <br/>received</th>
                                                                 <th>Difference</th>
@@ -380,65 +371,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <!-- <tr>
-                                                                <td>Artemether-Lumefantrine (12s) 15-25kg</td>
-                                                                <td>doses</td>
-                                                                <td>380</td>
-                                                                <td>280</td>
-                                                                <td>100</td>
-                                                                <td>26%</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Artemether-Lumefantrine (18s) 25-34kg</td>
-                                                                <td>doses</td>
-                                                                <td>190</td>
-                                                                <td>190</td>
-                                                                <td>0</td>
-                                                                <td>0%</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Artemether-Lumefantrine (24s) 35+kg</td>
-                                                                <td>doses</td>
-                                                                <td>700</td>
-                                                                <td>700</td>
-                                                                <td>0</td>
-                                                                <td>0%</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Artemether-Lumefantrine (6s) 5-14kg</td>
-                                                                <td>doses</td>
-                                                                <td>500</td>
-                                                                <td>500</td>
-                                                                <td>0</td>
-                                                                <td>0%</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Injectable Artesunate 60mg</td>
-                                                                <td>vials</td>
-                                                                <td>300</td>
-                                                                <td>-</td>
-                                                                <td>300</td>
-                                                                <td>100%</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Malaria Rapid Diagnostic Test (RDTs)</td>
-                                                                <td>tests</td>
-                                                                <td>700</td>
-                                                                <td>700</td>
-                                                                <td>0</td>
-                                                                <td>0%</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sulphadoxine-Pyrimethamine tabs 500mg/25mg</td>
-                                                                <td>tablets</td>
-                                                                <td>3,000</td>
-                                                                <td>3,000</td>
-                                                                <td>0</td>
-                                                                <td>0%</td>
-                                                            </tr> -->
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -701,7 +637,7 @@ $(function () {
 
 
 
-getDetails('http://localhost/pmi/json/issuedreceived.json');
+getDetails('http://localhost/pmi/json/national.json');
 </script>
 </body>
 </html>
