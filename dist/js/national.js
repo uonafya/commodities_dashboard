@@ -15,15 +15,41 @@ function getDetails(url) {
                 
                 var iss_val = getVal(data.rows, issdId);
                 var recvd_val = getVal(data.rows, recvdId);
+                if(recvd_val == undefined){
+                    recvd_val = 0;
+                }
 
+                var diff_val = iss_val-recvd_val;
                 if(iss_val>recvd_val){
-                    var diff_val = iss_val-recvd_val;
+
                 }else{
-                    var diff_val = 0;
+
                 }
 
                 var diff_perc = (diff_val/iss_val)*100;
-                tdata+='<tr><td>'+data.metaData.items[issdId].name+'</td><td>'+iss_val+'</td><td>'+recvd_val+'</td><td>'+diff_val+'</td><td>'+diff_perc+'%</td></tr>';
+                if(diff_perc<0){
+                    diff_perc = 100;
+                }
+                
+                var bcolor = '';
+                // var fcolor = '';
+                if(diff_perc>=90){
+                    bcolor = '#f2b2b2';
+                    // fcolor = '#ffffff';
+                }
+                if(diff_perc>15 && diff_perc<90){
+                    bcolor = '#f5c586';
+                    // fcolor = '#111111';
+                }
+                
+                if(diff_perc<15){
+                    bcolor = '#a8e0b3';
+                    // fcolor = '#ffffff';
+                }
+
+
+                tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+iss_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+recvd_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
+                
             })
             $('#natnl tbody').append(tdata);
         },
