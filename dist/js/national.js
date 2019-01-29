@@ -47,7 +47,7 @@ function getDetails(url) {
                 }
 
 
-                tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+iss_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+recvd_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
+                tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+iss_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+recvd_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
                 
             })
             $('#natnl tbody').append(tdata);
