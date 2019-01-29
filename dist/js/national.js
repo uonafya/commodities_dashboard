@@ -8,11 +8,10 @@ function getDetails(url) {
         success: function (data) {
             $('#perdd').html(dateToStr(data.metaData.dimensions.pe[0]));
             $('#ounit').html(data.metaData.items[data.metaData.dimensions.ou[0]].name);
-            var thedxreceived = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length/2);
-            var thedxissued = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length);
+            var thedxissued = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length/2);
+            var thedxreceived = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length);
             $.each(thedxissued, function (index, issdId) {
                 var recvdId = thedxreceived[index];
-                
                 var iss_val = getVal(data.rows, issdId);
                 var recvd_val = getVal(data.rows, recvdId);
                 if(recvd_val == undefined){
@@ -66,7 +65,7 @@ function getDetails(url) {
 function getVal(arry,commo){
     var valu = filterItems(arry,commo);
     if(valu[0] != undefined){
-        var thevalue = valu[0][3];
+        var thevalue = valu[0][2];
     }
     return thevalue;
 }
