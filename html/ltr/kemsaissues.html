@@ -10,11 +10,12 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>Malaria Commodities Dashboard</title>
+    <title>Issues vs. Receipts | Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../dist/css/custom.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -240,8 +241,8 @@
                             <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Details </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Facility</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Sub-county</span></a></li></ul></li></ul></li>
                             <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sssummary.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">SS Summary</span></a></li> -->
                             <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Data Quality </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-completeness.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Completeness</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-concordance.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Concordance</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-consistency.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consistency</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Comparison</span></a></li> </ul></li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Supply Chain Performance </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li><!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Detailed</span></a></li> --></ul></li>
-                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	 --><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National Summary</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Supply Chain Performance </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary-trends.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Trends</span></a></li><!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Detailed</span></a></li> --></ul></li>
+                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	 --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">SOH Comparison</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Pending Shipments</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Issues vs. Receipts</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Accountability</span></a></li></ul></li>
                         </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -293,7 +294,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Issues vs Receipts</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -314,10 +315,10 @@
                
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"></h5>
-                                <div class="sp_status row"></div>
+                                <h3 class="card-title">KEMSA Issues vs. Facility Receipts</h3>
+                                <div class="col-md-12 issu_status"></div>
                                 <div class="row">
-                                    <div class="loader-sp">
+                                    <div class="loader-sp issues-loader">
                                         <div class="loader loader--style3" title="2">
                                             <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                 width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -334,33 +335,41 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row spdata">
-                                    <div class="table-responsive">
-                                        <table id="sp_table" class="table table-condensed slimtable table-bordered spbox hidden">
-                                        <thead>											
-                                            <tr>
-                                                <th><b>Description</b></th>
-                                                <th><b>Unit of Measure</b></th>
-                                                <th><b>Quanty Issued</b></th>
-                                                <th><b>Quantity Received</b></th>
-                                                <th><b>Difference</b></th>
-												<th><b>% Difference</b></th>
-                                            </tr>		
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-												<th><b>Description</b></th>
-                                                <th><b>Unit of Measure</b></th>
-                                                <th><b>Quanty Issued</b></th>
-                                                <th><b>Quantity Received</b></th>
-                                                <th><b>Difference</b></th>
-												<th><b>% Difference</b></th>                                             
-                                            </tr>		
-                                        </tfoot>
-                                        </table>
-                                    </div>
+                                <div class="row" id="nat-iss">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="col-md-12">
+                                                    <table class="tablez">
+                                                        <tr>
+                                                            <th>Org. Unit:</th>
+                                                            <td id="ounit"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Period:</th>
+                                                            <td id="perdd"></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <table class="table table-condensed table-bordered slimtable" id="natnl">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Description</th>
+                                                                <!-- <th>Unit of <br/>measure</th> -->
+                                                                <th>Quantity <br/>issued</th>
+                                                                <th>Quantity <br/>received</th>
+                                                                <th>Difference</th>
+                                                                <th>% Difference</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
                                 </div>
 
                             </div>
@@ -401,6 +410,7 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
+    <script src="../../dist/js/national.js"></script>
     <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
@@ -453,7 +463,7 @@
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://test.hiskenya.org/kenya/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -470,217 +480,37 @@
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://test.hiskenya.org/kenya/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
 						if(entry.parent.id==countyid)
 						{
-							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+							subcounty.append($('<option></option>').attr('value', entry.abbreviation).text(entry.name));
 						}				
 					})		 
 				});		
 			});
+                        
 		});
 	</script>
 			
 	<script>
-	$(document).ready(function() 
-	{
-            var ounit = 'tAbBVBbueqD';
-            var period = '201805';
-            //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-			
-            var url = 'http://localhost:8016/commoditiesdashboard/commodities_dashboard/html/ltr/kemsaissues.json'
-            fetchSP(url);
-            $("#county-dropdown").change(function() 
-            {
-                ounit = $(this).val();
-                //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-				
-				var url = 'http://localhost:8016/commoditiesdashboard/commodities_dashboard/html/ltr/kemsaissues.json'
-                fetchSP(url);
-                
-            });
-
-            $("#subcounty-dropdown").change(function() 
-            {
-                ounit = $(this).val();
-                //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-				
-				var url = 'http://localhost:8016/commoditiesdashboard/commodities_dashboard/html/ltr/kemsaissues.json'
-                fetchSP(url);
-                
-            });
-					
-	});
-	
-	
-        //change of period		
-        function datePicked(sDate)
-        {
-            var dateparts = sDate.split('/', 2);
-            var therdate = dateparts[1]+''+dateparts[0];
-            var ounit = $("#county-dropdown").val();
-            var subcountyou = $("#subcounty-dropdown").val();
-            var period = therdate;
-            
-            if(subcountyou!=null)
-            {
-                var ounit = subcountyou;
-            }
-            
-            //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-			
-            var url = 'http://localhost:8016/commoditiesdashboard/commodities_dashboard/html/ltr/kemsaissues.json'
-            fetchSP(url);
-        }
-        
-        //function to process the Pending Shipments url
-        function fetchSP(spurl)
-        {
-            // $.getJSON(spurl, function (data){
-            $.ajax({
-                type: 'GET',
-                crossDomain: true,
-                url: spurl,                    
-                success: function (data) {
-
-                    //create the org units array
-                
-
-                    //var tableData = '<table>';
-                    var tableData = '';
-                    
-
-
-                    //console.log(orgunits.length);
-               var dxquantityissued = [];
-               var dxquantityreceived = [];                
-
-            var count =0;
-            //var counter2=7;
-            var products=["Artemether-Lumefantrine 20/120 Tabs 6s", "Artemether-Lumefantrine 20/120 Tabs 12s",
-             "Artemether-Lumefantrine 20/120 Tabs 18s", "Artemether-Lumefantrine 20/120 Tabs 24s", 
-             "Artesunate Injection", "Sulphadoxine Pyrimethamine Tabs", "Rapid Diagnostic Tests"];
-            
-            var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"] ;
-			
-            $.each(data.metaData.dimensions.dx, function (dxkey, dxentry, ) 
-            {
-                
-                if(count<=6)
-                {
-                    dxquantityreceived.push(dxentry);
-                 
-                    
-                }
-                
-                   if(count>6 && count<=13)
-                {
-                    dxquantityissued.push(dxentry);
-                }                
-               
-                
-                count++;
-                })
-                    //console.log(dxquantityissued)
-                var receivedvalues = [];
-                var issuedvalues = [];
-                                  
-                
-                //ADJ
-                $.each(dxquantityissued, function (rowkey, rowentry) 
-                {
-                     
-                    
-                    $.each(data.rows, function (rowkey1, rowentry2)
-                    {    
-                      
-                        if(rowentry==rowentry2[0])
-                        {   
-                           issuedvalues.push(rowentry2[3]);
-                        }
-						if (isNaN(receivedvalues)) 
-						{
-							receivedvalues.push(0);	
-						}
-                    })
-                     
-                     //tableData += '<td>'+receivedvalues+ '</td>';
-                     
-                 })
-                    //console.log("received values", receivedvalues)
-                
-                //kemsa
-                   $.each(dxquantityreceived, function (rowkey, rowentry) 
-                    {
-                    $.each(data.rows, function (rowkey1, rowentry2)
-                        {    
-
-                            if(rowentry==rowentry2[0])
-                            {   
-                               receivedvalues.push(rowentry2[3]);
-                            }
-							if (isNaN(receivedvalues))
-							{
-								receivedvalues.push(0);	
-							}
-
-                        })
-                       //tableData += '<td>'+issuedvalues+'</td>';
-                    })				
-					
-                    
-                    //tableData += '<td>'+issuedvalues+'</td>';
-               
-                    
-                  for(var i=0; i<products.length; i++){
-                      //console.log(products)
-                      var difference=+(issuedvalues[i]) - +(receivedvalues[i]);
-                      var percentdifference=+((((issuedvalues[i]) - +(receivedvalues[i]))/ +(issuedvalues[i]))*100);
-					                                              
-                    tableData += '<tr>';
-                      
-                     tableData += '<td>'+ products[i] +'</td>';     
-                        tableData += '<td>'+dxuom[i]+'</td>';
-                        tableData += '<td>'+Math.trunc(issuedvalues[i]).toLocaleString()+'</td>';
-                        tableData += '<td>'+Math.trunc(receivedvalues[i]).toLocaleString()+'</td>';
-                        tableData += '<td>'+Math.trunc(difference).toLocaleString()+'</td>';
-                        tableData += '<td>'+Math.trunc(percentdifference).toLocaleString()+'%'+'</td>'; 
-                      tableData += '</tr>';
-                  }
- 
-                    //console.log(tableData)
-                //console.log(receivedvalues)
-                //console.log(issuedvalues)
-                    //tableData += '<table>';	
-                    //console.log(tableData)
-					
-                    $('#sp_table').removeClass('hidden');
-                    $('.spdata').removeClass('hidden');
-                    $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');					
-					
-					$('#sp_table').DataTable().destroy();
-                    $("table.spbox tbody").empty();
-                    $("table.spbox tbody").append(tableData);	
-                    //$('#sp_table').DataTable();                                                          
-                    //$('#sp_table').DataTable().fnDraw();					
-                },
-				
-                error: function (request, status, error) {
-                    $('.loader-sp').addClass('hidden');
-                    $('#sp_table').addClass('hidden');
-                    console.log('SP: error fetching json. :- '+error);
-                    $('spdata').addClass('hidden');
-                    $('.sp_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-					}
-				});
-		}
 		
-</script>
-
+	//change of period		
+	function datePicked(sDate)
+	{
+		var dateparts = sDate.split('/', 2);
+		var therdate = dateparts[1]+''+dateparts[0];
+		var countyou = $("#county-dropdown").val();
+		var subcountyou = $("#subcounty-dropdown").val();
+		var periodval = therdate;	
+		
+	}
+	</script>	
+	
+	<script language="JavaScript">
+        getDetails('http://localhost/pmi/json/national.json');
+    </script>
 </body>
-
 </html>

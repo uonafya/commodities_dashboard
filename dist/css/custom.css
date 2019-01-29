@@ -218,3 +218,6 @@
 .text-bold{
   font-weight: bold !important;
 }
+.sidebar-nav ul .sidebar-item .first-level .sidebar-item .sidebar-link {
+  padding-left: 25px;
+}

@@ -10,11 +10,13 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>National Pending Shipments | Malaria Commodities Dashboard</title>
+    <title>Indicator Summary Trends | Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../dist/css/style.min.css" rel="stylesheet"><link href="../../dist/css/custom.css" rel="stylesheet">
+    <link href="../../dist/css/datatables/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="../../dist/css/datatables/jquery.dataTables.min.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -118,7 +120,7 @@
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box hidden"><a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
@@ -262,41 +264,37 @@
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
-                            <h6 class="page-title m-t-10">
-                                Pending Shipments
+                            <h4 class="page-title m-t-10">
+                                Indicator Summary
                                 &nbsp; &nbsp;
-                            </h6>
+                            </h4>
                         </div>
-                        <div class="col-md-7 col-sm-6 col-xs-12">
+                        <div class="col-md-10 col-sm-9 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
                                 <div class="col-md-11 col-sm-11 col-xs-12">
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                             </select>
                                         </div>										
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <select class="form-control m-r-5" id="subcounty-dropdown" placeholder="Subcounty" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Period" id="period-dropdown" placeholder="Period"/> 
                                         </div> 
+                                        <!-- <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <select class="form-control m-r-5" id="parameter-dropdown" name="county">                             <option>Select parameter</option>
+
+                                            </select>
+                                        </div>  -->
                                     </div>
-                                </div>                                
+                                </div>
+                                
                             </div>
                             
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
-                            <div class="ml-auto text-right m-t-10">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                    </ol>
-                                </nav>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -311,66 +309,68 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-               
-                        <div class="card">
+                <div class="row">
+                    <div class="col-12">
+					<div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Pending Shipments</h5>
-                                <div class="sp_status row"></div>
-                                <div class="row">
-                                    <div class="loader-sp">
+                                <h5 class="card-title indicatortitle"></h5>
+                                <div class="isstate col-md-12"></div>                              
+                                <div class="col-md-12 p-10">
+                                    <div class="loader-sp is-sub">
                                         <div class="loader loader--style3" title="2">
                                             <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                 width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                                 <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-                                                <animateTransform attributeType="xml"
-                                                attributeName="transform"
-                                                type="rotate"
-                                                from="0 25 25"
-                                                to="360 25 25"
-                                                dur="0.6s"
-                                                repeatCount="indefinite"/>
+                                                <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
                                                 </path>
                                             </svg>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row spdata">
-                                    <div class="table-responsive">
-                                        <table id="sp_table" class="table table-condensed slimtable table-bordered spbox hidden">
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table table-striped table-bordered indicatorsumm hidden">
                                         <thead>
-											<tr>
-                                                <th rowspan="2">Description</th>
-                                                <th rowspan="2">Unit of Measure</th>
-                                                <th colspan="5"><center><b>Pending Shipments</b></center></th>
+                                            <tr>                                                
+                                                <th><b>Parameter</b></th>
+                                                <th><b>Item</b></th>
+                                                <th><b>Num</b></th>
+                                                <th><b>Den</b></th>
+                                                <th><b>Result</b></th>
+                                                <th><b>Target</b></th>
+                                                <th><b>Acceptable</b></th>
                                             </tr>
-                                            <tr>
-                                                <th>GOK</th>
-                                                <th>GF</th>
-                                                <th>PMI</th>
-                                                <th>GOK CF</th>
-                                                <th><b>Total</b></th>
-                                            </tr>		
                                         </thead>
-                                        <tbody>
+                                        <tbody>                                            
                                         </tbody>
                                         <tfoot>
-                                            <tr>
-												<th>Description</th>
-												<th>Unit of Measure</th>
-                                                <th>GOK</th>
-                                                <th>GF</th>
-                                                <th>PMI</th>
-                                                <th>GOK CF</th>
-                                                <th><b>Total</b></th>
-                                            </tr>		
+                                            <tr>                                                
+                                                <th><b>Parameter</b></th>
+                                                <th><b>Item</b></th>
+                                                <th><b>Num</b></th>
+                                                <th><b>Den</b></th>
+                                                <th><b>Result</b></th>
+                                                <th><b>Target</b></th>
+                                                <th><b>Acceptable</b></th>
+                                            </tr>
                                         </tfoot>
-                                        </table>
-                                    </div>
+                                    </table>
                                 </div>
 
                             </div>
                         </div>
                     </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
@@ -408,32 +408,8 @@
     <!--Custom JavaScript -->
     <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
     <!-- this page js -->
-    <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-    <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-    <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
     	
-	<!-- *********** MonthPicker ************** -->
-    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
-    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
-    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
-    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
-
     <script>
-        $('#period-dropdown').MonthPicker({ 
-            Button: false,
-            MinMonth: '-1y',
-            MaxMonth: -1,
-            MinYear: 0,
-            MaxYear: 0,
-            OnAfterChooseMonth: function() {  
-                var sDate = $(this).val();
-                datePicked(sDate);
-            }
-        });        
-    </script>
-    <!-- *********** end MonthPicker ************** -->
-		
-	<script>
 		$(document).ready(function() 
 		{
 			var dropdown = $('#county-dropdown');
@@ -470,7 +446,8 @@
 			$("#county-dropdown").change(function() 
 			{  
 				subcounty.empty();
-				var countyid = $(this).val();
+				var countyid = $(this).val();	
+
 				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 				subcounty.prop('selectedIndex', 0);
 				
@@ -480,161 +457,605 @@
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
 						if(entry.parent.id==countyid)
-						{
+						{							
 							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
 						}				
 					})		 
 				});		
 			});
+                        
 		});
-	</script>
-			
-	<script>
-	$(document).ready(function() 
-	{
-            var ounit = 'tAbBVBbueqD';
-            var period = '201805';
-            //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-			
-            var url = 'http://localhost:8016/commoditiesdashboard/commodities_dashboard/html/ltr/supplypipeline.json'
-            fetchSP(url);
-            $("#county-dropdown").change(function() 
-            {
-                ounit = $(this).val();
-                //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-				
-				var url = 'http://localhost:8016/commoditiesdashboard/commodities_dashboard/html/ltr/supplypipeline.json'
-                fetchSP(url);
-                
-            });
+    </script>
 
-            $("#subcounty-dropdown").change(function() 
+<!-- *********** DataTable ************** -->
+<script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <!-- <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script> -->
+
+    
+    <script src="../../dist/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../dist/js/datatables//dataTables.buttons.min.js"></script>
+    <script src="../../dist/js/datatables/buttons.flash.min.js"></script>
+    <script src="../../dist/js/datatables/jszip.min.js"></script>
+    <script src="../../dist/js/datatables/pdfmake.min.js"></script>
+    <script src="../../dist/js/datatables/vfs_fonts.js"></script>
+    <script src="../../dist/js/datatables/buttons.html5.min.js"></script>
+    <script src="../../dist/js/datatables/buttons.print.min.js"></script>
+
+    <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable(
             {
-                ounit = $(this).val();
-                //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-				
-				var url = 'http://localhost:8016/commoditiesdashboard/commodities_dashboard/html/ltr/supplypipeline.json'
-                fetchSP(url);
-                
-            });
-					
-	});
-	
-	
-        //change of period		
+                dom: 'Bfrtip',
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            }
+        );
+    </script>
+<!-- *********** end DataTable ************** -->
+
+    
+    <!-- *********** MonthPicker ************** -->
+    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
+
+    <script>
+        $('#period-dropdown').MonthPicker({ 
+            Button: false,
+            MinMonth: '-1y',
+            MaxMonth: -1,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePicked(sDate);
+            }
+        });
+		
+	//period function				
         function datePicked(sDate)
-        {
+	{
             var dateparts = sDate.split('/', 2);
             var therdate = dateparts[1]+''+dateparts[0];
-            var ounit = $("#county-dropdown").val();
+            var countyou = $("#county-dropdown").val();
             var subcountyou = $("#subcounty-dropdown").val();
-            var period = therdate;
-            
-            if(subcountyou!=null)
+            var periodval = therdate;
+
+            if(countyou == null)
             {
-                var ounit = subcountyou;
+                countyou = 'tAbBVBbueqD';
+            }
+
+            if(subcountyou != null)
+            {
+                countyou = subcountyou;
             }
             
-            //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-			
-            var url = 'http://localhost:8016/commoditiesdashboard/commodities_dashboard/html/ltr/supplypipeline.json'
-            fetchSP(url);
+            fetchSummary(countyou,periodval);
         }
         
-        //function to process the Pending Shipments url
-        function fetchSP(spurl)
-        {
-            $('#sp_table').addClass('hidden');
-            $('.spdata').addClass('hidden');
-            $('.loader-sp').removeClass('hidden');
-            $('.loader-sp').css('display','block');
-            $.getJSON(spurl, function (data){
-            $.ajax({
-                type: 'GET',
-                crossDomain: true,
-                url: spurl,                    
-                success: function (data) {
+    </script>
+    <!-- *********** end MonthPicker ************** -->
+	
+	<!-- MOS by Commodity -->
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script type="text/javascript">
+	
+        // Stock calculations
+	$(document).ready(function() 
+	{
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;tAbBVBbueqD&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'http://localhost/pmi/json/indicatorsummary.json';
+		//parse the data for mos percentage
+        $.ajax({
+            type: 'GET',
+            crossDomain: true,
+            url: url,                    
+            success: function (data) {
+                
+			var orgunits = data.metaData.dimensions.ou;
+			var Den=orgunits.length;
+                        
+                        //apply the title
+                        var theperiod = data.metaData.dimensions.pe[0];
+                        var theorgunit = 'tAbBVBbueqD';
+                        
+                        var curpe = data.metaData.items[theperiod].name;
+                        
+                        getOrgUnit(theorgunit, curpe);
+	
+			            var tableData = '';                        
+                        
+                        //stocked according to plan
+                        $.each(data.metaData.dimensions.dx, function (key, entry) 
+                        {	
+                                //define the variables to hold the counter
+                                var stockok = 0;
 
-                    //create the org units array
-                    var orgunits = [];
-                    var dxids = [];
+                                //define the table
 
-                    //var tableData = '<table>';
-                    var tableData = '';
+                                //console.log(data.metaData.items[entry].name);
 
-                    //console.log(data.rows);
+                                //for each dimension get the value
+                                $.each(data.rows, function (rkey, rentry) 
+                                {	
+                                        var dxid = rentry[0];
+                                        var mosval = parseFloat(rentry[2]);
 
-                    //push only if not in
-                    $.each(data.rows, function (rowkey, rowentry) 
-                    {
-                            //console.log(rowentry[1]);
-                            //console.log(orgunits.indexOf(rowentry[1]))
-                            if(orgunits.indexOf(rowentry[1])>=0)
-                            {
-                                    //console.log(orgunits);
-                            }
-                            else
-                            {
-                                    orgunits.push(rowentry[1]);
-                            }	
+                                        if(dxid==entry)
+                                        {
+                                                if(mosval>=3 && mosval<=6)
+                                                {
+                                                        stockok++;
+                                                }						
+                                        }					
+                                })	
+                                var acceptable=70;
+                                var target=90;
+                                var stockok=(stockok);
+                                var org=(orgunits.length);
+                                var okpercent = (stockok/orgunits.length)*100;
 
-                    })
+                                tableData += '<tr>';
+                                tableData += '<td>HFs stocked according to plan</td>';
+                                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                                tableData += '<td>'+stockok+'</td>';                                
+                                tableData += '<td>'+Den+'</td>';                                
+                                tableData += '<td>'+okpercent.toFixed(1)+'%</td>';
+                                tableData += '<td>'+target+ '%</td>';
+                                tableData += '<td>'+acceptable+ '%</td>';
+                                tableData += '</tr>';	
+                        })
 
-                    //console.log(orgunits.length);
-					
-					var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"] ;	
-                    $.each(data.metaData.dimensions.dx, function (key, entry) 
-                    {
-                            //define the table
-                            tableData += '<tr>';	
-                            tableData += '<td>'+data.metaData.items[entry].name.substr(3)+'</td>';
-							//console.log(dxuom[1]);
-                            tableData += '<td>'+dxuom[key]+'</td>';
-							tableData += '<td>'+Math.trunc(data.rows[key][3]).toLocaleString()+ '</td>';
-							tableData += '<td>'+Math.trunc(data.rows[key][3]).toLocaleString()+ '</td>';							
-							tableData += '<td>'+Math.trunc(data.rows[key][3]).toLocaleString()+ '</td>';
-							tableData += '<td>'+Math.trunc(data.rows[key][3]).toLocaleString()+ '</td>';
-														
-							tableData += '<td><b>'+(+data.rows[key][3] * 4).toLocaleString() +'</b></td>';
-							
-							//tableData += '<td><b>'+(+data.rows[key][3] + +data.rows[key][3] + +data.rows[key][3] + +data.rows[key][3]).toLocaleString() +'</b></td>';
-							//console.log(key);
-                            //console.log(data.metaData.items[entry].name.substr(3));
-                            //console.log(entry);
-							//console.log(data.rows);
-							//console.log(+data.rows[key][3] + +data.rows[key][3] + +data.rows[key][3] + +data.rows[key][3])
-							console.log(data.rows[key][3] * 4)
+                        //overstocked
+			$.each(data.metaData.dimensions.dx, function (key, entry) 
+			{
+				//define the variables to hold the counter
+				var overstock = 0;								
 
-                            
-                            tableData += '</tr>';	
-                    })
+				$.each(data.rows, function (rkey, rentry) 
+				{	
+					var dxid = rentry[0];
+					var mosval = parseFloat(rentry[2]);
+					//console.log(parseFloat(rentry[2]));
+					if(dxid==entry)
+					{
+						//console.log(mosval);
+						if(mosval>6)
+						{
+							overstock++;
+						}										
+					}					
+				})	
+				var acceptable = 15;
+                                var target = 5;
+				var overOrg=(orgunits.length);
+				var overstock = (overstock);			
+				var overpercent = (overstock/orgunits.length)*100;
 
-                    //tableData += '<table>';	
-                    //console.log(tableData)
-					
-                    $('#sp_table').removeClass('hidden');
-                    $('.spdata').removeClass('hidden');
-                    $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');					
-					
-					$('#sp_table').DataTable().destroy();
-                    $("table.spbox tbody").empty();
-                    $("table.spbox tbody").append(tableData);	
-                    //$('#sp_table').DataTable();                                                          
-                    //$('#sp_table').DataTable().fnDraw();					
-                },
+                                tableData += '<tr>';
+                                tableData += '<td>HFs over-stocked</td>';
+                                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                                tableData += '<td>'+overstock+'</td>';                                
+                                tableData += '<td>'+Den+'</td>';                                
+                                tableData += '<td>'+overpercent.toFixed(1)+'%</td>';
+                                tableData += '<td>'+target+ '%</td>';
+                                tableData += '<td>'+acceptable+ '%</td>';
+                                tableData += '</tr>';
+                })
+                
+                
+                //under stocked
+                $.each(data.metaData.dimensions.dx, function (key, entry) 
+                {	
+                //define the variables to hold the counter
+				var understock = 0;
 				
-                error: function (request, status, error) {
-                    $('.loader-sp').addClass('hidden');
-                    $('#sp_table').addClass('hidden');
-                    console.log('SP: error fetching json. :- '+error);
-                    $('spdata').addClass('hidden');
-                    $('.sp_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-					}
-				});
+				//define the table				
+				//tableData += '<td>'+data.metaData.items[entry].name+'</td>';							
+				//console.log(data.metaData.items[entry].name);
+				
+				//for each dimension get the value
+				$.each(data.rows, function (rkey, rentry) 
+				{	
+					var dxid = rentry[0];
+					var mosval = parseFloat(rentry[2]);
+					
+					if(dxid==entry)
+					{
+						if(mosval>0 && mosval<3)
+						{
+							understock++;
+						}						
+					}					
+				})	
+				var acceptable = 15;
+                                var target = 5;
+				var understock=(understock);
+				var org=(orgunits.length);
+				var underpercent = (understock/orgunits.length)*100;
+				                                
+                                tableData += '<tr>';
+                                tableData += '<td>HFs under-stocked</td>';
+                                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                                tableData += '<td>'+understock+'</td>';                                
+                                tableData += '<td>'+Den+'</td>';                                
+                                tableData += '<td>'+underpercent.toFixed(1)+'%</td>';
+                                tableData += '<td>'+target+ '%</td>';
+                                tableData += '<td>'+acceptable+ '%</td>';
+                                tableData += '</tr>';
 			})
-		}
-</script>
+
+			//tableData += '<table>';	
+			//console.log(tableData)			
+			//$("table.understock tbody").append(tableData);
+
+                
+                //stockout
+                $.each(data.metaData.dimensions.dx, function (key, entry) 
+		{	
+                //define the variables to hold the counter
+				var stockout = 0;
+				
+				//define the table
+									
+				//console.log(data.metaData.items[entry].name);
+				
+				//for each dimension get the value
+				$.each(data.rows, function (rkey, rentry) 
+				{	
+                                    var dxid = rentry[0];
+                                    var mosval = parseFloat(rentry[2]);
+
+                                    if(dxid==entry)
+                                    {
+                                        if(mosval==0)
+                                        {
+                                            stockout++;
+                                        }						
+                                    }					
+				})	
+				var acceptable=10;
+                                var target = 0;
+				var stockout=(stockout);
+				var org=(orgunits.length);
+				var stockoutpercent = (stockout/orgunits.length)*100;
+											                                
+                                tableData += '<tr>';
+                                tableData += '<td>HFs with a stock out</td>';
+                                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                                tableData += '<td>'+stockout+'</td>';                                
+                                tableData += '<td>'+Den+'</td>';                                
+                                tableData += '<td>'+stockoutpercent.toFixed(1)+'%</td>';
+                                tableData += '<td>'+target+ '%</td>';
+                                tableData += '<td>'+acceptable+ '%</td>';
+                                tableData += '</tr>';
+			            })
+				
+                        $('.loader-sp').addClass('hidden');
+                        $('.table-responsive').removeClass('hidden');
+                        $('.indicatorsumm').removeClass('hidden');
+                        $('.indicatorsumm').DataTable().destroy();
+                        $("table.indicatorsumm tbody").empty();
+
+                        $("table.indicatorsumm tbody").append(tableData);
+                        $('.indicatorsumm').DataTable( {
+                            initComplete: function () {
+                                this.api().columns(0).every( function () {
+                                    var column = this;
+                                    var select = $('<select><option value=""></option></select>')
+                                        .appendTo( $(column.footer()).empty() )
+                                        .on( 'change', function () {
+                                            var val = $.fn.dataTable.util.escapeRegex(
+                                                $(this).val()
+                                            );
+                                            column
+                                                .search( val ? '^'+val+'$' : '', true, false )
+                                                .draw();
+                                        } );
+                                    column.data().unique().sort().each( function ( d, j ) {
+                                            select.append( '<option value="'+d+'">'+d+'</option>' );
+                                    } );
+                                } );
+                                this.api().columns(1).every( function () {
+                                    var column = this;
+                                    var select = $('<select><option value=""></option></select>')
+                                        .appendTo( $(column.footer()).empty() )
+                                        .on( 'change', function () {
+                                            var val = $.fn.dataTable.util.escapeRegex(
+                                                $(this).val()
+                                            );
+                                            column
+                                                .search( val ? '^'+val+'$' : '', true, false )
+                                                .draw();
+                                        } );
+                                    column.data().unique().sort().each( function ( d, j ) {
+                                            select.append( '<option value="'+d+'">'+d+'</option>' );
+                                    } );
+                                } );
+                            }
+                        });	                                                        
+                        $('.indicatorsumm').DataTable().draw();
+
+                },
+                error: function (request, status, error) {
+                    $('.indicatorsumm').addClass('hidden');
+                    $('.table-responsive').addClass('hidden');
+                    $('.loader-sp').addClass('hidden');
+                    console.log('IndicatorSumm: error fetching json. :- '+error);
+                    $('.isstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+            }
+        });
+        
+        
+        //handle onchange
+        $("#county-dropdown").change(function() 
+        {
+            var ounit = $(this).val(); 
+            var period =  getPeriod();
+            fetchSummary(ounit,period);
+        });
+
+        $("#subcounty-dropdown").change(function() 
+        {
+            var ounit = $(this).val();  
+            var period =  getPeriod();
+            fetchSummary(ounit,period);
+        });
+});
+
+
+function fetchSummary(ounit,period)
+{
+    var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+		//parse the data for mos percentage
+    $.getJSON(url, function (data) 
+    {
+                var orgunits = data.metaData.dimensions.ou;
+                var Den=orgunits.length;
+
+                //apply the title
+                var theperiod = data.metaData.dimensions.pe[0];
+                                
+                var curpe = data.metaData.items[theperiod].name;
+                
+                getOrgUnit(ounit, curpe);
+
+                var tableData = '';                        
+
+                //stocked according to plan
+                $.each(data.metaData.dimensions.dx, function (key, entry) 
+                {	
+                        //define the variables to hold the counter
+                        var stockok = 0;
+
+                        //define the table
+
+                        //console.log(data.metaData.items[entry].name);
+
+                        //for each dimension get the value
+                        $.each(data.rows, function (rkey, rentry) 
+                        {	
+                                var dxid = rentry[0];
+                                var mosval = parseFloat(rentry[2]);
+
+                                if(dxid==entry)
+                                {
+                                        if(mosval>=3 && mosval<=6)
+                                        {
+                                                stockok++;
+                                        }						
+                                }					
+                        })	
+                        var acceptable=70;
+                        var target=90;
+                        var stockok=(stockok);
+                        var org=(orgunits.length);
+                        var okpercent = (stockok/orgunits.length)*100;
+                        
+                        //var bgcolor = getBgColor(okpercent);
+
+                        tableData += '<tr>';
+                        tableData += '<td>HFs stocked according to plan</td>';
+                        tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                        tableData += '<td>'+stockok+'</td>';                                
+                        tableData += '<td>'+Den+'</td>';                                
+                        tableData += '<td>'+okpercent.toFixed(1)+'%</td>';
+                        tableData += '<td>'+target+ '%</td>';
+                        tableData += '<td>'+acceptable+ '%</td>';
+                        tableData += '</tr>';	
+                })
+
+                //overstocked
+                $.each(data.metaData.dimensions.dx, function (key, entry) 
+                {
+                        //define the variables to hold the counter
+                        var overstock = 0;								
+
+                        $.each(data.rows, function (rkey, rentry) 
+                        {	
+                                var dxid = rentry[0];
+                                var mosval = parseFloat(rentry[2]);
+                                //console.log(parseFloat(rentry[2]));
+                                if(dxid==entry)
+                                {
+                                        //console.log(mosval);
+                                        if(mosval>6)
+                                        {
+                                                overstock++;
+                                        }										
+                                }					
+                        })	
+                        var acceptable = 15;
+                        var target = 5;
+                        var overOrg=(orgunits.length);
+                        var overstock = (overstock);			
+                        var overpercent = (overstock/orgunits.length)*100;
+
+                        tableData += '<tr>';
+                        tableData += '<td>HFs over-stocked</td>';
+                        tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                        tableData += '<td>'+overstock+'</td>';                                
+                        tableData += '<td>'+Den+'</td>';                                
+                        tableData += '<td>'+overpercent.toFixed(1)+'%</td>';
+                        tableData += '<td>'+target+ '%</td>';
+                        tableData += '<td>'+acceptable+ '%</td>';
+                        tableData += '</tr>';
+        })
+
+
+        //under stocked
+        $.each(data.metaData.dimensions.dx, function (key, entry) 
+        {	
+        //define the variables to hold the counter
+                        var understock = 0;
+
+                        //define the table				
+                        //tableData += '<td>'+data.metaData.items[entry].name+'</td>';							
+                        //console.log(data.metaData.items[entry].name);
+
+                        //for each dimension get the value
+                        $.each(data.rows, function (rkey, rentry) 
+                        {	
+                                var dxid = rentry[0];
+                                var mosval = parseFloat(rentry[2]);
+
+                                if(dxid==entry)
+                                {
+                                        if(mosval>0 && mosval<3)
+                                        {
+                                                understock++;
+                                        }						
+                                }					
+                        })	
+                        var acceptable = 15;
+                        var target = 5;
+                        var understock=(understock);
+                        var org=(orgunits.length);
+                        var underpercent = (understock/orgunits.length)*100;
+
+                        tableData += '<tr>';
+                        tableData += '<td>HFs under-stocked</td>';
+                        tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                        tableData += '<td>'+understock+'</td>';                                
+                        tableData += '<td>'+Den+'</td>';                                
+                        tableData += '<td>'+underpercent.toFixed(1)+'%</td>';
+                        tableData += '<td>'+target+ '%</td>';
+                        tableData += '<td>'+acceptable+ '%</td>';
+                        tableData += '</tr>';
+                })
+
+                //tableData += '<table>';	
+                //console.log(tableData)			
+                //$("table.understock tbody").append(tableData);
+
+
+        //stockout
+        $.each(data.metaData.dimensions.dx, function (key, entry) 
+        {	
+        //define the variables to hold the counter
+                        var stockout = 0;
+
+                        //define the table
+
+                        //console.log(data.metaData.items[entry].name);
+
+                        //for each dimension get the value
+                        $.each(data.rows, function (rkey, rentry) 
+                        {	
+                            var dxid = rentry[0];
+                            var mosval = parseFloat(rentry[2]);
+
+                            if(dxid==entry)
+                            {
+                                if(mosval==0)
+                                {
+                                    stockout++;
+                                }						
+                            }					
+                        })	
+                        var acceptable=10;
+                        var target = 0;
+                        var stockout=(stockout);
+                        var org=(orgunits.length);
+                        var stockoutpercent = (stockout/orgunits.length)*100;
+
+                        tableData += '<tr>';
+                        tableData += '<td>HFs with a stock out</td>';
+                        tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                        tableData += '<td>'+stockout+'</td>';                                
+                        tableData += '<td>'+Den+'</td>';                                
+                        tableData += '<td>'+stockoutpercent.toFixed(1)+'%</td>';
+                        tableData += '<td>'+target+ '%</td>';
+                        tableData += '<td>'+acceptable+ '%</td>';
+                        tableData += '</tr>';
+                })
+
+                $("table.indicatorsumm tbody").empty();
+                $("table.indicatorsumm tbody").append(tableData);
+                //$('#zero_config').DataTable();
+        });
+}
+
+
+//get the period
+function getPeriod()
+{
+    var periodval = $("#period-dropdown").val();
+
+    if(periodval == null || periodval=='')
+    {
+        periodval = '201805';
+    }
+    else
+    {
+        var dateparts = periodval.split('/', 2);
+
+        var therdate = dateparts[1]+''+dateparts[0];                
+        var periodval = therdate;
+    }
+    
+    return periodval;
+}
+
+//GET THE org unit name
+function getOrgUnit(uid, period)
+{
+    var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+uid+'.json?fields=id,name';
+    
+    $.ajax({      
+      dataType: "json",
+      url: url, //Relative or absolute path to response.php file      
+      success: function(data) 
+      {          
+          $("h5.indicatortitle").html(data['name']+' - '+period);
+      }
+    });    
+}
+
+//set the background color
+function getBgColor(dxval)
+{
+    var bgcolor = '#ffffff';
+    if(dxval<0)
+            bgcolor = '#ffcccc'
+    if (dxval >= 0 && dxval< 3)
+            bgcolor = '#ffbf00'
+    if (dxval >= 3 && dxval<= 6)
+            bgcolor = '#20b43d'
+    if(dxval>6)
+            bgcolor = '#85bfe0'
+        
+    return bgcolor;
+}
+
+	</script>
+	<!-- end MOS by Commodity -->
 
 </body>
 

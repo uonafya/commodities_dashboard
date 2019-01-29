@@ -52,8 +52,13 @@ function getDetails(url) {
                 
             })
             $('#natnl tbody').append(tdata);
+            $('.issues-loader').addClass('hidden');
+            $('.issu_status').addClass('hidden');
         },
         error: function(error){
+            $('.issues-loader').addClass('hidden');
+            $('#nat-iss').addClass('hidden');
+            $('.issu_status').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
 
         }
     });
