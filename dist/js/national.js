@@ -7,6 +7,13 @@ function getDetails(url) {
         crossDomain: true,
         success: function (data) {
             $('#perdd').html(dateToStr(data.metaData.dimensions.pe[0]));
+            orgunits = data.metaData.dimensions.ou;
+            var orgu_opts = '';
+            $.each(orgunits, function (inx, orgu) {
+                orgu_opts+='<option value='+orgu+'>'+data.metaData.items[orgu].name+'</option>';
+            })
+            $('#facility-dropdown').empty();
+            $('#facility-dropdown').append(orgu_opts);
             $('#ounit').html(data.metaData.items[data.metaData.dimensions.ou[0]].name);
             var thedxissued = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length/2);
             var thedxreceived = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length);

@@ -285,9 +285,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"></h5>
-                                <div class="sp_status row"></div>
+                                <div class="acc_status row"></div>
                                 <div class="row">
-                                    <div class="loader-sp">
+                                    <div class="loader-sp hidden">
                                         <div class="loader loader--style3" title="2">
                                             <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                 width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -304,34 +304,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row spdata">
+                                <div class="row accdata">
                                     <div class="table-responsive">
 										<h4>Accountability for commodities issued to health facilities</h4>
-                                        <table id="sp_table" class="table table-condensed slimtable table-bordered spbox hidden">
+                                        <table id="acc_table" class="table table-condensed slimtable table-bordered accbox hidden">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Code</th>
-                                                <th>RR%</th>
-                                                <th>SP aAMC</th>
-                                                <th>SP need pq + 3/12</th>
-                                                <th>SP Latest SOH</th>
-                                                <th>SP MOS</th>
+                                                <th>County</th>
+                                                <th>Item</th>
+                                                <th>Opening SOH</th>
+                                                <th>+ve Adj</th>
+                                                <th>KEMSA Issues</th>
+                                                <th>Qty Disp</th>
+                                                <th>-ve Adj</th>
+                                                <th>Closing SOH</th>
+                                                <th>% accounted for</th>
                                             </tr>		
                                         </thead>
                                         <tbody>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Code</th>
-                                                <th>RR%</th>
-                                                <th>SP aAMC</th>
-                                                <th>SP need pq + 3/12</th>
-                                                <th>SP Latest SOH</th>
-                                                <th>SP MOS</th>
-                                            </tr>		
-                                        </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -374,7 +365,9 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/accountability.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+    <script src="../../dist/js/custom.js"></script>
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
@@ -463,7 +456,7 @@
             var ounit = 'tAbBVBbueqD';
             var period = '201805';
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'http://localhost/pmi/json/accountability.json'
+            var url = 'http://localhost/pmi/json/accountabilitydata.json'
             fetchAccountability(url);
 			
             $("#county-dropdown").change(function() 
@@ -484,149 +477,6 @@
 					
 	});
 	
-        
-        //function toprocess the SP url
-        function fetchAccountability(spurl)
-        {
-            $('#sp_table').addClass('hidden');
-            $('.spdata').addClass('hidden');
-            $('.loader-sp').removeClass('hidden');
-            $('.loader-sp').css('display','block');
-            // $.getJSON(spurl, function (data){
-            $.ajax({
-                type: 'GET',
-                crossDomain: true,
-                url: spurl,                    
-                success: function (data) {
-
-                    //create the org units array
-                    var orgunits = [];
-                    var dxids = [];
-
-                    //var tableData = '<table>';
-                    var tableData = '';
-
-                    console.log(data.rows);
-
-                    //push only if not in
-                    $.each(data.rows, function (rowkey, rowentry) 
-                    {
-                            //console.log(rowentry[1]);
-                            //console.log(orgunits.indexOf(rowentry[1]))
-                            if(orgunits.indexOf(rowentry[1])>=0)
-                            {
-                                    //console.log(orgunits);
-                            }
-                            else
-                            {
-                                    orgunits.push(rowentry[1]);
-                            }	
-
-                    })
-
-                    //console.log(orgunits.length);
-                    $.each(data.metaData.dimensions.ou, function (key, entry) 
-                    {
-                            //define the table
-                            tableData += '<tr>';	
-                            tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                            tableData += '<td>'+entry+'</td>';
-                            //console.log(data.metaData.items[entry].name);
-                            //console.log(entry);
-                            //console.log(entry);	
-
-                            //get all the dimensions for the given orgunit
-                            dxids = [];
-                            $.each(data.rows, function (rkey, rentry) 
-                            {
-                                    var dxcode = rentry[1];
-
-                                    if(dxcode==entry)
-                                    {
-                                            dxids.push(rentry[0]);
-                                    }												
-                            })
-
-                            //console.log(dxids);
-
-
-                            //console.log(data.rows);
-                            //for each dimension get the value
-                            var count = 0;
-                            $.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
-                            {
-                                    //console.log(orgunits.indexOf(entry));
-                                    //console.log(dxids.indexOf(dxentry));
-                                    //console.log(orgunits);	
-                                    //console.log(data.metaData.items[dxentry].name);
-                                    if(orgunits.indexOf(entry)<0)
-                                    {
-                                            tableData += '<td bgcolor="#ff0000"> - </td>';
-                                    }
-                                    else if(dxids.indexOf(dxentry)<0)
-                                    {
-                                            tableData += '<td bgcolor="#ff0000"> - </td>';
-                                    }
-                                    else
-                                    {										
-                                            $.each(data.rows, function (rkey, rentry) 
-                                            {					
-                                                    var dxid = rentry[0];
-                                                    var dxcode = rentry[1];
-                                                    var dxval = rentry[2];
-
-                                                    if(dxentry==dxid)
-                                                    {						
-                                                            if(dxcode==entry)
-                                                            {
-                                                                    //console.log(rentry);		
-                                                                    //var notfoundRow = false;
-                                                                    var bgcolor = '#ffffff';
-                                                                    if(dxval<0)
-                                                                            bgcolor = '#ffcccc'
-                                                                    if (dxval >= 0 && dxval< 3)
-                                                                            bgcolor = '#ffbf00'
-                                                                    if (dxval >= 3 && dxval<= 6)
-                                                                            bgcolor = '#20b43d'
-                                                                    if(dxval>6)
-                                                                            bgcolor = '#85bfe0'
-
-                                                                    tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
-                                                            }						
-                                                    }						
-                                            })				
-
-                                    }
-                                    count++;
-                            })					
-
-                            tableData += '</tr>';	
-                    })
-
-                    //tableData += '<table>';	
-                    //console.log(tableData)
-                    $('#sp_table').removeClass('hidden');
-                    $('.spdata').removeClass('hidden');
-                    $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');
-                    
-                    $('#sp_table').DataTable().destroy();
-                    $("table.spbox tbody").empty();
-                    $("table.spbox tbody").append(tableData);	
-                    //$('#sp_table').DataTable();                                                          
-                    $('#sp_table').DataTable().fnDraw();
-
-                    
-                },
-                error: function (request, status, error) {
-                    $('.loader-sp').addClass('hidden');
-                    $('#sp_table').addClass('hidden');
-                    console.log('SP: error fetching json. :- '+error);
-                    $('spdata').addClass('hidden');
-                    $('.sp_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-                }
-            });
-    }
 </script>
 
 </body>
