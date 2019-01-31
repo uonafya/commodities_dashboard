@@ -106,10 +106,16 @@ function fetchAccountability(url) {
 
                 $.each(commodities_id_ki_arr, function (comki_indx, com_ki) {
                     var kione_val = filterItems(rows_filtered_ou, com_ki[0]);
-                    if(kione_val[3] == undefined || kione_val == undefined || kione_val == null || kione_val == ''){kione_val = [0,0,0,0];}
+                    if(kione_val[0] == undefined || kione_val == undefined || kione_val == null || kione_val == ''){kione_val = [0,0,0,0];}
+                    console.log("SS:"+JSON.stringify(kione_val));
+                    if(typeof kione_val[0] == 'number'){
+                        var kione_value = kione_val[3];
+                    }else if(typeof kione_val[0] == 'array' || typeof kione_val[0] == 'object'){
+                        var kione_value = kione_val[0][3];
+                    }
                     var kione_id2 = ou+"_ki_cell_"+comki_indx;
                     kissue_arr.push(kione_val);
-                    $("#"+kione_id2).html(kione_val[3]);
+                    $("#"+kione_id2).html(kione_value);
                 });
 
                 $('#'+ou+'_totalOpeningSOH').html(sumArr(opsoh_arr));
