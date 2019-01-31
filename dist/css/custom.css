@@ -221,3 +221,9 @@
 .sidebar-nav ul .sidebar-item .first-level .sidebar-item .sidebar-link {
   padding-left: 25px;
 }
+.text-caps{
+  text-transform: uppercase;
+}
+.bb5{
+  border-bottom: 5px solid gray
+}

@@ -286,8 +286,8 @@
                             <div class="card-body">
                                 <h5 class="card-title"></h5>
                                 <div class="acc_status row"></div>
-                                <div class="row">
-                                    <div class="loader-sp hidden">
+                                <div class="row" id="acc_loader">
+                                    <div class="loader-sp acc_loader">
                                         <div class="loader loader--style3" title="2">
                                             <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                 width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -305,24 +305,24 @@
                                     </div>
                                 </div>
                                 <div class="row accdata">
-                                    <div class="table-responsive">
+                                    <div class="col-md-12">
 										<h4>Accountability for commodities issued to health facilities</h4>
-                                        <table id="acc_table" class="table table-condensed slimtable table-bordered accbox hidden">
-                                        <thead>
-                                            <tr>
-                                                <th>County</th>
-                                                <th>Item</th>
-                                                <th>Opening SOH</th>
-                                                <th>+ve Adj</th>
-                                                <th>KEMSA Issues</th>
-                                                <th>Qty Disp</th>
-                                                <th>-ve Adj</th>
-                                                <th>Closing SOH</th>
-                                                <th>% accounted for</th>
-                                            </tr>		
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
+                                        <table id="acc_table" class="table hidden table-striped table-condensed slimtable table-bordered accbox">
+                                            <thead>
+                                                <tr>
+                                                    <th>County</th>
+                                                    <th>Item</th>
+                                                    <th>Opening SOH</th>
+                                                    <th>+ve Adj</th>
+                                                    <th>KEMSA Issues</th>
+                                                    <th>Qty Disp</th>
+                                                    <th>-ve Adj</th>
+                                                    <th>Closing SOH</th>
+                                                    <th>% accounted for</th>
+                                                </tr>		
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -365,13 +365,15 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/accountability.js"></script>
-    <script src="../../dist/js/custom.min.js"></script>
-    <script src="../../dist/js/custom.js"></script>
-    <!-- this page js -->
+
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
+
+    <script src="../../dist/js/acc.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+    <script src="../../dist/js/custom.js"></script>
+    <!-- this page js -->
     	
 	<!-- *********** MonthPicker ************** -->
     <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
@@ -456,7 +458,7 @@
             var ounit = 'tAbBVBbueqD';
             var period = '201805';
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'http://localhost/pmi/json/accountabilitydata.json'
+            var url = 'http://localhost/pmi/json/accountabilitydata.json';
             fetchAccountability(url);
 			
             $("#county-dropdown").change(function() 
