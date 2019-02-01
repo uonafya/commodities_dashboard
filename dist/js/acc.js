@@ -84,7 +84,15 @@ function fetchAccountability(url) {
                     closbal_arr.push(closbal[3]);
                     tabl+='<td>'+closbal[3]+'</td>';
 
-                    tabl+='<td>% accounted for</td>';
+                    var kiar = getPerc();
+                    var sum_pos = opsoh[3]+posadj[3]+parseFloat(kiar[com_indx]);
+                    console.log("sum_pos: "+sum_pos);
+                    var sum_neg = qtydisp[3]+negadj[3]+closbal[3];
+                    var per_acc_for = parseFloat(sum_neg)*100/parseFloat(sum_pos);
+                    console.log("per_acc_for: "+per_acc_for);
+                    tabl+='<td>'+per_acc_for.toFixed(0)+'%</td>';
+                    pcacc_arr.push(per_acc_for);
+
                     // ----------END data cells----------
                     tabl+='</tr>';
                 });
@@ -107,7 +115,6 @@ function fetchAccountability(url) {
                 $.each(commodities_id_ki_arr, function (comki_indx, com_ki) {
                     var kione_val = filterItems(rows_filtered_ou, com_ki[0]);
                     if(kione_val[0] == undefined || kione_val == undefined || kione_val == null || kione_val == ''){kione_val = [0,0,0,0];}
-                    console.log("SS:"+JSON.stringify(kione_val));
                     if(typeof kione_val[0] == 'number'){
                         var kione_value = kione_val[3];
                     }else if(typeof kione_val[0] == 'array' || typeof kione_val[0] == 'object'){
@@ -118,16 +125,25 @@ function fetchAccountability(url) {
                     $("#"+kione_id2).html(kione_value);
                 });
 
+                function getPerc(){
+                    return kissue_arr;
+                }
+
                 $('#'+ou+'_totalOpeningSOH').html(sumArr(opsoh_arr));
                 $('#'+ou+'_totalPveAdj').html(sumArr(posadj_arr));
                 $('#'+ou+'_totalKEMSAIssues').html(sumArr(kissue_arr));
                 $('#'+ou+'_totalQtyDisp').html(sumArr(qtydisp_arr));
                 $('#'+ou+'_totalNveAdj').html(sumArr(negadj_arr));
                 $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
-                $('#'+ou+'_totalPcAccounted').html(sumArr(pcacc_arr));
+                // $('#'+ou+'_totalPcAccounted').html(sumArr(pcacc_arr).toFixed(0)+'%');
+                var total_pac_n = sumArr(closbal_arr)+sumArr(negadj_arr)+sumArr(qtydisp_arr);
+                var total_pac_p = sumArr(opsoh_arr)+sumArr(posadj_arr)+sumArr(kissue_arr);
+                var total_pac = (total_pac_n/total_pac_p)*100;
+                $('#'+ou+'_totalPcAccounted').html(total_pac.toFixed(0)+'%');
 
             });
-	
+    
+            
             $('.acc_loader').addClass('hidden');
             $('#acc_table').removeClass('hidden');
             $('.acc_status').addClass('hidden');
