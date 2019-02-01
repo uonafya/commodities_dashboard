@@ -34,7 +34,7 @@ function getDetails(url) {
 
                 var diff_perc = (diff_val/iss_val)*100;
                 if(diff_perc<0){
-                    diff_perc = 100;
+                    // diff_perc = 100;
                 }
                 
                 var bcolor = '';
