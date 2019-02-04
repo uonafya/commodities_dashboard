@@ -39,10 +39,6 @@ function getDetails(url) {
                 
                 var bcolor = '';
                 // var fcolor = '';
-                if(diff_perc>=90 && diff_perc<0){
-                    bcolor = '#f2b2b2';
-                    // fcolor = '#ffffff';
-                }
                 if(diff_perc>15 && diff_perc<90){
                     bcolor = '#f5c586';
                     // fcolor = '#111111';
@@ -52,11 +48,17 @@ function getDetails(url) {
                     bcolor = '#a8e0b3';
                     // fcolor = '#ffffff';
                 }
+                
+                if(diff_perc>=90 && diff_perc<0){
+                    bcolor = '#f2b2b2';
+                    // fcolor = '#ffffff';
+                }
 
 
                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+iss_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+recvd_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
                 
             })
+            $('#natnl tbody').empty();
             $('#natnl tbody').append(tdata);
             $('.issues-loader').addClass('hidden');
             $('.issu_status').addClass('hidden');
