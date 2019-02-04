@@ -119,7 +119,13 @@
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <ul class="navbar-nav float-right">
+                    <li class="nav-item search-box">
+                        <a class="btn btn-info bn-xs" data-toggle="modal" href='#abb_mdl'>Abbreviations</a>
+                    </li>
+                    <li class="nav-item search-box m-l-10">
+                        <a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a>
+                    </li>
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
@@ -306,9 +312,9 @@
                                             <table class="table">
                                                 <tr>
                                                     <td bgcolor="#ff0000" style="color: #ffffff; line-height: 0.97;"><b>Stocked<br/>Out</b></td>
-                                                    <td bgcolor="#ffbf00"><b>MOS<3</b></td>
-                                                    <td style="color: #ffffff; line-height: 0.97;" bgcolor="#20b43d"><b>MOS 3-6</b></td>
-                                                    <td bgcolor="#85bfe0"><b>MOS>6</b></td>
+                                                    <td bgcolor="#ffc7ce"><b>MOS<3</b></td>
+                                                    <td style="/*color: #ffffff;*/ line-height: 0.97;" bgcolor="#7bd48d"><b>MOS 3-6</b></td>
+                                                    <td bgcolor="#ffeb9c"><b>MOS>6</b></td>
                                                 </tr>
                                             </table> 
                                         </div>
@@ -488,7 +494,98 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved. Health Commodities Dashboard &copy 2018
+                
+                <div class="modal fade" id="abb_mdl">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header pull-left">
+                                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                                <h4 class="modal-title pull-left">Abbreviations</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-condensed table-striped slimtable text-left" id="abbrev">
+                                    <thead>
+                                        <tr>
+                                            <th>Abbreviation</th>
+                                            <th>Meaning</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>AL (6,12,18,24)</td>
+                                            <td>Artemether-Lumefantrine tabs</td>
+                                        </tr>
+                                        <tr>
+                                            <td>AI</td>
+                                            <td>Artesunate Injection</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SP</td>
+                                            <td>Sulphadoxine Pyrimethamine</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RDT</td>
+                                            <td>Rapid Diagnostic Tests</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PMI</td>
+                                            <td>President's Malaria Initiative</td>
+                                        </tr>
+                                        <tr>
+                                            <td>HCD</td>
+                                            <td>Health Commodities Dashboard</td>
+                                        </tr>
+                                        <tr>
+                                            <td>USAID</td>
+                                            <td>United States Agency for International Development</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SS</td>
+                                            <td>Stock Status</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RR</td>
+                                            <td>Reporting Rate</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SCP</td>
+                                            <td>Supply Chain Performance</td>
+                                        </tr>
+                                        <tr>
+                                            <td>KEMSA</td>
+                                            <td>Kenya Medical Supplies Authority</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NMCP</td>
+                                            <td>National Malaria Control Program</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ACTs</td>
+                                            <td>Artemether-Lumefantrine Tabs</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SOH</td>
+                                            <td>Stock on Hand</td>
+                                        </tr>
+                                        <tr>
+                                            <td>AS</td>
+                                            <td>Artesunate Injection</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DQ</td>
+                                            <td>Data Quality</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                All Rights Reserved. Health Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -539,6 +636,10 @@
 	<script>
 		$(document).ready(function() 
 		{
+            $('.table#abbrev').DataTable({
+                searching: false,
+                info: false
+            });
 			var dropdown = $('#county-dropdown');
 			
 			var subcounty = $('#subcounty-dropdown');
@@ -758,6 +859,7 @@
             
             //% of health facilities                
             var urlfa = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2;LEVEL-5&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+            var urlfa = 'http://localhost/pmi/json/urlfa.json';
             
             //define the name holder
             var itemnames = ["AL6","AL12","AL18","AL24","AS inj","SP tabs","RDTs"];
@@ -818,9 +920,9 @@
                     var okpercent = (stockok/orgunits.length)*100;
                     var underpercent = (understock/orgunits.length)*100;
                     
-                    tableData += '<td bgcolor="#85bfe0">'+overpercent.toFixed(1)+'%</td>';
-                    tableData += '<td bgcolor="#20b43d">'+okpercent.toFixed(1)+'%</td>';
-                    tableData += '<td bgcolor="#ffbf00">'+underpercent.toFixed(1)+'%</td>';				
+                    tableData += '<td bgcolor="#ffeb9c">'+overpercent.toFixed(1)+'%</td>';
+                    tableData += '<td bgcolor="#7bd48d">'+okpercent.toFixed(1)+'%</td>';
+                    tableData += '<td bgcolor="#ffc7ce">'+underpercent.toFixed(1)+'%</td>';				
                     tableData += '</tr>';	
                 })
     
@@ -904,10 +1006,10 @@
                     countname++;
                     nomos = totalfa-(overstock+stockok+understock+stockout)
                     
-                    tableData += '<td bgcolor="#85bfe0">'+overstock+'</td>';
-                    tableData += '<td bgcolor="#20b43d">'+stockok+'</td>';
-                    tableData += '<td bgcolor="#ffbf00">'+understock+'</td>';
-                    tableData += '<td bgcolor="#ff0000">'+stockout+'</td>';	
+                    tableData += '<td bgcolor="#ffeb9c">'+overstock+'</td>';
+                    tableData += '<td bgcolor="#7bd48d">'+stockok+'</td>';
+                    tableData += '<td bgcolor="#ffc7ce">'+understock+'</td>';
+                    tableData += '<td style="color: #ffffff;" bgcolor="#ff0000">'+stockout+'</td>';	
                     tableData += '<td>'+nomos+'</td>';	
                     tableData += '<td>'+totalfa+'</td>';					
                     
@@ -938,9 +1040,11 @@
                     
                     //adjc FA
                     var urlcon = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;iMHDfVvYm0W&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+                    var urlcon = 'http://localhost/pmi/json/urlcon.json';
                     
                     //physical count/SOH                
                     var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+                    var urlphy = 'http://localhost/pmi/json/urlphy.json';
                     
                     //get the physical count into an array
                     var sohval = [];
@@ -997,14 +1101,17 @@
                             var fcolor = '#222222';
 
                             if(mos<=0)
-                                bgcolor = '#ff0000'
-                                fcolor = '#ffffff'
+                                bgcolor = '#ff0000';
+                                fcolor = '#ffffff';
                             if (mos > 0 && mos< 3)
-                                bgcolor = '#ffbf00'
+                                bgcolor = '#ffc7ce';
+                                var fcolor = '#222222';
                             if (mos >= 3 && mos<= 6)
-                                bgcolor = '#20b43d'
+                                bgcolor = '#7bd48d';
+                                var fcolor = '#222222';
                             if(mos>6)
-                                bgcolor = '#85bfe0'
+                                bgcolor = '#ffeb9c';
+                                var fcolor = '#222222';
     
                             tableData += '<td>'+adjc.toFixed(0)+'</td>';
                             tableData += '<td>'+phycount.toFixed(0)+'</td>';
