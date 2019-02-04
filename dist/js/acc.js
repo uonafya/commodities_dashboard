@@ -135,11 +135,7 @@ function fetchAccountability(url) {
                 $('#'+ou+'_totalQtyDisp').html(sumArr(qtydisp_arr));
                 $('#'+ou+'_totalNveAdj').html(sumArr(negadj_arr));
                 $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
-                // $('#'+ou+'_totalPcAccounted').html(sumArr(pcacc_arr).toFixed(0)+'%');
-                var total_pac_n = sumArr(closbal_arr)+sumArr(negadj_arr)+sumArr(qtydisp_arr);
-                var total_pac_p = sumArr(opsoh_arr)+sumArr(posadj_arr)+sumArr(kissue_arr);
-                var total_pac = (total_pac_n/total_pac_p)*100;
-                $('#'+ou+'_totalPcAccounted').html(total_pac.toFixed(0)+'%');
+                $('#'+ou+'_totalPcAccounted').html(sumArr(pcacc_arr).toFixed(0)+'%');
 
             });
     

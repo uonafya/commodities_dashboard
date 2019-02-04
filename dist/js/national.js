@@ -39,7 +39,7 @@ function getDetails(url) {
                 
                 var bcolor = '';
                 // var fcolor = '';
-                if(diff_perc>=90){
+                if(diff_perc>=90 && diff_perc<0){
                     bcolor = '#f2b2b2';
                     // fcolor = '#ffffff';
                 }
@@ -48,7 +48,7 @@ function getDetails(url) {
                     // fcolor = '#111111';
                 }
                 
-                if(diff_perc<15){
+                if(diff_perc<15 && diff_perc>0){
                     bcolor = '#a8e0b3';
                     // fcolor = '#ffffff';
                 }
