@@ -342,18 +342,21 @@ color: transparent;}
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">   
                                                                                              
                                             </select>
                                         </div>										
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">             
                                             </select>
+                                        </div> 
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
                                         </div> 
                                     </div>
                                 </div>
@@ -517,7 +520,27 @@ color: transparent;}
     <script src="../../dist/js/dq.js"></script>
     <script src="../../assets/extra-libs/highcharts/dq-highcharts.js"></script>
  
+	
+	<!-- *********** MonthPicker ************** -->
+    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
+    <script>
+        $('#period-dropdown').MonthPicker({ 
+            Button: false,
+            MinMonth: '-1y',
+            MaxMonth: -1,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePicked(sDate);
+            }
+        });        
+    </script>
+    <!-- *********** end MonthPicker ************** -->
     
 	<script>
             $(document).ready(function() 
@@ -626,6 +649,19 @@ color: transparent;}
                 getConsist(consturl,commd);
             }
         );
+
+        //change of period		
+        function datePicked(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var period = therdate;
+            
+            
+            var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+period+'&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var commd = 'iOARK31NdLp.HWtHCLAwprR';
+            getConsist(consturl,commd);
+        }
     </script>
 	
 </body>
