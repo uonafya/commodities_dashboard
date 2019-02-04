@@ -188,13 +188,14 @@
                     xAxis: {
                         categories: per_arr,
                         title: {
-                            text: null
+                            text: 'Peiod'
                         }
                     },
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'Population (millions)',
+                            // text: 'Population',
+                            text: '',
                             align: 'high'
                         },
                         labels: {
@@ -249,10 +250,13 @@
             
                     yAxis: {
                         title: {
-                            text: 'Total Facilities'
+                            text: 'Facilities'
                         }
                     },
                     xAxis:{
+                      title: {
+                        text: 'period'
+                      },
                       categories: perd
                     }
                     ,

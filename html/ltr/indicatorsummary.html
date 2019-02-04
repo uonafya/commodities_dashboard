@@ -378,7 +378,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved. Malaria Commodities Dashboard &copy 2018
+                All Rights Reserved. Malaria Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -550,7 +550,7 @@
 	$(document).ready(function() 
 	{
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;tAbBVBbueqD&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'http://localhost/pmi/json/indicatorsummary.json';
+            // var url = 'http://localhost/pmi/json/indicatorsummary.json';
 		//parse the data for mos percentage
         $.ajax({
             type: 'GET',
@@ -1045,9 +1045,9 @@ function getBgColor(dxval)
     if(dxval<0)
             bgcolor = '#ffcccc'
     if (dxval >= 0 && dxval< 3)
-            bgcolor = '#ffbf00'
+            bgcolor = '#ffeb9c'
     if (dxval >= 3 && dxval<= 6)
-            bgcolor = '#20b43d'
+            bgcolor = '#7bd48d'
     if(dxval>6)
             bgcolor = '#85bfe0'
         

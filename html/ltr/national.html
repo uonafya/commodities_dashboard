@@ -263,7 +263,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-9 col-sm-3 col-xs-12">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
                                 National Dashboard
                                 &nbsp; &nbsp;
@@ -283,7 +283,7 @@
                                             </select> -->
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                           <!-- <input type="text" class="form-control" id="period-dropdown" placeholder="Period"/> -->
+                                           <input type="text" class="form-control" id="period-dropdown" placeholder="Period"/>
                                         </div> 
                                     </div>
                                 </div>                                
@@ -316,7 +316,20 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title"></h5>                                
+                                    <h5 class="card-title"></h5>  
+                                    <div class="natstate col-md-12"></div>
+                                    <div class="col-md-12 p-10 hidden natsum-loader">
+                                        <div class="loader-sp rrdb">
+                                            <div class="loader loader--style3" title="2">
+                                                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                    <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>                              
                                     <div id="national-container" style="width: 600px; height: 400px; margin: 0 auto"></div>       
                                 </div>
                             </div>
@@ -454,129 +467,48 @@
 					})		 
 				});		
 			});
+			
+			$("#period-dropdown").change(function() 
+			{  
+				$("#period-dropdown").empty();
+				var period_id = $(this).val();
+				// alert(period_id);
+			});
                         
 		});
 	</script>
 			
-	<script>
 		
-	//change of period		
-	function datePicked(sDate)
-	{
-		var dateparts = sDate.split('/', 2);
-		var therdate = dateparts[1]+''+dateparts[0];
-		var countyou = $("#county-dropdown").val();
-		var subcountyou = $("#subcounty-dropdown").val();
-		var periodval = therdate;	
-		
-	}
-	</script>	
-	
+    <script>
+        //change of period		
+        function datePicked(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var countyou = $("#county-dropdown").val();
+            var subcountyou = $("#subcounty-dropdown").val();
+            var periodval = therdate;	
+
+            var fil_url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
+            getNational(fil_url);
+        }
+    </script>
+
 	<script language="JavaScript">
-$(function () {
+    $(function () {
     
     //process the national mos data    
     var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
 
+    // var url = 'http://localhost/pmi/json/national-summary.json';
+
+    getNational(url);
     //populate dropdown with list of counties
-    $.ajax({
-        type: 'GET',
-        crossDomain: true,
-        url: url,                    
-        success: function (data) {
-
-        var stockVals = new Array();  
-
-        //loop through the row values							
-        $.each(data.metaData.dimensions.dx, function (key, entry) 
-        {				
-            $.each(data.rows, function (rkey, rentry) 
-            {		
-                var dxcode = rentry[0];
-                if(dxcode==entry)
-                {
-                    stockVals.push(parseFloat(rentry[2]));
-                }									
-            })
-        })
-        
-        console.log(stockVals);
     
-    $('#national-container').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: ''
-        },
-		credits: {
-        enabled: false
-    },
-        xAxis: {
-            categories: ['AL 6s', 'AL 12s', 'AL 18s', 'AL 24s', 'AS inj', 'SP tabs', 'RDT']
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'MOS'
-            },
-            stackLabels: {
-                enabled: true,
-                style: {
-                    fontWeight: 'bold',
-                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                }
-            }
-        },
-        legend: {
-            align: 'right',
-            x: -70,
-            verticalAlign: 'Top',
-            y: -15,
-            floating: true,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-            borderColor: '#CCC',
-            borderWidth: 1,
-            shadow: false,
-			reversed: true
-        },
-        tooltip: {
-            headerFormat: '<b>{point.x}</b><br/>',
-            pointFormat: '{series.name}: {point.y}'
-        },
-        plotOptions: {
-            series: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled: true,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                    style: {
-                        textShadow: '0 0 10px black'
-                    }
-                }
-            }
-        },
-	colors: ['#8497b0', '#c55a11', '#92d050'],
-        series: [{
-            name: 'Pending Stock',
-            data: [1.6, 0.1, 0.1, 0.1, 0, 0.1, 28.9]
-        }, {
-            name: 'KEMSA Stock',
-            data: [3, 0.0, 4.9, 3.7, 9, 5.3, 12.0]
-        }, {
-            name: 'Facility Stock',
-            data: stockVals
-        }]
-    });
-        }
-   });
 });
 
 
-
-
-
-getDetails('http://localhost/pmi/json/national.json');
 </script>
+
 </body>
 </html>

@@ -71,6 +71,116 @@ function getDetails(url) {
         }
     });
 }
+
+function getNational(nat_url) {
+        
+    $.ajax({
+        type: 'GET',
+        crossDomain: true,
+        url: nat_url,                    
+        success: function (data) {
+        $('.natsum-loader').addClass('hidden');
+        $('.natstate').addClass('hidden');
+        $('.national-container').removeClass('hidden');
+
+        var stockVals = new Array();  
+
+        //loop through the row values							
+        $.each(data.metaData.dimensions.dx, function (key, entry) 
+        {				
+            $.each(data.rows, function (rkey, rentry) 
+            {		
+                var dxcode = rentry[0];
+                if(dxcode==entry)
+                {
+                    stockVals.push(parseFloat(rentry[2]));
+                }									
+            })
+        })
+        
+        console.log(stockVals);
+        
+        $('#national-container').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: ''
+            },
+            credits: {
+            enabled: false
+        },
+            xAxis: {
+                title: {
+                    text: 'Commodities'
+                },
+                categories: ['AL 6s', 'AL 12s', 'AL 18s', 'AL 24s', 'AS inj', 'SP tabs', 'RDT']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Months of Stock (MOS)'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -70,
+                verticalAlign: 'Top',
+                y: -15,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false,
+                reversed: true
+            },
+            tooltip: {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: '{series.name}: {point.y}'
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        style: {
+                            textShadow: '0 0 10px black'
+                        }
+                    }
+                }
+            },
+        colors: ['#8497b0', '#c55a11', '#92d050'],
+            series: [{
+                name: 'Pending Stock',
+                data: [1.6, 0.1, 0.1, 0.1, 0, 0.1, 28.9]
+            }, {
+                name: 'KEMSA Stock',
+                data: [3, 0.0, 4.9, 3.7, 9, 5.3, 12.0]
+            }, {
+                name: 'Facility Stock',
+                data: stockVals
+            }]
+        });
+        },
+        error: function (request, status, error) {
+            $('.natsum-loader').addClass('hidden');
+            $('.natstate').removeClass('hidden');
+            $("#national-container").addClass('hidden');
+            console.log('Error fetching json. :- '+error);
+            $('.natstate').html('<div class ="alert alert-danger"><strong>sData Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        }
+    });
+}
+
+
 function getVal(arry,commo){
     var valu = filterItems(arry,commo);
     if(valu[0] != undefined){

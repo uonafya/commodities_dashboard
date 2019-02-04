@@ -386,7 +386,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved. Malaria Commodities Dashboard &copy 2018
+                All Rights Reserved. Malaria Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -490,7 +490,7 @@
 					{				
 						if(entry.parent.id==countyid)
 						{
-							subcounty.append($('<option></option>').attr('value', entry.abbreviation).text(entry.name));
+							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
 						}				
 					})		 
 				});		
@@ -526,7 +526,7 @@
             var subcounty_id = $(this).val();
             var scurl='https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:201805&filter=ou:'+subcounty_id+'&displayProperty=NAME&outputIdScheme=UID';
             getDetails(scurl);
-            console.log("subcounty_filter_url: "+scurl);
+            console.log("subcounty_filter_url: "+scurl)
         });
 
         $("#facility-dropdown").change(function(){  
