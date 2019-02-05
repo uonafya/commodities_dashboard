@@ -291,6 +291,10 @@ function wbDetail(json_data, lastperiod){
         });
         // alert(JSON.stringify(rp_fac_codes));
         // alert(JSON.stringify(rp_fac_names));
+        $('#detailTableReported tbody').empty();
+        $('#detailTableReported').DataTable().destroy();
+        $('#detailTableNotReport tbody').empty();
+        $('#detailTableNotReport').DataTable().destroy();
         $('#detailTableReported tbody').append(tbldata);
         $(document).ready(function() {
             // $('#detailTableReported tbody').empty();
@@ -533,3 +537,5 @@ function dateToStr(ledate){
     var lenudate = numonth+' '+leyear;
     return lenudate;
 }
+
+// window.setTimeout(function(){ $(window).resize(); }, 4000);

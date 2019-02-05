@@ -227,3 +227,5 @@
 .bb5{
   border-bottom: 5px solid gray
 }
+
+.highcharts-container{width:100% !important; height:100% !important;}

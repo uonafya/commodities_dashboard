@@ -188,7 +188,7 @@
                     xAxis: {
                         categories: per_arr,
                         title: {
-                            text: 'Peiod'
+                            text: 'Period'
                         }
                     },
                     yAxis: {
@@ -203,7 +203,8 @@
                         }
                     },
                     tooltip: {
-                        valueSuffix: ' millions'
+                        // valueSuffix: ' millions'
+                        valueSuffix: ' '
                     },
                     plotOptions: {
                         bar: {

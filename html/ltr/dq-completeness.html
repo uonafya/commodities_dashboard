@@ -416,7 +416,7 @@ color: transparent;}
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div id="wbdata" class="col-md-12"></div>
+                                    <div id="wbdata" style="min-width: 100%; max-width: 100vw; height: 500px; margin: 0 auto" class="col-md-12z"></div>
                                 </div>
                             </div>
                         </div>
@@ -519,6 +519,7 @@ color: transparent;}
 			
 			var perioddwn = $('#period-dropdown');
 
+            subcounty.attr('disabled', true);	
 			// dropdown.empty();
 			// subcounty.empty();
 			// perioddwn.empty();
@@ -536,24 +537,27 @@ color: transparent;}
 
 			//populate dropdown with list of counties
 			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			// $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
 			{
 				//console.log(data.organisationUnits);
+                dropdown.append($('<option disabled selected="true">Select county</option>'));
 				$.each(data.organisationUnits, function (key, entry) 
 				{						
 					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
 				})		 
 			});
-			
+			subcounty.append('<option selected="true" disabled>Select sub-county</option>');
 			$("#county-dropdown").change(function() 
 			{  
+                subcounty.removeAttr('disabled', true);	
 				subcounty.empty();
 				var countyid = $(this).val();
-				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 				subcounty.prop('selectedIndex', 0);
-				
 				// Populate dropdown with list of sub counties
 				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				// $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
 				{			
+                    subcounty.append('<option selected="true" disabled>Select sub-county</option>');
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
 						if(entry.parent.id==countyid)
@@ -594,7 +598,7 @@ color: transparent;}
  
     <script type="text/javascript">
         var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-        var wburl = 'http://localhost/pmi/json/completeness.json';
+        // var wburl = 'http://localhost/pmi/json/completeness.json';
         getWBData(wburl);
 
         
@@ -603,6 +607,7 @@ color: transparent;}
             {  
                 var theou = $(this).val();
                 var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                // var wburl = 'http://localhost/pmi/json/completeness.json';
                 getWBData(wburl);
             }
         );
@@ -611,6 +616,7 @@ color: transparent;}
             {  
                 var theou = $(this).val();
                 var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                // var wburl = 'http://localhost/pmi/json/completeness.json';
                 getWBData(wburl);
             }
         );
