@@ -343,6 +343,7 @@
                                                 <th>Name</th>
                                                 <th>Code</th>
                                                 <th>RR%</th>
+												<th>OT RR%</th>
                                                 <th>AL6 Latest SOH</th>
                                                 <th>AL6 MOS</th>
                                                 <th>AL12 Latest SOH</th>
@@ -361,6 +362,7 @@
                                                 <th>Name</th>
                                                 <th>Code</th>
                                                 <th>RR%</th>
+												<th>OT RR%</th>
                                                 <th>AL6 Latest SOH</th>
                                                 <th>AL6 MOS</th>
                                                 <th>AL12 Latest SOH</th>
@@ -515,13 +517,13 @@
             var ounit = 'tAbBVBbueqD';
             var period = '201805';
         
-            var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';			
             // var url = 'http://localhost/pmi/json/acts3.json'
             fetchACTs(url);
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
-                var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchACTs(url);
                 
             });
@@ -529,7 +531,7 @@
             $("#subcounty-dropdown").change(function() 
             {
                 ounit = $(this).val();
-                var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchACTs(url);
                 
             });
@@ -551,7 +553,7 @@
                 var ounit = subcountyou;
             }
             
-            var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             // var url = 'http://localhost/pmi/json/acts3.json'
             fetchACTs(url);
         }

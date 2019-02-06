@@ -48,7 +48,7 @@ $.ajax({
                             compliant_facility_count = compliant_facility_count+1;
                             compliant_facilities_names.push(theItems[oneou].name);
                             compliant_facilities_codes.push(oneou);
-                            equaltbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+oneou+'</td></tr>';
+                            equaltbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
                         }
                         // }
                         // console.log("ou_fil_from: "+JSON.stringify(ou_fil_from));
@@ -65,7 +65,7 @@ $.ajax({
             if(!compliant_facilities_codes.includes(the_ou)){
                 non_compliant_facilities_codes.push(the_ou);
                 non_compliant_facilities_names.push(theItems[the_ou].name);
-                nonequaltbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+the_ou+'</td></tr>';
+                nonequaltbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+getMFLcode(the_ou)+'</td></tr>';
             }
         });
         // alert(JSON.stringify(non_compliant_facilities_codes));
@@ -286,11 +286,15 @@ function wbDetail(json_data, lastperiod){
         $.each(rp_fac_codes,(i_index,rpfc_val)=>{
             rp_fac_names.push(json_data.metaData.items[rpfc_val].name);
             tbldata += '<tr>';
-            tbldata += '<td>' + json_data.metaData.items[rpfc_val].name + '</td><td>' + rpfc_val + '</td>'
+            tbldata += '<td>' + json_data.metaData.items[rpfc_val].name + '</td><td>' + getMFLcode(rpfc_val) + '</td>'
             tbldata += '</tr>';
         });
         // alert(JSON.stringify(rp_fac_codes));
         // alert(JSON.stringify(rp_fac_names));
+        $('#detailTableReported tbody').empty();
+        $('#detailTableReported').DataTable().destroy();
+        $('#detailTableNotReport tbody').empty();
+        $('#detailTableNotReport').DataTable().destroy();
         $('#detailTableReported tbody').append(tbldata);
         $(document).ready(function() {
             // $('#detailTableReported tbody').empty();
@@ -312,7 +316,7 @@ function wbDetail(json_data, lastperiod){
             if(!rp_fac_codes.includes(the_ou)){
                 not_rp_fac_codes.push(the_ou);
                 tbldata2 += '<tr>';
-                tbldata2 += '<td>' + json_data.metaData.items[the_ou].name + '</td><td>' + the_ou + '</td>'
+                tbldata2 += '<td>' + json_data.metaData.items[the_ou].name + '</td><td>' + getMFLcode(the_ou) + '</td>'
                 tbldata2 += '</tr>';
             }
         });
@@ -381,7 +385,7 @@ function getConsist(consturl,commd){
                         compliant_facility_count = compliant_facility_count+1;
                         nodisc_facilities_names.push(theItems[oneou].name);
                         nodisc_facilities_codes.push(oneou);
-                        nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+oneou+'</td></tr>';
+                        nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
                     }
                 }
                         
@@ -391,7 +395,7 @@ function getConsist(consturl,commd){
                 if(!nodisc_facilities_codes.includes(the_ou)){
                     disc_facilities_codes.push(the_ou);
                     disc_facilities_names.push(theItems[the_ou].name);
-                    disctbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+the_ou+'</td></tr>';
+                    disctbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+getMFLcode(the_ou)+'</td></tr>';
                 }
             });
             $('#noDiscData').append(nodisctbl);
@@ -423,6 +427,31 @@ function getConsist(consturl,commd){
         }
     });
 }
+
+
+
+function getMFLcode(dhis_code) {
+    end_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,name,code&paging=false';
+    $.ajax({
+        type: 'GET',
+        crossDomain: true,
+        url: end_url,                    
+        success: function (data) 
+            {
+                var ous = data.organisationUnits;
+                // var arr_filterd_by_dhis_code = ous.filter(function(ele) {   return ele.id == dhis_code; });
+                var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
+                    return v.id === dhis_code;
+                });
+                var mfl_id = arr_filterd_by_dhis_code[0].code;
+                return mfl_id;
+            }
+        });
+        
+    // alert(dhis_code);
+}
+
+
 
 
 function filterItems(array,query) {
@@ -508,3 +537,5 @@ function dateToStr(ledate){
     var lenudate = numonth+' '+leyear;
     return lenudate;
 }
+
+// window.setTimeout(function(){ $(window).resize(); }, 4000);
