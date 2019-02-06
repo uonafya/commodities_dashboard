@@ -269,24 +269,25 @@
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
-                        <div class="col-md-7 col-sm-6 col-xs-12">
+                        <div class="col-md-9 col-sm-9 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                             </select>
                                         </div>										
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <!-- <select class="form-control m-r-5" id="period-dropdown" placeholder="Period" name="period">                  
-                                            </select>  -->
-                                            <!-- <input type="text" class="form-control" id="period-dropdown" placeholder="Period"/> -->
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" placeholder="Period from" class="form-control" id="period-dropdown" /> 
                                         </div> 
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" placeholder="Period to" disabled class="form-control" id="period-dropdownTo"/> 
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- 
@@ -295,7 +296,7 @@
                             </div>
                             
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
+                        <div class="col-md-1 col-sm-1 col-xs-12 text-right">
                             <div class="ml-auto text-right m-t-10">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -345,7 +346,7 @@
                             </div>
                             <div class="row rrdata hidden">
                                 <div id="rrchart" class="col-md-9" style="min-width: 310px; height: 500px;"></div>
-                                <div id="sc_rrchart" class="col-md-3" style="min-width: 90px; height: 500px;"></div>
+                                <div id="sc_rrchart" class="col-md-3" style="max-width: 30%; min-width: 120px; height: 500px;"></div>
                             </div>
                         </div>
                         
@@ -412,11 +413,16 @@
 	<script>
 		$(document).ready(function() 
 		{
+        
 			var dropdown = $('#county-dropdown');
 			
 			var subcounty = $('#subcounty-dropdown');
 			
 			var perioddwn = $('#period-dropdown');
+			var perioddwnTo = $('#period-dropdownTo');
+            
+            perioddwn.val(null);
+            perioddwnTo.val(null);
 
 			dropdown.empty();
 			subcounty.empty();
@@ -473,18 +479,33 @@
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
+        var daterange = [];
         $('#period-dropdown').MonthPicker({ 
             Button: false,
-            MinMonth: '-1y',
+            Disabled: false,
+            // MinMonth: '-1y',
             MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
                 datePicked(sDate);
+                
             }
         });
-        
+
+        $('#period-dropdownTo').MonthPicker({
+            Button: false,
+            Disabled: false,
+            // MinMonth: '-1y',
+            MaxMonth: -1,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePickedTo(sDate);
+            }
+        });
     </script>
     <!-- *********** end MonthPicker ************** -->
 	
@@ -569,35 +590,70 @@
         function datePicked(sDate){
             var dateparts = sDate.split('/', 2);
             var therdate = dateparts[1]+''+dateparts[0];
-            var countyou = $("#county-dropdown").val();
-			var subcountyou = $("#subcounty-dropdown").val();
 			var periodval = therdate;
-			
-			if(countyou == null)
-			{
-				countyou = 'N7YETT3A9r1';
-			}
-			
-			if(subcountyou != null)
-			{
-				countyou = subcountyou;
-			}
-									
-			var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
-			var filtered_onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
-			console.log(filtered_url);
-			console.log(filtered_onurl);
-			
-			var filtersub_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
-			
-			if(subcountyou != null)
-			{
-				var filtersub_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
-			}
-			
-            console.log(filtersub_url);
-			fetchScRR(filtersub_url);
+			daterange.push(periodval);
+            
+            //
+                $('#period-dropdownTo').removeAttr('disabled');
+                $('#period-dropdownTo').trigger('click');
+            //
+        }
+
+        //change of period to
+        function datePickedTo(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var period = therdate;
+            daterange.push(period);
+            filtByPeriod(daterange);
+        }
+
+        function filtByPeriod(drange){
+            var date_range_string = '';
+            var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
+            var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
+            var full_dates_arr = dateRange(startDate, endDate);
+            $.each(full_dates_arr, function (indexs, onedate) {
+                var adate = onedate.split('-');
+                date_range_string += adate[0]+adate[1]+';';
+            })
+            if($('#subcounty-dropdown').val() != null){
+                var theou = $('#subcounty-dropdown').val();
+            } else if($('#county-dropdown').val() != null){
+                var theou = $('#county-dropdown').val();
+            } else{
+                var theou = 'tAbBVBbueqD';
+            }
+            
+            var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            
+            console.log("pe fi: "+filtered_url+"    &&&&&&   "+filtered_onurl);
+            
             fetchRR(filtered_url, filtered_onurl);
+            daterange = [];
+            $('#period-dropdown').val(null);
+            $('#period-dropdownTo').val(null);
+        }
+
+        function dateRange(startDate, endDate) {
+            var start      = startDate.split('-');
+            var end        = endDate.split('-');
+            var startYear  = parseInt(start[0]);
+            var endYear    = parseInt(end[0]);
+            var dates      = [];
+
+            for(var i = startYear; i <= endYear; i++) {
+                var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
+                var startMon = i === startYear ? parseInt(start[1])-1 : 0;
+                for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
+                var month = j+1;
+                var displayMonth = month < 10 ? '0'+month : month;
+                dates.push([i, displayMonth, '01'].join('-'));
+                }
+            }
+            return dates;
         }
     </script>
 </body>
