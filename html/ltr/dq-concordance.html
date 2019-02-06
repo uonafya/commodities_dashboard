@@ -338,17 +338,17 @@ color: transparent;}
                                 Data Quality: Concordance
                             </h4>
                         </div>
-                        <div class="col-md-7 col-sm-6 col-xs-12">
+                        <div class="col-md-9 col-sm-9 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">  
                                                 <option selected="true" disabled="">Select County</option><option value="vvOK1BxTbet">Baringo County</option><option value="HMNARUV2CW4">Bomet County</option><option value="KGHhQ5GLd4k">Bungoma County</option><option value="Tvf1zgVZ0K4">Busia County</option><option value="MqnLxQBigG0">Elgeyo-Marakwet County</option><option value="PFu8alU2KWG">Embu County</option><option value="uyOrcHZBpW0">Garissa County</option><option value="nK0A12Q7MvS">Homa Bay County</option><option value="bzOfj0iwfDH">Isiolo County</option><option value="Hsk1YV8kHkT">Kajiado County</option><option value="BjC1xL40gHo">Kakamega County</option><option value="ihZsJ8alvtb">Kericho County</option><option value="qKzosKQPl6G">Kiambu County</option><option value="nrI2khZx3d0">Kilifi County</option><option value="Ulj33KBau7V">Kirinyaga County</option><option value="sPkRcDvhGWA">Kisii County</option><option value="tAbBVBbueqD">Kisumu County</option><option value="j8o6iO4Njsi">Kitui County</option><option value="N7YETT3A9r1">Kwale County</option><option value="xuFdFy6t9AH">Laikipia County</option><option value="NjWSbQTwys4">Lamu County</option><option value="yhCUgGcCcOo">Machakos County</option><option value="BoDytkJQ4Qi">Makueni County</option><option value="R6f9znhg37c">Mandera County</option><option value="Eey8fT4Im3y">Marsabit County</option><option value="Y52XNJ50hYb">Meru County</option><option value="fVra3Pwta0Q">Migori County</option><option value="wsBsC6gjHvn">Mombasa County</option><option value="ahwTMNAJvrL">Muranga County</option><option value="jkG3zaihdSs">Nairobi County</option><option value="ob6SxuRcqU4">Nakuru County</option><option value="t0J75eHKxz5">Nandi County</option><option value="kqJ83J2D72s">Narok County</option><option value="uepLTG8wGWJ">Nyamira County</option><option value="mYZacFNIB3h">Nyandarua County</option><option value="ptWVfaCIdVx">Nyeri County</option><option value="o36zCRjSd4G">Samburu County</option><option value="u4t9H8XyU9P">Siaya County</option><option value="QyGNX2DpR4h">Taita Taveta County</option><option value="JsH2bnvNt2d">Tana River County</option><option value="T4urHM47nlm">Tharaka Nithi County</option><option value="mThvosEflAU">Trans-Nzoia County</option><option value="kphDeKClFch">Turkana County</option><option value="pZqQRRW7PHP">Uasin Gishu County</option><option value="sANMZ3lpqGs">Vihiga County</option><option value="CeLsrJOH0g9">Wajir County</option><option value="XWALbfAPa6n">West Pokot County</option>                                              
                                             </select>
                                         </div>										
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">   
                                                 <option selected="true" disabled="">Select Sub County</option><option value="jkQZEow83MX">Bumula Sub County</option><option value="NZphHeczehh">Cheptais Sub County</option><option value="k1mze33jOs0">Kabuchai Sub County</option><option value="CUjthlounWV">Kanduyi Sub County</option><option value="AphsS3lJwKU">Kimilili Sub County</option><option value="ZCYATXdLsL1">Mt Elgon Sub County</option><option value="whWfFA9D7td">Sirisia Sub County</option><option value="orUwYD52An3">Tongaren Sub County</option><option value="f4AOiG8fYtn">Webuye  East Sub County</option><option value="aqYhbqKclsI">Webuye West Sub County</option>                                             
                                             </select> 
@@ -357,8 +357,11 @@ color: transparent;}
                                             <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commodity"> 
                                             </select>
                                         </div> 
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <input type="text" placeholder="Period from" class="form-control" id="period-dropdown" /> 
+                                        </div> 
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <input type="text" placeholder="Period to" disabled class="form-control" id="period-dropdownTo"/> 
                                         </div> 
                                     </div>
                                 </div>
@@ -368,8 +371,8 @@ color: transparent;}
                             </div>
                             
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
-                            <div class="ml-auto text-right m-t-10">
+                        <div class="col-md-1 col-sm-1 col-xs-12 text-right">
+                            <div class="ml-auto text-right m-t-10 hidden">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -523,17 +526,33 @@ color: transparent;}
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
+        var daterange = [];
         $('#period-dropdown').MonthPicker({ 
             Button: false,
-            MinMonth: '-1y',
+            Disabled: false,
+            // MinMonth: '-1y',
             MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
                 datePicked(sDate);
+                
             }
-        });        
+        });
+
+        $('#period-dropdownTo').MonthPicker({
+            Button: false,
+            Disabled: false,
+            // MinMonth: '-1y',
+            MaxMonth: -1,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePickedTo(sDate);
+            }
+        });
     </script>
     <!-- *********** end MonthPicker ************** -->
 	
@@ -545,6 +564,10 @@ color: transparent;}
 			var subcounty = $('#subcounty-dropdown');
 			
 			var perioddwn = $('#period-dropdown');
+            var perioddwnTo = $('#period-dropdownTo');
+            perioddwnTo.attr('disabled', true);
+            perioddwn.val(null);
+            perioddwnTo.val(null);
 			// var commdwn = $('#commodity-dropdown');
 
 			dropdown.empty();
@@ -568,6 +591,7 @@ color: transparent;}
 
 			//populate dropdown with list of counties
 			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			// $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -585,6 +609,7 @@ color: transparent;}
                         
             // });
 			
+            $('#commodity-picker').append('<option selected="true" disabled>Select Sub County</option>');
 			$("#county-dropdown").change(function() 
 			{  
 				subcounty.empty();
@@ -594,6 +619,7 @@ color: transparent;}
 				
 				// Populate dropdown with list of sub counties
 				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				// $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -659,12 +685,70 @@ color: transparent;}
             var dateparts = sDate.split('/', 2);
             var therdate = dateparts[1]+''+dateparts[0];
             var period = therdate;
+            daterange.push(period);
             
-            
-            var theou = 'tAbBVBbueqD';
-            var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            //
+                $('#period-dropdownTo').removeAttr('disabled');
+                $('#period-dropdownTo').trigger('click');
+            //
+            // var theou = 'tAbBVBbueqD';
+            // var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            // var commodity = 'iOARK31NdLp.HWtHCLAwprR';
+            // getConco(ccurl,commodity);
+        }
+
+        //change of period to
+        function datePickedTo(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var period = therdate;
+            daterange.push(period);
+            filtByPeriod(daterange);
+        }
+
+        function filtByPeriod(drange){
+            var date_range_string = '';
+            var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
+            var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
+            var full_dates_arr = dateRange(startDate, endDate);
+            $.each(full_dates_arr, function (indexs, onedate) {
+                var adate = onedate.split('-');
+                date_range_string += adate[0]+adate[1]+';';
+            })
+            if($('#subcounty-dropdown').val() != null){
+                var theou = $('#subcounty-dropdown').val();
+            } else if($('#county-dropdown').val() != null){
+                var theou = $('#county-dropdown').val();
+            } else{
+                var theou = 'tAbBVBbueqD';
+            }
+            var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID';
+            console.log('filter_url: '+ccurl);
             var commodity = 'iOARK31NdLp.HWtHCLAwprR';
             getConco(ccurl,commodity);
+            daterange = [];
+            $('#period-dropdown').val(null);
+            $('#period-dropdownTo').val(null);
+        }
+
+        function dateRange(startDate, endDate) {
+            var start      = startDate.split('-');
+            var end        = endDate.split('-');
+            var startYear  = parseInt(start[0]);
+            var endYear    = parseInt(end[0]);
+            var dates      = [];
+
+            for(var i = startYear; i <= endYear; i++) {
+                var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
+                var startMon = i === startYear ? parseInt(start[1])-1 : 0;
+                for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
+                var month = j+1;
+                var displayMonth = month < 10 ? '0'+month : month;
+                dates.push([i, displayMonth, '01'].join('-'));
+                }
+            }
+            return dates;
         }
 
     </script>
