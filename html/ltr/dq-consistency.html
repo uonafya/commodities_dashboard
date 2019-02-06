@@ -337,17 +337,17 @@ color: transparent;}
                                 Data Quality: Consistency
                             </h4>
                         </div>
-                        <div class="col-md-7 col-sm-6 col-xs-12">
+                        <div class="col-md-9 col-sm-9 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">   
                                                                                              
                                             </select>
                                         </div>										
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
@@ -355,8 +355,11 @@ color: transparent;}
                                             <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">             
                                             </select>
                                         </div> 
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <input type="text" placeholder="Period from" class="form-control" id="period-dropdown"/> 
+                                        </div> 
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <input type="text" placeholder="Period to" class="form-control" id="period-dropdownTo"/> 
                                         </div> 
                                     </div>
                                 </div>
@@ -366,8 +369,8 @@ color: transparent;}
                             </div>
                             
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
-                            <div class="ml-auto text-right m-t-10">
+                        <div class="col-md-1 col-sm-1 col-xs-12 text-right">
+                            <div class="ml-auto text-right m-t-10 hidden">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -528,17 +531,33 @@ color: transparent;}
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
+        var daterange = [];
         $('#period-dropdown').MonthPicker({ 
             Button: false,
-            MinMonth: '-1y',
+            Disabled: false,
+            // MinMonth: '-1y',
             MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
                 datePicked(sDate);
+                
             }
-        });        
+        });
+
+        $('#period-dropdownTo').MonthPicker({
+            Button: false,
+            Disabled: false,
+            // MinMonth: '-1y',
+            MaxMonth: -1,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePickedTo(sDate);
+            }
+        });
     </script>
     <!-- *********** end MonthPicker ************** -->
     
@@ -550,7 +569,10 @@ color: transparent;}
                 var subcounty = $('#subcounty-dropdown');
                 
                 var perioddwn = $('#period-dropdown');
-                
+                var perioddwnTo = $('#period-dropdownTo');
+                perioddwnTo.attr('disabled', true);
+                perioddwn.val(null);
+                perioddwnTo.val(null);
                 // var commdwn = $('#commodity-dropdown');
     
                 dropdown.empty();
@@ -574,6 +596,7 @@ color: transparent;}
     
                 //populate dropdown with list of counties
                 $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+                // $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
                 {
                     //console.log(data.organisationUnits);
                     $.each(data.organisationUnits, function (key, entry) 
@@ -593,6 +616,7 @@ color: transparent;}
                     
                     // Populate dropdown with list of sub counties
                     $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+                    // $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
                     {			
                         $.each(data.organisationUnits, function (key, entry) 
                         {				
@@ -656,11 +680,75 @@ color: transparent;}
             var dateparts = sDate.split('/', 2);
             var therdate = dateparts[1]+''+dateparts[0];
             var period = therdate;
+            daterange.push(period);
             
+            //
+                $('#period-dropdownTo').removeAttr('disabled');
+                $('#period-dropdownTo').trigger('click');
+            //
             
-            var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+period+'&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            var commd = 'iOARK31NdLp.HWtHCLAwprR';
+            // var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+period+'&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            // var commd = 'iOARK31NdLp.HWtHCLAwprR';
+            // getConsist(consturl,commd);
+        }
+        
+        //change of period		
+        function datePickedTo(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var period = therdate;
+            daterange.push(period);
+            filtByPeriod(daterange);
+        }
+
+        function filtByPeriod(drange){
+            var date_range_string = '';
+            var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
+            var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
+            var full_dates_arr = dateRange(startDate, endDate);
+            $.each(full_dates_arr, function (indexs, onedate) {
+                var adate = onedate.split('-');
+                date_range_string += adate[0]+adate[1]+';';
+            })
+            if($('#subcounty-dropdown').val() != null){
+                var theou = $('#subcounty-dropdown').val();
+            } else if($('#county-dropdown').val() != null){
+                var theou = $('#county-dropdown').val();
+            } else{
+                var theou = 'tAbBVBbueqD';
+            }
+            if($('#commodity-picker').val() != null){
+                var commd = $('#commodity-picker').val();
+            } else{
+                var commd = 'iOARK31NdLp.HWtHCLAwprR';
+            }
+            var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            console.log("filter url: "+consturl);
             getConsist(consturl,commd);
+            daterange = [];
+            $('#period-dropdown').val(null);
+            $('#period-dropdownTo').val(null);
+        }
+
+        
+        function dateRange(startDate, endDate) {
+            var start      = startDate.split('-');
+            var end        = endDate.split('-');
+            var startYear  = parseInt(start[0]);
+            var endYear    = parseInt(end[0]);
+            var dates      = [];
+
+            for(var i = startYear; i <= endYear; i++) {
+                var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
+                var startMon = i === startYear ? parseInt(start[1])-1 : 0;
+                for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
+                var month = j+1;
+                var displayMonth = month < 10 ? '0'+month : month;
+                dates.push([i, displayMonth, '01'].join('-'));
+                }
+            }
+            return dates;
         }
     </script>
 	
