@@ -237,8 +237,7 @@
                     }, {
                         // name: totadj_title,
                         name: '# Adj. doses',
-                        // data: totadj_arr
-                        data: [45127,7600,18707,77182,2113,90100],
+                        data: totadj_arr
                         color: '#4f81bd'
                     }]
                 });
