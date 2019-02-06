@@ -1,3 +1,44 @@
+// fetch mfl codes
+
+var mfl_codes_array = [];
+mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,name,code&paging=false';
+// mfl_url = 'http://localhost/pmi/json/mflcode.json';
+getMFLarray(mfl_url);
+
+function getMFLarray(mfl_url) {
+    $.getJSON(mfl_url, function (data) 
+    {
+        mfl_codes_array = data.organisationUnits;
+        // console.log('mfl_codes_array: '+mfl_codes_array);
+    });
+}
+
+//---------- fetch mfl codes
+
+
+
+// filter by mfl codes
+function getMFLcode(dhis_id) {
+    if(mfl_codes_array == null){
+        getMFLarray(mfl_url);
+    }
+        // var ous = data.organisationUnits;
+        var ous = mfl_codes_array;
+        var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
+            return v.id === dhis_id;
+        });
+        var mfl_id = arr_filterd_by_dhis_code[0].code;
+        console.log('mfl_id: '+arr_filterd_by_dhis_code);
+        if(mfl_id == undefined){
+            mfl_id = 'Not Available';
+        }
+        return mfl_id;
+    
+}
+console.log("testMFL:  "+getMFLcode('BeyRouwSiVk'));
+// filter by mfl codes
+
+
 
 function getConco(ccurl,commodity){
 $('.loader-sp.pieone').removeClass('hidden');
@@ -430,26 +471,24 @@ function getConsist(consturl,commd){
 
 
 
-function getMFLcode(dhis_code) {
-    end_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,name,code&paging=false';
-    $.ajax({
-        type: 'GET',
-        crossDomain: true,
-        url: end_url,                    
-        success: function (data) 
-            {
-                var ous = data.organisationUnits;
-                // var arr_filterd_by_dhis_code = ous.filter(function(ele) {   return ele.id == dhis_code; });
-                var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
-                    return v.id === dhis_code;
-                });
-                var mfl_id = arr_filterd_by_dhis_code[0].code;
-                return mfl_id;
-            }
-        });
-        
-    // alert(dhis_code);
-}
+// function getMFLcode(dhis_code) {
+//     mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,name,code&paging=false';
+//     $.ajax({
+//         type: 'GET',
+//         crossDomain: true,
+//         url: mfl_url,                    
+//         success: function (data) 
+//             {
+//                 var ous = data.organisationUnits;
+//                 // var arr_filterd_by_dhis_code = ous.filter(function(ele) {   return ele.id == dhis_code; });
+//                 var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
+//                     return v.id === dhis_code;
+//                 });
+//                 var mfl_id = arr_filterd_by_dhis_code[0].code;
+//                 return mfl_id;
+//             }
+//         });
+// }
 
 
 

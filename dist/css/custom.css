@@ -232,3 +232,6 @@
   background: #167ba8;
   margin-left: 3px;
 }
+.form-control:disabled{
+  cursor: not-allowed;
+}
