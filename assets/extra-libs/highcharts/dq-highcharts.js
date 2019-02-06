@@ -17,6 +17,7 @@
                     plotOptions: {
                         pie: {
                             allowPointSelect: true,
+                            colors: ['#7bd48d','#ffc7ce'],
                             cursor: 'pointer',
                             dataLabels: {
                                 enabled: false
@@ -25,7 +26,7 @@
                         }
                     },
                     series: [{
-                        name: 'Brands',
+                        name: 'Percentage',
                         colorByPoint: true,
                         data: [{
                             name: 'Opening SOH = Closing SOH previous month',
@@ -60,6 +61,7 @@
                         pie: {
                             allowPointSelect: true,
                             cursor: 'pointer',
+                            colors: ['#7bd48d','#ffc7ce'],
                             dataLabels: {
                                 enabled: false
                             },
@@ -71,10 +73,10 @@
                         colorByPoint: true,
                         data: [{
                             name: 'Opening SOH = Closing SOH previous month',
-                            y: 61.41
+                            y: x
                         }, {
                             name: 'Opening SOH ≠ Closing SOH previous month',
-                            y: 7.05
+                            y: y
                         }]
                     }]
                 });
@@ -101,6 +103,7 @@
                         pie: {
                             allowPointSelect: true,
                             cursor: 'pointer',
+                            colors: ['#7bd48d','#ffc7ce'],
                             dataLabels: {
                                 enabled: false
                             },
@@ -195,8 +198,8 @@
                         min: 0,
                         title: {
                             // text: 'Population',
-                            text: '',
-                            align: 'high'
+                            text: 'Number (#)',
+                            align: 'middle'
                         },
                         labels: {
                             overflow: 'justify'
@@ -215,21 +218,28 @@
                     },
                     legend: {
                         borderWidth: 1,
-                        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                        // backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
                         shadow: true
                     },
                     credits: {
                         enabled: false
                     },
                     series: [{
-                        name: pop_title,
-                        data: pop_arr
+                        // name: pop_title,
+                        name: '# Patients',
+                        data: pop_arr,
+                        color: '#9bbb59'
                     }, {
-                        name: totdisp_title,
-                        data: totdisp_arr
+                        // name: totdisp_title,
+                        name: '# Doses dispensed',
+                        data: totdisp_arr,
+                        color: '#c0504d'
                     }, {
-                        name: totadj_title,
-                        data: totadj_arr
+                        // name: totadj_title,
+                        name: '# Adj. doses',
+                        // data: totadj_arr
+                        data: [45127,7600,18707,77182,2113,90100],
+                        color: '#4f81bd'
                     }]
                 });
             };
