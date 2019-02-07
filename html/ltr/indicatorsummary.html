@@ -745,10 +745,15 @@
 
                         $("table.indicatorsumm tbody").append(tableData);
                         $('.indicatorsumm').DataTable( {
+                            //data-xport
+                            dom: 'Bfrtip',
+                            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+                            //data-xport
+
                             initComplete: function () {
                                 this.api().columns(0).every( function () {
                                     var column = this;
-                                    var select = $('<select><option value=""></option></select>')
+                                    var select = $('<select class="form-control"><option value="">Filter parameter</option></select>')
                                         .appendTo( $(column.header()) )
                                         .on( 'change', function () {
                                             var val = $.fn.dataTable.util.escapeRegex(
@@ -764,8 +769,8 @@
                                 } );
                                 this.api().columns(1).every( function () {
                                     var column = this;
-                                    var select = $('<select><option value=""></option></select>')
-                                        .appendTo( $(column.footer()).empty() )
+                                    var select = $('<select class="form-control"><option value="">Filter items</option></select>')
+                                        .appendTo( $(column.header()) )
                                         .on( 'change', function () {
                                             var val = $.fn.dataTable.util.escapeRegex(
                                                 $(this).val()
