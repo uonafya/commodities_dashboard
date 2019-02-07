@@ -227,5 +227,11 @@
 .bb5{
   border-bottom: 5px solid gray
 }
-
 .highcharts-container{width:100% !important; height:100% !important;}
+.sidebar-nav ul .sidebar-item .first-level .sidebar-item.active .sidebar-link {
+  background: #167ba8;
+  margin-left: 3px;
+}
+.form-control:disabled{
+  cursor: not-allowed;
+}
