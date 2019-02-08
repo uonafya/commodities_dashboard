@@ -1,7 +1,7 @@
 var arr_valz = [];
 var valid_ous_array = [];
 var valid_url = 'https://testhis.uonbi.ac.ke/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
-var valid_url = 'http://localhost/pmi/json/valid_ous.json';
+// var valid_url = 'http://localhost/pmi/json/valid_ous.json';
 
 function getValidOUs(valid_url) {
     $.getJSON(valid_url, function (data){
@@ -186,7 +186,7 @@ function fetchRDTs(rdturl)
 
      var mfl_codes_array = [];
      mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,name,code&paging=false';
-     mfl_url = 'http://localhost/pmi/json/mflcode.json';
+    //  mfl_url = 'http://localhost/pmi/json/mflcode.json';
      getMFLarray(mfl_url);
 
      function getMFLarray(mfl_url) {
