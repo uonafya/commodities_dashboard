@@ -29,6 +29,7 @@ function checkOUs(ouid){
 //function toprocess the RDT url
 function fetchRDTs(rdturl)
 {
+    console.log('rdturl: '+rdturl);
     $('#rdt_table').addClass('hidden');
     $('.rdtdata').addClass('hidden');
     $('.loader-sp').removeClass('hidden');
