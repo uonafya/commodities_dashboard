@@ -30,6 +30,9 @@ getValidOUs(valid_url);
 //function toprocess the acts url
 function fetchACTs(acturl)
 {
+    $('#acts_table').addClass('hidden');
+    $('.actdata').addClass('hidden');
+    $('.loader-sp').removeClass('hidden');
     // $.getJSON(acturl, function (data){
     $.ajax({
         type: 'GET',

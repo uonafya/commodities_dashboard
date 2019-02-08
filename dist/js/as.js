@@ -29,6 +29,9 @@ getValidOUs(valid_url);
 //function toprocess the AS url
 function fetchAS(asurl)
 {
+    $('#as_table').addClass('hidden');
+    $('.asdata').addClass('hidden');
+    $('.loader-sp').removeClass('hidden');
     // $.getJSON(asurl, function (data){
     $.ajax({
         type: 'GET',
