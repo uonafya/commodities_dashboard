@@ -38,7 +38,6 @@ getValidOUs(valid_url);
             $('#sp_table').addClass('hidden');
             $('.spdata').addClass('hidden');
             $('.loader-sp').removeClass('hidden');
-            $('.loader-sp').css('display','block');
             // $.getJSON(spurl, function (data){
             $.ajax({
                 type: 'GET',
@@ -160,7 +159,7 @@ getValidOUs(valid_url);
                     $('#sp_table').removeClass('hidden');
                     $('.spdata').removeClass('hidden');
                     $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');
+                    // $('.loader-sp').css('display','none');
                     
                     $('#sp_table').DataTable().destroy();
                     $("table.spbox tbody").empty();

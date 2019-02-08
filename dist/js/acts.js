@@ -153,7 +153,7 @@ function fetchACTs(acturl)
             $('#acts_table').removeClass('hidden');
             $('.actdata').removeClass('hidden');
             $('.loader-sp').addClass('hidden');
-            $('.loader-sp').css('display','none');
+            // $('.loader-sp').css('display','none');
             
             $('#acts_table').DataTable().destroy();
             $("table.actsbox tbody").empty();

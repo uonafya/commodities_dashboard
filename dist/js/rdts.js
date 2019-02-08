@@ -153,7 +153,7 @@ function fetchRDTs(rdturl)
                     $('#rdt_table').removeClass('hidden');
                     $('.rdtdata').removeClass('hidden');
                     $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');
+                    // $('.loader-sp').css('display','none');
                     
                     $('#rdt_table').DataTable().destroy();
                     $("table.rdtbox tbody").empty();

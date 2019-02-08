@@ -139,7 +139,7 @@ function fetchAS(asurl)
             $('#as_table').removeClass('hidden');
             $('.asdata').removeClass('hidden');
             $('.loader-sp').addClass('hidden');
-            $('.loader-sp').css('display','none');
+            // $('.loader-sp').css('display','none');
             
             $('#as_table').DataTable().destroy();
             $("table.asbox tbody").empty();
