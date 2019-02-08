@@ -562,6 +562,7 @@ color: transparent;}
 			var dropdown = $('#county-dropdown');
 			
 			var subcounty = $('#subcounty-dropdown');
+			var commoditypicker = $('#commodity-picker');
 			
 			var perioddwn = $('#period-dropdown');
             var perioddwnTo = $('#period-dropdownTo');
@@ -596,6 +597,15 @@ color: transparent;}
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
 				{						
+					commoditypicker.append($('<option></option>').attr('value', entry.id).text(entry.name));			
+				})		 
+            });
+			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			// $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
+			{
+				//console.log(data.organisationUnits);
+				$.each(data.organisationUnits, function (key, entry) 
+				{						
 					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
 				})		 
             });
@@ -609,7 +619,7 @@ color: transparent;}
                         
             // });
 			
-            $('#commodity-picker').append('<option selected="true" disabled>Select Sub County</option>');
+            $('#commodity-picker').append('<option selected="true" disabled>Select commodity</option>');
 			$("#county-dropdown").change(function() 
 			{  
 				subcounty.empty();

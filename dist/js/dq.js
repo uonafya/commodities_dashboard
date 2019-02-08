@@ -28,7 +28,7 @@ function getMFLcode(dhis_id) {
             return v.id === dhis_id;
         });
         var mfl_id = arr_filterd_by_dhis_code[0].code;
-        console.log('mfl_id: '+arr_filterd_by_dhis_code);
+        // console.log('mfl_id: '+arr_filterd_by_dhis_code);
         if(mfl_id == undefined){
             mfl_id = 'Not Available';
         }

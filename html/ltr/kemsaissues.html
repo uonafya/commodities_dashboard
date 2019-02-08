@@ -282,11 +282,11 @@
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
-                                        </div> 
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="facility-dropdown" name="facility" placeholder="Facility">                   
                                             </select> 
+                                        </div> 
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
                                         </div> 
                                     </div>
                                 </div>                                
@@ -457,6 +457,9 @@
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
 			dropdown.prop('selectedIndex', 0);
+			
+			$('#facility-dropdown').append('<option selected="true" disabled>Select facility</option>');
+			$('#facility-dropdown').prop('selectedIndex', 0);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 			subcounty.prop('selectedIndex', 0);
