@@ -503,12 +503,13 @@
                 var ounit = 'tAbBVBbueqD';
             }
 
-            var period = '201805';
             var sDate = $('#period-dropdown').val();
-            var dateparts = sDate.split('/', 2);
-            var therdate = dateparts[1]+''+dateparts[0];
-            if(therdate != null){
-                period = therdate;
+            var period = '201805';
+            if(sDate.length > 2){
+                var dateparts = sDate.split('/', 2);
+                period = dateparts[1]+''+dateparts[0];
+            }else{
+                var period = '201805';   
             }
 
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;iMHDfVvYm0W;eMWOLQKFcA8;cPlWFYbBacW.rPAsF4cpNxm;R4VD8EvRxyN&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
