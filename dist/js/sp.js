@@ -31,7 +31,7 @@ function checkOUs(ouid){
         //function toprocess the SP url
         function fetchSP(spurl)
         {
-            console.log('spurl: '+spurl);
+            // console.log('spurl: '+spurl);ss
             $('#sp_table').addClass('hidden');
             $('.spdata').addClass('hidden');
             $('.loader-sp').removeClass('hidden');

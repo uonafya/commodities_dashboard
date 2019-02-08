@@ -30,7 +30,7 @@ function checkOUs(ouid){
 //function toprocess the acts url
 function fetchACTs(acturl)
 {
-    console.log('acturl: '+acturl);
+    // console.log('acturl: '+acturl);
     $('#acts_table').addClass('hidden');
     $('.actdata').addClass('hidden');
     $('.loader-sp').removeClass('hidden');
