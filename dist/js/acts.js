@@ -159,7 +159,12 @@ function fetchACTs(acturl)
             $("table.actsbox tbody").empty();
             $("table.actsbox tbody").append(tableData);	
             //$('#acts_table').DataTable();                                                          
-            $('#acts_table').DataTable().fnDraw();
+            $('#acts_table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
 
             
         },

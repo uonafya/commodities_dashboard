@@ -166,7 +166,12 @@ getValidOUs(valid_url);
                     $("table.spbox tbody").empty();
                     $("table.spbox tbody").append(tableData);	
                     //$('#sp_table').DataTable();                                                          
-                    $('#sp_table').DataTable().fnDraw();
+                    $('#sp_table').DataTable({
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        ]
+                    });
 
                     
                 },
