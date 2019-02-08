@@ -122,9 +122,7 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                    <li class="nav-item search-box">
-                        <a class="btn btn-info bn-xs" data-toggle="modal" href='#abb_mdl'>Abbreviations</a>
-                    </li>
+                    
                     <li class="nav-item search-box m-l-10">
                         <a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a>
                     </li>
@@ -497,96 +495,6 @@
             <!-- ============================================================== -->
             <footer class="footer text-center">
                 
-                <div class="modal fade" id="abb_mdl">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header pull-left">
-                                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-                                <h4 class="modal-title pull-left">Abbreviations</h4>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table table-condensed table-striped slimtable text-left" id="abbrev">
-                                    <thead>
-                                        <tr>
-                                            <th>Abbreviation</th>
-                                            <th>Meaning</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>AL (6,12,18,24)</td>
-                                            <td>Artemether-Lumefantrine tabs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>AI</td>
-                                            <td>Artesunate Injection</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SP</td>
-                                            <td>Sulphadoxine Pyrimethamine</td>
-                                        </tr>
-                                        <tr>
-                                            <td>RDT</td>
-                                            <td>Rapid Diagnostic Tests</td>
-                                        </tr>
-                                        <tr>
-                                            <td>PMI</td>
-                                            <td>President's Malaria Initiative</td>
-                                        </tr>
-                                        <tr>
-                                            <td>HCD</td>
-                                            <td>Health Commodities Dashboard</td>
-                                        </tr>
-                                        <tr>
-                                            <td>USAID</td>
-                                            <td>United States Agency for International Development</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SS</td>
-                                            <td>Stock Status</td>
-                                        </tr>
-                                        <tr>
-                                            <td>RR</td>
-                                            <td>Reporting Rate</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SCP</td>
-                                            <td>Supply Chain Performance</td>
-                                        </tr>
-                                        <tr>
-                                            <td>KEMSA</td>
-                                            <td>Kenya Medical Supplies Authority</td>
-                                        </tr>
-                                        <tr>
-                                            <td>NMCP</td>
-                                            <td>National Malaria Control Program</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ACTs</td>
-                                            <td>Artemether-Lumefantrine Tabs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SOH</td>
-                                            <td>Stock on Hand</td>
-                                        </tr>
-                                        <tr>
-                                            <td>AS</td>
-                                            <td>Artesunate Injection</td>
-                                        </tr>
-                                        <tr>
-                                            <td>DQ</td>
-                                            <td>Data Quality</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
                 All Rights Reserved. Health Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
             </footer>
             <!-- ============================================================== -->
@@ -639,12 +547,7 @@
 
 		$(document).ready(function() 
 		{
-            $('.table#abbrev').DataTable({
-                searching: false,
-                info: false
-            });
-
-
+            
 
 			var dropdown = $('#county-dropdown');
 			
