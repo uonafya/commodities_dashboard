@@ -420,7 +420,7 @@
                                         </div>
                                     </div>
                                     <div class="malaria_commodity_table t_one hidden" style="height: 450px; overflow-y:auto;">
-                                        <table class = "table percent_healthfa" style="position:relative;">
+                                        <table id="percent_healthfa" class = "table percent_healthfa" style="position:relative;">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Items</th>
@@ -454,7 +454,7 @@
                                                 </div>
                                             </div>
                                             <div class="malaria_commodity_table t_two hidden" style="height: 450px; overflow-y:auto;">
-                                                <table class="table number_healthfa" style="position:relative;">
+                                                <table id="number_healthfa" class="table number_healthfa" style="position:relative;">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Item</th>
@@ -748,17 +748,15 @@
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
-    <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-        
-    <script src="../../assets/extra-libs/DataTables/dataTables.buttons.min.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>
-    <script src="../../assets/extra-libs/jszip/jszip.min.js"></script>
-    <script src="../../assets/extra-libs/pdfmake/pdfmake.min.js"></script>
-    <script src="../../assets/extra-libs/pdfmake/vfs_fonts.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.html5.min.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.print.min.js"></script>
-    
+    <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/dataTables.buttons.js"></script>
+    <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/buttons.flash.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
 	<script type="text/javascript">
 
         //process the json
@@ -951,6 +949,10 @@
                 $('.t_one.loader-sp').addClass('hidden');
                 $('.malaria_commodity_table.t_one').removeClass('hidden');
                 $('.percent_healthfa').removeClass('hidden');
+
+                    //to enable downloading the report table
+                    downloadable('percent_healthfa');
+
             },
             error: function (request, status, error) {
                     $('.loader-sp.t_one').addClass('hidden');
@@ -1041,6 +1043,8 @@
                 $('.t_two.loader-sp').addClass('hidden');
                 $('.number_healthfa').removeClass('hidden');
                 $('.malaria_commodity_table.t_two').removeClass('hidden');
+
+                downloadable('number_healthfa');
             },
             error: function (request, status, error) {
                     $('.loader-sp.t_two').addClass('hidden');
@@ -1059,7 +1063,7 @@
                     //adjc FA
                     var urlcon = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;iMHDfVvYm0W&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
 
-                     var urlcon = 'http://api.myjson.com/bins/wcxgo';
+//                     var urlcon = 'http://api.myjson.com/bins/wcxgo';
                     
                     //physical count/SOH                
                     var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
@@ -1151,12 +1155,7 @@
                         $('.adjc_soh_mos').removeClass('hidden');
 
                         //to enable downloading the report table
-                        $('#adjc_soh_mos').DataTable( {
-                            dom: 'Bfrtip',
-                            buttons: [
-                                'copy', 'csv', 'excel', 'pdf', 'print'
-                            ]
-                        } );
+                       downloadable('adjc_soh_mos');
                     },
                     error: function (request, status, error) {
                             $('.loader-sp.t_three').addClass('hidden');
@@ -1280,6 +1279,15 @@
                         break;
                     }
                 }
+            }
+
+            function downloadable(tableid) {
+                $('#'+tableid).DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
             }
 
     </script>
