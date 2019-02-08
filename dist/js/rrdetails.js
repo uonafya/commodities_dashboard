@@ -1,6 +1,7 @@
 //function toprocess the acts url
 function fetchRRDetails(rdurl)
 {
+    console.log('rdurl is:-> '+rdurl);
     $('.loader-sp').removeClass('hidden');
     $('#zero_config.rrdetailsbox').removeClass('hidden');
     $.ajax({
@@ -73,9 +74,14 @@ function fetchRRDetails(rdurl)
             $("#zero_config.rrdetailsbox").empty();                                                
             $("#zero_config.rrdetailsbox").append(tableData);	
             $("#zero_config.rrdetailsbox").removeClass('hidden');
-            $('#zero_config.rrdetailsbox').DataTable().fnDraw();
+            // $('#zero_config.rrdetailsbox').DataTable().fnDraw();
             // $('#zero_config').DataTable().draw();
-            $('#zero_config.rrdetailsbox').DataTable();
+            $('#zero_config.rrdetailsbox').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
 
         },
     error: function (request, status, error) {
@@ -170,10 +176,15 @@ function fetchSubRRDetails(scrdurl)
             // $('#zero_config').DataTable();                                                          
             $("#zero_config-sub.rrdetailsbox-sub").append(tableDataSub);	
             $("#zero_config-sub.rrdetailsbox-sub").removeClass('hidden');
-            $('#zero_config-sub').DataTable().fnDraw();
+            // $('#zero_config-sub').DataTable().fnDraw();
             // $('#zero_config-sub').DataTable().draw();
             $('.loader-sp.sp-sub').addClass('hidden');
-            $('#zero_config-sub').DataTable();
+            $('#zero_config-sub').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
 
     },
     error: function (request, status, error) {
