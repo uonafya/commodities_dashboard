@@ -530,7 +530,7 @@
 
             var period = '201805';
             var sDate = $('#period-dropdown').val();
-            if(sDate != null || sDate != undefined){
+            if(sDate != null || sDate != undefined || sDate == ''){
                 var dateparts = sDate.split('/', 2);
                 period = dateparts[1]+''+dateparts[0];
             }else{
