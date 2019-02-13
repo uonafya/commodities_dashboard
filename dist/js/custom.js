@@ -127,18 +127,21 @@ $(document).ready(function () {
         // searching: false,
         // info: false
     });
+});
 
-    //get my ou
+
+
+//get my ou
+function getMyOU() {
     $.getJSON("https://testhis.uonbi.ac.ke/api/me.json?paging=false", function (data, textStatus, jqXHR) {
     // $.getJSON("http://localhost/pmi/json/me.json", function (data, textStatus, jqXHR) {
         var my_ous = data.organisationUnits;
         var my_dv_ous = data.dataViewOrganisationUnits;
         var my_ou_0 = my_ous[0].id;
-        console.log("my_ou_0 is: "+my_ou_0);
-    }
-    );
-    //get my ou
-});
-
+        return my_ou_0;
+    });
+};
+//get my ou
+console.log("my_ou_0 is: "+getMyOU());
 
 //---------------------------end custom---------------------------//
