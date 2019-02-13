@@ -82,8 +82,8 @@ $.ajax({
                     var ou_fil_to = filterItems(ou_filtered,filt_to);
                     // alert("commodity is: "+commodity.split('.')[0]);
                     var commo_s = commodity.split('.')[0];
-                    // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + theItems[commodity.split('.')[0]].name + '</u>');
-                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commo_s) + '</u>');
+                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + commodity + '</u>');
+                    // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commo_s) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
                         console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
                         console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
@@ -137,8 +137,8 @@ $.ajax({
         console.log("total_facilities = "+facility_count);
         console.log("compliant_facilities = "+compliant_facility_count);
         console.log("NON_compliant_facilities = "+non_compliant_facility_count);
-        // pieOne(theItems[commodity.split('.')[0]].name,compliant_facility_count,non_compliant_facility_count);
-        pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
+        pieOne(commodity,compliant_facility_count,non_compliant_facility_count);
+        // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
         $('#pc1').removeClass('hidden');
         $('.detailsrow').removeClass('hidden');
