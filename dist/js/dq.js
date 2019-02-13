@@ -135,7 +135,8 @@ $.ajax({
         console.log("total_facilities = "+facility_count);
         console.log("compliant_facilities = "+compliant_facility_count);
         console.log("NON_compliant_facilities = "+non_compliant_facility_count);
-        pieOne(theItems[commodity].name,compliant_facility_count,non_compliant_facility_count);
+        // pieOne(theItems[commodity].name,compliant_facility_count,non_compliant_facility_count);
+        pieOne(commodity,compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
         $('#pc1').removeClass('hidden');
         $('.detailsrow').removeClass('hidden');
