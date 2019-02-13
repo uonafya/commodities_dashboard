@@ -54,7 +54,7 @@ $.ajax({
         var theDims = data.metaData.dimensions;
         var theComms = data.metaData.dimensions.dx;
         var thePer = data.metaData.dimensions.pe;
-        popComms(theComms);
+        // popComms(theComms);
         
         // var thedx = theDims.dx;
         // var theperiod = theDims.pe;
@@ -98,6 +98,7 @@ $.ajax({
                 // });
             // }
         });
+        $('#equalSOH').DataTable().destroy();
         $('#equalSOH tbody').append(equaltbl);
         var nonequaltbl = '';
         // alert(JSON.stringify(compliant_facilities_codes));
@@ -110,6 +111,7 @@ $.ajax({
             }
         });
         // alert(JSON.stringify(non_compliant_facilities_codes));
+        $('#notEqualSOH').DataTable().destroy();
         $('#notEqualSOH tbody').append(nonequaltbl);
         $(document).ready(function() {
             $('#equalSOH').DataTable({
@@ -428,7 +430,7 @@ function getConsist(consturl,commd){
             var theDx = data.metaData.dimensions.dx;
             $.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
                 var theComms = data.metaData.dimensions.dx;                
-                popComms(theComms);
+                // popComms(theComms);
             });
             
             
