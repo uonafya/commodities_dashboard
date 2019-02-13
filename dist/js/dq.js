@@ -83,7 +83,7 @@ $.ajax({
                     // alert("commodity is: "+commodity.split('.')[0]);
                     var commo_s = commodity.split('.')[0];
                     var commo_name = $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity+'.json', function (datax) {return datax.displayName;});
-                    console.log('hooooo: '+commo_name);
+                    console.log('hooooo: '+JSON.stringify(commo_name));
                     $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + commo_name[0] + '</u>');
                     // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commo_s) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
