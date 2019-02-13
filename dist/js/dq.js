@@ -623,22 +623,23 @@ function dateToStr(ledate){
 }
 
 function getCommodityName(comm_id) {
+    var theid = comm_id.split('.')[0];
     var thecname ='';
     var thecname_arr =[];
-    cname_url = 'https://testhis.uonbi.ac.ke/api/29/dataElements/'+comm_id+'.json';
+    cname_url = 'https://testhis.uonbi.ac.ke/api/29/dataElements/'+theid+'.json';
     $.getJSON(cname_url, function (data) {
         var commodity_name = data.displayName; 
         thecname = commodity_name;
         console.log('thecname is::::: -> '+thecname);
         console.log('thecname_url is::::: -> '+cname_url);
         console.log('thecname_url is::::: -> '+cname_url);
-        console.log('thecname_id is::::: -> '+comm_id);
+        console.log('thecname_id is::::: -> '+theid);
         return thecname;
     });
     console.log('thecname2 is::::: -> '+thecname);
     console.log('thecname2_url is::::: -> '+cname_url);
     console.log('thecname2_url is::::: -> '+cname_url);
-    console.log('thecname2_id is::::: -> '+comm_id);
+    console.log('thecname2_id is::::: -> '+theid);
     return thecname;
 }
 // window.setTimeout(function(){ $(window).resize(); }, 4000);
