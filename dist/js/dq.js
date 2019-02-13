@@ -80,7 +80,7 @@ $.ajax({
                     var filt_to = thePer[thePer.length - 1];
                     var ou_fil_from = filterItems(ou_filtered,filt_from);
                     var ou_fil_to = filterItems(ou_filtered,filt_to);
-                    alert("commodity is: "+commodity);
+                    alert("commodity is: "+commodity.split('.')[0]);
                     // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + theItems[commodity.split('.')[0]].name + '</u>');
                     $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commodity.split('.')[0]) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
