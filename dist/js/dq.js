@@ -279,6 +279,8 @@ $.ajax({
                 $('#detailTableReported').DataTable().destroy();
                 $('#detailTableNotReport tbody').empty();
                 $('#detailTableReported tbody').empty();
+                $('#detailTableNotReport').DataTable();
+                $('#detailTableReported').DataTable();
                 wbDetail(json_data, nuldate);
                 // console.log($('#pfform :input').val());
             });
