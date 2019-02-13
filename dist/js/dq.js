@@ -81,8 +81,8 @@ $.ajax({
                     var ou_fil_from = filterItems(ou_filtered,filt_from);
                     var ou_fil_to = filterItems(ou_filtered,filt_to);
                     
-                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + theItems[commodity.split('.')[0]].name + '</u>');
-                    // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commodity) + '</u>');
+                    // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + theItems[commodity.split('.')[0]].name + '</u>');
+                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commodity.split('.')[0]) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
                         console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
                         console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
@@ -136,8 +136,9 @@ $.ajax({
         console.log("total_facilities = "+facility_count);
         console.log("compliant_facilities = "+compliant_facility_count);
         console.log("NON_compliant_facilities = "+non_compliant_facility_count);
-        pieOne(theItems[commodity.split('.')[0]].name,compliant_facility_count,non_compliant_facility_count);
-        // pieOne(getCommodityName(commodity),compliant_facility_count,non_compliant_facility_count);
+        alert("commodity is: "+commodity);
+        // pieOne(theItems[commodity.split('.')[0]].name,compliant_facility_count,non_compliant_facility_count);
+        pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
         $('#pc1').removeClass('hidden');
         $('.detailsrow').removeClass('hidden');
@@ -624,22 +625,14 @@ function dateToStr(ledate){
 
 function getCommodityName(comm_id) {
     // var theid = comm_id.split('.')[0];
-    // var thecname ='';
-    // var thecname_arr =[];
-    // cname_url = 'https://testhis.uonbi.ac.ke/api/29/dataElements/'+theid+'.json';
-    // $.getJSON(cname_url, function (data) {
-    //     var commodity_name = data.displayName; 
-    //     thecname = commodity_name;
-    //     console.log('thecname is::::: -> '+thecname);
-    //     console.log('thecname_url is::::: -> '+cname_url);
-    //     console.log('thecname_url is::::: -> '+cname_url);
-    //     console.log('thecname_id is::::: -> '+theid);
-    //     return thecname;
-    // });
-    // console.log('thecname2 is::::: -> '+thecname);
-    // console.log('thecname2_url is::::: -> '+cname_url);
-    // console.log('thecname2_url is::::: -> '+cname_url);
-    // console.log('thecname2_id is::::: -> '+theid);
-    // return thecname;
+    var thecname ='';
+    var thecname_arr =[];
+    cname_url = 'https://testhis.uonbi.ac.ke/api/29/dataElements/'+comm_id+'.json';
+    $.getJSON(cname_url, function (data) {
+        var commodity_name = data.displayName; 
+        thecname = commodity_name;
+        return thecname;
+    });
+    return thecname;
 }
 // window.setTimeout(function(){ $(window).resize(); }, 4000);
