@@ -549,7 +549,7 @@ function makeList(name){
     return window[name];
  }
 
-var commodities_and_names = {};
+var commodities_and_names = [];
 function popComms(commarr){
 	// $('#commodity-picker').empty();
     var comm_id_arr = [];
