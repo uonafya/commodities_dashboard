@@ -147,7 +147,7 @@ function getMyOU() {
 
 
 function addTableExportoptions(tableid) {
-    $('#'+tableid).DataTable( {
+    $(tableid).DataTable( {
         dom: 'Bfrtip',
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
