@@ -112,8 +112,18 @@ $.ajax({
         // alert(JSON.stringify(non_compliant_facilities_codes));
         $('#notEqualSOH tbody').append(nonequaltbl);
         $(document).ready(function() {
-            $('#equalSOH').DataTable();
-            $('#notEqualSOH').DataTable();
+            $('#equalSOH').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+            $('#notEqualSOH').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
         });
         $('#equalCount').html(compliant_facilities_codes.length);
         $('#notEqualCount').html(non_compliant_facilities_codes.length);
@@ -279,8 +289,18 @@ $.ajax({
                 $('#detailTableReported').DataTable().destroy();
                 $('#detailTableNotReport tbody').empty();
                 $('#detailTableReported tbody').empty();
-                $('#detailTableNotReport').DataTable();
-                $('#detailTableReported').DataTable();
+                $('#detailTableNotReport').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+                $('#detailTableReported').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
                 wbDetail(json_data, nuldate);
                 // console.log($('#pfform :input').val());
             });
@@ -341,10 +361,14 @@ function wbDetail(json_data, lastperiod){
         $('#detailTableReported tbody').append(tbldata);
         $(document).ready(function() {
             // $('#detailTableReported tbody').empty();
-            $('#detailTableReported').DataTable({
-                "pageLength": 15
-            });
-
+        $('#detailTableReported').DataTable({
+            "pageLength": 15,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        
             // $('#detailTableReported').DataTable().destroy();
             // $("#detailTableReported tbody").empty();
             // $("#detailTableReported tbody").append(tblData);	                                                        
@@ -370,7 +394,11 @@ function wbDetail(json_data, lastperiod){
         $(document).ready(function() {
             // $('#detailTableNotReport tbody').empty();
             $('#detailTableNotReport').DataTable({
-                "pageLength": 15
+                "pageLength": 15,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
             });
 
             // $('#detailTableNotReport').DataTable().destroy();
@@ -446,8 +474,18 @@ function getConsist(consturl,commd){
             $('#discCount').html(disc_facilities_codes.length);
             $('#noDiscCount').html(nodisc_facilities_codes.length);
             $(document).ready(function() {
-                $('#noDiscData').DataTable();
-                $('#discData').DataTable();
+                $('#noDiscData').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+                $('#discData').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
             });
 
             var non_compliant_facility_count = facility_count - compliant_facility_count;

@@ -144,6 +144,16 @@ function getMyOU() {
     });
     return myou;
 };
+
+
+function addTableExportoptions(tableid) {
+    $('#'+tableid).DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+}
 //get my ou
 console.log("my_ou_0 is: "+getMyOU());
 
