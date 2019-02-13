@@ -129,7 +129,7 @@ $(document).ready(function () {
     });
 
     //get my ou
-    $.getJSON("https://testhis.uonbi.ac.ke/api/me.json?paging=false", data,
+    $.getJSON("https://testhis.uonbi.ac.ke/api/me.json?paging=false", function (data, textStatus, jqXHR) {
     // $.getJSON("http://localhost/pmi/json/me.json", function (data, textStatus, jqXHR) {
         var my_ous = data.organisationUnits;
         var my_dv_ous = data.dataViewOrganisationUnits;
