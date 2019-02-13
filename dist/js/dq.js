@@ -54,7 +54,7 @@ $.ajax({
         var theDims = data.metaData.dimensions;
         var theComms = data.metaData.dimensions.dx;
         var thePer = data.metaData.dimensions.pe;
-        // popComms(theComms);
+        popComms(theComms);
         
         // var thedx = theDims.dx;
         // var theperiod = theDims.pe;
@@ -137,7 +137,7 @@ $.ajax({
         console.log("total_facilities = "+facility_count);
         console.log("compliant_facilities = "+compliant_facility_count);
         console.log("NON_compliant_facilities = "+non_compliant_facility_count);
-        pieOne($.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity+'.json', function (datax) {document.write(datax.displayName);return datax.displayName;}),compliant_facility_count,non_compliant_facility_count);
+        pieOne(commodity,compliant_facility_count,non_compliant_facility_count);
         // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
         $('#pc1').removeClass('hidden');
@@ -549,10 +549,11 @@ function makeList(name){
     return window[name];
  }
 
+var commodities_and_names = {};
 function popComms(commarr){
-	$('#commodity-picker').empty();
+	// $('#commodity-picker').empty();
     var comm_id_arr = [];
-    $('#commodity-picker').append('<option selected value="">Select Commodity</option>');
+    // $('#commodity-picker').append('<option selected value="">Select Commodity</option>');
     $.each(commarr, function(indx, comm_id_long){
         var comm_id = comm_id_long.split('.')[0];
         comm_id_arr.push(comm_id);
@@ -565,8 +566,10 @@ function popComms(commarr){
         {
            var commodity_name = data.displayName; 
            var commodity_id = data.id;
-           $('#commodity-picker').append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
-           console.log("CommNames:  "+commodity_name);
+           commodities_and_names[id] = commodity_id;
+           commodities_and_names[name] = commodity_name;
+        //    $('#commodity-picker').append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
+        //    console.log("CommNames:  "+commodity_name);
         });
     });
 }
@@ -623,4 +626,14 @@ function dateToStr(ledate){
     return lenudate;
 }
 
-// window.setTimeout(function(){ $(window).resize(); }, 4000);
+function getCommodityName(commodity_id) {
+    if(commodities_and_names.length>0 || commodities_and_names != undefined || commodities_and_names != null){
+        console.log('hiooo commodities_and_names === '+JSON.stringify(commodities_and_names));
+        var commo_name_arr = filterItems(commodities_and_names, commodity_id);
+        if(commo_name_arr != undefined && commo_name_arr.length>0){
+            console.log('hiooo commo_name_arr === '+JSON.stringify(commo_name_arr));
+            return commo_name_arr[0].name;
+        }
+    }
+}
+
