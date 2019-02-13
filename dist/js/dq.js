@@ -80,9 +80,10 @@ $.ajax({
                     var filt_to = thePer[thePer.length - 1];
                     var ou_fil_from = filterItems(ou_filtered,filt_from);
                     var ou_fil_to = filterItems(ou_filtered,filt_to);
-                    alert("commodity is: "+commodity.split('.')[0]);
+                    // alert("commodity is: "+commodity.split('.')[0]);
+                    var commo_s = commodity.split('.')[0];
                     // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + theItems[commodity.split('.')[0]].name + '</u>');
-                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commodity.split('.')[0]) + '</u>');
+                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commo_s) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
                         console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
                         console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
@@ -625,7 +626,6 @@ function dateToStr(ledate){
 function getCommodityName(comm_id) {
     // var theid = comm_id.split('.')[0];
     var thecname ='';
-    var thecname_arr =[];
     cname_url = 'https://testhis.uonbi.ac.ke/api/29/dataElements/'+comm_id+'.json';
     $.getJSON(cname_url, function (data) {
         var commodity_name = data.displayName; 
