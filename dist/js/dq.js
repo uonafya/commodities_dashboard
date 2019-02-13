@@ -80,8 +80,9 @@ $.ajax({
                     var filt_to = thePer[thePer.length - 1];
                     var ou_fil_from = filterItems(ou_filtered,filt_from);
                     var ou_fil_to = filterItems(ou_filtered,filt_to);
+                    
                     // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + theItems[commodity].name + '</u>');
-                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + commodity + '</u>');
+                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commodity) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
                         console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
                         console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
@@ -136,7 +137,7 @@ $.ajax({
         console.log("compliant_facilities = "+compliant_facility_count);
         console.log("NON_compliant_facilities = "+non_compliant_facility_count);
         // pieOne(theItems[commodity].name,compliant_facility_count,non_compliant_facility_count);
-        pieOne(commodity,compliant_facility_count,non_compliant_facility_count);
+        pieOne(getCommodityName(commodity),compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
         $('#pc1').removeClass('hidden');
         $('.detailsrow').removeClass('hidden');
@@ -621,4 +622,12 @@ function dateToStr(ledate){
     return lenudate;
 }
 
+function getCommodityName(comm_id) {
+    var thecname ='';
+    $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+comm_id+'.json', function (data) {
+        var commodity_name = data.displayName; 
+        thecname = commodity_name;
+    });
+    return thecname;
+}
 // window.setTimeout(function(){ $(window).resize(); }, 4000);
