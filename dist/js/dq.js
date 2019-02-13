@@ -80,7 +80,7 @@ $.ajax({
                     var filt_to = thePer[thePer.length - 1];
                     var ou_fil_from = filterItems(ou_filtered,filt_from);
                     var ou_fil_to = filterItems(ou_filtered,filt_to);
-                    
+                    alert("commodity is: "+commodity);
                     // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + theItems[commodity.split('.')[0]].name + '</u>');
                     $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commodity.split('.')[0]) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
@@ -136,7 +136,6 @@ $.ajax({
         console.log("total_facilities = "+facility_count);
         console.log("compliant_facilities = "+compliant_facility_count);
         console.log("NON_compliant_facilities = "+non_compliant_facility_count);
-        alert("commodity is: "+commodity);
         // pieOne(theItems[commodity.split('.')[0]].name,compliant_facility_count,non_compliant_facility_count);
         pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
