@@ -624,10 +624,14 @@ function dateToStr(ledate){
 
 function getCommodityName(comm_id) {
     var thecname ='';
+    var thecname_arr =[];
     $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+comm_id+'.json', function (data) {
         var commodity_name = data.displayName; 
         thecname = commodity_name;
+        console.log('thecname is::::: -> '+thecname);
+        return thecname;
     });
+    console.log('thecname2 is::::: -> '+thecname);
     return thecname;
 }
 // window.setTimeout(function(){ $(window).resize(); }, 4000);
