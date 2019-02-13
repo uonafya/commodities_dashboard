@@ -566,8 +566,8 @@ function popComms(commarr){
         {
            var commodity_name = data.displayName; 
            var commodity_id = data.id;
-           commodities_and_names[id] = commodity_id;
-           commodities_and_names[name] = commodity_name;
+           commodities_and_names['id'] = commodity_id;
+           commodities_and_names['name'] = commodity_name;
         //    $('#commodity-picker').append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
         //    console.log("CommNames:  "+commodity_name);
         });
