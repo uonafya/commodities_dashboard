@@ -564,10 +564,13 @@ function popComms(commarr){
     $.each(commodity_id_arrays_clean, function (index, commodity_id) {
         $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data) 
         {
+           var co_ar = []
            var commodity_name = data.displayName; 
            var commodity_id = data.id;
-           commodities_and_names['id'] = commodity_id;
-           commodities_and_names['name'] = commodity_name;
+           co_ar.push(commodity_id, commodity_name);
+           commodities_and_names.push(co_ar);
+        //    commodities_and_names['id'] = commodity_id;
+        //    commodities_and_names['name'] = commodity_name;
         //    $('#commodity-picker').append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
         //    console.log("CommNames:  "+commodity_name);
         });
@@ -632,7 +635,7 @@ function getCommodityName(commodity_id) {
         var commo_name_arr = filterItems(commodities_and_names, commodity_id);
         if(commo_name_arr != undefined && commo_name_arr.length>0){
             console.log('hiooo commo_name_arr === '+JSON.stringify(commo_name_arr));
-            return commo_name_arr[0].name;
+            return commo_name_arr[0];
         }
     }
 }
