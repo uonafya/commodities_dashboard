@@ -80,7 +80,8 @@ $.ajax({
                     var filt_to = thePer[thePer.length - 1];
                     var ou_fil_from = filterItems(ou_filtered,filt_from);
                     var ou_fil_to = filterItems(ou_filtered,filt_to);
-                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + theItems[commodity].name + '</u>');
+                    // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + theItems[commodity].name + '</u>');
+                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + commodity + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
                         console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
                         console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
