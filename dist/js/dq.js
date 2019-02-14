@@ -100,7 +100,7 @@ $.ajax({
                     var commo_s = commodity.split('.')[0];
                     $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
                     $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
-                    console.log('TITLE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
+                    // console.log('TITLE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
                     // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commo_s) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
                         // console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
@@ -156,7 +156,7 @@ $.ajax({
         // console.log("compliant_facilities = "+compliant_facility_count);
         // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
         var commo_s = commodity.split('.')[0];
-        console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
+        // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
         pieOne(commodities_array[commo_s].name,compliant_facility_count,non_compliant_facility_count);
         // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
