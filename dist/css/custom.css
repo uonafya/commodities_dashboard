@@ -235,3 +235,7 @@
 .form-control:disabled{
   cursor: not-allowed;
 }
+
+.sidebar-nav ul .sidebar-item .first-level .sidebar-item:not(.active) a.sidebar-link:not(.active){
+  background: #1f262d !important;
+}
