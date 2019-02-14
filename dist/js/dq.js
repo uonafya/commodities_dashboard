@@ -39,6 +39,18 @@ console.log("testMFL:  "+getMFLcode('BeyRouwSiVk'));
 // filter by mfl codes
 
 
+//commodities and their names array
+var commodities_array = {
+    'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
+    'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
+    'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
+    'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
+    'iOARK31NdLp':{name:'Artesunate Injection'},
+    'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
+    'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
+}
+console.log("xoo: "+JSON.stringify(commodities_array));
+//commodities and their names array
 
 function getConco(ccurl,commodity){
 $('.loader-sp.pieone').removeClass('hidden');
@@ -86,8 +98,8 @@ $.ajax({
                     $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commo_s + '</u>');
                     // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commo_s) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
-                        console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
-                        console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
+                        // console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
+                        // console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
                         // if(1==1){
                         if(ou_fil_from[0][3]==ou_fil_to[0][3]){
                             compliant_facility_count = compliant_facility_count+1;
@@ -135,9 +147,9 @@ $.ajax({
         $('#notEqualCount').html(non_compliant_facilities_codes.length);
 
         var non_compliant_facility_count = facility_count - compliant_facility_count;
-        console.log("total_facilities = "+facility_count);
-        console.log("compliant_facilities = "+compliant_facility_count);
-        console.log("NON_compliant_facilities = "+non_compliant_facility_count);
+        // console.log("total_facilities = "+facility_count);
+        // console.log("compliant_facilities = "+compliant_facility_count);
+        // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
         var commo_s = commodity.split('.')[0];
         pieOne(commo_s,compliant_facility_count,non_compliant_facility_count);
         // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
@@ -180,7 +192,7 @@ $('#dq-column').addClass('hidden');
         var pop_arr_fin = [];
         var totadj_arr_fin = [];
         var totdisp_arr_fin = [];
-        console.log("LINE:PE ni: "+per_arr);
+        // console.log("LINE:PE ni: "+per_arr);
         var pop_arr = filterItems(thedata_rows, 'uP0zJ2XmSkM');
         $.each(pop_arr, function(index, pop_arr1){
             var nom = parseFloat(pop_arr1[2]);
@@ -217,12 +229,12 @@ $('#dq-column').addClass('hidden');
             totdisp_arr_fin.push(zer02);
             totadj_arr_fin.push(zer02);
             pop_arr_length++
-            console.log("LINE:pop_arr_length ni: "+pop_arr_length);
+            // console.log("LINE:pop_arr_length ni: "+pop_arr_length);
         }
         // console.log(" LINE:pop_title ni: "+pop_title+" & totadj_title ni: "+totadj_title+" & totdisp_title ni: "+totdisp_title );
-        console.log("FINAL LINE:pop_arr ni: "+pop_arr_fin);
-        console.log("FINAL LINE:totadj_arr ni: "+totadj_arr_fin);
-        console.log("FINAL LINE:totdisp_arr ni: "+totdisp_arr_fin);
+        // console.log("FINAL LINE:pop_arr ni: "+pop_arr_fin);
+        // console.log("FINAL LINE:totadj_arr ni: "+totadj_arr_fin);
+        // console.log("FINAL LINE:totdisp_arr ni: "+totdisp_arr_fin);
         var pearry = [];
         $.each(per_arr,(ind,val)=>{
             pearry.push(dateToStr(val));
@@ -497,13 +509,13 @@ function getConsist(consturl,commd){
             });
 
             var non_compliant_facility_count = facility_count - compliant_facility_count;
-            console.log("total_facilities = "+facility_count);
-            console.log("compliant_facilities = "+compliant_facility_count);
-            console.log("NON_compliant_facilities = "+non_compliant_facility_count);
+            // console.log("total_facilities = "+facility_count);
+            // console.log("compliant_facilities = "+compliant_facility_count);
+            // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
             // non_compliant_facility_count = 90;
             // compliant_facility_count = 10;
-            console.log("non ni:"+non_compliant_facility_count);
-            console.log("ni ni:"+compliant_facility_count);
+            // console.log("non ni:"+non_compliant_facility_count);
+            // console.log("ni ni:"+compliant_facility_count);
             pieThree('Internal Data Consistency (AL 24)',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
             $('#pc3').removeClass('hidden');
@@ -559,7 +571,7 @@ function makeList(name){
     $.each(commarr, function(indx, comm_id_long){
         var comm_id = comm_id_long.split('.')[0];
         comm_id_arr.push(comm_id);
-        console.log("comm_id:  "+comm_id);
+        // console.log("comm_id:  "+comm_id);
     });
     
     var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
@@ -633,10 +645,10 @@ function dateToStr(ledate){
 
 function getCommodityName(commodity_id) {
     if(commodities_and_names.length>0 || commodities_and_names != undefined || commodities_and_names != null){
-        console.log('hiooo commodities_and_names === '+JSON.stringify(commodities_and_names));
+        // console.log('hiooo commodities_and_names === '+JSON.stringify(commodities_and_names));
         var commo_name_arr = filterItems(commodities_and_names, commodity_id);
         if(commo_name_arr != undefined && commo_name_arr.length>0){
-            console.log('hiooo commo_name_arr === '+JSON.stringify(commo_name_arr));
+            // console.log('hiooo commo_name_arr === '+JSON.stringify(commo_name_arr));
             return commo_name_arr[0];
         }
     }
