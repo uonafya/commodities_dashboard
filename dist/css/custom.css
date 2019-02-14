@@ -237,5 +237,6 @@
 }
 
 .sidebar-nav ul .sidebar-item .first-level .sidebar-item:not(.active) a.sidebar-link:not(.active){
+  border-top: 1px solid #1f262d !important;
   background: #1f262d !important;
 }
