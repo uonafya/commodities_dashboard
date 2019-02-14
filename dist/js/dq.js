@@ -39,18 +39,6 @@ console.log("testMFL:  "+getMFLcode('BeyRouwSiVk'));
 // filter by mfl codes
 
 
-//commodities and their names array
-var commodities_array = {
-    'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
-    'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
-    'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
-    'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
-    'iOARK31NdLp':{name:'Artesunate Injection'},
-    'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
-    'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
-}
-console.log("xoo: "+JSON.stringify(commodities_array));
-//commodities and their names array
 
 function getConco(ccurl,commodity){
 $('.loader-sp.pieone').removeClass('hidden');
@@ -60,6 +48,22 @@ $.ajax({
     crossDomain: true,
     url: ccurl,                    
     success: function (data) {
+
+        
+        //commodities and their names array
+        var commodities_array = {
+            'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
+            'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
+            'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
+            'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
+            'iOARK31NdLp':{name:'Artesunate Injection'},
+            'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
+            'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
+        }
+        console.log("xoo: "+JSON.stringify(commodities_array));
+        //commodities and their names array
+
+
         //populate commodities filter
 
         var theItems = data.metaData.items;
