@@ -60,7 +60,7 @@ $.ajax({
             'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
             'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
         }
-        console.log("xoo: "+JSON.stringify(commodities_array));
+        // console.log("xoo: "+JSON.stringify(commodities_array));
         //commodities and their names array
 
 
