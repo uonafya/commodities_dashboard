@@ -541,17 +541,17 @@
 			var countyou = $("#county-dropdown").val();
 			var subcountyou = $("#subcounty-dropdown").val();
 			var periodval = $("#period-dropdown").val();
-            periodval = '';
+            // periodval = '';
 			
-			// if(periodval == null)
-			// {
-            //     periodval = '201805';
-			// }
+			if(periodval.length < 2 || periodval == null)
+			{
+                periodval = 'LAST_12_MONTHS';
+			}
 			
-			var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
+			var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
 			console.log(filtered_url);
-            var filtersub_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=NAME';
-            var filtered_onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtersub_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+';LEVEL-3&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=NAME';
+            var filtered_onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             console.log(filtersub_url);
 			fetchScRR(filtersub_url);
             fetchRR(filtered_url, filtered_onurl);
@@ -565,15 +565,15 @@
 			var periodval = $("#period-dropdown").val();
             periodval = '';
 			
-			// if(periodval == null)
-			// {
-			// 	periodval = 'LAST_MONTH';
-			// }
+			if(periodval.length < 2 || periodval == null)
+			{
+				periodval = 'LAST_MONTH';
+			}
 			
             // var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
             
-            var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
-            var filtered_onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             
             console.log(filtered_url);
             
@@ -626,8 +626,8 @@
                 var theou = 'tAbBVBbueqD';
             }
             
-            var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
-            var filtered_onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
             
             console.log("pe fi: "+filtered_url+"    &&&&&&   "+filtered_onurl);
             

@@ -573,7 +573,7 @@ color: transparent;}
                 perioddwnTo.attr('disabled', true);
                 perioddwn.val(null);
                 perioddwnTo.val(null);
-                // var commdwn = $('#commodity-dropdown');
+                var commdwn = $('#commodity-dropdown');
     
                 dropdown.empty();
                 subcounty.empty();
@@ -589,8 +589,8 @@ color: transparent;}
                 perioddwn.append('<option selected="true" disabled>Select Period</option>');
                 perioddwn.prop('selectedIndex', 0);
                 
-                // commdwn.append('<option selected="true" disabled>Select Commodity</option>');
-                // commdwn.prop('selectedIndex', 0);
+                commdwn.append('<option selected="true" disabled>Select Commodity</option>');
+                commdwn.prop('selectedIndex', 0);
     
                 //const url = 'https://api.myjson.com/bins/7xq2x';
     

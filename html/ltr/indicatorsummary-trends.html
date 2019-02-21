@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>Indicator Summary Trends | Malaria Commodities Dashboard</title>
+    <title>Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
@@ -550,7 +550,7 @@
 	$(document).ready(function() 
 	{
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;tAbBVBbueqD&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'http://localhost/pmi/json/indicatorsummary.json';
+            // var url = 'http://localhost/pmi/json/indicatorsummary.json';
 		//parse the data for mos percentage
         $.ajax({
             type: 'GET',
@@ -745,11 +745,16 @@
 
                         $("table.indicatorsumm tbody").append(tableData);
                         $('.indicatorsumm').DataTable( {
+                            //data-xport
+                            dom: 'Bfrtip',
+                            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+                            //data-xport
+
                             initComplete: function () {
                                 this.api().columns(0).every( function () {
                                     var column = this;
-                                    var select = $('<select><option value=""></option></select>')
-                                        .appendTo( $(column.footer()).empty() )
+                                    var select = $('<select class="form-control"><option value="">Filter parameter</option></select>')
+                                        .appendTo( $(column.header()) )
                                         .on( 'change', function () {
                                             var val = $.fn.dataTable.util.escapeRegex(
                                                 $(this).val()
@@ -764,8 +769,8 @@
                                 } );
                                 this.api().columns(1).every( function () {
                                     var column = this;
-                                    var select = $('<select><option value=""></option></select>')
-                                        .appendTo( $(column.footer()).empty() )
+                                    var select = $('<select class="form-control"><option value="">Filter items</option></select>')
+                                        .appendTo( $(column.header()) )
                                         .on( 'change', function () {
                                             var val = $.fn.dataTable.util.escapeRegex(
                                                 $(this).val()
