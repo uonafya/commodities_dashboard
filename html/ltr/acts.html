@@ -264,7 +264,7 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                ACTs
+                                <span id="thetitle"></span>
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
@@ -428,7 +428,9 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/acts.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+    <script src="../../dist/js/custom.js"></script>
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
@@ -514,11 +516,30 @@
 	<script>
 	$(document).ready(function() 
 	{
+            
             var ounit = 'tAbBVBbueqD';
+            var ounit = $("#county-dropdown").val();
+            var subcountyou = $("#subcounty-dropdown").val();
+            if(subcountyou!=null)
+            {
+                var ounit = subcountyou;
+            }
+            if(ounit == null && subcountyou ==null){
+                var ounit = 'tAbBVBbueqD';
+            }
+
+            var sDate = $('#period-dropdown').val();
             var period = '201805';
+            if(sDate.length > 2){
+                var dateparts = sDate.split('/', 2);
+                period = dateparts[1]+''+dateparts[0];
+            }else{
+                var period = '201805';   
+            }
         
+            // alert('sDate: '+sDate + 'typeof sDate:'+typeof sDate + ' & period: ' + period);
             var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';			
-            var url = 'http://localhost/pmi/json/acts3.json'
+            // var url = 'http://localhost/pmi/json/acts3.json'
             fetchACTs(url);
             $("#county-dropdown").change(function() 
             {
@@ -552,192 +573,16 @@
             {
                 var ounit = subcountyou;
             }
+            if(ounit == null && subcountyou ==null){
+                var ounit = 'tAbBVBbueqD';
+            }
             
             var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;aeiTJTdB0W9;zLR3PBVPgN5;heBd1EA1uwW;bJILAolJsSJ;Yxe6Ii5TnFV;jtGNoWcdNcx;w1k5YqRt6is;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             // var url = 'http://localhost/pmi/json/acts3.json'
             fetchACTs(url);
         }
         
-        //function toprocess the acts url
-        function fetchACTs(acturl)
-        {
-            // $.getJSON(acturl, function (data){
-            $.ajax({
-                type: 'GET',
-                crossDomain: true,
-                url: acturl,                    
-                success: function (data) {
-
-                    //create the org units array
-                    var orgunits = [];
-                    var dxids = [];
-
-                    //var tableData = '<table>';
-                    var tableData = '';
-
-                    //console.log(data.rows);
-
-                    //push only if not in
-                    $.each(data.rows, function (rowkey, rowentry) 
-                    {
-                            //console.log(rowentry[1]);
-                            //console.log(orgunits.indexOf(rowentry[1]))
-                            if(orgunits.indexOf(rowentry[1])>=0)
-                            {
-                                    //console.log(orgunits);
-                            }
-                            else
-                            {
-                                    orgunits.push(rowentry[1]);
-                            }	
-
-                    })
-
-                    //console.log(orgunits.length);
-                    $.each(data.metaData.dimensions.ou, function (key, entry) 
-                    {
-                            //define the table
-                            tableData += '<tr>';	
-                            tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                            tableData += '<td>'+getMFLcode(entry)+'</td>';
-                            //console.log(data.metaData.items[entry].name);
-                            //console.log(entry);
-                            //console.log(entry);	
-
-                            //get all the dimensions for the given orgunit
-                            dxids = [];
-                            $.each(data.rows, function (rkey, rentry) 
-                            {
-                                    var dxcode = rentry[1];
-
-                                    if(dxcode==entry)
-                                    {
-                                            dxids.push(rentry[0]);
-                                    }												
-                            })
-
-                            //console.log(dxids);
-
-
-                            //console.log(data.rows);
-                            //for each dimension get the value
-                            var count = 0;
-                            $.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
-                            {
-                                    //console.log(orgunits.indexOf(entry));
-                                    //console.log(dxids.indexOf(dxentry));
-                                    //console.log(orgunits);	
-                                    //console.log(data.metaData.items[dxentry].name);
-                                    if(orgunits.indexOf(entry)<0)
-                                    {
-                                            tableData += '<td bgcolor="#ff0000"> - </td>';
-                                    }
-                                    else if(dxids.indexOf(dxentry)<0)
-                                    {
-                                            tableData += '<td bgcolor="#ff0000"> - </td>';
-                                    }
-                                    else
-                                    {										
-                                            $.each(data.rows, function (rkey, rentry) 
-                                            {					
-                                                    var dxid = rentry[0];
-                                                    var dxcode = rentry[1];
-                                                    var dxval = rentry[2];
-
-                                                    if(dxentry==dxid)
-                                                    {						
-                                                            if(dxcode==entry)
-                                                            {
-                                                                    //console.log(rentry);		
-                                                                    //var notfoundRow = false;
-                                                                    var bgcolor = '#ffffff';
-                                                                    if(dxval<0)
-                                                                            bgcolor = '#ffcccc'
-                                                                    if (dxval >= 0 && dxval< 3)
-                                                                            bgcolor = '#ffeb9c'
-                                                                    if (dxval >= 3 && dxval<= 6)
-                                                                            bgcolor = '#7bd48d'
-                                                                    if(dxval>6)
-                                                                            bgcolor = '#85bfe0'
-
-                                                                    tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
-                                                            }						
-                                                    }						
-                                            })				
-
-                                    }
-                                    count++;
-                            })					
-
-                            tableData += '</tr>';	
-                    })
-
-                    //tableData += '<table>';	
-                    //console.log(tableData)
-                    $('#acts_table').removeClass('hidden');
-                    $('.actdata').removeClass('hidden');
-                    $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');
-                    
-                    $('#acts_table').DataTable().destroy();
-                    $("table.actsbox tbody").empty();
-                    $("table.actsbox tbody").append(tableData);	
-                    //$('#acts_table').DataTable();                                                          
-                    $('#acts_table').DataTable().fnDraw();
-
-                    
-                },
-                error: function (request, status, error) {
-                    $('.loader-sp').addClass('hidden');
-                    $('#acts_table').addClass('hidden');
-                    console.log('ACTs: error fetching json. :- '+error);
-                    $('actdata').addClass('hidden');
-                    $('.act_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-                }
-            });
-    }
-
-
-
-    // fetch mfl codes
-
-var mfl_codes_array = [];
-mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,name,code&paging=false';
-// mfl_url = 'http://localhost/pmi/json/mflcode.json';
-getMFLarray(mfl_url);
-
-function getMFLarray(mfl_url) {
-    $.getJSON(mfl_url, function (data) 
-    {
-        mfl_codes_array = data.organisationUnits;
-        // console.log('mfl_codes_array: '+mfl_codes_array);
-    });
-}
-
-//---------- fetch mfl codes
-
-
-
-// filter by mfl codes
-function getMFLcode(dhis_id) {
-    if(mfl_codes_array == null){
-        getMFLarray(mfl_url);
-    }
-        // var ous = data.organisationUnits;
-        var ous = mfl_codes_array;
-        var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
-            return v.id === dhis_id;
-        });
-        var mfl_id = arr_filterd_by_dhis_code[0].code;
-        console.log('mfl_id: '+arr_filterd_by_dhis_code);
-        if(mfl_id == undefined){
-            mfl_id = 'Not Available';
-        }
-        return mfl_id;
     
-}
-console.log("testMFL:  "+getMFLcode('BeyRouwSiVk'));
-// filter by mfl codes
 
 </script>
 
