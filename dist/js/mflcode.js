@@ -26,11 +26,13 @@ function getMFLarray(mfl_url)
 	 var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
 		 return v.id === dhis_id;
 	 });
-	 console.log(arr_filterd_by_dhis_code);
-	 var mfl_id = arr_filterd_by_dhis_code[0].code;
-	 if(mfl_id == undefined){
-		 mfl_id = 'Not Available';
+	 
+	 var mfl_id = ' - '
+	 if(arr_filterd_by_dhis_code.length>0)
+	 {
+		mfl_id = arr_filterd_by_dhis_code[0].code;
 	 }
+	 
 	 return mfl_id;     
  }
  // filter by mfl codes
