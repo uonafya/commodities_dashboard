@@ -24,7 +24,9 @@ function getMFLarray(mfl_url)
 	 // var ous = data.organisationUnits;
 	 var ous = mfl_codes_array;
 	 var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
-		 return v.id == dhis_id;
+		 console.log(v);
+		 console.log(dhis_id);
+		 return v.id === dhis_id;
 	 });
 	 
 	 var mfl_id = ' - '
