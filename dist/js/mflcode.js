@@ -16,7 +16,7 @@ function getMFLarray(mfl_url)
  // filter by mfl codes
  function getMFLcode(dhis_id) 
  {
-	 console.log(dhis_id);
+	 //console.log(dhis_id);
      if(mfl_codes_array == null)
 	 {
          getMFLarray(mfl_url);
@@ -26,6 +26,7 @@ function getMFLarray(mfl_url)
 	 var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
 		 return v.id === dhis_id;
 	 });
+	 console.log(arr_filterd_by_dhis_code);
 	 var mfl_id = arr_filterd_by_dhis_code[0].code;
 	 if(mfl_id == undefined){
 		 mfl_id = 'Not Available';
