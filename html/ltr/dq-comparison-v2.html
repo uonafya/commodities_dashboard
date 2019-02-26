@@ -404,7 +404,9 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+	<script src="../../dist/js/custom.js"></script>
+	<script src="../../dist/js/mflcode.js"></script>
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
@@ -580,7 +582,7 @@
 							tableData += '<td>'+data.metaData.items[entry].name+'</td>';
 							
 							//console.log(data.metaData.items[entry].name);
-							tableData += '<td>'+dxmflcode[key]+'</td>';
+							tableData += '<td>'+getMFLcode(entry)+'</td>';
 							tableData += '<td>'+data.metaData.dimensions.pe+ '</td>';
 							tableData += '<td>'+Math.trunc(data.rows[key][3])+ '</td>';							
 							tableData += '<td>'+Math.trunc(totalnooftabs[key])+ '</td>';
