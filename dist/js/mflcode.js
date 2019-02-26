@@ -8,7 +8,7 @@ function getMFLarray(mfl_url)
 	$.getJSON(mfl_url, function (data) 
 	{
 	 mfl_codes_array = data.organisationUnits;
-	 // console.log('mfl_codes_array: '+mfl_codes_array);
+	 console.log('mfl_codes_array: '+mfl_codes_array);
 	});
 }
 
