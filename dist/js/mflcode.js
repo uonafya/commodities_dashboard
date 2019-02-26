@@ -8,7 +8,7 @@ function getMFLarray(mfl_url)
 	$.getJSON(mfl_url, function (data) 
 	{
 	 mfl_codes_array = data.organisationUnits;
-	 //console.log('mfl_codes_array: '+mfl_codes_array);
+	 console.log('mfl_codes_array: '+mfl_codes_array);
 	});
 }
 
@@ -23,9 +23,7 @@ function getMFLarray(mfl_url)
      }
 	 // var ous = data.organisationUnits;
 	 var ous = mfl_codes_array;
-	 var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
-		 console.log(v);
-		 console.log(dhis_id);
+	 var arr_filterd_by_dhis_code = $.grep(ous, function(v) {		 
 		 return v.id === dhis_id;
 	 });
 	 
