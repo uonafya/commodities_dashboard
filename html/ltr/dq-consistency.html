@@ -567,7 +567,30 @@ color: transparent;}
                 var dropdown = $('#county-dropdown');
                 
                 var subcounty = $('#subcounty-dropdown');
-                
+                // commoditypickerpopulation
+                    var commoditypicker = $('#commodity-picker');
+                    $.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;tAbBVBbueqD&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
+                        var commarr = data.metaData.dimensions.dx;
+                        commoditypicker.empty();
+                        var comm_id_arr = [];
+                        commoditypicker.append('<option selected value="">Select Commodity</option>');
+                        $.each(commarr, function(indx, comm_id_long){
+                            var comm_id = comm_id_long.split('.')[0];
+                            comm_id_arr.push(comm_id);
+                            // console.log("comm_id:  "+comm_id);
+                        });
+                        
+                        var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
+                        $.each(commodity_id_arrays_clean, function (index, commodity_id) {
+                            $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data) 
+                            {
+                            var commodity_name = data.displayName; 
+                            var commodity_id = data.id;
+                            commoditypicker.append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
+                            });
+                        });		 
+                    });
+                // commoditypickerpopulation
                 var perioddwn = $('#period-dropdown');
                 var perioddwnTo = $('#period-dropdownTo');
                 perioddwnTo.attr('disabled', true);
