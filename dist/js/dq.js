@@ -22,16 +22,18 @@ function getMFLcode(dhis_id) {
     if(mfl_codes_array == null){
         getMFLarray(mfl_url);
     }
-        // var ous = data.organisationUnits;
         var ous = mfl_codes_array;
         var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
             return v.id === dhis_id;
         });
         var mfl_id = arr_filterd_by_dhis_code[0].code;
-        console.log('mfl_id: '+arr_filterd_by_dhis_code);
-        if(mfl_id == undefined){
-            mfl_id = 'Not Available';
+
+        // if(arr_filterd_by_dhis_code === undefined || arr_filterd_by_dhis_code[0] === undefined){  
+        if(arr_filterd_by_dhis_code[0] === undefined){  
+            var mfl_id = 'Not Available';
         }
+        
+        // console.log('mfl_id: '+arr_filterd_by_dhis_code);
         return mfl_id;
     
 }
@@ -48,6 +50,22 @@ $.ajax({
     crossDomain: true,
     url: ccurl,                    
     success: function (data) {
+
+        
+        //commodities and their names array
+        var commodities_array = {
+            'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
+            'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
+            'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
+            'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
+            'iOARK31NdLp':{name:'Artesunate Injection'},
+            'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
+            'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
+        }
+        // console.log("xoo: "+JSON.stringify(commodities_array));
+        //commodities and their names array
+
+
         //populate commodities filter
 
         var theItems = data.metaData.items;
@@ -80,10 +98,15 @@ $.ajax({
                     var filt_to = thePer[thePer.length - 1];
                     var ou_fil_from = filterItems(ou_filtered,filt_from);
                     var ou_fil_to = filterItems(ou_filtered,filt_to);
-                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + theItems[commodity].name + '</u>');
+                    // alert("commodity is: "+commodity.split('.')[0]);
+                    var commo_s = commodity.split('.')[0];
+                    $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
+                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
+                    // console.log('TITLE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
+                    // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commo_s) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
-                        console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
-                        console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
+                        // console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
+                        // console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
                         // if(1==1){
                         if(ou_fil_from[0][3]==ou_fil_to[0][3]){
                             compliant_facility_count = compliant_facility_count+1;
@@ -98,6 +121,7 @@ $.ajax({
                 // });
             // }
         });
+        $('#equalSOH').DataTable().destroy();
         $('#equalSOH tbody').append(equaltbl);
         var nonequaltbl = '';
         // alert(JSON.stringify(compliant_facilities_codes));
@@ -110,19 +134,33 @@ $.ajax({
             }
         });
         // alert(JSON.stringify(non_compliant_facilities_codes));
+        $('#notEqualSOH').DataTable().destroy();
         $('#notEqualSOH tbody').append(nonequaltbl);
         $(document).ready(function() {
-            $('#equalSOH').DataTable();
-            $('#notEqualSOH').DataTable();
+            $('#equalSOH').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+            $('#notEqualSOH').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
         });
         $('#equalCount').html(compliant_facilities_codes.length);
         $('#notEqualCount').html(non_compliant_facilities_codes.length);
 
         var non_compliant_facility_count = facility_count - compliant_facility_count;
-        console.log("total_facilities = "+facility_count);
-        console.log("compliant_facilities = "+compliant_facility_count);
-        console.log("NON_compliant_facilities = "+non_compliant_facility_count);
-        pieOne(theItems[commodity].name,compliant_facility_count,non_compliant_facility_count);
+        // console.log("total_facilities = "+facility_count);
+        // console.log("compliant_facilities = "+compliant_facility_count);
+        // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
+        var commo_s = commodity.split('.')[0];
+        // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
+        pieOne(commodities_array[commo_s].name,compliant_facility_count,non_compliant_facility_count);
+        // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
         $('#pc1').removeClass('hidden');
         $('.detailsrow').removeClass('hidden');
@@ -162,7 +200,7 @@ $('#dq-column').addClass('hidden');
         var pop_arr_fin = [];
         var totadj_arr_fin = [];
         var totdisp_arr_fin = [];
-        console.log("LINE:PE ni: "+per_arr);
+        // console.log("LINE:PE ni: "+per_arr);
         var pop_arr = filterItems(thedata_rows, 'uP0zJ2XmSkM');
         $.each(pop_arr, function(index, pop_arr1){
             var nom = parseFloat(pop_arr1[2]);
@@ -199,12 +237,12 @@ $('#dq-column').addClass('hidden');
             totdisp_arr_fin.push(zer02);
             totadj_arr_fin.push(zer02);
             pop_arr_length++
-            console.log("LINE:pop_arr_length ni: "+pop_arr_length);
+            // console.log("LINE:pop_arr_length ni: "+pop_arr_length);
         }
         // console.log(" LINE:pop_title ni: "+pop_title+" & totadj_title ni: "+totadj_title+" & totdisp_title ni: "+totdisp_title );
-        console.log("FINAL LINE:pop_arr ni: "+pop_arr_fin);
-        console.log("FINAL LINE:totadj_arr ni: "+totadj_arr_fin);
-        console.log("FINAL LINE:totdisp_arr ni: "+totdisp_arr_fin);
+        // console.log("FINAL LINE:pop_arr ni: "+pop_arr_fin);
+        // console.log("FINAL LINE:totadj_arr ni: "+totadj_arr_fin);
+        // console.log("FINAL LINE:totdisp_arr ni: "+totdisp_arr_fin);
         var pearry = [];
         $.each(per_arr,(ind,val)=>{
             pearry.push(dateToStr(val));
@@ -279,6 +317,18 @@ $.ajax({
                 $('#detailTableReported').DataTable().destroy();
                 $('#detailTableNotReport tbody').empty();
                 $('#detailTableReported tbody').empty();
+                $('#detailTableNotReport').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+                $('#detailTableReported').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
                 wbDetail(json_data, nuldate);
                 // console.log($('#pfform :input').val());
             });
@@ -339,10 +389,14 @@ function wbDetail(json_data, lastperiod){
         $('#detailTableReported tbody').append(tbldata);
         $(document).ready(function() {
             // $('#detailTableReported tbody').empty();
-            $('#detailTableReported').DataTable({
-                "pageLength": 15
-            });
-
+        $('#detailTableReported').DataTable({
+            "pageLength": 15,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        
             // $('#detailTableReported').DataTable().destroy();
             // $("#detailTableReported tbody").empty();
             // $("#detailTableReported tbody").append(tblData);	                                                        
@@ -368,7 +422,11 @@ function wbDetail(json_data, lastperiod){
         $(document).ready(function() {
             // $('#detailTableNotReport tbody').empty();
             $('#detailTableNotReport').DataTable({
-                "pageLength": 15
+                "pageLength": 15,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
             });
 
             // $('#detailTableNotReport').DataTable().destroy();
@@ -398,7 +456,7 @@ function getConsist(consturl,commd){
             var theDx = data.metaData.dimensions.dx;
             $.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
                 var theComms = data.metaData.dimensions.dx;                
-                popComms(theComms);
+                // popComms(theComms);
             });
             
             
@@ -444,18 +502,28 @@ function getConsist(consturl,commd){
             $('#discCount').html(disc_facilities_codes.length);
             $('#noDiscCount').html(nodisc_facilities_codes.length);
             $(document).ready(function() {
-                $('#noDiscData').DataTable();
-                $('#discData').DataTable();
+                $('#noDiscData').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+                $('#discData').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
             });
 
             var non_compliant_facility_count = facility_count - compliant_facility_count;
-            console.log("total_facilities = "+facility_count);
-            console.log("compliant_facilities = "+compliant_facility_count);
-            console.log("NON_compliant_facilities = "+non_compliant_facility_count);
+            // console.log("total_facilities = "+facility_count);
+            // console.log("compliant_facilities = "+compliant_facility_count);
+            // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
             // non_compliant_facility_count = 90;
             // compliant_facility_count = 10;
-            console.log("non ni:"+non_compliant_facility_count);
-            console.log("ni ni:"+compliant_facility_count);
+            // console.log("non ni:"+non_compliant_facility_count);
+            // console.log("ni ni:"+compliant_facility_count);
             pieThree('Internal Data Consistency (AL 24)',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
             $('#pc3').removeClass('hidden');
@@ -503,24 +571,30 @@ function makeList(name){
     return window[name];
  }
 
-function popComms(commarr){
-	$('#commodity-picker').empty();
+ function popComms(commarr){
+    var commodities_and_names = [];
+	// $('#commodity-picker').empty();
     var comm_id_arr = [];
-    $('#commodity-picker').append('<option selected value="">Select Commodity</option>');
+    // $('#commodity-picker').append('<option selected value="">Select Commodity</option>');
     $.each(commarr, function(indx, comm_id_long){
         var comm_id = comm_id_long.split('.')[0];
         comm_id_arr.push(comm_id);
-        console.log("comm_id:  "+comm_id);
+        // console.log("comm_id:  "+comm_id);
     });
     
     var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
     $.each(commodity_id_arrays_clean, function (index, commodity_id) {
         $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data) 
         {
+           var co_ar = []
            var commodity_name = data.displayName; 
            var commodity_id = data.id;
-           $('#commodity-picker').append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
-           console.log("CommNames:  "+commodity_name);
+           co_ar.push(commodity_id, commodity_name);
+           commodities_and_names.push(co_ar);
+        //    commodities_and_names['id'] = commodity_id;
+        //    commodities_and_names['name'] = commodity_name;
+        //    $('#commodity-picker').append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
+        //    console.log("CommNames:  "+commodity_name);
         });
     });
 }
@@ -577,4 +651,14 @@ function dateToStr(ledate){
     return lenudate;
 }
 
-// window.setTimeout(function(){ $(window).resize(); }, 4000);
+function getCommodityName(commodity_id) {
+    if(commodities_and_names.length>0 || commodities_and_names != undefined || commodities_and_names != null){
+        // console.log('hiooo commodities_and_names === '+JSON.stringify(commodities_and_names));
+        var commo_name_arr = filterItems(commodities_and_names, commodity_id);
+        if(commo_name_arr != undefined && commo_name_arr.length>0){
+            // console.log('hiooo commo_name_arr === '+JSON.stringify(commo_name_arr));
+            return commo_name_arr[0];
+        }
+    }
+}
+

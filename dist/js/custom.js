@@ -116,3 +116,45 @@ $(function() {
     });
 });
 
+
+//---------------------------custom---------------------------//
+var abbr_modal = '<div class="modal fade" id="abb_mdl"><div class="modal-dialog modal-lg" style="min-height: 450px; overflow-y: auto; max-height: 90vh; " ><div class="modal-content"><div class="modal-header pull-left"><h4 class="modal-title pull-left">Abbreviations</h4></div><div class="modal-body"><table class="table table-condensed table-bordered table-striped slimtable text-left" id="abbrev"><thead><tr><th>Abbreviation</th><th>Meaning</th></tr></thead><tbody><tr><td>AL (6,12,18,24)</td><td>Artemether-Lumefantrine tabs</td></tr><tr><td>AI</td><td>Artesunate Injection</td></tr><tr><td>SP</td><td>Sulphadoxine Pyrimethamine</td></tr><tr><td>RDT</td><td>Rapid Diagnostic Tests</td></tr><tr><td>PMI</td><td>President\'s Malaria Initiative</td></tr><tr><td>HCD</td><td>Health Commodities Dashboard</td></tr><tr><td>USAID</td><td>United States Agency for International Development</td></tr><tr><td>SS</td><td>Stock Status</td></tr><tr><td>RR</td><td>Reporting Rate</td></tr><tr><td>SCP</td><td>Supply Chain Performance</td></tr><tr><td>KEMSA</td><td>Kenya Medical Supplies Authority</td></tr><tr><td>NMCP</td><td>National Malaria Control Program</td></tr><tr><td>ACTs</td><td>Artemether-Lumefantrine Tabs</td></tr><tr><td>SOH</td><td>Stock on Hand</td></tr><tr><td>AS</td><td>Artesunate Injection</td></tr><tr><td>DQ</td><td>Data Quality</td></tr></tbody></table></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>';
+$('footer.footer').prepend(abbr_modal);
+$('.navbar-nav.float-right').prepend('<li class="nav-item search-box" style="margin-right: 14px;"><a class="btn btn-default bn-xs" data-toggle="modal" href="#abb_mdl">Abbreviations</a></li>');
+
+$(document).ready(function () {
+    $('.table#abbrev').DataTable({
+        // searching: false,
+        // info: false
+    });
+});
+
+
+
+//get my ou
+function getMyOU() {
+    var myou = null;
+    $.getJSON("https://testhis.uonbi.ac.ke/api/me.json?paging=false", function (data, textStatus, jqXHR) {
+    // $.getJSON("http://localhost/pmi/json/me.json", function (data, textStatus, jqXHR) {
+        var my_ous = data.organisationUnits;
+        var my_dv_ous = data.dataViewOrganisationUnits;
+        var my_ou_0 = my_ous[0].id;
+        myou = my_ou_0;
+        // return my_ou_0;
+    });
+    return myou;
+};
+
+
+function addTableExportoptions(tableid) {
+    $(tableid).DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+}
+//get my ou
+console.log("my_ou_0 is: "+getMyOU());
+
+//---------------------------end custom---------------------------//

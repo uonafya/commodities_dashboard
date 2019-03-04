@@ -26,11 +26,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
 	
 <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="../../jqplot/jquery.jqplot.js"></script>
-<script type="text/javascript" src="../../jqplot/plugins/jqplot.barRenderer.js"></script>
-<script type="text/javascript" src="../../jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
-<script type="text/javascript" src="../../jqplot/plugins/jqplot.pointLabels.js"></script>
-<link rel="stylesheet" type="text/css" href="../../jqplot/jquery.jqplot.css" />
 
                         <style>
 /*
@@ -77,9 +72,9 @@
 .highcharts-credits{
 display: none !important;
 width: 0px !important;
-height: 0px !important
+height: 0px !important;
 visibility: hidden !important;
-opacity: 0 !important
+opacity: 0 !important;
 color: transparent;}
 </style>
 
@@ -87,9 +82,9 @@ color: transparent;}
 .highcharts-button-symbol{
 display: none !important;
 width: 0px !important;
-height: 0px !important
+height: 0px !important;
 visibility: hidden !important;
-opacity: 0 !important
+opacity: 0 !important;
 color: transparent;}
 </style>
  
@@ -153,6 +148,7 @@ color: transparent;}
                     <!-- Toggle which is visible on mobile only -->
                     <!-- ============================================================== -->
                     <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                    
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -163,6 +159,7 @@ color: transparent;}
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left mr-auto">
                         <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                        <li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" style="color: #fff; font-size: 21px;" href="#">Data Quality: Concordance</a></li>
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
@@ -303,17 +300,47 @@ color: transparent;}
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                        <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="weightbands.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Weight Band</span></a></li> --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Stock Status </span></a><ul aria-expanded="false" class="collapse  first-level">
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">ACTs</span></a></li>
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li></ul></li>
-						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate</span></a></li>
-						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Details </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Facility</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Sub-county</span></a></li></ul></li></ul></li>
-						<!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sssummary.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">SS Summary</span></a></li> -->
-						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Data Quality </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-completeness.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Completeness</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-concordance.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Concordance</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-consistency.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consistency</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Comparison</span></a></li> </ul></li>
-						<li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Supply Chain Performance </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary-trends.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Trends</span></a></li><!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Detailed</span></a></li> --></ul></li>
-						<!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	 --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">SOH Comparison</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Pending Shipments</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Issues vs. Receipts</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Accountability</span></a></li></ul></li>
+                        <!-- County -->
+                        <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">County </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <!-- SS -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: ACTs</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: AS</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: SP</span></a></li>						
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: RDTs</span></a></li>
+                                    <!-- endSS -->
+                                    <!-- RR -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Reporting Rate</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RR: Facility</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RR: Sub-county</span></a></li>
+                                    <!-- endRR -->
+                                    <!-- DQ -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-completeness.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Completeness</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-concordance.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Concordance</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-consistency.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Consistency</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Comparison</span></a></li>
+                                    <!-- endDQ -->
+                                    <!-- SCP -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SCP Summary</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary-trends.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SCP Trends</span></a></li>
+                                    <!-- endSCP -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
+                                </ul>
+                            </li>
+                            <!-- end County -->
+                            
+                            <!-- National -->
+                            <li class="sidebar-item"> 
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SOH Comparison</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                </ul>
+                            </li>
+                            <!-- end National -->
 					</ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -333,9 +360,9 @@ color: transparent;}
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                Data Quality: Concordance
+                                <span id="thetitle"></span>
                             </h4>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -370,16 +397,6 @@ color: transparent;}
                                 </div> -->
                             </div>
                             
-                        </div>
-                        <div class="col-md-1 col-sm-1 col-xs-12 text-right">
-                            <div class="ml-auto text-right m-t-10 hidden">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Data Quality</li>
-                                    </ol>
-                                </nav>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -562,6 +579,7 @@ color: transparent;}
 			var dropdown = $('#county-dropdown');
 			
 			var subcounty = $('#subcounty-dropdown');
+			var commoditypicker = $('#commodity-picker');
 			
 			var perioddwn = $('#period-dropdown');
             var perioddwnTo = $('#period-dropdownTo');
@@ -587,9 +605,33 @@ color: transparent;}
             // commdwn.append('<option selected="true" disabled>Select Commodity</option>');
 			// commdwn.prop('selectedIndex', 0);
 
-			//const url = 'https://api.myjson.com/bins/7xq2x';
 
-			//populate dropdown with list of counties
+
+			//populate dropdown with list of commodities
+			$.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) 
+			{
+                var commarr = data.metaData.dimensions.dx;
+				commoditypicker.empty();
+                var comm_id_arr = [];
+                commoditypicker.append('<option selected value="">Select Commodity</option>');
+                $.each(commarr, function(indx, comm_id_long){
+                    var comm_id = comm_id_long.split('.')[0];
+                    comm_id_arr.push(comm_id);
+                    // console.log("comm_id:  "+comm_id);
+                });
+                
+                var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
+                $.each(commodity_id_arrays_clean, function (index, commodity_id) {
+                    $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data) 
+                    {
+                    var commodity_name = data.displayName; 
+                    var commodity_id = data.id;
+                    commoditypicker.append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
+                    });
+                });		 
+            });
+
+            //populate dropdown with list of counties
 			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			// $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
 			{
@@ -609,7 +651,7 @@ color: transparent;}
                         
             // });
 			
-            $('#commodity-picker').append('<option selected="true" disabled>Select Sub County</option>');
+            $('#commodity-picker').append('<option selected="true" disabled>Select commodity</option>');
 			$("#county-dropdown").change(function() 
 			{  
 				subcounty.empty();
@@ -645,8 +687,8 @@ color: transparent;}
     <script type="text/javascript">
 
         var theou = 'tAbBVBbueqD';
-        var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-        var ccurl = 'http://localhost/pmi/json/concordance1.json'
+        var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;qKzosKQPl6G&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
+        // var ccurl = 'http://localhost/pmi/json/concordance1.json'
         var commodity = 'iOARK31NdLp.HWtHCLAwprR';
         getConco(ccurl,commodity);
 

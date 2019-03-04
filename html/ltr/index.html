@@ -13,12 +13,12 @@
     <title>Health Commodities Dashboard</title>
     <!-- Custom CSS -->
     <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet">
-    <link href="../../dist/css/style.min.css" rel="stylesheet"><link href="../../dist/css/custom.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	<link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="../../dist/css/style.min.css" rel="stylesheet"><link href="../../dist/css/custom.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -122,9 +122,7 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                    <li class="nav-item search-box">
-                        <a class="btn btn-info bn-xs" data-toggle="modal" href='#abb_mdl'>Abbreviations</a>
-                    </li>
+                    
                     <li class="nav-item search-box m-l-10">
                         <a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a>
                     </li>
@@ -240,17 +238,47 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="weightbands.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Weight Band</span></a></li> --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Stock Status </span></a><ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">ACTs</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li></ul></li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Details </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Facility</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Sub-county</span></a></li></ul></li></ul></li>
-                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sssummary.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">SS Summary</span></a></li> -->
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Data Quality </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-completeness.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Completeness</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-concordance.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Concordance</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-consistency.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consistency</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Comparison</span></a></li> </ul></li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Supply Chain Performance </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary-trends.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Trends</span></a></li><!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Detailed</span></a></li> --></ul></li>
-                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	 --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">SOH Comparison</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Pending Shipments</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Issues vs. Receipts</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Accountability</span></a></li></ul></li>
+                                                        <!-- County -->
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">County </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <!-- SS -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: ACTs</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: AS</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: SP</span></a></li>						
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: RDTs</span></a></li>
+                                    <!-- endSS -->
+                                    <!-- RR -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Reporting Rate</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RR: Facility</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RR: Sub-county</span></a></li>
+                                    <!-- endRR -->
+                                    <!-- DQ -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-completeness.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Completeness</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-concordance.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Concordance</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-consistency.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Consistency</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Comparison</span></a></li>
+                                    <!-- endDQ -->
+                                    <!-- SCP -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SCP Summary</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary-trends.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SCP Trends</span></a></li>
+                                    <!-- endSCP -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
+                                </ul>
+                            </li>
+                            <!-- end County -->
+
+                            <!-- National -->
+                            <li class="sidebar-item"> 
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SOH Comparison</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                </ul>
+                            </li>
+                            <!-- end National -->
                         </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -270,7 +298,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Stock Status Summary</h4>
+                        <h4 class="page-title">Stock Status Summary: <span id="filtopts"></span></h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -420,7 +448,7 @@
                                         </div>
                                     </div>
                                     <div class="malaria_commodity_table t_one hidden" style="height: 450px; overflow-y:auto;">
-                                        <table class = "table percent_healthfa" style="position:relative;">
+                                        <table id="percent_healthfa" class = "table percent_healthfa" style="position:relative;">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Items</th>
@@ -454,7 +482,7 @@
                                                 </div>
                                             </div>
                                             <div class="malaria_commodity_table t_two hidden" style="height: 450px; overflow-y:auto;">
-                                                <table class="table number_healthfa" style="position:relative;">
+                                                <table id="number_healthfa" class="table number_healthfa" style="position:relative;">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Item</th>
@@ -496,96 +524,6 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                
-                <div class="modal fade" id="abb_mdl">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header pull-left">
-                                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-                                <h4 class="modal-title pull-left">Abbreviations</h4>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table table-condensed table-striped slimtable text-left" id="abbrev">
-                                    <thead>
-                                        <tr>
-                                            <th>Abbreviation</th>
-                                            <th>Meaning</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>AL (6,12,18,24)</td>
-                                            <td>Artemether-Lumefantrine tabs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>AI</td>
-                                            <td>Artesunate Injection</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SP</td>
-                                            <td>Sulphadoxine Pyrimethamine</td>
-                                        </tr>
-                                        <tr>
-                                            <td>RDT</td>
-                                            <td>Rapid Diagnostic Tests</td>
-                                        </tr>
-                                        <tr>
-                                            <td>PMI</td>
-                                            <td>President's Malaria Initiative</td>
-                                        </tr>
-                                        <tr>
-                                            <td>HCD</td>
-                                            <td>Health Commodities Dashboard</td>
-                                        </tr>
-                                        <tr>
-                                            <td>USAID</td>
-                                            <td>United States Agency for International Development</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SS</td>
-                                            <td>Stock Status</td>
-                                        </tr>
-                                        <tr>
-                                            <td>RR</td>
-                                            <td>Reporting Rate</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SCP</td>
-                                            <td>Supply Chain Performance</td>
-                                        </tr>
-                                        <tr>
-                                            <td>KEMSA</td>
-                                            <td>Kenya Medical Supplies Authority</td>
-                                        </tr>
-                                        <tr>
-                                            <td>NMCP</td>
-                                            <td>National Malaria Control Program</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ACTs</td>
-                                            <td>Artemether-Lumefantrine Tabs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SOH</td>
-                                            <td>Stock on Hand</td>
-                                        </tr>
-                                        <tr>
-                                            <td>AS</td>
-                                            <td>Artesunate Injection</td>
-                                        </tr>
-                                        <tr>
-                                            <td>DQ</td>
-                                            <td>Data Quality</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 
                 All Rights Reserved. Health Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
             </footer>
@@ -636,15 +574,10 @@
     <script src="../../assets/extra-libs/landing/filter.js"></script>
 	
 	<script>
-
+        var filtopts_txt = '';
 		$(document).ready(function() 
 		{
-            $('.table#abbrev').DataTable({
-                searching: false,
-                info: false
-            });
-
-
+            
 
 			var dropdown = $('#county-dropdown');
 			
@@ -670,6 +603,7 @@
 
 			//populate dropdown with list of counties
 			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			// $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -681,13 +615,13 @@
 			$("#county-dropdown").change(function() 
 			{  
 				subcounty.empty();
-				var countyid = $(this).val();	
-
+                var countyid = $(this).val();	
 				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+                $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+                // $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -731,7 +665,7 @@
 
             if(countyou == null)
             {
-                countyou = 'N7YETT3A9r1';
+                countyou = my_ou_0;
             }
 
             if(subcountyou != null)
@@ -748,10 +682,10 @@
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/dataTables.buttons.js"></script>
+    <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/buttons.flash.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
@@ -949,6 +883,10 @@
                 $('.t_one.loader-sp').addClass('hidden');
                 $('.malaria_commodity_table.t_one').removeClass('hidden');
                 $('.percent_healthfa').removeClass('hidden');
+
+                    //to enable downloading the report table
+                    downloadable('percent_healthfa');
+
             },
             error: function (request, status, error) {
                     $('.loader-sp.t_one').addClass('hidden');
@@ -1039,6 +977,8 @@
                 $('.t_two.loader-sp').addClass('hidden');
                 $('.number_healthfa').removeClass('hidden');
                 $('.malaria_commodity_table.t_two').removeClass('hidden');
+
+                downloadable('number_healthfa');
             },
             error: function (request, status, error) {
                     $('.loader-sp.t_two').addClass('hidden');
@@ -1057,7 +997,7 @@
                     //adjc FA
                     var urlcon = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;iMHDfVvYm0W&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
 
-                     var urlcon = 'http://api.myjson.com/bins/wcxgo';
+//                     var urlcon = 'http://api.myjson.com/bins/wcxgo';
                     
                     //physical count/SOH                
                     var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
@@ -1149,12 +1089,7 @@
                         $('.adjc_soh_mos').removeClass('hidden');
 
                         //to enable downloading the report table
-                        $('#adjc_soh_mos').DataTable( {
-                            dom: 'Bfrtip',
-                            buttons: [
-                                'copy', 'csv', 'excel', 'pdf', 'print'
-                            ]
-                        } );
+                       downloadable('adjc_soh_mos');
                     },
                     error: function (request, status, error) {
                             $('.loader-sp.t_three').addClass('hidden');
@@ -1170,7 +1105,6 @@
         });
         
         
-    
         </script>
         <!-- end MOS by Commodity -->
             
@@ -1181,6 +1115,8 @@
             $('#county-dropdown').change(function() 
             {            			
                 var countyou = $("#county-dropdown").val();
+                filtopts_txt+=' County: '+$("#county-dropdown > option:selected").text();
+                $('#filtopts').text(filtopts_txt);
                 var subcountyou = null; //$("#subcounty-dropdown").val()
                 var periodval = $("#period-dropdown").val();
     
@@ -1203,6 +1139,8 @@
             //change of subcounty
             $('#subcounty-dropdown').change(function() 
             {
+                filtopts_txt+=' Sub-ounty: '+$("#subcounty-dropdown > option:selected").text();
+                $('#filtopts').text(filtopts_txt);
                 var countyou = $("#county-dropdown").val();
                 var subcountyou = $("#subcounty-dropdown").val();
                 var periodval = $("#period-dropdown").val();
@@ -1231,6 +1169,8 @@
                 var subcountyou = $("#subcounty-dropdown").val();
                 var periodval = therdate;
             
+                filtopts_txt+=' Period: '+dateToStr(periodval);
+                $('#filtopts').text(filtopts_txt);
                 filterMain(countyou,subcountyou,periodval);
             }
             
@@ -1280,6 +1220,50 @@
                 }
             }
 
+            function downloadable(tableid) {
+                $('#'+tableid).DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
+            }
+
+            function dateToStr(ledate){
+                var leyear = ledate.substr(0,4);
+                var lemonth = ledate.substr(4,5);
+                // console.log('leyear ni: '+leyear);
+                // console.log('lemonth ni: '+lemonth);
+                if(lemonth == '01'){ 
+                    var numonth = 'Jan';
+                } if(lemonth == '02'){ 
+                    var numonth = 'Feb';
+                } if(lemonth == '03'){ 
+                    var numonth = 'Mar';
+                } if(lemonth == '04'){ 
+                    var numonth = 'Apr';
+                } if(lemonth == '05'){ 
+                    var numonth = 'May';
+                } if(lemonth == '06'){ 
+                    var numonth = 'Jun';
+                } if(lemonth == '07'){ 
+                    var numonth = 'Jul';
+                } if(lemonth == '08'){ 
+                    var numonth = 'Aug';
+                } if(lemonth == '09'){ 
+                    var numonth = 'Sept';
+                } if(lemonth == '10'){ 
+                    var numonth = 'Oct';
+                } if(lemonth == '11'){ 
+                    var numonth = 'Nov';
+                } if(lemonth == '12'){ 
+                    var numonth = 'Dec';
+                }
+                var lenudate = numonth+' '+leyear;
+                return lenudate;
+            }
+
+            $('#filtopts').text(filtopts_txt);
     </script>
     </div>
     </body>

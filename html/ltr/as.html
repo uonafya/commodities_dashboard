@@ -14,10 +14,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="../../dist/css/style.min.css" rel="stylesheet">
-    <link href="../../dist/css/custom.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../dist/css/custom.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -232,17 +234,47 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="weightbands.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Weight Band</span></a></li> --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Stock Status </span></a><ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">ACTs</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li></ul></li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Details </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Facility</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Sub-county</span></a></li></ul></li></ul></li>
-                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sssummary.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">SS Summary</span></a></li> -->
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Data Quality </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-completeness.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Completeness</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-concordance.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Concordance</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-consistency.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consistency</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Comparison</span></a></li> </ul></li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Supply Chain Performance </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary-trends.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Trends</span></a></li><!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Detailed</span></a></li> --></ul></li>
-                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	 --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">SOH Comparison</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Pending Shipments</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Issues vs. Receipts</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Accountability</span></a></li></ul></li>
+                            <!-- County -->
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">County </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <!-- SS -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: ACTs</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: AS</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: SP</span></a></li>						
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SS: RDTs</span></a></li>
+                                    <!-- endSS -->
+                                    <!-- RR -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Reporting Rate</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RR: Facility</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RR: Sub-county</span></a></li>
+                                    <!-- endRR -->
+                                    <!-- DQ -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-completeness.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Completeness</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-concordance.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Concordance</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-consistency.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Consistency</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">DQ: Comparison</span></a></li>
+                                    <!-- endDQ -->
+                                    <!-- SCP -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SCP Summary</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary-trends.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SCP Trends</span></a></li>
+                                    <!-- endSCP -->
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
+                                </ul>
+                            </li>
+                            <!-- end County -->
+
+                            <!-- National -->
+                            <li class="sidebar-item"> 
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SOH Comparison</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                </ul>
+                            </li>
+                            <!-- end National -->
                         </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -264,7 +296,7 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                AS
+                                <span id="thetitle"></span>
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
@@ -404,18 +436,31 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+    <script src="../../dist/js/custom.js"></script>
+    
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-    	
+        
+    <script src="../../assets/extra-libs/DataTables/dataTables.buttons.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>
+    <script src="../../assets/extra-libs/jszip/jszip.min.js"></script>
+    <script src="../../assets/extra-libs/pdfmake/pdfmake.min.js"></script>
+    <script src="../../assets/extra-libs/pdfmake/vfs_fonts.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.html5.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.print.min.js"></script>
+    
 	<!-- *********** MonthPicker ************** -->
     <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
     <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
     <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
+
+    
+    <script src="../../dist/js/as.js"></script>
     <script>
         $('#period-dropdown').MonthPicker({ 
             Button: false,
@@ -494,8 +539,9 @@
             var period = '201805';
         
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;nvJsVaN8FOB.NhSoXUMPK2K;yz69a26rIa1;iOARK31NdLp.rPAsF4cpNxm;DUnK0MqACvs&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            // var url = 'http://localhost/pmi/json/artesunate.json'
+            // var url = 'http://localhost/pmi/json/artesunate.json';
             fetchAS(url);
+
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
@@ -534,144 +580,10 @@
             fetchAS(url);
         }
         
-        //function toprocess the AS url
-        function fetchAS(asurl)
-        {
-            // $.getJSON(asurl, function (data){
-            $.ajax({
-                type: 'GET',
-                crossDomain: true,
-                url: asurl,                    
-                success: function (data) {
-
-                    //create the org units array
-                    var orgunits = [];
-                    var dxids = [];
-
-                    //var tableData = '<table>';
-                    var tableData = '';
-
-                    //console.log(data.rows);
-
-                    //push only if not in
-                    $.each(data.rows, function (rowkey, rowentry) 
-                    {
-                            //console.log(rowentry[1]);
-                            //console.log(orgunits.indexOf(rowentry[1]))
-                            if(orgunits.indexOf(rowentry[1])>=0)
-                            {
-                                    //console.log(orgunits);
-                            }
-                            else
-                            {
-                                    orgunits.push(rowentry[1]);
-                            }	
-
-                    })
-
-                    //console.log(orgunits.length);
-                    $.each(data.metaData.dimensions.ou, function (key, entry) 
-                    {
-                            //define the table
-                            tableData += '<tr>';	
-                            tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                            tableData += '<td>'+entry+'</td>';
-                            //console.log(data.metaData.items[entry].name);
-                            //console.log(entry);
-                            //console.log(entry);	
-
-                            //get all the dimensions for the given orgunit
-                            dxids = [];
-                            $.each(data.rows, function (rkey, rentry) 
-                            {
-                                    var dxcode = rentry[1];
-
-                                    if(dxcode==entry)
-                                    {
-                                            dxids.push(rentry[0]);
-                                    }												
-                            })
-
-                            //console.log(dxids);
+        
 
 
-                            //console.log(data.rows);
-                            //for each dimension get the value
-                            var count = 0;
-                            $.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
-                            {
-                                    //console.log(orgunits.indexOf(entry));
-                                    //console.log(dxids.indexOf(dxentry));
-                                    //console.log(orgunits);	
-                                    //console.log(data.metaData.items[dxentry].name);
-                                    if(orgunits.indexOf(entry)<0)
-                                    {
-                                            tableData += '<td bgcolor="#ff0000"> - </td>';
-                                    }
-                                    else if(dxids.indexOf(dxentry)<0)
-                                    {
-                                            tableData += '<td bgcolor="#ff0000"> - </td>';
-                                    }
-                                    else
-                                    {										
-                                            $.each(data.rows, function (rkey, rentry) 
-                                            {					
-                                                    var dxid = rentry[0];
-                                                    var dxcode = rentry[1];
-                                                    var dxval = rentry[2];
 
-                                                    if(dxentry==dxid)
-                                                    {						
-                                                            if(dxcode==entry)
-                                                            {
-                                                                    //console.log(rentry);		
-                                                                    //var notfoundRow = false;
-                                                                    var bgcolor = '#ffffff';
-                                                                    if(dxval<0)
-                                                                            bgcolor = '#ffcccc'
-                                                                    if (dxval >= 0 && dxval< 3)
-                                                                            bgcolor = '#ffeb9c'
-                                                                    if (dxval >= 3 && dxval<= 6)
-                                                                            bgcolor = '#7bd48d'
-                                                                    if(dxval>6)
-                                                                            bgcolor = '#85bfe0'
-
-                                                                    tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
-                                                            }						
-                                                    }						
-                                            })				
-
-                                    }
-                                    count++;
-                            })					
-
-                            tableData += '</tr>';	
-                    })
-
-                    //tableData += '<table>';	
-                    //console.log(tableData)
-                    $('#as_table').removeClass('hidden');
-                    $('.asdata').removeClass('hidden');
-                    $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');
-                    
-                    $('#as_table').DataTable().destroy();
-                    $("table.asbox tbody").empty();
-                    $("table.asbox tbody").append(tableData);	
-                    //$('#as_table').DataTable();                                                          
-                    $('#as_table').DataTable().fnDraw();
-
-                    
-                },
-                error: function (request, status, error) {
-                    $('.loader-sp').addClass('hidden');
-                    $('#as_table').addClass('hidden');
-                    console.log('AS: error fetching json. :- '+error);
-                    $('asdata').addClass('hidden');
-                    $('.as_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-                }
-            });
-    }
 </script>
 
 </body>

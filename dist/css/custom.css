@@ -71,6 +71,9 @@
   .bcwhite{
     background-color: #fff !important;
   }
+  .bcred{
+    background-color: #f00 !important;
+  }
   .br3{
     border-radius: 3px;
   }
@@ -230,8 +233,13 @@
 .highcharts-container{width:100% !important; height:100% !important;}
 .sidebar-nav ul .sidebar-item .first-level .sidebar-item.active .sidebar-link {
   background: #167ba8;
+  border-top: 1px solid #1f262d !important;
   margin-left: 3px;
 }
 .form-control:disabled{
   cursor: not-allowed;
+}
+
+.sidebar-nav ul .sidebar-item .first-level .sidebar-item:not(.active) a.sidebar-link:not(.active){
+  background: #1f262d !important;
 }

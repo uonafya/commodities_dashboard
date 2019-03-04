@@ -14,5 +14,17 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="jquery-3.3.1" level="application" />
+    <orderEntry type="library" name="highcharts" level="application" />
+    <orderEntry type="library" name="exporting" level="application" />
+    <orderEntry type="library" name="export-data" level="application" />
+    <orderEntry type="library" name="jquery.dataTables" level="application" />
+    <orderEntry type="library" name="dataTables.buttons" level="application" />
+    <orderEntry type="library" name="buttons.flash" level="application" />
+    <orderEntry type="library" name="jszip" level="application" />
+    <orderEntry type="library" name="pdfmake" level="application" />
+    <orderEntry type="library" name="vfs_fonts" level="application" />
+    <orderEntry type="library" name="buttons.html5" level="application" />
+    <orderEntry type="library" name="buttons.print" level="application" />
   </component>
 </module>
