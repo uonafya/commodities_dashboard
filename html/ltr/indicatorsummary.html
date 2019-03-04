@@ -621,7 +621,10 @@ function fetchIS(url,ounit,period,filtering) {
             success: function (data) {
                 
             var orgunits = data.metaData.dimensions.ou;
-            
+			
+			var datasetOrgs = getOrgUnits();
+
+			console.log(datasetOrgs);
             
             //apply the title
             var theperiod = data.metaData.dimensions.pe[0];
@@ -965,7 +968,6 @@ function getOrgUnit(uid, period)
 }
 
 //get expected reports
-
 function getExpectedUnits(uid, period)
 {
 	var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:JPaviRmSsJW.EXPECTED_REPORTS&dimension=ou:'+uid+'&displayProperty=NAME&outputIdScheme=UID';
@@ -1000,6 +1002,7 @@ function getBgColor(dxval)
         
     return bgcolor;
 }
+
 
 
 //function get the total facilities
@@ -1045,20 +1048,6 @@ function getTotalOrgs(orgunits)
 }
 
 
-//sleep function
-function sleep(milliseconds) 
-{
-	var start = new Date().getTime();
-	for (var i = 0; i < 1e7; i++) 
-	{
-		if ((new Date().getTime() - start) > milliseconds)
-		{
-			break;
-		}
-	}
-}
-
-
 //check if org unit is assigned form
 function checkOrgUnit(uid)
 {
@@ -1083,8 +1072,31 @@ function checkOrgUnit(uid)
 	});
 }
 
-	</script>
-	<!-- end MOS by Commodity -->
+//get the orgs assigned the data set for malaria expected reports
+function getOrgUnits()
+{
+	var url = '../../assets/json/orgunitsmal.json';
+	
+	//get the org units
+	var orgunitval = [];
+	    
+    $.ajax({      
+      dataType: "json",
+      url: url, //Relative or absolute path to response.php file   
+	  async:false,
+      success: function(data) 
+      {          
+			$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+			{			
+				orgunitval.push(orgunitid.id);
+			})
+      }
+    });
+	
+	return orgunitval;
+}
+</script>
+<!-- end MOS by Commodity -->
 
 </body>
 
