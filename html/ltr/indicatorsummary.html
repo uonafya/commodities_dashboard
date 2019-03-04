@@ -551,6 +551,7 @@
 	{
         var ounit = 'tAbBVBbueqD';
         var period = '201805';
+        var filtering = false;
         var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;tAbBVBbueqD&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
         // var url = 'http://localhost/pmi/json/indicatorsummary.json';
         fetchIS(url,ounit,period);
@@ -562,16 +563,18 @@
         {
             var ounit = $(this).val(); 
             var period =  getPeriod();
+            var filtering = true;
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchIS(url,ounit,period);
+            fetchIS(url,ounit,period,filtering);
         });
         
         $("#subcounty-dropdown").change(function() 
         {
             var ounit = $(this).val();  
             var period =  getPeriod();
+            var filtering = true;
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchIS(url,ounit,period);
+            fetchIS(url,ounit,period,filtering);
         });
 });
 
@@ -771,7 +774,7 @@ function fetchSummary(ounit,period)
 
 
 
-function fetchIS(url,ogu) {
+function fetchIS(url,ounit,period,filtering) {
     $('#zero_config.table').addClass('hidden');
     $('.loader-sp.is-sub').removeClass('hidden');
     $.ajax({
@@ -785,7 +788,7 @@ function fetchIS(url,ogu) {
             
             //apply the title
             var theperiod = data.metaData.dimensions.pe[0];
-            var theorgunit = ogu;
+            var theorgunit = ounit;
             
             var curpe = data.metaData.items[theperiod].name;
             
@@ -1017,38 +1020,40 @@ function fetchIS(url,ogu) {
                             //data-xport
 
                             initComplete: function () {
-                                this.api().columns(0).every( function () {
-                                    var column = this;
-                                    var select = $('<select class="form-control"><option value="">Filter parameter</option></select>')
-                                        .appendTo( $(column.header()) )
-                                        .on( 'change', function () {
-                                            var val = $.fn.dataTable.util.escapeRegex(
-                                                $(this).val()
-                                            );
-                                            column
-                                                .search( val ? '^'+val+'$' : '', true, false )
-                                                .draw();
+                                if(filtering === false){
+                                    this.api().columns(0).every( function () {
+                                        var column = this;
+                                        var select = $('<select class="form-control"><option value="">Filter parameter</option></select>')
+                                            .appendTo( $(column.header()) )
+                                            .on( 'change', function () {
+                                                var val = $.fn.dataTable.util.escapeRegex(
+                                                    $(this).val()
+                                                );
+                                                column
+                                                    .search( val ? '^'+val+'$' : '', true, false )
+                                                    .draw();
+                                            } );
+                                        column.data().unique().sort().each( function ( d, j ) {
+                                                select.append( '<option value="'+d+'">'+d+'</option>' );
                                         } );
-                                    column.data().unique().sort().each( function ( d, j ) {
-                                            select.append( '<option value="'+d+'">'+d+'</option>' );
                                     } );
-                                } );
-                                this.api().columns(1).every( function () {
-                                    var column = this;
-                                    var select = $('<select class="form-control"><option value="">Filter items</option></select>')
-                                        .appendTo( $(column.header()) )
-                                        .on( 'change', function () {
-                                            var val = $.fn.dataTable.util.escapeRegex(
-                                                $(this).val()
-                                            );
-                                            column
-                                                .search( val ? '^'+val+'$' : '', true, false )
-                                                .draw();
+                                    this.api().columns(1).every( function () {
+                                        var column = this;
+                                        var select = $('<select class="form-control"><option value="">Filter items</option></select>')
+                                            .appendTo( $(column.header()) )
+                                            .on( 'change', function () {
+                                                var val = $.fn.dataTable.util.escapeRegex(
+                                                    $(this).val()
+                                                );
+                                                column
+                                                    .search( val ? '^'+val+'$' : '', true, false )
+                                                    .draw();
+                                            } );
+                                        column.data().unique().sort().each( function ( d, j ) {
+                                                select.append( '<option value="'+d+'">'+d+'</option>' );
                                         } );
-                                    column.data().unique().sort().each( function ( d, j ) {
-                                            select.append( '<option value="'+d+'">'+d+'</option>' );
                                     } );
-                                } );
+                                }
                             }
                         });	                                                        
                         $('.indicatorsumm').DataTable().draw();
@@ -1071,14 +1076,20 @@ function fetchIS(url,ogu) {
         {
             var ounit = $(this).val(); 
             var period =  getPeriod();
-            fetchSummary(ounit,period);
+            var filtering = true;
+            // fetchSummary(ounit,period);
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            fetchIS(url,ounit,period,filtering);
         });
 
         $("#subcounty-dropdown").change(function() 
         {
             var ounit = $(this).val();  
             var period =  getPeriod();
-            fetchSummary(ounit,period);
+            var filtering = true;
+            // fetchSummary(ounit,period);
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            fetchIS(url,ounit,period,filtering);
         });
 }
 //get the period
