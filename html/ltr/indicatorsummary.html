@@ -621,11 +621,13 @@ function fetchIS(url,ounit,period,filtering) {
             success: function (data) {
                 
             var orgunits = data.metaData.dimensions.ou;
-            var Den=getTotalOrgs(orgunits); //orgunits.length;
+            
             
             //apply the title
             var theperiod = data.metaData.dimensions.pe[0];
             var theorgunit = ounit;
+			
+			var Den=getExpectedUnits(ounit, theperiod); //orgunits.length;
             
             var curpe = data.metaData.items[theperiod].name;
             
@@ -960,6 +962,22 @@ function getOrgUnit(uid, period)
           $("h5.indicatortitle").html(data['name']+' - '+period);
       }
     });    
+}
+
+//get expected reports
+
+function getExpectedUnits(uid, period)
+{
+	var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:JPaviRmSsJW.EXPECTED_REPORTS&dimension=ou:'+uid+'&displayProperty=NAME&outputIdScheme=UID';
+	    
+    $.ajax({      
+      dataType: "json",
+      url: url, //Relative or absolute path to response.php file      
+      success: function(data) 
+      {          
+          console.log(data);
+      }
+    });
 }
 
 //set the background color
