@@ -974,14 +974,14 @@ function getExpectedUnits(uid, period)
 	    
     $.ajax({      
       dataType: "json",
-      url: url, //Relative or absolute path to response.php file      
+      url: url, //Relative or absolute path to response.php file   
+	  async:false,
       success: function(data) 
       {          
           count = parseInt(data.rows[0][3]);
       }
     });
-	
-	sleep(2000);
+		
 	return count;
 }
 
