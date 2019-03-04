@@ -164,7 +164,13 @@ function fetchRDTs(rdturl)
                         dom: 'Bfrtip',
                         buttons: [
                             'copy', 'csv', 'excel', 'pdf', 'print'
-                        ]
+                        ],
+                        initComplete: function () {
+                            $(this.api().column(1).nodes()).css({ "background-color": "white" });
+                            $(this.api().column(3).nodes()).css({ "background-color": "white" });
+                            $(this.api().column(4).nodes()).css({ "background-color": "white" });
+                            $(this.api().column(5).nodes()).css({ "background-color": "white" });
+                        }
                     });
 
                     

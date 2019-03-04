@@ -75,59 +75,50 @@ function fetchAS(asurl)
                     tableData += '<td>'+getMFLcode(entry)+'</td>';
                     //get all the dimensions for the given orgunit
                     dxids = [];
-                    $.each(data.rows, function (rkey, rentry) 
-                    {
-                            var dxcode = rentry[1];
-
-                            if(dxcode==entry)
-                            {
-                                    dxids.push(rentry[0]);
-                            }												
+                    $.each(data.rows, function (rkey, rentry){
+                        var dxcode = rentry[1];
+                        if(dxcode==entry){
+                            dxids.push(rentry[0]);
+                        }												
                     })
 
                     //for each dimension get the value
                     var count = 0;
-                    $.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
-                    {
-                            if(orgunits.indexOf(entry)<0)
-                            {
-                                    tableData += '<td bgcolor="#ff0000"> - </td>';
-                            }
-                            else if(dxids.indexOf(dxentry)<0)
-                            {
-                                    tableData += '<td bgcolor="#ff0000"> - </td>';
-                            }
-                            else
-                            {										
-                                    $.each(data.rows, function (rkey, rentry) 
-                                    {					
-                                            var dxid = rentry[0];
-                                            var dxcode = rentry[1];
-                                            var dxval = rentry[2];
-
-                                            if(dxentry==dxid)
-                                            {						
-                                                    if(dxcode==entry)
-                                                    {
-                                                            //console.log(rentry);		
-                                                            //var notfoundRow = false;
-                                                            var bgcolor = '#ffffff';
-                                                            if(dxval<0)
-                                                                    bgcolor = '#ffcccc'
-                                                            if (dxval >= 0 && dxval< 3)
-                                                                    bgcolor = '#ffeb9c'
-                                                            if (dxval >= 3 && dxval<= 6)
-                                                                    bgcolor = '#7bd48d'
-                                                            if(dxval>6)
-                                                                    bgcolor = '#85bfe0'
-
-                                                            tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
-                                                    }						
-                                            }						
-                                    })				
-
-                            }
-                            count++;
+                    $.each(data.metaData.dimensions.dx, function (dxkey, dxentry){
+                        if(orgunits.indexOf(entry)<0)
+                        {
+                            tableData+= '<td bgcolor="#ff0000"> - </td>';
+                        }
+                        else if(dxids.indexOf(dxentry)<0)
+                        {
+                            tableData += '<td bgcolor="#ff0000"> - </td>';
+                        }
+                        else
+                        {										
+                            $.each(data.rows, function (rkey, rentry) 
+                            {					
+                                var dxid = rentry[0];
+                                var dxcode = rentry[1];
+                                var dxval = rentry[2];
+                                if(dxentry==dxid){						
+                                    if(dxcode==entry){
+                                        //console.log(rentry);		
+                                        //var notfoundRow = false;
+                                        var bgcolor = '#ffffff';
+                                        if(dxval<0)
+                                                bgcolor = '#ffcccc'
+                                        if (dxval >= 0 && dxval< 3)
+                                                bgcolor = '#ffeb9c'
+                                        if (dxval >= 3 && dxval<= 6)
+                                                bgcolor = '#7bd48d'
+                                        if(dxval>6)
+                                                bgcolor = '#85bfe0'
+                                        tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
+                                    }						
+                                }						
+                            })				
+                        }
+                        count++;
                     })					
 
                     tableData += '</tr>';	
@@ -149,7 +140,13 @@ function fetchAS(asurl)
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+                ],
+                initComplete: function () {
+                    $(this.api().column(1).nodes()).css({ "background-color": "white" });
+                    $(this.api().column(3).nodes()).css({ "background-color": "white" });
+                    $(this.api().column(4).nodes()).css({ "background-color": "white" });
+                    $(this.api().column(5).nodes()).css({ "background-color": "white" });
+                }
             });
 
             

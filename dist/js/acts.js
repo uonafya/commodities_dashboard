@@ -164,7 +164,13 @@ function fetchACTs(acturl)
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+                ],
+                initComplete: function () {
+                    $(this.api().column(4).nodes()).css({ "background-color": "white" });
+                    $(this.api().column(6).nodes()).css({ "background-color": "white" });
+                    $(this.api().column(8).nodes()).css({ "background-color": "white" });
+                    $(this.api().column(10).nodes()).css({ "background-color": "white" });
+                }
             });
 
             
