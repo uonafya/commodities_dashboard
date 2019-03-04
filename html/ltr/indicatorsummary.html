@@ -620,8 +620,8 @@ function fetchIS(url,ounit,period,filtering) {
             url: url,                    
             success: function (data) {
                 
-                var orgunits = data.metaData.dimensions.ou;
-                var Den=orgunits.length;
+            var orgunits = data.metaData.dimensions.ou;
+            var Den=orgunits.length;
             
             //apply the title
             var theperiod = data.metaData.dimensions.pe[0];
@@ -976,6 +976,65 @@ function getBgColor(dxval)
             bgcolor = '#85bfe0'
         
     return bgcolor;
+}
+
+
+//function get the total facilities
+function getTotalOrgs(orgunits)
+{
+	//get the org units
+	var orgunitval = [];
+	
+	$.getJSON('../../assets/json/orgunitsmal.json', function(data) 
+	{         
+		
+		$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+		{			
+			orgunitval.push(orgunitid.id);
+		})
+		
+		console.log(orgunitval);
+		
+	});
+	
+	
+	var count = 0;
+	console.log(orgunits);
+	$.each(orgunits, function (key, id) 
+	{	
+		console.log(id);
+		if(orgunitval.indexOf(id)>-1)
+		{
+			count++;
+		}
+	})
+	
+	return count;
+}
+
+
+//check if org unit is assigned form
+function checkOrgUnit(uid)
+{
+	//get the org units
+	var orgunitval = [];
+	
+	$.getJSON('../../assets/json/orgunitsmal.json', function(data) 
+	{         
+		
+		$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+		{			
+			orgunitval.push(orgunitid.id);
+		})
+		
+		console.log(orgunitval);
+	
+		var found = orgunitval.indexOf(uid);
+		
+		console.log(found);
+		
+		console.log(orgunitval.length);
+	});
 }
 
 	</script>
