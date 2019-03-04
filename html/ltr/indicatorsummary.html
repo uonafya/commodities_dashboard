@@ -1001,7 +1001,7 @@ function getTotalOrgs(orgunits)
 	$.getJSON({
     url: "../../assets/json/orgunitsmal.json"
 	}).done(function (result, status, xhr) {
-		$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+		$.each(result.dataSets[0].organisationUnits, function (key, orgunitid) 
 		{			
 			orgunitval.push(orgunitid.id);
 		})
