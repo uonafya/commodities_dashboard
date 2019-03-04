@@ -695,9 +695,10 @@
 
         //process the json
         $(document).ready(function() 
-        {
+        {		
+		
             //load the mos by commodity 
-                    var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
                     
             //populate dropdown with list of counties
             $.ajax({
@@ -711,15 +712,16 @@
                 var dxids = [];
                 var mosVals = new Array();  
                             
-                            //apply the lableing to the data
-                            var theperiod = data.metaData.dimensions.pe[0];
-                            var theorgunit = data.metaData.dimensions.ou[0];
-                            
-                            var curorg = data.metaData.items[theorgunit].name;
-                            var curpe = data.metaData.items[theperiod].name;
-                            
-                            $("h4.titlelabel").html(curorg+' - '+curpe);
-                            //end apply labeling to the data
+				//apply the lableing to the data
+				var theperiod = data.metaData.dimensions.pe[0];
+				var theorgunit = data.metaData.dimensions.ou[0];
+							
+				
+				var curorg = data.metaData.items[theorgunit].name;
+				var curpe = data.metaData.items[theperiod].name;
+				
+				$("h4.titlelabel").html(curorg+' - '+curpe);
+				//end apply labeling to the data
                                 
                 //var tableData = '<table>';
                 var tableData = '';
@@ -822,7 +824,11 @@
                 success: function (data) {
                 var orgunits = data.metaData.dimensions.ou;
                 //console.log(orgunits.length);
-                
+				
+				//added
+				//get the total expected to report
+				var totalorgs = getExpectedUnits('HfVjCurKxh2', '201805');
+				                
                                 
                 //var tableData = '<table>';
                 var tableData = '';
@@ -866,9 +872,12 @@
                         }					
                     })
                                     countname++;
-                    var overpercent = (overstock/orgunits.length)*100;
-                    var okpercent = (stockok/orgunits.length)*100;
-                    var underpercent = (understock/orgunits.length)*100;
+					
+					
+									
+                    var overpercent = (overstock/totalorgs)*100;
+                    var okpercent = (stockok/totalorgs)*100;
+                    var underpercent = (understock/totalorgs)*100;
                     
                     tableData += '<td bgcolor="#ffeb9c">'+overpercent.toFixed(1)+'%</td>';
                     tableData += '<td bgcolor="#7bd48d">'+okpercent.toFixed(1)+'%</td>';
@@ -909,6 +918,9 @@
                 var orgunits = data.metaData.dimensions.ou;
                 //console.log(orgunits.length);
                 var totalfa = orgunits.length;
+				//added
+				//get the total expected to report
+				var totalorgs = getExpectedUnits('HfVjCurKxh2', '201805');
                                 
                 //var tableData = '<table>';
                 var tableData = '';
@@ -958,14 +970,14 @@
                         }					
                     })	
                     countname++;
-                    nomos = totalfa-(overstock+stockok+understock+stockout)
+                    nomos = totalorgs-(overstock+stockok+understock+stockout)
                     
                     tableData += '<td bgcolor="#ffeb9c">'+overstock+'</td>';
                     tableData += '<td bgcolor="#7bd48d">'+stockok+'</td>';
                     tableData += '<td bgcolor="#ffc7ce">'+understock+'</td>';
                     tableData += '<td style="color: #ffffff;" bgcolor="#ff0000">'+stockout+'</td>';	
                     tableData += '<td>'+nomos+'</td>';	
-                    tableData += '<td>'+totalfa+'</td>';					
+                    tableData += '<td>'+totalorgs+'</td>';					
                     
                     tableData += '</tr>';	
                 })
@@ -1190,8 +1202,8 @@
                 return parseFloat(mysoh);
         }
             
-            //get the adjusted consumption value
-            //function to get value from loop
+		//get the adjusted consumption value
+		//function to get value from loop
         function getConsumption(rows,entry) 
         {	
                 var conval = 0;
@@ -1229,7 +1241,8 @@
                 } );
             }
 
-            function dateToStr(ledate){
+            function dateToStr(ledate)
+			{
                 var leyear = ledate.substr(0,4);
                 var lemonth = ledate.substr(4,5);
                 // console.log('leyear ni: '+leyear);
@@ -1262,6 +1275,27 @@
                 var lenudate = numonth+' '+leyear;
                 return lenudate;
             }
+			
+			
+			//get expected reports
+			function getExpectedUnits(uid, period)
+			{
+				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:JPaviRmSsJW.EXPECTED_REPORTS&dimension=ou:'+uid+'&displayProperty=NAME&outputIdScheme=UID';
+				
+				var count = 0;
+					
+				$.ajax({      
+				  dataType: "json",
+				  url: url, //Relative or absolute path to response.php file   
+				  async:false,
+				  success: function(data) 
+				  {          
+					  count = parseInt(data.rows[0][3]);
+				  }
+				});
+					
+				return count;
+			}
 
             $('#filtopts').text(filtopts_txt);
     </script>
