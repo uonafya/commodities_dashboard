@@ -998,9 +998,8 @@ function getTotalOrgs(orgunits)
 	*/
 	
 	var count = 0;
-	$.getJSON({
-    url: "../../assets/json/orgunitsmal.json"
-	}).done(function (result, status, xhr) {
+	$.getJSON({url: "../../assets/json/orgunitsmal.json"}).done(function (result, status, xhr) 
+	{
 		$.each(result.dataSets[0].organisationUnits, function (key, orgunitid) 
 		{			
 			orgunitval.push(orgunitid.id);
@@ -1008,22 +1007,17 @@ function getTotalOrgs(orgunits)
 		
 		//console.log(orgunits);
 		$.each(orgunits, function (key, id) 
-		{	
-			console.log(orgunitval);
-			console.log(id);
+		{			
 			if(orgunitval.indexOf(id)>-1)
 			{
 				count++;
 			}
 		})
-	}).fail(function (xhr, status, error) {
-		alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+	}).fail(function (xhr, status, error) 
+	{
+		console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
 	});
 	
-	
-	
-	
-	alert(count);
 	return count;
 }
 
