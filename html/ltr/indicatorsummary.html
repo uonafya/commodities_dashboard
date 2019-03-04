@@ -985,6 +985,7 @@ function getTotalOrgs(orgunits)
 	//get the org units
 	var orgunitval = [];
 	
+	/*
 	$.getJSON('../../assets/json/orgunitsmal.json', function(data) 
 	{		
 		$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
@@ -994,19 +995,34 @@ function getTotalOrgs(orgunits)
 		
 		//console.log(orgunitval);		
 	});
-	
+	*/
 	
 	var count = 0;
-	//console.log(orgunits);
-	$.each(orgunits, function (key, id) 
-	{	
-		console.log(orgunitval);
-		console.log(id);
-		if(orgunitval.indexOf(id)>-1)
-		{
-			count++;
-		}
-	})
+	$.getJSON({
+    url: "../../assets/json/orgunitsmal.json"
+	}).done(function (result, status, xhr) {
+		$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+		{			
+			orgunitval.push(orgunitid.id);
+		})
+		
+		//console.log(orgunits);
+		$.each(orgunits, function (key, id) 
+		{	
+			console.log(orgunitval);
+			console.log(id);
+			if(orgunitval.indexOf(id)>-1)
+			{
+				count++;
+			}
+		})
+	}).fail(function (xhr, status, error) {
+		alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+	});
+	
+	
+	
+	
 	alert(count);
 	return count;
 }
