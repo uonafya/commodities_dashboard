@@ -575,6 +575,11 @@
 	
 	<script>
         var filtopts_txt = '';
+		
+		//get the required org units
+		var activeorgunits = getOrgUnits();
+		
+		
 		$(document).ready(function() 
 		{
             
@@ -712,7 +717,7 @@
                 var dxids = [];
                 var mosVals = new Array();  
                             
-				//apply the lableing to the data
+				//apply the labeling to the data
 				var theperiod = data.metaData.dimensions.pe[0];
 				var theorgunit = data.metaData.dimensions.ou[0];
 							
@@ -1295,6 +1300,31 @@
 				});
 					
 				return count;
+			}
+			
+			
+			//get the orgs assigned the data set for malaria expected reports
+			function getOrgUnits()
+			{
+				var url = '../../assets/json/orgunitsmal.json';
+				
+				//get the org units
+				var orgunitval = [];
+					
+				$.ajax({      
+				  dataType: "json",
+				  url: url, //Relative or absolute path to response.php file   
+				  async:false,
+				  success: function(data) 
+				  {          
+						$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+						{			
+							orgunitval.push(orgunitid.id);
+						})
+				  }
+				});
+				
+				return orgunitval;
 			}
 
             $('#filtopts').text(filtopts_txt);
