@@ -621,7 +621,7 @@ function fetchIS(url,ounit,period,filtering) {
             success: function (data) {
                 
             var orgunits = data.metaData.dimensions.ou;
-            var Den=orgunits.length;
+            var Den=getTotalOrgs(orgunits); //orgunits.length;
             
             //apply the title
             var theperiod = data.metaData.dimensions.pe[0];
