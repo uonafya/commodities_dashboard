@@ -985,7 +985,7 @@ function getTotalOrgs(orgunits)
 	//get the org units
 	var orgunitval = [];
 	
-	$.getJSON('../../assets/json/orgunitsmal.json', function(data) 
+	$.getJSON('https://testhis.uonbi.ac.ke/api/apps/Health-Commodities-Dashboard/assets/json/orgunitsmal.json', function(data) 
 	{         
 		
 		$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
