@@ -328,11 +328,11 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table id="zero_config" class="table table-striped table-bordered indicatorsumm hidden">
+                                    <table id="zero_config" class="table table-striped slimtable table-condensed table-bordered indicatorsumm hidden">
                                         <thead>
                                             <tr>                                                
-                                                <th><b>Parameter</b></th>
-                                                <th><b>Item</b></th>
+                                                <th><b> &nbsp; Parameter &nbsp; </b></th>
+                                                <th><b> &nbsp; &nbsp; &nbsp; Item &nbsp; &nbsp; &nbsp; </b></th>
                                                 <th><b>Num</b></th>
                                                 <th><b>Den</b></th>
                                                 <th><b>Result</b></th>
@@ -345,7 +345,7 @@
                                         <tfoot>
                                             <tr>                                                
                                                 <th><b>Parameter</b></th>
-                                                <th><b>Item</b></th>
+                                                <th><b> &nbsp; &nbsp; &nbsp; Item &nbsp; &nbsp; &nbsp; </b></th>
                                                 <th><b>Num</b></th>
                                                 <th><b>Den</b></th>
                                                 <th><b>Result</b></th>
@@ -601,12 +601,23 @@
                                 var org=(orgunits.length);
                                 var okpercent = (stockok/orgunits.length)*100;
 
+                                var bgc = '#ffffff';
+                                if(okpercent>=acceptable){
+                                    if(okpercent >= target){
+                                        bgc  = '#c6efce';
+                                    }else{
+                                        bgc  = '#ffeb9c';
+                                    }
+                                }else{
+                                    bgc = '#ffc7ce';
+                                }
+
                                 tableData += '<tr>';
                                 tableData += '<td>HFs stocked according to plan</td>';
                                 tableData += '<td>'+data.metaData.items[entry].name+'</td>';
                                 tableData += '<td>'+stockok+'</td>';                                
                                 tableData += '<td>'+Den+'</td>';                                
-                                tableData += '<td>'+okpercent.toFixed(1)+'%</td>';
+                                tableData += '<td bgcolor="'+bgc+'">'+okpercent.toFixed(1)+'%</td>';
                                 tableData += '<td>'+target+ '%</td>';
                                 tableData += '<td>'+acceptable+ '%</td>';
                                 tableData += '</tr>';	
@@ -638,15 +649,26 @@
 				var overstock = (overstock);			
 				var overpercent = (overstock/orgunits.length)*100;
 
-                                tableData += '<tr>';
-                                tableData += '<td>HFs over-stocked</td>';
-                                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                                tableData += '<td>'+overstock+'</td>';                                
-                                tableData += '<td>'+Den+'</td>';                                
-                                tableData += '<td>'+overpercent.toFixed(1)+'%</td>';
-                                tableData += '<td>'+target+ '%</td>';
-                                tableData += '<td>'+acceptable+ '%</td>';
-                                tableData += '</tr>';
+                var bgc = '#ffffff';
+                if(overpercent<=acceptable){
+                    if(overpercent<target){
+                        bgc  = '#c6efce';
+                    }else{
+                        bgc  = '#ffeb9c';
+                    }
+                }else{
+                    bgc = '#ffc7ce';
+                }
+
+                tableData += '<tr>';
+                tableData += '<td>HFs over-stocked</td>';
+                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                tableData += '<td>'+overstock+'</td>';                                
+                tableData += '<td>'+Den+'</td>';                                
+                tableData += '<td bgcolor="'+bgc+'">'+overpercent.toFixed(1)+'%</td>';
+                tableData += '<td>'+target+ '%</td>';
+                tableData += '<td>'+acceptable+ '%</td>';
+                tableData += '</tr>';
                 })
                 
                 
@@ -679,16 +701,27 @@
 				var understock=(understock);
 				var org=(orgunits.length);
 				var underpercent = (understock/orgunits.length)*100;
-				                                
-                                tableData += '<tr>';
-                                tableData += '<td>HFs under-stocked</td>';
-                                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                                tableData += '<td>'+understock+'</td>';                                
-                                tableData += '<td>'+Den+'</td>';                                
-                                tableData += '<td>'+underpercent.toFixed(1)+'%</td>';
-                                tableData += '<td>'+target+ '%</td>';
-                                tableData += '<td>'+acceptable+ '%</td>';
-                                tableData += '</tr>';
+                 
+                var bgc = '#ffffff';
+                if(underpercent<=acceptable){
+                    if(underpercent<target){
+                        bgc  = '#c6efce';
+                    }else{
+                        bgc  = '#ffeb9c';
+                    }
+                }else{
+                    bgc = '#ffc7ce';
+                }
+
+                tableData += '<tr>';
+                tableData += '<td>HFs under-stocked</td>';
+                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                tableData += '<td>'+understock+'</td>';                                
+                tableData += '<td>'+Den+'</td>';                                
+                tableData += '<td bgcolor="'+bgc+'">'+underpercent.toFixed(1)+'%</td>';
+                tableData += '<td>'+target+ '%</td>';
+                tableData += '<td>'+acceptable+ '%</td>';
+                tableData += '</tr>';
 			})
 
 			//tableData += '<table>';	
@@ -724,18 +757,29 @@
                                 var target = 0;
 				var stockout=(stockout);
 				var org=(orgunits.length);
-				var stockoutpercent = (stockout/orgunits.length)*100;
+                var stockoutpercent = (stockout/orgunits.length)*100;
+                
+                var bgc = '#ffffff';
+                if(stockoutpercent<=acceptable){
+                    if(stockoutpercent<target){
+                        bgc  = '#c6efce';
+                    }else{
+                        bgc  = '#ffeb9c';
+                    }
+                }else{
+                    bgc = '#ffc7ce';
+                }
 											                                
-                                tableData += '<tr>';
-                                tableData += '<td>HFs with a stock out</td>';
-                                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                                tableData += '<td>'+stockout+'</td>';                                
-                                tableData += '<td>'+Den+'</td>';                                
-                                tableData += '<td>'+stockoutpercent.toFixed(1)+'%</td>';
-                                tableData += '<td>'+target+ '%</td>';
-                                tableData += '<td>'+acceptable+ '%</td>';
-                                tableData += '</tr>';
-			            })
+                tableData += '<tr>';
+                tableData += '<td>HFs with a stock out</td>';
+                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                tableData += '<td>'+stockout+'</td>';                                
+                tableData += '<td>'+Den+'</td>';                                
+                tableData += '<td bgcolor="'+bgc+'">'+stockoutpercent.toFixed(1)+'%</td>';
+                tableData += '<td>'+target+ '%</td>';
+                tableData += '<td>'+acceptable+ '%</td>';
+                tableData += '</tr>';
+                })
 				
                         $('.loader-sp').addClass('hidden');
                         $('.table-responsive').removeClass('hidden');
