@@ -986,8 +986,7 @@ function getTotalOrgs(orgunits)
 	var orgunitval = [];
 	
 	$.getJSON('../../assets/json/orgunitsmal.json', function(data) 
-	{
-		console.log(data.dataSets[0].organisationUnits);
+	{		
 		$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
 		{			
 			orgunitval.push(orgunitid.id);
@@ -1001,6 +1000,7 @@ function getTotalOrgs(orgunits)
 	//console.log(orgunits);
 	$.each(orgunits, function (key, id) 
 	{	
+		console.log(orgunitval);
 		console.log(id);
 		if(orgunitval.indexOf(id)>-1)
 		{
