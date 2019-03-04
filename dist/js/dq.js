@@ -22,16 +22,17 @@ function getMFLcode(dhis_id) {
     if(mfl_codes_array == null){
         getMFLarray(mfl_url);
     }
-        // var ous = data.organisationUnits;
         var ous = mfl_codes_array;
         var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
             return v.id === dhis_id;
         });
-        if(arr_filterd_by_dhis_code === undefined || arr_filterd_by_dhis_code[0] === undefined){  
+        var mfl_id = arr_filterd_by_dhis_code[0].code;
+
+        // if(arr_filterd_by_dhis_code === undefined || arr_filterd_by_dhis_code[0] === undefined){  
+        if(arr_filterd_by_dhis_code[0] === undefined){  
             var mfl_id = 'Not Available';
-        }else{
-            var mfl_id = arr_filterd_by_dhis_code[0].code;
         }
+        
         // console.log('mfl_id: '+arr_filterd_by_dhis_code);
         return mfl_id;
     

@@ -268,7 +268,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Stock Status Summary</h4>
+                        <h4 class="page-title">Stock Status Summary: <span id="filtopts"></span></h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -544,7 +544,7 @@
     <script src="../../assets/extra-libs/landing/filter.js"></script>
 	
 	<script>
-
+        var filtopts_txt = '';
 		$(document).ready(function() 
 		{
             
@@ -573,6 +573,7 @@
 
 			//populate dropdown with list of counties
 			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			// $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -584,13 +585,13 @@
 			$("#county-dropdown").change(function() 
 			{  
 				subcounty.empty();
-				var countyid = $(this).val();	
-
+                var countyid = $(this).val();	
 				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+                $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+                // $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -1074,7 +1075,6 @@
         });
         
         
-    
         </script>
         <!-- end MOS by Commodity -->
             
@@ -1085,6 +1085,8 @@
             $('#county-dropdown').change(function() 
             {            			
                 var countyou = $("#county-dropdown").val();
+                filtopts_txt+=' County: '+$("#county-dropdown > option:selected").text();
+                $('#filtopts').text(filtopts_txt);
                 var subcountyou = null; //$("#subcounty-dropdown").val()
                 var periodval = $("#period-dropdown").val();
     
@@ -1107,6 +1109,8 @@
             //change of subcounty
             $('#subcounty-dropdown').change(function() 
             {
+                filtopts_txt+=' Sub-ounty: '+$("#subcounty-dropdown > option:selected").text();
+                $('#filtopts').text(filtopts_txt);
                 var countyou = $("#county-dropdown").val();
                 var subcountyou = $("#subcounty-dropdown").val();
                 var periodval = $("#period-dropdown").val();
@@ -1135,6 +1139,8 @@
                 var subcountyou = $("#subcounty-dropdown").val();
                 var periodval = therdate;
             
+                filtopts_txt+=' Period: '+dateToStr(periodval);
+                $('#filtopts').text(filtopts_txt);
                 filterMain(countyou,subcountyou,periodval);
             }
             
@@ -1193,6 +1199,41 @@
                 } );
             }
 
+            function dateToStr(ledate){
+                var leyear = ledate.substr(0,4);
+                var lemonth = ledate.substr(4,5);
+                // console.log('leyear ni: '+leyear);
+                // console.log('lemonth ni: '+lemonth);
+                if(lemonth == '01'){ 
+                    var numonth = 'Jan';
+                } if(lemonth == '02'){ 
+                    var numonth = 'Feb';
+                } if(lemonth == '03'){ 
+                    var numonth = 'Mar';
+                } if(lemonth == '04'){ 
+                    var numonth = 'Apr';
+                } if(lemonth == '05'){ 
+                    var numonth = 'May';
+                } if(lemonth == '06'){ 
+                    var numonth = 'Jun';
+                } if(lemonth == '07'){ 
+                    var numonth = 'Jul';
+                } if(lemonth == '08'){ 
+                    var numonth = 'Aug';
+                } if(lemonth == '09'){ 
+                    var numonth = 'Sept';
+                } if(lemonth == '10'){ 
+                    var numonth = 'Oct';
+                } if(lemonth == '11'){ 
+                    var numonth = 'Nov';
+                } if(lemonth == '12'){ 
+                    var numonth = 'Dec';
+                }
+                var lenudate = numonth+' '+leyear;
+                return lenudate;
+            }
+
+            $('#filtopts').text(filtopts_txt);
     </script>
     </div>
     </body>

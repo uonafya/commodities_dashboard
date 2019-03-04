@@ -157,7 +157,7 @@ function fetchACTs(acturl)
             // $('.loader-sp').css('display','none');
             
             $('#acts_table').DataTable().destroy();
-            $("table.actsbox tbody").empty();
+            // $("table.actsbox tbody").empty();
             $("table.actsbox tbody").append(tableData);	
             //$('#acts_table').DataTable();                                                          
             $('#acts_table').DataTable({
