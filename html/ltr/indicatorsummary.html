@@ -969,15 +969,19 @@ function getOrgUnit(uid, period)
 function getExpectedUnits(uid, period)
 {
 	var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:JPaviRmSsJW.EXPECTED_REPORTS&dimension=ou:'+uid+'&displayProperty=NAME&outputIdScheme=UID';
+	
+	var count = 0;
 	    
     $.ajax({      
       dataType: "json",
       url: url, //Relative or absolute path to response.php file      
       success: function(data) 
       {          
-          console.log(parseInt(data.rows[0][3]));
+          count = parseInt(data.rows[0][3]);
       }
     });
+	
+	return count;
 }
 
 //set the background color
