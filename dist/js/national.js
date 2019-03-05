@@ -110,8 +110,7 @@ function getNational(nat_url) {
             credits: {
             enabled: false
         },
-            xAxis: {
-				max: 20,
+            xAxis: {				
                 title: {
                     text: 'Commodities'
                 },
@@ -119,6 +118,7 @@ function getNational(nat_url) {
             },
             yAxis: {
                 min: 0,
+				max: 24,
                 title: {
                     text: 'Months of Stock (MOS)'
                 },
