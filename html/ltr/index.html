@@ -579,7 +579,31 @@
 		
 		//global variables
 		var orgunitval = [];
-		getOrgUnits(orgunitval);
+		
+		//get the orgs assigned the data set for malaria expected reports
+		function getOrgUnits()
+		{
+			var url = '../../assets/json/orgunitsmal.json';
+			
+			//get the org units				
+				
+			$.ajax({      
+			  dataType: "json",
+			  url: url, //Relative or absolute path to response.php file   
+			  async:false,
+			  success: function(data) 
+			  {          
+					$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+					{			
+						orgunitval.push(orgunitid.id);
+					})
+			  }
+			});
+			
+			return orgunitval;
+		}
+		
+		getOrgUnits();
 		console.log(orgunitval);
 		
 		//get the required org units
@@ -1329,28 +1353,7 @@
 			}
 			
 			
-			//get the orgs assigned the data set for malaria expected reports
-			function getOrgUnits(orgunitval)
-			{
-				var url = '../../assets/json/orgunitsmal.json';
-				
-				//get the org units				
-					
-				$.ajax({      
-				  dataType: "json",
-				  url: url, //Relative or absolute path to response.php file   
-				  async:false,
-				  success: function(data) 
-				  {          
-						$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
-						{			
-							orgunitval.push(orgunitid.id);
-						})
-				  }
-				});
-				
-				return orgunitval;
-			}
+			
 
             //$('#filtopts').text(filtopts_txt);
     </script>
