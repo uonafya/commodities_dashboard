@@ -111,6 +111,7 @@ function getNational(nat_url) {
             enabled: false
         },
             xAxis: {
+				max: 20,
                 title: {
                     text: 'Commodities'
                 },
