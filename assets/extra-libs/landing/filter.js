@@ -81,6 +81,24 @@ function filterMain(countyid,subcountyid,periodid)
                                     text: 'Months of Stock',
                                     align: 'high'
                             },
+							plotLines: [{
+							color: '#FF0000',
+							width: 2,
+							value: 3,
+							label: {
+								text: 'Min',
+								align: 'right'
+							}
+						},
+						{
+							color: '#00FF00',
+							width: 2,
+							value: 20,
+							label: {
+								text: 'Max',
+								align: 'right'
+							}
+						}],
                             labels: {
                                     overflow: 'justify'
                             }
