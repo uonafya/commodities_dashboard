@@ -131,20 +131,20 @@ function getNational(nat_url) {
                 },
 				plotLines: [{
 							color: '#FF0000',
-							width: 1,
+							width: 2,
 							value: 3,
 							label: {
 								text: 'Min',
-								align: 'center'
+								align: 'right'
 							}
 						},
 						{
 							color: '#00FF00',
-							width: 1,
+							width: 2,
 							value: 20,
 							label: {
 								text: 'Max',
-								align: 'center'
+								align: 'right'
 							}
 						}]
             },
