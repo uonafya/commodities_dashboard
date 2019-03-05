@@ -574,7 +574,13 @@
     <script src="../../assets/extra-libs/landing/filter.js"></script>
 	
 	<script>
+	
         var filtopts_txt = '';
+		
+		//global variables
+		var orgunitval = [];
+		getOrgUnits();
+		console.log(orgunitval);
 		
 		//get the required org units
 		//var activeorgunits = getOrgUnits();
@@ -697,7 +703,8 @@
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
 	<script type="text/javascript">
-
+	
+		
         //process the json
         $(document).ready(function() 
         {		
@@ -1327,8 +1334,7 @@
 			{
 				var url = '../../assets/json/orgunitsmal.json';
 				
-				//get the org units
-				var orgunitval = [];
+				//get the org units				
 					
 				$.ajax({      
 				  dataType: "json",
