@@ -128,7 +128,17 @@ function getNational(nat_url) {
                         fontWeight: 'bold',
                         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     }
-                }
+                },
+				plotLines: [{
+							color: '#FF0000',
+							width: 1,
+							value: 3
+						},
+						{
+							color: '#00FF00',
+							width: 1,
+							value: 20
+						}]
             },
             legend: {
                 align: 'right',
