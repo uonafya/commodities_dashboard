@@ -1152,7 +1152,7 @@
             {            			
                 var countyou = $("#county-dropdown").val();
                 filtopts_txt+=' County: '+$("#county-dropdown > option:selected").text();
-                $('#filtopts').text(filtopts_txt);
+                //$('#filtopts').text(filtopts_txt);
                 var subcountyou = null; //$("#subcounty-dropdown").val()
                 var periodval = $("#period-dropdown").val();
     
@@ -1176,7 +1176,7 @@
             $('#subcounty-dropdown').change(function() 
             {
                 filtopts_txt+=' Sub-ounty: '+$("#subcounty-dropdown > option:selected").text();
-                $('#filtopts').text(filtopts_txt);
+                //$('#filtopts').text(filtopts_txt);
                 var countyou = $("#county-dropdown").val();
                 var subcountyou = $("#subcounty-dropdown").val();
                 var periodval = $("#period-dropdown").val();
@@ -1206,7 +1206,7 @@
                 var periodval = therdate;
             
                 filtopts_txt+=' Period: '+dateToStr(periodval);
-                $('#filtopts').text(filtopts_txt);
+                //$('#filtopts').text(filtopts_txt);
                 filterMain(countyou,subcountyou,periodval);
             }
             
@@ -1346,7 +1346,7 @@
 				return orgunitval;
 			}
 
-            $('#filtopts').text(filtopts_txt);
+            //$('#filtopts').text(filtopts_txt);
     </script>
     </div>
     </body>
