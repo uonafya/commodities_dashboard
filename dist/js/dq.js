@@ -26,7 +26,14 @@ function getMFLcode(dhis_id) {
         var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
             return v.id === dhis_id;
         });
-        var mfl_id = arr_filterd_by_dhis_code[0].code;
+		if(arr_filterd_by_dhis_code.length > 0)
+		{
+			var mfl_id = arr_filterd_by_dhis_code[0].code;
+		}
+		else
+		{
+			var mfl_id = '';
+		}
 
         // if(arr_filterd_by_dhis_code === undefined || arr_filterd_by_dhis_code[0] === undefined){  
         if(arr_filterd_by_dhis_code[0] === undefined){  
