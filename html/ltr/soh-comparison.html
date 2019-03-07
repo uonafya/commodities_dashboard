@@ -630,8 +630,15 @@
                     $.each(data.rows, function (rowkey1, rowentry2)
                         {    
                             if(rowentry==rowentry2[0])
-                            {   
-                               kemsavalues.push(rowentry2[3]);
+                            {  
+								if(rowentry2[3])
+								{
+								   kemsavalues.push(rowentry2[3]);
+								}
+								else
+								{
+									kemsavalues.push(0);
+								}
                             }
                         })
                       
