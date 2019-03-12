@@ -11,23 +11,23 @@ function getDetails(url,tou) {
             var orgu_opts = '';
             
             var fac_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
+            // var fac_url = 'http://localhost/pmi/json/tAbBVBbueqD.json';
             $.ajax({
                 type: "GET",
                 url: fac_url,
                 data: "datau",
                 crossDomain: true,
                 success: function (datau) {
-                    // console.log("FACILITIES datau: "+JSON.stringify(datau));
-                    $.each(datau, function (indx, facil) { 
-                        console.log("zoo: "+JSON.stringify(facil));
-                        // orgu_opts+='<option value='+orgu+'>'+data.metaData.items[orgu].name+'</option>';
-                        orgu_opts+='<option value='+facil.organisationUnits[indx].id+'>'+facil.organisationUnits[indx].name+'</option>';
+                    $.each(datau.organisationUnits, function (indx2, facil) { 
+                        orgu_opts+='<option value='+facil.id+'>'+facil.name+'</option>';
                     });
+                    $('#facility-dropdown').empty();
+                    $('#facility-dropdown').append('<option disabled selected>Select facility</option>');
+                    $('#facility-dropdown').append(orgu_opts);
                 }
             });
             
-            $('#facility-dropdown').empty();
-            $('#facility-dropdown').append(orgu_opts);
+            
             $('#ounit').html(data.metaData.items[data.metaData.dimensions.ou[0]].name);
             var thedxissued = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length/2);
             var thedxreceived = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length);
