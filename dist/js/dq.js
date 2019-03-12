@@ -129,6 +129,7 @@ $.ajax({
             // }
         });
         $('#equalSOH').DataTable().destroy();
+        $('#equalSOH tbody').empty();
         $('#equalSOH tbody').append(equaltbl);
         var nonequaltbl = '';
         // alert(JSON.stringify(compliant_facilities_codes));
@@ -142,8 +143,9 @@ $.ajax({
         });
         // alert(JSON.stringify(non_compliant_facilities_codes));
         $('#notEqualSOH').DataTable().destroy();
+        $('#notEqualSOH tbody').empty();
         $('#notEqualSOH tbody').append(nonequaltbl);
-        $(document).ready(function() {
+        // $(document).ready(function() {
             $('#equalSOH').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
@@ -156,7 +158,7 @@ $.ajax({
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
-        });
+        // });
         $('#equalCount').html(compliant_facilities_codes.length);
         $('#notEqualCount').html(non_compliant_facilities_codes.length);
 
@@ -504,11 +506,17 @@ function getConsist(consturl,commd){
                     disctbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+getMFLcode(the_ou)+'</td></tr>';
                 }
             });
+            $('#noDiscData').DataTable().destroy();
+            $('#noDiscData tbody').empty();
             $('#noDiscData').append(nodisctbl);
+
+            $('#discData').DataTable().destroy();
+            $('#discData tbody').empty();
             $('#discData').append(disctbl);
+            
             $('#discCount').html(disc_facilities_codes.length);
             $('#noDiscCount').html(nodisc_facilities_codes.length);
-            $(document).ready(function() {
+            // $(document).ready(function() {
                 $('#noDiscData').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
@@ -521,7 +529,7 @@ function getConsist(consturl,commd){
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ]
                 });
-            });
+            // });
 
             var non_compliant_facility_count = facility_count - compliant_facility_count;
             // console.log("total_facilities = "+facility_count);
