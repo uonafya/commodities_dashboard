@@ -9,8 +9,21 @@ function getDetails(url) {
             $('#perdd').html(dateToStr(data.metaData.dimensions.pe[0]));
             orgunits = data.metaData.dimensions.ou;
             var orgu_opts = '';
+            //get all facilities in each ou
             $.each(orgunits, function (inx, orgu) {
-                orgu_opts+='<option value='+orgu+'>'+data.metaData.items[orgu].name+'</option>';
+                var fac_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
+                $.ajax({
+                    type: "GET",
+                    url: fac_url,
+                    data: "datau",
+                    crossDomain: true,
+                    success: function (response) {
+                        $.each(response, function (indx, facil) { 
+                            // orgu_opts+='<option value='+orgu+'>'+data.metaData.items[orgu].name+'</option>';
+                            orgu_opts+='<option value='+facil.organisationUnits[indx].id+'>'+facil.organisationUnits[indx].name+'</option>';
+                        });
+                    }
+                });
             })
             $('#facility-dropdown').empty();
             $('#facility-dropdown').append(orgu_opts);
