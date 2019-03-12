@@ -17,8 +17,9 @@ function getDetails(url) {
                     url: fac_url,
                     data: "datau",
                     crossDomain: true,
-                    success: function (response) {
-                        $.each(response, function (indx, facil) { 
+                    success: function (datau) {
+                        console.log("FACILITIES datau: "+JSON.stringify(datau));
+                        $.each(datau, function (indx, facil) { 
                             // orgu_opts+='<option value='+orgu+'>'+data.metaData.items[orgu].name+'</option>';
                             orgu_opts+='<option value='+facil.organisationUnits[indx].id+'>'+facil.organisationUnits[indx].name+'</option>';
                         });
