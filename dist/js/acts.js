@@ -193,7 +193,7 @@ function fetchACTs(acturl)
      // fetch mfl codes
 
      var mfl_codes_array = [];
-     mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,name,code&paging=false';
+     mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,code&paging=false';
     //  mfl_url = 'http://localhost/pmi/json/mflcode.json';
      getMFLarray(mfl_url);
 

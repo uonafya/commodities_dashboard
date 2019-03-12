@@ -1,7 +1,7 @@
 // fetch mfl codes
 var mfl_codes_array = [];
-//mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,name,code&paging=false';
-mfl_url = 'https://testhis.uonbi.ac.ke/api/apps/Health-Commodities-Dashboard/assets/json/orgunits.json';
+mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,code&paging=false';
+// mfl_url = 'https://testhis.uonbi.ac.ke/api/apps/Health-Commodities-Dashboard/assets/json/orgunits.json';
 getMFLarray(mfl_url);
 
 function getMFLarray(mfl_url) 
