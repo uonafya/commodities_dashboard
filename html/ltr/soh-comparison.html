@@ -660,10 +660,11 @@
                     //output each row to table
                   for(var i=0;i<products.length;i++){
                       console.log('ssss',products)
-                      var total = +(kemsavalues[i]) + +(hfsvalues[i]);
-                      var kemsamos=+(kemsavalues[i])/+(adjcvalues[i]);
-                      var hfsmos=+(hfsvalues[i])/+(adjcvalues[i]);
-                      var totalmos=+(total)/+(adjcvalues[i]);
+					  console.log(kemsavalues);
+                      var total = (kemsavalues[i]) + (hfsvalues[i]);
+                      var kemsamos=(kemsavalues[i])/(adjcvalues[i]);
+                      var hfsmos=(hfsvalues[i])/(adjcvalues[i]);
+                      var totalmos=(total)/(adjcvalues[i]);
                       
                     tableData += '<tr>';
                       
