@@ -627,7 +627,7 @@
                 //get kemsa values
                    $.each(dxidskemsa, function (rowkey, rowentry) 
                     {
-                    $.each(data.rows, function (rowkey1, rowentry2)
+						$.each(data.rows, function (rowkey1, rowentry2)
                         {    
                             if(rowentry==rowentry2[0])
                             {  
@@ -658,27 +658,39 @@
                     })
                  })
                     //output each row to table
-                  for(var i=0;i<products.length;i++){
-                      console.log('ssss',products)
-					  console.log(kemsavalues);
-                      var total = (kemsavalues[i]) + (hfsvalues[i]);
-                      var kemsamos=(kemsavalues[i])/(adjcvalues[i]);
-                      var hfsmos=(hfsvalues[i])/(adjcvalues[i]);
-                      var totalmos=(total)/(adjcvalues[i]);
+                  for(var i=0;i<products.length;i++)
+				  {
                       
-                    tableData += '<tr>';
+						if(kemsavalues[i]=='kemsavalues[i]')
+						kemsavalues[i] = 0;
+
+						if(hfsvalues[i]=='hfsvalues[i]')
+						hfsvalues[i] = 0;
+
+						if(adjcvalues[i]=='adjcvalues[i]')
+						adjcvalues[i] = 0;
+
+						var total = (kemsavalues[i]) + (hfsvalues[i]);
+
+						var kemsamos=(kemsavalues[i])/(adjcvalues[i]);
+
+						var hfsmos=(hfsvalues[i])/(adjcvalues[i]);
+
+						var totalmos=(total)/(adjcvalues[i]);
                       
-                        tableData += '<td>'+ products[i] +'</td>';     
-                        tableData += '<td>'+dxuom[i]+'</td>';
-                        tableData += '<td>'+Math.trunc(adjcvalues[i]).toLocaleString()+'</td>';
-                        tableData += '<td>'+Math.trunc(kemsavalues[i]).toLocaleString()+'</td>';
-                        tableData += '<td>'+Math.trunc(hfsvalues[i]).toLocaleString()+'</td>';
-                        tableData += '<td>'+Math.trunc(total).toLocaleString()+'</td>';
-                        tableData += '<td>'+kemsamos.toFixed(1)+'</td>';
-                        tableData += '<td>'+hfsmos.toFixed(1)+'</td>';
-                        tableData += '<td>'+totalmos.toFixed(1)+'</td>';
+						tableData += '<tr>';
+
+						tableData += '<td>'+ products[i] +'</td>';     
+						tableData += '<td>'+dxuom[i]+'</td>';
+						tableData += '<td>'+Math.trunc(adjcvalues[i]).toLocaleString()+'</td>';
+						tableData += '<td>'+Math.trunc(kemsavalues[i]).toLocaleString()+'</td>';
+						tableData += '<td>'+Math.trunc(hfsvalues[i]).toLocaleString()+'</td>';
+						tableData += '<td>'+Math.trunc(total).toLocaleString()+'</td>';
+						tableData += '<td>'+kemsamos.toFixed(1)+'</td>';
+						tableData += '<td>'+hfsmos.toFixed(1)+'</td>';
+						tableData += '<td>'+totalmos.toFixed(1)+'</td>';
                                  
-                    tableData += '</tr>';
+						tableData += '</tr>';
                   }
           
                     $('#sp_table').removeClass('hidden');
