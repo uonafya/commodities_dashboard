@@ -143,31 +143,26 @@ function fetchSubRRDetails(scrdurl)
             //console.log(orgunits.length);
             $.each(data.metaData.dimensions.ou, function (key, entry) 
             {
-				//check if expected report exists for the orgunit				
-				var expected = checkExpected(data.rows, entry);
-				//console.log(expected);
-				//console.log(entry);
-				if(expected==1)
+				
+				tableDataSub += '<tr>';	
+				tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
+
+				$.each(data.metaData.dimensions.pe, function (pkey, pentry) 
 				{
-					tableDataSub += '<tr>';	
-					tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
-
-					$.each(data.metaData.dimensions.pe, function (pkey, pentry) 
+					var reportval = getReport(data.rows,pentry,entry);
+					if(reportval)
 					{
-						var reportval = getReport(data.rows,pentry,entry);
-						if(reportval)
-						{
-							tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
-						}
-						else
-						{
-							var bgcolor = '#ffeb9c';
-							tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
-						}
-					})
+						tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
+					}
+					else
+					{
+						var bgcolor = '#ffeb9c';
+						tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
+					}
+				})
 
-					tableDataSub += '</tr>';	
-				}
+				tableDataSub += '</tr>';	
+				
             })
 
             //footer line
