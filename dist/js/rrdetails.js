@@ -169,24 +169,29 @@ function fetchSubRRDetails(scrdurl)
             tableDataSub += '</tbody>';
             tableDataSub += footer;
             //subcounty
-            
-            
-            $('.loader-sp.sp-sub').addClass('hidden');
             $('#zero_config-sub').DataTable().destroy();
-            $("#zero_config-sub tbody").empty();
-            // $("table.rrdetailsbox-sub tbody").html('');
-            // $('#zero_config').DataTable();                                                          
-            $("#zero_config-sub.rrdetailsbox-sub tbody").append(tableDataSub);	
-            $("#zero_config-sub.rrdetailsbox-sub").removeClass('hidden');
-            // $('#zero_config-sub').DataTable().fnDraw();
-            // $('#zero_config-sub').DataTable().draw();
-            $('.loader-sp.sp-sub').addClass('hidden');
+            $("table#zero_config-sub tbody").empty();
+            $("table#zero_config-sub tbody").append(tableData);	
+            //$('#acts_table').DataTable();                                                          
             $('#zero_config-sub').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
+            
+            $('.loader-sp.sp-sub').addClass('hidden');
+            // $('#zero_config-sub').DataTable().destroy();
+            // $("#zero_config-sub tbody").empty();                                               
+            // $("#zero_config-sub.rrdetailsbox-sub tbody").append(tableDataSub);	
+            // $("#zero_config-sub.rrdetailsbox-sub").removeClass('hidden');
+            // $('.loader-sp.sp-sub').addClass('hidden');
+            // $('#zero_config-sub').DataTable({
+            //     dom: 'Bfrtip',
+            //     buttons: [
+            //         'copy', 'csv', 'excel', 'pdf', 'print'
+            //     ]
+            // });
 
     },
     error: function (request, status, error) {
