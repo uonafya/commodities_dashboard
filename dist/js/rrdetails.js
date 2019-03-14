@@ -146,6 +146,7 @@ function fetchSubRRDetails(scrdurl)
 				//check if expected report exists for the orgunit				
 				var expected = checkExpected(data.rows, entry);
 				console.log(expected);
+				console.log(entry);
 				if(expected==1)
 				{
 					tableDataSub += '<tr>';	
@@ -226,19 +227,19 @@ $.ajax({
 //get the report details
 function getReport(rows,period,orgunit) 
 {	
-var rowval = '';
+	var rowval = '';
 
-//loop through the rows
-$.each(rows, function (rkey, rentry) 
-{
-        //check for orgunit and period
-        if(orgunit==rentry[2] && period==rentry[1] && rentry[0]=='JPaviRmSsJW.ACTUAL_REPORTS')
-        {                                    
-                rowval = parseInt(rentry[3]);
-        }								
-})		
+	//loop through the rows
+	$.each(rows, function (rkey, rentry) 
+	{
+			//check for orgunit and period
+			if(orgunit==rentry[2] && period==rentry[1] && rentry[0]=='JPaviRmSsJW.ACTUAL_REPORTS')
+			{                                    
+					rowval = parseInt(rentry[3]);
+			}								
+	})		
 
-return rowval;
+	return rowval;
 }
 
 function dateToStr(ledate){
