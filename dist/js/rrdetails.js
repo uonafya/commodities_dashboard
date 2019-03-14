@@ -233,7 +233,7 @@ var rowval = '';
 $.each(rows, function (rkey, rentry) 
 {
         //check for orgunit and period
-        if(orgunit==rentry[2] && period==rentry[1])
+        if(orgunit==rentry[2] && period==rentry[1] && rentry[0]=='JPaviRmSsJW.ACTUAL_REPORTS')
         {                                    
                 rowval = parseInt(rentry[3]);
         }								
