@@ -304,7 +304,7 @@ $.ajax({
                 dataType: "json",
                 url: url,
                 success: function(datax) {          
-                    subtitle += datax['name']+' - From: '+per_from+' To '+per_to;
+                    subtitle = datax['name']+' - From: '+per_from+' To '+per_to;
                 }
             });    
         // END title fill
