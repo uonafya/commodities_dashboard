@@ -295,19 +295,7 @@ $.ajax({
             });
             reported.push(total);
         });
-        var subtitle = 'DQ: ';
-        var per_from = json_data.metaData.items[json_data.metaData.dimensions.pe[0]].name;
-        var per_to = json_data.metaData.items[json_data.metaData.dimensions.pe[parseFloat(json_data.metaData.dimensions.pe.length)-1]].name;
-        // title fill
-            var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
-            $.ajax({      
-                dataType: "json",
-                url: url,
-                success: function(datax) {          
-                    subtitle = datax['name']+' - From: '+per_from+' To '+per_to;
-                }
-            });    
-        // END title fill
+        
         console.log("subtitle: "+subtitle);
         let didNotReport = [];
         $.each(reported,(index,value)=>{
@@ -324,7 +312,22 @@ $.ajax({
         wbdataset.push(pearr);
         wbdataset.push(reported);
         wbdataset.push(didNotReport);
-        wbdataset.push(subtitle);
+
+        var subtitle = 'DQ: ';
+        var per_from = json_data.metaData.items[json_data.metaData.dimensions.pe[0]].name;
+        var per_to = json_data.metaData.items[json_data.metaData.dimensions.pe[parseFloat(json_data.metaData.dimensions.pe.length)-1]].name;
+        // title fill
+            var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
+            $.ajax({      
+                dataType: "json",
+                url: url,
+                success: function(datax) {          
+                    var subtitle = datax['name']+' - From: '+per_from+' To '+per_to;
+                    console.log("subtext= "+subtitle);
+                    wbdataset.push(subtitle)   ;
+                }
+            });    
+        // END title fill
         
         var prdoptn = '<option selected="true" disabled>Select period</option>';
         $.each(json_data.metaData.dimensions.pe,(inx,prd)=>{
