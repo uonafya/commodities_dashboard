@@ -295,7 +295,7 @@ $.ajax({
             });
             reported.push(total);
         });
-        var subtitle = '';
+        var subtitle = 'DQ: ';
         var per_from = json_data.metaData.items[json_data.metaData.dimensions.pe[0]].name;
         var per_to = json_data.metaData.items[json_data.metaData.dimensions.pe[parseFloat(json_data.metaData.dimensions.pe.length)-1]].name;
         // title fill
