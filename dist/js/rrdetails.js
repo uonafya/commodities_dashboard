@@ -35,7 +35,7 @@ function fetchRRDetails(rdurl)
 
             footer += '</tr></tfoot>';
 
-            tableData += header;
+            // tableData += header;
 
             //start body
             tableData += '<tbody>';
@@ -65,15 +65,15 @@ function fetchRRDetails(rdurl)
 
             //footer line
             tableData += '</tbody>';
-            tableData += footer;
+            // tableData += footer;
                     
             $('.loader-sp').addClass('hidden');
-            $(".rrdetailsbox").removeClass('hidden');
-
-            $('.rrdetailsbox').DataTable().destroy();
-            $(".rrdetailsbox tbody").empty();                                                
-            $(".rrdetailsbox tbody").append(tableData);	
-            $('.rrdetailsbox').DataTable({
+            $("#facility_rr").removeClass('hidden');
+            $('#facility_rr').append(header);
+            // $('#facility_rr').DataTable().destroy();
+            $("#facility_rr tbody").empty();                                     
+            $("#facility_rr").append(tableData);
+            $('#facility_rr').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
@@ -81,8 +81,10 @@ function fetchRRDetails(rdurl)
             });
 
         },
-    error: function (request, status, error) {
+        error: function (request, status, error) {
         $('.loader-sp').addClass('hidden');
+        $('#facility_rr').addClass('hidden');
+        $('.loader-sp.rrdb').removeClass('hidden');
         $('.rrdetailsbox').addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
         $('.rdstate').html('<div class ="alert alert-danger"><strong>Facility Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
@@ -170,16 +172,19 @@ function fetchSubRRDetails(scrdurl)
             tableDataSub += '</tbody>';
             tableDataSub += footer;
             //subcounty
-            $('.rrdetailsbox-sub').DataTable().destroy();
-            $(".rrdetailsbox-sub tbody").empty();
-            $(".rrdetailsbox-sub tbody").append(tableDataSub);	                                                        
-            $('.rrdetailsbox-sub').DataTable({
+
+            $('.sp-sub').addClass('hidden');
+            $("#subcounty_rr").removeClass('hidden');
+            $('#subcounty_rr').append(header);
+            // $('#subcounty_rr').DataTable().destroy();
+            $("#subcounty_rr tbody").empty();                                     
+            $("#subcounty_rr").append(tableDataSub);
+            $('#subcounty_rr').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
-            $('.loader-sp.sp-sub').addClass('hidden');
 
     },
     error: function (request, status, error) {
