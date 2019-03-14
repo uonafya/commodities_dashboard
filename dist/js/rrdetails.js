@@ -48,7 +48,7 @@ function fetchRRDetails(rdurl)
                 tableDataDummy += '<td></td>';
             });
             tableDataDummy += '</tr>';
-            tableDataDummy = '</tbody>';
+            tableDataDummy += '</tbody>';
             // END dummy body
 
 
