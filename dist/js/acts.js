@@ -28,26 +28,39 @@ function checkOUs(ouid){
 
 //function toprocess the AS url
 //function toprocess the acts url
-function fetchACTs(acturl)
+function fetchACTs(acturl,orgu,peri)
 {
     console.log('acturl: '+acturl);
     $('#acts_table').addClass('hidden');
     $('.actdata').addClass('hidden');
     $('.loader-sp').removeClass('hidden');
     // $.getJSON(acturl, function (data){
+
+
+    
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: acturl,                    
         success: function (data) {
+
             //create the org units array
             var orgunits = [];
             var dxids = [];
 
             //var tableData = '<table>';
             var tableData = '';
-
-            //console.log(data.rows);
+            
+            // title fill
+                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
+                $.ajax({      
+                    dataType: "json",
+                    url: url,
+                    success: function(datax) {          
+                        $("h5.ttitle").html(datax['name']+' - '+data.metaData.items[peri].name);
+                    }
+                });    
+            // END title fill
 
             //push only if not in
             $.each(data.rows, function (rowkey, rowentry) 
@@ -155,7 +168,7 @@ function fetchACTs(acturl)
             $('.actdata').removeClass('hidden');
             $('.loader-sp').addClass('hidden');
             // $('.loader-sp').css('display','none');
-            
+            $('.act_status').addClass('hidden');
             $('#acts_table').DataTable().destroy();
             $("table.actsbox tbody").empty();
             $("table.actsbox tbody").append(tableData);	
