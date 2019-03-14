@@ -53,11 +53,9 @@ function fetchRRDetails(rdurl)
 
 
             //console.log(orgunits.length);
-            $.each(data.metaData.dimensions.ou, function (key, entry) 
-            {                                                        
+            $.each(data.metaData.dimensions.ou, function (key, entry){                                                        
                 tableData += '<tr>';	
                 tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-
                 $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
                 {
                         var reportval = getReport(data.rows,pentry,entry);
@@ -71,7 +69,6 @@ function fetchRRDetails(rdurl)
                             tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
                         }
                 })
-
                 tableData += '</tr>';	
             })
 
@@ -82,11 +79,11 @@ function fetchRRDetails(rdurl)
             $('.loader-sp').addClass('hidden');
             $("#facility_rr").removeClass('hidden');
             $('#facility_rr').append(header);
-            $('#facility_rr tbody').append(tableDataDummy);
+            $('#facility_rr').append(tableDataDummy);
             console.log("tableDataDummy: "+tableDataDummy);
-            $('#facility_rr').DataTable().destroy();
-            $("#facility_rr tbody").empty();                                     
-            $("#facility_rr tbody").html(tableData);
+            // $('#facility_rr').DataTable().destroy();
+            // $("#facility_rr tbody").empty();                                     
+            $("#facility_rr tbody").append(tableData);
             console.log("tableData: "+tableData);
             $('#facility_rr').DataTable({
                 dom: 'Bfrtip',
