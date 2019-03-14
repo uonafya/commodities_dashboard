@@ -39,7 +39,7 @@ function fetchRRDetails(rdurl)
             // tableData += header;
 
             //start body
-            tableData += '<tbody>';
+            // tableData += '<tbody>';
 
             // dummy body
             tableDataDummy = '<tbody>';
@@ -73,7 +73,7 @@ function fetchRRDetails(rdurl)
             })
 
             //footer line
-            tableData += '</tbody>';
+            // tableData += '</tbody>';
             // tableData += footer;
                     
             $('.loader-sp').addClass('hidden');
