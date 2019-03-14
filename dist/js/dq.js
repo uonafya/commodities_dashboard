@@ -308,6 +308,7 @@ $.ajax({
                 }
             });    
         // END title fill
+        console.log("subtitle: "+subtitle);
         let didNotReport = [];
         $.each(reported,(index,value)=>{
             const facilities = total_facilities

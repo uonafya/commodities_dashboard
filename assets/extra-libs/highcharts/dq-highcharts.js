@@ -249,6 +249,7 @@
                 var reported = wbdataset[1];
                 var didNotReport = wbdataset[2];
                 var subtitle = wbdataset[3];
+                console.log("Completeness Chart data: "+JSON.stringify(wbdataset));
                 Highcharts.chart('wbdata', {
 
                     title: {
