@@ -290,7 +290,6 @@ function checkExpected(rows,orgunit)
 	//loop through the rows
 	$.each(rows, function (rkey, rentry) 
 	{
-		alert(rentry);
 		console.log(rentry);
 		//check for orgunit and period
 		if(rentry[0]=='JPaviRmSsJW.EXPECTED_REPORTS' && rentry[2]==orgunit)
