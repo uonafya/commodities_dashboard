@@ -70,7 +70,7 @@ function fetchRRDetails(rdurl)
             $('.loader-sp').addClass('hidden');
             $("#zero_config.rrdetailsbox").removeClass('hidden');
             //facility
-            // $('#zero_config').DataTable().destroy();
+            $('#zero_config.rrdetailsbox').DataTable().destroy();
             $("#zero_config.rrdetailsbox").empty();                                                
             $("#zero_config.rrdetailsbox").append(tableData);	
             $("#zero_config.rrdetailsbox").removeClass('hidden');
@@ -169,24 +169,29 @@ function fetchSubRRDetails(scrdurl)
             tableDataSub += '</tbody>';
             tableDataSub += footer;
             //subcounty
-            
-            
             $('#zero_config-sub').DataTable().destroy();
-            $('.loader-sp.sp-sub').addClass('hidden');
-            $("#zero_config-sub").empty();
-            // $("table.rrdetailsbox-sub tbody").html('');
-            // $('#zero_config').DataTable();                                                          
-            $("#zero_config-sub.rrdetailsbox-sub").append(tableDataSub);	
-            $("#zero_config-sub.rrdetailsbox-sub").removeClass('hidden');
-            // $('#zero_config-sub').DataTable().fnDraw();
-            // $('#zero_config-sub').DataTable().draw();
-            $('.loader-sp.sp-sub').addClass('hidden');
+            $("table#zero_config-sub tbody").empty();
+            $("table#zero_config-sub tbody").append(tableData);	
+            //$('#acts_table').DataTable();                                                          
             $('#zero_config-sub').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
+            
+            $('.loader-sp.sp-sub').addClass('hidden');
+            // $('#zero_config-sub').DataTable().destroy();
+            // $("#zero_config-sub tbody").empty();                                               
+            // $("#zero_config-sub.rrdetailsbox-sub tbody").append(tableDataSub);	
+            // $("#zero_config-sub.rrdetailsbox-sub").removeClass('hidden');
+            // $('.loader-sp.sp-sub').addClass('hidden');
+            // $('#zero_config-sub').DataTable({
+            //     dom: 'Bfrtip',
+            //     buttons: [
+            //         'copy', 'csv', 'excel', 'pdf', 'print'
+            //     ]
+            // });
 
     },
     error: function (request, status, error) {

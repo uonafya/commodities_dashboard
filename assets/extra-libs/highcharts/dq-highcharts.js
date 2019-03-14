@@ -255,7 +255,7 @@
                     },
             
                     subtitle: {
-                        text: 'Source: DHIS2'
+                        text: ''
                     },
             
                     yAxis: {
