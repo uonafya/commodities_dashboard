@@ -662,14 +662,16 @@
 				  {
 						console.log(kemsavalues[i]);
 						
-						if(kemsavalues[i]=='undefined')
-						kemsavalues[i] = 0;
+						if(typeof kemsavalues[i]=='undefined')
+							kemsavalues[i] = 0;
 
-						if(hfsvalues[i]=='undefined')
-						hfsvalues[i] = 0;
+						if(typeof hfsvalues[i]=='undefined')
+							hfsvalues[i] = 0;
 
-						if(adjcvalues[i]=='undefined')
-						adjcvalues[i] = 0;
+						if(typeof adjcvalues[i]=='undefined')
+							adjcvalues[i] = 0;
+							
+						console.log(kemsavalues[i]);
 
 						var total = (kemsavalues[i]) + (hfsvalues[i]);
 
