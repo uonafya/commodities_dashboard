@@ -83,10 +83,11 @@ function fetchRRDetails(rdurl)
             $("#facility_rr").removeClass('hidden');
             $('#facility_rr').append(header);
             $('#facility_rr tbody').append(tableDataDummy);
-
+            console.log("tableDataDummy: "+tableDataDummy);
             $('#facility_rr').DataTable().destroy();
             $("#facility_rr tbody").empty();                                     
             $("#facility_rr tbody").html(tableData);
+            console.log("tableData: "+tableData);
             $('#facility_rr').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
