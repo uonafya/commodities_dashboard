@@ -70,7 +70,7 @@ function fetchRRDetails(rdurl)
             $('.loader-sp').addClass('hidden');
             $("#zero_config.rrdetailsbox").removeClass('hidden');
             //facility
-            // $('#zero_config').DataTable().destroy();
+            $('#zero_config.rrdetailsbox').DataTable().destroy();
             $("#zero_config.rrdetailsbox").empty();                                                
             $("#zero_config.rrdetailsbox").append(tableData);	
             $("#zero_config.rrdetailsbox").removeClass('hidden');
