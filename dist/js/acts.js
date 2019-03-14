@@ -57,7 +57,7 @@ function fetchACTs(acturl,orgu,peri)
                     dataType: "json",
                     url: url,
                     success: function(datax) {          
-                        $("h5.ttitle").html(datax['name']+' - '+data.metaData.items[peri].name);
+                        $("h5#ttitle").html(datax['name']+' - '+data.metaData.items[peri].name);
                     }
                 });    
             // END title fill
