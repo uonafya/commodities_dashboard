@@ -296,8 +296,8 @@ $.ajax({
             reported.push(total);
         });
         var subtitle = '';
-        var per_from = data.metaData.items[data.metaData.dimensions.pe[0]].name;
-        var per_to = data.metaData.items[data.metaData.dimensions.pe[parseFloat(data.metaData.dimensions.pe.length)-1]].name;
+        var per_from = json_data.metaData.items[json_data.metaData.dimensions.pe[0]].name;
+        var per_to = json_data.metaData.items[json_data.metaData.dimensions.pe[parseFloat(json_data.metaData.dimensions.pe.length)-1]].name;
         // title fill
             var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
             $.ajax({      
