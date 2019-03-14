@@ -143,27 +143,26 @@ function fetchSubRRDetails(scrdurl)
             //console.log(orgunits.length);
             $.each(data.metaData.dimensions.ou, function (key, entry) 
             {
-				//check if expected report exists for the orgunit
-				var expected = 0;
-				expected = checkExpected(data.rows, entry);
-				
-				if(expected)
+				//check if expected report exists for the orgunit				
+				var expected = checkExpected(data.rows, entry);
+				console.log(expected);
+				if(expected==1)
 				{
 					tableDataSub += '<tr>';	
 					tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
 
 					$.each(data.metaData.dimensions.pe, function (pkey, pentry) 
 					{
-							var reportval = getReport(data.rows,pentry,entry);
-							if(reportval)
-							{
-								tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
-							}
-							else
-							{
-								var bgcolor = '#ffeb9c';
-								tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
-							}
+						var reportval = getReport(data.rows,pentry,entry);
+						if(reportval)
+						{
+							tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
+						}
+						else
+						{
+							var bgcolor = '#ffeb9c';
+							tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
+						}
 					})
 
 					tableDataSub += '</tr>';	
@@ -286,7 +285,7 @@ function checkExpected(rows,orgunit)
 	$.each(rows, function (rkey, rentry) 
 	{
 		//check for orgunit and period
-		if(rentry[0]=='JPaviRmSsJW.EXPECTED_REPORTS' && orgunit==rentry[2])
+		if(rentry[0]=='JPaviRmSsJW.EXPECTED_REPORTS' && rentry[2]==orgunit)
 		{                                    
 			rowval = parseInt(rentry[3]);
 		}								
