@@ -668,9 +668,11 @@ color: transparent;}
  
     <script type="text/javascript">
         $(function () {
-            var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var perd = 'LAST_12_MONTHS';
+            var orgun = 'tAbBVBbueqD';
+            var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+perd+'&dimension=ou:'+orgun+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             // var wburl = 'http://localhost/pmi/json/completeness.json';
-            getWBData(wburl);
+            getWBData(wburl,orgun);
         });
 
         
@@ -680,7 +682,7 @@ color: transparent;}
                 var theou = $(this).val();
                 var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 // var wburl = 'http://localhost/pmi/json/completeness.json';
-                getWBData(wburl);
+                getWBData(wburl,theou);
             }
         );
 
@@ -689,7 +691,7 @@ color: transparent;}
                 var theou = $(this).val();
                 var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 // var wburl = 'http://localhost/pmi/json/completeness.json';
-                getWBData(wburl);
+                getWBData(wburl,theou);
             }
         );
 
@@ -735,7 +737,7 @@ color: transparent;}
                 var theou = 'tAbBVBbueqD';
             }
             var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            getWBData(wburl);
+            getWBData(wburl,theou);
             console.log('filter_url: '+ccurl);
             daterange = [];
             $('#period-dropdown').val(null);

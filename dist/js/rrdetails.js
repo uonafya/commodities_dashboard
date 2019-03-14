@@ -70,7 +70,7 @@ function fetchRRDetails(rdurl)
             $('.loader-sp').addClass('hidden');
             $("#zero_config.rrdetailsbox").removeClass('hidden');
             //facility
-            // $('#zero_config').DataTable().destroy();
+            $('#zero_config.rrdetailsbox').DataTable().destroy();
             $("#zero_config.rrdetailsbox").empty();                                                
             $("#zero_config.rrdetailsbox").append(tableData);	
             $("#zero_config.rrdetailsbox").removeClass('hidden');
@@ -142,25 +142,27 @@ function fetchSubRRDetails(scrdurl)
 
             //console.log(orgunits.length);
             $.each(data.metaData.dimensions.ou, function (key, entry) 
-            {                                                        
-                tableDataSub += '<tr>';	
-                tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
+            {
+				
+				tableDataSub += '<tr>';	
+				tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
 
-                $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-                {
-                        var reportval = getReport(data.rows,pentry,entry);
-                        if(reportval)
-                        {
-                            tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
-                        }
-                        else
-                        {
-                            var bgcolor = '#ffeb9c';
-                            tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
-                        }
-                })
+				$.each(data.metaData.dimensions.pe, function (pkey, pentry) 
+				{
+					var reportval = getReport(data.rows,pentry,entry);
+					if(reportval)
+					{
+						tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
+					}
+					else
+					{
+						var bgcolor = '#ffeb9c';
+						tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
+					}
+				})
 
-                tableDataSub += '</tr>';	
+				tableDataSub += '</tr>';	
+				
             })
 
             //footer line
@@ -169,9 +171,9 @@ function fetchSubRRDetails(scrdurl)
             //subcounty
             
             
-            // $('#zero_config-sub').DataTable().destroy();
+            $('#zero_config-sub').DataTable().destroy();
             $('.loader-sp.sp-sub').addClass('hidden');
-            $("#zero_config-sub.rrdetailsbox-sub").empty();
+            $("#zero_config-sub").empty();
             // $("table.rrdetailsbox-sub tbody").html('');
             // $('#zero_config').DataTable();                                                          
             $("#zero_config-sub.rrdetailsbox-sub").append(tableDataSub);	
@@ -220,19 +222,19 @@ $.ajax({
 //get the report details
 function getReport(rows,period,orgunit) 
 {	
-var rowval = '';
+	var rowval = '';
 
-//loop through the rows
-$.each(rows, function (rkey, rentry) 
-{
-        //check for orgunit and period
-        if(orgunit==rentry[2] && period==rentry[1])
-        {                                    
-                rowval = parseInt(rentry[3]);
-        }								
-})		
+	//loop through the rows
+	$.each(rows, function (rkey, rentry) 
+	{
+			//check for orgunit and period
+			if(orgunit==rentry[2] && period==rentry[1] && rentry[0]=='JPaviRmSsJW.ACTUAL_REPORTS')
+			{                                    
+					rowval = parseInt(rentry[3]);
+			}								
+	})		
 
-return rowval;
+	return rowval;
 }
 
 function dateToStr(ledate){
@@ -267,4 +269,25 @@ function dateToStr(ledate){
     }
     var lenudate = numonth+' '+leyear;
     return lenudate;
+}
+
+//expected to report
+//get the report details
+function checkExpected(rows,orgunit) 
+{	
+	var rowval = 0;
+
+	//loop through the rows
+	$.each(rows, function (rkey, rentry) 
+	{
+		alert(rentry);
+		console.log(rentry);
+		//check for orgunit and period
+		if(rentry[0]=='JPaviRmSsJW.EXPECTED_REPORTS' && rentry[2]==orgunit)
+		{                                    
+			rowval = parseInt(rentry[3]);
+		}								
+	})		
+
+	return rowval;
 }

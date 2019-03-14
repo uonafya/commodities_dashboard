@@ -1,7 +1,7 @@
 // fetch mfl codes
 
 var mfl_codes_array = [];
-mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,name,code&paging=false';
+mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,code&paging=false';
 // mfl_url = 'http://localhost/pmi/json/mflcode.json';
 getMFLarray(mfl_url);
 
@@ -26,7 +26,14 @@ function getMFLcode(dhis_id) {
         var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
             return v.id === dhis_id;
         });
-        var mfl_id = arr_filterd_by_dhis_code[0].code;
+		if(arr_filterd_by_dhis_code.length > 0)
+		{
+			var mfl_id = arr_filterd_by_dhis_code[0].code;
+		}
+		else
+		{
+			var mfl_id = '';
+		}
 
         // if(arr_filterd_by_dhis_code === undefined || arr_filterd_by_dhis_code[0] === undefined){  
         if(arr_filterd_by_dhis_code[0] === undefined){  
@@ -122,6 +129,7 @@ $.ajax({
             // }
         });
         $('#equalSOH').DataTable().destroy();
+        $('#equalSOH tbody').empty();
         $('#equalSOH tbody').append(equaltbl);
         var nonequaltbl = '';
         // alert(JSON.stringify(compliant_facilities_codes));
@@ -135,8 +143,9 @@ $.ajax({
         });
         // alert(JSON.stringify(non_compliant_facilities_codes));
         $('#notEqualSOH').DataTable().destroy();
+        $('#notEqualSOH tbody').empty();
         $('#notEqualSOH tbody').append(nonequaltbl);
-        $(document).ready(function() {
+        // $(document).ready(function() {
             $('#equalSOH').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
@@ -149,7 +158,7 @@ $.ajax({
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
-        });
+        // });
         $('#equalCount').html(compliant_facilities_codes.length);
         $('#notEqualCount').html(non_compliant_facilities_codes.length);
 
@@ -260,7 +269,7 @@ $('#dq-column').addClass('hidden');
 });
 }
 
-function getWBData(wburl){
+function getWBData(wburl,orgun){
 $('#wbdata').addClass('hidden');
 $('.loader-sp.wbdata').removeClass('hidden');
 $.ajax({
@@ -272,6 +281,7 @@ $.ajax({
         const json_data = wb_data;
         // Total number of facilities
         const total_facilities= json_data.metaData.dimensions.ou.length;
+
         let reported = [];
         // loops though the period
         $.each(json_data.metaData.dimensions.pe,(index,value)=>{
@@ -285,6 +295,20 @@ $.ajax({
             });
             reported.push(total);
         });
+        var subtitle = 'DQ: ';
+        var per_from = json_data.metaData.items[json_data.metaData.dimensions.pe[0]].name;
+        var per_to = json_data.metaData.items[json_data.metaData.dimensions.pe[parseFloat(json_data.metaData.dimensions.pe.length)-1]].name;
+        // title fill
+            var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
+            $.ajax({      
+                dataType: "json",
+                url: url,
+                success: function(datax) {          
+                    subtitle += datax['name']+' - From: '+per_from+' To '+per_to;
+                }
+            });    
+        // END title fill
+        console.log("subtitle: "+subtitle);
         let didNotReport = [];
         $.each(reported,(index,value)=>{
             const facilities = total_facilities
@@ -296,9 +320,11 @@ $.ajax({
         $.each(json_data.metaData.dimensions.pe,(ind,val)=>{
             pearr.push(dateToStr(val));
         });
+        
         wbdataset.push(pearr);
         wbdataset.push(reported);
         wbdataset.push(didNotReport);
+        wbdataset.push(subtitle);
         
         var prdoptn = '<option selected="true" disabled>Select period</option>';
         $.each(json_data.metaData.dimensions.pe,(inx,prd)=>{
@@ -497,11 +523,17 @@ function getConsist(consturl,commd){
                     disctbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+getMFLcode(the_ou)+'</td></tr>';
                 }
             });
+            $('#noDiscData').DataTable().destroy();
+            $('#noDiscData tbody').empty();
             $('#noDiscData').append(nodisctbl);
+
+            $('#discData').DataTable().destroy();
+            $('#discData tbody').empty();
             $('#discData').append(disctbl);
+            
             $('#discCount').html(disc_facilities_codes.length);
             $('#noDiscCount').html(nodisc_facilities_codes.length);
-            $(document).ready(function() {
+            // $(document).ready(function() {
                 $('#noDiscData').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
@@ -514,7 +546,7 @@ function getConsist(consturl,commd){
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ]
                 });
-            });
+            // });
 
             var non_compliant_facility_count = facility_count - compliant_facility_count;
             // console.log("total_facilities = "+facility_count);

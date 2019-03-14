@@ -574,7 +574,42 @@
     <script src="../../assets/extra-libs/landing/filter.js"></script>
 	
 	<script>
+	
         var filtopts_txt = '';
+		
+		//global variables
+		var orgunitval = [];
+		
+		//get the orgs assigned the data set for malaria expected reports
+		function getOrgUnits()
+		{
+			var url = '../../assets/json/orgunitsmal.json';
+			
+			//get the org units				
+				
+			$.ajax({      
+			  dataType: "json",
+			  url: url, //Relative or absolute path to response.php file   
+			  async:false,
+			  success: function(data) 
+			  {          
+					$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+					{			
+						orgunitval.push(orgunitid.id);
+					})
+			  }
+			});
+			
+			return orgunitval;
+		}
+		
+		getOrgUnits();
+		console.log(orgunitval);
+		
+		//get the required org units
+		//var activeorgunits = getOrgUnits();
+		
+		
 		$(document).ready(function() 
 		{
             
@@ -692,12 +727,14 @@
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
 	<script type="text/javascript">
-
+	
+		
         //process the json
         $(document).ready(function() 
-        {
+        {		
+		
             //load the mos by commodity 
-                    var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
                     
             //populate dropdown with list of counties
             $.ajax({
@@ -711,15 +748,16 @@
                 var dxids = [];
                 var mosVals = new Array();  
                             
-                            //apply the lableing to the data
-                            var theperiod = data.metaData.dimensions.pe[0];
-                            var theorgunit = data.metaData.dimensions.ou[0];
-                            
-                            var curorg = data.metaData.items[theorgunit].name;
-                            var curpe = data.metaData.items[theperiod].name;
-                            
-                            $("h4.titlelabel").html(curorg+' - '+curpe);
-                            //end apply labeling to the data
+				//apply the labeling to the data
+				var theperiod = data.metaData.dimensions.pe[0];
+				var theorgunit = data.metaData.dimensions.ou[0];
+							
+				
+				var curorg = data.metaData.items[theorgunit].name;
+				var curpe = data.metaData.items[theperiod].name;
+				
+				$("h4.titlelabel").html(curorg+' - '+curpe);
+				//end apply labeling to the data
                                 
                 //var tableData = '<table>';
                 var tableData = '';
@@ -749,7 +787,7 @@
                     subtitle: {
                         text: 'Source: HIS Kenya'
                     },
-                    xAxis: {
+                    xAxis: {						
                         categories: ['AL6', 'AL12', 'AL18', 'AL24', 'AL all', 'AS inj','SP tabs', 'RDTs'],
                         title: {
                             text: 'Commodity'
@@ -757,13 +795,32 @@
                     },
                     yAxis: {
                         min: 0,
+						max: 24,
                         title: {
                             text: 'Months of Stock',
                             align: 'high'
                         },
                         labels: {
                             overflow: 'justify'
-                        }
+                        },
+						plotLines: [{
+							color: '#FF0000',
+							width: 2,
+							value: 3,
+							label: {
+								text: 'Min',
+								align: 'right'
+							}
+						},
+						{
+							color: '#00FF00',
+							width: 2,
+							value: 6,
+							label: {
+								text: 'Max',
+								align: 'right'
+							}
+						}]
                     },
                     tooltip: {
                         valueSuffix: ' MOS'
@@ -822,7 +879,11 @@
                 success: function (data) {
                 var orgunits = data.metaData.dimensions.ou;
                 //console.log(orgunits.length);
-                
+				
+				//added
+				//get the total expected to report
+				var totalorgs = getExpectedUnits('HfVjCurKxh2', '201805');
+				                
                                 
                 //var tableData = '<table>';
                 var tableData = '';
@@ -866,9 +927,12 @@
                         }					
                     })
                                     countname++;
-                    var overpercent = (overstock/orgunits.length)*100;
-                    var okpercent = (stockok/orgunits.length)*100;
-                    var underpercent = (understock/orgunits.length)*100;
+					
+					
+									
+                    var overpercent = (overstock/totalorgs)*100;
+                    var okpercent = (stockok/totalorgs)*100;
+                    var underpercent = (understock/totalorgs)*100;
                     
                     tableData += '<td bgcolor="#ffeb9c">'+overpercent.toFixed(1)+'%</td>';
                     tableData += '<td bgcolor="#7bd48d">'+okpercent.toFixed(1)+'%</td>';
@@ -909,6 +973,9 @@
                 var orgunits = data.metaData.dimensions.ou;
                 //console.log(orgunits.length);
                 var totalfa = orgunits.length;
+				//added
+				//get the total expected to report
+				var totalorgs = getExpectedUnits('HfVjCurKxh2', '201805');
                                 
                 //var tableData = '<table>';
                 var tableData = '';
@@ -958,14 +1025,14 @@
                         }					
                     })	
                     countname++;
-                    nomos = totalfa-(overstock+stockok+understock+stockout)
+                    nomos = totalorgs-(overstock+stockok+understock+stockout)
                     
                     tableData += '<td bgcolor="#ffeb9c">'+overstock+'</td>';
                     tableData += '<td bgcolor="#7bd48d">'+stockok+'</td>';
                     tableData += '<td bgcolor="#ffc7ce">'+understock+'</td>';
                     tableData += '<td style="color: #ffffff;" bgcolor="#ff0000">'+stockout+'</td>';	
                     tableData += '<td>'+nomos+'</td>';	
-                    tableData += '<td>'+totalfa+'</td>';					
+                    tableData += '<td>'+totalorgs+'</td>';					
                     
                     tableData += '</tr>';	
                 })
@@ -1116,7 +1183,7 @@
             {            			
                 var countyou = $("#county-dropdown").val();
                 filtopts_txt+=' County: '+$("#county-dropdown > option:selected").text();
-                $('#filtopts').text(filtopts_txt);
+                //$('#filtopts').text(filtopts_txt);
                 var subcountyou = null; //$("#subcounty-dropdown").val()
                 var periodval = $("#period-dropdown").val();
     
@@ -1140,7 +1207,7 @@
             $('#subcounty-dropdown').change(function() 
             {
                 filtopts_txt+=' Sub-ounty: '+$("#subcounty-dropdown > option:selected").text();
-                $('#filtopts').text(filtopts_txt);
+                //$('#filtopts').text(filtopts_txt);
                 var countyou = $("#county-dropdown").val();
                 var subcountyou = $("#subcounty-dropdown").val();
                 var periodval = $("#period-dropdown").val();
@@ -1170,7 +1237,7 @@
                 var periodval = therdate;
             
                 filtopts_txt+=' Period: '+dateToStr(periodval);
-                $('#filtopts').text(filtopts_txt);
+                //$('#filtopts').text(filtopts_txt);
                 filterMain(countyou,subcountyou,periodval);
             }
             
@@ -1190,8 +1257,8 @@
                 return parseFloat(mysoh);
         }
             
-            //get the adjusted consumption value
-            //function to get value from loop
+		//get the adjusted consumption value
+		//function to get value from loop
         function getConsumption(rows,entry) 
         {	
                 var conval = 0;
@@ -1229,7 +1296,8 @@
                 } );
             }
 
-            function dateToStr(ledate){
+            function dateToStr(ledate)
+			{
                 var leyear = ledate.substr(0,4);
                 var lemonth = ledate.substr(4,5);
                 // console.log('leyear ni: '+leyear);
@@ -1262,8 +1330,32 @@
                 var lenudate = numonth+' '+leyear;
                 return lenudate;
             }
+			
+			
+			//get expected reports
+			function getExpectedUnits(uid, period)
+			{
+				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:JPaviRmSsJW.EXPECTED_REPORTS&dimension=ou:'+uid+'&displayProperty=NAME&outputIdScheme=UID';
+				
+				var count = 0;
+					
+				$.ajax({      
+				  dataType: "json",
+				  url: url, //Relative or absolute path to response.php file   
+				  async:false,
+				  success: function(data) 
+				  {          
+					  count = parseInt(data.rows[0][3]);
+				  }
+				});
+					
+				return count;
+			}
+			
+			
+			
 
-            $('#filtopts').text(filtopts_txt);
+            //$('#filtopts').text(filtopts_txt);
     </script>
     </div>
     </body>

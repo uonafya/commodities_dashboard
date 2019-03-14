@@ -1,4 +1,4 @@
-function getDetails(url) {
+function getDetails(url,tou) {
     var tdata = '';
     $.ajax({
         type: "GET",
@@ -9,11 +9,25 @@ function getDetails(url) {
             $('#perdd').html(dateToStr(data.metaData.dimensions.pe[0]));
             orgunits = data.metaData.dimensions.ou;
             var orgu_opts = '';
-            $.each(orgunits, function (inx, orgu) {
-                orgu_opts+='<option value='+orgu+'>'+data.metaData.items[orgu].name+'</option>';
-            })
-            $('#facility-dropdown').empty();
-            $('#facility-dropdown').append(orgu_opts);
+            
+            var fac_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
+            // var fac_url = 'http://localhost/pmi/json/tAbBVBbueqD.json';
+            $.ajax({
+                type: "GET",
+                url: fac_url,
+                data: "datau",
+                crossDomain: true,
+                success: function (datau) {
+                    $.each(datau.organisationUnits, function (indx2, facil) { 
+                        orgu_opts+='<option value='+facil.id+'>'+facil.name+'</option>';
+                    });
+                    $('#facility-dropdown').empty();
+                    $('#facility-dropdown').append('<option disabled selected>Select facility</option>');
+                    $('#facility-dropdown').append(orgu_opts);
+                }
+            });
+            
+            
             $('#ounit').html(data.metaData.items[data.metaData.dimensions.ou[0]].name);
             var thedxissued = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length/2);
             var thedxreceived = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length);
@@ -62,8 +76,10 @@ function getDetails(url) {
             $('#natnl tbody').append(tdata);
             $('.issues-loader').addClass('hidden');
             $('.issu_status').addClass('hidden');
+            $('#nat-iss').removeClass('hidden');
         },
         error: function(error){
+            $('.issu_status').removeClass('hidden');
             $('.issues-loader').addClass('hidden');
             $('#nat-iss').addClass('hidden');
             $('.issu_status').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
@@ -110,7 +126,7 @@ function getNational(nat_url) {
             credits: {
             enabled: false
         },
-            xAxis: {
+            xAxis: {				
                 title: {
                     text: 'Commodities'
                 },
@@ -118,6 +134,7 @@ function getNational(nat_url) {
             },
             yAxis: {
                 min: 0,
+				max: 24,
                 title: {
                     text: 'Months of Stock (MOS)'
                 },
@@ -127,7 +144,25 @@ function getNational(nat_url) {
                         fontWeight: 'bold',
                         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     }
-                }
+                },
+				plotLines: [{
+							color: '#FF0000',
+							width: 2,
+							value: 3,
+							label: {
+								text: 'Min',
+								align: 'right'
+							}
+						},
+						{
+							color: '#00FF00',
+							width: 2,
+							value: 20,
+							label: {
+								text: 'Max',
+								align: 'right'
+							}
+						}]
             },
             legend: {
                 align: 'right',
@@ -174,7 +209,7 @@ function getNational(nat_url) {
             $('.natsum-loader').addClass('hidden');
             $('.natstate').removeClass('hidden');
             $("#national-container").addClass('hidden');
-            console.log('Error fetching json. :- '+error);
+            console.log('Error fetching json. :- ERROR: '+error + '& STATUS:'+status);
             $('.natstate').html('<div class ="alert alert-danger"><strong>sData Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });

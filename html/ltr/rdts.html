@@ -366,6 +366,7 @@
                                     </div>
                                 </div>
                                 <div class="row rdtdata">
+                                        <h5 id="ttitle"></h5>
                                     <div class="table-responsive">
                                         <table id="rdt_table" class="table table-condensed slimtable table-bordered rdtbox hidden">
                                         <thead>
@@ -544,12 +545,12 @@
 
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;iMHDfVvYm0W;eMWOLQKFcA8;cPlWFYbBacW.rPAsF4cpNxm;R4VD8EvRxyN&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             // var url = 'http://localhost/pmi/json/artesunate.json'
-            fetchRDTs(url);
+            fetchRDTs(url,ounit,period);
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;iMHDfVvYm0W;eMWOLQKFcA8;cPlWFYbBacW.rPAsF4cpNxm;R4VD8EvRxyN&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchRDTs(url);
+                fetchRDTs(url,ounit,period);
                 
             });
 
@@ -557,7 +558,7 @@
             {
                 ounit = $(this).val();
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;iMHDfVvYm0W;eMWOLQKFcA8;cPlWFYbBacW.rPAsF4cpNxm;R4VD8EvRxyN&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchRDTs(url);
+                fetchRDTs(url,ounit,period);
                 
             });
 					
@@ -583,7 +584,7 @@
             
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;iMHDfVvYm0W;eMWOLQKFcA8;cPlWFYbBacW.rPAsF4cpNxm;R4VD8EvRxyN&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             // var url = 'http://localhost/pmi/json/artesunate.json'
-            fetchRDTs(url);
+            fetchRDTs(url,ounit,period);
         }
         
         //function toprocess the SP url

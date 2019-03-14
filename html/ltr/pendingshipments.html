@@ -298,7 +298,7 @@
                                 &nbsp; &nbsp;
                             </h6>
                         </div>
-                        <div class="col-md-7 col-sm-6 col-xs-12">
+                        <div class="col-md-7 col-sm-6 col-xs-12" style="display:none;">
                             <small class="">Filter:</small>
                             <div class="row">
                                 <div class="col-md-11 col-sm-11 col-xs-12">
@@ -421,7 +421,7 @@
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
-    <!-- ============================================================== -->
+    <!-- ============================================================== -->                                            
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
@@ -442,83 +442,6 @@
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-    	
-	<!-- *********** MonthPicker ************** -->
-    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
-    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
-    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
-    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
-
-    <script>
-        $('#period-dropdown').MonthPicker({ 
-            Button: false,
-            MinMonth: '-1y',
-            MaxMonth: -1,
-            MinYear: 0,
-            MaxYear: 0,
-            OnAfterChooseMonth: function() {  
-                var sDate = $(this).val();
-                datePicked(sDate);
-            }
-        });        
-    </script>
-    <!-- *********** end MonthPicker ************** -->
-		
-	<script>
-		$(document).ready(function() 
-		{
-			var dropdown = $('#county-dropdown');
-			
-			var subcounty = $('#subcounty-dropdown');
-			
-			var perioddwn = $('#period-dropdown');
-
-			dropdown.empty();
-			subcounty.empty();
-			perioddwn.empty();
-
-			dropdown.append('<option selected="true" disabled>Select County</option>');
-			dropdown.prop('selectedIndex', 0);
-			
-			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-			subcounty.prop('selectedIndex', 0);
-			
-			perioddwn.append('<option selected="true" disabled>Select Period</option>');
-			perioddwn.prop('selectedIndex', 0);
-
-			//const url = 'https://api.myjson.com/bins/7xq2x';
-
-			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
-			{
-				//console.log(data.organisationUnits);
-				$.each(data.organisationUnits, function (key, entry) 
-				{						
-					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
-				})		 
-			});
-			
-			$("#county-dropdown").change(function() 
-			{  
-				subcounty.empty();
-				var countyid = $(this).val();
-				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-				subcounty.prop('selectedIndex', 0);
-				
-				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
-				{			
-					$.each(data.organisationUnits, function (key, entry) 
-					{				
-						if(entry.parent.id==countyid)
-						{
-							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
-						}				
-					})		 
-				});		
-			});
-		});
-	</script>
 			
 	<script>
 	$(document).ready(function() 
@@ -527,50 +450,14 @@
             var period = '201805';
             //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
 			
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=ou:HfVjCurKxh2&dimension=pe:201805&dimension=dx:aIek7kTJG6w;yB2FRv1QXkQ;lOZMABBgVI8;F8MqSF1yd89;bMlKVkzH9NQ;XzTaOzw1atl;d5qEwzIeQ6k&displayProperty=NAME&outputIdScheme=UID'
-            fetchSP(url);
-            $("#county-dropdown").change(function() 
-            {
-                ounit = $(this).val();
-                //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-				
-				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=ou:HfVjCurKxh2&dimension=pe:201805&dimension=dx:aIek7kTJG6w;yB2FRv1QXkQ;lOZMABBgVI8;F8MqSF1yd89;bMlKVkzH9NQ;XzTaOzw1atl;d5qEwzIeQ6k&displayProperty=NAME&outputIdScheme=UID'
-                fetchSP(url);
-                
-            });
-
-            $("#subcounty-dropdown").change(function() 
-            {
-                ounit = $(this).val();
-                //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-				
-				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=ou:HfVjCurKxh2&dimension=pe:201805&dimension=dx:aIek7kTJG6w;yB2FRv1QXkQ;lOZMABBgVI8;F8MqSF1yd89;bMlKVkzH9NQ;XzTaOzw1atl;d5qEwzIeQ6k&displayProperty=NAME&outputIdScheme=UID'
-                fetchSP(url);
-                
-            });
+            //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=ou:HfVjCurKxh2&dimension=pe:201805&dimension=dx:aIek7kTJG6w;yB2FRv1QXkQ;lOZMABBgVI8;F8MqSF1yd89;bMlKVkzH9NQ;XzTaOzw1atl;d5qEwzIeQ6k&displayProperty=NAME&outputIdScheme=UID'
+            
+			var url = 'pending.json';
+			
+			fetchSP(url);                
 					
 	});
 	
-	
-        //change of period		
-        function datePicked(sDate)
-        {
-            var dateparts = sDate.split('/', 2);
-            var therdate = dateparts[1]+''+dateparts[0];
-            var ounit = $("#county-dropdown").val();
-            var subcountyou = $("#subcounty-dropdown").val();
-            var period = therdate;
-            
-            if(subcountyou!=null)
-            {
-                var ounit = subcountyou;
-            }
-            
-            //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-			
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=ou:HfVjCurKxh2&dimension=pe:201805&dimension=dx:aIek7kTJG6w;yB2FRv1QXkQ;lOZMABBgVI8;F8MqSF1yd89;bMlKVkzH9NQ;XzTaOzw1atl;d5qEwzIeQ6k&displayProperty=NAME&outputIdScheme=UID'
-            fetchSP(url);
-        }
         
         //function to process the Pending Shipments url
         function fetchSP(spurl)
@@ -583,65 +470,88 @@
             $.ajax({
                 type: 'GET',
                 crossDomain: true,
+				mimeType: "application/json",
                 url: spurl,                    
                 success: function (data) {
 
-                    //create the org units array
-                    var orgunits = [];
-                    var dxids = [];
+                    //create the funds source array
+                    var funds = [];
+					
+					//create the product array
+					var products = {"PM03ART004": "Artemether-Lumefantrine 20/120 Tabs 6s", "PM03ART005": "Artemether-Lumefantrine 20/120 Tabs 12s",
+                 "PM03ART006": "Artemether-Lumefantrine 20/120 Tabs 18s", "PM03ART007": "Artemether-Lumefantrine 20/120 Tabs 24s",
+                 "PM03ART009": "Artesunate Injection", "NL05TES067": "Sulphadoxine Pyrimethamine Tabs", "PM03SPY001": "Rapid Diagnostic Tests"}
+					
+					
+					//create the totals array
+					var producttotals = [];
+                    
 
                     //var tableData = '<table>';
                     var tableData = '';
-
-                    //console.log(data.rows);
+					
+					var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"];	
 
                     //push only if not in
-                    $.each(data.rows, function (rowkey, rowentry) 
+                    $.each(data, function (rowkey, rowentry) 
                     {
-                            //console.log(rowentry[1]);
-                            //console.log(orgunits.indexOf(rowentry[1]))
-                            if(orgunits.indexOf(rowentry[1])>=0)
-                            {
-                                    //console.log(orgunits);
-                            }
-                            else
-                            {
-                                    orgunits.push(rowentry[1]);
-                            }	
-
+						//source of funds
+						if(funds.indexOf(rowentry['sourceoffunds'])>=0)
+						{
+							//console.log(orgunits);
+						}
+						else
+						{
+							funds.push(rowentry['sourceoffunds']);
+						}
                     })
-
-                    //console.log(orgunits.length);
 					
-					var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"] ;	
-                    $.each(data.metaData.dimensions.dx, function (key, entry) 
-                    {
-                            //define the table
-                            tableData += '<tr>';	
-                            tableData += '<td>'+data.metaData.items[entry].name.substr(3)+'</td>';
-							//console.log(dxuom[1]);
-                            tableData += '<td>'+dxuom[key]+'</td>';
-							tableData += '<td>'+Math.trunc(data.rows[key][3]).toLocaleString()+ '</td>';
-							tableData += '<td>'+Math.trunc(data.rows[key][3]).toLocaleString()+ '</td>';							
-							tableData += '<td>'+Math.trunc(data.rows[key][3]).toLocaleString()+ '</td>';
-							tableData += '<td>'+Math.trunc(data.rows[key][3]).toLocaleString()+ '</td>';
-														
-							tableData += '<td><b>'+(+data.rows[key][3] * 4).toLocaleString() +'</b></td>';
-							
-							//tableData += '<td><b>'+(+data.rows[key][3] + +data.rows[key][3] + +data.rows[key][3] + +data.rows[key][3]).toLocaleString() +'</b></td>';
-							//console.log(key);
-                            //console.log(data.metaData.items[entry].name.substr(3));
-                            //console.log(entry);
-							//console.log(data.rows);
-							//console.log(+data.rows[key][3] + +data.rows[key][3] + +data.rows[key][3] + +data.rows[key][3])
-							console.log(data.rows[key][3] * 4)
-
-                            
-                            tableData += '</tr>';	
+					//loop trough to populate data
+					var itemcodes = [];
+					
+					var counter = 0
+					$.each(products, function (prokey, proentry) 
+					{
+						//define the table
+						var totalsum = 0;
+						tableData += '<tr>';	
+						tableData += '<td>'+proentry+'</td>';
+						
+						tableData += '<td>'+dxuom[counter]+'</td>';
+						
+						//source of funds				
+						$.each(funds, function (fundskey, fundsentry) 
+						{
+							var sumdues = 0;
+							//loop through all the records
+							$.each(data, function (rowkey, rowentry) 
+							{
+								if(fundsentry==rowentry['sourceoffunds'] && prokey==rowentry['itemcode'])
+								{									
+									sumdues += parseFloat(rowentry['duesin']);									
+								}									
+							})
+							totalsum += sumdues;
+							tableData += '<td>'+sumdues+ '</td>';																					
+						})
+						tableData += '<td>'+totalsum+ '</td>';
+						tableData += '</tr>';
+						counter++;
                     })
 
-                    //tableData += '<table>';	
-                    //console.log(tableData)
+                    					
+					var tfoot = '';
+					
+					var colspan = funds.length+1;
+					
+					tfoot += '<tr><th rowspan="2">Description</th><th rowspan="2">Unit of Measure</th>                                               <th colspan="'+colspan+'"><center><b>Pending Shipments</b></center></th></tr><tr>';
+					
+					$.each(funds, function (fundskey, fundsentry) 
+					{
+						tfoot += '<th>'+fundsentry+'</th>';
+					})
+					tfoot += '<th><b>Total</b></th></tr>';
+					
 					
                     $('#sp_table').removeClass('hidden');
                     $('.spdata').removeClass('hidden');
@@ -651,6 +561,10 @@
 					$('#sp_table').DataTable().destroy();
                     $("table.spbox tbody").empty();
                     $("table.spbox tbody").append(tableData);	
+					$("table.spbox tfoot").empty();
+					$("table.spbox tfoot").append(tfoot);
+					$("table.spbox thead").empty();
+					$("table.spbox thead").append(tfoot);
                     //$('#sp_table').DataTable();                                                          
                     //$('#sp_table').DataTable().fnDraw();					
                 },
@@ -666,7 +580,6 @@
 			})
 		}
 </script>
-
 </body>
 
 </html>

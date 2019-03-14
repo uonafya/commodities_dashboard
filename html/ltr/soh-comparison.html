@@ -293,7 +293,7 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                Pending Shipments
+                                SOH Comparison
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
@@ -345,6 +345,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">National SOH Comparison</h5>
+								<h5 class="card-title sohtitle"></h5>
                                 <div class="sp_status row"></div>
                                 <div class="row">
                                     <div class="loader-sp">
@@ -517,22 +518,22 @@
 	{
             var ounit = 'tAbBVBbueqD';
             var period = '201808';
-            var url = 'pmi.json';
-            // var url = 'http://localhost/pmi/json/artesunate.json'
-            fetchSP(url);
+            //var url = 'pmi.json';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+            fetchSP(url,ounit);
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
-                var url = 'pmi.json';
-                fetchSP(url);
+                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+                fetchSP(url,ounit);
                 
             });
 
             $("#subcounty-dropdown").change(function() 
             {
                 ounit = $(this).val();
-                var url = 'pmi.json';
-                fetchSP(url);
+                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+                fetchSP(url,ounit);
                 
             });
 					
@@ -553,13 +554,13 @@
                 var ounit = subcountyou;
             }
             
-            var url = 'pmi.json';
-            // var url = 'http://localhost/pmi/json/artesunate.json'
-            fetchSP(url);
+            //var url = 'pmi.json';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+            fetchSP(url,ounit);
         }
         
         //function toprocess the SP url
-        function fetchSP(spurl)
+        function fetchSP(spurl,ounit)
         {
             // $.getJSON(spurl, function (data){
             $.ajax({
@@ -583,6 +584,14 @@
             
             //doses for each product
             var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"] ;
+			
+			//apply the title
+            var theperiod = data.metaData.dimensions.pe[0];
+            			            
+            var curpe = data.metaData.items[theperiod].name;
+            
+            getOrgUnit(ounit, curpe);
+			//end apply title
                     
             //get dimensions of products
             $.each(data.metaData.dimensions.dx, function (dxkey, dxentry, ) 
@@ -627,11 +636,18 @@
                 //get kemsa values
                    $.each(dxidskemsa, function (rowkey, rowentry) 
                     {
-                    $.each(data.rows, function (rowkey1, rowentry2)
+						$.each(data.rows, function (rowkey1, rowentry2)
                         {    
                             if(rowentry==rowentry2[0])
-                            {   
-                               kemsavalues.push(rowentry2[3]);
+                            {  
+								if(rowentry2[3])
+								{
+								   kemsavalues.push(rowentry2[3]);
+								}
+								else
+								{
+									kemsavalues.push(0);
+								}
                             }
                         })
                       
@@ -651,26 +667,42 @@
                     })
                  })
                     //output each row to table
-                  for(var i=0;i<products.length;i++){
-                      console.log('ssss',products)
-                      var total = +(kemsavalues[i]) + +(hfsvalues[i]);
-                      var kemsamos=+(kemsavalues[i])/+(adjcvalues[i]);
-                      var hfsmos=+(hfsvalues[i])/+(adjcvalues[i]);
-                      var totalmos=+(total)/+(adjcvalues[i]);
+                  for(var i=0;i<products.length;i++)
+				  {
+						console.log(kemsavalues[i]);
+						
+						if(typeof kemsavalues[i]=='undefined')
+							kemsavalues[i] = 0;
+
+						if(typeof hfsvalues[i]=='undefined')
+							hfsvalues[i] = 0;
+
+						if(typeof adjcvalues[i]=='undefined')
+							adjcvalues[i] = 0;
+							
+						console.log(kemsavalues[i]);
+
+						var total = (kemsavalues[i]) + (hfsvalues[i]);
+
+						var kemsamos=(kemsavalues[i])/(adjcvalues[i]);
+
+						var hfsmos=(hfsvalues[i])/(adjcvalues[i]);
+
+						var totalmos=(total)/(adjcvalues[i]);
                       
-                    tableData += '<tr>';
-                      
-                        tableData += '<td>'+ products[i] +'</td>';     
-                        tableData += '<td>'+dxuom[i]+'</td>';
-                        tableData += '<td>'+Math.trunc(adjcvalues[i]).toLocaleString()+'</td>';
-                        tableData += '<td>'+Math.trunc(kemsavalues[i]).toLocaleString()+'</td>';
-                        tableData += '<td>'+Math.trunc(hfsvalues[i]).toLocaleString()+'</td>';
-                        tableData += '<td>'+Math.trunc(total).toLocaleString()+'</td>';
-                        tableData += '<td>'+kemsamos.toFixed(1)+'</td>';
-                        tableData += '<td>'+hfsmos.toFixed(1)+'</td>';
-                        tableData += '<td>'+totalmos.toFixed(1)+'</td>';
+						tableData += '<tr>';
+
+						tableData += '<td>'+ products[i] +'</td>';     
+						tableData += '<td>'+dxuom[i]+'</td>';
+						tableData += '<td>'+Math.trunc(adjcvalues[i]).toLocaleString()+'</td>';
+						tableData += '<td>'+Math.trunc(kemsavalues[i]).toLocaleString()+'</td>';
+						tableData += '<td>'+Math.trunc(hfsvalues[i]).toLocaleString()+'</td>';
+						tableData += '<td>'+Math.trunc(total).toLocaleString()+'</td>';
+						tableData += '<td>'+kemsamos.toFixed(1)+'</td>';
+						tableData += '<td>'+hfsmos.toFixed(1)+'</td>';
+						tableData += '<td>'+totalmos.toFixed(1)+'</td>';
                                  
-                    tableData += '</tr>';
+						tableData += '</tr>';
                   }
           
                     $('#sp_table').removeClass('hidden');
@@ -692,6 +724,22 @@
                 }
             });
     }
+	
+	//display the label
+	//GET THE org unit name
+	function getOrgUnit(uid, period)
+	{
+		var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+uid+'.json?fields=id,name';
+		
+		$.ajax({      
+		  dataType: "json",
+		  url: url, //Relative or absolute path to response.php file      
+		  success: function(data) 
+		  {          
+			  $("h5.sohtitle").html(data['name']+' - '+period);
+		  }
+		});    
+	}
 </script>
 
 </body>
