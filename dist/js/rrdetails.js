@@ -3,12 +3,13 @@ function fetchRRDetails(rdurl)
 {
     console.log('rdurl is:-> '+rdurl);
     $('.loader-sp').removeClass('hidden');
-    $('#zero_config.rrdetailsbox').removeClass('hidden');
+    $('#facility_rr').addClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: rdurl,                    
         success: function (data) {                  
+            $('#facility_rr').removeClass('hidden');
             var header = '';
             var footer = '';
             var tableData = '';
