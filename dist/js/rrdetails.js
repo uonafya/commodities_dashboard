@@ -40,12 +40,17 @@ function fetchRRDetails(rdurl)
 
             //start body
             tableData += '<tbody>';
+
+            // dummy body
             tableDataDummy = '<tbody>';
             tableDataDummy += '<tr>';
             $.each(data.metaData.dimensions.pe, function (pkey, pentry){
                 tableDataDummy += '<td></td>';
             });
             tableDataDummy += '</tr>';
+            tableDataDummy = '</tbody>';
+            // END dummy body
+
 
             //console.log(orgunits.length);
             $.each(data.metaData.dimensions.ou, function (key, entry) 
