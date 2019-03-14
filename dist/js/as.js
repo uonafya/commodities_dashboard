@@ -27,7 +27,7 @@ function checkOUs(ouid){
 
 
 //function toprocess the AS url
-function fetchAS(asurl)
+function fetchAS(asurl,orgu,peri)
 {
     $('#as_table').addClass('hidden');
     $('.asdata').addClass('hidden');
@@ -46,7 +46,16 @@ function fetchAS(asurl)
             //var tableData = '<table>';
             var tableData = '';
 
-            //console.log(data.rows);
+            // title fill
+                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
+                $.ajax({      
+                    dataType: "json",
+                    url: url,
+                    success: function(datax) {          
+                        $("h5#ttitle").html(datax['name']+' - '+data.metaData.items[peri].name);
+                    }
+                });    
+            // END title fill
 
             //push only if not in
             $.each(data.rows, function (rowkey, rowentry) 

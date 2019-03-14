@@ -29,7 +29,7 @@ function checkOUs(ouid){
 //function toprocess the acts url
 
         //function toprocess the SP url
-        function fetchSP(spurl)
+        function fetchSP(spurl,orgu,peri)
         {
             // console.log('spurl: '+spurl);ss
             $('#sp_table').addClass('hidden');
@@ -49,7 +49,16 @@ function checkOUs(ouid){
                     //var tableData = '<table>';
                     var tableData = '';
 
-                    //console.log(data.rows);
+                    // title fill
+                        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
+                        $.ajax({      
+                            dataType: "json",
+                            url: url,
+                            success: function(datax) {          
+                                $("h5#ttitle").html(datax['name']+' - '+data.metaData.items[peri].name);
+                            }
+                        });    
+                    // END title fill
 
                     //push only if not in
                     $.each(data.rows, function (rowkey, rowentry) 
