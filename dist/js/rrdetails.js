@@ -171,9 +171,9 @@ function fetchSubRRDetails(scrdurl)
             //subcounty
             
             
-            $('#zero_config-sub').DataTable().destroy();
             $('.loader-sp.sp-sub').addClass('hidden');
-            $("#zero_config-sub").empty();
+            $('#zero_config-sub').DataTable().destroy();
+            $("#zero_config-sub tbody").empty();
             // $("table.rrdetailsbox-sub tbody").html('');
             // $('#zero_config').DataTable();                                                          
             $("#zero_config-sub.rrdetailsbox-sub").append(tableDataSub);	
