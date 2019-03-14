@@ -144,24 +144,29 @@ function fetchSubRRDetails(scrdurl)
             $.each(data.metaData.dimensions.ou, function (key, entry) 
             {
 				
-				tableDataSub += '<tr>';	
-				tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
-
-				$.each(data.metaData.dimensions.pe, function (pkey, pentry) 
+				var expected = checkExpected(rows,entry);
+				
+				if(expected==1)
 				{
-					var reportval = getReport(data.rows,pentry,entry);
-					if(reportval)
-					{
-						tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
-					}
-					else
-					{
-						var bgcolor = '#ffeb9c';
-						tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
-					}
-				})
+					tableDataSub += '<tr>';	
+					tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
 
-				tableDataSub += '</tr>';	
+					$.each(data.metaData.dimensions.pe, function (pkey, pentry) 
+					{
+						var reportval = getReport(data.rows,pentry,entry);
+						if(reportval)
+						{
+							tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
+						}
+						else
+						{
+							var bgcolor = '#ffeb9c';
+							tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
+						}
+					})
+
+					tableDataSub += '</tr>';	
+				}
 				
             })
 
