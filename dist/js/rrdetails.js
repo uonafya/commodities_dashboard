@@ -145,8 +145,8 @@ function fetchSubRRDetails(scrdurl)
             {
 				//check if expected report exists for the orgunit				
 				var expected = checkExpected(data.rows, entry);
-				console.log(expected);
-				console.log(entry);
+				//console.log(expected);
+				//console.log(entry);
 				if(expected==1)
 				{
 					tableDataSub += '<tr>';	
