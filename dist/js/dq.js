@@ -296,7 +296,6 @@ $.ajax({
             reported.push(total);
         });
         
-        console.log("subtitle: "+subtitle);
         let didNotReport = [];
         $.each(reported,(index,value)=>{
             const facilities = total_facilities
