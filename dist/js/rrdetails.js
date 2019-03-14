@@ -296,7 +296,7 @@ function checkExpected(rows,orgunit)
 		if(rentry[0]=='JPaviRmSsJW.EXPECTED_REPORTS' && rentry[2]==orgunit)
 		{                                    
 			rowval = parseInt(rentry[3]);
-			break;
+			//break;
 		}								
 	})		
 
