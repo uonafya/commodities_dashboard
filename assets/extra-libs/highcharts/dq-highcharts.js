@@ -248,7 +248,6 @@
                 var perd = wbdataset[0];
                 var reported = wbdataset[1];
                 var didNotReport = wbdataset[2];
-                var subtitle = wbdataset[3];
                 Highcharts.chart('wbdata', {
 
                     title: {
@@ -256,7 +255,7 @@
                     },
             
                     subtitle: {
-                        text: subtitle
+                        text: ''
                     },
             
                     yAxis: {
