@@ -2,8 +2,8 @@
 function fetchRRDetails(rdurl)
 {
     console.log('rdurl is:-> '+rdurl);
-    $('.loader-sp').removeClass('hidden');
     $('#facility_rr').addClass('hidden');
+    // $('.loader-sp').removeClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -86,7 +86,7 @@ function fetchRRDetails(rdurl)
 
             $('#facility_rr').DataTable().destroy();
             $("#facility_rr tbody").empty();                                     
-            $("#facility_rr tbody").append(tableData);
+            $("#facility_rr tbody").html(tableData);
             $('#facility_rr').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
