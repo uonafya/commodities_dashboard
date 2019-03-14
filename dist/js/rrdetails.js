@@ -81,8 +81,9 @@ function fetchRRDetails(rdurl)
             $('#facility_rr').append(header);
             $('#facility_rr').append(tableDataDummy);
             console.log("tableDataDummy: "+tableDataDummy);
-            // $('#facility_rr').DataTable({'destroy': true});
+            $("#facility_rr tbody").append(tableData);
             $("#facility_rr tbody").empty();                                     
+            $('#facility_rr').DataTable({'destroy': true});
             $("#facility_rr tbody").append(tableData);
             console.log("tableData: "+tableData);
             $('#facility_rr').DataTable({
