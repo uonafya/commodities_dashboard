@@ -176,7 +176,7 @@ function fetchSubRRDetails(scrdurl)
             $("#zero_config-sub tbody").empty();
             // $("table.rrdetailsbox-sub tbody").html('');
             // $('#zero_config').DataTable();                                                          
-            $("#zero_config-sub.rrdetailsbox-sub").append(tableDataSub);	
+            $("#zero_config-sub.rrdetailsbox-sub tbody").append(tableDataSub);	
             $("#zero_config-sub.rrdetailsbox-sub").removeClass('hidden');
             // $('#zero_config-sub').DataTable().fnDraw();
             // $('#zero_config-sub').DataTable().draw();
