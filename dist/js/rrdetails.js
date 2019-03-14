@@ -68,15 +68,12 @@ function fetchRRDetails(rdurl)
             tableData += footer;
                     
             $('.loader-sp').addClass('hidden');
-            $("#zero_config.rrdetailsbox").removeClass('hidden');
-            //facility
-            $('#zero_config.rrdetailsbox').DataTable().destroy();
-            $("#zero_config.rrdetailsbox").empty();                                                
-            $("#zero_config.rrdetailsbox").append(tableData);	
-            $("#zero_config.rrdetailsbox").removeClass('hidden');
-            // $('#zero_config.rrdetailsbox').DataTable().fnDraw();
-            // $('#zero_config').DataTable().draw();
-            $('#zero_config.rrdetailsbox').DataTable({
+            $(".rrdetailsbox").removeClass('hidden');
+
+            $('.rrdetailsbox').DataTable().destroy();
+            $(".rrdetailsbox tbody").empty();                                                
+            $(".rrdetailsbox tbody").append(tableData);	
+            $('.rrdetailsbox').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
@@ -86,7 +83,7 @@ function fetchRRDetails(rdurl)
         },
     error: function (request, status, error) {
         $('.loader-sp').addClass('hidden');
-        $('#zero_config.rrdetailsbox').addClass('hidden');
+        $('.rrdetailsbox').addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
         $('.rdstate').html('<div class ="alert alert-danger"><strong>Facility Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
@@ -167,41 +164,27 @@ function fetchSubRRDetails(scrdurl)
 
 					tableDataSub += '</tr>';	
 				}
-				
             })
 
             //footer line
             tableDataSub += '</tbody>';
             tableDataSub += footer;
             //subcounty
-            //$('#zero_config-sub').DataTable().destroy();
-            $("table#zero_config tbody").empty();
-            $("table#zero_config tbody").append(tableDataSub);	
-            $('#zero_config').DataTable();                                                          
-            $('#zero_config').DataTable({
+            $('.rrdetailsbox-sub').DataTable().destroy();
+            $(".rrdetailsbox-sub tbody").empty();
+            $(".rrdetailsbox-sub tbody").append(tableDataSub);	                                                        
+            $('.rrdetailsbox-sub').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
-            
             $('.loader-sp.sp-sub').addClass('hidden');
-            // $('#zero_config-sub').DataTable().destroy();
-            // $("#zero_config-sub tbody").empty();                                               
-            // $("#zero_config-sub.rrdetailsbox-sub tbody").append(tableDataSub);	
-            // $("#zero_config-sub.rrdetailsbox-sub").removeClass('hidden');
-            // $('.loader-sp.sp-sub').addClass('hidden');
-            // $('#zero_config-sub').DataTable({
-            //     dom: 'Bfrtip',
-            //     buttons: [
-            //         'copy', 'csv', 'excel', 'pdf', 'print'
-            //     ]
-            // });
 
     },
     error: function (request, status, error) {
         $('.loader-sp.sp-sub').addClass('hidden');
-        $("#zero_config-sub.rrdetailsbox-sub").addClass('hidden');
+        $(".rrdetailsbox-sub").addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
         $('.rdstate-sub').html('<div class ="alert alert-danger"><strong>Sub-county Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
