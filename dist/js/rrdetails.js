@@ -144,7 +144,7 @@ function fetchSubRRDetails(scrdurl)
             $.each(data.metaData.dimensions.ou, function (key, entry) 
             {
 				
-				var expected = checkExpected(rows,entry);
+				var expected = checkExpected(data.rows,entry);
 				
 				if(expected==1)
 				{
