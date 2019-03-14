@@ -269,7 +269,7 @@ $('#dq-column').addClass('hidden');
 });
 }
 
-function getWBData(wburl){
+function getWBData(wburl,orgun){
 $('#wbdata').addClass('hidden');
 $('.loader-sp.wbdata').removeClass('hidden');
 $.ajax({
@@ -281,6 +281,7 @@ $.ajax({
         const json_data = wb_data;
         // Total number of facilities
         const total_facilities= json_data.metaData.dimensions.ou.length;
+
         let reported = [];
         // loops though the period
         $.each(json_data.metaData.dimensions.pe,(index,value)=>{
@@ -294,6 +295,19 @@ $.ajax({
             });
             reported.push(total);
         });
+        var subtitle = '';
+        var per_from = data.metaData.items[data.metaData.dimensions.pe[0]].name;
+        var per_to = data.metaData.items[data.metaData.dimensions.pe[parseFloat(data.metaData.dimensions.pe.length)-1]].name;
+        // title fill
+            var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
+            $.ajax({      
+                dataType: "json",
+                url: url,
+                success: function(datax) {          
+                    subtitle += datax['name']+' - From: '+per_from+' To '+per_to;
+                }
+            });    
+        // END title fill
         let didNotReport = [];
         $.each(reported,(index,value)=>{
             const facilities = total_facilities
@@ -305,9 +319,11 @@ $.ajax({
         $.each(json_data.metaData.dimensions.pe,(ind,val)=>{
             pearr.push(dateToStr(val));
         });
+        
         wbdataset.push(pearr);
         wbdataset.push(reported);
         wbdataset.push(didNotReport);
+        wbdataset.push(subtitle);
         
         var prdoptn = '<option selected="true" disabled>Select period</option>';
         $.each(json_data.metaData.dimensions.pe,(inx,prd)=>{
