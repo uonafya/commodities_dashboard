@@ -176,8 +176,8 @@ function fetchSubRRDetails(scrdurl)
             //subcounty
             $('#zero_config-sub').DataTable().destroy();
             $("table#zero_config-sub tbody").empty();
-            $("table#zero_config-sub tbody").append(tableData);	
-            //$('#acts_table').DataTable();                                                          
+            $("table#zero_config-sub tbody").append(tableDataSub);	
+            $('#acts_table').DataTable();                                                          
             $('#zero_config-sub').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
