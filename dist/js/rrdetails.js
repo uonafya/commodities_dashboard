@@ -174,7 +174,7 @@ function fetchSubRRDetails(scrdurl)
             tableDataSub += '</tbody>';
             tableDataSub += footer;
             //subcounty
-            $('#zero_config-sub').DataTable().destroy();
+            //$('#zero_config-sub').DataTable().destroy();
             $("table#zero_config-sub tbody").empty();
             $("table#zero_config-sub tbody").append(tableDataSub);	
             $('#acts_table').DataTable();                                                          
