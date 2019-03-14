@@ -142,25 +142,32 @@ function fetchSubRRDetails(scrdurl)
 
             //console.log(orgunits.length);
             $.each(data.metaData.dimensions.ou, function (key, entry) 
-            {                                                        
-                tableDataSub += '<tr>';	
-                tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
+            {
+				//check if expected report exists for the orgunit
+				var expected = 0;
+				expected = checkExpected(data.rows, entry);
+				
+				if(expected)
+				{
+					tableDataSub += '<tr>';	
+					tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
 
-                $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-                {
-                        var reportval = getReport(data.rows,pentry,entry);
-                        if(reportval)
-                        {
-                            tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
-                        }
-                        else
-                        {
-                            var bgcolor = '#ffeb9c';
-                            tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
-                        }
-                })
+					$.each(data.metaData.dimensions.pe, function (pkey, pentry) 
+					{
+							var reportval = getReport(data.rows,pentry,entry);
+							if(reportval)
+							{
+								tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
+							}
+							else
+							{
+								var bgcolor = '#ffeb9c';
+								tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
+							}
+					})
 
-                tableDataSub += '</tr>';	
+					tableDataSub += '</tr>';	
+				}
             })
 
             //footer line
@@ -267,4 +274,23 @@ function dateToStr(ledate){
     }
     var lenudate = numonth+' '+leyear;
     return lenudate;
+}
+
+//expected to report
+//get the report details
+function checkExpected(rows,orgunit) 
+{	
+	var rowval = 0;
+
+	//loop through the rows
+	$.each(rows, function (rkey, rentry) 
+	{
+		//check for orgunit and period
+		if(rentry[0]=='JPaviRmSsJW.EXPECTED_REPORTS' && orgunit==rentry[2])
+		{                                    
+			rowval = parseInt(rentry[3]);
+		}								
+	})		
+
+	return rowval;
 }
