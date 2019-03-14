@@ -45,7 +45,7 @@ function fetchRRDetails(rdurl)
             tableDataDummy = '<tbody>';
             tableDataDummy += '<tr>';
             $.each(data.metaData.dimensions.pe, function (pkey, pentry){
-                tableDataDummy += '<td></td>';
+                tableDataDummy += '<td>hey</td>';
             });
             tableDataDummy += '</tr>';
             tableDataDummy += '</tbody>';
@@ -81,7 +81,7 @@ function fetchRRDetails(rdurl)
             $('#facility_rr').append(header);
             $('#facility_rr').append(tableDataDummy);
             console.log("tableDataDummy: "+tableDataDummy);
-            $('#facility_rr').DataTable().destroy();
+            // $('#facility_rr').DataTable({'destroy': true});
             $("#facility_rr tbody").empty();                                     
             $("#facility_rr tbody").append(tableData);
             console.log("tableData: "+tableData);
