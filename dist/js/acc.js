@@ -1,11 +1,19 @@
 function fetchAccountability(url) {
     var tdata = '';
+    $('.accdata').addClass('hidden');
+    $('#acc_loader').removeClass('hidden');
     $.ajax({
         type: "GET",
         url: url,
         data: "data",
         crossDomain: true,
         success: function (data) {
+            $('.accdata').removeClass('hidden');
+            $('#acc_loader').addClass('hidden');
+            if($.fn.DataTable.isDataTable("#acc_table")){
+                $('#acc_table').DataTable().destroy();
+                $("#acc_table tbody").empty();
+            }
             var thedx_unaltered = data.metaData.dimensions.dx;
             var thedx = data.metaData.dimensions.dx;
             var therows = data.rows;
@@ -128,7 +136,6 @@ function fetchAccountability(url) {
                 function getPerc(){
                     return kissue_arr;
                 }
-
                 $('#'+ou+'_totalOpeningSOH').html(sumArr(opsoh_arr));
                 $('#'+ou+'_totalPveAdj').html(sumArr(posadj_arr));
                 $('#'+ou+'_totalKEMSAIssues').html(sumArr(kissue_arr));
@@ -144,8 +151,12 @@ function fetchAccountability(url) {
             $('#acc_table').removeClass('hidden');
             $('.acc_status').addClass('hidden');
             $('#acc_table').DataTable( {
-                "ordering": false,
-                "orderable": false
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                ordering: false,
+                orderable: false
             });
             
         },
