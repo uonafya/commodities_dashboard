@@ -1,7 +1,7 @@
 function fetchAccountability(url) {
     var tdata = '';
     $('.accdata').addClass('hidden');
-    $('#acc_loader').removeClass('hidden');
+    $('#acc_loader, .acc_loader, .loader, .loader-sp').removeClass('hidden');
     $.ajax({
         type: "GET",
         url: url,
