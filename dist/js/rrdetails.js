@@ -36,7 +36,7 @@ function fetchRRDetails(rdurl)
 
             footer += '</tr></tfoot>';
 
-            // tableData += header;
+            tableData += header;
 
             //start body
             // tableData += '<tbody>';
@@ -69,7 +69,7 @@ function fetchRRDetails(rdurl)
             if($.fn.DataTable.isDataTable("#facility_rr")){
                 // $('#facility_rr').DataTable({"bDestroy": true});
                 $('#facility_rr').DataTable().destroy();
-                $("#facility_rr tbody").empty();
+                $("#facility_rr").empty();
                 $("#facility_rr").append(tableData);
             }else{
                 $('#facility_rr').append(header);
