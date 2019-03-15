@@ -2,13 +2,14 @@
 function fetchRRDetails(rdurl)
 {
     console.log('rdurl is:-> '+rdurl);
-    $('.loader-sp').removeClass('hidden');
-    $('#zero_config.rrdetailsbox').removeClass('hidden');
+    $('#facility_rr').addClass('hidden');
+    // $('.loader-sp').removeClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: rdurl,                    
         success: function (data) {                  
+            $('#facility_rr').removeClass('hidden');
             var header = '';
             var footer = '';
             var tableData = '';
@@ -17,9 +18,9 @@ function fetchRRDetails(rdurl)
             header += '<thead><tr>';	
             header += '<th>Name</th>';
 
-            $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-            {
-                    header += '<th>'+dateToStr(pentry)+'</th>';			
+            $.each(data.metaData.dimensions.pe, function (pkey, pentry){
+                header += '<th>'+dateToStr(pentry)+'</th>';	
+                console.log("HEAD: "+pentry);		
             })
 
             header += '</tr></thead>';
@@ -40,12 +41,9 @@ function fetchRRDetails(rdurl)
             //start body
             tableData += '<tbody>';
 
-            //console.log(orgunits.length);
-            $.each(data.metaData.dimensions.ou, function (key, entry) 
-            {                                                        
+            $.each(data.metaData.dimensions.ou, function (key, entry){                                                        
                 tableData += '<tr>';	
                 tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-
                 $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
                 {
                         var reportval = getReport(data.rows,pentry,entry);
@@ -59,24 +57,26 @@ function fetchRRDetails(rdurl)
                             tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
                         }
                 })
-
                 tableData += '</tr>';	
             })
 
-            //footer line
             tableData += '</tbody>';
-            tableData += footer;
+            //footer line
+            // tableData += footer;
                     
             $('.loader-sp').addClass('hidden');
-            $("#zero_config.rrdetailsbox").removeClass('hidden');
-            //facility
-            $('#zero_config.rrdetailsbox').DataTable().destroy();
-            $("#zero_config.rrdetailsbox").empty();                                                
-            $("#zero_config.rrdetailsbox").append(tableData);	
-            $("#zero_config.rrdetailsbox").removeClass('hidden');
-            // $('#zero_config.rrdetailsbox').DataTable().fnDraw();
-            // $('#zero_config').DataTable().draw();
-            $('#zero_config.rrdetailsbox').DataTable({
+            $("#facility_rr").removeClass('hidden');
+            if($.fn.DataTable.isDataTable("#facility_rr")){
+                $('#facility_rr').DataTable().destroy();
+                $("#facility_rr").empty();
+                $("#facility_rr").append(tableData);
+            }else{
+                // $("#facility_rr").append('<tbody>');
+                $("#facility_rr").append(tableData);
+                // $("#facility_rr").append('</tbody>');
+            }
+            console.log("tableData: "+tableData);
+            $('#facility_rr').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
@@ -84,9 +84,11 @@ function fetchRRDetails(rdurl)
             });
 
         },
-    error: function (request, status, error) {
+        error: function (request, status, error) {
         $('.loader-sp').addClass('hidden');
-        $('#zero_config.rrdetailsbox').addClass('hidden');
+        $('#facility_rr').addClass('hidden');
+        $('.loader-sp.rrdb').removeClass('hidden');
+        $('.rrdetailsbox').addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
         $('.rdstate').html('<div class ="alert alert-danger"><strong>Facility Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
@@ -119,7 +121,9 @@ function fetchSubRRDetails(scrdurl)
 
             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
             {
-                    header += '<th>'+dateToStr(pentry)+'</th>';			
+                    header += '<th>'+dateToStr(pentry)+'</th>';	
+                    console.log("HEAD: "+pentry);
+                    		
             })
 
             header += '</tr></thead>';
@@ -141,18 +145,13 @@ function fetchSubRRDetails(scrdurl)
             tableDataSub += '<tbody>';
 
             //console.log(orgunits.length);
-            $.each(data.metaData.dimensions.ou, function (key, entry) 
-            {
-				
+            $.each(data.metaData.dimensions.ou, function (key, entry){
 				var expected = checkExpected(data.rows,entry);
-				
-				if(expected==1)
-				{
+				if(expected==1){
 					tableDataSub += '<tr>';	
 					tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
 
-					$.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-					{
+					$.each(data.metaData.dimensions.pe, function (pkey, pentry){
 						var reportval = getReport(data.rows,pentry,entry);
 						if(reportval)
 						{
@@ -167,41 +166,38 @@ function fetchSubRRDetails(scrdurl)
 
 					tableDataSub += '</tr>';	
 				}
-				
             })
 
-            //footer line
             tableDataSub += '</tbody>';
-            tableDataSub += footer;
+            //footer line
+            // tableDataSub += footer;
             //subcounty
-            //$('#zero_config-sub').DataTable().destroy();
-            $("table#zero_config tbody").empty();
-            $("table#zero_config tbody").append(tableDataSub);	
-            $('#zero_config').DataTable();                                                          
-            $('#zero_config').DataTable({
+
+
+            $("#subcounty_rr").removeClass('hidden');
+            if($.fn.DataTable.isDataTable("#subcounty_rr")){
+                $('#subcounty_rr').DataTable().destroy();
+                $("#subcounty_rr").empty();
+                $("#subcounty_rr").append(tableDataSub);
+            }else{
+                // $("#subcounty_rr").append('<tbody>');
+                $("#subcounty_rr").append(tableDataSub);
+                // $("#subcounty_rr").append('</tbody>');
+            }
+            console.log("tableDataSub: "+tableDataSub);
+            $('#subcounty_rr').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
-            
-            $('.loader-sp.sp-sub').addClass('hidden');
-            // $('#zero_config-sub').DataTable().destroy();
-            // $("#zero_config-sub tbody").empty();                                               
-            // $("#zero_config-sub.rrdetailsbox-sub tbody").append(tableDataSub);	
-            // $("#zero_config-sub.rrdetailsbox-sub").removeClass('hidden');
-            // $('.loader-sp.sp-sub').addClass('hidden');
-            // $('#zero_config-sub').DataTable({
-            //     dom: 'Bfrtip',
-            //     buttons: [
-            //         'copy', 'csv', 'excel', 'pdf', 'print'
-            //     ]
-            // });
+
+
 
     },
     error: function (request, status, error) {
         $('.loader-sp.sp-sub').addClass('hidden');
-        $("#zero_config-sub.rrdetailsbox-sub").addClass('hidden');
+        $(".rrdetailsbox-sub").addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
         $('.rdstate-sub').html('<div class ="alert alert-danger"><strong>Sub-county Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }

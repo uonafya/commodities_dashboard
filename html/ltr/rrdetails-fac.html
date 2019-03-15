@@ -366,7 +366,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table id="zero_config" class="table table-bordered table-bordered rrdetailsbox hidden"></table>
+                                    <table id="facility_rr" class="table table-bordered table-striped slimtable table-condensed"></table>
                                 </div>
                             </div>
                         </div>
@@ -422,17 +422,15 @@
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="../../dist/js/custom.min.js"></script>
-    <!-- this page js -->
-    <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-    <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-    <!-- <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script> -->
-    
+    <!-- this page js -->    
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-    <!-- <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/code.jquery.com/jquery-3.3.1.js"></script> -->
+    <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    
     <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/dataTables.buttons.js"></script>
     <script src="../../assets/extra-libs/DataTables/DataTables-1.10.16/js/buttons.flash.js"></script>
@@ -557,7 +555,7 @@
             // var url = 'http://localhost/pmi/json/reportingdeets.json'
             // var scrdurl = 'http://localhost/pmi/json/subreportingdetails.json'
             fetchRRDetails(url);
-            fetchSubRRDetails(scrdurl)
+            // fetchSubRRDetails(scrdurl);
             
             $("#county-dropdown").change(function() 
             {
@@ -568,7 +566,7 @@
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 var scrdurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:LEVEL-3;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchRRDetails(url);
-                fetchSubRRDetails(scrdurl)
+                // fetchSubRRDetails(scrdurl)
                 
             });
             $("#subcounty-dropdown").change(function() 
@@ -628,7 +626,7 @@
             var theou = 'tAbBVBbueqD';
 
             if(sbty_val != null && sbty_val.length > 2){
-                var theou = sbty_val.val();
+                var theou = sbty_val;
             }
             if(cty_val != null && cty_val.length > 2){
                 var theou = cty_val

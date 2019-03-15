@@ -157,7 +157,7 @@ function fetchRDTs(rdturl,orgu,peri)
                         }
                     })
 
-                    $('#thetitle').html('RDT stock status <br/> in '+facility_count+' facilities');
+                    $('#thetitle').html('RDT <br/> in '+facility_count+' facilities');
                     //tableData += '<table>';	
                     //console.log(tableData)
                     $('#rdt_table').removeClass('hidden');

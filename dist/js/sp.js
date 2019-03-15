@@ -159,7 +159,7 @@ function checkOUs(ouid){
                         }
                     })
 
-                    $('#thetitle').html('SP stock status <br/> in '+facility_count+' facilities');
+                    $('#thetitle').html('SP <br/> in '+facility_count+' facilities');
                     //tableData += '<table>';	
                     //console.log(tableData)
                     $('#sp_table').removeClass('hidden');
