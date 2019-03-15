@@ -1,4 +1,6 @@
 function getDetails(url,tou) {
+    console.log("getDetails-> URL: "+url+" & TOU: "+tou);
+    
     var tdata = '';
     $.ajax({
         type: "GET",
