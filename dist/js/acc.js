@@ -12,7 +12,7 @@ function fetchAccountability(url) {
             $('#acc_loader').addClass('hidden');
             if($.fn.DataTable.isDataTable("#acc_table")){
                 $('#acc_table').DataTable().destroy();
-                $("#acc_table").empty();
+                $("#acc_table tbody").empty();
             }
             var thedx_unaltered = data.metaData.dimensions.dx;
             var thedx = data.metaData.dimensions.dx;
@@ -151,8 +151,12 @@ function fetchAccountability(url) {
             $('#acc_table').removeClass('hidden');
             $('.acc_status').addClass('hidden');
             $('#acc_table').DataTable( {
-                "ordering": false,
-                "orderable": false
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                ordering: false,
+                orderable: false
             });
             
         },
