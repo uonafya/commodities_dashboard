@@ -560,6 +560,9 @@ function getConsist(consturl,commd){
 
             // commodity name
                 var commodity_name = '';
+                if(commd.includes('.')){
+                    commd = commd.split('.')[0];
+                }
                 $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commd+'.json', function (data){
                     commodity_name = data.displayName; 
                 });
