@@ -1,54 +1,3 @@
-// fetch mfl codes
-
-var mfl_codes_array = [];
-mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,code&paging=false';
-// mfl_url = 'http://localhost/pmi/json/mflcode.json';
-getMFLarray(mfl_url);
-
-function getMFLarray(mfl_url) {
-    $.getJSON(mfl_url, function (data) 
-    {
-        mfl_codes_array = data.organisationUnits;
-        // console.log('mfl_codes_array: '+mfl_codes_array);
-    });
-}
-
-//---------- fetch mfl codes
-
-
-
-// filter by mfl codes
-function getMFLcode(dhis_id) {
-    if(mfl_codes_array == null){
-        getMFLarray(mfl_url);
-    }
-        var ous = mfl_codes_array;
-        var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
-            return v.id === dhis_id;
-        });
-		if(arr_filterd_by_dhis_code.length > 0)
-		{
-			var mfl_id = arr_filterd_by_dhis_code[0].code;
-		}
-		else
-		{
-			var mfl_id = '';
-		}
-
-        // if(arr_filterd_by_dhis_code === undefined || arr_filterd_by_dhis_code[0] === undefined){  
-        if(arr_filterd_by_dhis_code[0] === undefined){  
-            var mfl_id = 'Not Available';
-        }
-        
-        // console.log('mfl_id: '+arr_filterd_by_dhis_code);
-        return mfl_id;
-    
-}
-console.log("testMFL:  "+getMFLcode('BeyRouwSiVk'));
-// filter by mfl codes
-
-
-
 function getConco(ccurl,commodity){
 $('.loader-sp.pieone').removeClass('hidden');
 $('#pc1').addClass('hidden');
@@ -563,13 +512,14 @@ function getConsist(consturl,commd){
                 if(commd.includes('.')){
                     commd = commd.split('.')[0];
                 }
-                $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commd+'.json', function (data){
-                    commodity_name = data.displayName; 
-                });
+                commodity_name = commodities_array[commd].name;
+                // $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commd+'.json', function (data){
+                //     commodity_name = data.displayName; 
+                // });
             // commodity name
 
 
-            pieThree(commodity_name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
+            pieThree(commodities_array[commd].name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
             $('#pc3').removeClass('hidden');
         },
