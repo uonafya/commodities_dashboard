@@ -1,6 +1,6 @@
             //-------------------1--------------------------
             // Highcharts
-            function pieOne(thename,compliant_facility_count,non_compliant_facility_count){
+            function pieOne(thename,subtitle,compliant_facility_count,non_compliant_facility_count){
                 Highcharts.chart('pc1', {
                     chart: {
                         plotBackgroundColor: null,
@@ -10,6 +10,9 @@
                     },
                     title: {
                         text: thename
+                    },
+                    subtitle: {
+                        text: subtitle
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

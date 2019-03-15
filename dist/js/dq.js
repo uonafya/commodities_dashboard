@@ -117,7 +117,7 @@ $.ajax({
         // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
         var commo_s = commodity.split('.')[0];
         // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
-        pieOne(commodities_array[commo_s].name,compliant_facility_count,non_compliant_facility_count);
+        pieOne('Data Quality: Concordance',commodities_array[commo_s].name,compliant_facility_count,non_compliant_facility_count);
         // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
         $('#pc1').removeClass('hidden');
