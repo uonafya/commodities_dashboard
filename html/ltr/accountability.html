@@ -297,7 +297,34 @@
                                 Accountability
                                 &nbsp; &nbsp;
                             </h4>
-                        </div>                        
+                        </div>
+						<div class="col-md-10 col-sm-9 col-xs-12">
+                            <small class="">Filter:</small>
+                            <div class="row">
+                                <div class="col-md-11 col-sm-11 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
+                                            </select>
+                                        </div>										
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <select class="form-control m-r-5" id="subcounty-dropdown" placeholder="Subcounty" name="subcounty">                                                
+                                            </select> 
+                                        </div> 
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Period" id="period-dropdown" placeholder="Period"/> 
+                                        </div> 
+                                        <!-- <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <select class="form-control m-r-5" id="parameter-dropdown" name="county">                             <option>Select parameter</option>
+
+                                            </select>
+                                        </div>  -->
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -422,7 +449,33 @@
                 var sDate = $(this).val();
                 datePicked(sDate);
             }
-        });        
+        });
+		
+	//period function				
+        function datePicked(sDate)
+	{
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var ounit = $("#county-dropdown").val();
+            var subcountyou = $("#subcounty-dropdown").val();
+            var periodval = therdate;
+
+            if(ounit == null)
+            {
+                ounit = 'tAbBVBbueqD';
+            }
+
+            if(subcountyou != null)
+            {
+                ounit = subcountyou;
+            }
+            
+            var filtering = true;
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;DdH8pSpAye1.NhSoXUMPK2K;KX5GNhIFVEi.NhSoXUMPK2K;TadaDiw445z.NhSoXUMPK2K;oaAGBrhae4e.NhSoXUMPK2K;DqIUpIvlrkg.NhSoXUMPK2K;PjeoBWvkTaN.NhSoXUMPK2K;dcJ0Mm47UuG.NhSoXUMPK2K;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+periodval+'&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+            
+            fetchAccountability(url);
+        }
+        
     </script>
     <!-- *********** end MonthPicker ************** -->
 		
@@ -495,6 +548,7 @@
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
+				var period =  getPeriod();
                 // var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;DdH8pSpAye1.NhSoXUMPK2K;KX5GNhIFVEi.NhSoXUMPK2K;TadaDiw445z.NhSoXUMPK2K;oaAGBrhae4e.NhSoXUMPK2K;DqIUpIvlrkg.NhSoXUMPK2K;PjeoBWvkTaN.NhSoXUMPK2K;dcJ0Mm47UuG.NhSoXUMPK2K;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+period+'&dimension=ou:'+ounit+';KGHhQ5GLd4k&displayProperty=NAME&outputIdScheme=UID';
                 fetchAccountability(url);
@@ -504,6 +558,7 @@
             $("#subcounty-dropdown").change(function() 
             {
                 ounit = $(this).val();
+				var period =  getPeriod();
                 // var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;DdH8pSpAye1.NhSoXUMPK2K;KX5GNhIFVEi.NhSoXUMPK2K;TadaDiw445z.NhSoXUMPK2K;oaAGBrhae4e.NhSoXUMPK2K;DqIUpIvlrkg.NhSoXUMPK2K;PjeoBWvkTaN.NhSoXUMPK2K;dcJ0Mm47UuG.NhSoXUMPK2K;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+period+'&dimension=ou:'+ounit+';KGHhQ5GLd4k&displayProperty=NAME&outputIdScheme=UID';
                 fetchAccountability(url);
@@ -511,7 +566,25 @@
             });
 					
 	});
-	
+//get the period
+function getPeriod()
+{
+    var periodval = $("#period-dropdown").val();
+
+    if(periodval == null || periodval=='')
+    {
+        periodval = '201805';
+    }
+    else
+    {
+        var dateparts = periodval.split('/', 2);
+
+        var therdate = dateparts[1]+''+dateparts[0];                
+        var periodval = therdate;
+    }
+    
+    return periodval;
+}	
 </script>
 
 </body>
