@@ -94,10 +94,10 @@
                         type: 'pie'
                     },
                     title: {
-                        text: title
+                        text: subtitle
                     },
                     subtitle: {
-                        text: subtitle
+                        text: title
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
