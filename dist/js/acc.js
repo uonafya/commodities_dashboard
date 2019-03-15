@@ -1,4 +1,4 @@
-function fetchAccountability(url) {
+function fetchAccountability(url,orgun) {
     var tdata = '';
     $('.accdata').addClass('hidden');
     $('#acc_loader, .acc_loader, .loader, .loader-sp').removeClass('hidden');
@@ -143,6 +143,18 @@ function fetchAccountability(url) {
                 $('#'+ou+'_totalNveAdj').html(sumArr(negadj_arr));
                 $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
                 $('#'+ou+'_totalPcAccounted').html(sumArr(pcacc_arr).toFixed(0)+'%');
+
+                // title fill
+                    var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
+                    $.ajax({      
+                        dataType: "json",
+                        url: url,
+                        success: function(datax) {          
+                            var thetitle = datax['name']+' - '+data.metaData.items[data.metaData.dimensions.pe[0]].name;
+                            $('#ttitle').html(thetitle);
+                        }
+                    });    
+                // END title fill
 
             });
     
