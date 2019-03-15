@@ -1,11 +1,15 @@
 function fetchAccountability(url) {
     var tdata = '';
+    $('.accdata').addClass('hidden');
+    $('#acc_loader').removeClass('hidden');
     $.ajax({
         type: "GET",
         url: url,
         data: "data",
         crossDomain: true,
         success: function (data) {
+            $('.accdata').removeClass('hidden');
+            $('#acc_loader').addClass('hidden');
             var thedx_unaltered = data.metaData.dimensions.dx;
             var thedx = data.metaData.dimensions.dx;
             var therows = data.rows;
