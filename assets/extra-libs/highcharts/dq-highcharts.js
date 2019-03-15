@@ -85,7 +85,7 @@
 
 
             //-------------------3--------------------------
-            function pieThree(title,disc,nodisc){
+            function pieThree(title,subtitle,disc,nodisc){
                 Highcharts.chart('pc3', {
                     chart: {
                         plotBackgroundColor: null,
@@ -95,6 +95,9 @@
                     },
                     title: {
                         text: title
+                    },
+                    title: {
+                        text: subtitle
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

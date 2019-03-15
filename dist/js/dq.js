@@ -556,7 +556,17 @@ function getConsist(consturl,commd){
             // compliant_facility_count = 10;
             // console.log("non ni:"+non_compliant_facility_count);
             // console.log("ni ni:"+compliant_facility_count);
-            pieThree('Internal Data Consistency (AL 24)',compliant_facility_count,non_compliant_facility_count);
+            
+
+            // commodity name
+                var commodity_name = '';
+                $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data){
+                    commodity_name = data.displayName; 
+                });
+            // commodity name
+
+
+            pieThree(commodity_name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
             $('#pc3').removeClass('hidden');
         },
