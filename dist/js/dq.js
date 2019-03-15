@@ -56,7 +56,7 @@ $.ajax({
                     var ou_fil_to = filterItems(ou_filtered,filt_to);
                     // alert("commodity is: "+commodity.split('.')[0]);
                     var commo_s = commodity.split('.')[0];
-                    $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
+                    $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u>');
                     $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
                     // console.log('TITLE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
                     // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commo_s) + '</u>');
