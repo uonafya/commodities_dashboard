@@ -186,11 +186,11 @@ function fetchSubRRDetails(scrdurl)
                 // $('#facility_rr').DataTable({"bDestroy": true});
                 $('#subcounty_rr').DataTable().destroy();
                 $("#subcounty_rr tbody").empty();
-                $("#subcounty_rr").append(tableData);
+                $("#subcounty_rr").append(tableDataSub);
             }else{
                 $('#subcounty_rr').append(header);
                 $("#subcounty_rr").append('<tbody>');
-                $("#subcounty_rr").append(tableData);
+                $("#subcounty_rr").append(tableDataSub);
                 $("#subcounty_rr").append('</tbody>');
             }
             console.log("tableDataSub: "+tableDataSub);
