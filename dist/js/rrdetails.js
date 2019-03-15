@@ -123,7 +123,9 @@ function fetchSubRRDetails(scrdurl)
 
             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
             {
-                    header += '<th>'+dateToStr(pentry)+'</th>';			
+                    header += '<th>'+dateToStr(pentry)+'</th>';	
+                    console.log("HEAD: "+pentry);
+                    		
             })
 
             header += '</tr></thead>';
