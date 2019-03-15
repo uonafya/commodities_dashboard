@@ -18,9 +18,9 @@ function fetchRRDetails(rdurl)
             header += '<thead><tr>';	
             header += '<th>Name</th>';
 
-            $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-            {
-                    header += '<th>'+dateToStr(pentry)+'</th>';			
+            $.each(data.metaData.dimensions.pe, function (pkey, pentry){
+                header += '<th>'+dateToStr(pentry)+'</th>';	
+                console.log("HEAD: "+pentry);		
             })
 
             header += '</tr></thead>';
@@ -147,18 +147,13 @@ function fetchSubRRDetails(scrdurl)
             tableDataSub += '<tbody>';
 
             //console.log(orgunits.length);
-            $.each(data.metaData.dimensions.ou, function (key, entry) 
-            {
-				
+            $.each(data.metaData.dimensions.ou, function (key, entry){
 				var expected = checkExpected(data.rows,entry);
-				
-				if(expected==1)
-				{
+				if(expected==1){
 					tableDataSub += '<tr>';	
 					tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
 
-					$.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-					{
+					$.each(data.metaData.dimensions.pe, function (pkey, pentry){
 						var reportval = getReport(data.rows,pentry,entry);
 						if(reportval)
 						{
