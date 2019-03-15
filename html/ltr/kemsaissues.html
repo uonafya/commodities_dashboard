@@ -552,13 +552,15 @@
         console.log("therdate ni -----> "+therdate);
 
         var the_ogu = 'HfVjCurKxh2'; //Kenya
-        if(subcountyou.length>0){
+        if(subcountyou != null){
             the_ogu = subcountyou;
+            console.log('subou: '+the_ogu);
         }else{
             the_ogu = 'HfVjCurKxh2'; //Kenya
         }
-        if(countyou.length>0){
+        if(countyou != null){
             the_ogu = countyou;
+            console.log('countou: '+the_ogu);
         }else{
             the_ogu = 'HfVjCurKxh2'; //Kenya
         }
