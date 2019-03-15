@@ -1,6 +1,7 @@
 function getDetails(url,tou) {
     console.log("getDetails-> URL: "+url+" & TOU: "+tou);
-    
+    $('.nat_loader, .loader-sp, .issues-loader').removeClass('hidden');
+    $('.nat_table').addClass('hidden');
     var tdata = '';
     $.ajax({
         type: "GET",
