@@ -141,10 +141,10 @@ function fetchSubRRDetails(scrdurl)
 
             footer += '</tr></tfoot>';
 
-            // tableDataSub += header;
+            tableDataSub += header;
 
             //start body
-            // tableDataSub += '<tbody>';
+            tableDataSub += '<tbody>';
 
             //console.log(orgunits.length);
             $.each(data.metaData.dimensions.ou, function (key, entry) 
@@ -175,7 +175,7 @@ function fetchSubRRDetails(scrdurl)
 				}
             })
 
-            // tableDataSub += '</tbody>';
+            tableDataSub += '</tbody>';
             //footer line
             // tableDataSub += footer;
             //subcounty
@@ -185,13 +185,10 @@ function fetchSubRRDetails(scrdurl)
             if($.fn.DataTable.isDataTable("#subcounty_rr")){
                 // $('#facility_rr').DataTable({"bDestroy": true});
                 $('#subcounty_rr').DataTable().destroy();
-                $("#subcounty_rr tbody").empty();
+                $("#subcounty_rr").empty();
                 $("#subcounty_rr").append(tableDataSub);
-            }else{
-                $('#subcounty_rr').append(header);
-                $("#subcounty_rr").append('<tbody>');
+            }else{;
                 $("#subcounty_rr").append(tableDataSub);
-                $("#subcounty_rr").append('</tbody>');
             }
             console.log("tableDataSub: "+tableDataSub);
             $('#subcounty_rr').DataTable({
