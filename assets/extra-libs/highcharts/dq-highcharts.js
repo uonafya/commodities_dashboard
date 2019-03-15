@@ -96,7 +96,7 @@
                     title: {
                         text: title
                     },
-                    title: {
+                    subtitle: {
                         text: subtitle
                     },
                     tooltip: {
