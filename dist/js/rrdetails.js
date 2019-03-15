@@ -66,14 +66,13 @@ function fetchRRDetails(rdurl)
                     
             $('.loader-sp').addClass('hidden');
             $("#facility_rr").removeClass('hidden');
-            $('#facility_rr').append(header);
-            $("#facility_rr").append(tableData);
             if($.fn.DataTable.isDataTable("#facility_rr")){
                 // $('#facility_rr').DataTable({"bDestroy": true});
                 $('#facility_rr').DataTable().destroy();
                 $("#facility_rr tbody").empty();
                 $("#facility_rr").append(tableData);
             }else{
+                $('#facility_rr').append(header);
                 $("#facility_rr").append('<tbody>');
                 $("#facility_rr").append(tableData);
                 $("#facility_rr").append('</tbody>');
