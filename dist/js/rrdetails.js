@@ -39,7 +39,7 @@ function fetchRRDetails(rdurl)
             tableData += header;
 
             //start body
-            // tableData += '<tbody>';
+            tableData += '<tbody>';
 
             $.each(data.metaData.dimensions.ou, function (key, entry){                                                        
                 tableData += '<tr>';	
@@ -60,7 +60,7 @@ function fetchRRDetails(rdurl)
                 tableData += '</tr>';	
             })
 
-            // tableData += '</tbody>';
+            tableData += '</tbody>';
             //footer line
             // tableData += footer;
                     
@@ -72,10 +72,9 @@ function fetchRRDetails(rdurl)
                 $("#facility_rr").empty();
                 $("#facility_rr").append(tableData);
             }else{
-                $('#facility_rr').append(header);
-                $("#facility_rr").append('<tbody>');
+                // $("#facility_rr").append('<tbody>');
                 $("#facility_rr").append(tableData);
-                $("#facility_rr").append('</tbody>');
+                // $("#facility_rr").append('</tbody>');
             }
             console.log("tableData: "+tableData);
             $('#facility_rr').DataTable({
