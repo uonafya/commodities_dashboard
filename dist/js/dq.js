@@ -507,6 +507,16 @@ function getConsist(consturl,commd){
             // console.log("ni ni:"+compliant_facility_count);
             
 
+            var commodities_array = {
+                'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
+                'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
+                'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
+                'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
+                'iOARK31NdLp':{name:'Artesunate Injection'},
+                'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
+                'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
+            }
+
             // commodity name
                 var commodity_name = '';
                 if(commd.includes('.')){
