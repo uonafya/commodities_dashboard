@@ -41,18 +41,6 @@ function fetchRRDetails(rdurl)
             //start body
             // tableData += '<tbody>';
 
-            // dummy body
-            tableDataDummy = '<tbody>';
-            tableDataDummy += '<tr>';
-            $.each(data.metaData.dimensions.pe, function (pkey, pentry){
-                tableDataDummy += '<td>hey</td>';
-            });
-            tableDataDummy += '</tr>';
-            tableDataDummy += '</tbody>';
-            // END dummy body
-
-
-            //console.log(orgunits.length);
             $.each(data.metaData.dimensions.ou, function (key, entry){                                                        
                 tableData += '<tr>';	
                 tableData += '<td>'+data.metaData.items[entry].name+'</td>';
@@ -72,19 +60,24 @@ function fetchRRDetails(rdurl)
                 tableData += '</tr>';	
             })
 
-            //footer line
             // tableData += '</tbody>';
+            //footer line
             // tableData += footer;
                     
             $('.loader-sp').addClass('hidden');
             $("#facility_rr").removeClass('hidden');
             $('#facility_rr').append(header);
-            $('#facility_rr').append(tableDataDummy);
-            console.log("tableDataDummy: "+tableDataDummy);
-            $("#facility_rr tbody").append(tableData);
-            $("#facility_rr tbody").empty();                                     
-            $('#facility_rr').DataTable({"bDestroy": true});
-            $("#facility_rr tbody").append(tableData);
+            $("#facility_rr").append(tableData);
+            if($.fn.DataTable.isDataTable("#facility_rr")){
+                // $('#facility_rr').DataTable({"bDestroy": true});
+                $('#facility_rr').DataTable().destroy();
+                $("#facility_rr tbody").empty();
+                $("#facility_rr").append(tableData);
+            }else{
+                $("#facility_rr").append('<tbody>');
+                $("#facility_rr").append(tableData);
+                $("#facility_rr").append('</tbody>');
+            }
             console.log("tableData: "+tableData);
             $('#facility_rr').DataTable({
                 dom: 'Bfrtip',
