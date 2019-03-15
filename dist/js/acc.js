@@ -10,6 +10,10 @@ function fetchAccountability(url) {
         success: function (data) {
             $('.accdata').removeClass('hidden');
             $('#acc_loader').addClass('hidden');
+            if($.fn.DataTable.isDataTable("#acc_table")){
+                $('#acc_table').DataTable().destroy();
+                $("#acc_table").empty();
+            }
             var thedx_unaltered = data.metaData.dimensions.dx;
             var thedx = data.metaData.dimensions.dx;
             var therows = data.rows;
@@ -132,7 +136,6 @@ function fetchAccountability(url) {
                 function getPerc(){
                     return kissue_arr;
                 }
-
                 $('#'+ou+'_totalOpeningSOH').html(sumArr(opsoh_arr));
                 $('#'+ou+'_totalPveAdj').html(sumArr(posadj_arr));
                 $('#'+ou+'_totalKEMSAIssues').html(sumArr(kissue_arr));
