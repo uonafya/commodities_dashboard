@@ -319,11 +319,11 @@
                             <div class="row">
                                 <div class="col-md-11 col-sm-11 col-xs-12">
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-4 col-sm-4 col-xs-12 hidden">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                             </select>
                                         </div>										
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-4 col-sm-4 col-xs-12 hidden">
                                             <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
@@ -533,8 +533,9 @@
 	<script>
 	$(document).ready(function() 
 	{
-            var ounit = 'tAbBVBbueqD';
-            var period = '201808';
+            var ounit = 'HfVjCurKxh2'; //Kenya
+            var period = 'LAST_MONTH'; //Last month
+
             //var url = 'pmi.json';
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
             fetchSP(url,ounit);
