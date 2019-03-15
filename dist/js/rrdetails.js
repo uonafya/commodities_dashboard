@@ -178,10 +178,10 @@ function fetchSubRRDetails(scrdurl)
             if($.fn.DataTable.isDataTable("#subcounty_rr")){
                 $('#subcounty_rr').DataTable().destroy();
                 $("#subcounty_rr").empty();
-                $("#subcounty_rr").append(tableData);
+                $("#subcounty_rr").append(tableDataSub);
             }else{
                 // $("#subcounty_rr").append('<tbody>');
-                $("#subcounty_rr").append(tableData);
+                $("#subcounty_rr").append(tableDataSub);
                 // $("#subcounty_rr").append('</tbody>');
             }
             console.log("tableDataSub: "+tableDataSub);
