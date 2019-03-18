@@ -157,4 +157,10 @@ function addTableExportoptions(tableid) {
 //get my ou
 console.log("my_ou_0 is: "+getMyOU());
 
+$('td').each(function () {
+    if ($(this).html().match(/^\s*\d[\d,\.]*\s*$/)) {
+        $(this).css('background-color', 'red');
+        // TODO: something cool
+    }
+});
 //---------------------------end custom---------------------------//
