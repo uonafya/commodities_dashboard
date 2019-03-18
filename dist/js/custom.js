@@ -173,13 +173,14 @@ $.fn.digits = function(){
     })
 }
 function formatNumber(number) {
-    var parts = number.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join(".");
+    // var parts = number.toString().split(".");
+    // parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // return parts.join(".");
+    $(this).css('background', 'black');
 }
 // 000s number formatting fxn
 
-
+$("td.text-right").formatNumber(0);
 $(document).ready(function() {
   $("td.text-right").each(function() {
     var num = $(this).text();
