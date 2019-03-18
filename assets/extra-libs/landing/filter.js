@@ -87,8 +87,8 @@ function filterMain(countyid,subcountyid,periodid)
                             }
                     },
                     yAxis: {
-                            min: minmos,
-							max: maxmos,
+                            min: 0,
+							max: 20,
                             title: {
                                     text: 'Months of Stock',
                                     align: 'high'
@@ -96,7 +96,7 @@ function filterMain(countyid,subcountyid,periodid)
 							plotLines: [{
 							color: '#FF0000',
 							width: 2,
-							value: 3,
+							value: minmos,
 							label: {
 								text: 'Min',
 								align: 'right'
@@ -105,7 +105,7 @@ function filterMain(countyid,subcountyid,periodid)
 						{
 							color: '#00FF00',
 							width: 2,
-							value: 20,
+							value: maxmos,
 							label: {
 								text: 'Max',
 								align: 'right'

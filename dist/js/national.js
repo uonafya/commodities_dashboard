@@ -141,8 +141,8 @@ function getNational(nat_url) {
                 categories: ['AL 6s', 'AL 12s', 'AL 18s', 'AL 24s', 'AS inj', 'SP tabs', 'RDT']
             },
             yAxis: {
-                min: 9,
-				max: 18,
+                min: 0,
+				max: 24,
                 title: {
                     text: 'Months of Stock (MOS)'
                 },
@@ -156,7 +156,7 @@ function getNational(nat_url) {
 				plotLines: [{
 							color: '#FF0000',
 							width: 2,
-							value: 3,
+							value: 9,
 							label: {
 								text: 'Min',
 								align: 'right'
@@ -165,7 +165,7 @@ function getNational(nat_url) {
 						{
 							color: '#00FF00',
 							width: 2,
-							value: 20,
+							value: 18,
 							label: {
 								text: 'Max',
 								align: 'right'
