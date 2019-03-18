@@ -61,7 +61,7 @@ function filterMain(countyid,subcountyid,periodid)
 			//define the min max value MOS
 			var minmos = 3;
 			var maxmos = 6;
-			if(countyid == 'tAbBVBbueqD')
+			if(theorgunit == 'tAbBVBbueqD')
 			{
 				minmos = 9;
 				maxmos = 18;
