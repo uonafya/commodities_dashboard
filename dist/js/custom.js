@@ -172,18 +172,18 @@ $.fn.digits = function(){
         $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
     })
 }
-// 000s number formatting fxn
-
-
-function numberWithCommas(number) {
+function formatNumber(number) {
     var parts = number.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
 }
+// 000s number formatting fxn
+
+
 $(document).ready(function() {
-  $(".table td").each(function() {
+  $("td.text-right").each(function() {
     var num = $(this).text();
-    var commaNum = numberWithCommas(num);
+    var commaNum = formatNumber(num);
     $(this).text(commaNum);
   });
 });
