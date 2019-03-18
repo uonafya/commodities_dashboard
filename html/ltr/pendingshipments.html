@@ -557,8 +557,21 @@
 							$.each(data, function (rowkey, rowentry) 
 							{
 								if(fundsentry==rowentry['sourceoffunds'] && prokey==rowentry['itemcode'])
-								{									
-									sumdues += parseFloat(rowentry['duesin']);									
+								{
+									var duesin = parseFloat(rowentry['duesin']);
+									//RDTS
+									if(prokey=='NL05TES067')
+									{
+										sumdues += duesin*25;	
+									}
+									else if(prokey=='PM03SPY001')
+									{
+										sumdues += duesin*1000;	
+									}
+									else
+									{
+										sumdues += duesin;	
+									}									
 								}									
 							})
 							totalsum += sumdues;
