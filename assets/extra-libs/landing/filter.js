@@ -57,6 +57,17 @@ function filterMain(countyid,subcountyid,periodid)
                         }									
                     })
             })	
+			
+			//define the min max value MOS
+			var minmos = 3;
+			var maxmos = 6;
+			if(countyid == 'tAbBVBbueqD')
+			{
+				minmos = 9;
+				maxmos = 18;
+			}
+			//end min max
+						
 
             //draw the chart
             Highcharts.chart('mosbycombox', {
@@ -76,7 +87,8 @@ function filterMain(countyid,subcountyid,periodid)
                             }
                     },
                     yAxis: {
-                            min: 0,
+                            min: minmos,
+							max: maxmos,
                             title: {
                                     text: 'Months of Stock',
                                     align: 'high'
