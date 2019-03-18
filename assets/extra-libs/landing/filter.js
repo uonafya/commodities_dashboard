@@ -57,6 +57,19 @@ function filterMain(countyid,subcountyid,periodid)
                         }									
                     })
             })	
+			
+			//define the min max value MOS
+			var minmos = 3;
+			var maxmos = 6;
+			var maxyaxis = 15;
+			if(theorgunit == 'tAbBVBbueqD')
+			{
+				minmos = 9;
+				maxmos = 18;
+				maxyaxis = 24;
+			}
+			//end min max
+						
 
             //draw the chart
             Highcharts.chart('mosbycombox', {
@@ -77,6 +90,7 @@ function filterMain(countyid,subcountyid,periodid)
                     },
                     yAxis: {
                             min: 0,
+							max: maxyaxis,
                             title: {
                                     text: 'Months of Stock',
                                     align: 'high'
@@ -84,7 +98,7 @@ function filterMain(countyid,subcountyid,periodid)
 							plotLines: [{
 							color: '#FF0000',
 							width: 2,
-							value: 3,
+							value: minmos,
 							label: {
 								text: 'Min',
 								align: 'right'
@@ -93,7 +107,7 @@ function filterMain(countyid,subcountyid,periodid)
 						{
 							color: '#00FF00',
 							width: 2,
-							value: 20,
+							value: maxmos,
 							label: {
 								text: 'Max',
 								align: 'right'

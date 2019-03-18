@@ -506,7 +506,7 @@
 					//create the product array
 					var products = {"PM03ART004": "Artemether-Lumefantrine 20/120 Tabs 6s", "PM03ART005": "Artemether-Lumefantrine 20/120 Tabs 12s",
                  "PM03ART006": "Artemether-Lumefantrine 20/120 Tabs 18s", "PM03ART007": "Artemether-Lumefantrine 20/120 Tabs 24s",
-                 "PM03ART009": "Artesunate Injection", "NL05TES067": "Sulphadoxine Pyrimethamine Tabs", "PM03SPY001": "Rapid Diagnostic Tests"}
+                 "PM03ART009": "Artesunate Injection", "PM03SPY001": "Sulphadoxine Pyrimethamine Tabs", "NL05TES067": "Rapid Diagnostic Tests"}
 					
 					
 					//create the totals array
@@ -516,8 +516,10 @@
                     //var tableData = '<table>';
                     var tableData = '';
 					
-					var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"];	
+					var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"];
 
+					var sources = ["USAID", "GF", "PMI", "GOK", "GOK CF"];
+					
                     //push only if not in
                     $.each(data, function (rowkey, rowentry) 
                     {
@@ -536,6 +538,8 @@
 					var itemcodes = [];
 					
 					var counter = 0
+					
+					//loop through the products
 					$.each(products, function (prokey, proentry) 
 					{
 						//define the table
@@ -546,15 +550,28 @@
 						tableData += '<td>'+dxuom[counter]+'</td>';
 						
 						//source of funds				
-						$.each(funds, function (fundskey, fundsentry) 
+						$.each(sources, function (fundskey, fundsentry) 
 						{
 							var sumdues = 0;
 							//loop through all the records
 							$.each(data, function (rowkey, rowentry) 
 							{
 								if(fundsentry==rowentry['sourceoffunds'] && prokey==rowentry['itemcode'])
-								{									
-									sumdues += parseFloat(rowentry['duesin']);									
+								{
+									var duesin = parseFloat(rowentry['duesin']);
+									//RDTS
+									if(prokey=='NL05TES067')
+									{
+										sumdues += duesin*25;	
+									}
+									else if(prokey=='PM03SPY001')
+									{
+										sumdues += duesin*1000;	
+									}
+									else
+									{
+										sumdues += duesin;	
+									}									
 								}									
 							})
 							totalsum += sumdues;
@@ -568,11 +585,11 @@
                     					
 					var tfoot = '';
 					
-					var colspan = funds.length+1;
+					var colspan = sources.length+1;
 					
 					tfoot += '<tr><th rowspan="2">Description</th><th rowspan="2">Unit of Measure</th>                                               <th colspan="'+colspan+'"><center><b>Pending Shipments</b></center></th></tr><tr>';
 					
-					$.each(funds, function (fundskey, fundsentry) 
+					$.each(sources, function (fundskey, fundsentry) 
 					{
 						tfoot += '<th>'+fundsentry+'</th>';
 					})
