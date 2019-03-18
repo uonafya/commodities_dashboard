@@ -183,6 +183,7 @@ function formatNumber(number) {
 $(document).ready(function() {
   $("td.text-right").each(function() {
     var num = $(this).text();
+    alert(num);
     var commaNum = formatNumber(num);
     $(this).text(commaNum);
   });
