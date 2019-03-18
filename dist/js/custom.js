@@ -158,7 +158,8 @@ function addTableExportoptions(tableid) {
 console.log("my_ou_0 is: "+getMyOU());
 
 $('td').each(function () {
-    if ($(this).html().match(/^\s*\d[\d,\.]*\s*$/)) {
+    // if ($(this).html().match(/^\s*\d[\d,\.]*\s*$/)) {
+    if ($(this).html().isNumeric()) {
         $(this).css('text-align', 'right');
         $(this).digits();
         // TODO: something cool
