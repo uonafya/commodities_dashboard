@@ -141,8 +141,8 @@ function getNational(nat_url) {
                 categories: ['AL 6s', 'AL 12s', 'AL 18s', 'AL 24s', 'AS inj', 'SP tabs', 'RDT']
             },
             yAxis: {
-                min: 0,
-				max: 24,
+                min: 9,
+				max: 18,
                 title: {
                     text: 'Months of Stock (MOS)'
                 },
