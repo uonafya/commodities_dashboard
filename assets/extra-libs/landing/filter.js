@@ -61,10 +61,12 @@ function filterMain(countyid,subcountyid,periodid)
 			//define the min max value MOS
 			var minmos = 3;
 			var maxmos = 6;
+			var maxyaxis = 15;
 			if(theorgunit == 'tAbBVBbueqD')
 			{
 				minmos = 9;
 				maxmos = 18;
+				maxyaxis = 24;
 			}
 			//end min max
 						
@@ -88,7 +90,7 @@ function filterMain(countyid,subcountyid,periodid)
                     },
                     yAxis: {
                             min: 0,
-							max: 20,
+							max: maxyaxis,
                             title: {
                                     text: 'Months of Stock',
                                     align: 'high'
