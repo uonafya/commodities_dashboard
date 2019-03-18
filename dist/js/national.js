@@ -1,4 +1,4 @@
-function getDetails(url,tou) {
+function getKIssues(url,tou) {
     console.log("getDetails-> URL: "+url+" & TOU: "+tou);
     $('.nat_loader, .loader-sp, .issues-loader').removeClass('hidden');
     $('.nat_table').addClass('hidden');
@@ -12,7 +12,11 @@ function getDetails(url,tou) {
             $('#perdd').html(dateToStr(data.metaData.dimensions.pe[0]));
             orgunits = data.metaData.dimensions.ou;
             var orgu_opts = '';
-            
+            var ttitle = '';
+            ttitle += data.metaData.items[data.metaData.dimensions.ou[0]].name;
+            ttitle += ' - ';
+            ttitle += data.metaData.items[data.metaData.dimensions.pe[0]].name;
+            $('.ttitle').html(ttitle);
             var fac_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
             // var fac_url = 'http://localhost/pmi/json/tAbBVBbueqD.json';
             $.ajax({

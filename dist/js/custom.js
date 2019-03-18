@@ -157,4 +157,20 @@ function addTableExportoptions(tableid) {
 //get my ou
 console.log("my_ou_0 is: "+getMyOU());
 
+$('td').each(function () {
+    // if ($(this).html().match(/^\s*\d[\d,\.]*\s*$/)) {
+    if ($(this).html().isNumeric()) {
+        $(this).css('text-align', 'right');
+        $(this).digits();
+        // TODO: something cool
+    }
+});
+
+// 000s number formatting fxn
+$.fn.digits = function(){ 
+    return this.each(function(){ 
+        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
+    })
+}
+// 000s number formatting fxn
 //---------------------------end custom---------------------------//
