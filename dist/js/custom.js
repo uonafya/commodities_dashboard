@@ -181,12 +181,10 @@ function formatNumber(number) {
 
 $("td.text-right").css('background', 'black');
 
-$(document).ready(function() {
-  $("td.text-right").each(function() {
+$("td.text-right").each(function() {
     var num = $(this).text();
     alert(num);
     var commaNum = formatNumber(num);
     $(this).text(commaNum);
-  });
 });
 //---------------------------end custom---------------------------//
