@@ -574,7 +574,7 @@
 
             if(countyou == null)
             {
-                countyou = 'tAbBVBbueqD';
+                countyou = 'HfVjCurKxh2';
             }
 
             if(subcountyou != null)
@@ -599,10 +599,10 @@
         // Stock calculations
 	$(document).ready(function() 
 	{
-        var ounit = 'tAbBVBbueqD';
-        var period = '201805';
+        var ounit = 'HfVjCurKxh2';
+        var period = 'LAST_MONTH';
         var filtering = false;
-        var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;tAbBVBbueqD&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+        var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
         // var url = 'http://localhost/pmi/json/indicatorsummary.json';
         fetchIS(url,ounit,period);
 		//parse the data for mos percentage
@@ -700,11 +700,11 @@ function fetchIS(url,ounit,period,filtering) {
                     tableData += '<tr>';
                     tableData += '<td>HFs stocked according to plan</td>';
                     tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                    tableData += '<td>'+stockok+'</td>';                                
-                    tableData += '<td>'+Den+'</td>';                                
-                    tableData += '<td bgcolor="'+bgc+'">'+okpercent.toFixed(1)+'%</td>';
-                    tableData += '<td>'+target+ '%</td>';
-                    tableData += '<td>'+acceptable+ '%</td>';
+                    tableData += '<td class="text-right">'+formatNumber(stockok)+'</td>';                                
+                    tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
+                    tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(okpercent.toFixed(1))+'%</td>';
+                    tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
+                    tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
                     tableData += '</tr>';	
             })
 
@@ -748,11 +748,11 @@ function fetchIS(url,ounit,period,filtering) {
                 tableData += '<tr>';
                 tableData += '<td>HFs over-stocked</td>';
                 tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                tableData += '<td>'+overstock+'</td>';                                
-                tableData += '<td>'+Den+'</td>';                                
-                tableData += '<td bgcolor="'+bgc+'">'+overpercent.toFixed(1)+'%</td>';
-                tableData += '<td>'+target+ '%</td>';
-                tableData += '<td>'+acceptable+ '%</td>';
+                tableData += '<td class="text-right">'+formatNumber(overstock)+'</td>';                                
+                tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
+                tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(overpercent.toFixed(1))+'%</td>';
+                tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
+                tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
                 tableData += '</tr>';
                 })
                 
@@ -801,11 +801,11 @@ function fetchIS(url,ounit,period,filtering) {
                 tableData += '<tr>';
                 tableData += '<td>HFs under-stocked</td>';
                 tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                tableData += '<td>'+understock+'</td>';                                
-                tableData += '<td>'+Den+'</td>';                                
-                tableData += '<td bgcolor="'+bgc+'">'+underpercent.toFixed(1)+'%</td>';
-                tableData += '<td>'+target+ '%</td>';
-                tableData += '<td>'+acceptable+ '%</td>';
+                tableData += '<td class="text-right">'+formatNumber(understock)+'</td>';                                
+                tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
+                tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(underpercent.toFixed(1))+'%</td>';
+                tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
+                tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
                 tableData += '</tr>';
 			})
 
@@ -858,11 +858,11 @@ function fetchIS(url,ounit,period,filtering) {
                 tableData += '<tr>';
                 tableData += '<td>HFs with a stock out</td>';
                 tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                tableData += '<td>'+stockout+'</td>';                                
-                tableData += '<td>'+Den+'</td>';                                
-                tableData += '<td bgcolor="'+bgc+'">'+stockoutpercent.toFixed(1)+'%</td>';
-                tableData += '<td>'+target+ '%</td>';
-                tableData += '<td>'+acceptable+ '%</td>';
+                tableData += '<td class="text-right">'+formatNumber(stockout)+'</td>';                                
+                tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
+                tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(stockoutpercent.toFixed(1))+'%</td>';
+                tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
+                tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
                 tableData += '</tr>';
                 })
 				
@@ -957,7 +957,7 @@ function getPeriod()
 
     if(periodval == null || periodval=='')
     {
-        periodval = '201805';
+        periodval = 'LAST_MONTH';
     }
     else
     {
