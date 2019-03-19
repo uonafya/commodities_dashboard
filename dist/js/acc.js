@@ -67,30 +67,30 @@ function fetchAccountability(url,orgun) {
                     var opsoh = filterItems(rows_filtered_ou_commo1,com+".HWtHCLAwprR")[0];
                     if(opsoh == undefined){opsoh = [0,0,0,0];}
                     opsoh_arr.push(opsoh[3]);
-                    tabl+='<td>'+opsoh[3]+'</td>';
+                    tabl+='<td class="text-right">'+formatNumber(opsoh[3])+'</td>';
 
                     var posadj = filterItems(rows_filtered_ou_commo2,com+".CckV73xy6HB")[0];
                     if(posadj == undefined){posadj = [0,0,0,0];}
-                    tabl+='<td>'+posadj[3]+'</td>';
+                    tabl+='<td class="text-right">'+formatNumber(posadj[3])+'</td>';
                     posadj_arr.push(posadj[3]);
 
                     var kione_id = ou+"_ki_cell_"+com_indx;
-                    tabl+='<td class="dff" id="'+kione_id+'"></td>';
+                    tabl+='<td class="dff text-right" id="'+kione_id+'"></td>';
 
                     var qtydisp = filterItems(rows_filtered_ou_commo3,com+".w77uMi1KzOH")[0];
                     if(qtydisp == undefined){qtydisp = [0,0,0,0];}
                     qtydisp_arr.push(qtydisp[3]);
-                    tabl+='<td>'+qtydisp[3]+'</td>';
+                    tabl+='<td class="text-right">'+formatNumber(qtydisp[3])+'</td>';
                     
                     var negadj = filterItems(rows_filtered_ou_commo4,com+".unVIt2C0cdW")[0];
                     if(negadj == undefined){negadj = [0,0,0,0];}
                     negadj_arr.push(negadj[3]);
-                    tabl+='<td>'+negadj[3]+'</td>';
+                    tabl+='<td class="text-right">'+formatNumber(negadj[3])+'</td>';
                     
                     var closbal = filterItems(rows_filtered_ou_commo5,com+".rPAsF4cpNxm")[0];
                     if(closbal == undefined){closbal = [0,0,0,0];}
                     closbal_arr.push(closbal[3]);
-                    tabl+='<td>'+closbal[3]+'</td>';
+                    tabl+='<td class="text-right">'+formatNumber(closbal[3])+'</td>';
 
                     var kiar = getPerc();
                     var sum_pos = opsoh[3]+posadj[3]+parseFloat(kiar[com_indx]);
@@ -98,7 +98,7 @@ function fetchAccountability(url,orgun) {
                     var sum_neg = qtydisp[3]+negadj[3]+closbal[3];
                     var per_acc_for = parseFloat(sum_neg)*100/parseFloat(sum_pos);
                     console.log("per_acc_for: "+per_acc_for);
-                    tabl+='<td>'+per_acc_for.toFixed(0)+'%</td>';
+                    tabl+='<td class="text-right">'+formatNumber(per_acc_for.toFixed(0))+'%</td>';
                     pcacc_arr.push(per_acc_for);
 
                     // ----------END data cells----------
@@ -108,13 +108,13 @@ function fetchAccountability(url,orgun) {
                 tabl+='<tr class="text-bold fcblack">';
                 tabl+='<td class="text-caps">'+data.metaData.items[ou].name+' Total</td>';
                 tabl+='<td> - </td>';
-                tabl+='<td id="'+ou+'_totalOpeningSOH"></td>';
-                tabl+='<td id="'+ou+'_totalPveAdj"></td>';
-                tabl+='<td id="'+ou+'_totalKEMSAIssues"></td>';
-                tabl+='<td id="'+ou+'_totalQtyDisp"></td>';
-                tabl+='<td id="'+ou+'_totalNveAdj"></td>';
-                tabl+='<td id="'+ou+'_totalClosingSOH"></td>';
-                tabl+='<td id="'+ou+'_totalPcAccounted"></td>';
+                tabl+='<td class="text-right" id="'+ou+'_totalOpeningSOH"></td>';
+                tabl+='<td class="text-right" id="'+ou+'_totalPveAdj"></td>';
+                tabl+='<td class="text-right" id="'+ou+'_totalKEMSAIssues"></td>';
+                tabl+='<td class="text-right" id="'+ou+'_totalQtyDisp"></td>';
+                tabl+='<td class="text-right" id="'+ou+'_totalNveAdj"></td>';
+                tabl+='<td class="text-right" id="'+ou+'_totalClosingSOH"></td>';
+                tabl+='<td class="text-right" id="'+ou+'_totalPcAccounted"></td>';
                 tabl+='</tr>';
                 
                 tabl+='<tr><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td></tr>';
@@ -130,19 +130,19 @@ function fetchAccountability(url,orgun) {
                     }
                     var kione_id2 = ou+"_ki_cell_"+comki_indx;
                     kissue_arr.push(kione_val);
-                    $("#"+kione_id2).html('formatNumber(kione_value)');
+                    $("#"+kione_id2).html(kione_value);
                 });
 
                 function getPerc(){
                     return kissue_arr;
                 }
-                $('#'+ou+'_totalOpeningSOH').html(formatNumber(sumArr(opsoh_arr)));
-                $('#'+ou+'_totalPveAdj').html(formatNumber(sumArr(posadj_arr)));
-                $('#'+ou+'_totalKEMSAIssues').html(formatNumber(sumArr(kissue_arr)));
-                $('#'+ou+'_totalQtyDisp').html(formatNumber(sumArr(qtydisp_arr)));
-                $('#'+ou+'_totalNveAdj').html(formatNumber(sumArr(negadj_arr)));
-                $('#'+ou+'_totalClosingSOH').html(formatNumber(sumArr(closbal_arr)));
-                $('#'+ou+'_totalPcAccounted').html(formatNumber(sumArr(pcacc_arr).toFixed(0))+'%');
+                $('#'+ou+'_totalOpeningSOH').html(sumArr(opsoh_arr));
+                $('#'+ou+'_totalPveAdj').html(sumArr(posadj_arr));
+                $('#'+ou+'_totalKEMSAIssues').html(sumArr(kissue_arr));
+                $('#'+ou+'_totalQtyDisp').html(sumArr(qtydisp_arr));
+                $('#'+ou+'_totalNveAdj').html(sumArr(negadj_arr));
+                $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
+                $('#'+ou+'_totalPcAccounted').html(sumArr(pcacc_arr).toFixed(0)+'%');
 
                 // title fill
                     var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
