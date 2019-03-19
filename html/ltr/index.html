@@ -752,7 +752,7 @@
         {		
 		
             //load the mos by commodity 
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
                     
             //populate dropdown with list of counties
             $.ajax({
@@ -883,7 +883,7 @@
             
             
             //% of health facilities                
-            var urlfa = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2;LEVEL-5&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+            var urlfa = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2;LEVEL-5&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
             // var urlfa = 'http://localhost/pmi/json/urlfa.json';
             
             //define the name holder
@@ -900,7 +900,7 @@
 				
 				//added
 				//get the total expected to report
-				var totalorgs = getExpectedUnits('HfVjCurKxh2', '201805');
+				var totalorgs = getExpectedUnits('HfVjCurKxh2', 'LAST_MONTH');
 				                
                                 
                 //var tableData = '<table>';
@@ -952,9 +952,9 @@
                     var okpercent = (stockok/totalorgs)*100;
                     var underpercent = (understock/totalorgs)*100;
                     
-                    tableData += '<td class="text-right" bgcolor="#ffeb9c">'+overpercent.toFixed(1)+'%</td>';
-                    tableData += '<td class="text-right" bgcolor="#7bd48d">'+okpercent.toFixed(1)+'%</td>';
-                    tableData += '<td class="text-right" bgcolor="#ffc7ce">'+underpercent.toFixed(1)+'%</td>';				
+                    tableData += '<td class="text-right" bgcolor="#ffeb9c">'+formatNumber(overpercent.toFixed(1))+'%</td>';
+                    tableData += '<td class="text-right" bgcolor="#7bd48d">'+formatNumber(okpercent.toFixed(1))+'%</td>';
+                    tableData += '<td class="text-right" bgcolor="#ffc7ce">'+formatNumber(underpercent.toFixed(1))+'%</td>';				
                     tableData += '</tr>';	
                 })
     
@@ -993,7 +993,7 @@
                 var totalfa = orgunits.length;
 				//added
 				//get the total expected to report
-				var totalorgs = getExpectedUnits('HfVjCurKxh2', '201805');
+				var totalorgs = getExpectedUnits('HfVjCurKxh2', 'LAST_MONTH');
                                 
                 //var tableData = '<table>';
                 var tableData = '';
@@ -1045,12 +1045,12 @@
                     countname++;
                     nomos = totalorgs-(overstock+stockok+understock+stockout)
                     
-                    tableData += '<td class="text-right" bgcolor="#ffeb9c">'+overstock+'</td>';
-                    tableData += '<td class="text-right" bgcolor="#7bd48d">'+stockok+'</td>';
-                    tableData += '<td class="text-right" bgcolor="#ffc7ce">'+understock+'</td>';
-                    tableData += '<td class="text-right" style="color: #ffffff;" bgcolor="#ff0000">'+stockout+'</td>';	
-                    tableData += '<td class="text-right">'+nomos+'</td>';	
-                    tableData += '<td class="text-right">'+totalorgs+'</td>';					
+                    tableData += '<td class="text-right" bgcolor="#ffeb9c">'+formatNumber(overstock)+'</td>';
+                    tableData += '<td class="text-right" bgcolor="#7bd48d">'+formatNumber(stockok)+'</td>';
+                    tableData += '<td class="text-right" bgcolor="#ffc7ce">'+formatNumber(understock)+'</td>';
+                    tableData += '<td class="text-right" style="color: #ffffff;" bgcolor="#ff0000">'+formatNumber(stockout)+'</td>';	
+                    tableData += '<td class="text-right">'+formatNumber(nomos)+'</td>';	
+                    tableData += '<td class="text-right">'+formatNumber(totalorgs)+'</td>';					
                     
                     tableData += '</tr>';	
                 })
@@ -1080,12 +1080,12 @@
                     //parse the data for mos number
                     
                     //adjc FA
-                    var urlcon = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;iMHDfVvYm0W&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+                    var urlcon = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;iMHDfVvYm0W&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
 
 //                     var urlcon = 'http://api.myjson.com/bins/wcxgo';
                     
                     //physical count/SOH                
-                    var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+                    var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
                     // var urlphy = 'http://localhost/pmi/json/urlphy.json';
                     
                     //get the physical count into an array
@@ -1155,9 +1155,9 @@
                                 bgcolor = '#ffeb9c';
                                 var fcolor = '#222222';
     
-                            tableData += '<td class="text-right">'+adjc.toFixed(0)+'</td>';
-                            tableData += '<td class="text-right">'+phycount.toFixed(0)+'</td>';
-                            tableData += '<td class="text-right" style="color: '+fcolor+' !important;" bgcolor="'+bgcolor+'">'+mos.toFixed(1)+'</td>';                            					
+                            tableData += '<td class="text-right">'+formatNumber(adjc.toFixed(0))+'</td>';
+                            tableData += '<td class="text-right">'+formatNumber(phycount.toFixed(0))+'</td>';
+                            tableData += '<td class="text-right" style="color: '+fcolor+' !important;" bgcolor="'+bgcolor+'">'+formatNumber(mos.toFixed(1))+'</td>';                            					
     
                             tableData += '</tr>';
                             
@@ -1207,7 +1207,7 @@
     
                 if(periodval == null || periodval=='')
                 {
-                    periodval = '201805';
+                    periodval = 'LAST_MONTH';
                 }
                 else
                 {
@@ -1232,7 +1232,7 @@
     
                 if(periodval == null || periodval=='')
                 {
-                    periodval = '201805';
+                    periodval = 'LAST_MONTH';
                 }
                 else
                 {                

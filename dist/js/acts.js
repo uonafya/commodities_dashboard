@@ -148,7 +148,7 @@ function fetchACTs(acturl,orgu,peri)
                                                             if(dxval>6)
                                                                     bgcolor = '#85bfe0'
 
-                                                            tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
+                                                            tableData += '<td class="text-right" bgcolor="'+bgcolor+'">'+formatNumber(dxval)+'</td>';
                                                     }						
                                             }						
                                     })				

@@ -543,7 +543,7 @@
 	<script>
 	$(document).ready(function() 
 	{
-        var ounit = 'tAbBVBbueqD';
+        var ounit = 'HfVjCurKxh2';
             var ounit = $("#county-dropdown").val();
             var subcountyou = $("#subcounty-dropdown").val();
             if(subcountyou!=null)
@@ -551,16 +551,16 @@
                 var ounit = subcountyou;
             }
             if(ounit == null && subcountyou ==null){
-                var ounit = 'tAbBVBbueqD';
+                var ounit = 'HfVjCurKxh2';
             }
 
             var sDate = $('#period-dropdown').val();
-            var period = '201805';
+            var period = 'LAST_MONTH';
             if(sDate.length > 2){
                 var dateparts = sDate.split('/', 2);
                 period = dateparts[1]+''+dateparts[0];
             }else{
-                var period = '201805';   
+                var period = 'LAST_MONTH';   
             }
 
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;iMHDfVvYm0W;eMWOLQKFcA8;cPlWFYbBacW.rPAsF4cpNxm;R4VD8EvRxyN&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
@@ -599,7 +599,7 @@
                 var ounit = subcountyou;
             }
             if(ounit == null && subcountyou ==null){
-                var ounit = 'tAbBVBbueqD';
+                var ounit = 'HfVjCurKxh2';
             }
             
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;iMHDfVvYm0W;eMWOLQKFcA8;cPlWFYbBacW.rPAsF4cpNxm;R4VD8EvRxyN&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
