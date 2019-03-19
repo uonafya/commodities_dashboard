@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>Issues vs. Receipts | Malaria Commodities Dashboard</title>
+    <title>National SOH Comparison | Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
@@ -21,8 +21,7 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
 <![endif]-->
 </head>
 
@@ -279,18 +278,18 @@
                                 </ul>
                             </li>
                             <!-- end County -->
-                                
-                                <!-- National -->
-                                <li class="sidebar-item"> 
-                                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
-                                    <ul aria-expanded="false" class="collapse  first-level">
-                                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
-                                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SOH Comparison</span></a></li>
-                                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
-                                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
-                                    </ul>
-                                </li>
-                                <!-- end National -->
+
+<!-- National -->
+<li class="sidebar-item"> 
+	<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+	<ul aria-expanded="false" class="collapse  first-level">
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SOH Comparison</span></a></li>
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+	</ul>
+</li>
+<!-- end National -->
                         </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -310,29 +309,25 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <h5 class="page-title m-t-10">
-                                KEMSA Issues vs Facility Receipts
-                            </h5>
+                        <div class="col-md-5 col-sm-5 col-xs-12">
+                            <h4 class="page-title m-t-10">
+                                National SOH Comparison
+                            </h4>
                         </div>
-                        <div class="col-md-8 col-sm-8 col-xs-12">
+                        <div class="col-md-7 col-sm-7 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
                                 <div class="col-md-11 col-sm-11 col-xs-12">
                                     <div class="row">
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                             </select>
                                         </div>										
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="facility-dropdown" name="facility" placeholder="Facility">                   
-                                            </select> 
-                                        </div> 
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
                                         </div> 
                                     </div>
@@ -356,10 +351,10 @@
                
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="ttitle"></h5>
-                                <div class="col-md-12 issu_status"></div>
-                                <div class="row nat_loader">
-                                    <div class="loader-sp issues-loader">
+								<h5 class="card-title ttitle sohtitle"></h5>
+                                <div class="sp_status row"></div>
+                                <div class="row">
+                                    <div class="loader-sp">
                                         <div class="loader loader--style3" title="2">
                                             <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                 width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -376,29 +371,31 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" id="nat-iss">
-                                    <div class="col-md-12">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="col-md-12">
-                                                    <table class="table table-condensed table-bordered slimtable nat_table" id="natnl">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Description</th>
-                                                                <!-- <th>Unit of <br/>measure</th> -->
-                                                                <th>Quantity <br/>issued</th>
-                                                                <th>Quantity <br/>received</th>
-                                                                <th>Difference</th>
-                                                                <th>% Difference</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
+                                <div class="row spdata">
+                                    <div class="table-responsive">
+                                        <table id="sp_table" class="table table-condensed slimtable table-bordered spbox hidden">
+                                        <thead>
+											<tr>
+                                                <th rowspan="2"><b>Description</b></th>
+                                                <th rowspan="2"><b>Unit of Measure</b></th>
+                                                <th rowspan="2"><b>Adjusted AMC</b></th>
+                                                <th colspan="3"><center><b>Latest SOH</b></center></th>
+												<th colspan="3"><center><b>Months of Stock (MOS)</b></center></th>
+                                            </tr>
+                                            <tr>
+                                                <th><b>KEMSA</b></th>
+                                                <th><b>HFs</b></th>
+                                                <th><b>Total</b></th>
+                                                <th><b>KEMSA</b></th>
+                                                <th><b>HFs</b></th>
+                                                <th><b>Total</b></th>
+                                            </tr>  
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+
+                                        </table>
+                                    </div>
                                 </div>
 
                             </div>
@@ -439,7 +436,6 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/national.js"></script>
     <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
@@ -461,7 +457,6 @@
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
-                console.log("sdate ni -----> "+sDate);
                 datePicked(sDate);
             }
         });        
@@ -476,7 +471,6 @@
 			var subcounty = $('#subcounty-dropdown');
 			
 			var perioddwn = $('#period-dropdown');
-			var facilitydwn = $('#facility-dropdown');
 
 			dropdown.empty();
 			subcounty.empty();
@@ -484,9 +478,6 @@
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
 			dropdown.prop('selectedIndex', 0);
-			
-			$('#facility-dropdown').append('<option selected="true" disabled>Select facility</option>');
-			$('#facility-dropdown').prop('selectedIndex', 0);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 			subcounty.prop('selectedIndex', 0);
@@ -497,7 +488,7 @@
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/api/29/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -514,7 +505,7 @@
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/api/29/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -525,72 +516,239 @@
 					})		 
 				});		
 			});
-                        
 		});
 	</script>
 			
 	<script>
-		
-	//change of period		
-	function datePicked(sDate)
+	$(document).ready(function() 
 	{
-		var dateparts = sDate.split('/', 2);
-		var therdate = dateparts[1]+''+dateparts[0];
-		var countyou = $("#county-dropdown").val();
-		var subcountyou = $("#subcounty-dropdown").val();
-        var periodval = therdate;
+            var ounit = 'HfVjCurKxh2'; //Kenya
+            var period = 'LAST_MONTH'; //Last month
 
-        var the_ogu = 'HfVjCurKxh2'; //Kenya
-        if(subcountyou != null){
-            the_ogu = subcountyou;
-        }else{
-            the_ogu = 'HfVjCurKxh2'; //Kenya
-        }
-        if(countyou != null){
-            the_ogu = countyou;
-        }else{
-            the_ogu = 'HfVjCurKxh2'; //Kenya
-        }
-        console.log("the_ogu: "+the_ogu + " & periodval: "+periodval);
-        getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+therdate+'&filter=ou:'+the_ogu+'&displayProperty=NAME&outputIdScheme=UID',the_ogu);
-		
-	}
-	</script>	
+            //var url = 'pmi.json';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+            fetchSOHCompa(url,ounit);
+            $("#county-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+                fetchSOHCompa(url,ounit);
+                
+            });
+
+            $("#subcounty-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+                fetchSOHCompa(url,ounit);
+                
+            });
+					
+	});
 	
-	<script language="JavaScript">
-        getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:LAST_MONTH&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID','HfVjCurKxh2');
-        // getKIssues('http://localhost/pmi/json/ki.json');
+	
+        //change of period		
+        function datePicked(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var ounit = $("#county-dropdown").val();
+            var subcountyou = $("#subcounty-dropdown").val();
+            var period = therdate;
+            
+            if(subcountyou!=null)
+            {
+                var ounit = subcountyou;
+            }
+            
+            //var url = 'pmi.json';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+            fetchSOHCompa(url,ounit);
+        }
+        
+        //function toprocess the SP url
+        function fetchSOHCompa(spurl,ounit)
+        {
+            // $.getJSON(spurl, function (data){
+            $.ajax({
+                type: 'GET',
+                crossDomain: true,
+                url: spurl,                    
+                success: function (data) {
+                    
+                var tableData = '';
+                  
+            var dxidsadjc = [];
+            var dxidskemsa = [];
+            var dxidshfs = [];
 
-        $("#county-dropdown").change(function(){  
-            var county_id = $(this).val();
-            getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:LAST_MONTH&filter=ou:'+county_id+'&displayProperty=NAME&outputIdScheme=UID',county_id);
-        });
+            var count =0;
+            //var counter2=7;
+            //products to be displayed
+            var products=["Artemether-Lumefantrine 20/120 Tabs 6s", "Artemether-Lumefantrine 20/120 Tabs 12s",
+             "Artemether-Lumefantrine 20/120 Tabs 18s", "Artemether-Lumefantrine 20/120 Tabs 24s", 
+             "Artesunate Injection", "Sulphadoxine Pyrimethamine Tabs", "Rapid Diagnostic Tests"]
+            
+            //doses for each product
+            var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"] ;
+			
+			//apply the title
+            var theperiod = data.metaData.dimensions.pe[0];
+            			            
+            var curpe = data.metaData.items[theperiod].name;
+            
+            getOrgUnit(ounit, curpe);
+			//end apply title
+                    
+            //get dimensions of products
+            $.each(data.metaData.dimensions.dx, function (dxkey, dxentry, ) 
+            {
+                //id for Adjusted AMC
+                if(count<=6)
+                {
+                    dxidsadjc.push(dxentry);
+                 
+                }
+                //id for Kemsa
+                if(count>6 && count<=13)
+                {
+                    dxidskemsa.push(dxentry);
+                }
+                //id for hfs
+               if(count>13 && count<=20)
+                {
+                    dxidshfs.push(dxentry);
+                }
+                
+                count++;
+                })
+                    //console.log(dxidsadjc)
+                var adjcvalues = [];
+                var kemsavalues = [];
+                var hfsvalues = [];
+                    
+                
+                //get Adjusted values
+                $.each(dxidsadjc, function (rowkey, rowentry) 
+                {   
+                    $.each(data.rows, function (rowkey1, rowentry2)
+                    {    
+                        if(rowentry==rowentry2[0])
+                        {   
+                           adjcvalues.push(rowentry2[3]);
+                        } 
+                    })                         
+                 })
+                
+                //get kemsa values
+                   $.each(dxidskemsa, function (rowkey, rowentry) 
+                    {
+						$.each(data.rows, function (rowkey1, rowentry2)
+                        {    
+                            if(rowentry==rowentry2[0])
+                            {  
+								if(rowentry2[3])
+								{
+								   kemsavalues.push(rowentry2[3]);
+								}
+								else
+								{
+									kemsavalues.push(0);
+								}
+                            }
+                        })
+                      
+                    })
+                    
+                    
+               //get hfs values
+               $.each(dxidshfs, function (rowkey, rowentry) 
+                {
+                     
+                    $.each(data.rows, function (rowkey1, rowentry2)
+                    {                      
+                        if(rowentry==rowentry2[0])
+                        {   
+                           hfsvalues.push(rowentry2[3]);
+                        }
+                    })
+                 })
+                    //output each row to table
+                  for(var i=0;i<products.length;i++)
+				  {
+						console.log(kemsavalues[i]);
+						
+						if(typeof kemsavalues[i]=='undefined')
+							kemsavalues[i] = 0;
 
-        $("#subcounty-dropdown").change(function(){  
-            var subcounty_id = $(this).val();
-            var scurl='https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:LAST_MONTH&filter=ou:'+subcounty_id+'&displayProperty=NAME&outputIdScheme=UID';
-            getKIssues(scurl,subcounty_id);
-            console.log("subcounty_filter_url: "+scurl)
-        });
+						if(typeof hfsvalues[i]=='undefined')
+							hfsvalues[i] = 0;
 
-        $("#facility-dropdown").change(function(){  
-            var facility_id = $(this).val();
-            getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:LAST_MONTH&filter=ou:'+facility_id+'&displayProperty=NAME&outputIdScheme=UID',facility_id);
-        });
+						if(typeof adjcvalues[i]=='undefined')
+							adjcvalues[i] = 0;
+							
+						console.log(kemsavalues[i]);
 
-        // $("#period-dropdown").change(function(){  
-        //     var period_id = $(this).val();
-        //     var subcounty_id = $('#subcounty-dropdown').val();
-        //     var county_id = $('#county-dropdown').val();
-        //     var tou = 'tAbBVBbueqD';
-        //     if(county_id != undefined || county_id != ''){
-        //         var tou = county_id;
-        //     }
-        //     if(subcounty_id != undefined || subcounty_id != ''){
-        //         var tou = subcounty_id;
-        //     }
-        //     getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+period_id+'&filter=ou:'+tou+'&displayProperty=NAME&outputIdScheme=UID',tou);
-        // });
-    </script>
+						var total = (kemsavalues[i]) + (hfsvalues[i]);
+
+						var kemsamos=(kemsavalues[i])/(adjcvalues[i]);
+
+						var hfsmos=(hfsvalues[i])/(adjcvalues[i]);
+
+						var totalmos=(total)/(adjcvalues[i]);
+                      
+						tableData += '<tr>';
+
+						tableData += '<td>'+ products[i] +'</td>';     
+						tableData += '<td>'+dxuom[i]+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(Math.trunc(adjcvalues[i]).toLocaleString())+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(Math.trunc(kemsavalues[i]).toLocaleString())+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(Math.trunc(hfsvalues[i]).toLocaleString())+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(Math.trunc(total).toLocaleString())+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(kemsamos.toFixed(1))+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(hfsmos.toFixed(1))+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(totalmos.toFixed(1))+'</td>';
+                                 
+						tableData += '</tr>';
+                  }
+          
+                    $('#sp_table').removeClass('hidden');
+                    $('.spdata').removeClass('hidden');
+                    $('.loader-sp').addClass('hidden');
+                    $('.loader-sp').css('display','none');
+                    
+                    $('#sp_table').DataTable().destroy();
+                    $("table.spbox tbody").empty();
+                    $("table.spbox tbody").append(tableData);	
+                    //$('#sp_table').DataTable();                                                          
+             },
+                error: function (request, status, error) {
+                    $('.loader-sp').addClass('hidden');
+                    $('#sp_table').addClass('hidden');
+                    console.log('SP: error fetching json. :- '+error);
+                    $('spdata').addClass('hidden');
+                    $('.sp_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                }
+            });
+    }
+	
+	//display the label
+	//GET THE org unit name
+	function getOrgUnit(uid, period)
+	{
+		var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+uid+'.json?fields=id,name';
+		
+		$.ajax({      
+		  dataType: "json",
+		  url: url, //Relative or absolute path to response.php file      
+		  success: function(data) 
+		  {          
+			  $("h5.sohtitle").html(data['name']+' - '+period);
+		  }
+		});    
+	}
+</script>
+
 </body>
+
 </html>
