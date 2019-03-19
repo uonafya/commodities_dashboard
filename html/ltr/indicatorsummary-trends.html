@@ -375,8 +375,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive" id="container">
-                                    
+                                <div class="col-md-12">
+                                    <div class="col-md-12" id="indi-trends"></div>
                                 </div>
 
                             </div>
@@ -429,7 +429,16 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+
+    <!-- highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <!-- highcharts -->
+    
+    <script src="../../dist/js/custom.min.js"></script>
+    <script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/indicatorsummary-trends.js"></script>
     <!-- this page js -->
     	
     <script>
@@ -506,62 +515,9 @@
     <script src="../../dist/js/datatables/buttons.print.min.js"></script>
 
     <script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
-        $('#zero_config').DataTable(
-            {
-                dom: 'Bfrtip',
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-            }
-        );
+        getTrends('http://localhost/pmi/json/indicator_trends.json');
     </script>
 <!-- *********** end DataTable ************** -->
-
-	
-	<!-- MOS by Commodity -->
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-	<script src="https://code.highcharts.com/modules/export-data.js"></script>
-	<script type="text/javascript">
-Highcharts.chart('container', {
-    chart: {
-        type: 'line'
-    },
-    title: {
-        text: 'Stock STatus Trend For The Last 6 Months'
-    },
-    subtitle: {
-        text: 'Source: Dhis2'
-    },
-    xAxis: {
-        categories: ['Feb 19', 'Jan 19', 'Dec 18', 'Nov 18', 'Oct 18', 'Sep 18']
-    },
-    yAxis: {
-        title: {
-            text: 'Number of Facilities'
-        }
-    },
-    plotOptions: {
-        line: {
-            dataLabels: {
-                enabled: true
-            },
-            enableMouseTracking: false
-        }
-    },
-        series: [{
-        name: 'Stock Ok',
-        data: [40, 50, 60, 70, 78, 90]
-    }, {
-        name: 'Over Stocked',
-        data: [23, 45, 67, 89, 90, 100]
-    }, {
-        name: 'Under Stocked',
-        data: [8, 24, 16, 45, 67, 81]
-    }],
-});
-</script>
 
 </body>
 
