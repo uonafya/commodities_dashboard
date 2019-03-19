@@ -76,7 +76,7 @@ function getKIssues(url,tou) {
                 }
 
 
-                tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td class="text-right" bgcolor="'+bcolor+'" style="color: #303030;">'+numberWithCommas(iss_val.toFixed(0))+'</td><td class="text-right" bgcolor="'+bcolor+'" style="color: #303030;">'+numberWithCommas(recvd_val)+'</td><td class="text-right" bgcolor="'+bcolor+'" style="color: #303030;">'+numberWithCommas(diff_val)+'</td><td class="text-right" bgcolor="'+bcolor+'" style="color: #303030;">'+numberWithCommas(diff_perc.toFixed(1))+'%</td></tr>';
+                tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td class="text-right" bgcolor="'+bcolor+'" style="color: #303030;">'+numberWithCommas(iss_val)+'</td><td class="text-right" bgcolor="'+bcolor+'" style="color: #303030;">'+numberWithCommas(recvd_val)+'</td><td class="text-right" bgcolor="'+bcolor+'" style="color: #303030;">'+numberWithCommas(diff_val)+'</td><td class="text-right" bgcolor="'+bcolor+'" style="color: #303030;">'+numberWithCommas(diff_perc.toFixed(1))+'%</td></tr>';
                 
             })
             $('.nat_loader, .loader-sp, .issues-loader').addClass('hidden');
