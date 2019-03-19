@@ -157,7 +157,7 @@ function addTableExportoptions(tableid) {
 //get my ou
 console.log("my_ou_0 is: "+getMyOU());
 
-function numberWithCommas(x) {
+function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
