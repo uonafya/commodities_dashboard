@@ -108,13 +108,13 @@ function fetchAccountability(url,orgun) {
                 tabl+='<tr class="text-bold fcblack">';
                 tabl+='<td class="text-caps">'+data.metaData.items[ou].name+' Total</td>';
                 tabl+='<td> - </td>';
-                tabl+='<td class="text-right" id="'+ou+'_totalOpeningSOH"></td>';
-                tabl+='<td class="text-right" id="'+ou+'_totalPveAdj"></td>';
-                tabl+='<td class="text-right" id="'+ou+'_totalKEMSAIssues"></td>';
-                tabl+='<td class="text-right" id="'+ou+'_totalQtyDisp"></td>';
-                tabl+='<td class="text-right" id="'+ou+'_totalNveAdj"></td>';
-                tabl+='<td class="text-right" id="'+ou+'_totalClosingSOH"></td>';
-                tabl+='<td class="text-right" id="'+ou+'_totalPcAccounted"></td>';
+                tabl+='<td id="'+ou+'_totalOpeningSOH"></td>';
+                tabl+='<td id="'+ou+'_totalPveAdj"></td>';
+                tabl+='<td id="'+ou+'_totalKEMSAIssues"></td>';
+                tabl+='<td id="'+ou+'_totalQtyDisp"></td>';
+                tabl+='<td id="'+ou+'_totalNveAdj"></td>';
+                tabl+='<td id="'+ou+'_totalClosingSOH"></td>';
+                tabl+='<td id="'+ou+'_totalPcAccounted"></td>';
                 tabl+='</tr>';
                 
                 tabl+='<tr><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td></tr>';
@@ -142,7 +142,7 @@ function fetchAccountability(url,orgun) {
                 $('#'+ou+'_totalQtyDisp').html(formatNumber(sumArr(qtydisp_arr)));
                 $('#'+ou+'_totalNveAdj').html(formatNumber(sumArr(negadj_arr)));
                 $('#'+ou+'_totalClosingSOH').html(formatNumber(sumArr(closbal_arr)));
-                $('#'+ou+'_totalPcAccounted').html(formatNumber(sumArr(pcacc_arr).toFixed(0)+'%'));
+                $('#'+ou+'_totalPcAccounted').html(formatNumber(sumArr(pcacc_arr).toFixed(0))+'%');
 
                 // title fill
                     var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
