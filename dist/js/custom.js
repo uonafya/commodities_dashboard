@@ -157,34 +157,9 @@ function addTableExportoptions(tableid) {
 //get my ou
 console.log("my_ou_0 is: "+getMyOU());
 
-$('td').each(function () {
-    // if ($(this).html().match(/^\s*\d[\d,\.]*\s*$/)) {
-    if ($(this).html().isNumeric()) {
-        $(this).css('text-align', 'right');
-        $(this).digits();
-        // TODO: something cool
-    }
-});
-
-// 000s number formatting fxn
-$.fn.digits = function(){ 
-    return this.each(function(){ 
-        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
-    })
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-function formatNumber(number) {
-    var parts = number.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join(".");
-}
-// 000s number formatting fxn
 
-$("td.text-right").css('background', 'black');
 
-$("td.text-right").each(function() {
-    var num = $(this).text();
-    alert(num);
-    var commaNum = formatNumber(num);
-    $(this).text(commaNum);
-});
 //---------------------------end custom---------------------------//
