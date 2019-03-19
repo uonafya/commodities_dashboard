@@ -526,12 +526,12 @@
 
             //var url = 'pmi.json';
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
-            fetchSP(url,ounit);
+            fetchSOHCompa(url,ounit);
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
-                fetchSP(url,ounit);
+                fetchSOHCompa(url,ounit);
                 
             });
 
@@ -539,7 +539,7 @@
             {
                 ounit = $(this).val();
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
-                fetchSP(url,ounit);
+                fetchSOHCompa(url,ounit);
                 
             });
 					
@@ -562,11 +562,11 @@
             
             //var url = 'pmi.json';
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;HMalQ9o1map;ZJtigwiF8px;v3KbUal0i63;cGMATeDWGu1;k195Qr3EnL2;YeEgTZhTMQW;DqML6wtTZwl;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
-            fetchSP(url,ounit);
+            fetchSOHCompa(url,ounit);
         }
         
         //function toprocess the SP url
-        function fetchSP(spurl,ounit)
+        function fetchSOHCompa(spurl,ounit)
         {
             // $.getJSON(spurl, function (data){
             $.ajax({
@@ -700,13 +700,13 @@
 
 						tableData += '<td>'+ products[i] +'</td>';     
 						tableData += '<td>'+dxuom[i]+'</td>';
-						tableData += '<td>'+Math.trunc(adjcvalues[i]).toLocaleString()+'</td>';
-						tableData += '<td>'+Math.trunc(kemsavalues[i]).toLocaleString()+'</td>';
-						tableData += '<td>'+Math.trunc(hfsvalues[i]).toLocaleString()+'</td>';
-						tableData += '<td>'+Math.trunc(total).toLocaleString()+'</td>';
-						tableData += '<td>'+kemsamos.toFixed(1)+'</td>';
-						tableData += '<td>'+hfsmos.toFixed(1)+'</td>';
-						tableData += '<td>'+totalmos.toFixed(1)+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(Math.trunc(adjcvalues[i]).toLocaleString())+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(Math.trunc(kemsavalues[i]).toLocaleString())+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(Math.trunc(hfsvalues[i]).toLocaleString())+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(Math.trunc(total).toLocaleString())+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(kemsamos.toFixed(1))+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(hfsmos.toFixed(1))+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(totalmos.toFixed(1))+'</td>';
                                  
 						tableData += '</tr>';
                   }
