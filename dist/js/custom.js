@@ -158,6 +158,7 @@ function addTableExportoptions(tableid) {
 console.log("my_ou_0 is: "+getMyOU());
 
 function formatNumber(x) {
+    alert(x);
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
