@@ -575,9 +575,9 @@
 								}									
 							})
 							totalsum += sumdues;
-							tableData += '<td>'+sumdues+ '</td>';																					
+							tableData += '<td class="text-right">'+formatNumber(sumdues)+ '</td>';																					
 						})
-						tableData += '<td>'+totalsum+ '</td>';
+						tableData += '<td class="text-right">'+formatNumber(totalsum)+ '</td>';
 						tableData += '</tr>';
 						counter++;
                     })
