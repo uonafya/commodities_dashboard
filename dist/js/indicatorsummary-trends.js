@@ -65,15 +65,17 @@ function getTrends(the_url) {
                             understock++;
                         }
                     });
-                    // overstock_arr['data'].push(overstock);
-                    // stockok_arr['data'].push(stockok);
+                    overstock_arr['data'].push(overstock);
+                    stockok_arr['data'].push(stockok);
                     understock_arr['data'].push(understock);
                 });
                 thedata.push(overstock_arr);
-                // thedata.push(stockok_arr);
-                // thedata.push(understock_arr);
+                thedata.push(stockok_arr);
+                thedata.push(understock_arr);
             });
                 
+            console.log("thedata: "+JSON.stringify(thedata));
+            
     
             // HighCharts
             Highcharts.chart('indi-trends', {
