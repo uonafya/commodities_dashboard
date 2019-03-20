@@ -331,7 +331,7 @@
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commodity">                            <option disabled selected>Select commodity</option>
+                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commodity">
                                             </select>
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12" style="padding: 0;">
@@ -620,7 +620,7 @@
             }
             var theurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:'+commos+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID';
             var commodity = 'zLR3PBVPgN5';
-            getTrends(theurl);
+            getTrends(theurl,theou);
             daterange = [];
             $('#period-dropdownFrom').val(null);
             $('#period-dropdownTo').val(null);
@@ -667,9 +667,8 @@
                 }else{
                     commos = $('#commodity-dropdown').val();
                 }
-                console.log('commos: '+commos);
                 var theurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:'+commos+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                getTrends(theurl);
+                getTrends(theurl,theou);
             });
 
             $("#subcounty-dropdown").change(function() 
@@ -677,11 +676,14 @@
                 var theou = $(this).val();  
                 var period =  'LAST_6_MONTHS';
                 var commos = 'zLR3PBVPgN5';
-                if($('#commodity-dropdown').val() != null || $('#commodity-dropdown').val() != ''){
+                var commo_val = $('#commodity-dropdown').val();
+                if(commo_val == null || commo_val == '' || commo_val == undefined){
+                    commos = 'zLR3PBVPgN5';
+                }else{
                     commos = $('#commodity-dropdown').val();
                 }
                 var theurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:'+commos+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                getTrends(theurl);
+                getTrends(theurl,theou);
             });
 
 
@@ -697,7 +699,7 @@
                     theou = $('#subcounty-dropdown').val();
                 }
                 var theurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:'+commos+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                getTrends(theurl);
+                getTrends(theurl,theou);
             });
         });
     </script>
