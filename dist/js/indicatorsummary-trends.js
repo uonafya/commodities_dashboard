@@ -52,6 +52,7 @@ function getTrends(the_url) {
                         if(one_row[0] == one_dx){
                             if(row_val>6){
                                 overstock++;
+                                console.log('added overstock, now: '+overstock);
                             }
                             if(row_val>=3 && row_val<=6){
                                 stockok++;
