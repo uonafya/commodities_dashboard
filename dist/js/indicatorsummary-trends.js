@@ -89,10 +89,10 @@ function getTrends(the_url) {
                     type: 'line'
                 },
                 title: {
-                    text: 'Stock Status Trend For The Last 6 Months'
+                    text: 'Commodity: '+commo_name 
                 },
                 subtitle: {
-                    text: 'Commodity: '+commo_name
+                    text: ''
                 },
                 xAxis: {
                     categories: the_periods
