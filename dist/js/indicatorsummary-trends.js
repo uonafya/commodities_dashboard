@@ -76,7 +76,8 @@ function getTrends(the_url) {
                     text: 'Commodity: '+commo_name 
                 },
                 subtitle: {
-                    text: the_ou
+                    // text: the_ou
+                    text: ''
                 },
                 xAxis: {
                     categories: the_periods
