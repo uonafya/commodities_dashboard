@@ -50,7 +50,6 @@ function getTrends(the_url) {
 
                     var rows_filteredby_period = filterItems(data.rows,one_pe);
                     var rows_filteredby_dx_period = filterItems(rows_filteredby_period,one_dx);
-                    // console.log("rows_filteredby_dx_period: "+JSON.stringify(rows_filteredby_dx_period[0]));
                     
 
                     $.each(rows_filteredby_dx_period, function (indx3, one_row) {
@@ -65,15 +64,17 @@ function getTrends(the_url) {
                             understock++;
                         }
                     });
-                    // overstock_arr['data'].push(overstock);
-                    // stockok_arr['data'].push(stockok);
-                    // understock_arr['data'].push(understock);
+                    overstock_arr['data'].push(overstock);
+                    stockok_arr['data'].push(stockok);
+                    understock_arr['data'].push(understock);
                 });
                 thedata.push(overstock_arr);
-                // thedata.push(stockok_arr);
-                // thedata.push(understock_arr);
+                thedata.push(stockok_arr);
+                thedata.push(understock_arr);
             });
                 
+            console.log("thedata: "+thedata);
+            
     
             // HighCharts
             Highcharts.chart('indi-trends', {
