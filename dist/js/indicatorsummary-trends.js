@@ -49,7 +49,9 @@ function getTrends(the_url) {
                     the_periods.push(data.metaData.items[one_pe].name);
                     $.each(data.rows, function (indx3, one_row) {
                         var row_val = one_row[3];
-                        if(one_row[0] == one_dx){
+                        console.log('checking overstock first. Should be 0, actually = '+overstock);
+                        
+                        if(one_row[0] == one_dx && one_row[2] == one_pe){
                             if(row_val>6){
                                 overstock++;
                                 console.log('added overstock, now: '+overstock);
