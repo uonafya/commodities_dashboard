@@ -311,16 +311,16 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
+                        <div class="col-md-2 col-sm-2 col-xs-12">
                             <h4 class="page-title m-t-10">
                                 Indicator Summary Trends
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
-                        <div class="col-md-10 col-sm-9 col-xs-12">
+                        <div class="col-md-10 col-sm-10 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
-                                <div class="col-md-11 col-sm-11 col-xs-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
@@ -330,16 +330,17 @@
                                             <select class="form-control m-r-5" id="subcounty-dropdown" placeholder="Subcounty" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-1 col-sm-1 col-xs-12">
-                                            <input type="text" class="form-control" placeholder="Period" name="periodfrom" id="period-dropdownFrom" placeholder="Period from"/>
-                                        </div> 
-                                        <div class="col-md-1 col-sm-1 col-xs-12">
-                                            <input type="text" class="form-control" disabled placeholder="Period" name="periodto" id="period-dropdownTo" placeholder="Period to"/> 
-                                        </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commodity">                             <option disabled selected>Select commodity</option>
-
+                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commodity">                            <option disabled selected>Select commodity</option>
                                             </select>
+                                        </div> 
+                                        <div class="col-md-3 col-sm-3 col-xs-12" style="padding: 0;">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control" name="periodfrom" id="period-dropdownFrom" placeholder="Period from"/>
+                                            </div> 
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control" disabled name="periodto" id="period-dropdownTo" placeholder="Period to"/> 
+                                            </div> 
                                         </div> 
                                     </div>
                                 </div>
