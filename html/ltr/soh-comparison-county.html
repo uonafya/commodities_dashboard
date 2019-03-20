@@ -379,8 +379,8 @@
                                                 <th rowspan="2"><b>Description</b></th>
                                                 <th rowspan="2"><b>Unit of Measure</b></th>
                                                 <th rowspan="2"><b>Adjusted AMC</b></th>
-                                                <th rowspan="2"><center><b>Latest SOH</b></center></th>
-												<th rowspan="2"><center><b>Months of Stock (MOS)</b></center></th>
+                                                <th rowspan="2"><b>Latest SOH</b></th>
+												<th rowspan="2"><b>Months of Stock (MOS)</b></th>
                                             </tr>                                              
                                         </thead>
                                         <tbody>
@@ -651,11 +651,6 @@
 						if(typeof adjcvalues[i]=='undefined')
 							adjcvalues[i] = 0;
 						
-
-						//var total = (kemsavalues[i]) + (hfsvalues[i]);
-
-						//var kemsamos=(kemsavalues[i])/(adjcvalues[i]);
-
 						var hfsmos=(hfsvalues[i])/(adjcvalues[i]);
 						
 						console.log(hfsmos);
