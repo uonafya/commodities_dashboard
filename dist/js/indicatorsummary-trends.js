@@ -47,11 +47,13 @@ function getTrends(the_url) {
                     var stockok = 0;
                     var understock = 0;
                     the_periods.push(data.metaData.items[one_pe].name);
-                    var rows_filteredby_dx = filterItems(data.rows,one_dx);
+
                     console.log('data.rows: '+data.rows.length);
+                    var rows_filteredby_period = filterItems(data.rows,one_pe);
                     console.log('rows_filteredby_period: '+rows_filteredby_period.length);
-                    var rows_filteredby_dx_period = filterItems(rows_filteredby_dx,one_pe);
+                    var rows_filteredby_dx_period = filterItems(rows_filteredby_period,one_dx);
                     console.log('rows_filteredby_dx_period: '+rows_filteredby_dx_period.length);
+
                     $.each(data.rows, function (indx3, one_row) {
                         var row_val = one_row[3];
                         if(one_row[0] == one_dx && one_row[2] == one_pe){
