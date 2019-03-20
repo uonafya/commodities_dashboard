@@ -1,12 +1,6 @@
 function getTrends(the_url, ounit) {
     // console.log("the_url: "+the_url);
     var subtitle = '';
-    $.getJSON("https://testhis.uonbi.ac.ke/api/29/organisationUnits/"+ounit+".json?fields=name", data,
-        function (data, textStatus, jqXHR) {
-            subtitle = data.name;
-            console.log('subtitle: '+subtitle);
-        }
-    );
     
     $('.isstate').addClass('hidden');
     $('.loader-sp.is-sub').removeClass('hidden');
