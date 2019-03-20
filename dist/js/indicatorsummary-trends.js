@@ -1,4 +1,9 @@
 function getTrends(the_url) {
+    console.log("the_url: "+the_url);
+    
+    $('.isstate').addClass('hidden');
+    $('.loader-sp.is-sub').removeClass('hidden');
+    $('#indi-trends').addClass('hidden');
     $.ajax({
         type: "GET",
         url: the_url,
@@ -8,29 +13,10 @@ function getTrends(the_url) {
             $('.loader-sp.is-sub').addClass('hidden');
             $('#indi-trends').removeClass('hidden');
             
-            // var thedata = [];
-            // var the_periods = [];
-            // $.each(data.metaData.dimensions.dx, function (indx, one_dx) {
-            //     var data_foreach_commo = {};
-            //     data_foreach_commo['name'] = data.metaData.items[one_dx].name;
-            //     data_foreach_commo['data'] = [];
-            //     $.each(data.metaData.dimensions.pe, function (indx2, one_pe) {
-            //         the_periods.push(data.metaData.items[one_pe].name);
-            //         var datapoint = 0;
-            //         $.each(data.rows, function (indx3, one_row) { 
-            //             if(one_row[0] == one_dx){
-            //                 datapoint = datapoint + 1;
-            //             }
-            //         });
-            //         data_foreach_commo['data'].push(datapoint);
-            //     });
-            //     thedata.push(data_foreach_commo);
-            // });
-
-
             var commo_name = '';
             var thedata = [];
             var the_periods = [];
+            var the_ou = data.metaData.items[data.metaData.dimensions.ou[0]].name;
             $.each(data.metaData.dimensions.dx, function (indx, one_dx) {
                 commo_name = data.metaData.items[one_dx].name;
                 var overstock_arr = {};
@@ -42,10 +28,14 @@ function getTrends(the_url) {
                 var understock_arr = {};
                 understock_arr['name'] = 'Understocked';
                 understock_arr['data'] = [];
+                var stockout_arr = {};
+                stockout_arr['name'] = 'Out of stock';
+                stockout_arr['data'] = [];
                 $.each(data.metaData.dimensions.pe, function (indx2, one_pe) {
                     var overstock = 0;
                     var stockok = 0;
                     var understock = 0;
+                    var stockout = 0;
                     the_periods.push(data.metaData.items[one_pe].name);
 
                     var rows_filteredby_period = filterItems(data.rows,one_pe);
@@ -54,6 +44,9 @@ function getTrends(the_url) {
 
                     $.each(rows_filteredby_dx_period, function (indx3, one_row) {
                         var row_val = one_row[3];
+                        if(row_val<=0){
+                            stockout++;
+                        }
                         if(row_val>6){
                             overstock++;
                         }
@@ -67,13 +60,13 @@ function getTrends(the_url) {
                     overstock_arr['data'].push(overstock);
                     stockok_arr['data'].push(stockok);
                     understock_arr['data'].push(understock);
+                    stockout_arr['data'].push(stockout);
                 });
                 thedata.push(overstock_arr);
                 thedata.push(stockok_arr);
                 thedata.push(understock_arr);
+                thedata.push(stockout_arr);
             });
-                
-            console.log("thedata: "+thedata);
             
     
             // HighCharts
@@ -82,10 +75,11 @@ function getTrends(the_url) {
                     type: 'line'
                 },
                 title: {
-                    text: 'Stock Status Trend For The Last 6 Months'
+                    text: 'Commodity: '+commo_name 
                 },
                 subtitle: {
-                    text: 'Commodity: '+commo_name
+                    // text: the_ou
+                    text: ''
                 },
                 xAxis: {
                     categories: the_periods
