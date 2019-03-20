@@ -14,6 +14,7 @@ function getTrends(the_url) {
             var commo_name = '';
             var thedata = [];
             var the_periods = [];
+            var the_ou = data.metaData.items[data.metaData.dimensions.ou[0]].name;
             $.each(data.metaData.dimensions.dx, function (indx, one_dx) {
                 commo_name = data.metaData.items[one_dx].name;
                 var overstock_arr = {};
@@ -75,7 +76,7 @@ function getTrends(the_url) {
                     text: 'Commodity: '+commo_name 
                 },
                 subtitle: {
-                    text: ''
+                    text: the_ou
                 },
                 xAxis: {
                     categories: the_periods
