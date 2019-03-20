@@ -67,7 +67,7 @@ function getTrends(the_url) {
                     });
                     // overstock_arr['data'].push(overstock);
                     // stockok_arr['data'].push(stockok);
-                    // understock_arr['data'].push(understock);
+                    understock_arr['data'].push(understock);
                 });
                 thedata.push(overstock_arr);
                 // thedata.push(stockok_arr);
