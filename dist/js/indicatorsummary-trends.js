@@ -1,4 +1,6 @@
 function getTrends(the_url) {
+    console.log("the_url: "+the_url);
+    
     $('.isstate').addClass('hidden');
     $('.loader-sp.is-sub').removeClass('hidden');
     $('#indi-trends').addClass('hidden');
