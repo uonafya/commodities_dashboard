@@ -661,10 +661,10 @@
                 var theou = $(this).val(); 
                 var period =  'LAST_6_MONTHS';
                 var commos = 'zLR3PBVPgN5';
-                if($('#commodity-dropdown').val() !== null || $('#commodity-dropdown').val() !== ''){
-                    var commos = $('#commodity-dropdown').val();
+                if($('#commodity-dropdown').val() == null || $('#commodity-dropdown').val() == ''|| $('#commodity-dropdown').val() == undefined){
+                    commos = 'zLR3PBVPgN5';
                 }else{
-                    var commos = 'zLR3PBVPgN5';
+                    commos = $('#commodity-dropdown').val();
                 }
                 console.log('commos: '+commos);
                 var theurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:'+commos+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
