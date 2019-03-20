@@ -515,7 +515,15 @@
     <script src="../../dist/js/datatables/buttons.print.min.js"></script>
 
     <script>
-        getTrends('http://localhost/pmi/json/indicator_trends.json');
+        $(document).ready(function () {
+            // var period = '201807;201808;201809;201810;201811;201812';
+            var period = 'LAST_6_MONTHS';
+            var theou = 'HfVjCurKxh2'
+            getTrends('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID');
+            // getTrends('http://localhost/pmi/json/indicator_trends.json');
+
+            
+        });
     </script>
 <!-- *********** end DataTable ************** -->
 
