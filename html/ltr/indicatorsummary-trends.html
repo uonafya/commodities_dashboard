@@ -331,13 +331,14 @@
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" class="form-control" placeholder="Period" id="period-dropdown" placeholder="Period"/> 
+                                            <input type="text" class="form-control" placeholder="Period" name="periodfrom" id="period-dropdownFrom" placeholder="Period from"/> <br style="line-height: 0;"/>
+                                            <input type="text" class="form-control" disabled placeholder="Period" name="periodto" id="period-dropdownTo" placeholder="Period to"/> 
                                         </div> 
-                                        <!-- <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="parameter-dropdown" name="county">                             <option>Select parameter</option>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <select class="form-control m-r-5" id="commodity-dropdown" name="commodity">                             <option disabled selected>Select commodity</option>
 
                                             </select>
-                                        </div>  -->
+                                        </div> 
                                     </div>
                                 </div>
                                 
@@ -449,16 +450,21 @@
 			var subcounty = $('#subcounty-dropdown');
 			
 			var perioddwn = $('#period-dropdown');
+			var commodwn = $('#commodity-dropdown');
 
 			dropdown.empty();
 			subcounty.empty();
 			perioddwn.empty();
+			commodwn.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
 			dropdown.prop('selectedIndex', 0);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 			subcounty.prop('selectedIndex', 0);
+			
+			commodwn.append('<option selected="true" disabled>Select Commodity</option>');
+			commodwn.prop('selectedIndex', 0);
 			
 			perioddwn.append('<option selected="true" disabled>Select Period</option>');
 			perioddwn.prop('selectedIndex', 0);
@@ -472,6 +478,16 @@
 				$.each(data.organisationUnits, function (key, entry) 
 				{						
 					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
+				})		 
+            });
+            
+            // populate commodities dropdown
+			$.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-1&dimension=pe:LAST_MONTH', function (data) 
+			{
+				//console.log(data.organisationUnits);
+				$.each(data.metaData.dx, function (key, dx) 
+				{						
+					commodwn.append($('<option></option>').attr('value', dx).text(data.metaData.items[dx].name));			
 				})		 
 			});
 			
@@ -514,15 +530,159 @@
     <script src="../../dist/js/datatables/buttons.html5.min.js"></script>
     <script src="../../dist/js/datatables/buttons.print.min.js"></script>
 
+    <!-- *********** MonthPicker ************** -->
+    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
+
+    <script>
+        var daterange = [];
+        $('#period-dropdownFrom').MonthPicker({ 
+            Button: false,
+            Disabled: false,
+            // MinMonth: '-1y',
+            MaxMonth: -1,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePicked(sDate);
+                
+            }
+        });
+
+        $('#period-dropdownTo').MonthPicker({
+            Button: false,
+            Disabled: false,
+            // MinMonth: '-1y',
+            MaxMonth: -1,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePickedTo(sDate);
+            }
+        });
+
+        //change of period		
+        function datePicked(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var period = therdate;
+            daterange.push(period);
+            
+            $('#period-dropdownTo').removeAttr('disabled');
+            $('#period-dropdownTo').trigger('click');
+        }
+
+        function datePickedTo(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var period = therdate;
+            daterange.push(period);
+            filtByPeriod(daterange);
+        }
+        
+        function filtByPeriod(drange){
+            var date_range_string = '';
+            var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
+            var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
+            var full_dates_arr = dateRange(startDate, endDate);
+            $.each(full_dates_arr, function (indexs, onedate) {
+                var adate = onedate.split('-');
+                date_range_string += adate[0]+adate[1]+';';
+            })
+            if($('#subcounty-dropdown').val() != null){
+                var theou = $('#subcounty-dropdown').val();
+            } else if($('#county-dropdown').val() != null){
+                var theou = $('#county-dropdown').val();
+            } else{
+                var theou = 'HfVjCurKxh2';
+            }
+            var commos = 'zLR3PBVPgN5';
+            if($('#commodity-dropdown').val() != null || $('#commodity-dropdown').val() != ''){
+                commos = $('#commodity-dropdown').val();
+            }
+            var theurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:'+commos+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID';
+            var commodity = 'zLR3PBVPgN5';
+            getTrends(theurl);
+            daterange = [];
+            $('#period-dropdownFrom').val(null);
+            $('#period-dropdownTo').val(null);
+        }
+
+        function dateRange(startDate, endDate) {
+            var start      = startDate.split('-');
+            var end        = endDate.split('-');
+            var startYear  = parseInt(start[0]);
+            var endYear    = parseInt(end[0]);
+            var dates      = [];
+
+            for(var i = startYear; i <= endYear; i++) {
+                var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
+                var startMon = i === startYear ? parseInt(start[1])-1 : 0;
+                for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
+                var month = j+1;
+                var displayMonth = month < 10 ? '0'+month : month;
+                dates.push([i, displayMonth, '01'].join('-'));
+                }
+            }
+            return dates;
+        }
+    </script>
+    
+    <!-- *********** end MonthPicker ************** -->
+
     <script>
         $(document).ready(function () {
             // var period = '201807;201808;201809;201810;201811;201812';
             var period = 'LAST_6_MONTHS';
-            var theou = 'HfVjCurKxh2'
+            var theou = 'HfVjCurKxh2';
             getTrends('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID');
             // getTrends('http://localhost/pmi/json/indicator_trends.json');
 
+            $("#county-dropdown").change(function() 
+            {
+                var theou = $(this).val(); 
+                var period =  'LAST_6_MONTHS';
+                var commos = 'zLR3PBVPgN5';
+                if($('#commodity-dropdown').val() != null || $('#commodity-dropdown').val() != ''){
+                    commos = $('#commodity-dropdown').val();
+                }
+                var theurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:'+commos+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                getTrends(theurl);
+            });
 
+            $("#subcounty-dropdown").change(function() 
+            {
+                var theou = $(this).val();  
+                var period =  'LAST_6_MONTHS';
+                var commos = 'zLR3PBVPgN5';
+                if($('#commodity-dropdown').val() != null || $('#commodity-dropdown').val() != ''){
+                    commos = $('#commodity-dropdown').val();
+                }
+                var theurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:'+commos+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                getTrends(theurl);
+            });
+
+
+            $('#commodity-dropdown').change(function(){
+                var period = 'LAST_6_MONTHS';
+                var commos = $(this).val();
+                var theou = 'HfVjCurKxh2';
+
+                if($('#county-dropdown').val() != null || $('#county-dropdown').val() != ''){
+                    theou = $('#county-dropdown').val();
+                }
+                if($('#subcounty-dropdown').val() != null || $('#subcounty-dropdown').val() != ''){
+                    theou = $('#subcounty-dropdown').val();
+                }
+                var theurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:'+commos+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                getTrends(theurl);
+            });
         });
     </script>
 <!-- *********** end DataTable ************** -->
