@@ -3,7 +3,7 @@ function getTrends(the_url) {
     
     $('.isstate').addClass('hidden');
     $('.loader-sp.is-sub').removeClass('hidden');
-    $('#indi-trends').addClass('hidden');
+    $('.indi-trends').addClass('hidden');
     $.ajax({
         type: "GET",
         url: the_url,
@@ -11,7 +11,7 @@ function getTrends(the_url) {
         success: function (data) {
             $('.isstate').addClass('hidden');
             $('.loader-sp.is-sub').addClass('hidden');
-            $('#indi-trends').removeClass('hidden');
+            $('.indi-trends').removeClass('hidden');
             
             var commo_name = '';
             var thedata = [];
@@ -103,7 +103,7 @@ function getTrends(the_url) {
         },
         error: function (request, status, error) {
             $('.loader-sp.is-sub').addClass('hidden');
-            $('#indi-trends').addClass('hidden');
+            $('.indi-trends').addClass('hidden');
             $('.isstate').addClass('hidden');
             console.log('IS: error fetching json. :- '+error);
             $('.isstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
