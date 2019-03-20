@@ -497,7 +497,7 @@
             // populate commodities dropdown
 			$.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-1&dimension=pe:LAST_MONTH', function (data) 
 			{
-				$.each(data.metaData.dx, function (key, dx) 
+				$.each(data.metaData.dimensions.dx, function (key, dx) 
 				{						
 					$('#commodity-dropdown').append($('<option></option>').attr('value', dx).text(data.metaData.items[dx].name));			
 				})		 
