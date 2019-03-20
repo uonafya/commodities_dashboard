@@ -1,4 +1,7 @@
 function getTrends(the_url) {
+    $('.isstate').addClass('hidden');
+    $('.loader-sp.is-sub').removeClass('hidden');
+    $('#indi-trends').addClass('hidden');
     $.ajax({
         type: "GET",
         url: the_url,
@@ -8,26 +11,6 @@ function getTrends(the_url) {
             $('.loader-sp.is-sub').addClass('hidden');
             $('#indi-trends').removeClass('hidden');
             
-            // var thedata = [];
-            // var the_periods = [];
-            // $.each(data.metaData.dimensions.dx, function (indx, one_dx) {
-            //     var data_foreach_commo = {};
-            //     data_foreach_commo['name'] = data.metaData.items[one_dx].name;
-            //     data_foreach_commo['data'] = [];
-            //     $.each(data.metaData.dimensions.pe, function (indx2, one_pe) {
-            //         the_periods.push(data.metaData.items[one_pe].name);
-            //         var datapoint = 0;
-            //         $.each(data.rows, function (indx3, one_row) { 
-            //             if(one_row[0] == one_dx){
-            //                 datapoint = datapoint + 1;
-            //             }
-            //         });
-            //         data_foreach_commo['data'].push(datapoint);
-            //     });
-            //     thedata.push(data_foreach_commo);
-            // });
-
-
             var commo_name = '';
             var thedata = [];
             var the_periods = [];
