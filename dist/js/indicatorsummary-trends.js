@@ -1,6 +1,13 @@
 function getTrends(the_url, ounit) {
     // console.log("the_url: "+the_url);
     var subtitle = '';
+
+    $.getJSON("https://testhis.uonbi.ac.ke/api/29/organisationUnits/"+ounit+".json?fields=name", data2,
+        function (data2, textStatus, jqXHR) {
+            subtitle = data2.name;
+            console.log('subtitle: '+subtitle);
+        }
+    );
     
     $('.isstate').addClass('hidden');
     $('.loader-sp.is-sub').removeClass('hidden');
@@ -14,6 +21,7 @@ function getTrends(the_url, ounit) {
             $('.loader-sp.is-sub').addClass('hidden');
             $('.indi-trends').removeClass('hidden');
             
+
             
             var commo_name = '';
             var thedata = [];
@@ -34,6 +42,7 @@ function getTrends(the_url, ounit) {
                 stockout_arr['name'] = 'Out of stock';
                 stockout_arr['data'] = [];
                 $.each(data.metaData.dimensions.pe, function (indx2, one_pe) {
+                    subtitle += " | Period: " + data.metaData.items[one_pe].name;
                     var overstock = 0;
                     var stockok = 0;
                     var understock = 0;
