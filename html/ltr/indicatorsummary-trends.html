@@ -661,7 +661,8 @@
                 var theou = $(this).val(); 
                 var period =  'LAST_6_MONTHS';
                 var commos = 'zLR3PBVPgN5';
-                if($('#commodity-dropdown').val() == null || $('#commodity-dropdown').val() == ''|| $('#commodity-dropdown').val() == undefined){
+                var commo_val = $('#commodity-dropdown').val();
+                if(commo_val == null || commo_val == '' || commo_val == undefined){
                     commos = 'zLR3PBVPgN5';
                 }else{
                     commos = $('#commodity-dropdown').val();
