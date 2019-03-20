@@ -454,7 +454,12 @@
 			
 			var subcounty = $('#subcounty-dropdown');
 			
-			var perioddwn = $('#period-dropdown');
+			var perioddwn = $('#period-dropdownFrom');
+            var perioddwnTo = $('#period-dropdownTo');
+            perioddwnTo.attr('disabled', true);
+            perioddwn.val(null);
+            perioddwnTo.val(null);
+
 			var commodwn = $('#commodity-dropdown');
 
 			dropdown.empty();
@@ -471,8 +476,10 @@
 			commodwn.append('<option selected="true" disabled>Select Commodity</option>');
 			commodwn.prop('selectedIndex', 0);
 			
-			perioddwn.append('<option selected="true" disabled>Select Period</option>');
+			perioddwn.append('<option selected="true" disabled>Select Period from</option>');
 			perioddwn.prop('selectedIndex', 0);
+			perioddwnTo.append('<option selected="true" disabled>Select Period to</option>');
+			perioddwnTo.prop('selectedIndex', 0);
 
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
