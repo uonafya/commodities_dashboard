@@ -1,5 +1,11 @@
-function getTrends(the_url) {
-    console.log("the_url: "+the_url);
+function getTrends(the_url, ounit) {
+    // console.log("the_url: "+the_url);
+
+    $.getJSON("https://testhis.uonbi.ac.ke/api/29/organisationUnits/"+ounit+".json?fields=name", data,
+        function (data, textStatus, jqXHR) {
+            var subtitle = data.name;
+        }
+    );
     
     $('.isstate').addClass('hidden');
     $('.loader-sp.is-sub').removeClass('hidden');
@@ -12,6 +18,7 @@ function getTrends(the_url) {
             $('.isstate').addClass('hidden');
             $('.loader-sp.is-sub').addClass('hidden');
             $('.indi-trends').removeClass('hidden');
+            
             
             var commo_name = '';
             var thedata = [];
@@ -79,7 +86,7 @@ function getTrends(the_url) {
                 },
                 subtitle: {
                     // text: the_ou
-                    text: ''
+                    text: subtitle
                 },
                 xAxis: {
                     categories: the_periods
