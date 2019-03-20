@@ -47,14 +47,16 @@ function getTrends(the_url) {
                     var stockok = 0;
                     var understock = 0;
                     the_periods.push(data.metaData.items[one_pe].name);
+                    var rows_filteredby_dx = filterItems(data.rows,one_dx);
+                    console.log('data.rows: '+data.rows.length);
+                    console.log('rows_filteredby_period: '+rows_filteredby_period.length);
+                    var rows_filteredby_dx_period = filterItems(rows_filteredby_dx,one_pe);
+                    console.log('rows_filteredby_dx_period: '+rows_filteredby_dx_period.length);
                     $.each(data.rows, function (indx3, one_row) {
                         var row_val = one_row[3];
-                        console.log('checking overstock first. Should be 0, actually = '+overstock);
-                        
                         if(one_row[0] == one_dx && one_row[2] == one_pe){
                             if(row_val>6){
                                 overstock++;
-                                console.log('added overstock, now: '+overstock);
                             }
                             if(row_val>=3 && row_val<=6){
                                 stockok++;
@@ -64,7 +66,7 @@ function getTrends(the_url) {
                             }
                         }
                     });
-                    overstock_arr['data'].push(overstock);
+                    // overstock_arr['data'].push(overstock);
                     // stockok_arr['data'].push(stockok);
                     // understock_arr['data'].push(understock);
                 });
@@ -113,4 +115,11 @@ function getTrends(the_url) {
             $('.isstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
+}
+
+
+function filterItems(array,query) {
+    return array.filter(function(el) {
+        return el.indexOf(query) > -1;
+    })
 }
