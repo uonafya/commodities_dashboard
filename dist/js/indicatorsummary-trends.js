@@ -31,17 +31,17 @@ function getTrends(the_url) {
             var commo_name = '';
             var thedata = [];
             var the_periods = [];
+            var overstock_arr = {};
+            overstock_arr['name'] = 'Overstocked';
+            overstock_arr['data'] = [];
+            var stockok_arr = {};
+            stockok_arr['name'] = 'Stocked according to plan';
+            stockok_arr['data'] = [];
+            var understock_arr = {};
+            understock_arr['name'] = 'Understocked';
+            understock_arr['data'] = [];
             $.each(data.metaData.dimensions.dx, function (indx, one_dx) {
                 commo_name = data.metaData.items[one_dx].name;
-                var overstock_arr = {};
-                overstock_arr['name'] = 'Overstocked';
-                overstock_arr['data'] = [];
-                var stockok_arr = {};
-                stockok_arr['name'] = 'Stocked according to plan';
-                stockok_arr['data'] = [];
-                var understock_arr = {};
-                understock_arr['name'] = 'Understocked';
-                understock_arr['data'] = [];
                 $.each(data.metaData.dimensions.pe, function (indx2, one_pe) {
                     var overstock = 0;
                     var stockok = 0;
@@ -65,14 +65,17 @@ function getTrends(the_url) {
                             understock++;
                         }
                     });
-                    // overstock_arr['data'].push(overstock);
-                    // stockok_arr['data'].push(stockok);
-                    // understock_arr['data'].push(understock);
+                    overstock_arr['data'].push(overstock);
+                    stockok_arr['data'].push(stockok);
+                    understock_arr['data'].push(understock);
                 });
-                thedata.push(overstock_arr);
+                // thedata.push(overstock_arr);
                 // thedata.push(stockok_arr);
                 // thedata.push(understock_arr);
             });
+            thedata.push(overstock_arr);
+            thedata.push(stockok_arr);
+            thedata.push(understock_arr);
                 
     
             // HighCharts
