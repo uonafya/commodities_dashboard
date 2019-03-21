@@ -133,6 +133,7 @@ function fetchAccountability(url,orgun) {
 
                 $.each(commodities_id_ki_arr, function (comki_indx, com_ki) {
                     var kione_val = filterItems(rows_filtered_ou, com_ki[0]);
+                    alert(kione_val);
                     if(kione_val[0] == undefined || kione_val == undefined || kione_val == null || kione_val == ''){kione_val = [0,0,0,0];}
                     if(typeof kione_val[0] == 'number'){
                         var kione_value = kione_val[3];
@@ -143,7 +144,6 @@ function fetchAccountability(url,orgun) {
                     kissue_arr.push(kione_val);
                     $("#"+kione_id2).html(kione_value);
                 });
-                console.log("commodities_id_ki_arr == "+JSON.stringify(commodities_id_ki_arr));
                 
                 function getPerc(){
                     console.log("getPerc() triggered, returning: " + kissue_arr);
