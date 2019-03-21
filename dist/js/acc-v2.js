@@ -97,8 +97,9 @@ function fetchAccountability(url,orgun) {
                     if(k_is_val ==+ NaN){
                         k_is_val = 0
                     }
-                    // var sum_pos = opsoh[3]+posadj[3]+k_is_val;
-                    var sum_pos = opsoh[3]+posadj[3];
+                    var sum_pos = opsoh[3]+posadj[3]+k_is_val;
+                    console.log("opsoh[3]: "+opsoh[3]+" & posadj[3]: "+posadj[3]+"k_is_val: "+k_is_val);
+                    
                     console.log("sum_pos: "+sum_pos);
                     var sum_neg = qtydisp[3]+negadj[3]+closbal[3];
                     console.log("sum_neg: "+sum_neg);
