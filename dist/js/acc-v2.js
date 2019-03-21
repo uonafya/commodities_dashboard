@@ -93,12 +93,16 @@ function fetchAccountability(url,orgun) {
                     tabl+='<td class="text-right">'+formatNumber(closbal[3])+'</td>';
 
                     var kiar = getPerc();
-                    var sum_pos = opsoh[3]+posadj[3]+parseFloat(kiar[com_indx]);
+                    var k_is_val = parseFloat(kiar[com_indx]);
+                    if(k_is_val ==+ NaN){
+                        k_is_val = 0
+                    }
+                    var sum_pos = opsoh[3]+posadj[3]+k_is_val;
                     console.log("sum_pos: "+sum_pos);
                     var sum_neg = qtydisp[3]+negadj[3]+closbal[3];
                     var per_acc_for = parseFloat(sum_neg)/parseFloat(sum_pos);
                     console.log("per_acc_for: "+per_acc_for);
-                    tabl+='<td class="text-right">'+per_acc_for.toFixed(0)+'%</td>';
+                    tabl+='<td class="text-right">'+per_acc_for.toFixed(1)+'%</td>';
                     pcacc_arr.push(per_acc_for);
 
                     // ----------END data cells----------
