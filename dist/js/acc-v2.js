@@ -146,7 +146,12 @@ function fetchAccountability(url,orgun) {
                 $('#'+ou+'_totalQtyDisp').html(sumArr(qtydisp_arr));
                 $('#'+ou+'_totalNveAdj').html(sumArr(negadj_arr));
                 $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
-                $('#'+ou+'_totalPcAccounted').html(sumArr(pcacc_arr).toFixed(0)+'%');
+
+                var tot_neg = sumArr(closbal_arr) + sumArr(negadj_arr) + sumArr(qtydisp_arr);
+                var tot_pos = sumArr(opsoh_arr) + sumArr(posadj_arr) + sumArr(kissue_arr);
+                var tot_acc = (tot_neg/tot_pos)*100
+                $('#'+ou+'_totalPcAccounted').html(tot_acc.toFixed(1));
+                // $('#'+ou+'_totalPcAccounted').html(sumArr(pcacc_arr).toFixed(0)+'%');
 
                 // title fill
                     var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
