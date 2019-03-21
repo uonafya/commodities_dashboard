@@ -146,6 +146,7 @@ function fetchAccountability(url,orgun) {
                 });
 
                 function getPerc(){
+                    console.log("getPerc() triggered");
                     return kissue_arr;
                 }
                 $('#'+ou+'_totalOpeningSOH').html(sumArr(opsoh_arr));
