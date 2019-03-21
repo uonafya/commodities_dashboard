@@ -110,9 +110,8 @@ function fetchAccountability(url,orgun) {
                     
                     console.log("sum_neg: "+sum_neg);
                     var per_acc_for = parseFloat(sum_neg)/parseFloat(sum_pos);
-                    console.log("per_acc_for: "+per_acc_for);
                     per_acc_for = per_acc_for*100;
-                    console.log("per_acc_for*100: "+per_acc_for);
+                    console.log("per_acc_for: "+per_acc_for);
                     tabl+='<td class="text-right">'+per_acc_for.toFixed(1)+'%</td>';
                     pcacc_arr.push(per_acc_for);
 
