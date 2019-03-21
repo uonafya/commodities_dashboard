@@ -143,8 +143,7 @@ function fetchAccountability(url,orgun) {
                     kissue_arr.push(kione_val);
                     $("#"+kione_id2).html(kione_value);
                 });
-                console.log("kissue_arr == "+JSON.stringify(kissue_arr));
-                alert(kissue_arr);
+                console.log("commodities_id_ki_arr == "+JSON.stringify(commodities_id_ki_arr));
                 
                 function getPerc(){
                     console.log("getPerc() triggered, returning: " + kissue_arr);
