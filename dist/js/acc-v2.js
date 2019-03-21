@@ -92,7 +92,8 @@ function fetchAccountability(url,orgun) {
                     closbal_arr.push(closbal[3]);
                     tabl+='<td class="text-right">'+formatNumber(closbal[3])+'</td>';
 
-                    var kiar = getPerc();
+                    var kiar = [];
+                    kiar = getPerc();
                     console.log("kiar== "+kiar);
                     
                     var k_is_val = parseFloat(kiar[com_indx]);
