@@ -106,7 +106,7 @@ function fetchAccountability(url,orgun) {
                     
                     console.log("sum_pos: "+sum_pos);
                     var sum_neg = qtydisp[3]+negadj[3]+closbal[3];
-                    console.log("NEGATIVE== qtydisp[3]: "+qtydisp[3]+" && negadj[3]: "+negadj[3]+" && closbal[3]: "closbal[3]);
+                    console.log("NEGATIVE== qtydisp[3]: "+qtydisp[3]+" && negadj[3]: "+negadj[3]+" && closbal[3]: "+closbal[3]);
                     
                     console.log("sum_neg: "+sum_neg);
                     var per_acc_for = parseFloat(sum_neg)/parseFloat(sum_pos);
