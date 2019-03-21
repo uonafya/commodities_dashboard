@@ -103,12 +103,12 @@ function fetchAccountability(url,orgun) {
                         k_is_val = parseFloat(kiar[com_indx]);
                     }
                     var sum_pos = parseFloat(opsoh[3])+parseFloat(posadj[3])+parseFloat(k_is_val);
-                    console.log("sum_pos: "+sum_pos);
+                    // console.log("sum_pos: "+sum_pos);
                     var sum_neg = parseFloat(qtydisp[3])+parseFloat(negadj[3])+parseFloat(closbal[3]);
-                    console.log("sum_neg: "+sum_neg);
+                    // console.log("sum_neg: "+sum_neg);
                     var per_acc_for = parseFloat(sum_neg)/parseFloat(sum_pos);
                     per_acc_for = per_acc_for*100;
-                    console.log("per_acc_for: "+per_acc_for);
+                    // console.log("per_acc_for: "+per_acc_for);
                     tabl+='<td class="text-right">'+per_acc_for.toFixed(1)+'%</td>';
                     pcacc_arr.push(per_acc_for);
 
@@ -131,10 +131,10 @@ function fetchAccountability(url,orgun) {
                 tabl+='<tr><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td></tr>';
                 $('#acc_table tbody').append(tabl);
 
+                console.log("rows_filtered_ou: "+rows_filtered_ou);
                 $.each(commodities_id_ki_arr, function (comki_indx, com_ki) {
                     var kione_val = filterItems(rows_filtered_ou, com_ki[0]);
-                    // alert("kione_val: "+kione_val);
-                    alert("rows_filtered_ou: "+rows_filtered_ou);
+                    console.log("kione_val: "+kione_val);
                     if(kione_val[0] == undefined || kione_val == undefined || kione_val == null || kione_val == ''){kione_val = [0,0,0,0];}
                     if(typeof kione_val[0] == 'number'){
                         var kione_value = kione_val[3];
