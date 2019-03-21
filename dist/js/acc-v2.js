@@ -141,6 +141,7 @@ function fetchAccountability(url,orgun) {
                     }
                     var kione_id2 = ou+"_ki_cell_"+comki_indx;
                     kissue_arr.push(kione_val);
+                    console.log("kissue_arr == "+JSON.stringify(kissue_arr));
                     $("#"+kione_id2).html(kione_value);
                 });
 
