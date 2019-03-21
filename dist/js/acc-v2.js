@@ -131,8 +131,14 @@ function fetchAccountability(url,orgun) {
                 tabl+='<tr><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td></tr>';
                 $('#acc_table tbody').append(tabl);
 
-                console.log("rows_filtered_ou: "+rows_filtered_ou);
+                console.log(rows_filtered_ou);
+                var short_rows_filtered_ou = [];
+                $.each(rows_filtered_ou, function (rfu_indx0, rfu_ki_s) {
+                    var rfu_split = rfu_ki_s.split('.', 2);
+                    short_rows_filtered_ou.push(rfu_split[0])
+                });
                 $.each(commodities_id_ki_arr, function (comki_indx, com_ki) {
+
                     var kione_val = filterItems(rows_filtered_ou, com_ki[0]);
                     console.log("kione_val: "+kione_val +" && com_ki[0]: "+com_ki[0]);
                     if(kione_val[0] == undefined || kione_val == undefined || kione_val == null || kione_val == ''){kione_val = [0,0,0,0];}
