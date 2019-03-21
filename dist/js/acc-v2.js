@@ -134,7 +134,7 @@ function fetchAccountability(url,orgun) {
                 console.log("rows_filtered_ou: "+rows_filtered_ou);
                 $.each(commodities_id_ki_arr, function (comki_indx, com_ki) {
                     var kione_val = filterItems(rows_filtered_ou, com_ki[0]);
-                    console.log("kione_val: "+kione_val +"com_ki[0]: "+com_ki[0]);
+                    console.log("kione_val: "+kione_val +" && com_ki[0]: "+com_ki[0]);
                     if(kione_val[0] == undefined || kione_val == undefined || kione_val == null || kione_val == ''){kione_val = [0,0,0,0];}
                     if(typeof kione_val[0] == 'number'){
                         var kione_value = kione_val[3];
