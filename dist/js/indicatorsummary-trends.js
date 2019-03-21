@@ -10,6 +10,7 @@ function getTrends(the_url, ounit) {
     );
     
     $('.isstate').addClass('hidden');
+    $('#period-dropdownTo').attr('disabled', true);
     $('.loader-sp.is-sub').removeClass('hidden');
     $('.indi-trends').addClass('hidden');
     $.ajax({
