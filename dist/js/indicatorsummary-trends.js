@@ -1,5 +1,5 @@
 function getTrends(the_url, ounit) {
-    // console.log("the_url: "+the_url);
+    console.log("the_url: "+the_url);
     var subtitle = '';
 
     $.getJSON("https://testhis.uonbi.ac.ke/api/29/organisationUnits/"+ounit+".json?fields=name", function (data2) 
