@@ -41,6 +41,9 @@ function getKIssues(url,tou) {
             $.each(thedxissued, function (index, issdId) {
                 var recvdId = thedxreceived[index];
                 var iss_val = getVal(data.rows, issdId);
+                if(iss_val == undefined){
+                    iss_val = 0;
+                }
                 var recvd_val = getVal(data.rows, recvdId);
                 if(recvd_val == undefined){
                     recvd_val = 0;
@@ -76,8 +79,7 @@ function getKIssues(url,tou) {
                 }
 
 
-                tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+iss_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+recvd_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
-                // tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
+                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
                 
             })
             $('.nat_loader, .loader-sp, .issues-loader').addClass('hidden');
