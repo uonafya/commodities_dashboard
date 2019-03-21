@@ -42,9 +42,9 @@ function getTrends(the_url, ounit) {
                 stockout_arr['name'] = 'Out of stock';
                 stockout_arr['data'] = [];
                 if(data.metaData.dimensions.pe.length > 1){
-                    subtitle += " | Period from: " + data.metaData.items[data.metaData.dimensions.pe[0]].name + " to: " + data.metaData.items[data.metaData.dimensions.pe[data.metaData.dimensions.pe.length - 1]].name;
+                    subtitle += "Period from: " + data.metaData.items[data.metaData.dimensions.pe[0]].name + " to: " + data.metaData.items[data.metaData.dimensions.pe[data.metaData.dimensions.pe.length - 1]].name;
                 }else{
-                    subtitle += " | Period: " + data.metaData.items[data.metaData.dimensions.pe[0]].name;
+                    subtitle += "Period: " + data.metaData.items[data.metaData.dimensions.pe[0]].name;
                 }
                 $.each(data.metaData.dimensions.pe, function (indx2, one_pe) {
                     var overstock = 0;
