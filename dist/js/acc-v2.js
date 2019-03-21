@@ -100,6 +100,7 @@ function fetchAccountability(url,orgun) {
                     var sum_pos = opsoh[3]+posadj[3]+k_is_val;
                     console.log("sum_pos: "+sum_pos);
                     var sum_neg = qtydisp[3]+negadj[3]+closbal[3];
+                    console.log("sum_neg: "+sum_neg);
                     var per_acc_for = parseFloat(sum_neg)/parseFloat(sum_pos);
                     console.log("per_acc_for: "+per_acc_for);
                     tabl+='<td class="text-right">'+(per_acc_for*100).toFixed(1)+'%</td>';
@@ -151,7 +152,6 @@ function fetchAccountability(url,orgun) {
                 var tot_pos = sumArr(opsoh_arr) + sumArr(posadj_arr) + sumArr(kissue_arr);
                 var tot_acc = (tot_neg/tot_pos)*100
                 $('#'+ou+'_totalPcAccounted').html(tot_acc.toFixed(1));
-                // $('#'+ou+'_totalPcAccounted').html(sumArr(pcacc_arr).toFixed(0)+'%');
 
                 // title fill
                     var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
