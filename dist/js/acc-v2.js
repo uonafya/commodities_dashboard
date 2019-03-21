@@ -97,7 +97,6 @@ function fetchAccountability(url,orgun) {
                     console.log(kiar);
                     
                     var k_is_val = parseFloat(kiar[com_indx]);
-                    alert(typeof k_is_val);
                     if(Number.isNaN(k_is_val)){
                         k_is_val = 0;
                     }else{
