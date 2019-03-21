@@ -101,11 +101,11 @@ function fetchAccountability(url,orgun) {
                     //     k_is_val = parseFloat(kiar[com_indx]);
                     // }
                     var k_is_val = 0;
-                    var sum_pos = opsoh[3]+posadj[3]+k_is_val;
+                    var sum_pos = parseFloat(opsoh[3])+parseFloat(posadj[3])+parseFloat(k_is_val);
                     console.log("POSITIVE== opsoh[3]: "+opsoh[3]+" && posadj[3]: "+posadj[3]+" && k_is_val: "+k_is_val);
                     
                     console.log("sum_pos: "+sum_pos);
-                    var sum_neg = qtydisp[3]+negadj[3]+closbal[3];
+                    var sum_neg = parseFloat(qtydisp[3])+parseFloat(negadj[3])+parseFloat(closbal[3]);
                     console.log("NEGATIVE== qtydisp[3]: "+qtydisp[3]+" && negadj[3]: "+negadj[3]+" && closbal[3]: "+closbal[3]);
                     
                     console.log("sum_neg: "+sum_neg);
