@@ -97,11 +97,14 @@ function fetchAccountability(url,orgun) {
                     console.log(kiar);
                     
                     var k_is_val = parseFloat(kiar[com_indx]);
-                    if(k_is_val === NaN){
+                    alert(typeof k_is_val);
+                    if(k_is_val == NaN){
                         k_is_val = 0;
                     }else{
                         k_is_val = parseFloat(kiar[com_indx]);
                     }
+                    k_is_val = 0;
+                    
                     var sum_pos = parseFloat(opsoh[3])+parseFloat(posadj[3])+parseFloat(k_is_val);
                     // console.log("sum_pos: "+sum_pos);
                     var sum_neg = parseFloat(qtydisp[3])+parseFloat(negadj[3])+parseFloat(closbal[3]);
