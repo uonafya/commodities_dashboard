@@ -144,7 +144,7 @@ function filterMain(countyid, subcountyid, periodid) {
                         $('.loader-sp.t_four').addClass('hidden');
                         $('#mosbycombox').addClass('hidden');
                         $('.loader-sp.t_four').addClass('hidden');
-                        console.log('MainDash: error fetching json. :- '+error);
+                        console.log('MainDash: error fetching json. :- '+JSON.stringify(error));
                         $('.t_four_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                 }
         });
@@ -230,7 +230,7 @@ function filterMain(countyid, subcountyid, periodid) {
                     $('.percent_healthfa').addClass('hidden');
                     $('malaria_commodity_table.t_one').addClass('hidden');
                     $('.loader-sp.t_one').addClass('hidden');
-                    console.log('MainDash: error fetching json. :- '+error);
+                    console.log('MainDash: error fetching json. :- '+JSON.stringify(error));
                     $('.t_one_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                 }
         });
@@ -317,7 +317,7 @@ function filterMain(countyid, subcountyid, periodid) {
                         $('.loader-sp.t_two').addClass('hidden');
                         $('.number_healthfa').addClass('hidden');
                         $('.loader-sp.t_two').addClass('hidden');
-                        console.log('MainDash: error fetching json. :- '+error);
+                        console.log('MainDash: error fetching json. :- '+JSON.stringify(error));
                         $('.t_two_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                 }
         });
@@ -355,7 +355,7 @@ function filterMain(countyid, subcountyid, periodid) {
 
         $.ajax({
                 type: "GET",
-                url: "urlcon",
+                url: urlcon,
                 beforeSubmit: function () {
                         $('.t_three.loader-sp').removeClass('hidden');
                         $('.malaria_commodity_table.t_three').addClass('hidden');
@@ -427,7 +427,7 @@ function filterMain(countyid, subcountyid, periodid) {
                         $('.loader-sp.t_three').addClass('hidden');
                         $('.adjc_soh_mos').addClass('hidden');
                         $('.loader-sp.t_three').addClass('hidden');
-                        console.log('MainDash: error fetching json. :- '+error);
+                        console.log('MainDash: error fetching json. :- '+JSON.stringify(error));
                         $('.t_three_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                 }
         });
