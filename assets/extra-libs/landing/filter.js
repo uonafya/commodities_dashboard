@@ -1,5 +1,29 @@
 function filterMain(countyid, subcountyid, periodid) {
 
+        //hideandshow-stuff
+        $('.t_three.loader-sp').removeClass('hidden');
+        $('.malaria_commodity_table.t_three').addClass('hidden');
+        $('.adjc_soh_mos').addClass('hidden');
+
+        $('.loader-sp.t_four').addClass('hidden');
+        $('#mosbycombox').removeClass('hidden');
+        $('.t_four_state').addClass('hidden');
+
+        $('.t_one.loader-sp').removeClass('hidden');
+        $('.malaria_commodity_table.t_one').addClass('hidden');
+        $('.t_one_state').addClass('hidden');
+        $('.percent_healthfa').addClass('hidden');
+
+        $('.t_two.loader-sp').removeClass('hidden');
+        $('.t_two_state').removeClass('hidden');
+        $('.number_healthfa').addClass('hidden');
+        $('.malaria_commodity_table.t_two').addClass('hidden');
+
+        $('.t_three.loader-sp').removeClass('hidden');
+        $('.malaria_commodity_table.t_three').addClass('hidden');
+        $('.adjc_soh_mos').addClass('hidden');
+        //hideandshow-stuff
+
         if (countyid == null) {
                 countyid = 'tAbBVBbueqD';
         }
@@ -21,11 +45,6 @@ function filterMain(countyid, subcountyid, periodid) {
         $.ajax({
                 type: "GET",
                 url: url,
-                beforeSubmit: function () {
-                        $('.loader-sp.t_four').addClass('hidden');
-                        $('#mosbycombox').removeClass('hidden');
-                        $('.t_four_state').addClass('hidden');
-                },
                 success: function (data) {
                         //create the org units array
                         var orgunits = [];
@@ -161,12 +180,6 @@ function filterMain(countyid, subcountyid, periodid) {
         $.ajax({
                 type: "GET",
                 url: urlfa,
-                beforeSubmit: function (param) {
-                        $('.t_one.loader-sp').removeClass('hidden');
-                        $('.malaria_commodity_table.t_one').addClass('hidden');
-                        $('.t_one_state').addClass('hidden');
-                        $('.percent_healthfa').addClass('hidden');
-                },
                 success: function (data) {      
                         var orgunits = data.metaData.dimensions.ou;
                         //console.log(orgunits.length);
@@ -240,12 +253,6 @@ function filterMain(countyid, subcountyid, periodid) {
         $.ajax({
                 type: "GET",
                 url: urlfa,
-                beforeSubmit: function () {
-                        $('.t_two.loader-sp').removeClass('hidden');
-                        $('.t_two_state').removeClass('hidden');
-                        $('.number_healthfa').addClass('hidden');
-                        $('.malaria_commodity_table.t_two').addClass('hidden');
-                },
                 success: function (data) {     
                         var orgunits = data.metaData.dimensions.ou;
                         //console.log(orgunits.length);
@@ -356,11 +363,6 @@ function filterMain(countyid, subcountyid, periodid) {
         $.ajax({
                 type: "GET",
                 url: urlcon,
-                beforeSubmit: function () {
-                        $('.t_three.loader-sp').removeClass('hidden');
-                        $('.malaria_commodity_table.t_three').addClass('hidden');
-                        $('.adjc_soh_mos').addClass('hidden');
-                },
                 success: function (data) {
                         
                         //var tableData = '<table>';
