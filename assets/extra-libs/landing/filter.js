@@ -3,10 +3,10 @@ function filterMain(countyid, subcountyid, periodid) {
         //hideandshow-stuff
         $('.t_three.loader-sp').removeClass('hidden');
         $('.malaria_commodity_table.t_three').addClass('hidden');
-        $('.adjc_soh_mos').addClass('hidden');
+        $('.t_three_state').addClass('hidden');
 
-        $('.loader-sp.t_four').addClass('hidden');
-        $('#mosbycombox').removeClass('hidden');
+        $('.loader-sp.t_four').removeClass('hidden');
+        $('#mosbycombox').addClass('hidden');
         $('.t_four_state').addClass('hidden');
 
         $('.t_one.loader-sp').removeClass('hidden');
@@ -15,13 +15,9 @@ function filterMain(countyid, subcountyid, periodid) {
         $('.percent_healthfa').addClass('hidden');
 
         $('.t_two.loader-sp').removeClass('hidden');
-        $('.t_two_state').removeClass('hidden');
+        $('.t_two_state').addClass('hidden');
         $('.number_healthfa').addClass('hidden');
         $('.malaria_commodity_table.t_two').addClass('hidden');
-
-        $('.t_three.loader-sp').removeClass('hidden');
-        $('.malaria_commodity_table.t_three').addClass('hidden');
-        $('.adjc_soh_mos').addClass('hidden');
         //hideandshow-stuff
 
         if (countyid == null) {
