@@ -137,7 +137,7 @@ function fetchMosbycombox(url) {
     });
 }
 
-function fetchPercHealthFA(urlfa){
+function fetchPercHealthFA(urlfa,itemnames){
     $('.loader-sp.t_one').removeClass('hidden');
     $('.t_one_state').removeClass('hidden');
     $('.percent_healthfa').addClass('hidden');
@@ -233,7 +233,7 @@ function fetchPercHealthFA(urlfa){
     });
 }
 
-function fetchNumberHealthFA(urlfa){
+function fetchNumberHealthFA(urlfa,itemnames){
     $('.t_two.loader-sp').removeClass('hidden');
     $('.t_two_state').addClass('hidden');
     $('.number_healthfa').addClass('hidden');

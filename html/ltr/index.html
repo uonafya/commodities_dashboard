@@ -750,10 +750,10 @@
             var itemnames = ["AL6","AL12","AL18","AL24","AS inj","SP tabs","RDTs"];
             
             //parse the data for mos percentage
-            fetchPercHealthFA(urlfa);
+            fetchPercHealthFA(urlfa,itemnames);
             
             //parse the data for mos number
-            fetchNumberHealthFA(urlfa);
+            fetchNumberHealthFA(urlfa,itemnames);
                     
             //adjc FA
             var urlcon = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;iMHDfVvYm0W&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
