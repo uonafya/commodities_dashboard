@@ -21,6 +21,11 @@ function filterMain(countyid, subcountyid, periodid) {
         $.ajax({
                 type: "GET",
                 url: url,
+                beforeSubmit: function () {
+                        $('.loader-sp.t_four').addClass('hidden');
+                        $('#mosbycombox').removeClass('hidden');
+                        $('.t_four_state').addClass('hidden');
+                },
                 success: function (data) {
                         //create the org units array
                         var orgunits = [];
@@ -131,12 +136,18 @@ function filterMain(countyid, subcountyid, periodid) {
                                         data: mosVals
                                 }]
                         });
+                        $('.loader-sp.t_four').addClass('hidden');
+                        $('#mosbycombox').removeClass('hidden');
+                        $('.t_four_state').addClass('hidden');
                 },
                 error: function (error) {
-
+                        $('.loader-sp.t_four').addClass('hidden');
+                        $('#mosbycombox').addClass('hidden');
+                        $('.loader-sp.t_four').addClass('hidden');
+                        console.log('MainDash: error fetching json. :- '+error);
+                        $('.t_four_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                 }
         });
-        $.getJSON(url, function (data) {});
 
 
         //% of health facilities
@@ -146,135 +157,169 @@ function filterMain(countyid, subcountyid, periodid) {
         var itemnames = ["AL6", "AL12", "AL18", "AL24", "AS inj", "SP tabs", "RDTs"];
 
         //parse the data for mos percentage
-        $.getJSON(urlfa, function (data) {
-                var orgunits = data.metaData.dimensions.ou;
-                //console.log(orgunits.length);
 
-                //added
-                //get the total expected to report
-                var totalorgs = getExpectedUnits(countyid, periodid);
+        $.ajax({
+                type: "GET",
+                url: urlfa,
+                beforeSubmit: function (param) {
+                        $('.t_one.loader-sp').removeClass('hidden');
+                        $('.malaria_commodity_table.t_one').addClass('hidden');
+                        $('.t_one_state').addClass('hidden');
+                        $('.percent_healthfa').addClass('hidden');
+                },
+                success: function (data) {      
+                        var orgunits = data.metaData.dimensions.ou;
+                        //console.log(orgunits.length);
+                        //added
+                        //get the total expected to report
+                        var totalorgs = getExpectedUnits(countyid, periodid);
+                        //var tableData = '<table>';
+                        var tableData = '';
+                        //console.log(data.rows);
+                        //loop through the org units
+                        var countname = 0;
+                        $.each(data.metaData.dimensions.dx, function (key, entry) {
+                                //define the variables to hold the counter
+                                var overstock = 0;
+                                var stockok = 0;
+                                var understock = 0;
+                                //define the table
+                                tableData += '<tr>';
+                                tableData += '<td>' + itemnames[countname] + '</td>';
+                                //console.log(data.metaData.items[entry].name);
+                                //for each dimension get the value
+                                $.each(data.rows, function (rkey, rentry) {
+                                        var dxid = rentry[0];
+                                        var mosval = parseFloat(rentry[2]);
 
-
-                //var tableData = '<table>';
-                var tableData = '';
-
-                //console.log(data.rows);
-                //loop through the org units
-                var countname = 0;
-                $.each(data.metaData.dimensions.dx, function (key, entry) {
-                        //define the variables to hold the counter
-                        var overstock = 0;
-                        var stockok = 0;
-                        var understock = 0;
-
-                        //define the table
-                        tableData += '<tr>';
-                        tableData += '<td>' + itemnames[countname] + '</td>';
-                        //console.log(data.metaData.items[entry].name);
-
-                        //for each dimension get the value
-                        $.each(data.rows, function (rkey, rentry) {
-                                var dxid = rentry[0];
-                                var mosval = parseFloat(rentry[2]);
-
-                                if (dxid == entry) {
-                                        //console.log(mosval);
-                                        if (mosval > 6) {
-                                                overstock++;
+                                        if (dxid == entry) {
+                                                //console.log(mosval);
+                                                if (mosval > 6) {
+                                                        overstock++;
+                                                }
+                                                if (mosval >= 3 && mosval <= 6) {
+                                                        stockok++;
+                                                }
+                                                if (mosval > 0 && mosval < 3) {
+                                                        understock++;
+                                                }
                                         }
-                                        if (mosval >= 3 && mosval <= 6) {
-                                                stockok++;
-                                        }
-                                        if (mosval > 0 && mosval < 3) {
-                                                understock++;
-                                        }
-                                }
+                                })
+                                countname++;
+                                var overpercent = (overstock / totalorgs) * 100;
+                                var okpercent = (stockok / totalorgs) * 100;
+                                var underpercent = (understock / totalorgs) * 100;
+
+                                tableData += '<td bgcolor="#ffeb9c">' + overpercent.toFixed(1) + '%</td>';
+                                tableData += '<td bgcolor="#c6efce">' + okpercent.toFixed(1) + '%</td>';
+                                tableData += '<td bgcolor="#ffc7ce">' + underpercent.toFixed(1) + '%</td>';
+                                tableData += '</tr>';
                         })
-                        countname++;
-                        var overpercent = (overstock / totalorgs) * 100;
-                        var okpercent = (stockok / totalorgs) * 100;
-                        var underpercent = (understock / totalorgs) * 100;
 
-                        tableData += '<td bgcolor="#ffeb9c">' + overpercent.toFixed(1) + '%</td>';
-                        tableData += '<td bgcolor="#c6efce">' + okpercent.toFixed(1) + '%</td>';
-                        tableData += '<td bgcolor="#ffc7ce">' + underpercent.toFixed(1) + '%</td>';
-                        tableData += '</tr>';
-                })
-
-                //tableData += '<table>';	
-                //console.log(tableData)
-                $("table.percent_healthfa tbody").empty();
-                $("table.percent_healthfa tbody").append(tableData);
-                //$('#zero_config').DataTable();
+                        //tableData += '<table>';	
+                        //console.log(tableData)
+                        $("table.percent_healthfa tbody").empty();
+                        $("table.percent_healthfa tbody").append(tableData);
+                        $('.t_one.loader-sp').addClass('hidden');
+                        $('.malaria_commodity_table.t_one').removeClass('hidden');
+                        $('.percent_healthfa').removeClass('hidden');
+                        //$('#zero_config').DataTable();
+                },
+                error: function (error) {
+                        $('.loader-sp.t_one').addClass('hidden');
+                    $('.percent_healthfa').addClass('hidden');
+                    $('malaria_commodity_table.t_one').addClass('hidden');
+                    $('.loader-sp.t_one').addClass('hidden');
+                    console.log('MainDash: error fetching json. :- '+error);
+                    $('.t_one_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                }
         });
 
 
         //parse the data for mos number
-        $.getJSON(urlfa, function (data) {
-                var orgunits = data.metaData.dimensions.ou;
-                //console.log(orgunits.length);
-                //added
-                //get the total expected to report
-                var totalorgs = getExpectedUnits(countyid, periodid);
+        $.ajax({
+                type: "GET",
+                url: urlfa,
+                beforeSubmit: function () {
+                        $('.t_two.loader-sp').removeClass('hidden');
+                        $('.t_two_state').removeClass('hidden');
+                        $('.number_healthfa').addClass('hidden');
+                        $('.malaria_commodity_table.t_two').addClass('hidden');
+                },
+                success: function (data) {     
+                        var orgunits = data.metaData.dimensions.ou;
+                        //console.log(orgunits.length);
+                        //added
+                        //get the total expected to report
+                        var totalorgs = getExpectedUnits(countyid, periodid);
+                        //var tableData = '<table>';
+                        var tableData = '';
+                        //console.log(data.rows);
+                        //loop through the org units
+                        var countname = 0;
+                        $.each(data.metaData.dimensions.dx, function (key, entry) {
+                                //define the variables to hold the counter
+                                var overstock = 0;
+                                var stockok = 0;
+                                var understock = 0;
+                                var stockout = 0;
+                                var nomos = 0;
 
-                //var tableData = '<table>';
-                var tableData = '';
+                                //define the table
+                                tableData += '<tr>';
+                                tableData += '<td>' + itemnames[countname] + '</td>';
+                                //console.log(data.metaData.items[entry].name);
 
-                //console.log(data.rows);
-                //loop through the org units
-                var countname = 0;
-                $.each(data.metaData.dimensions.dx, function (key, entry) {
-                        //define the variables to hold the counter
-                        var overstock = 0;
-                        var stockok = 0;
-                        var understock = 0;
-                        var stockout = 0;
-                        var nomos = 0;
+                                //for each dimension get the value
+                                $.each(data.rows, function (rkey, rentry) {
+                                        var dxid = rentry[0];
+                                        var mosval = parseFloat(rentry[2]);
 
-                        //define the table
-                        tableData += '<tr>';
-                        tableData += '<td>' + itemnames[countname] + '</td>';
-                        //console.log(data.metaData.items[entry].name);
-
-                        //for each dimension get the value
-                        $.each(data.rows, function (rkey, rentry) {
-                                var dxid = rentry[0];
-                                var mosval = parseFloat(rentry[2]);
-
-                                if (dxid == entry) {
-                                        //console.log(mosval);
-                                        if (mosval > 6) {
-                                                overstock++;
+                                        if (dxid == entry) {
+                                                //console.log(mosval);
+                                                if (mosval > 6) {
+                                                        overstock++;
+                                                }
+                                                if (mosval >= 3 && mosval <= 6) {
+                                                        stockok++;
+                                                }
+                                                if (mosval > 0 && mosval < 3) {
+                                                        understock++;
+                                                }
+                                                if (mosval <= 0) {
+                                                        stockout++;
+                                                }
                                         }
-                                        if (mosval >= 3 && mosval <= 6) {
-                                                stockok++;
-                                        }
-                                        if (mosval > 0 && mosval < 3) {
-                                                understock++;
-                                        }
-                                        if (mosval <= 0) {
-                                                stockout++;
-                                        }
-                                }
+                                })
+                                countname++;
+                                nomos = totalorgs - (overstock + stockok + understock + stockout)
+
+                                tableData += '<td bgcolor="#ffeb9c">' + overstock + '</td>';
+                                tableData += '<td bgcolor="#c6efce">' + stockok + '</td>';
+                                tableData += '<td bgcolor="#ffc7ce">' + understock + '</td>';
+                                tableData += '<td bgcolor="#ff0000">' + stockout + '</td>';
+                                tableData += '<td>' + nomos + '</td>';
+                                tableData += '<td>' + totalorgs + '</td>';
+
+                                tableData += '</tr>';
                         })
-                        countname++;
-                        nomos = totalorgs - (overstock + stockok + understock + stockout)
 
-                        tableData += '<td bgcolor="#ffeb9c">' + overstock + '</td>';
-                        tableData += '<td bgcolor="#c6efce">' + stockok + '</td>';
-                        tableData += '<td bgcolor="#ffc7ce">' + understock + '</td>';
-                        tableData += '<td bgcolor="#ff0000">' + stockout + '</td>';
-                        tableData += '<td>' + nomos + '</td>';
-                        tableData += '<td>' + totalorgs + '</td>';
-
-                        tableData += '</tr>';
-                })
-
-                //tableData += '<table>';	
-                //console.log(tableData)
-                $("table.number_healthfa tbody").empty();
-                $("table.number_healthfa tbody").append(tableData);
-                //$('#zero_config').DataTable();
+                        //tableData += '<table>';	
+                        //console.log(tableData)
+                        $("table.number_healthfa tbody").empty();
+                        $("table.number_healthfa tbody").append(tableData);
+                        $('.t_two.loader-sp').addClass('hidden');
+                        $('.number_healthfa').removeClass('hidden');
+                        $('.malaria_commodity_table.t_two').removeClass('hidden');
+                        //$('#zero_config').DataTable();
+                },
+                error: function (error) {
+                        $('.loader-sp.t_two').addClass('hidden');
+                        $('.number_healthfa').addClass('hidden');
+                        $('.loader-sp.t_two').addClass('hidden');
+                        console.log('MainDash: error fetching json. :- '+error);
+                        $('.t_two_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                }
         });
 
 
@@ -308,66 +353,83 @@ function filterMain(countyid, subcountyid, periodid) {
 
         //console.log(sohval);
 
-        $.getJSON(urlcon, function (data) {
-                //var tableData = '<table>';
-                var tableData = '';
-                var phycount = '';
-                var adjc = '';
-                var mos = '';
-                var countercon = 0;
-                //console.log(data.rows);
-                //loop through the org units							
-                $.each(data.metaData.dimensions.dx, function (key, entry) {
-                        //define the table                
-                        tableData += '<tr>';
-                        //tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                        tableData += '<td>' + alnames[countercon] + '</td>';
-                        //console.log(data.metaData.items[entry].name);
+        $.ajax({
+                type: "GET",
+                url: "urlcon",
+                beforeSubmit: function () {
+                        $('.t_three.loader-sp').removeClass('hidden');
+                        $('.malaria_commodity_table.t_three').addClass('hidden');
+                        $('.adjc_soh_mos').addClass('hidden');
+                },
+                success: function (data) {
+                        
+                        //var tableData = '<table>';
+                        var tableData = '';
+                        var phycount = '';
+                        var adjc = '';
+                        var mos = '';
+                        var countercon = 0;
+                        //console.log(data.rows);
+                        //loop through the org units							
+                        $.each(data.metaData.dimensions.dx, function (key, entry) {
+                                //define the table                
+                                tableData += '<tr>';
+                                //tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                                tableData += '<td>' + alnames[countercon] + '</td>';
+                                //console.log(data.metaData.items[entry].name);
 
-                        //for each dimension get the value
-                        /*
-                        $.each(data.rows, function (rkey, rentry) 
-                        {	
-                                //console.log(rentry);
-                                if(entry==rentry[0])
-                                {
-                                        adjc = rentry[2];
-                                        phycount = sohval[countercon];
-                                }
-                        })	
-                        */
+                                //for each dimension get the value
+                                /*
+                                $.each(data.rows, function (rkey, rentry) 
+                                {	
+                                        //console.log(rentry);
+                                        if(entry==rentry[0])
+                                        {
+                                                adjc = rentry[2];
+                                                phycount = sohval[countercon];
+                                        }
+                                })	
+                                */
 
-                        //get the consumption value
-                        adjc = getConsumption(data.rows, entry);
-                        phycount = sohval[countercon];
+                                //get the consumption value
+                                adjc = getConsumption(data.rows, entry);
+                                phycount = sohval[countercon];
 
-                        mos = parseFloat(phycount / adjc);
+                                mos = parseFloat(phycount / adjc);
 
-                        //set the bg color for the MOS
-                        var bgcolor = '#ffffff';
-                        if (mos <= 0)
-                                bgcolor = '#ff0000'
-                        if (mos > 0 && mos < 3)
-                                bgcolor = '#ffc7ce'
-                        if (mos >= 3 && mos <= 6)
-                                bgcolor = '#c6efce'
-                        if (mos > 6)
-                                bgcolor = '#ffeb9c'
+                                //set the bg color for the MOS
+                                var bgcolor = '#ffffff';
+                                if (mos <= 0)
+                                        bgcolor = '#ff0000'
+                                if (mos > 0 && mos < 3)
+                                        bgcolor = '#ffc7ce'
+                                if (mos >= 3 && mos <= 6)
+                                        bgcolor = '#c6efce'
+                                if (mos > 6)
+                                        bgcolor = '#ffeb9c'
 
-                        tableData += '<td>' + adjc.toFixed(0) + '</td>';
-                        tableData += '<td>' + phycount.toFixed(0) + '</td>';
-                        tableData += '<td bgcolor="' + bgcolor + '">' + mos.toFixed(1) + '</td>';
+                                tableData += '<td>' + adjc.toFixed(0) + '</td>';
+                                tableData += '<td>' + phycount.toFixed(0) + '</td>';
+                                tableData += '<td bgcolor="' + bgcolor + '">' + mos.toFixed(1) + '</td>';
 
-                        tableData += '</tr>';
-                        //increment the counter
-                        countercon++;
-                })
+                                tableData += '</tr>';
+                                //increment the counter
+                                countercon++;
+                        })
 
-                //tableData += '<table>';	
-                //console.log(tableData)
-                $("table.adjc_soh_mos tbody").empty();
-                $("table.adjc_soh_mos tbody").append(tableData);
-                //$('#zero_config').DataTable();
+                        //tableData += '<table>';	
+                        //console.log(tableData)
+                        $("table.adjc_soh_mos tbody").empty();
+                        $("table.adjc_soh_mos tbody").append(tableData);
+                        //$('#zero_config').DataTable();
+                },
+                error: function (error) {
+                        $('.loader-sp.t_three').addClass('hidden');
+                        $('.adjc_soh_mos').addClass('hidden');
+                        $('.loader-sp.t_three').addClass('hidden');
+                        console.log('MainDash: error fetching json. :- '+error);
+                        $('.t_three_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                }
         });
 }
 
