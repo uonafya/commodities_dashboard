@@ -95,3 +95,4 @@ function filterMain(countyid, subcountyid, periodid) {
                         }
                 }
         }
+}
