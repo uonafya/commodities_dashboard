@@ -407,7 +407,7 @@
                                     </div>
                                 </div>
                                 <div class="malaria_commodity_table t_three hidden" style="height: 450px; overflow-y:auto;">
-                                    <table class = "table adjc_soh_mos" style="position:relative;" id="adjc_soh_mos">
+                                    <table class = "table slimtable table-condensed adjc_soh_mos" style="position:relative;" id="adjc_soh_mos">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Items</th>
@@ -1113,7 +1113,12 @@
                     $.ajax({
                         type: 'GET',
                         crossDomain: true,
-                        url: urlcon,                    
+                        url: urlcon,
+                        beforeSend: function() {
+                            $('.t_three.loader-sp').removeClass('hidden');
+                            $('.malaria_commodity_table.t_three').addClass('hidden');
+                            $('.adjc_soh_mos').addClass('hidden');
+                        },                    
                         success: function (data) {										
                         //var tableData = '<table>';
                         var tableData = '';
