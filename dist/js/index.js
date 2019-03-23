@@ -345,34 +345,32 @@ function fetchAdjSOH(urlcon,alnames) {
     $('.t_three.loader-sp').removeClass('hidden');
     $('.malaria_commodity_table.t_three').addClass('hidden');
     $('.adjc_soh_mos').addClass('hidden');
+    var sohval = [];
+    var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
+    $.getJSON(urlphy, function (zdata) {
+        var counter = 0;
+        $.each(zdata.metaData.dimensions.dx, function (key, entry) 
+        {
+            //console.log(entry);                        
+            var valsoh = getSOH(zdata.rows,entry);
+            sohval.push(valsoh);
+            
+            //increment the counter
+            counter++;
+        })
+    });
+    sleep(2300);
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: urlcon,
-        success: function (data) {										
-            //var tableData = '<table>';
-            var sohval = [];
-            var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
-            $.getJSON(urlphy, function (zdata) {
-                var counter = 0;
-                $.each(zdata.metaData.dimensions.dx, function (key, entry) 
-                {
-                    //console.log(entry);                        
-                    var valsoh = getSOH(zdata.rows,entry);
-                    sohval.push(valsoh);
-                    
-                    //increment the counter
-                    counter++;
-                })
-            });
-            sleep(2300);
+        success: function (data) {
             var tableData = '';
             var phycount = '';
             var adjc = '';
             var mos = '';
             var countercon = 0;
-            //console.log(data.rows);
-            //loop through the org units							
+            					
             $.each(data.metaData.dimensions.dx, function (key, entry) 
             {
                 //define the table
