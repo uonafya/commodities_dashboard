@@ -128,6 +128,8 @@ function fetchMosbycombox(url) {
         });
         $('.t_four.loader-sp').addClass('hidden');
         $('#mosbycombox').removeClass('hidden');
+        $('.col-md-12.t_four').removeClass('hidden');
+        $('.t_four_state').addClass('hidden');
     },
     error: function (request, status, error) {
             $('.loader-sp.t_four').addClass('hidden');
@@ -317,7 +319,10 @@ function fetchNumberHealthFA(urlfa,itemnames){
 
         //tableData += '<table>';	
         //console.log(tableData)			
+        $("table.number_healthfa tbody").empty();	
+        $("table.number_healthfa").DataTable().destroy();	
         $("table.number_healthfa tbody").append(tableData);	
+        $("table.number_healthfa").DataTable();	
         //$('#zero_config').DataTable();
         $('.t_two.loader-sp').addClass('hidden');
         $('.number_healthfa').removeClass('hidden');
@@ -397,11 +402,15 @@ function fetchAdjSOH(urlcon) {
 
             //tableData += '<table>';	
             //console.log(tableData)			
+            $("table.adjc_soh_mos tbody").empty();	
+            $("table.adjc_soh_mos").DataTable().destroy();
             $("table.adjc_soh_mos tbody").append(tableData);	
+            $("table.adjc_soh_mos").DataTable();
             //$('#zero_config').DataTable();
             $('.t_three.loader-sp').addClass('hidden');
             $('.malaria_commodity_table.t_three').removeClass('hidden');
-            $('.adjc_soh_mos').removeClass('hidden');
+            $('table.adjc_soh_mos').removeClass('hidden');
+            $('.malaria_commodity_table.t_three').addClass('hidden');
 
             //to enable downloading the report table
         downloadable('adjc_soh_mos');
