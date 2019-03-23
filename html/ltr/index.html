@@ -764,22 +764,10 @@
             // var urlphy = 'http://localhost/pmi/json/urlphy.json';
             
             //get the physical count into an array
-            var sohval = [];
             
             var alnames = ["AL6","AL12","AL18","AL24","AL all","AS inj","SP tabs","RDTs"];
             
-            $.getJSON(urlphy, function (data) {
-                var counter = 0;
-                $.each(data.metaData.dimensions.dx, function (key, entry) 
-                {
-                    //console.log(entry);                        
-                    var valsoh = getSOH(data.rows,entry);
-                    sohval.push(valsoh);
-                    
-                    //increment the counter
-                    counter++;
-                })
-            });
+            
             //delay for a few seconds 3 seconds
             //console.log(sohval);
             // sleep(4000);
