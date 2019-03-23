@@ -341,7 +341,6 @@ function fetchNumberHealthFA(urlfa,itemnames){
 }
 
 function fetchAdjSOH(urlcon,alnames) {
-    var sohval = [];
     console.log("TRIGGERED: fetchAdjSOH(urlcon) == "+urlcon);
     $('.t_three.loader-sp').removeClass('hidden');
     $('.malaria_commodity_table.t_three').addClass('hidden');
@@ -352,6 +351,7 @@ function fetchAdjSOH(urlcon,alnames) {
         url: urlcon,
         success: function (data) {										
             //var tableData = '<table>';
+            var sohval = [];
             var tableData = '';
             var phycount = '';
             var adjc = '';
