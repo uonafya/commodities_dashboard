@@ -1,5 +1,5 @@
 function fetchMosbycombox(url) {
-    console.log("TRIGGERED: fetchMosbycombox(url) == "+url);
+    // console.log("TRIGGERED: fetchMosbycombox(url) == "+url);
     
     $('.loader-sp.t_four').removeClass('hidden');
     $('#mosbycombox').addClass('hidden');
@@ -129,7 +129,7 @@ function fetchMosbycombox(url) {
 }
 
 function fetchPercHealthFA(urlfa,itemnames){
-    console.log("TRIGGERED: fetchPercHealthFA(urlfa,itemnames) == "+urlfa+" && itemnames: "+itemnames);
+    // console.log("TRIGGERED: fetchPercHealthFA(urlfa,itemnames) == "+urlfa+" && itemnames: "+itemnames);
     $('.loader-sp.t_one').removeClass('hidden');
     $('.t_one_state').removeClass('hidden');
     $('.percent_healthfa').addClass('hidden');
@@ -234,7 +234,7 @@ function fetchPercHealthFA(urlfa,itemnames){
 }
 
 function fetchNumberHealthFA(urlfa,itemnames){
-    console.log("TRIGGERED: fetchNumberHealthFA(urlfa,itemnames) == "+urlfa+" && itemnames: "+itemnames);
+    // console.log("TRIGGERED: fetchNumberHealthFA(urlfa,itemnames) == "+urlfa+" && itemnames: "+itemnames);
     $('.t_two.loader-sp').removeClass('hidden');
     $('.t_two_state').addClass('hidden');
     $('.number_healthfa').addClass('hidden');
@@ -341,7 +341,7 @@ function fetchNumberHealthFA(urlfa,itemnames){
 }
 
 function fetchAdjSOH(urlcon,alnames) {
-    console.log("TRIGGERED: fetchAdjSOH(urlcon) == "+urlcon);
+    // console.log("TRIGGERED: fetchAdjSOH(urlcon) == "+urlcon);
     $('.t_three.loader-sp').removeClass('hidden');
     $('.malaria_commodity_table.t_three').addClass('hidden');
     $('.adjc_soh_mos').addClass('hidden');

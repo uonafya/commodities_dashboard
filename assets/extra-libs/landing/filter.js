@@ -57,7 +57,7 @@ function filterMain(countyid, subcountyid, periodid) {
         });
 
         //delay for a few seconds 3 seconds
-        sleep(3000);
+        // sleep(3000);
         fetchAdjSOH(urlcon,alnames);
 
 
