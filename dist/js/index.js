@@ -352,6 +352,7 @@ function fetchAdjSOH(urlcon,alnames) {
         success: function (data) {										
             //var tableData = '<table>';
             var sohval = [];
+            var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
             $.getJSON(urlphy, function (data) {
                 var counter = 0;
                 $.each(data.metaData.dimensions.dx, function (key, entry) 
