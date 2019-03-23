@@ -217,14 +217,22 @@ function fetchPercHealthFA(urlfa,itemnames){
 
         //tableData += '<table>';	
         //console.log(tableData)			
+        $("table.percent_healthfa").destroy();	
+        $("table.percent_healthfa tbody").empty();	
         $("table.percent_healthfa tbody").append(tableData);	
+        $("table.percent_healthfa").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+        });	
         //$('#zero_config').DataTable();
         $('.t_one.loader-sp').addClass('hidden');
         $('.malaria_commodity_table.t_one').removeClass('hidden');
         $('.percent_healthfa').removeClass('hidden');
 
             //to enable downloading the report table
-            downloadable('percent_healthfa');
+            // downloadable('percent_healthfa');
 
     },
     error: function (request, status, error) {
@@ -319,16 +327,21 @@ function fetchNumberHealthFA(urlfa,itemnames){
 
         //tableData += '<table>';	
         //console.log(tableData)			
-        $("table.number_healthfa tbody").empty();	
         $("table.number_healthfa").DataTable().destroy();	
+        $("table.number_healthfa tbody").empty();	
         $("table.number_healthfa tbody").append(tableData);	
-        $("table.number_healthfa").DataTable();	
+        $("table.number_healthfa").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+        });	
         //$('#zero_config').DataTable();
         $('.t_two.loader-sp').addClass('hidden');
         $('.number_healthfa').removeClass('hidden');
         $('.malaria_commodity_table.t_two').removeClass('hidden');
 
-        downloadable('number_healthfa');
+        // downloadable('number_healthfa');
     },
     error: function (request, status, error) {
             $('.loader-sp.t_two').addClass('hidden');
@@ -403,17 +416,22 @@ function fetchAdjSOH(urlcon,alnames) {
 
             //tableData += '<table>';	
             //console.log(tableData)			
-            $("table.adjc_soh_mos tbody").empty();	
             $("table.adjc_soh_mos").DataTable().destroy();
+            $("table.adjc_soh_mos tbody").empty();	
             $("table.adjc_soh_mos tbody").append(tableData);	
-            $("table.adjc_soh_mos").DataTable();
+            $("table.adjc_soh_mos").DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+            });	
             //$('#zero_config').DataTable();
             $('.t_three.loader-sp').addClass('hidden');
             $('.malaria_commodity_table.t_three').removeClass('hidden');
             $('table.adjc_soh_mos').removeClass('hidden');
 
             //to enable downloading the report table
-        downloadable('adjc_soh_mos');
+            // downloadable('adjc_soh_mos');
         },
         error: function (request, status, error) {
                 $('.loader-sp.t_three').addClass('hidden');
