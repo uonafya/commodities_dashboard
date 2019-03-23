@@ -217,7 +217,7 @@ function fetchPercHealthFA(urlfa,itemnames){
 
         //tableData += '<table>';	
         //console.log(tableData)			
-        $("table.percent_healthfa").destroy();	
+        $("table.percent_healthfa").DataTable().destroy();	
         $("table.percent_healthfa tbody").empty();	
         $("table.percent_healthfa tbody").append(tableData);	
         $("table.percent_healthfa").DataTable({
