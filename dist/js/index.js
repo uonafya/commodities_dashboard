@@ -1,16 +1,3 @@
-//hideandshow-stuff
-$('.t_three.loader-sp').removeClass('hidden');
-$('.malaria_commodity_table.t_three').addClass('hidden');
-$('.t_three_state').addClass('hidden');
-
-$('.t_one.loader-sp').removeClass('hidden');
-$('.malaria_commodity_table.t_one').addClass('hidden');
-$('.t_one_state').addClass('hidden');
-$('.percent_healthfa').addClass('hidden');
-
-
-//hideandshow-stuff
-
 function fetchMosbycombox(url) {
     console.log("TRIGGERED: fetchMosbycombox(url) == "+url);
     
