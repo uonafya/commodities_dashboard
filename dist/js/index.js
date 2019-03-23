@@ -352,6 +352,19 @@ function fetchAdjSOH(urlcon,alnames) {
         success: function (data) {										
             //var tableData = '<table>';
             var sohval = [];
+            $.getJSON(urlphy, function (data) {
+                var counter = 0;
+                $.each(data.metaData.dimensions.dx, function (key, entry) 
+                {
+                    //console.log(entry);                        
+                    var valsoh = getSOH(data.rows,entry);
+                    sohval.push(valsoh);
+                    
+                    //increment the counter
+                    counter++;
+                })
+            });
+            sleep(2300);
             var tableData = '';
             var phycount = '';
             var adjc = '';
