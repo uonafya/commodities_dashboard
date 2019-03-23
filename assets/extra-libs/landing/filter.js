@@ -27,11 +27,11 @@ function filterMain(countyid, subcountyid, periodid) {
         var itemnames = ["AL6", "AL12", "AL18", "AL24", "AS inj", "SP tabs", "RDTs"];
 
         //parse the data for mos percentage
-        fetchPercHealthFA(urlfa);
+        fetchPercHealthFA(urlfa,itemnames);
 
         //parse adjusted consumption and physical count
         //parse the data for mos number
-        fetchNumberHealthFA(urlfa);
+        fetchNumberHealthFA(urlfa,itemnames);
 
 
         //adjc FA
