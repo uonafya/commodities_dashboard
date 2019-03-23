@@ -58,7 +58,7 @@ function filterMain(countyid, subcountyid, periodid) {
 
         //delay for a few seconds 3 seconds
         sleep(3000);
-        fetchAdjSOH(urlcon);
+        fetchAdjSOH(urlcon,alnames);
 
 
         //function to get SOH value from loop

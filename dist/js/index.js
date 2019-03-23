@@ -340,7 +340,7 @@ function fetchNumberHealthFA(urlfa,itemnames){
     });
 }
 
-function fetchAdjSOH(urlcon) {
+function fetchAdjSOH(urlcon,alnames) {
     console.log("TRIGGERED: fetchAdjSOH(urlcon) == "+urlcon);
     $('.t_three.loader-sp').removeClass('hidden');
     $('.malaria_commodity_table.t_three').addClass('hidden');
