@@ -411,7 +411,6 @@ function fetchAdjSOH(urlcon,alnames) {
             $('.t_three.loader-sp').addClass('hidden');
             $('.malaria_commodity_table.t_three').removeClass('hidden');
             $('table.adjc_soh_mos').removeClass('hidden');
-            $('.malaria_commodity_table.t_three').addClass('hidden');
 
             //to enable downloading the report table
         downloadable('adjc_soh_mos');
