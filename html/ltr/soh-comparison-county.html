@@ -319,15 +319,19 @@
                             <div class="row">
                                 <div class="col-md-11 col-sm-11 col-xs-12">
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                             </select>
                                         </div>										
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <select class="form-control m-r-5" id="facility-dropdown" name="subcounty">                                                
+                                            </select> 
+                                        </div> 
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
                                         </div> 
                                     </div>
@@ -508,6 +512,26 @@
 					})		 
 				});		
 			});
+			
+			$("#subcounty-dropdown").change(function() 
+			{  
+				$('#facility-dropdown').empty();
+				var subcountyid = $(this).val();
+				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+				subcounty.prop('selectedIndex', 0);
+				
+				// Populate dropdown with list of facilities
+				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:5&fields=id,name,level,parent&paging=false', function (data) 
+				{			
+					$.each(data.organisationUnits, function (key, entry) 
+					{				
+						if(entry.parent.id==subcountyid)
+						{
+							$('#facility-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+						}				
+					})		 
+				});		
+			});
 		});
 	</script>
 			
@@ -529,6 +553,14 @@
             });
 
             $("#subcounty-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+                fetchSOHCompa(url,ounit);
+                
+            });
+
+            $("#facility-dropdown").change(function() 
             {
                 ounit = $(this).val();
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
