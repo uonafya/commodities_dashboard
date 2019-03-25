@@ -478,6 +478,9 @@
 			dropdown.append('<option selected="true" disabled>Select County</option>');
 			dropdown.prop('selectedIndex', 0);
 			
+			faclility.append('<option selected="true" disabled>Select Facility</option>');
+			faclility.prop('selectedIndex', 0);
+			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 			subcounty.prop('selectedIndex', 0);
 			
@@ -520,8 +523,8 @@
 			{  
 				$('#facility-dropdown').empty();
 				var subcountyid = $(this).val();
-				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-				subcounty.prop('selectedIndex', 0);
+				facility.append('<option selected="true" disabled>Select Facility</option>');
+				facility.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of facilities
 				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:5&fields=id,name,level,parent&paging=false', function (data) 
