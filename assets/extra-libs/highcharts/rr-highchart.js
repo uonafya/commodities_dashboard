@@ -217,9 +217,8 @@
             $('#rrchart #thechart').remove();
             $('#rrchart').append('<div id="thechart" style="min-width: 75%; max-width: 100vw; height: 500px; margin: 0 auto;"></div>');
             // Highcharts
-            Highcharts.chart({
+            Highcharts.chart('#rrchart #thechart', {
                 chart: {
-                    renderTo: '#rrchart #thechart',
                     type: 'line'
                 },
                 exporting: {
