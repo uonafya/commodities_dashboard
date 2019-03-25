@@ -110,10 +110,10 @@ $.ajax({
         // });
         $(document).ready(function () {
             var total_facils = parseFloat(compliant_facilities_codes.length) + parseFloat(non_compliant_facilities_codes.length);
-            var tot_eq_perc = (parseFloat(compliant_facilities_codes.length)*100)/total_facils).toFixed(1);
-            var tot_neq_perc = (parseFloat(non_compliant_facilities_codes.length)*100)/total_facils).toFixed(1);
-            $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_eq_perc + '%)</small>');
-            $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_neq_perc + '%)</small>');
+            var tot_eq_perc = (parseFloat(compliant_facilities_codes.length)*100)/total_facils;
+            var tot_neq_perc = (parseFloat(non_compliant_facilities_codes.length)*100)/total_facils;
+            $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_eq_perc.toFixed(1) + '%)</small>');
+            $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_neq_perc.toFixed(1) + '%)</small>');
         });
 
         var non_compliant_facility_count = facility_count - compliant_facility_count;
