@@ -109,8 +109,9 @@ $.ajax({
             });
         // });
         $(document).ready(function () {
-            $('#equalCount, .equalCount').html(compliant_facilities_codes.length);
-            $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length);
+            var total_facils = parseFloat(compliant_facilities_codes.length) + parseFloat(non_compliant_facilities_codes.length)
+            $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '(' + (parseFloat(compliant_facilities_codes.length)*100)/total_facils + '%)');
+            $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '(' + (parseFloat(non_compliant_facilities_codes.length)*100)/total_facils + '%)');
         });
 
         var non_compliant_facility_count = facility_count - compliant_facility_count;
