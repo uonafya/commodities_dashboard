@@ -1,6 +1,6 @@
 function getConco(ccurl,commodity){
 $('.loader-sp.pieone').removeClass('hidden');
-$('#pc1').addClass('hidden');
+$('#pc1, .pc1').addClass('hidden');
 $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -125,12 +125,12 @@ $.ajax({
         pieOne('Data Quality: Concordance',commodities_array[commo_s].name,compliant_facility_count,non_compliant_facility_count);
         // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
-        $('#pc1').removeClass('hidden');
+        $('#pc1, .pc1').removeClass('hidden');
         $('.detailsrow').removeClass('hidden');
     },
     error: function (request, status, error) {
         $('.loader-sp.pieone').addClass('hidden');
-        $('#pc1').addClass('hidden');
+        $('#pc1, .pc1').addClass('hidden');
         $('.detailsrow').addClass('hidden');
         console.log('DQ: error fetching json. :- '+error);
         $('.pieone_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
