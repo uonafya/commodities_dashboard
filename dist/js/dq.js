@@ -114,6 +114,7 @@ $.ajax({
             var tot_neq_perc = (parseFloat(non_compliant_facilities_codes.length)*100)/total_facils;
             $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_eq_perc.toFixed(1) + '%)</small>');
             $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_neq_perc.toFixed(1) + '%)</small>');
+            $('.totFacil').html(total_facils);
         });
 
         var non_compliant_facility_count = facility_count - compliant_facility_count;
