@@ -20,9 +20,11 @@ function fetchScRR(scurl){
 
 
 
-
+            $('#sub_rrchart').empty();
+            $('#sub_rrchart #thesubchart').remove();
+            $('#sub_rrchart').append('<div id="thesubchart" style="min-width: 25%; max-width: 100vw; height: 500px; margin: 0 auto;"></div>');
             // Highcharts
-            Highcharts.chart('sc_rrchart', {
+            Highcharts.chart('thesubchart', {
                 data: {
                     table: 'datatable'
                 },
