@@ -101,12 +101,15 @@ function getKIssues(url,tou) {
 
 function getNational(nat_url) {
         
+    $('.natsum-loader, .rrdb').removeClass('hidden');
+    $('.natstate').removeClass('hidden');
+    $('.national-container').addClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: nat_url,                    
         success: function (data) {
-        $('.natsum-loader').addClass('hidden');
+        $('.natsum-loader, .rrdb').addClass('hidden');
         $('.natstate').addClass('hidden');
         $('.national-container').removeClass('hidden');
 
@@ -124,7 +127,8 @@ function getNational(nat_url) {
                 }									
             })
         })
-        
+        var perio = data.metaData.items[data.metaData.dimensions.pe[0]].name;
+        $('.card-title').html('National Summary - '+perio);
         console.log(stockVals);
         
         $('#national-container').highcharts({
