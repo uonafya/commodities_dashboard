@@ -128,7 +128,8 @@ function getNational(nat_url) {
             })
         })
         var perio = data.metaData.items[data.metaData.dimensions.pe[0]].name;
-        $('.card-title').html('National Summary - '+perio);
+        var orgu = data.metaData.items[data.metaData.dimensions.ou[0]].name;
+        $('.card-title').html('National Summary: '+orgu+' - '+perio);
         console.log(stockVals);
         
         $('#national-container').highcharts({
