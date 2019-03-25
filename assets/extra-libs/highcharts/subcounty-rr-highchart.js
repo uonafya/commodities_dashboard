@@ -22,7 +22,7 @@ function fetchScRR(scurl){
 
             $('#sub_rrchart').empty();
             $('#sub_rrchart #thesubchart').remove();
-            $('#sub_rrchart').append('<div id="thesubchart" style="min-width: 100%; max-width: 100vw; height: 500px; margin: 0 auto;"></div>');
+            $('#sub_rrchart').append('<div id="thesubchart" style="min-width: 290px; max-width: 100vw; height: 500px; margin: 0 auto;"></div>');
             // Highcharts
             // Highcharts.chart('thesubchart', {
             //     data: {
