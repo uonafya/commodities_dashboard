@@ -22,35 +22,35 @@ function fetchScRR(scurl){
 
             $('#sub_rrchart').empty();
             $('#sub_rrchart #thesubchart').remove();
-            $('#sub_rrchart').append('<div id="thesubchart" style="min-width: 25%; max-width: 100vw; height: 500px; margin: 0 auto;"></div>');
+            $('#sub_rrchart').append('<div id="thesubchart" style="min-width: 100%; max-width: 100vw; height: 500px; margin: 0 auto;"></div>');
             // Highcharts
-            Highcharts.chart('thesubchart', {
-                data: {
-                    table: 'datatable'
-                },
-                chart: {
-                    type: 'bar'
-                },
-                title: {
-                    text: 'Latest reporting rate by Sub-County (MCF)'
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    title: {
-                        text: 'Units'
-                    }
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + ' ' + this.point.name.toLowerCase();
-                    }
-                }
-            });
+            // Highcharts.chart('thesubchart', {
+            //     data: {
+            //         table: 'datatable'
+            //     },
+            //     chart: {
+            //         type: 'bar'
+            //     },
+            //     title: {
+            //         text: 'Latest reporting rate by Sub-County (MCF)'
+            //     },
+            //     yAxis: {
+            //         allowDecimals: false,
+            //         title: {
+            //             text: 'Units'
+            //         }
+            //     },
+            //     tooltip: {
+            //         formatter: function () {
+            //             return '<b>' + this.series.name + '</b><br/>' +
+            //                 this.point.y + ' ' + this.point.name.toLowerCase();
+            //         }
+            //     }
+            // });
 
 
             
-            Highcharts.chart('sc_rrchart', {
+            Highcharts.chart('thesubchart', {
                 chart: {
                     type: 'bar'
                 },
