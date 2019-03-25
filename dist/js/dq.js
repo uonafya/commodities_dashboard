@@ -110,8 +110,8 @@ $.ajax({
         // });
         $(document).ready(function () {
             var total_facils = parseFloat(compliant_facilities_codes.length) + parseFloat(non_compliant_facilities_codes.length)
-            $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '<small>(' + (parseFloat(compliant_facilities_codes.length)*100)/total_facils + '%)</small>');
-            $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '<small>(' + (parseFloat(non_compliant_facilities_codes.length)*100)/total_facils + '%)</small>');
+            $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '&nbsp;  <small>(' + (parseFloat(compliant_facilities_codes.length)*100)/total_facils + '%)</small>');
+            $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '&nbsp;  <small>(' + (parseFloat(non_compliant_facilities_codes.length)*100)/total_facils + '%)</small>');
         });
 
         var non_compliant_facility_count = facility_count - compliant_facility_count;
