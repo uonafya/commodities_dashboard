@@ -328,7 +328,7 @@
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="facility-dropdown" name="subcounty">                                                
+                                            <select class="form-control m-r-5" id="facility-dropdown" placeholder="Select Facility" name="facility">                                                
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
@@ -466,11 +466,14 @@
 			
 			var subcounty = $('#subcounty-dropdown');
 			
+            var facility = $('#subcounty-dropdown');
+			
 			var perioddwn = $('#period-dropdown');
 
 			dropdown.empty();
 			subcounty.empty();
 			perioddwn.empty();
+			facility.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
 			dropdown.prop('selectedIndex', 0);
