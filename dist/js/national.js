@@ -103,7 +103,7 @@ function getNational(nat_url) {
         
     $('.natsum-loader, .rrdb').removeClass('hidden');
     $('.natstate').removeClass('hidden');
-    $('.national-container').addClass('hidden');
+    $('#national-container').addClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -111,7 +111,7 @@ function getNational(nat_url) {
         success: function (data) {
         $('.natsum-loader, .rrdb').addClass('hidden');
         $('.natstate').addClass('hidden');
-        $('.national-container').removeClass('hidden');
+        $('#national-container').removeClass('hidden');
 
         var stockVals = new Array();  
 
@@ -222,7 +222,7 @@ function getNational(nat_url) {
         });
         },
         error: function (request, status, error) {
-            $('.natsum-loader').addClass('hidden');
+            $('.natsum-loader, .rrdb').addClass('hidden');
             $('.natstate').removeClass('hidden');
             $("#national-container").addClass('hidden');
             console.log('Error fetching json. :- ERROR: '+error + '& STATUS:'+status);
