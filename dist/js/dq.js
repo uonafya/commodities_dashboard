@@ -254,7 +254,7 @@ $.ajax({
         $.each(json_data.metaData.dimensions.pe,(index,period)=>{
             expected_t = 0;
             $.each(json_data.rows,(i_index,onerow)=>{
-                if (period == onerow[1] && onerow[0] === "JPaviRmSsJW.EXPECTED_REPORTS"){
+                if (period == onerow[1] && onerow[0] == "JPaviRmSsJW.EXPECTED_REPORTS"){
                     expected_t += 1;
                 }
             });
