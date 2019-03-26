@@ -250,6 +250,7 @@ $.ajax({
             });
             reported.push(total);
         });
+        console.log("reported: "+reported);
         $.each(json_data.metaData.dimensions.pe,(index,value)=>{
             expected_t = 0;
             $.each(json_data.rows,(i_index,i_value)=>{
