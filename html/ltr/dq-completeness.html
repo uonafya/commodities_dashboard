@@ -308,7 +308,7 @@ color: transparent;}
                                     <!-- SS -->
                                     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Stock Status </span></a>
                                         <ul aria-expanded="false" class="collapse  first-level">
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AL</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">ACTs</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li>
@@ -691,7 +691,7 @@ color: transparent;}
         $(function () {
             var perd = 'LAST_12_MONTHS';
             var orgun = 'tAbBVBbueqD';
-            var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+perd+'&dimension=ou:'+orgun+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+perd+'&dimension=ou:'+orgun+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             // var wburl = 'http://localhost/pmi/json/completeness.json';
             getWBData(wburl,orgun);
         });
@@ -701,7 +701,7 @@ color: transparent;}
         $("#county-dropdown").change(function() 
             {  
                 var theou = $(this).val();
-                var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 // var wburl = 'http://localhost/pmi/json/completeness.json';
                 getWBData(wburl,theou);
             }
@@ -710,7 +710,7 @@ color: transparent;}
         $("#subcounty-dropdown").change(function() 
             {  
                 var theou = $(this).val();
-                var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 // var wburl = 'http://localhost/pmi/json/completeness.json';
                 getWBData(wburl,theou);
             }
@@ -757,7 +757,7 @@ color: transparent;}
             } else{
                 var theou = 'tAbBVBbueqD';
             }
-            var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             getWBData(wburl,theou);
             console.log('filter_url: '+ccurl);
             daterange = [];
