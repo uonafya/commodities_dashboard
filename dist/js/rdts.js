@@ -171,7 +171,6 @@ function fetchRDTs(rdturl,orgu,peri)
                     //$('#rdt_table').DataTable();                                                          
                     $('#rdt_table').DataTable({
                         dom: 'Bfrtip',
-                        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                         buttons: [
                             'copy', 'csv', 'excel', 'pdf', 'print'
                         ],
@@ -180,7 +179,8 @@ function fetchRDTs(rdturl,orgu,peri)
                             $(this.api().column(3).nodes()).css({ "background-color": "white" });
                             $(this.api().column(4).nodes()).css({ "background-color": "white" });
                             $(this.api().column(5).nodes()).css({ "background-color": "white" });
-                        }
+                        },
+                        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
                     });
 
                     

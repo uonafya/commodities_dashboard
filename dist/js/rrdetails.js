@@ -69,8 +69,9 @@ function fetchRRDetails(rdurl,ounit)
                 $.ajax({      
                     dataType: "json",
                     url: url,
-                    success: function(datax) {          
-                        $("#t_title").html(datax['name']);
+                    success: function(datax) {      
+                        console.log("jina ni: "+datax['name']);
+                        $("#t_title").html(datax['name']+'.');
                     }
                 });    
             // END title fill
@@ -184,7 +185,8 @@ function fetchSubRRDetails(scrdurl,ounit)
                     dataType: "json",
                     url: url,
                     success: function(datax) {          
-                        $("#t_title").html(datax['name']);
+                        console.log("jina ni: "+datax['name']);
+                        $("#t_title").html(datax['name']+'.');
                     }
                 });    
             // END title fill
