@@ -70,7 +70,7 @@ function fetchRRDetails(rdurl,ounit)
                     dataType: "json",
                     url: url,
                     success: function(datax) {          
-                        $("t_title").html(datax['name']);
+                        $("#t_title").html(datax['name']);
                     }
                 });    
             // END title fill
@@ -184,7 +184,7 @@ function fetchSubRRDetails(scrdurl,ounit)
                     dataType: "json",
                     url: url,
                     success: function(datax) {          
-                        $("t_title").html(datax['name']);
+                        $("#t_title").html(datax['name']);
                     }
                 });    
             // END title fill
