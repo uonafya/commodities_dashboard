@@ -70,8 +70,7 @@ function fetchRRDetails(rdurl,ounit)
                     dataType: "json",
                     url: url,
                     success: function(datax) {      
-                        console.log("jina ni: "+datax['name']);
-                        $("#t_title").html(datax['name']+'.');
+                        $("#ttitle").html(datax['name']+'.');
                     }
                 });    
             // END title fill
@@ -185,8 +184,7 @@ function fetchSubRRDetails(scrdurl,ounit)
                     dataType: "json",
                     url: url,
                     success: function(datax) {          
-                        console.log("jina ni: "+datax['name']);
-                        $("#t_title").html(datax['name']+'.');
+                        $("#ttitle").html(datax['name']+'.');
                     }
                 });    
             // END title fill
