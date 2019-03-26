@@ -175,7 +175,7 @@ function checkOUs(ouid){
                         dom: 'Blfrtip',
                         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                         buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print'
+                            'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
                         ],
                         initComplete: function () {
                             $(this.api().column(1).nodes()).css({ "background-color": "white" });
