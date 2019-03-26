@@ -252,7 +252,7 @@ $.ajax({
         });
         console.log("reported: "+reported);
         $.each(json_data.metaData.dimensions.pe,(index,period)=>{
-            expected_t = ;
+            expected_t = 0;
             $.each(json_data.rows,(i_index,one_row)=>{
 
                 console.log("One row == "+one_row);
