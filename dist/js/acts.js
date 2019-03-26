@@ -174,7 +174,7 @@ function fetchACTs(acturl,orgu,peri)
             $("table.actsbox tbody").append(tableData);	
             //$('#acts_table').DataTable();                                                          
             $('#acts_table').DataTable({
-                // dom: 'Bfrtip',
+                dom: 'Bfrtip',
                 "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
