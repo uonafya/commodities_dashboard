@@ -252,10 +252,9 @@ $.ajax({
         });
         console.log("reported: "+reported);
         $.each(json_data.metaData.dimensions.pe,(index,period)=>{
-            expected_t = 0;
-            $.each(json_data.rows,(i_index,onerow)=>{
-                // if (period === onerow[1] && onerow[0] === "JPaviRmSsJW.EXPECTED_REPORTS"){
-                if (period === '201803' && onerow[0] === "JPaviRmSsJW.EXPECTED_REPORTS"){
+            expected_t = 4;
+            $.each(json_data.rows,(i_index,one_row)=>{
+                if (period === one_row[1] && one_row[0] === "JPaviRmSsJW.EXPECTED_REPORTS"){
                     expected_t = expected_t + 1;
                 }
             });
