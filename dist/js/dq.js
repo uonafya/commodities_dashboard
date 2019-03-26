@@ -245,7 +245,7 @@ $.ajax({
             let total = 0;
             // Prints out the periods in the row key
             $.each(json_data.rows,(i_index,onerow)=>{
-                if (period === onerow[1] && i_value[0] === 'zB1NW37bi46'){
+                if (period === onerow[1] && onerow[0] === 'zB1NW37bi46'){
                     total = total+ 1;
                 }
             });
