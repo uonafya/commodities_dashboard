@@ -10,88 +10,19 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>Malaria Commodities Dashboard</title>
-    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../dist/js/mflcode.js" rel="preload" as="script"></script>
+    <title>County All Malaria Commodities | Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
-    <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="../../dist/css/style.min.css" rel="stylesheet"><link href="../../dist/css/custom.css" rel="stylesheet">
-    <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../dist/css/custom.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
-	
-<!-- <script src="../../assets/libs/jquery/dist/jquery.min.js"></script> -->
 
-                        <style>
-/*
-.chart rect {
-  fill: steelblue;
-}
-*/
-.chart .legend {
-  fill: black;
-  font: 14px sans-serif;
-  text-anchor: start;
-  font-size: 12px;
-}
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
-}
-.chart .label {
-  fill: black;
-  font: 14px sans-serif;
-  text-anchor: end;
-}
-.bar:hover {
-  fill: brown;
-}
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-</style>
-<style>
-#container {
-  min-width: 310px;
-  max-width: 800px;
-  height: 400px;
-  margin: 0 auto
-}
-</style>
-
-<style>
-.highcharts-credits{
-display: none !important;
-width: 0px !important;
-height: 0px !important;
-visibility: hidden !important;
-opacity: 0 !important;
-color: transparent;}
-</style>
-
-<style>
-.highcharts-button-symbol{
-display: none !important;
-width: 0px !important;
-height: 0px !important;
-visibility: hidden !important;
-opacity: 0 !important;
-color: transparent;}
-</style>
- 
- 
-
+<![endif]-->
 </head>
 
 <body>
@@ -150,7 +81,6 @@ color: transparent;}
                     <!-- Toggle which is visible on mobile only -->
                     <!-- ============================================================== -->
                     <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
-                    
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -161,7 +91,6 @@ color: transparent;}
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left mr-auto">
                         <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-                        <li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" style="color: #fff; font-size: 21px;" href="#">Data Quality: Concordance</a></li>
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
@@ -189,7 +118,7 @@ color: transparent;}
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right">
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
@@ -301,8 +230,8 @@ color: transparent;}
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                        <!-- County -->
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                            <!-- County -->
                             <li class="sidebar-item">
                                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">County </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
@@ -349,19 +278,19 @@ color: transparent;}
                                 </ul>
                             </li>
                             <!-- end County -->
-                            
-                            <!-- National -->
-                            <li class="sidebar-item"> 
-                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
-                                </ul>
-                            </li>
-                            <!-- end National -->
-					</ul>
+
+<!-- National -->
+<li class="sidebar-item"> 
+	<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+	<ul aria-expanded="false" class="collapse  first-level">
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+	</ul>
+</li>
+<!-- end National -->
+                        </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -382,39 +311,31 @@ color: transparent;}
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                <span id="thetitle"></span>
+                                County All Malaria Commodities
                             </h4>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-11 col-sm-11 col-xs-12">
                                     <div class="row">
-                                        <div class="col-md-2 col-sm-2 col-xs-12">
-                                            <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">  
-                                                <option selected="true" disabled="">Select County</option><option value="vvOK1BxTbet">Baringo County</option><option value="HMNARUV2CW4">Bomet County</option><option value="KGHhQ5GLd4k">Bungoma County</option><option value="Tvf1zgVZ0K4">Busia County</option><option value="MqnLxQBigG0">Elgeyo-Marakwet County</option><option value="PFu8alU2KWG">Embu County</option><option value="uyOrcHZBpW0">Garissa County</option><option value="nK0A12Q7MvS">Homa Bay County</option><option value="bzOfj0iwfDH">Isiolo County</option><option value="Hsk1YV8kHkT">Kajiado County</option><option value="BjC1xL40gHo">Kakamega County</option><option value="ihZsJ8alvtb">Kericho County</option><option value="qKzosKQPl6G">Kiambu County</option><option value="nrI2khZx3d0">Kilifi County</option><option value="Ulj33KBau7V">Kirinyaga County</option><option value="sPkRcDvhGWA">Kisii County</option><option value="tAbBVBbueqD">Kisumu County</option><option value="j8o6iO4Njsi">Kitui County</option><option value="N7YETT3A9r1">Kwale County</option><option value="xuFdFy6t9AH">Laikipia County</option><option value="NjWSbQTwys4">Lamu County</option><option value="yhCUgGcCcOo">Machakos County</option><option value="BoDytkJQ4Qi">Makueni County</option><option value="R6f9znhg37c">Mandera County</option><option value="Eey8fT4Im3y">Marsabit County</option><option value="Y52XNJ50hYb">Meru County</option><option value="fVra3Pwta0Q">Migori County</option><option value="wsBsC6gjHvn">Mombasa County</option><option value="ahwTMNAJvrL">Muranga County</option><option value="jkG3zaihdSs">Nairobi County</option><option value="ob6SxuRcqU4">Nakuru County</option><option value="t0J75eHKxz5">Nandi County</option><option value="kqJ83J2D72s">Narok County</option><option value="uepLTG8wGWJ">Nyamira County</option><option value="mYZacFNIB3h">Nyandarua County</option><option value="ptWVfaCIdVx">Nyeri County</option><option value="o36zCRjSd4G">Samburu County</option><option value="u4t9H8XyU9P">Siaya County</option><option value="QyGNX2DpR4h">Taita Taveta County</option><option value="JsH2bnvNt2d">Tana River County</option><option value="T4urHM47nlm">Tharaka Nithi County</option><option value="mThvosEflAU">Trans-Nzoia County</option><option value="kphDeKClFch">Turkana County</option><option value="pZqQRRW7PHP">Uasin Gishu County</option><option value="sANMZ3lpqGs">Vihiga County</option><option value="CeLsrJOH0g9">Wajir County</option><option value="XWALbfAPa6n">West Pokot County</option>                                              
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                             </select>
                                         </div>										
-                                        <div class="col-md-2 col-sm-2 col-xs-12">
-                                            <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">   
-                                                <option selected="true" disabled="">Select Sub County</option><option value="jkQZEow83MX">Bumula Sub County</option><option value="NZphHeczehh">Cheptais Sub County</option><option value="k1mze33jOs0">Kabuchai Sub County</option><option value="CUjthlounWV">Kanduyi Sub County</option><option value="AphsS3lJwKU">Kimilili Sub County</option><option value="ZCYATXdLsL1">Mt Elgon Sub County</option><option value="whWfFA9D7td">Sirisia Sub County</option><option value="orUwYD52An3">Tongaren Sub County</option><option value="f4AOiG8fYtn">Webuye  East Sub County</option><option value="aqYhbqKclsI">Webuye West Sub County</option>                                             
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commodity"> 
-                                            </select>
+                                            <select class="form-control m-r-5" id="facility-dropdown" placeholder="Select Facility" name="facility">                                                
+                                            </select> 
                                         </div> 
-                                        <div class="col-md-2 col-sm-2 col-xs-12">
-                                            <input type="text" placeholder="Period from" class="form-control" id="period-dropdown" /> 
-                                        </div> 
-                                        <div class="col-md-2 col-sm-2 col-xs-12">
-                                            <input type="text" placeholder="Period to" disabled class="form-control" id="period-dropdownTo"/> 
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
                                         </div> 
                                     </div>
-                                </div>
-                                <!-- <div class="col-md-1 col-sm-1 col-xs-12">
-                                    <input type="submit" value="Go" class="btn btn-info"/>
-                                </div> -->
+                                </div>                                
                             </div>
                             
                         </div>
@@ -431,91 +352,44 @@ color: transparent;}
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+               
+                        <div class="card">
+                            <div class="card-body">
+								<h5 class="card-title ttitle sohtitle"></h5>
+                                <div class="sp_status row"></div>
+                                <div class="row">
+                                    <div class="loader-sp">
+                                        <div class="loader loader--style3" title="2">
+                                            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                <animateTransform attributeType="xml"
+                                                attributeName="transform"
+                                                type="rotate"
+                                                from="0 25 25"
+                                                to="360 25 25"
+                                                dur="0.6s"
+                                                repeatCount="indefinite"/>
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row spdata">
+                                    <div class="table-responsive">
+                                        <table id="sp_table" class="table table-condensed slimtable table-bordered spbox hidden">
+                                        <thead>
+											<tr>
+                                                <th><b>Description</b></th>
+                                                <th><b>Unit of Measure</b></th>
+                                                <th><b>Adjusted AMC</b></th>
+                                                <th><b>Latest SOH</b></th>
+												<th><b>Months of Stock (MOS)</b></th>
+                                            </tr>                                              
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
 
-                
-                <div role="tabpanel">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active">
-                            <a href="#overview" class="active" aria-controls="overview" role="tab" data-toggle="tab">Overview</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a>
-                        </li>
-                    </ul>
-                
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="overview">
-                            <!-- Chart-1 -->
-                            <div class="row">
-                                <div class="col-md-12 m-t-10">
-                                    <div class="pieone_state col-md-12"></div>                              
-                                    <div class="col-md-12 p-10">
-                                        <div class="loader-sp pieone">
-                                            <div class="loader loader--style3" title="2">
-                                                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                    width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-                                                    <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-                                                    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <div id="pc1" style="min-width: 75%; max-width: 100vw; height: 500px; margin: 0 auto"></div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <br>
-                                            <h5 class="pc1">Opening Balance <span style="color: green">==</span> Closing Balance: <br/> <span class="text-center fa-2x text-bold equalCount"></span></h5>
-                                            <br>
-                                            <h5 class="pc1">Opening Balance <span style="color: red">≠≠</span> Closing Balance <br/> <span class="text-center fa-2x text-bold notEqualCount"></span></h5>
-                                            <br>
-                                            <h5 class="pc1">Total Facilities <br/> <span class="text-center fa-2x text-bold totFacil"></span></h5>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="details">
-                            <div class="row">
-                                <div class="pieone_state col-md-12"></div>
-                            </div>
-                            <div class="row detailsrow">
-                                <div class="col-md-12" style="padding-top: 10px;">
-                                    <h5 id="detailTitle"></h5>
-                                    <hr/>
-                                </div>                           
-                                <div class="col-md-6">
-                                    <div class="col-md-12 bcwhite br3 p-5">
-                                        <h4><u>Opening Balance <span class="text-bold" style="color: green">==</span> Closing Balance (<span id="equalCount"></span>)</u></h4>
-                                        <table class="table table-striped table-hover table-condensed slimtable" id="equalSOH">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Code</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-12 bcwhite br3 p-5">
-                                        <h4><u>Opening Balance <span class="text-bold" style="color: red">≠≠</span> Closing Balance (<span id="notEqualCount"></span>)</u></h4>
-                                        <table class="table table-striped table-hover table-condensed slimtable" id="notEqualSOH">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Code</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -523,17 +397,31 @@ color: transparent;}
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                
-                </div>  
-            </div>
-        <footer class="footer text-center">
-            All Rights Reserved by UoN HealthIT- Admin. Designed and Developed by <a href="">UoN HealthIT</a>.
-        </footer>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                All Rights Reserved. Malaria Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
     </div>
-</div>
-   
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
@@ -545,30 +433,11 @@ color: transparent;}
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
-    <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
-    
-
+    <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-
-
-    <!-- this page js -->
-    <script src="../../assets/libs/chart/matrix.interface.js"></script>
-    <script src="../../assets/libs/chart/excanvas.min.js"></script>
-    <script src="../../assets/libs/flot/jquery.flot.js"></script>
-    <script src="../../assets/libs/flot/jquery.flot.pie.js"></script>
-    <script src="../../assets/libs/flot/jquery.flot.time.js"></script>
-    <script src="../../assets/libs/flot/jquery.flot.stack.js"></script>
-    <script src="../../assets/libs/flot/jquery.flot.crosshair.js"></script>
-    <script src="../../assets/libs/chart/jquery.peity.min.js"></script>
-    <script src="../../assets/libs/chart/matrix.charts.js"></script>
-    <script src="../../assets/libs/chart/jquery.flot.pie.min.js"></script>
-    <script src="../../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="../../assets/libs/chart/turning-series.js"></script>
-    <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
-
-    
+    	
 	<!-- *********** MonthPicker ************** -->
     <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
     <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
@@ -576,115 +445,60 @@ color: transparent;}
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
-        var daterange = [];
         $('#period-dropdown').MonthPicker({ 
             Button: false,
-            Disabled: false,
-            // MinMonth: '-1y',
+            MinMonth: '-1y',
             MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
                 datePicked(sDate);
-                
             }
-        });
-
-        $('#period-dropdownTo').MonthPicker({
-            Button: false,
-            Disabled: false,
-            // MinMonth: '-1y',
-            MaxMonth: -1,
-            MinYear: 0,
-            MaxYear: 0,
-            OnAfterChooseMonth: function() {  
-                var sDate = $(this).val();
-                datePickedTo(sDate);
-            }
-        });
+        });        
     </script>
     <!-- *********** end MonthPicker ************** -->
-	
+		
 	<script>
 		$(document).ready(function() 
 		{
 			var dropdown = $('#county-dropdown');
 			
 			var subcounty = $('#subcounty-dropdown');
-			var commoditypicker = $('#commodity-picker');
+			
+            var facility = $('#facility-dropdown');
 			
 			var perioddwn = $('#period-dropdown');
-            var perioddwnTo = $('#period-dropdownTo');
-            perioddwnTo.attr('disabled', true);
-            perioddwn.val(null);
-            perioddwnTo.val(null);
-			// var commdwn = $('#commodity-dropdown');
 
 			dropdown.empty();
 			subcounty.empty();
 			perioddwn.empty();
-			// commdwn.empty();
+			facility.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
 			dropdown.prop('selectedIndex', 0);
+			
+			facility.append('<option selected="true" disabled>Select Facility</option>');
+			facility.prop('selectedIndex', 0);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 			subcounty.prop('selectedIndex', 0);
 			
 			perioddwn.append('<option selected="true" disabled>Select Period</option>');
 			perioddwn.prop('selectedIndex', 0);
-            
-            // commdwn.append('<option selected="true" disabled>Select Commodity</option>');
-			// commdwn.prop('selectedIndex', 0);
 
+			//const url = 'https://api.myjson.com/bins/7xq2x';
 
-
-			//populate dropdown with list of commodities
-			$.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) 
-			{
-                var commarr = data.metaData.dimensions.dx;
-				commoditypicker.empty();
-                var comm_id_arr = [];
-                commoditypicker.append('<option selected value="">Select Commodity</option>');
-                $.each(commarr, function(indx, comm_id_long){
-                    var comm_id = comm_id_long.split('.')[0];
-                    comm_id_arr.push(comm_id);
-                    // console.log("comm_id:  "+comm_id);
-                });
-                
-                var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
-                $.each(commodity_id_arrays_clean, function (index, commodity_id) {
-                    $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data) 
-                    {
-                    var commodity_name = data.displayName; 
-                    var commodity_id = data.id;
-                    commoditypicker.append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
-                    });
-                });		 
-            });
-
-            //populate dropdown with list of counties
+			//populate dropdown with list of counties
 			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
-			// $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
 				{						
 					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
 				})		 
-            });
-            
-            // $.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;tAbBVBbueqD&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) 
-            // {			
-            //     $.each(data.metaData.dimensions.dx, function (key, entry) 
-            //     {				
-            //         commdown.append($('<option></option>').attr('value', entry).text(data.metaData.items[entry].name));
-            //     });	
-                        
-            // });
+			});
 			
-            $('#commodity-picker').append('<option selected="true" disabled>Select commodity</option>');
 			$("#county-dropdown").change(function() 
 			{  
 				subcounty.empty();
@@ -694,7 +508,6 @@ color: transparent;}
 				
 				// Populate dropdown with list of sub counties
 				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
-				// $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -705,129 +518,236 @@ color: transparent;}
 					})		 
 				});		
 			});
+			
+			$("#subcounty-dropdown").change(function() 
+			{  
+				$('#facility-dropdown').empty();
+				var subcountyid = $(this).val();
+				facility.append('<option selected="true" disabled>Select Facility</option>');
+				facility.prop('selectedIndex', 0);
+
+				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits/'+subcountyid+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true', function (data) {
+                    console.log("Facilities-data ==> "+JSON.stringify(data));
+					$.each(data.organisationUnits, function (key, entry) {				
+						//if(entry.parent.id==subcountyid){
+							$('#facility-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+						//}				
+					})
+				});
+			});
 		});
 	</script>
+			
+	<script>
+	$(document).ready(function() 
+	{
+            var ounit = 'HfVjCurKxh2'; //Kenya
+            var period = 'LAST_MONTH'; //Last month
+
+            //var url = 'pmi.json';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+            fetchSOHCompa(url,ounit);
+            $("#county-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+                fetchSOHCompa(url,ounit);
+                
+            });
+
+            $("#subcounty-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+                fetchSOHCompa(url,ounit);
+                
+            });
+
+            $("#facility-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+                fetchSOHCompa(url,ounit);
+                
+            });
+					
+	});
 	
 	
-	
-    <script src="../../code/highcharts.js"></script>
-    <script src="../../code/modules/series-label.js"></script>
-    <script src="../../code/modules/exporting.js"></script>
-    <script src="../../code/modules/export-data.js"></script>
-    <script src="../../dist/js/dq.js"></script>
-    <script src="../../assets/extra-libs/highcharts/dq-highcharts.js"></script>
- 
-    <script type="text/javascript">
-
-        var theou = 'tAbBVBbueqD';
-        var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;qKzosKQPl6G&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-        // var ccurl = 'http://localhost/pmi/json/concordance1.json'
-        var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-        getConco(ccurl,commodity);
-
-
-
-        $("#county-dropdown").change(function() 
-            {  
-                var theou = $(this).val();
-                var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-                var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-                getConco(ccurl,commodity);
-            }
-        );
-
-        $("#subcounty-dropdown").change(function() 
-            {  
-                var theou = $(this).val();
-                var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-                var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-                getConco(ccurl,commodity);
-            }
-        );
-
-        $("#commodity-picker").change(function() 
-            {  
-                commodity = $(this).val();
-                var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-                // var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:'+thecomm+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-                getConco(ccurl,commodity);
-            }
-        );
-
         //change of period		
         function datePicked(sDate)
         {
             var dateparts = sDate.split('/', 2);
             var therdate = dateparts[1]+''+dateparts[0];
+            var ounit = $("#county-dropdown").val();
+            var subcountyou = $("#subcounty-dropdown").val();
             var period = therdate;
-            daterange.push(period);
             
-            //
-                $('#period-dropdownTo').removeAttr('disabled');
-                $('#period-dropdownTo').trigger('click');
-            //
-            // var theou = 'tAbBVBbueqD';
-            // var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            // var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-            // getConco(ccurl,commodity);
+            if(subcountyou!=null)
+            {
+                var ounit = subcountyou;
+            }
+            
+            //var url = 'pmi.json';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+            fetchSOHCompa(url,ounit);
         }
-
-        //change of period to
-        function datePickedTo(sDate)
+        
+        //function toprocess the SP url
+        function fetchSOHCompa(spurl,ounit)
         {
-            var dateparts = sDate.split('/', 2);
-            var therdate = dateparts[1]+''+dateparts[0];
-            var period = therdate;
-            daterange.push(period);
-            filtByPeriod(daterange);
-        }
+            // $.getJSON(spurl, function (data){
+            $.ajax({
+                type: 'GET',
+                crossDomain: true,
+                url: spurl,                    
+                success: function (data) {
+                    
+                var tableData = '';
+                  
+            var dxidsadjc = [];            
+            var dxidshfs = [];
 
-        function filtByPeriod(drange){
-            var date_range_string = '';
-            var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
-            var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
-            var full_dates_arr = dateRange(startDate, endDate);
-            $.each(full_dates_arr, function (indexs, onedate) {
-                var adate = onedate.split('-');
-                date_range_string += adate[0]+adate[1]+';';
-            })
-            if($('#subcounty-dropdown').val() != null){
-                var theou = $('#subcounty-dropdown').val();
-            } else if($('#county-dropdown').val() != null){
-                var theou = $('#county-dropdown').val();
-            } else{
-                var theou = 'tAbBVBbueqD';
-            }
-            var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID';
-            console.log('filter_url: '+ccurl);
-            var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-            getConco(ccurl,commodity);
-            daterange = [];
-            $('#period-dropdown').val(null);
-            $('#period-dropdownTo').val(null);
-        }
-
-        function dateRange(startDate, endDate) {
-            var start      = startDate.split('-');
-            var end        = endDate.split('-');
-            var startYear  = parseInt(start[0]);
-            var endYear    = parseInt(end[0]);
-            var dates      = [];
-
-            for(var i = startYear; i <= endYear; i++) {
-                var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
-                var startMon = i === startYear ? parseInt(start[1])-1 : 0;
-                for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
-                var month = j+1;
-                var displayMonth = month < 10 ? '0'+month : month;
-                dates.push([i, displayMonth, '01'].join('-'));
+            var count =0;
+            //var counter2=7;
+            //products to be displayed
+            var products=["Artemether-Lumefantrine 20/120 Tabs 6s", "Artemether-Lumefantrine 20/120 Tabs 12s",
+             "Artemether-Lumefantrine 20/120 Tabs 18s", "Artemether-Lumefantrine 20/120 Tabs 24s", 
+             "Artesunate Injection", "Sulphadoxine Pyrimethamine Tabs", "Rapid Diagnostic Tests"]
+            
+            //doses for each product
+            var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"] ;
+			
+			//apply the title
+            var theperiod = data.metaData.dimensions.pe[0];
+            			            
+            var curpe = data.metaData.items[theperiod].name;
+            
+            getOrgUnit(ounit, curpe);
+			//end apply title
+                    
+            //get dimensions of products
+            $.each(data.metaData.dimensions.dx, function (dxkey, dxentry, ) 
+            {
+                //id for Adjusted AMC
+                if(count<=6)
+                {
+                    dxidsadjc.push(dxentry);
+                 
+                }				
+                
+                //id for hfs
+                if(count>6 && count<=13)
+                {
+                    dxidshfs.push(dxentry);
                 }
-            }
-            return dates;
-        }
+                
+                count++;
+            })
+                    //console.log(dxidsadjc)
+                var adjcvalues = [];
+                
+                var hfsvalues = [];
+                    
+                
+                //get Adjusted values
+                $.each(dxidsadjc, function (rowkey, rowentry) 
+                {   
+                    $.each(data.rows, function (rowkey1, rowentry2)
+                    {    
+                        if(rowentry==rowentry2[0])
+                        {   
+                           adjcvalues.push(rowentry2[3]);
+                        } 
+                    })                         
+                 })
+                
+                                    
+                    
+               //get hfs values
+               $.each(dxidshfs, function (rowkey, rowentry) 
+                {
+                     
+                    $.each(data.rows, function (rowkey1, rowentry2)
+                    {                      
+                        if(rowentry==rowentry2[0])
+                        {   
+                           hfsvalues.push(rowentry2[3]);
+                        }
+                    })
+                 })
+                    //output each row to table
+                  for(var i=0;i<products.length;i++)
+				  {				
+						
+						if(typeof hfsvalues[i]=='undefined')
+							hfsvalues[i] = 0;
 
-    </script>
+						if(typeof adjcvalues[i]=='undefined')
+							adjcvalues[i] = 0;
+						
+						var hfsmos=(hfsvalues[i])/(adjcvalues[i]);
+						
+						console.log(hfsmos);
+						if(isNaN(hfsmos))
+						{
+							hfsmos = 0;
+						}
+
+						//var totalmos=(total)/(adjcvalues[i]);
+                      
+						tableData += '<tr>';
+
+						tableData += '<td>'+ products[i] +'</td>';     
+						tableData += '<td>'+dxuom[i]+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(Math.trunc(adjcvalues[i]).toLocaleString())+'</td>';
+						//tableData += '<td class="text-right">'+formatNumber(Math.trunc(kemsavalues[i]).toLocaleString())+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(Math.trunc(hfsvalues[i]).toLocaleString())+'</td>';
+						//tableData += '<td class="text-right">'+formatNumber(Math.trunc(total).toLocaleString())+'</td>';
+						//tableData += '<td class="text-right">'+formatNumber(kemsamos.toFixed(1))+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(hfsmos.toFixed(1))+'</td>';
+						//tableData += '<td class="text-right">'+formatNumber(totalmos.toFixed(1))+'</td>';
+                                 
+						tableData += '</tr>';
+                  }
+          
+                    $('#sp_table').removeClass('hidden');
+                    $('.spdata').removeClass('hidden');
+                    $('.loader-sp').addClass('hidden');
+                    $('.loader-sp').css('display','none');
+                    
+                    $('#sp_table').DataTable().destroy();
+                    $("table.spbox tbody").empty();
+                    $("table.spbox tbody").append(tableData);	
+                    //$('#sp_table').DataTable();                                                          
+             },
+                error: function (request, status, error) {
+                    $('.loader-sp').addClass('hidden');
+                    $('#sp_table').addClass('hidden');
+                    console.log('SP: error fetching json. :- '+error);
+                    $('spdata').addClass('hidden');
+                    $('.sp_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                }
+            });
+    }
 	
+	//display the label
+	//GET THE org unit name
+	function getOrgUnit(uid, period)
+	{
+		var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+uid+'.json?fields=id,name';
+		
+		$.ajax({      
+		  dataType: "json",
+		  url: url, //Relative or absolute path to response.php file      
+		  success: function(data) 
+		  {          
+			  $("h5.sohtitle").html(data['name']+' - '+period);
+		  }
+		});    
+	}
+</script>
+
 </body>
 
 </html>

@@ -146,7 +146,7 @@ function checkOUs(ouid){
                                                                     if(dxval>6)
                                                                             bgcolor = '#85bfe0'
 
-                                                                    tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
+                                                                    tableData += '<td class="text-right" bgcolor="'+bgcolor+'">'+formatNumber(dxval)+'</td>';
                                                             }						
                                                     }						
                                             })				
@@ -159,7 +159,7 @@ function checkOUs(ouid){
                         }
                     })
 
-                    $('#thetitle').html('SP stock status <br/> in '+facility_count+' facilities');
+                    $('#thetitle').html('SP <br/> in '+facility_count+' facilities');
                     //tableData += '<table>';	
                     //console.log(tableData)
                     $('#sp_table').removeClass('hidden');

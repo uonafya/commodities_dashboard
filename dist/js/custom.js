@@ -55,21 +55,21 @@ $(function() {
     //tooltip
     // ============================================================== 
     $(function() {
-        $('[data-toggle="tooltip"]').tooltip()
+        // $('[data-toggle="tooltip"]').tooltip()
     })
     // ============================================================== 
     //Popover
     // ============================================================== 
     $(function() {
-        $('[data-toggle="popover"]').popover()
+        // $('[data-toggle="popover"]').popover()
     })
 
     // ============================================================== 
     // Perfact scrollbar
     // ============================================================== 
-    $('.message-center, .customizer-body, .scrollable').perfectScrollbar({
-        wheelPropagation: !0
-    });
+    // $('.message-center, .customizer-body, .scrollable').perfectScrollbar({
+    //     wheelPropagation: !0
+    // });
 
     /*var ps = new PerfectScrollbar('.message-body');
     var ps = new PerfectScrollbar('.notifications');
@@ -156,5 +156,10 @@ function addTableExportoptions(tableid) {
 }
 //get my ou
 console.log("my_ou_0 is: "+getMyOU());
+
+function formatNumber(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 
 //---------------------------end custom---------------------------//

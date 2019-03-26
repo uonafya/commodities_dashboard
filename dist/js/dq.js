@@ -1,57 +1,6 @@
-// fetch mfl codes
-
-var mfl_codes_array = [];
-mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,code&paging=false';
-// mfl_url = 'http://localhost/pmi/json/mflcode.json';
-getMFLarray(mfl_url);
-
-function getMFLarray(mfl_url) {
-    $.getJSON(mfl_url, function (data) 
-    {
-        mfl_codes_array = data.organisationUnits;
-        // console.log('mfl_codes_array: '+mfl_codes_array);
-    });
-}
-
-//---------- fetch mfl codes
-
-
-
-// filter by mfl codes
-function getMFLcode(dhis_id) {
-    if(mfl_codes_array == null){
-        getMFLarray(mfl_url);
-    }
-        var ous = mfl_codes_array;
-        var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
-            return v.id === dhis_id;
-        });
-		if(arr_filterd_by_dhis_code.length > 0)
-		{
-			var mfl_id = arr_filterd_by_dhis_code[0].code;
-		}
-		else
-		{
-			var mfl_id = '';
-		}
-
-        // if(arr_filterd_by_dhis_code === undefined || arr_filterd_by_dhis_code[0] === undefined){  
-        if(arr_filterd_by_dhis_code[0] === undefined){  
-            var mfl_id = 'Not Available';
-        }
-        
-        // console.log('mfl_id: '+arr_filterd_by_dhis_code);
-        return mfl_id;
-    
-}
-console.log("testMFL:  "+getMFLcode('BeyRouwSiVk'));
-// filter by mfl codes
-
-
-
 function getConco(ccurl,commodity){
 $('.loader-sp.pieone').removeClass('hidden');
-$('#pc1').addClass('hidden');
+$('#pc1, .pc1').addClass('hidden');
 $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -107,7 +56,7 @@ $.ajax({
                     var ou_fil_to = filterItems(ou_filtered,filt_to);
                     // alert("commodity is: "+commodity.split('.')[0]);
                     var commo_s = commodity.split('.')[0];
-                    $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
+                    $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u>');
                     $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
                     // console.log('TITLE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
                     // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commo_s) + '</u>');
@@ -159,8 +108,14 @@ $.ajax({
                 ]
             });
         // });
-        $('#equalCount').html(compliant_facilities_codes.length);
-        $('#notEqualCount').html(non_compliant_facilities_codes.length);
+        $(document).ready(function () {
+            var total_facils = parseFloat(compliant_facilities_codes.length) + parseFloat(non_compliant_facilities_codes.length);
+            var tot_eq_perc = (parseFloat(compliant_facilities_codes.length)*100)/total_facils;
+            var tot_neq_perc = (parseFloat(non_compliant_facilities_codes.length)*100)/total_facils;
+            $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_eq_perc.toFixed(1) + '%)</small>');
+            $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_neq_perc.toFixed(1) + '%)</small>');
+            $('.totFacil').html(total_facils);
+        });
 
         var non_compliant_facility_count = facility_count - compliant_facility_count;
         // console.log("total_facilities = "+facility_count);
@@ -168,15 +123,15 @@ $.ajax({
         // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
         var commo_s = commodity.split('.')[0];
         // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
-        pieOne(commodities_array[commo_s].name,compliant_facility_count,non_compliant_facility_count);
+        pieOne('Data Quality: Concordance',commodities_array[commo_s].name,compliant_facility_count,non_compliant_facility_count);
         // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
         $('.loader-sp.pieone').addClass('hidden');
-        $('#pc1').removeClass('hidden');
+        $('#pc1, .pc1').removeClass('hidden');
         $('.detailsrow').removeClass('hidden');
     },
     error: function (request, status, error) {
         $('.loader-sp.pieone').addClass('hidden');
-        $('#pc1').addClass('hidden');
+        $('#pc1, .pc1').addClass('hidden');
         $('.detailsrow').addClass('hidden');
         console.log('DQ: error fetching json. :- '+error);
         $('.pieone_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
@@ -295,20 +250,7 @@ $.ajax({
             });
             reported.push(total);
         });
-        var subtitle = 'DQ: ';
-        var per_from = json_data.metaData.items[json_data.metaData.dimensions.pe[0]].name;
-        var per_to = json_data.metaData.items[json_data.metaData.dimensions.pe[parseFloat(json_data.metaData.dimensions.pe.length)-1]].name;
-        // title fill
-            var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
-            $.ajax({      
-                dataType: "json",
-                url: url,
-                success: function(datax) {          
-                    subtitle += datax['name']+' - From: '+per_from+' To '+per_to;
-                }
-            });    
-        // END title fill
-        console.log("subtitle: "+subtitle);
+        
         let didNotReport = [];
         $.each(reported,(index,value)=>{
             const facilities = total_facilities
@@ -324,7 +266,20 @@ $.ajax({
         wbdataset.push(pearr);
         wbdataset.push(reported);
         wbdataset.push(didNotReport);
-        wbdataset.push(subtitle);
+
+        var per_from = json_data.metaData.items[json_data.metaData.dimensions.pe[0]].name;
+        var per_to = json_data.metaData.items[json_data.metaData.dimensions.pe[parseFloat(json_data.metaData.dimensions.pe.length)-1]].name;
+        // title fill
+            var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
+            $.ajax({      
+                dataType: "json",
+                url: url,
+                success: function(datax) {          
+                    var subtitle = datax['name']+' - From: '+per_from+' To '+per_to;
+                    $('h5.ttitle').html(subtitle);
+                }
+            });    
+        // END title fill
         
         var prdoptn = '<option selected="true" disabled>Select period</option>';
         $.each(json_data.metaData.dimensions.pe,(inx,prd)=>{
@@ -556,7 +511,31 @@ function getConsist(consturl,commd){
             // compliant_facility_count = 10;
             // console.log("non ni:"+non_compliant_facility_count);
             // console.log("ni ni:"+compliant_facility_count);
-            pieThree('Internal Data Consistency (AL 24)',compliant_facility_count,non_compliant_facility_count);
+            
+
+            var commodities_array = {
+                'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
+                'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
+                'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
+                'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
+                'iOARK31NdLp':{name:'Artesunate Injection'},
+                'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
+                'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
+            }
+
+            // commodity name
+                var commodity_name = '';
+                if(commd.includes('.')){
+                    commd = commd.split('.')[0];
+                }
+                commodity_name = commodities_array[commd].name;
+                // $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commd+'.json', function (data){
+                //     commodity_name = data.displayName; 
+                // });
+            // commodity name
+
+
+            pieThree(commodities_array[commd].name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
             $('#pc3').removeClass('hidden');
         },

@@ -5,7 +5,7 @@
     "launch_path": "/html/ltr/landing.html",
     "appType": "APP",
     "icons": {
-        "48": "/assets/images/logo-icon.png"
+        "48": "assets/images/logo-icon.png"
     },
     "developer": {
         "name": "HealthIT",

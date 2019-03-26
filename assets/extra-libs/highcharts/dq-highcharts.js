@@ -1,6 +1,6 @@
             //-------------------1--------------------------
             // Highcharts
-            function pieOne(thename,compliant_facility_count,non_compliant_facility_count){
+            function pieOne(thename,subtitle,compliant_facility_count,non_compliant_facility_count){
                 Highcharts.chart('pc1', {
                     chart: {
                         plotBackgroundColor: null,
@@ -10,6 +10,9 @@
                     },
                     title: {
                         text: thename
+                    },
+                    subtitle: {
+                        text: subtitle
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -85,7 +88,7 @@
 
 
             //-------------------3--------------------------
-            function pieThree(title,disc,nodisc){
+            function pieThree(title,subtitle,disc,nodisc){
                 Highcharts.chart('pc3', {
                     chart: {
                         plotBackgroundColor: null,
@@ -94,6 +97,9 @@
                         type: 'pie'
                     },
                     title: {
+                        text: subtitle
+                    },
+                    subtitle: {
                         text: title
                     },
                     tooltip: {
@@ -248,8 +254,6 @@
                 var perd = wbdataset[0];
                 var reported = wbdataset[1];
                 var didNotReport = wbdataset[2];
-                var subtitle = wbdataset[3];
-                console.log("Completeness Chart data: "+JSON.stringify(wbdataset));
                 Highcharts.chart('wbdata', {
 
                     title: {
@@ -257,7 +261,7 @@
                     },
             
                     subtitle: {
-                        text: subtitle
+                        text: ''
                     },
             
                     yAxis: {

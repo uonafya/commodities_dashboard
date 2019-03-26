@@ -1,4 +1,7 @@
-function getDetails(url,tou) {
+function getKIssues(url,tou) {
+    console.log("getDetails-> URL: "+url+" & TOU: "+tou);
+    $('.nat_loader, .loader-sp, .issues-loader').removeClass('hidden');
+    $('.nat_table').addClass('hidden');
     var tdata = '';
     $.ajax({
         type: "GET",
@@ -9,7 +12,11 @@ function getDetails(url,tou) {
             $('#perdd').html(dateToStr(data.metaData.dimensions.pe[0]));
             orgunits = data.metaData.dimensions.ou;
             var orgu_opts = '';
-            
+            var ttitle = '';
+            ttitle += data.metaData.items[data.metaData.dimensions.ou[0]].name;
+            ttitle += ' - ';
+            ttitle += data.metaData.items[data.metaData.dimensions.pe[0]].name;
+            $('.ttitle').html(ttitle);
             var fac_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
             // var fac_url = 'http://localhost/pmi/json/tAbBVBbueqD.json';
             $.ajax({
@@ -34,6 +41,9 @@ function getDetails(url,tou) {
             $.each(thedxissued, function (index, issdId) {
                 var recvdId = thedxreceived[index];
                 var iss_val = getVal(data.rows, issdId);
+                if(iss_val == undefined){
+                    iss_val = 0;
+                }
                 var recvd_val = getVal(data.rows, recvdId);
                 if(recvd_val == undefined){
                     recvd_val = 0;
@@ -69,12 +79,13 @@ function getDetails(url,tou) {
                 }
 
 
-                tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+iss_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+recvd_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_val+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
+                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
                 
             })
+            $('.nat_loader, .loader-sp, .issues-loader').addClass('hidden');
+            $('.nat_table').removeClass('hidden');
             $('#natnl tbody').empty();
             $('#natnl tbody').append(tdata);
-            $('.issues-loader').addClass('hidden');
             $('.issu_status').addClass('hidden');
             $('#nat-iss').removeClass('hidden');
         },
@@ -90,14 +101,17 @@ function getDetails(url,tou) {
 
 function getNational(nat_url) {
         
+    $('.natsum-loader, .rrdb').removeClass('hidden');
+    $('.natstate').removeClass('hidden');
+    $('#national-container').addClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: nat_url,                    
         success: function (data) {
-        $('.natsum-loader').addClass('hidden');
+        $('.natsum-loader, .rrdb').addClass('hidden');
         $('.natstate').addClass('hidden');
-        $('.national-container').removeClass('hidden');
+        $('#national-container').removeClass('hidden');
 
         var stockVals = new Array();  
 
@@ -113,7 +127,9 @@ function getNational(nat_url) {
                 }									
             })
         })
-        
+        var perio = data.metaData.items[data.metaData.dimensions.pe[0]].name;
+        var orgu = data.metaData.items[data.metaData.dimensions.ou[0]].name;
+        $('.card-title').html('National Summary: '+orgu+' - '+perio);
         console.log(stockVals);
         
         $('#national-container').highcharts({
@@ -148,7 +164,7 @@ function getNational(nat_url) {
 				plotLines: [{
 							color: '#FF0000',
 							width: 2,
-							value: 3,
+							value: 9,
 							label: {
 								text: 'Min',
 								align: 'right'
@@ -157,7 +173,7 @@ function getNational(nat_url) {
 						{
 							color: '#00FF00',
 							width: 2,
-							value: 20,
+							value: 18,
 							label: {
 								text: 'Max',
 								align: 'right'
@@ -206,7 +222,7 @@ function getNational(nat_url) {
         });
         },
         error: function (request, status, error) {
-            $('.natsum-loader').addClass('hidden');
+            $('.natsum-loader, .rrdb').addClass('hidden');
             $('.natstate').removeClass('hidden');
             $("#national-container").addClass('hidden');
             console.log('Error fetching json. :- ERROR: '+error + '& STATUS:'+status);

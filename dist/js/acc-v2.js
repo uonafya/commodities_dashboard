@@ -92,13 +92,25 @@ function fetchAccountability(url,orgun) {
                     closbal_arr.push(closbal[3]);
                     tabl+='<td class="text-right">'+formatNumber(closbal[3])+'</td>';
 
-                    var kiar = getPerc();
-                    var sum_pos = opsoh[3]+posadj[3]+parseFloat(kiar[com_indx]);
-                    console.log("sum_pos: "+sum_pos);
-                    var sum_neg = qtydisp[3]+negadj[3]+closbal[3];
-                    var per_acc_for = parseFloat(sum_neg)*100/parseFloat(sum_pos);
-                    console.log("per_acc_for: "+per_acc_for);
-                    tabl+='<td class="text-right">'+formatNumber(per_acc_for.toFixed(0))+'%</td>';
+                    var kiar = [];
+                    kiar = getPerc();
+                    console.log(kiar);
+                    
+                    var k_is_val = parseFloat(kiar[com_indx]);
+                    if(Number.isNaN(k_is_val)){
+                        k_is_val = 0;
+                    }else{
+                        k_is_val = parseFloat(kiar[com_indx]);
+                    }
+                    
+                    var sum_pos = parseFloat(opsoh[3])+parseFloat(posadj[3])+parseFloat(k_is_val);
+                    // console.log("sum_pos: "+sum_pos);
+                    var sum_neg = parseFloat(qtydisp[3])+parseFloat(negadj[3])+parseFloat(closbal[3]);
+                    // console.log("sum_neg: "+sum_neg);
+                    var per_acc_for = parseFloat(sum_neg)/parseFloat(sum_pos);
+                    per_acc_for = per_acc_for*100;
+                    // console.log("per_acc_for: "+per_acc_for);
+                    tabl+='<td class="text-right">'+per_acc_for.toFixed(1)+'%</td>';
                     pcacc_arr.push(per_acc_for);
 
                     // ----------END data cells----------
@@ -133,7 +145,9 @@ function fetchAccountability(url,orgun) {
                     $("#"+kione_id2).html(kione_value);
                 });
 
+                
                 function getPerc(){
+                    console.log("getPerc() triggered, returning: " + kissue_arr);
                     return kissue_arr;
                 }
                 $('#'+ou+'_totalOpeningSOH').html(sumArr(opsoh_arr));
@@ -142,7 +156,11 @@ function fetchAccountability(url,orgun) {
                 $('#'+ou+'_totalQtyDisp').html(sumArr(qtydisp_arr));
                 $('#'+ou+'_totalNveAdj').html(sumArr(negadj_arr));
                 $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
-                $('#'+ou+'_totalPcAccounted').html(sumArr(pcacc_arr).toFixed(0)+'%');
+
+                var tot_neg = sumArr(closbal_arr) + sumArr(negadj_arr) + sumArr(qtydisp_arr);
+                var tot_pos = sumArr(opsoh_arr) + sumArr(posadj_arr) + sumArr(kissue_arr);
+                var tot_acc = (tot_neg/tot_pos)*100
+                $('#'+ou+'_totalPcAccounted').html(tot_acc.toFixed(1));
 
                 // title fill
                     var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';

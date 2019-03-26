@@ -2,6 +2,8 @@
     function fetchRR(rrurl, onurl){
         $('.rrates.loader-sp').removeClass('hidden');
         $('#rrchart').addClass('hidden');
+        $('.loader-sp.rrates').removeClass('hidden');
+        $('#sc_rrchart').addClass('hidden');
         $('.rrdata').addClass('hidden');
         $.ajax({
             type: 'GET',
@@ -24,11 +26,13 @@
                 });
                 $('.rrates.loader-sp').addClass('hidden');
                 $('#rrchart').removeClass('hidden');
+                $('#sc_rrchart').removeClass('hidden');
                 $('.rrdata').removeClass('hidden');
             },
             error: function (request, status, error) {
                 $('.rrates.loader-sp').addClass('hidden');
                 $('#rrchart').addClass('hidden');
+                $('#sc_rrchart').addClass('hidden');
                 $('.rrdata').addClass('hidden');
                 console.log('RRates: error fetching json. :- '+error);
                 $('.rrstate').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
@@ -209,9 +213,11 @@
                 }
             //////////////////////////////////////////end ontime
 
-
+            $('#rrchart').empty();
+            $('#rrchart #thechart').remove();
+            $('#rrchart').append('<div id="thechart" style="min-width: 100%; max-width: 100vw; height: 500px; margin: 0 auto;"></div>');
             // Highcharts
-            Highcharts.chart('rrchart', {
+            Highcharts.chart('thechart', {
                 chart: {
                     type: 'line'
                 },

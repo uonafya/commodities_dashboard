@@ -148,7 +148,7 @@ function fetchACTs(acturl,orgu,peri)
                                                             if(dxval>6)
                                                                     bgcolor = '#85bfe0'
 
-                                                            tableData += '<td bgcolor="'+bgcolor+'">'+dxval+'</td>';
+                                                            tableData += '<td class="text-right" bgcolor="'+bgcolor+'">'+formatNumber(dxval)+'</td>';
                                                     }						
                                             }						
                                     })				
@@ -161,7 +161,7 @@ function fetchACTs(acturl,orgu,peri)
                 }
             })
 
-            $('#thetitle').html('ACTs stock status <br/> in '+facility_count+' facilities');
+            $('#thetitle').html('ACTs <br/> in '+facility_count+' facilities');
             //tableData += '<table>';	
             //console.log(tableData)
             $('#acts_table').removeClass('hidden');
