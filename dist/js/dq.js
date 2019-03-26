@@ -423,7 +423,7 @@ function wbDetail(json_data, lastperiod){
 
 
 function getConsist(consturl,commd){
-    $('#pc3').addClass('hidden');
+    $('#pc3, .pc3').addClass('hidden');
     $('.loader-sp.piethree').removeClass('hidden');
     $.ajax({
         type: 'GET',
@@ -544,11 +544,11 @@ function getConsist(consturl,commd){
 
             pieThree(commodities_array[commd].name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
-            $('#pc3').removeClass('hidden');
+            $('#pc3, .pc3').removeClass('hidden');
         },
         error: function (request, status, error) {
             $('.loader-sp.piethree').addClass('hidden');
-            $('#pc3').addClass('hidden');
+            $('#pc3, .pc3').addClass('hidden');
             console.log('DQ Consistency: error fetching json. :- '+error);
             $('.piethree_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
