@@ -1,5 +1,5 @@
 //function toprocess the acts url
-function fetchRRDetails(rdurl)
+function fetchRRDetails(rdurl,ounit)
 {
     console.log('rdurl is:-> '+rdurl);
     $('#facility_rr').addClass('hidden');
@@ -20,7 +20,7 @@ function fetchRRDetails(rdurl)
 
             $.each(data.metaData.dimensions.pe, function (pkey, pentry){
                 header += '<th>'+dateToStr(pentry)+'</th>';	
-                console.log("HEAD: "+pentry);		
+                // console.log("HEAD: "+pentry);		
             })
 
             header += '</tr></thead>';
@@ -63,6 +63,17 @@ function fetchRRDetails(rdurl)
             tableData += '</tbody>';
             //footer line
             // tableData += footer;
+
+            // title fill
+                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
+                $.ajax({      
+                    dataType: "json",
+                    url: url,
+                    success: function(datax) {          
+                        $("t_title").html(datax['name']);
+                    }
+                });    
+            // END title fill
                     
             $('.loader-sp').addClass('hidden');
             $("#facility_rr").removeClass('hidden');
@@ -75,7 +86,7 @@ function fetchRRDetails(rdurl)
                 $("#facility_rr").append(tableData);
                 // $("#facility_rr").append('</tbody>');
             }
-            console.log("tableData: "+tableData);
+            // console.log("tableData: "+tableData);
             $('#facility_rr').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
@@ -102,7 +113,7 @@ function fetchRRDetails(rdurl)
 
 
 
-function fetchSubRRDetails(scrdurl)
+function fetchSubRRDetails(scrdurl,ounit)
 {
     $('.loader-sp.sp-sub').removeClass('hidden');
     $("#zero_config-sub.rrdetailsbox-sub").addClass('hidden');
@@ -122,7 +133,7 @@ function fetchSubRRDetails(scrdurl)
             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
             {
                     header += '<th>'+dateToStr(pentry)+'</th>';	
-                    console.log("HEAD: "+pentry);
+                    // console.log("HEAD: "+pentry);
                     		
             })
 
@@ -167,6 +178,16 @@ function fetchSubRRDetails(scrdurl)
 					tableDataSub += '</tr>';	
 				}
             })
+            // title fill
+                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
+                $.ajax({      
+                    dataType: "json",
+                    url: url,
+                    success: function(datax) {          
+                        $("t_title").html(datax['name']);
+                    }
+                });    
+            // END title fill
 
             tableDataSub += '</tbody>';
             //footer line
@@ -184,7 +205,7 @@ function fetchSubRRDetails(scrdurl)
                 $("#subcounty_rr").append(tableDataSub);
                 // $("#subcounty_rr").append('</tbody>');
             }
-            console.log("tableDataSub: "+tableDataSub);
+            // console.log("tableDataSub: "+tableDataSub);
             $('#subcounty_rr').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
