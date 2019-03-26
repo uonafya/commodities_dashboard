@@ -574,7 +574,7 @@
 
             if(countyou == null)
             {
-                countyou = 'HfVjCurKxh2';
+                countyou = 'tAbBVBbueqD';
             }
 
             if(subcountyou != null)
@@ -595,14 +595,23 @@
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/modules/export-data.js"></script>
 	<script type="text/javascript">
-	
+    
+    $('.parameterfilt').addClass('hidden');
+    $('.parameter2filt').addClass('hidden');
+    while($('.parameterfilt').length > 1){
+        $('.parameterfilt').last().remove();
+        $('.parameter2filt').last().remove();
+    }
         // Stock calculations
 	$(document).ready(function() 
 	{
-        var ounit = 'HfVjCurKxh2';
+        $('.parameterfilt').removeClass('hidden');
+        $('.parameter2filt').removeClass('hidden');
+
+        var ounit = 'tAbBVBbueqD';
         var period = 'LAST_MONTH';
         var filtering = false;
-        var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
+        var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;tAbBVBbueqD&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
         // var url = 'http://localhost/pmi/json/indicatorsummary.json';
         fetchIS(url,ounit,period,filtering);
 		//parse the data for mos percentage
@@ -884,7 +893,7 @@ function fetchIS(url,ounit,period,filtering) {
                                     alert('first Load');
                                     this.api().columns(0).every( function () {
                                         var column = this;
-                                        var select = $('<select class="form-control"><option value="">Filter parameter</option></select>')
+                                        var select = $('<select class="form-control parameterfilt"><option value="">Filter parameter</option></select>')
                                             .appendTo( $(column.header()) )
                                             .on( 'change', function () {
                                                 var val = $.fn.dataTable.util.escapeRegex(
@@ -900,7 +909,7 @@ function fetchIS(url,ounit,period,filtering) {
                                     } );
                                     this.api().columns(1).every( function () {
                                         var column = this;
-                                        var select = $('<select class="form-control"><option value="">Filter items</option></select>')
+                                        var select = $('<select class="form-control parameter2filt"><option value="">Filter items</option></select>')
                                             .appendTo( $(column.header()) )
                                             .on( 'change', function () {
                                                 var val = $.fn.dataTable.util.escapeRegex(
