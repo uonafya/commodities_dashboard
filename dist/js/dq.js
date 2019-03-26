@@ -486,8 +486,15 @@ function getConsist(consturl,commd){
             $('#discData tbody').empty();
             $('#discData').append(disctbl);
             
-            $('#discCount').html(disc_facilities_codes.length);
-            $('#noDiscCount').html(nodisc_facilities_codes.length);
+            //
+            var total_facils = parseFloat(compliant_facility_count);
+            var tot_nodisc = (parseFloat(nodisc_facilities_codes.length)*100)/total_facils;
+            var tot_disc = (parseFloat(disc_facilities_codes.length)*100)/total_facils;
+            $('#discCount, .discCount').html(disc_facilities_codes.length + '&nbsp;  <small>(' + tot_disc.toFixed(1) + '%)</small>');
+            $('#noDiscCount, .noDiscCount').html(nodisc_facilities_codes.length + '&nbsp;  <small>(' + tot_nodisc.toFixed(1) + '%)</small>');
+            $('.totFacil').html(total_facils);
+            //
+
             // $(document).ready(function() {
                 $('#noDiscData').DataTable({
                     dom: 'Bfrtip',
