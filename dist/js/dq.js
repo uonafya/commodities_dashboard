@@ -244,7 +244,7 @@ $.ajax({
             let total = 0;
             // Prints out the periods in the row key
             $.each(json_data.rows,(i_index,i_value)=>{
-                if (period === i_value[1]){
+                if (period === i_value[1] && i_value === 'JPaviRmSsJW.EXPECTED_REPORTS'){
                     total = total+ 1;
                 }
             });
@@ -253,7 +253,8 @@ $.ajax({
         
         let didNotReport = [];
         $.each(reported,(index,value)=>{
-            const facilities = total_facilities
+            // const facilities = total_facilities
+            const facilities = total;
             let empty_reports = facilities - value
             didNotReport.push(empty_reports)
         });
