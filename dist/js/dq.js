@@ -260,6 +260,7 @@ $.ajax({
             });
             expected.push(expected_t);
         });
+        console.log("expected: "+expected);
         
         let didNotReport = [];
         $.each(reported,(index,value)=>{
