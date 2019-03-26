@@ -487,7 +487,7 @@ function getConsist(consturl,commd){
             $('#discData').append(disctbl);
             
             //
-            var total_facils = parseFloat(compliant_facility_count);
+            var total_facils = parseFloat(disc_facilities_codes.length) + parseFloat(nodisc_facilities_codes.length);
             var tot_nodisc = (parseFloat(nodisc_facilities_codes.length)*100)/total_facils;
             var tot_disc = (parseFloat(disc_facilities_codes.length)*100)/total_facils;
             $('#discCount, .discCount').html(disc_facilities_codes.length + '&nbsp;  <small>(' + tot_disc.toFixed(1) + '%)</small>');
