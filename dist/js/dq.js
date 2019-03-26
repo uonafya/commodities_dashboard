@@ -240,8 +240,7 @@ $.ajax({
         let reported = [];
         let expected = [];
         // loops though the period
-        $.each(json_data.metaData.dimensions.pe,(index,value)=>{
-            let period = value;
+        $.each(json_data.metaData.dimensions.pe,(index,period)=>{
             let total = 0;
             // Prints out the periods in the row key
             $.each(json_data.rows,(i_index,onerow)=>{
@@ -254,7 +253,7 @@ $.ajax({
         $.each(json_data.metaData.dimensions.pe,(index,value)=>{
             expected_t = 0;
             $.each(json_data.rows,(i_index,i_value)=>{
-                if (period === i_value[1] && i_value[0] === 'JPaviRmSsJW.EXPECTED_REPORTS'){
+                if (value === i_value[1] && i_value[0] === 'JPaviRmSsJW.EXPECTED_REPORTS'){
                     expected_t += 1;
                 }
             });
