@@ -161,7 +161,7 @@ function fetchACTs(acturl,orgu,peri)
                 }
             })
 
-            $('#thetitle').html('ACTs <br/> in '+facility_count+' facilities');
+            $('#thetitle').html('AL <br/> in '+facility_count+' facilities');
             //tableData += '<table>';	
             //console.log(tableData)
             $('#acts_table').removeClass('hidden');
