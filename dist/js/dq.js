@@ -238,23 +238,33 @@ $.ajax({
         const total_facilities= json_data.metaData.dimensions.ou.length;
 
         let reported = [];
+        let expected = [];
         // loops though the period
         $.each(json_data.metaData.dimensions.pe,(index,value)=>{
             let period = value;
             let total = 0;
             // Prints out the periods in the row key
-            $.each(json_data.rows,(i_index,i_value)=>{
-                if (period === i_value[1] && i_value === 'JPaviRmSsJW.EXPECTED_REPORTS'){
+            $.each(json_data.rows,(i_index,onerow)=>{
+                if (period === onerow[1] && i_value[0] === 'zB1NW37bi46'){
                     total = total+ 1;
                 }
             });
             reported.push(total);
         });
+        $.each(json_data.metaData.dimensions.pe,(index,value)=>{
+            expected_t = 0;
+            $.each(json_data.rows,(i_index,i_value)=>{
+                if (period === i_value[1] && i_value[0] === 'JPaviRmSsJW.EXPECTED_REPORTS'){
+                    expected_t += 1;
+                }
+            });
+            expected.push(expected_t);
+        });
         
         let didNotReport = [];
         $.each(reported,(index,value)=>{
             // const facilities = total_facilities
-            const facilities = total;
+            const facilities = expected[index];
             let empty_reports = facilities - value
             didNotReport.push(empty_reports)
         });
