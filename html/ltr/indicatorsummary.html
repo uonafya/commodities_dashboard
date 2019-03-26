@@ -604,7 +604,7 @@
         var filtering = false;
         var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
         // var url = 'http://localhost/pmi/json/indicatorsummary.json';
-        fetchIS(url,ounit,period);
+        fetchIS(url,ounit,period,filtering);
 		//parse the data for mos percentage
         
         
@@ -880,7 +880,7 @@ function fetchIS(url,ounit,period,filtering) {
                             //data-xport
 
                             initComplete: function () {
-                                if(filtering != true){
+                                if(filtering !== true){
                                     this.api().columns(0).every( function () {
                                         var column = this;
                                         var select = $('<select class="form-control"><option value="">Filter parameter</option></select>')
