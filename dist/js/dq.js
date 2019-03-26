@@ -256,7 +256,6 @@ $.ajax({
             $.each(json_data.rows,(i_index,one_row)=>{
                 // console.log("One row == "+one_row);
                 if (period === one_row[1] && one_row[0] === "JPaviRmSsJW.EXPECTED_REPORTS"){
-                    console.log("one match found");
                     expected_t = expected_t + 1;
                 }
             });
