@@ -256,7 +256,7 @@ $.ajax({
             $.each(json_data.rows,(i_index,onerow)=>{
                 // if (period === onerow[1] && onerow[0] === "JPaviRmSsJW.EXPECTED_REPORTS"){
                 if (period === '201803' && onerow[0] === "JPaviRmSsJW.EXPECTED_REPORTS"){
-                    expected_t += 1;
+                    expected_t = expected_t + 1;
                 }
             });
             expected.push(expected_t);
