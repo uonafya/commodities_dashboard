@@ -632,8 +632,7 @@
 									{
 										if(dxentry==dxid)
 										{		
-											dxcalvals.push(dxval);
-											tableData += '<td>'+dxval+'</td>';						
+											dxcalvals.push(dxval);																	
 										}
 									}
 										
@@ -660,6 +659,8 @@
 								//console.log(data.metaData.items[entry].name);
 								tableData += '<td>'+getMFLcode(entry)+'</td>';
 								tableData += '<td>'+data.metaData.dimensions.pe+ '</td>';
+								tableData += '<td>'+dxcalvals[0]+'</td>';
+								tableData += '<td>'+dxcalvals[1]+'</td>';
 								tableData += '<td>'+Math.trunc(diffcal)+ '</td>';							
 								tableData += '<td>'+Math.trunc(percentdiff).toFixed(1)+ '</td>';
 
