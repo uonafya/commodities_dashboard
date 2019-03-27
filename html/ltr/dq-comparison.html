@@ -643,22 +643,25 @@
 							var dxcalvals = [];
 							
 							$.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
-							{								
-								$.each(data.rows, function (rkey, rentry) 
-								{			
-										
-									var dxid = rentry[0];
-									var orgunit = rentry[2];
-									var dxval = rentry[3];									
-									if(orgunit==entry)
-									{
-										if(dxentry==dxid && dxid!='VBbnGNfZWDU.NhSoXUMPK2K')							
-										{		
-											dxcalvals.push(dxval);																	
+							{	
+								if(dxentry!='VBbnGNfZWDU.NhSoXUMPK2K')
+								{
+									$.each(data.rows, function (rkey, rentry) 
+									{			
+											
+										var dxid = rentry[0];
+										var orgunit = rentry[2];
+										var dxval = rentry[3];									
+										if(orgunit==entry)
+										{
+											if(dxentry==dxid')							
+											{		
+												dxcalvals.push(dxval);																	
+											}
 										}
-									}
-										
-								})
+											
+									})
+								}
 							})
 
 													
