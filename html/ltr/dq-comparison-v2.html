@@ -312,7 +312,7 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <h6 class="page-title m-t-10">
-                                Total ACTs Vs Weight
+                                Total ALs Vs Weight
                                 &nbsp; &nbsp;
                             </h6>
                         </div>
@@ -363,7 +363,7 @@
                
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Total ACTs Vs Weight</h5>
+                                <h5 class="card-title">Total ALs Vs Weight</h5>
                                 <div class="sp_status row"></div>
                                 <div class="row">
                                     <div class="loader-sp">
@@ -549,26 +549,23 @@
 	{
             var ounit = 'tAbBVBbueqD';
             var period = '201805';
-            //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-			
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:SHSyrJHMnJM;qsxgiW5M2ic.NhSoXUMPK2K;aPTi7dw2PkL.NhSoXUMPK2K;nqjuVL8kW6Y.NhSoXUMPK2K;eIfWFxJK8mg.NhSoXUMPK2K&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+         			
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
             fetchSP(url);
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
-                //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-				
-				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:SHSyrJHMnJM;qsxgiW5M2ic.NhSoXUMPK2K;aPTi7dw2PkL.NhSoXUMPK2K;nqjuVL8kW6Y.NhSoXUMPK2K;eIfWFxJK8mg.NhSoXUMPK2K&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
-                fetchSP(url);
+                				
+				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchSP(url);				
                 
             });
 
             $("#subcounty-dropdown").change(function() 
             {
-                ounit = $(this).val();
-                //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                ounit = $(this).val();                
 				
-				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:SHSyrJHMnJM;qsxgiW5M2ic.NhSoXUMPK2K;aPTi7dw2PkL.NhSoXUMPK2K;nqjuVL8kW6Y.NhSoXUMPK2K;eIfWFxJK8mg.NhSoXUMPK2K&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchSP(url);
                 
             });
@@ -592,7 +589,7 @@
             
             //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
 			
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:SHSyrJHMnJM;qsxgiW5M2ic.NhSoXUMPK2K;aPTi7dw2PkL.NhSoXUMPK2K;nqjuVL8kW6Y.NhSoXUMPK2K;eIfWFxJK8mg.NhSoXUMPK2K&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
             fetchSP(url);
         }
         
@@ -616,13 +613,8 @@
                     //var dxids = [];
 
                     //var tableData = '<table>';
-                    var tableData = '';
-
-                    			
-					var dxmflcode = ["mfl code","mfl code"] ;	
-					var totalnooftabs = [(((data.rows[6][3])*6)+((data.rows[7][3])*12)+((data.rows[3][3])*18)+((data.rows[8][3])*24)),
-					(((data.rows[9][3])*6)+((data.rows[4][3])*12)+((data.rows[5][3])*18)+((data.rows[2][3])*24))];
-										
+                    var tableData = '';	
+															
                     $.each(data.metaData.dimensions.ou, function (key, entry) 
                     {
                             //define the table
@@ -633,12 +625,38 @@
 							//console.log(data.metaData.items[entry].name);
 							tableData += '<td>'+getMFLcode(entry)+'</td>';
 							tableData += '<td>'+data.metaData.dimensions.pe+ '</td>';
-							tableData += '<td>'+Math.trunc(data.rows[key][3])+ '</td>';							
-							tableData += '<td>'+Math.trunc(totalnooftabs[key])+ '</td>';
-							tableData += '<td>'+(Math.trunc(data.rows[key][3]) - Math.trunc(totalnooftabs[key]))+ '</td>';
-							tableData += '<td>'+((Math.trunc(totalnooftabs[key])- Math.trunc(data.rows[key][3]))/(Math.trunc(data.rows[key][3]))).toFixed(1)+ '</td>';											
-							                          
-                            tableData += '</tr>';	
+							
+							var dxcalvals = [];
+							
+							$.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
+							{								
+								$.each(data.rows, function (rkey, rentry) 
+								{					
+										
+									var dxid = rentry[0];
+									var orgunit = rentry[2];
+									var dxval = rentry[3];
+									if(orgunit==entry)
+									{
+										if(dxentry==dxid)
+										{		
+											dxcalvals.push(dxval);
+											tableData += '<td>'+dxval+'</td>';						
+										}
+									}
+										
+								})
+								
+								//get the difference between the two values
+								var diffcal = dxcalvals[0]-dxcalvals[1];
+								var percentdiff = ((dxcalvals[1]-dxcalvals[0])/dxcalvals[0])*100;
+								
+								tableData += '<td>'+Math.trunc(diffcal)+ '</td>';							
+								tableData += '<td>'+Math.trunc(percentdiff).toFixed(1)+ '</td>';
+									
+							})					
+
+							tableData += '</tr>';					
                     })
 
                     //tableData += '<table>';	
