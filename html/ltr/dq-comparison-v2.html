@@ -616,15 +616,7 @@
                     var tableData = '';	
 															
                     $.each(data.metaData.dimensions.ou, function (key, entry) 
-                    {
-                            //define the table
-                            tableData += '<tr>';	
-                            
-							tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-							
-							//console.log(data.metaData.items[entry].name);
-							tableData += '<td>'+getMFLcode(entry)+'</td>';
-							tableData += '<td>'+data.metaData.dimensions.pe+ '</td>';
+                    {                            
 							
 							var dxcalvals = [];
 							
@@ -635,8 +627,7 @@
 										
 									var dxid = rentry[0];
 									var orgunit = rentry[2];
-									var dxval = rentry[3];
-									console.log(orgunit);
+									var dxval = rentry[3];									
 									if(orgunit==entry)
 									{
 										if(dxentry==dxid)
@@ -649,16 +640,31 @@
 								})
 							})
 
-							//get the difference between the two values
-							console.log(dxcalvals[0]);
-							console.log(dxcalvals[1]);
-							var diffcal = dxcalvals[0]-dxcalvals[1];
-							var percentdiff = ((dxcalvals[1]-dxcalvals[0])/dxcalvals[0])*100;
-							
-							tableData += '<td>'+Math.trunc(diffcal)+ '</td>';							
-							tableData += '<td>'+Math.trunc(percentdiff).toFixed(1)+ '</td>';
+													
+							//check if values exist
+							if(dxcalvals[0] === undefined) 
+							{
+								//do something	
+							}
+							else
+							{
+								//get the diff calculation
+								var diffcal = dxcalvals[0]-dxcalvals[1];
+								var percentdiff = ((dxcalvals[1]-dxcalvals[0])/dxcalvals[0])*100;
+								
+								//define the table
+								tableData += '<tr>';	
+								
+								tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+								
+								//console.log(data.metaData.items[entry].name);
+								tableData += '<td>'+getMFLcode(entry)+'</td>';
+								tableData += '<td>'+data.metaData.dimensions.pe+ '</td>';
+								tableData += '<td>'+Math.trunc(diffcal)+ '</td>';							
+								tableData += '<td>'+Math.trunc(percentdiff).toFixed(1)+ '</td>';
 
-							tableData += '</tr>';					
+								tableData += '</tr>';
+							}							
                     })
 
                     //tableData += '<table>';	
