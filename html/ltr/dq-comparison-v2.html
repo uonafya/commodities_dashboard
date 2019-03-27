@@ -631,7 +631,7 @@
 							$.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
 							{								
 								$.each(data.rows, function (rkey, rentry) 
-								{					
+								{			
 										
 									var dxid = rentry[0];
 									var orgunit = rentry[2];
@@ -646,15 +646,14 @@
 									}
 										
 								})
-								
-								//get the difference between the two values
-								var diffcal = dxcalvals[0]-dxcalvals[1];
-								var percentdiff = ((dxcalvals[1]-dxcalvals[0])/dxcalvals[0])*100;
-								
-								tableData += '<td>'+Math.trunc(diffcal)+ '</td>';							
-								tableData += '<td>'+Math.trunc(percentdiff).toFixed(1)+ '</td>';
-									
-							})					
+							})
+
+							//get the difference between the two values
+							var diffcal = dxcalvals[0]-dxcalvals[1];
+							var percentdiff = ((dxcalvals[1]-dxcalvals[0])/dxcalvals[0])*100;
+							
+							tableData += '<td>'+Math.trunc(diffcal)+ '</td>';							
+							tableData += '<td>'+Math.trunc(percentdiff).toFixed(1)+ '</td>';
 
 							tableData += '</tr>';					
                     })
