@@ -550,13 +550,13 @@
             var ounit = 'tAbBVBbueqD';
             var period = '201805';
          			
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:VBbnGNfZWDU.NhSoXUMPK2K;Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
             fetchSP(url);
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
                 				
-				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:VBbnGNfZWDU.NhSoXUMPK2K;Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchSP(url);				
                 
             });
@@ -565,7 +565,7 @@
             {
                 ounit = $(this).val();                
 				
-				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:VBbnGNfZWDU.NhSoXUMPK2K;Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchSP(url);
                 
             });
@@ -589,7 +589,7 @@
             
             //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
 			
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:VBbnGNfZWDU.NhSoXUMPK2K;Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
             fetchSP(url);
         }
         
@@ -614,6 +614,28 @@
 
                     //var tableData = '<table>';
                     var tableData = '';	
+					
+					//define the mfl codes
+					var mflcodes = [];
+					$.each(data.metaData.dimensions.ou, function (key, entry) 
+                    {
+						$.each(data.rows, function (rkey, rentry) 
+						{			
+								
+							var dxid = rentry[0];
+							var orgunit = rentry[2];
+							var dxval = rentry[3];
+							if(dxid=='VBbnGNfZWDU.NhSoXUMPK2K')
+							{
+								if(orgunit==entry)
+								{
+									mflcodes[orgunit] = dxval;	
+								}
+							}
+								
+						})																		
+												
+                    })
 															
                     $.each(data.metaData.dimensions.ou, function (key, entry) 
                     {                            
@@ -630,7 +652,7 @@
 									var dxval = rentry[3];									
 									if(orgunit==entry)
 									{
-										if(dxentry==dxid)
+										if(dxentry==dxid && dxid!='VBbnGNfZWDU.NhSoXUMPK2K')							
 										{		
 											dxcalvals.push(dxval);																	
 										}
@@ -657,10 +679,10 @@
 								tableData += '<td>'+data.metaData.items[entry].name+'</td>';
 								
 								//console.log(data.metaData.items[entry].name);
-								tableData += '<td>'+getMFLcode(entry)+'</td>';
+								tableData += '<td>'+mflcodes[entry]+'</td>';
 								tableData += '<td>'+data.metaData.dimensions.pe+ '</td>';
 								tableData += '<td>'+dxcalvals[0]+'</td>';
-								tableData += '<td>'+dxcalvals[1]+'</td>';
+								tableData += '<td>'+dxcalvals[1]+'</td>';								
 								tableData += '<td>'+Math.trunc(diffcal)+ '</td>';							
 								tableData += '<td>'+Math.trunc(percentdiff).toFixed(1)+ '</td>';
 
