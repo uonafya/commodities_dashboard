@@ -114,7 +114,8 @@
                 }
                 if(xc === 1){
                     // finalRRdata.push(parseFloat(0));
-                    // finalRRmonths.push(dateToStr(eachallmonths));
+                    finalRRdata.push(parseFloat(array1[2]));
+                    finalRRmonths.push(dateToStr(eachallmonths));
                     xc = 0;
                 }
             });
