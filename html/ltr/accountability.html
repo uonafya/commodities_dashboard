@@ -329,11 +329,11 @@
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" class="form-control" placeholder="Period" id="period-dropdown" placeholder="Period from"/> 
+                                            <input type="text" class="form-control" id="period-dropdown" placeholder="Period from"/> 
                                         </div> 
                                         
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" class="form-control" disabled placeholder="Period" id="period-dropdownto" placeholder="Period to"/> 
+                                            <input type="text" class="form-control" disabled id="period-dropdownto" placeholder="Period to"/> 
                                         </div> 
                                         
                                     </div>
@@ -544,6 +544,10 @@
 			var subcounty = $('#subcounty-dropdown');
 			
 			var perioddwn = $('#period-dropdown');
+            var perioddwnTo = $('#period-dropdownto');
+            perioddwnTo.attr('disabled', true);
+            perioddwn.val(null);
+            perioddwnTo.val(null);
 
 			dropdown.empty();
 			subcounty.empty();
