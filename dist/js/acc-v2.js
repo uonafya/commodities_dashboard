@@ -167,11 +167,15 @@ function fetchAccountability(url,orgun) {
                     $.ajax({      
                         dataType: "json",
                         url: url,
-                        success: function(datax) {          
-                            var dfrom = data.metaData.items[data.metaData.dimensions.pe[0]].name;
+                        success: function(datax) {   
                             var pe_length = data.metaData.dimensions.pe.length;
-                            var dto = data.metaData.items[data.metaData.dimensions.pe[pe_length-1]].name;
-                            var thetitle = datax['name']+' : '+ dfrom + ' - '+ dto;
+                            var dfrom = data.metaData.items[data.metaData.dimensions.pe[0]].name;
+                            if(pe_length>1){
+                                var dto = data.metaData.items[data.metaData.dimensions.pe[pe_length-1]].name;
+                                var thetitle = datax['name']+' : '+ dfrom + ' - '+ dto;
+                            }else{
+                                var thetitle = datax['name']+' : '+ dfrom;
+                            }
                             $('#ttitle').html(thetitle);
                         }
                     });    
