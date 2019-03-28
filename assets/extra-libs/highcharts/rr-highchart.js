@@ -113,8 +113,8 @@
                  
                 }
                 if(xc === 1){
-                    // finalRRdata.push(parseFloat(0));
-                    finalRRdata.push(parseFloat(array1[2]));
+                    // finalRRdata.push(parseFloat(array1[2]));
+                    finalRRdata.push(0.0);
                     finalRRmonths.push(dateToStr(eachallmonths));
                     xc = 0;
                 }
