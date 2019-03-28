@@ -101,7 +101,7 @@
                 // theinfo = giveVal(monthswithdata, eachallmonths);
                 for(x=0;x<monthswithdata.length;x++){
                     var array1=monthswithdata[x];
-                    if(array1[1]==eachallmonths){
+                    if(array1[1]===eachallmonths){
                         var findata = parseFloat(array1[2]);
                         console.log('findata: '+JSON.stringify(findata));
                         var lenudate = dateToStr(array1[1]);
@@ -112,7 +112,7 @@
                     }else xc=1;
                  
                 }
-                if(xc == 1){
+                if(xc === 1){
                     finalRRdata.push(parseFloat(0));
                     finalRRmonths.push(dateToStr(eachallmonths));
                     xc = 0;
