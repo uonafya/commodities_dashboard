@@ -168,7 +168,10 @@ function fetchAccountability(url,orgun) {
                         dataType: "json",
                         url: url,
                         success: function(datax) {          
-                            var thetitle = datax['name']+' - '+data.metaData.items[data.metaData.dimensions.pe[0]].name;
+                            var dfrom = data.metaData.items[data.metaData.dimensions.pe[0]].name;
+                            var pe_length = data.metaData.dimensions.pe.length;
+                            var dto = data.metaData.items[data.metaData.dimensions.pe[pe_length-1]].name;
+                            var thetitle = datax['name']+' : '+ dfrom + ' - '+ dto;
                             $('#ttitle').html(thetitle);
                         }
                     });    
