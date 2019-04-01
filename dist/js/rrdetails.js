@@ -40,7 +40,7 @@ function fetchRRDetails(rdurl,ounit)
 
             //start body
             tableData += '<tbody>';
-
+            var totalOU = data.metaData.dimensions.ou.length
             $.each(data.metaData.dimensions.ou, function (key, entry){                                                        
                 tableData += '<tr>';	
                 tableData += '<td>'+data.metaData.items[entry].name+'</td>';
@@ -49,12 +49,12 @@ function fetchRRDetails(rdurl,ounit)
                         var reportval = getReport(data.rows,pentry,entry);
                         if(reportval)
                         {
-                            tableData += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
+                            tableData += '<td style="background-color: #77ff77;">'+reportval+'/'+totalOU+'</td>';	
                         }
                         else
                         {
                             var bgcolor = '#ffeb9c';
-                            tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
+                            tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'/'+totalOU+'</td>';
                         }
                 })
                 tableData += '</tr>';	
@@ -172,7 +172,7 @@ function fetchSubRRDetails(scrdurl,ounit)
 						else
 						{
 							var bgcolor = '#ffeb9c';
-							tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
+							tableDataSub += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'/'+totalOU+'</td>';
 						}
 					})
 
