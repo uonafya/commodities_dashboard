@@ -155,6 +155,7 @@ function fetchSubRRDetails(scrdurl,ounit)
             //start body
             tableDataSub += '<tbody>';
 
+            var totalOU = data.metaData.dimensions.ou.length
             //console.log(orgunits.length);
             $.each(data.metaData.dimensions.ou, function (key, entry){
 				var expected = checkExpected(data.rows,entry);
@@ -166,7 +167,7 @@ function fetchSubRRDetails(scrdurl,ounit)
 						var reportval = getReport(data.rows,pentry,entry);
 						if(reportval)
 						{
-							tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
+							tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'/'+totalOU+'</td>';	
 						}
 						else
 						{
