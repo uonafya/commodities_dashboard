@@ -163,10 +163,11 @@ function fetchSubRRDetails(scrdurl,ounit)
 					tableDataSub += '<td>'+data.metaData.items[entry].name+'</td>';
 
 					$.each(data.metaData.dimensions.pe, function (pkey, pentry){
+                        var exp_count = getExpectedToReport(data.rows,pentry,entry);
 						var reportval = getReport(data.rows,pentry,entry);
 						if(reportval)
 						{
-							tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
+							tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'/'+exp_count+'</td>';	
 						}
 						else
 						{
@@ -262,6 +263,18 @@ function getReport(rows,period,orgunit)
 	})		
 
 	return rowval;
+}
+
+//get the # expected to report
+function getExpectedToReport(rows,prd,ounit) {
+	var exp_count = 0;
+	$.each(rows, function (indx, onerow){
+        if(ounit==onerow[2] && prd==onerow[1] && onerow[0]=='JPaviRmSsJW.ACTUAL_REPORTS'){                                    
+            exp_count = exp_count + 1;
+        }								
+	})		
+
+	return exp_count;
 }
 
 function dateToStr(ledate){
