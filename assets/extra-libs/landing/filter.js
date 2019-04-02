@@ -60,7 +60,7 @@ function filterMain(countyid, subcountyid, periodid) {
         // sleep(3000);
         fetchAdjSOH(urlcon,alnames);
 
-
+		/*
         //function to get SOH value from loop
         function getSOH(rows, entry) {
         var mysoh = 0;
@@ -95,4 +95,5 @@ function filterMain(countyid, subcountyid, periodid) {
                         }
                 }
         }
+		*/
 }
