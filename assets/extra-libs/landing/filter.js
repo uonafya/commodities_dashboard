@@ -59,41 +59,8 @@ function filterMain(countyid, subcountyid, periodid) {
         //delay for a few seconds 3 seconds
         // sleep(3000);
         fetchAdjSOH(urlcon,alnames);
-
-		/*
-        //function to get SOH value from loop
-        function getSOH(rows, entry) {
-        var mysoh = 0;
-        $.each(rows, function (rkey, rentry) {
-                if (entry == rentry[0]) {
-                        mysoh = rentry[2];
-                }
-        })
-                return parseFloat(mysoh);
-        }
-
-//get the adjusted consumption value
-//function to get value from loop
-        function getConsumption(rows, entry) {
-        var conval = 0;
-
-        $.each(rows, function (rkey, rentry) {
-                if (entry == rentry[0]) {
-                        conval = rentry[2];
-                }
-        })
-
-        return parseFloat(conval);
-        }
-
-//sleep function
-        function sleep(milliseconds) {
-                var start = new Date().getTime();
-                for (var i = 0; i < 1e7; i++) {
-                        if ((new Date().getTime() - start) > milliseconds) {
-                                break;
-                        }
-                }
-        }
-		*/
+		
 }
+
+
+		

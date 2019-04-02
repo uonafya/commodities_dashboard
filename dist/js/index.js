@@ -359,6 +359,7 @@ function fetchAdjSOH(urlcon,alnames) {
             counter++;
         })
     });
+	console.log(sohval);
     sleep(2300);
     $.ajax({
         type: 'GET',
@@ -440,4 +441,42 @@ function fetchAdjSOH(urlcon,alnames) {
                 $('.t_three_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             }
         });
+}
+
+
+//additional
+//function to get SOH value from loop
+function getSOH(rows, entry) {
+var mysoh = 0;
+$.each(rows, function (rkey, rentry) {
+		if (entry == rentry[0]) {
+				mysoh = rentry[2];
+		}
+})
+		return parseFloat(mysoh);
+}
+
+//get the adjusted consumption value
+//function to get value from loop
+function getConsumption(rows, entry) {
+var conval = 0;
+
+$.each(rows, function (rkey, rentry) {
+		if (entry == rentry[0]) {
+				conval = rentry[2];
+		}
+})
+
+return parseFloat(conval);
+}
+
+//sleep function
+function sleep(milliseconds) 
+{
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++) {
+				if ((new Date().getTime() - start) > milliseconds) {
+						break;
+				}
+		}
 }
