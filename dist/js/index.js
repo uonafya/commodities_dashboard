@@ -341,7 +341,7 @@ function fetchNumberHealthFA(urlfa,itemnames){
 }
 
 function fetchAdjSOH(urlcon,alnames, periodid) {
-    // console.log("TRIGGERED: fetchAdjSOH(urlcon) == "+urlcon);
+    console.log("TRIGGERED: fetchAdjSOH(urlcon) == "+urlcon);
     $('.t_three.loader-sp').removeClass('hidden');
     $('.malaria_commodity_table.t_three').addClass('hidden');
     $('.adjc_soh_mos').addClass('hidden');
@@ -358,8 +358,7 @@ function fetchAdjSOH(urlcon,alnames, periodid) {
             //increment the counter
             counter++;
         })
-    });
-	console.log(sohval);
+    });	
     sleep(2300);
     $.ajax({
         type: 'GET',
