@@ -1,7 +1,7 @@
 function filterMain(countyid, subcountyid, periodid) {
 
         if (countyid == null) {
-                countyid = 'tAbBVBbueqD';
+                countyid = 'HfVjCurKxh2';
         }
 
         if (subcountyid != null) {
@@ -11,7 +11,7 @@ function filterMain(countyid, subcountyid, periodid) {
         if (periodid != null) {
                 periodid = periodid;
         } else {
-                periodid = '201805';
+                periodid = 'LAST_MONTH';
         }
 
         //load the mos by commodity
