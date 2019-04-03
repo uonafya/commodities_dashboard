@@ -737,6 +737,9 @@
         //process the json
         $(document).ready(function() 
         {		
+			//define the constants
+			var countyid = 'HfVjCurKxh2';
+			var periodid = 'LAST_MONTH';
 		
             //load the mos by commodity 
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
@@ -750,10 +753,10 @@
             var itemnames = ["AL6","AL12","AL18","AL24","AS inj","SP tabs","RDTs"];
             
             //parse the data for mos percentage
-            fetchPercHealthFA(urlfa,itemnames);
+            fetchPercHealthFA(urlfa,itemnames,countyid,periodid);
             
             //parse the data for mos number
-            fetchNumberHealthFA(urlfa,itemnames);
+            fetchNumberHealthFA(urlfa,itemnames,countyid,periodid);
                     
             //adjc FA
             var urlcon = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;iMHDfVvYm0W&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
@@ -761,7 +764,7 @@
             
             var alnames = ["AL6","AL12","AL18","AL24","AL all","AS inj","SP tabs","RDTs"];
                                 
-            fetchAdjSOH(urlcon,alnames, 'LAST_MONTH');
+            fetchAdjSOH(urlcon,alnames,countyid,periodid);
         });
         
     </script>

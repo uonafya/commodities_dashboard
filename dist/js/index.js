@@ -128,7 +128,7 @@ function fetchMosbycombox(url) {
     });
 }
 
-function fetchPercHealthFA(urlfa,itemnames){
+function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
     // console.log("TRIGGERED: fetchPercHealthFA(urlfa,itemnames) == "+urlfa+" && itemnames: "+itemnames);
     $('.loader-sp.t_one').removeClass('hidden');
     $('.t_one_state').removeClass('hidden');
@@ -144,7 +144,7 @@ function fetchPercHealthFA(urlfa,itemnames){
         
         //added
         //get the total expected to report
-        var totalorgs = getExpectedUnits('HfVjCurKxh2', 'LAST_MONTH');
+        var totalorgs = getExpectedUnits(countyid,periodid);
                         
                         
         //var tableData = '<table>';
@@ -233,7 +233,7 @@ function fetchPercHealthFA(urlfa,itemnames){
     });
 }
 
-function fetchNumberHealthFA(urlfa,itemnames){
+function fetchNumberHealthFA(urlfa,itemnames,countyid,periodid){
     // console.log("TRIGGERED: fetchNumberHealthFA(urlfa,itemnames) == "+urlfa+" && itemnames: "+itemnames);
     $('.t_two.loader-sp').removeClass('hidden');
     $('.t_two_state').addClass('hidden');
@@ -250,7 +250,7 @@ function fetchNumberHealthFA(urlfa,itemnames){
         var totalfa = orgunits.length;
         //added
         //get the total expected to report
-        var totalorgs = getExpectedUnits('HfVjCurKxh2', 'LAST_MONTH');
+        var totalorgs = getExpectedUnits(countyid,periodid);
                         
         //var tableData = '<table>';
         var tableData = '';
@@ -340,13 +340,13 @@ function fetchNumberHealthFA(urlfa,itemnames){
     });
 }
 
-function fetchAdjSOH(urlcon,alnames, periodid) {
+function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
     //console.log("TRIGGERED: fetchAdjSOH(urlcon) == "+urlcon);
     $('.t_three.loader-sp').removeClass('hidden');
     $('.malaria_commodity_table.t_three').addClass('hidden');
     $('.adjc_soh_mos').addClass('hidden');
     var sohval = [];
-    var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:HfVjCurKxh2&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';
+    var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+countyid+'&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';
     $.getJSON(urlphy, function (zdata) {
         var counter = 0;
         $.each(zdata.metaData.dimensions.dx, function (key, entry) 
