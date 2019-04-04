@@ -79,6 +79,7 @@ function fetchAccountability(url,orgun) {
                     if(kemsi == undefined){kemsi = [0,0,0,0];}
                     tabl+='<td class="text-right">'+formatNumber(kemsi[3])+'</td>';
                     kemsi_arr.push(kemsi[3]);
+                    console.log('kemsaISSUES == '+kemsi[3]);
                     // var kione_id = ou+"_ki_cell_"+com_indx;
                     // tabl+='<td class="dff text-right" id="'+kione_id+'"></td>';
 
