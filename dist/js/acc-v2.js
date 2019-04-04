@@ -65,6 +65,7 @@ function fetchAccountability(url,orgun) {
                 $.each(commodities_ki_arr, function (index, one_ki) { 
                      var filt_rows = filterItems(rows_filtered_ou, one_ki);
                     //  console.log("filt_rows==> "+JSON.stringify(filt_rows));
+                    if(filt_rows == undefined){filt_rows = [[0,0,0,0]];}
                     ki_cells.push(filt_rows[0][3]);
                 });
                 //  console.log('ki_cells==> '+JSON.stringify(ki_cells));
