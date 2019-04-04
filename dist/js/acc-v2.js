@@ -65,8 +65,9 @@ function fetchAccountability(url,orgun) {
                      var filt_rows = filterItems(rows_filtered_ou, one_ki);
                     //  alert(JSON.stringify(filt_rows));
                     ki_cells.push(filt_rows[3]);
-
+                    
                 });
+                 alert(JSON.stringify(ki_cells));
 
                 $.each(commodities_id_arr, function (com_indx, com) {
                     var rows_filtered_ou_commo1 = filterItems(rows_filtered_ou, com+".HWtHCLAwprR");
