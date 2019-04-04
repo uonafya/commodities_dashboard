@@ -63,10 +63,14 @@ function fetchAccountability(url,orgun) {
 
                 // console.log('commodities_ki_arr==> '+JSON.stringify(commodities_ki_arr));
                 $.each(commodities_ki_arr, function (index, one_ki) { 
-                     var filt_rows = filterItems(rows_filtered_ou, one_ki);
-                     if(filt_rows == undefined){filt_rows = [[0,0,0,0]];}
-                     console.log("filt_rows==> "+JSON.stringify(filt_rows));
-                    ki_cells.push(filt_rows[0][3]);
+                    var filt_rows = filterItems(rows_filtered_ou, one_ki);
+                    if(filt_rows == undefined){
+                         filt_rows = [["","","","0.0"]];
+                         ki_cells.push("0.0");
+                    }else{
+                        ki_cells.push(filt_rows[0][3]);
+                    }
+                    console.log("filt_rows==> "+JSON.stringify(filt_rows));
                 });
                 //  console.log('ki_cells==> '+JSON.stringify(ki_cells));
 
