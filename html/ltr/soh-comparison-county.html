@@ -550,6 +550,7 @@
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
+				var period =  getPeriod();
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
                 fetchSOHCompa(url,ounit);
                 
@@ -558,6 +559,7 @@
             $("#subcounty-dropdown").change(function() 
             {
                 ounit = $(this).val();
+				var period =  getPeriod();
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
                 fetchSOHCompa(url,ounit);
                 
@@ -566,6 +568,7 @@
             $("#facility-dropdown").change(function() 
             {
                 ounit = $(this).val();
+				var period =  getPeriod();
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;nvJsVaN8FOB;iMHDfVvYm0W;f5mBCkj0aSu;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
                 fetchSOHCompa(url,ounit);
                 
@@ -582,10 +585,15 @@
             var ounit = $("#county-dropdown").val();
             var subcountyou = $("#subcounty-dropdown").val();
             var period = therdate;
-            
-            if(subcountyou!=null)
+			
+			if(ounit == null)
             {
-                var ounit = subcountyou;
+                ounit = 'HfVjCurKxh2';
+            }
+
+            if(subcountyou != null)
+            {
+                ounit = subcountyou;
             }
             
             //var url = 'pmi.json';
@@ -745,6 +753,26 @@
 			  $("h5.sohtitle").html(data['name']+' - '+period);
 		  }
 		});    
+	}
+	
+	//get the period
+	function getPeriod()
+	{
+		var periodval = $("#period-dropdown").val();
+
+		if(periodval == null || periodval=='')
+		{
+			periodval = 'LAST_MONTH';
+		}
+		else
+		{
+			var dateparts = periodval.split('/', 2);
+
+			var therdate = dateparts[1]+''+dateparts[0];                
+			var periodval = therdate;
+		}
+		
+		return periodval;
 	}
 </script>
 
