@@ -69,7 +69,11 @@ function fetchAccountability(url,orgun) {
                         filt_rows = [["","","","0.0"]];
                         ki_cells.push("0.0");
                     }else{
-                        ki_cells.push(filt_rows[0][3]);
+                        if(filt_rows[0] == undefined){
+                            ki_cells.push("0.0");
+                        }else{
+                            ki_cells.push(filt_rows[0][3]);
+                        }
                     }
                     console.log("filt_rows==> "+JSON.stringify(filt_rows));
                 });
