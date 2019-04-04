@@ -582,10 +582,15 @@
             var ounit = $("#county-dropdown").val();
             var subcountyou = $("#subcounty-dropdown").val();
             var period = therdate;
-            
-            if(subcountyou!=null)
+			
+			if(ounit == null)
             {
-                var ounit = subcountyou;
+                ounit = 'HfVjCurKxh2';
+            }
+
+            if(subcountyou != null)
+            {
+                ounit = subcountyou;
             }
             
             //var url = 'pmi.json';
