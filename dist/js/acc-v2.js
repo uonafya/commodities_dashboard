@@ -65,8 +65,9 @@ function fetchAccountability(url,orgun) {
                 $.each(commodities_ki_arr, function (index, one_ki) { 
                     var filt_rows = filterItems(rows_filtered_ou, one_ki);
                     if(filt_rows == undefined){
-                         filt_rows = [["","","","0.0"]];
-                         ki_cells.push("0.0");
+                        alert('undef');
+                        filt_rows = [["","","","0.0"]];
+                        ki_cells.push("0.0");
                     }else{
                         ki_cells.push(filt_rows[0][3]);
                     }
