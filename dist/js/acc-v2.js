@@ -91,8 +91,7 @@ function fetchAccountability(url,orgun) {
                     var kemsi = filterItems(rows_filtered_ou_commo1,com+".yuvCdaFqdCW")[0];
                     console.log('kemsaISSUES == '+kemsi);
                     if(kemsi == undefined){kemsi = [0,0,0,0];}
-                    // tabl+='<td class="text-right">'+formatNumber(kemsi[3])+'</td>';
-                    tabl+='<td class="text-right">'+formatNumber(ki_cells[com_indx])+'</td>';
+                    tabl+='<td class="text-right">'+formatNumber(kemsi[3])+'</td>';
                     kemsi_arr.push(kemsi[3]);
                     // var kione_id = ou+"_ki_cell_"+com_indx;
                     // tabl+='<td class="dff text-right" id="'+kione_id+'"></td>';
