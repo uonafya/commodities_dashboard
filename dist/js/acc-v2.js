@@ -21,14 +21,6 @@ function fetchAccountability(url,orgun) {
             // var thedx_unaltered = thedx.splice(0,data.metaData.dimensions.dx.length);
             var commodities_ki_arr = thedx.splice(14,7);
 
-            //----
-            $.each(commodities_ki_arr, function (inx, one_ki) { 
-                 alert(
-                     data.metaData.items[one_ki].name
-                 )
-            });
-            //----
-
             var commodities_id_arr0 = [];
             var commodities_id_ki_arr0 = [];
             var commodities_id_arr = [];
@@ -42,6 +34,7 @@ function fetchAccountability(url,orgun) {
                 commodities_id_arr0 = co_ar.split('.',2);
                 commodities_id_arr.push(commodities_id_arr0[0]);
             });
+            
             $.each(commodities_ki_arr, function (index, co_ki_ar) {
                 commodities_id_ki_arr0 = co_ki_ar.split('.',1);
                 commodities_id_ki_arr.push(commodities_id_ki_arr0);
@@ -57,6 +50,7 @@ function fetchAccountability(url,orgun) {
             
             $.each(data.metaData.dimensions.ou, function (index, ou) {
                 var tabl = '';
+                var ki_cells = '';
                 var rows_filtered_ou = filterItems(therows, ou);
                 var opsoh_arr = [];
                 var posadj_arr = [];
@@ -66,6 +60,12 @@ function fetchAccountability(url,orgun) {
                 var kissue_arr = [];
                 var closbal_arr = [];
                 var pcacc_arr = [];
+
+                $.each(commodities_ki_arr, function (index, one_ki) { 
+                     var filt_rows = filterItems(rows_filtered_ou, one_ki);
+                     alert(JSON.stringify(filt_rows));
+                });
+
                 $.each(commodities_id_arr, function (com_indx, com) {
                     var rows_filtered_ou_commo1 = filterItems(rows_filtered_ou, com+".HWtHCLAwprR");
                     var rows_filtered_ou_commo2 = filterItems(rows_filtered_ou, com+".CckV73xy6HB");
