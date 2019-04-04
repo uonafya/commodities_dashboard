@@ -50,7 +50,7 @@ function fetchAccountability(url,orgun) {
             
             $.each(data.metaData.dimensions.ou, function (index, ou) {
                 var tabl = '';
-                var ki_cells = '';
+                var ki_cells = [];
                 var rows_filtered_ou = filterItems(therows, ou);
                 var opsoh_arr = [];
                 var posadj_arr = [];
@@ -64,7 +64,8 @@ function fetchAccountability(url,orgun) {
                 $.each(commodities_ki_arr, function (index, one_ki) { 
                      var filt_rows = filterItems(rows_filtered_ou, one_ki);
                     //  alert(JSON.stringify(filt_rows));
-                    ki_cells = '<td>'+filt_rows[3]+'</td>';
+                    ki_cells.push(filt_rows[3]);
+
                 });
 
                 $.each(commodities_id_arr, function (com_indx, com) {
@@ -89,7 +90,8 @@ function fetchAccountability(url,orgun) {
                     var kemsi = filterItems(rows_filtered_ou_commo1,com+".yuvCdaFqdCW")[0];
                     console.log('kemsaISSUES == '+kemsi);
                     if(kemsi == undefined){kemsi = [0,0,0,0];}
-                    tabl+='<td class="text-right">'+formatNumber(kemsi[3])+'</td>';
+                    // tabl+='<td class="text-right">'+formatNumber(kemsi[3])+'</td>';
+                    tabl+='<td class="text-right">'+formatNumber(ki_cells[com_indx])+'</td>';
                     kemsi_arr.push(kemsi[3]);
                     // var kione_id = ou+"_ki_cell_"+com_indx;
                     // tabl+='<td class="dff text-right" id="'+kione_id+'"></td>';
