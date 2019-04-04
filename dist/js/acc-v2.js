@@ -76,6 +76,7 @@ function fetchAccountability(url,orgun) {
                     posadj_arr.push(posadj[3]);
                     
                     var kemsi = filterItems(rows_filtered_ou_commo1,com+".yuvCdaFqdCW")[0];
+                    alert(JSON.stringify(kemsi));
                     if(kemsi == undefined){kemsi = [0,0,0,0];}
                     tabl+='<td class="text-right">'+formatNumber(kemsi[3])+'</td>';
                     kemsi_arr.push(kemsi[3]);
