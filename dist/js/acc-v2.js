@@ -84,12 +84,12 @@ function fetchAccountability(url,orgun) {
                     
                     var posadj = filterItems(rows_filtered_ou_commo2,com+".CckV73xy6HB")[0];
                     if(posadj == undefined){posadj = [0,0,0,0];}
-                    console.log('posADJ == '+posadj);
+                    // console.log('posADJ == '+posadj);
                     tabl+='<td class="text-right">'+formatNumber(posadj[3])+'</td>';
                     posadj_arr.push(posadj[3]);
                     
                     var kemsi = filterItems(rows_filtered_ou_commo1,com+".yuvCdaFqdCW")[0];
-                    console.log('kemsaISSUES == '+kemsi);
+                    // console.log('kemsaISSUES == '+kemsi);
                     if(kemsi == undefined){kemsi = [0,0,0,0];}
                     tabl+='<td class="text-right">'+formatNumber(kemsi[3])+'</td>';
                     kemsi_arr.push(kemsi[3]);
@@ -114,7 +114,7 @@ function fetchAccountability(url,orgun) {
 
                     var kiar = [];
                     kiar = getPerc();
-                    console.log(kiar);
+                    // console.log(kiar);
                     
                     var k_is_val = parseFloat(kiar[com_indx]);
                     if(Number.isNaN(k_is_val)){
@@ -167,7 +167,7 @@ function fetchAccountability(url,orgun) {
 
                 
                 function getPerc(){
-                    console.log("getPerc() triggered, returning: " + kissue_arr);
+                    // console.log("getPerc() triggered, returning: " + kissue_arr);
                     return kissue_arr;
                 }
                 $('#'+ou+'_totalOpeningSOH').html(sumArr(opsoh_arr));
