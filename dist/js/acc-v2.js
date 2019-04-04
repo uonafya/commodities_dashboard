@@ -20,6 +20,15 @@ function fetchAccountability(url,orgun) {
             var commodities_arr = thedx.splice(21,7);
             // var thedx_unaltered = thedx.splice(0,data.metaData.dimensions.dx.length);
             var commodities_ki_arr = thedx.splice(14,7);
+
+            //----
+            $.each(commodities_ki_arr, function (inx, one_ki) { 
+                 alert(
+                     data.metaData.items[one_ki].name
+                 )
+            });
+            //----
+
             var commodities_id_arr0 = [];
             var commodities_id_ki_arr0 = [];
             var commodities_id_arr = [];
@@ -51,6 +60,7 @@ function fetchAccountability(url,orgun) {
                 var rows_filtered_ou = filterItems(therows, ou);
                 var opsoh_arr = [];
                 var posadj_arr = [];
+                var kemsi_arr = [];
                 var qtydisp_arr = [];
                 var negadj_arr = [];
                 var kissue_arr = [];
@@ -68,14 +78,21 @@ function fetchAccountability(url,orgun) {
                     if(opsoh == undefined){opsoh = [0,0,0,0];}
                     opsoh_arr.push(opsoh[3]);
                     tabl+='<td class="text-right">'+formatNumber(opsoh[3])+'</td>';
-
+                    
                     var posadj = filterItems(rows_filtered_ou_commo2,com+".CckV73xy6HB")[0];
                     if(posadj == undefined){posadj = [0,0,0,0];}
+                    console.log('posADJ == '+posadj);
                     tabl+='<td class="text-right">'+formatNumber(posadj[3])+'</td>';
                     posadj_arr.push(posadj[3]);
+                    
+                    var kemsi = filterItems(rows_filtered_ou_commo1,com+".yuvCdaFqdCW")[0];
+                    console.log('kemsaISSUES == '+kemsi);
+                    if(kemsi == undefined){kemsi = [0,0,0,0];}
+                    tabl+='<td class="text-right">'+formatNumber(kemsi[3])+'</td>';
+                    kemsi_arr.push(kemsi[3]);
+                    // var kione_id = ou+"_ki_cell_"+com_indx;
+                    // tabl+='<td class="dff text-right" id="'+kione_id+'"></td>';
 
-                    var kione_id = ou+"_ki_cell_"+com_indx;
-                    tabl+='<td class="dff text-right" id="'+kione_id+'"></td>';
 
                     var qtydisp = filterItems(rows_filtered_ou_commo3,com+".w77uMi1KzOH")[0];
                     if(qtydisp == undefined){qtydisp = [0,0,0,0];}
@@ -152,7 +169,8 @@ function fetchAccountability(url,orgun) {
                 }
                 $('#'+ou+'_totalOpeningSOH').html(sumArr(opsoh_arr));
                 $('#'+ou+'_totalPveAdj').html(sumArr(posadj_arr));
-                $('#'+ou+'_totalKEMSAIssues').html(sumArr(kissue_arr));
+                // $('#'+ou+'_totalKEMSAIssues').html(sumArr(kissue_arr));
+                $('#'+ou+'_totalKEMSAIssues').html(sumArr(kemsi_arr));
                 $('#'+ou+'_totalQtyDisp').html(sumArr(qtydisp_arr));
                 $('#'+ou+'_totalNveAdj').html(sumArr(negadj_arr));
                 $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
