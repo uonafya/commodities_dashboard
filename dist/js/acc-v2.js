@@ -61,12 +61,13 @@ function fetchAccountability(url,orgun) {
                 var closbal_arr = [];
                 var pcacc_arr = [];
 
+                console.log('commodities_ki_arr==> '+JSON.stringify(commodities_ki_arr));
                 $.each(commodities_ki_arr, function (index, one_ki) { 
                      var filt_rows = filterItems(rows_filtered_ou, one_ki);
-                     alert(JSON.stringify(filt_rows));
-                    // ki_cells.push(filt_rows[3]);
+                     console.log("filt_rows==> "+JSON.stringify(filt_rows));
+                    ki_cells.push(filt_rows[3]);
                 });
-                //  alert(JSON.stringify(ki_cells));
+                 console.log('commodities_ki_arr==> '+JSON.stringify(ki_cells));
 
                 $.each(commodities_id_arr, function (com_indx, com) {
                     var rows_filtered_ou_commo1 = filterItems(rows_filtered_ou, com+".HWtHCLAwprR");
