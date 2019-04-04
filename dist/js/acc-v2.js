@@ -72,6 +72,7 @@ function fetchAccountability(url,orgun) {
                     
                     var posadj = filterItems(rows_filtered_ou_commo2,com+".CckV73xy6HB")[0];
                     if(posadj == undefined){posadj = [0,0,0,0];}
+                    console.log('posADJ == '+posadj);
                     tabl+='<td class="text-right">'+formatNumber(posadj[3])+'</td>';
                     posadj_arr.push(posadj[3]);
                     
