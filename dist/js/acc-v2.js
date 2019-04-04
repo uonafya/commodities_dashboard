@@ -20,6 +20,15 @@ function fetchAccountability(url,orgun) {
             var commodities_arr = thedx.splice(21,7);
             // var thedx_unaltered = thedx.splice(0,data.metaData.dimensions.dx.length);
             var commodities_ki_arr = thedx.splice(14,7);
+
+            //----
+            $.each(commodities_ki_arr, function (inx, one_ki) { 
+                 alert(
+                     data.metaData.items[one_ki].name
+                 )
+            });
+            //----
+
             var commodities_id_arr0 = [];
             var commodities_id_ki_arr0 = [];
             var commodities_id_arr = [];
@@ -77,7 +86,6 @@ function fetchAccountability(url,orgun) {
                     posadj_arr.push(posadj[3]);
                     
                     var kemsi = filterItems(rows_filtered_ou_commo1,com+".yuvCdaFqdCW")[0];
-                    alert(JSON.stringify(kemsi));
                     console.log('kemsaISSUES == '+kemsi);
                     if(kemsi == undefined){kemsi = [0,0,0,0];}
                     tabl+='<td class="text-right">'+formatNumber(kemsi[3])+'</td>';
