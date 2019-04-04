@@ -88,14 +88,8 @@ function fetchAccountability(url,orgun) {
                     tabl+='<td class="text-right">'+formatNumber(posadj[3])+'</td>';
                     posadj_arr.push(posadj[3]);
                     
-                    var kemsi = filterItems(rows_filtered_ou_commo1,com+".yuvCdaFqdCW")[0];
-                    // console.log('kemsaISSUES == '+kemsi);
-                    if(kemsi == undefined){kemsi = [0,0,0,0];}
-                    tabl+='<td class="text-right">'+formatNumber(kemsi[3])+'</td>';
-                    kemsi_arr.push(kemsi[3]);
-                    // var kione_id = ou+"_ki_cell_"+com_indx;
-                    // tabl+='<td class="dff text-right" id="'+kione_id+'"></td>';
-
+                    tabl+='<td class="text-right">'+formatNumber(ki_cells[com_indx])+'</td>';
+                    kemsi_arr.push(ki_cells[com_indx]);
 
                     var qtydisp = filterItems(rows_filtered_ou_commo3,com+".w77uMi1KzOH")[0];
                     if(qtydisp == undefined){qtydisp = [0,0,0,0];}
