@@ -63,7 +63,8 @@ function fetchAccountability(url,orgun) {
 
                 $.each(commodities_ki_arr, function (index, one_ki) { 
                      var filt_rows = filterItems(rows_filtered_ou, one_ki);
-                     alert(JSON.stringify(filt_rows));
+                    //  alert(JSON.stringify(filt_rows));
+                    ki_cells = '<td>'+filt_rows[3]+'</td>';
                 });
 
                 $.each(commodities_id_arr, function (com_indx, com) {
