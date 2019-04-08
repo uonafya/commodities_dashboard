@@ -46,15 +46,16 @@ function fetchRRDetails(rdurl,ounit)
                 tableData += '<td>'+data.metaData.items[entry].name+'</td>';
                 $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
                 {
+						var rpt_count = getExpectedToReport(data.rows,pentry,entry);
                         var reportval = getReport(data.rows,pentry,entry);
                         if(reportval)
                         {
-                            tableData += '<td style="background-color: #77ff77;">'+reportval+'</td>';	
+                            tableData += '<td style="background-color: #77ff77;">'+reportval+'/'+rpt_count+'</td>';	
                         }
                         else
                         {
                             var bgcolor = '#ffeb9c';
-                            tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'</td>';
+                            tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'/'+rpt_count+'</td>';
                         }
                 })
                 tableData += '</tr>';	
@@ -250,7 +251,7 @@ $.ajax({
 //get the report details
 function getReport(rows,period,orgunit) 
 {	
-	var rowval = '';
+	var rowval = 0;
 
 	//loop through the rows
 	$.each(rows, function (rkey, rentry) 
