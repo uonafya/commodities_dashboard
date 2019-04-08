@@ -14,8 +14,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
     <link href="../../dist/css/custom.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../dist/css/datatables/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="../../dist/css/datatables/jquery.dataTables.min.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -441,6 +445,14 @@
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/dataTables.buttons.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>
+    <script src="../../assets/extra-libs/jszip/jszip.min.js"></script>
+    <script src="../../assets/extra-libs/pdfmake/pdfmake.min.js"></script>
+    <script src="../../assets/extra-libs/pdfmake/vfs_fonts.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.html5.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.print.min.js"></script>
+
     	
 	<!-- *********** MonthPicker ************** -->
     <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
@@ -717,7 +729,13 @@
                     
                     $('#sp_table').DataTable().destroy();
                     $("table.spbox tbody").empty();
-                    $("table.spbox tbody").append(tableData);	
+                    $("table.spbox tbody").append(tableData);
+                    $('#sp_table').DataTable(
+            {
+                dom: 'Bfrtip',
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            }
+        );	
                     //$('#sp_table').DataTable();                                                          
              },
                 error: function (request, status, error) {
