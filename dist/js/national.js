@@ -19,6 +19,8 @@ function getKIssues(url,tou) {
             ttitle += ' - ';
             ttitle += data.metaData.items[data.metaData.dimensions.pe[0]].name;
             $('.ttitle').html(ttitle);
+            $('#month1_title').html(data.metaData.items[data.metaData.dimensions.pe[1]].name)
+            $('#month2_title').html(data.metaData.items[data.metaData.dimensions.pe[0]].name)
             var fac_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
             // var fac_url = 'http://localhost/pmi/json/tAbBVBbueqD.json';
             $.ajax({
@@ -53,7 +55,6 @@ function getKIssues(url,tou) {
                     recvd_val_month1 = 0;
                 }
                 var recvd_val_month2 = getVal(data.rows, recvdId, peri_1);
-                // var recvd_val_month2 = getVal(data.rows, recvdId, peri_0);
                 if(recvd_val_month2 == undefined){
                     recvd_val_month2 = 0;
                 }
