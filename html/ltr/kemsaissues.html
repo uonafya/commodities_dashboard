@@ -14,8 +14,13 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/buttons.dataTables.min.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
     <link href="../../dist/css/custom.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../dist/css/datatables/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="../../dist/css/datatables/jquery.dataTables.min.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -386,14 +391,14 @@
                                                             <tr>
                                                                 <th rowspan="2">Description</th>
                                                                 <th rowspan="2">Quantity <br/>issued</th>
-                                                                <th colspan="2">Quantity <br/>received</th>
+                                                                <th colspan="2" class="text-center">Quantity received</th>
                                                                 <th rowspan="2">Total</th>
                                                                 <th rowspan="2">Difference</th>
                                                                 <th rowspan="2">% Difference</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Quantity received <br/> Month 2</th>
-                                                                <th>Quantity received <br/> Month 1</th>
+                                                                <th><small>Quantity received <br/> <span id="month1_title">Month 1</span></small></th>
+                                                                <th><small>Quantity received <br/> <span id="month2_title">Month 2</span></small></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -446,9 +451,16 @@
     <script src="../../dist/js/national.js"></script>
     <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
     <!-- this page js -->
+    <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-    <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/dataTables.buttons.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>
+    <script src="../../assets/extra-libs/jszip/jszip.min.js"></script>
+    <script src="../../assets/extra-libs/pdfmake/pdfmake.min.js"></script>
+    <script src="../../assets/extra-libs/pdfmake/vfs_fonts.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.html5.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.print.min.js"></script>
     	
 	<!-- *********** MonthPicker ************** -->
     <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
@@ -543,6 +555,7 @@
 		var countyou = $("#county-dropdown").val();
 		var subcountyou = $("#subcounty-dropdown").val();
         var periodval = therdate;
+        // alert(getPeriod(periodval));
 
         var the_ogu = 'HfVjCurKxh2'; //Kenya
         if(subcountyou != null){
@@ -556,30 +569,31 @@
             the_ogu = 'HfVjCurKxh2'; //Kenya
         }
         console.log("the_ogu: "+the_ogu + " & periodval: "+periodval);
-        getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+therdate+'&filter=ou:'+the_ogu+'&displayProperty=NAME&outputIdScheme=UID',the_ogu);
+        getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+getPeriod(periodval)+'&filter=ou:'+the_ogu+'&displayProperty=NAME&outputIdScheme=UID',the_ogu);
 		
-	}
+    }
+    downloadTable("natnl");
 	</script>	
 	
 	<script language="JavaScript">
-        getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:LAST_MONTH&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID','HfVjCurKxh2');
-        // getKIssues('http://localhost/pmi/json/ki.json');
+        // getKIssues('http://localhost/pmi/json/kissues.json','HfVjCurKxh2');
+        getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+getLastMonthPeriod()+'&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID','HfVjCurKxh2');
+        // getKIssues('http://localhost/pmi/json/ki.json','HfVjCurKxh2');
 
         $("#county-dropdown").change(function(){  
-            var county_id = $(this).val();
-            getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:LAST_MONTH&filter=ou:'+county_id+'&displayProperty=NAME&outputIdScheme=UID',county_id);
+            getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+getLastMonthPeriod()+'&filter=ou:'+county_id+'&displayProperty=NAME&outputIdScheme=UID',county_id);
         });
 
         $("#subcounty-dropdown").change(function(){  
             var subcounty_id = $(this).val();
-            var scurl='https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:LAST_MONTH&filter=ou:'+subcounty_id+'&displayProperty=NAME&outputIdScheme=UID';
+            var scurl='https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+getLastMonthPeriod()+'&filter=ou:'+subcounty_id+'&displayProperty=NAME&outputIdScheme=UID';
             getKIssues(scurl,subcounty_id);
             console.log("subcounty_filter_url: "+scurl)
         });
 
         $("#facility-dropdown").change(function(){  
             var facility_id = $(this).val();
-            getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:LAST_MONTH&filter=ou:'+facility_id+'&displayProperty=NAME&outputIdScheme=UID',facility_id);
+            getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+getLastMonthPeriod()+'&filter=ou:'+facility_id+'&displayProperty=NAME&outputIdScheme=UID',facility_id);
         });
 
         // $("#period-dropdown").change(function(){  
@@ -595,6 +609,71 @@
         //     }
         //     getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+period_id+'&filter=ou:'+tou+'&displayProperty=NAME&outputIdScheme=UID',tou);
         // });
+
+
+        function getPeriod(todayte) {
+          // -------------find currentDate & factor for >15th -------------
+            var tdate = new Date().getDate();
+            var tyear1 = todayte.slice(0, -2);
+            var tyear2 = todayte.slice(0, -2);
+            // var tyear1 = new Date().getFullYear();
+            // var tyear2 = new Date().getFullYear();
+            if(tdate < 15){
+                var month1_full = todayte;
+                var month1 = parseFloat(month1_full.toString().slice(4))-1;
+                var date2 = new Date();
+                date2.setMonth(month1);
+                date2.setDate(0);
+                var month2 = date2.getMonth();
+                if(month2 < 1){
+                    month2 += 12;
+                    tyear2 = (parseFloat(tyear2) - 1);
+                }
+                if(month1 < 1){
+                    month1 += 12;
+                    tyear1 = (parseFloat(tyear1) - 1);
+                }
+            }else{
+                var month1_full = todayte;
+                var month1 = parseFloat(month1_full.toString().slice(4));
+                var date2 = new Date();
+                date2.setMonth(month1);
+                date2.setDate(0);
+                var month2 = date2.getMonth();
+                if(month2 < 1){
+                    month2 += 12;
+                    tyear2 = (parseFloat(tyear2) - 1);
+                }
+                if(month1 < 1){
+                    month1 += 12;
+                    tyear1 = (parseFloat(tyear1) - 1);
+                }
+            }
+            if(parseFloat(month1) < 10){month1 = "0"+month1}
+            if(parseFloat(month2) < 10){month2 = "0"+month2}
+            console.log("month1: "+ month1 + " && month2: "+month2);
+            var period_string = tyear1+""+month1+";"+tyear2+""+month2;
+            return period_string
+          // -------------find currentDate & factor for >15th -------------
+        }
+
+        function getCurrentPeriod() {
+            var per_y = new Date().getFullYear();
+            var per_m = new Date().getMonth();
+            if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+            var per = per_y+""+per_m;
+            return(getPeriod(per))
+        }
+
+        function getLastMonthPeriod() {
+            var per_y = new Date().getFullYear();
+            var per_m = new Date().getMonth();
+            per_m = parseFloat(per_m) - 1;
+            if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
+            if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+            var per = per_y+""+per_m;
+            return(getPeriod(per))
+        }
     </script>
 </body>
 </html>
