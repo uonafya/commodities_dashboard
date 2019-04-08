@@ -161,5 +161,12 @@ function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-
+function downloadable(tableid) {
+    $('#'+tableid).DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+}
 //---------------------------end custom---------------------------//
