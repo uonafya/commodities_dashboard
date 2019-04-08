@@ -1,22 +1,24 @@
 function getKIssues(url,tou) {
-    console.log("getDetails-> URL: "+url+" & TOU: "+tou);
+    console.log("getKIssues-> URL: "+url+" & TOU: "+tou);
     $('.nat_loader, .loader-sp, .issues-loader').removeClass('hidden');
     $('.nat_table').addClass('hidden');
     var tdata = '';
+    
     $.ajax({
         type: "GET",
         url: url,
         data: "data",
         crossDomain: true,
         success: function (data) {
+                    
             $('#perdd').html(dateToStr(data.metaData.dimensions.pe[0]));
             orgunits = data.metaData.dimensions.ou;
             var orgu_opts = '';
             var ttitle = '';
             ttitle += data.metaData.items[data.metaData.dimensions.ou[0]].name;
-            ttitle += ' - ';
-            ttitle += data.metaData.items[data.metaData.dimensions.pe[0]].name;
             $('.ttitle').html(ttitle);
+            $('#month1_title').html(data.metaData.items[data.metaData.dimensions.pe[1]].name)
+            $('#month2_title').html(data.metaData.items[data.metaData.dimensions.pe[0]].name)
             var fac_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
             // var fac_url = 'http://localhost/pmi/json/tAbBVBbueqD.json';
             $.ajax({
@@ -38,23 +40,27 @@ function getKIssues(url,tou) {
             $('#ounit').html(data.metaData.items[data.metaData.dimensions.ou[0]].name);
             var thedxissued = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length/2);
             var thedxreceived = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length);
+            var peri_0 = data.metaData.dimensions.pe[0]
+            var peri_1 = data.metaData.dimensions.pe[1]
             $.each(thedxissued, function (index, issdId) {
                 var recvdId = thedxreceived[index];
-                var iss_val = getVal(data.rows, issdId);
+                var iss_val = getVal(data.rows, issdId, peri_0);
                 if(iss_val == undefined){
                     iss_val = 0;
                 }
-                var recvd_val = getVal(data.rows, recvdId);
-                if(recvd_val == undefined){
-                    recvd_val = 0;
+                var recvd_val_month1 = getVal(data.rows, recvdId, peri_1);
+                if(recvd_val_month1 == undefined){
+                    recvd_val_month1 = 0;
+                }
+                var recvd_val_month2 = getVal(data.rows, recvdId, peri_0);
+                if(recvd_val_month2 == undefined){
+                    recvd_val_month2 = 0;
                 }
 
-                var diff_val = iss_val-recvd_val;
-                if(iss_val>recvd_val){
+                var total_recvd = parseFloat(recvd_val_month1) + parseFloat(recvd_val_month2);
 
-                }else{
-
-                }
+                var diff_val = parseFloat(total_recvd)-parseFloat(iss_val);
+                if(iss_val>total_recvd){}else{}
 
                 var diff_perc = (diff_val/iss_val)*100;
                 if(diff_perc<0){
@@ -79,13 +85,22 @@ function getKIssues(url,tou) {
                 }
 
 
-                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
+                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month1)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month2)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(total_recvd)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
                 
             })
             $('.nat_loader, .loader-sp, .issues-loader').addClass('hidden');
             $('.nat_table').removeClass('hidden');
+            $('.nat_table').DataTable().destroy();
             $('#natnl tbody').empty();
             $('#natnl tbody').append(tdata);
+            $('.nat_table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                sorting: false,
+                ordering: false
+            });
             $('.issu_status').addClass('hidden');
             $('#nat-iss').removeClass('hidden');
         },
@@ -232,8 +247,9 @@ function getNational(nat_url) {
 }
 
 
-function getVal(arry,commo){
+function getVal(arry,commo, peri){
     var valu = filterItems(arry,commo);
+    valu = filterItems(valu,peri);
     if(valu[0] != undefined){
         var thevalue = valu[0][2];
     }
