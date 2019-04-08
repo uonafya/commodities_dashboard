@@ -530,7 +530,7 @@
     <script src="../../dist/js/datatables/buttons.html5.min.js"></script>
     <script src="../../dist/js/datatables/buttons.print.min.js"></script>
     <script src="../../assets/extra-libs/DataTables/dataTables.buttons.min.js"></script>
-    <!--<script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>-->
+    <script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>
     <script src="../../assets/extra-libs/jszip/jszip.min.js"></script>
     <script src="../../assets/extra-libs/pdfmake/pdfmake.min.js"></script>
     <script src="../../assets/extra-libs/pdfmake/vfs_fonts.js"></script>
@@ -864,6 +864,7 @@ function fetchIS(url,ounit,period) {
                         $('.table-responsive').removeClass('hidden');
                         $('.indicatorsumm').removeClass('hidden');
                         $('.indicatorsumm').DataTable().destroy();
+                        $('#zero_config').DataTable().destroy();
                         $("table.indicatorsumm tbody").empty();
                         $("table.indicatorsumm thead .form-control").remove();
                         $("table.indicatorsumm tbody").append(tableData);
@@ -1102,7 +1103,7 @@ function getOrgUnits()
 	
 	return orgunitval;
 }
-downloadTable("zero_config");
+//downloadTable("zero_config");
 </script>
 <!-- end MOS by Commodity -->
 
