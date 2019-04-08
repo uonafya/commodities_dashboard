@@ -44,22 +44,22 @@ function getKIssues(url,tou) {
             var peri_1 = data.metaData.dimensions.pe[1]
             $.each(thedxissued, function (index, issdId) {
                 var recvdId = thedxreceived[index];
-                var iss_val = (getVal(data.rows, issdId, peri_0)).toFixed(1);
+                var iss_val = getVal(data.rows, issdId, peri_0);
                 if(iss_val == undefined){
                     iss_val = 0;
                 }
-                var recvd_val_month1 = (getVal(data.rows, recvdId, peri_1)).toFixed(1);
+                var recvd_val_month1 = getVal(data.rows, recvdId, peri_1);
                 if(recvd_val_month1 == undefined){
                     recvd_val_month1 = 0;
                 }
-                var recvd_val_month2 = (getVal(data.rows, recvdId, peri_0)).toFixed(1);
+                var recvd_val_month2 = getVal(data.rows, recvdId, peri_0);
                 if(recvd_val_month2 == undefined){
                     recvd_val_month2 = 0;
                 }
 
-                var total_recvd = (parseFloat(recvd_val_month1) + parseFloat(recvd_val_month2)).toFixed(1);
+                var total_recvd = parseFloat(recvd_val_month1) + parseFloat(recvd_val_month2);
 
-                var diff_val = (parseFloat(total_recvd)-parseFloat(iss_val)).toFixed(1);
+                var diff_val = parseFloat(total_recvd)-parseFloat(iss_val);
                 if(iss_val>total_recvd){}else{}
 
                 var diff_perc = (diff_val/iss_val)*100;
