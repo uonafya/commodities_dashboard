@@ -16,8 +16,6 @@ function getKIssues(url,tou) {
             var orgu_opts = '';
             var ttitle = '';
             ttitle += data.metaData.items[data.metaData.dimensions.ou[0]].name;
-            ttitle += ' - ';
-            ttitle += data.metaData.items[data.metaData.dimensions.pe[0]].name;
             $('.ttitle').html(ttitle);
             $('#month1_title').html(data.metaData.items[data.metaData.dimensions.pe[1]].name)
             $('#month2_title').html(data.metaData.items[data.metaData.dimensions.pe[0]].name)
