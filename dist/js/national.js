@@ -59,7 +59,7 @@ function getKIssues(url,tou) {
 
                 var total_recvd = parseFloat(recvd_val_month1) + parseFloat(recvd_val_month2);
 
-                var diff_val = parseFloat(iss_val)-parseFloat(total_recvd);
+                var diff_val = parseFloat(total_recvd)-parseFloat(iss_val);
                 if(iss_val>total_recvd){}else{}
 
                 var diff_perc = (diff_val/iss_val)*100;
