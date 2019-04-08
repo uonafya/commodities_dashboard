@@ -397,8 +397,8 @@
                                                                 <th rowspan="2">% Difference</th>
                                                             </tr>
                                                             <tr>
-                                                                <th><small>Quantity received <br/> <span id="month1_title"></span></small></th>
-                                                                <th><small>Quantity received <br/> <span id="month2_title"></span></small></th>
+                                                                <th><small>Quantity received <br/> <span class="text-bold" id="month1_title"></span></small></th>
+                                                                <th><small>Quantity received <br/> <span class="text-bold" id="month2_title"></span></small></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -567,8 +567,9 @@
         }else{
             the_ogu = 'HfVjCurKxh2'; //Kenya
         }
+        var past = true;
         console.log("the_ogu: "+the_ogu + " & periodval: "+periodval);
-        getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+getPeriod(periodval)+'&filter=ou:'+the_ogu+'&displayProperty=NAME&outputIdScheme=UID',the_ogu);
+        getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+getPeriod(periodval, past)+'&filter=ou:'+the_ogu+'&displayProperty=NAME&outputIdScheme=UID',the_ogu);
 		
     }
     downloadTable("natnl");
@@ -610,16 +611,19 @@
         // });
 
 
-        function getPeriod(todayte) {
+        function getPeriod(todayte, past) {
           // -------------find currentDate & factor for >15th -------------
             var tdate = new Date().getDate();
+            if(past){
+                tdate = 20
+            }
             var tyear1 = todayte.slice(0, -2);
             var tyear2 = todayte.slice(0, -2);
             // var tyear1 = new Date().getFullYear();
             // var tyear2 = new Date().getFullYear();
             if(tdate < 15){
                 var month1_full = todayte;
-                var month1 = parseFloat(month1_full.toString().slice(4))-1;
+                var month1 = parseFloat(month1_full.toString().slice(4));
                 var date2 = new Date();
                 date2.setMonth(month1);
                 date2.setDate(0);
@@ -634,7 +638,7 @@
                 }
             }else{
                 var month1_full = todayte;
-                var month1 = parseFloat(month1_full.toString().slice(4));
+                var month1 = parseFloat(month1_full.toString().slice(4))+1;
                 var date2 = new Date();
                 date2.setMonth(month1);
                 date2.setDate(0);
@@ -661,7 +665,7 @@
             var per_m = new Date().getMonth();
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
-            return(getPeriod(per))
+            return(getPeriod(per, false))
         }
 
         function getLastMonthPeriod() {
@@ -671,7 +675,7 @@
             if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
-            return(getPeriod(per))
+            return(getPeriod(per, false))
         }
     </script>
 </body>
