@@ -85,7 +85,7 @@ function getKIssues(url,tou) {
                 }
 
 
-                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month1)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month2)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(total_recvd)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
+                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val.toFixed(1))+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month1.toFixed(1))+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month2.toFixed(1))+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(total_recvd.toFixed(1))+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val.toFixed(1))+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
                 
             })
             $('.nat_loader, .loader-sp, .issues-loader').addClass('hidden');
