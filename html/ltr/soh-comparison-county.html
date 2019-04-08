@@ -728,7 +728,15 @@
                     $('#sp_table').DataTable().destroy();
                     $("table.spbox tbody").empty();
                     $("table.spbox tbody").append(tableData);	
-                    //$('#sp_table').DataTable();                                                          
+                    //$('#sp_table').DataTable();         
+                    $('#sp_table').DataTable( {
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        ],
+                        ordering: false,
+                        orderable: false
+                    });                                                 
              },
                 error: function (request, status, error) {
                     $('.loader-sp').addClass('hidden');
@@ -776,7 +784,7 @@
 		return periodval;
     }
     
-    downloadTable('sp_table');
+    //downloadTable('sp_table');
 </script>
 
 </body>
