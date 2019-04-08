@@ -18,6 +18,9 @@
     <link href="../../assets/extra-libs/DataTables/buttons.dataTables.min.css" rel="stylesheet">
     <link href="../../dist/css/style.min.css" rel="stylesheet">
     <link href="../../dist/css/custom.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../dist/css/datatables/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="../../dist/css/datatables/jquery.dataTables.min.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -568,7 +571,8 @@
         console.log("the_ogu: "+the_ogu + " & periodval: "+periodval);
         getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+getPeriod(periodval)+'&filter=ou:'+the_ogu+'&displayProperty=NAME&outputIdScheme=UID',the_ogu);
 		
-	}
+    }
+    downloadTable("natnl");
 	</script>	
 	
 	<script language="JavaScript">
