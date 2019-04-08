@@ -46,7 +46,7 @@ function fetchRRDetails(rdurl,ounit)
                 tableData += '<td>'+data.metaData.items[entry].name+'</td>';
                 $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
                 {
-						var rpt_count = getExpectedToReport(data.rows,pentry,entry);
+						var rpt_count = getExpectedSub(data.rows,pentry,entry);
                         var reportval = getReport(data.rows,pentry,entry);
                         if(reportval)
                         {
@@ -276,6 +276,24 @@ function getExpectedToReport(rows,prd,ounit) {
 	})		
 
 	return exp_count;
+}
+
+//get the # expected to report
+function getExpectedSub(rows,period,orgunit) 
+{
+	var rowval = 0;
+
+	//loop through the rows
+	$.each(rows, function (rkey, rentry) 
+	{
+			//check for orgunit and period
+			if(orgunit==rentry[2] && period==rentry[1] && rentry[0]=='JPaviRmSsJW.EXPECTED_REPORTS')
+			{                                    
+					rowval = parseInt(rentry[3]);
+			}								
+	})		
+
+	return rowval;
 }
 
 function dateToStr(ledate){
