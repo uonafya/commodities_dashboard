@@ -867,7 +867,7 @@ function fetchIS(url,ounit,period) {
                         $("table.indicatorsumm tbody").empty();
                         $("table.indicatorsumm thead .form-control").remove();
                         $("table.indicatorsumm tbody").append(tableData);
-                        $('#zero_config').DataTable( {
+                        $('.indicatorsumm').DataTable( {
                             //data-xport
                             dom: 'Bfrtip',
                             buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
