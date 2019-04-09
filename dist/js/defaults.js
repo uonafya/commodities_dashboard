@@ -30,7 +30,8 @@ function myOU() {
                             console.log('twoooo');
                             
                         }
-                        console.log('my_county (level > 1): '+my_county)
+                        console.log('my_county (level > 1): '+my_county);
+                        $('#county-dropdown option[value='+my_county+']').attr('selected', 'selected');
                     }else{
                         my_county = my_data_ou;
                         console.log('my_county (else): '+my_county)
