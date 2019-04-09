@@ -21,7 +21,7 @@ function myOU() {
         url:'https://testhis.uonbi.ac.ke/api/me.json',
         async: false,
         success: function (resp) {
-            ous = response.organisationUnits;
+            ous = resp.organisationUnits;
             dataViewOU = resp.dataViewOrganisationUnits[0];
             console.log('dataViewOU ==> '+JSON.stringify(dataViewOU));
             console.log('OUs ==> '+JSON.stringify(ous));
