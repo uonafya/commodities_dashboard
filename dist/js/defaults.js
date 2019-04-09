@@ -31,5 +31,5 @@ function myOU() {
         },
         error: function () {}
     });
-    return dataViewOU;
+    return dataViewOU["id"];
 }
