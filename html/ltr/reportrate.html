@@ -528,7 +528,9 @@
             return dates;
         }
 
-        $('#county-dropdown option[value="vvOK1BxTbet"]').attr('selected', 'selected');
+        $('#county-dropdown option[value="vvOK1BxTbet"]').attr('selected', true);
+        $('#county-dropdown>option:eq("vvOK1BxTbet")').prop('selected', true);
+        $('#county-dropdown').val("vvOK1BxTbet");
     </script>
 </body>
 
