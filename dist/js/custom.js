@@ -170,9 +170,5 @@ function downloadTable(tableid) {
     } );
 }
 
-// get defaults script
-// $.getScript("./defaults.js", function (script, textStatus, jqXHR) {
-//     console.log("Loaded---------> defaults.js, status ==> "+textStatus);
-// });
-// get defaults script
+$('#county-dropdown option[value='+myOU()+']').attr('selected', 'selected');
 //---------------------------end custom---------------------------//
