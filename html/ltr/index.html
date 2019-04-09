@@ -589,7 +589,8 @@
 		//get the orgs assigned the data set for malaria expected reports
 		function getOrgUnits()
 		{
-			var url = '../../assets/json/orgunitsmal.json';
+			// var url = '../../assets/json/orgunitsmal.json';
+			var url = 'https://testhis.uonbi.ac.ke/api/29/dataSets/JPaviRmSsJW.json';
 			
 			//get the org units				
 				
@@ -599,7 +600,8 @@
 			  async:false,
 			  success: function(data) 
 			  {          
-					$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+					// $.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+					$.each(data.organisationUnits, function (key, orgunitid) 
 					{			
 						orgunitval.push(orgunitid.id);
 					})
