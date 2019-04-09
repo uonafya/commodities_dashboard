@@ -40,7 +40,7 @@ function myOU() {
                     console.log('2nd ajax success');
                     level = response.level;
                     if(level > 1){
-                        my_county = response.ancestors[1];
+                        my_county = response.ancestors[1]["id"];
                     }else{
                         my_county = my_data_ou;
                     }
