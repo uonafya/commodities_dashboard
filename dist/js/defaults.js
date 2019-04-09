@@ -37,7 +37,7 @@ function myOU() {
                 async: false,
                 data: "my OUs2",
                 success: function (response) {
-                    log('2nd ajax success');
+                    console.log('2nd ajax success');
                     level = response.level;
                     if(level > 1){
                         my_county = response.ancestors[1];
