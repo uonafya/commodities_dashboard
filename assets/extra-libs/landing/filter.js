@@ -1,7 +1,8 @@
 function filterMain(countyid, subcountyid, periodid) {
 
         if (countyid == null) {
-                countyid = 'HfVjCurKxh2';
+                // countyid = 'HfVjCurKxh2';
+                countyid = myOU();
         }
 
         if (subcountyid != null) {
