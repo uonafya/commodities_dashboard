@@ -19,7 +19,6 @@ function myOU() {
     var ous;
     $.ajax({
         url:'https://testhis.uonbi.ac.ke/api/me.json',
-        data: data,
         async: false,
         success: function (resp) {
             ous = response.organisationUnits;
