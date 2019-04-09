@@ -182,7 +182,8 @@ function fetchACTs(acturl,orgu,peri)
                 $.ajax({      
                     dataType: "json",
                     url: url,
-                    success: function(datax) {          
+                    success: function(datax) {  
+                        console.log("setting title as: "+datax['name']+' - '+data.metaData.items[peri].name);
                         $("h5#ttitle").html(datax['name']+' - '+data.metaData.items[peri].name);
                     }
                 });    
