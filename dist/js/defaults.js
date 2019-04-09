@@ -1,21 +1,3 @@
-// function myOU() {
-//     var dataViewOU;
-//     var ous;
-//     $.ajax({
-//         url:'https://testhis.uonbi.ac.ke/api/me.json',
-//         async: false,
-//         success: function (resp) {
-//             ous = resp.organisationUnits;
-//             dataViewOU = resp.dataViewOrganisationUnits[0];
-//             console.log('dataViewOU ==> '+JSON.stringify(dataViewOU));
-//             console.log('OUs ==> '+JSON.stringify(ous));
-//             callback.call(dataViewOU);
-//         },
-//         error: function () {}
-//     });
-//     return dataViewOU;
-// }
-
 function myOU() {
     var dataViewOU;
     var ous;
@@ -40,9 +22,10 @@ function myOU() {
                     level = response.level;
                     if(level > 1){
                         my_county = response.ancestors[1]["id"];
-                        console.log('my_county: '+my_county)
+                        console.log('my_county (level > 1): '+my_county)
                     }else{
                         my_county = my_data_ou;
+                        console.log('my_county (else): '+my_county)
                     }
                 }
             });
