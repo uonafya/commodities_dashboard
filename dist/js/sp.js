@@ -49,17 +49,6 @@ function checkOUs(ouid){
                     //var tableData = '<table>';
                     var tableData = '';
 
-                    // title fill
-                        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
-                        $.ajax({      
-                            dataType: "json",
-                            url: url,
-                            success: function(datax) {          
-                                $("h5#ttitle").html(datax['name']+' - '+data.metaData.items[peri].name);
-                            }
-                        });    
-                    // END title fill
-
                     //push only if not in
                     $.each(data.rows, function (rowkey, rowentry) 
                     {
@@ -185,6 +174,17 @@ function checkOUs(ouid){
                             $(this.api().column(6).nodes()).css({ "background-color": "white" });
                         }
                     });
+
+                    // title fill
+                        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
+                        $.ajax({      
+                            dataType: "json",
+                            url: url,
+                            success: function(datax) {          
+                                $("h5#ttitle").html(datax['name']+' - '+data.metaData.items[data.metaData.dimensions.pe[0]].name);
+                            }
+                        });    
+                    // END title fill
 
                     
                 },
