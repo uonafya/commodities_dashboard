@@ -6,9 +6,8 @@ function myOU(getOU) {
         success:function(response) {
             var ous = response.organisationUnits;
             var dataViewOU = response.dataViewOrganisationUnits[0];
-            // alert('response.dataViewOrganisationUnits[0] ==>'+response.dataViewOrganisationUnits[0])
-            log('OUs ==> '+JSON.stringify(ous));
-            log('dataViewOU ==> '+JSON.stringify(dataViewOU));
+            console.log('dataViewOU ==> '+JSON.stringify(dataViewOU));
+            console.log('OUs ==> '+JSON.stringify(ous));
             getOU(data); 
         }
     });
