@@ -424,6 +424,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../dist/js/defaults.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -553,6 +554,7 @@
 	$(document).ready(function() 
 	{
             var ounit = 'HfVjCurKxh2'; //Kenya
+            ounit = myOU(); //Kenya
             var period = 'LAST_MONTH'; //Last month
 
             //var url = 'pmi.json';
@@ -600,6 +602,7 @@
 			if(ounit == null)
             {
                 ounit = 'HfVjCurKxh2';
+                ounit = myOU();
             }
 
             if(subcountyou != null)

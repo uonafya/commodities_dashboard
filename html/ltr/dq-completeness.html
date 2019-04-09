@@ -540,7 +540,7 @@ color: transparent;}
         </footer>
     </div>
 </div>
-   
+   <script src="../../dist/js/defaults.js"></script>
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
@@ -691,6 +691,7 @@ color: transparent;}
         $(function () {
             var perd = 'LAST_12_MONTHS';
             var orgun = 'tAbBVBbueqD';
+            orgun = myOU();
             var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+perd+'&dimension=ou:'+orgun+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             // var wburl = 'http://localhost/pmi/json/completeness.json';
             getWBData(wburl,orgun);
@@ -756,6 +757,7 @@ color: transparent;}
                 var theou = $('#county-dropdown').val();
             } else{
                 var theou = 'tAbBVBbueqD';
+                theou = myOU();
             }
             var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             getWBData(wburl,theou);

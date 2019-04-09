@@ -443,6 +443,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../dist/js/defaults.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -582,6 +583,7 @@
             if(countyou == null)
             {
                 countyou = 'tAbBVBbueqD';
+                countyou = myOU();
             }
 
             if(subcountyou != null)
@@ -616,8 +618,9 @@
         $('.parameter2filt').removeClass('hidden');
 
         var ounit = 'tAbBVBbueqD';
+        ounit = myOU();
         var period = 'LAST_MONTH';
-        var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;tAbBVBbueqD&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
+        var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
         // var url = 'http://localhost/pmi/json/indicatorsummary.json';
         fetchIS(url,ounit,period);
 		//parse the data for mos percentage

@@ -425,6 +425,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../dist/js/defaults.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -613,6 +614,7 @@
                 var theou = $('#county-dropdown').val();
             } else{
                 var theou = 'HfVjCurKxh2';
+                theou = myOU();
             }
             var commos = 'zLR3PBVPgN5';
             var commo_val = $('#commodity-dropdown').val();
@@ -655,6 +657,7 @@
             // var period = '201807;201808;201809;201810;201811;201812';
             var period = 'LAST_6_MONTHS';
             var theou = 'HfVjCurKxh2';
+            theou = myOU();
             getTrends('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID');
             // getTrends('http://localhost/pmi/json/indicator_trends.json');
 
@@ -693,6 +696,7 @@
                 var period = 'LAST_6_MONTHS';
                 var commos = $(this).val();
                 var theou = 'HfVjCurKxh2';
+                theou = myOU();
 
                 if($('#county-dropdown').val() != null || $('#county-dropdown').val() != ''){
                     theou = $('#county-dropdown').val();

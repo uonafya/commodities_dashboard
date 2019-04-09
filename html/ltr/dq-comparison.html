@@ -444,6 +444,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../dist/js/defaults.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -563,6 +564,7 @@
 	$(document).ready(function() 
 	{
             var ounit = 'tAbBVBbueqD';
+            ounit = myOU();
             var period = '201805';
          			
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:201805&dimension=dx:VBbnGNfZWDU.NhSoXUMPK2K;Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';

@@ -244,6 +244,7 @@
     </div>
     
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../dist/js/defaults.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -376,13 +377,13 @@
     <script src="../../assets/extra-libs/highcharts/subcounty-rr-highchart.js"></script>
     <script>
         $(document).ready(function() {
-            var rrurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
-            var onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
+            var rrurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:'+myOU()+'&displayProperty=NAME&outputIdScheme=UID';
+            var onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+myOU()+'&displayProperty=NAME&outputIdScheme=UID';
             // var rrurl = 'http://localhost/pmi/json/reporting-kisumu.json';
             // var onurl = 'http://localhost/pmi/json/ontime-reporting.json';
             fetchRR(rrurl, onurl);
 
-            var scurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
+            var scurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+myOU()+'&displayProperty=NAME&outputIdScheme=UID';
             // var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
             fetchScRR(scurl);
         });
@@ -482,6 +483,7 @@
                 var theou = $('#county-dropdown').val();
             } else{
                 var theou = 'tAbBVBbueqD';
+                theou = myOU();
             }
             
             var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
