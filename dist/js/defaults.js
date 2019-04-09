@@ -21,6 +21,7 @@ function myOU() {
                 success: function (response) {
                     level = response.level;
                     if(level > 1){
+                        console.log('hoooo: '+JSON.stringify(response.ancestors));
                         if(response.ancestors[1]["id"] !== undefined){
                             my_county = response.ancestors[1]["id"];
                         }else{
