@@ -15,17 +15,20 @@ function myOU() {
             var level;
             $.ajax({
                 type: "GET",
-                url: "https://testhis.uonbi.ac.ke/api/organisationUnits/"+my_data_ou+".json?fields=ancestors,level",
+                url: "https://testhis.uonbi.ac.ke/api/organisationUnits/"+my_data_ou+".json",
                 async: false,
                 data: "fields=ancestors,level",
                 success: function (response) {
                     level = response.level;
-                    if(level > 1){
+                    if(level > 2){
                         console.log('hoooo: '+JSON.stringify(response.ancestors));
                         if(response.ancestors[1]["id"] !== undefined){
                             my_county = response.ancestors[1]["id"];
+                            console.log('oooone');
                         }else{
                             my_county = response.ancestors[0]["id"];
+                            console.log('twoooo');
+                            
                         }
                         console.log('my_county (level > 1): '+my_county)
                     }else{
