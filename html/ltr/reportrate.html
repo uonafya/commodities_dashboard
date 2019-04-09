@@ -387,10 +387,9 @@
     <script src="../../assets/extra-libs/highcharts/subcounty-rr-highchart.js"></script>
     <script>
         $(document).ready(function() {
-            var mou = $('#county-dropdown option:eq(2)').val();
-            if( myOU() == 'HfVjCurKxh2' ){
-                mou = $('#county-dropdown option:eq(2)').val();
-            }else{
+            var mou;
+            mou = $('#county-dropdown option:eq(2)').val();
+            if( myOU() != 'HfVjCurKxh2' ){
                 mou = myOU();
             }
             alert(mou);
