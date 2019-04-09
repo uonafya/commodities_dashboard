@@ -743,9 +743,8 @@
 			//define the constants
             var countyid = 'HfVjCurKxh2';
             countyid = myOU();
-            alert(JSON.stringify(myOU()));
 			var periodid = 'LAST_MONTH';
-            sleep(3000);
+            // sleep(3000);
             //load the mos by commodity 
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:'+countyid+'&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
             fetchMosbycombox(url);
