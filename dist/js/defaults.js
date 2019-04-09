@@ -25,21 +25,22 @@ function myOU() {
     $.ajax({
         url:'https://testhis.uonbi.ac.ke/api/me.json',
         async: false,
-        data: 'my OUs',
+        data: '',
         success: function (resp) {
             ous = resp.organisationUnits;
-            dataViewOU = resp.organisationUnits[0];
+            dataViewOU = resp.dataViewOrganisationUnits[0];
             my_data_ou = dataViewOU["id"];
             var level;
             $.ajax({
                 type: "GET",
                 url: "https://testhis.uonbi.ac.ke/api/organisationUnits/"+my_data_ou+".json?fields=ancestors,level",
                 async: false,
-                data: "my OUs2",
+                data: "fields=ancestors,level",
                 success: function (response) {
                     level = response.level;
                     if(level > 1){
                         my_county = response.ancestors[1]["id"];
+                        console.log('my_county: '+my_county)
                     }else{
                         my_county = my_data_ou;
                     }
