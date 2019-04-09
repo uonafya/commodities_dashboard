@@ -169,4 +169,11 @@ function downloadTable(tableid) {
         ]
     } );
 }
+
+// get defaults script
+$.getScript("defaults.js", function (script, textStatus, jqXHR) {
+    console.log("Loaded---------> defaults.js");
+    
+});
+// get defaults script
 //---------------------------end custom---------------------------//
