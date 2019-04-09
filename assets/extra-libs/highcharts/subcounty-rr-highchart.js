@@ -13,7 +13,6 @@ function fetchScRR(scurl){
             var thecounties = [];
             var therate = [];
             $.each(countiesdata, function (index, acounty) {
-                // thecounties.push(acounty[2]);
                 thecounties.push(data.metaData.items[acounty[2]].name);
                 therate.push(parseFloat(acounty[3]));
             });
