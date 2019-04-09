@@ -13,8 +13,9 @@ function fetchScRR(scurl){
             var thecounties = [];
             var therate = [];
             $.each(countiesdata, function (index, acounty) {
-                thecounties.push(acounty[1]);
-                therate.push(parseFloat(acounty[2]));
+                // thecounties.push(acounty[2]);
+                thecounties.push(data.metaData.items[acounty[2]].name);
+                therate.push(parseFloat(acounty[3]));
             });
 
 
@@ -109,4 +110,11 @@ function fetchScRR(scurl){
             $('#sc_rrchart').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
+}
+
+
+function filterItems(array,query) {
+    return array.filter(function(el) {
+        return el.indexOf(query) > -1;
+    })
 }
