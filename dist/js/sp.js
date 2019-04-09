@@ -154,6 +154,7 @@ function checkOUs(ouid){
                     $('#sp_table').removeClass('hidden');
                     $('.spdata').removeClass('hidden');
                     $('.loader-sp').addClass('hidden');
+                    $('.sp_status.row').addClass('hidden');
                     // $('.loader-sp').css('display','none');
                     
                     $('#sp_table').DataTable().destroy();
@@ -192,7 +193,8 @@ function checkOUs(ouid){
                     $('.loader-sp').addClass('hidden');
                     $('#sp_table').addClass('hidden');
                     console.log('SP: error fetching json. :- '+error);
-                    $('spdata').addClass('hidden');
+                    $('.spdata').addClass('hidden');
+                    $('.sp_status.row').removeClass('hidden');
                     $('.sp_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                 }
             });
