@@ -153,6 +153,7 @@ function fetchRDTs(rdturl,orgu,peri)
                     //console.log(tableData)
                     $('#rdt_table').removeClass('hidden');
                     $('.rdtdata').removeClass('hidden');
+                    $('.rdt_status').addClass('hidden');
                     $('.loader-sp').addClass('hidden');
                     // $('.loader-sp').css('display','none');
                     
@@ -175,7 +176,7 @@ function fetchRDTs(rdturl,orgu,peri)
                     });
 
                     // title fill
-                        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
+                        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+myOU()+'.json?fields=id,name';
                         $.ajax({      
                             dataType: "json",
                             url: url,
@@ -191,7 +192,8 @@ function fetchRDTs(rdturl,orgu,peri)
                     $('.loader-sp').addClass('hidden');
                     $('#rdt_table').addClass('hidden');
                     console.log('RDTs: error fetching json. :- '+error);
-                    $('rdtdata').addClass('hidden');
+                    $('.rdtdata').addClass('hidden');
+                    $('.rdt_status').removeClass('hidden');
                     $('.rdt_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                 }
             });

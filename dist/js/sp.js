@@ -154,7 +154,7 @@ function checkOUs(ouid){
                     $('#sp_table').removeClass('hidden');
                     $('.spdata').removeClass('hidden');
                     $('.loader-sp').addClass('hidden');
-                    $('.sp_status.row').addClass('hidden');
+                    $('.sp_status').addClass('hidden');
                     // $('.loader-sp').css('display','none');
                     
                     $('#sp_table').DataTable().destroy();
@@ -177,7 +177,7 @@ function checkOUs(ouid){
                     });
 
                     // title fill
-                        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
+                        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+myOU()+'.json?fields=id,name';
                         $.ajax({      
                             dataType: "json",
                             url: url,

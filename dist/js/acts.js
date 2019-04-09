@@ -162,6 +162,7 @@ function fetchACTs(acturl,orgu,peri)
             $('.act_status').addClass('hidden');
             $('#acts_table').DataTable().destroy();
             $("table.actsbox tbody").empty();
+            $('.act_status').addClass('hidden');
             $("table.actsbox tbody").append(tableData);	
             //$('#acts_table').DataTable();                                                          
             $('#acts_table').DataTable({
@@ -178,7 +179,7 @@ function fetchACTs(acturl,orgu,peri)
                 }
             });
             // title fill
-                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
+                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+myOU()+'.json?fields=id,name';
                 $.ajax({      
                     dataType: "json",
                     url: url,
@@ -195,7 +196,8 @@ function fetchACTs(acturl,orgu,peri)
             $('.loader-sp').addClass('hidden');
             $('#acts_table').addClass('hidden');
             console.log('ACTs: error fetching json. :- '+error);
-            $('actdata').addClass('hidden');
+            $('.actdata').addClass('hidden');
+            $('.act_status').removeClass('hidden');
             $('.act_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
