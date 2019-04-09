@@ -21,7 +21,11 @@ function myOU() {
                 success: function (response) {
                     level = response.level;
                     if(level > 1){
-                        my_county = response.ancestors[0]["id"];
+                        if(response.ancestors[1]["id"] !== undefined){
+                            my_county = response.ancestors[1]["id"];
+                        }else{
+                            my_county = response.ancestors[0]["id"];
+                        }
                         console.log('my_county (level > 1): '+my_county)
                     }else{
                         my_county = my_data_ou;
