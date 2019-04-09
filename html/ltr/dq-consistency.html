@@ -680,6 +680,16 @@ color: transparent;}
                 
                 subcounty.append('<option selected="true" disabled>Select Sub County</option>');
                 subcounty.prop('selectedIndex', 0);
+                    $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
+                    var myou = myOU();
+                    $.each(data.organisationUnits, function (key, entry) 
+                    {				
+                        if(entry.parent.id==myou)
+                        {							
+                            subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                        }				
+                    })		 
+                });	
                 
                 perioddwn.append('<option selected="true" disabled>Select Period</option>');
                 perioddwn.prop('selectedIndex', 0);
