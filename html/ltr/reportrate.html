@@ -388,11 +388,12 @@
     <script>
         $(document).ready(function() {
             var mou;
-            mou = $('#county-dropdown option:eq(2)').val();
+            mou = 'vvOK1BxTbet';
             if( myOU() != 'HfVjCurKxh2' ){
                 mou = myOU();
             }
-            alert(mou);
+            $('#county-dropdown option[value='+myOU()+']').attr('selected', 'selected');
+            
             var rrurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:'+mou+'&displayProperty=NAME&outputIdScheme=UID';
             var onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+mou+'&displayProperty=NAME&outputIdScheme=UID';
             // var rrurl = 'http://localhost/pmi/json/reporting-kisumu.json';
