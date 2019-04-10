@@ -752,14 +752,13 @@
 			//define the constants
             // Populate dropdown with list of sub counties
             $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){		
-                $.each(data.organisationUnits, function (key, entry) 
-                {				
-                    if(entry.parent.id==countyid)
-                    {							
-                        subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                $.each(data.organisationUnits, function (key, entry){
+                    if(entry.parent.id==countyid){							
+                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
                     }				
                 })		 
             });	
+            $('#county-dropdown option[value="'+countyid+'"]').prop('selected', true);
 
 			var periodid = 'LAST_MONTH';
             // sleep(3000);
