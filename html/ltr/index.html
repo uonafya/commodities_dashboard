@@ -632,9 +632,10 @@
 			subcounty.empty();
 			perioddwn.empty();
 
-			dropdown.append('<option selected="true" disabled>Select County</option>');
+			dropdown.append('<option disabled>Select County</option>');
                         dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
-			// dropdown.prop('selectedIndex', 0);
+			// dropdown.prop('selectedIndex', 2);
+			dropdown.find('option[value='+myOU()+']').attr('selected', true);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
