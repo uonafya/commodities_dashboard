@@ -641,7 +641,7 @@ color: transparent;}
 			// commdwn.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
-			dropdown.prop('selectedIndex', 0);
+			dropdown.prop('selectedIndex', 1);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
@@ -743,8 +743,26 @@ color: transparent;}
  
     <script type="text/javascript">
 
-        var theou = 'tAbBVBbueqD';
-        theou = myOU();
+        // var theou = 'tAbBVBbueqD';
+        // theou = myOU();
+        //define the constants
+
+        var theou = 'vvOK1BxTbet';
+        if( myOU() != 'HfVjCurKxh2' ){
+            theou = myOU();
+        }
+        //define the constants
+        
+        // Populate dropdown with list of sub counties
+        $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+            $.each(data.organisationUnits, function (key, entry){
+                if(entry.parent.id==theou){		
+                    $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+                }
+            })
+        });
+        $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
+
         var ccurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;qKzosKQPl6G&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
         // var ccurl = 'http://localhost/pmi/json/concordance1.json'
         var commodity = 'iOARK31NdLp.HWtHCLAwprR';

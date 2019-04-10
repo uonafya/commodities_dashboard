@@ -523,7 +523,7 @@
 			dropdown.empty();
 			subcounty.empty();
 			dropdown.append('<option selected="true" disabled>Select County</option>');
-			dropdown.prop('selectedIndex', 0);
+			dropdown.prop('selectedIndex', 1);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
@@ -574,8 +574,26 @@
 	<script>
 	$(document).ready(function() 
 	{
-            var ounit = 'tAbBVBbueqD';
-            ounit = myOU();
+            // var ounit = 'tAbBVBbueqD';
+            // ounit = myOU();
+
+            //define the constants
+            var ounit = 'vvOK1BxTbet';
+            if( myOU() != 'HfVjCurKxh2' ){
+                ounit = myOU();
+            }
+			//define the constants
+            
+            // Populate dropdown with list of sub counties
+            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+                $.each(data.organisationUnits, function (key, entry){
+                    if(entry.parent.id==ounit){		
+                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    }
+                })
+            });
+            $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
+            
             var period = 'LAST_6_MONTHS';
             
             //get the org name

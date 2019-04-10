@@ -470,7 +470,7 @@
 			commodwn.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
-			dropdown.prop('selectedIndex', 0);
+			dropdown.prop('selectedIndex', 1);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
@@ -666,8 +666,26 @@
         $(document).ready(function () {
             // var period = '201807;201808;201809;201810;201811;201812';
             var period = 'LAST_6_MONTHS';
-            var theou = 'HfVjCurKxh2';
-            theou = myOU();
+            // var theou = 'HfVjCurKxh2';
+            // theou = myOU();
+
+            //define the constants
+            var theou = 'vvOK1BxTbet';
+            if( myOU() != 'HfVjCurKxh2' ){
+                theou = myOU();
+            }
+			//define the constants
+            
+            // Populate dropdown with list of sub counties
+            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+                $.each(data.organisationUnits, function (key, entry){
+                    if(entry.parent.id==theou){		
+                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    }
+                })
+            });
+            $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
+
             getTrends('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID');
             // getTrends('http://localhost/pmi/json/indicator_trends.json');
 

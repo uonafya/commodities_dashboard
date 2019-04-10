@@ -700,8 +700,27 @@ color: transparent;}
     <script type="text/javascript">
         $(function () {
             var perd = 'LAST_12_MONTHS';
-            var orgun = 'tAbBVBbueqD';
-            orgun = myOU();
+            // var orgun = 'tAbBVBbueqD';
+            // orgun = myOU();
+
+            //define the constants
+            var orgun = 'vvOK1BxTbet';
+            if( myOU() != 'HfVjCurKxh2' ){
+                orgun = myOU();
+            }
+			//define the constants
+            
+            // Populate dropdown with list of sub counties
+            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+                $.each(data.organisationUnits, function (key, entry){
+                    if(entry.parent.id==orgun){		
+                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    }
+                })
+            });
+            $('#county-dropdown option[value="'+orgun+'"]').prop('selected', 'selected');
+
+
             var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+perd+'&dimension=ou:'+orgun+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             // var wburl = 'http://localhost/pmi/json/completeness.json';
             getWBData(wburl,orgun);

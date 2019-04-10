@@ -630,8 +630,6 @@
             var ounit = 'vvOK1BxTbet';
             if( myOU() != 'HfVjCurKxh2' ){
                 ounit = myOU();
-            }else{
-                // $('#county-dropdown').prop('selectedIndex', 1);
             }
 			//define the constants
             
@@ -643,7 +641,7 @@
                     }
                 })
             });
-            $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected').attr('selected', true);
+            $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
 
             var period = 'LAST_MONTH';
