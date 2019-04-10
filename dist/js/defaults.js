@@ -36,6 +36,10 @@ function myOU() {
                         my_county = my_data_ou;
                         console.log('my_county (else): '+my_county)
                     }
+
+                    if(my_county == 'HfVjCurKxh2'){
+                        my_county == 'vvOK1BxTbet'
+                    }
                 }
             });
         },
