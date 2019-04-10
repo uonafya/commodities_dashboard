@@ -632,25 +632,14 @@
 			subcounty.empty();
 			perioddwn.empty();
 
-			dropdown.append('<option disabled>Select County</option>');
+			dropdown.append('<option selected="true" disabled>Select County</option>');
             dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
 			// dropdown.prop('selectedIndex', 5);
-            alert( $('#county-dropdown option[value='+myOU()+']').val() );
 			$('#county-dropdown option[value="'+myOU()+'"]').prop('selected', 'selected');
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
-            // Populate dropdown with list of sub counties
-            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
-                var myou = myOU();
-                $.each(data.organisationUnits, function (key, entry) 
-                {				
-                    if(entry.parent.id==myou)
-                    {							
-                        subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
-                    }				
-                })		 
-            });	
+            
 			
 			perioddwn.append('<option selected="true" disabled>Select Period</option>');
 			perioddwn.prop('selectedIndex', 0);
@@ -761,6 +750,16 @@
                 // $('#county-dropdown').prop('selectedIndex', 1);
             }
 			//define the constants
+            // Populate dropdown with list of sub counties
+            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){		
+                $.each(data.organisationUnits, function (key, entry) 
+                {				
+                    if(entry.parent.id==countyid)
+                    {							
+                        subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    }				
+                })		 
+            });	
 
 			var periodid = 'LAST_MONTH';
             // sleep(3000);
