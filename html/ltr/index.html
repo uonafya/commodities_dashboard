@@ -635,7 +635,7 @@
 			dropdown.append('<option disabled>Select County</option>');
             dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
 			// dropdown.prop('selectedIndex', 2);
-            alert( dropdown.find('option[value='+myOU()+']').val() );
+            alert( $('#county-dropdown').find('option[value='+myOU()+']').val() );
 			dropdown.find('option[value='+myOU()+']').attr('selected', true);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
