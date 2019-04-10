@@ -758,7 +758,8 @@
                     }				
                 })		 
             });	
-            $('#county-dropdown option[value="'+countyid+'"]').prop('selected', true);
+            $('#county-dropdown option[value="'+countyid+'"]').prop('selected', 'selected').attr('selected', true);
+            alert($('#county-dropdown option[value="'+countyid+'"]').val());
 
 			var periodid = 'LAST_MONTH';
             // sleep(3000);
