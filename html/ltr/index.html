@@ -753,8 +753,14 @@
         $(document).ready(function() 
         {		
 			//define the constants
-            var countyid = 'HfVjCurKxh2';
-            countyid = myOU();
+            var countyid = 'vvOK1BxTbet';
+            if( myOU() != 'HfVjCurKxh2' ){
+                countyid = myOU();
+            }else{
+                // $('#county-dropdown').prop('selectedIndex', 1);
+            }
+			//define the constants
+
 			var periodid = 'LAST_MONTH';
             // sleep(3000);
             //load the mos by commodity 
