@@ -636,13 +636,16 @@
             var tyear2 = todayte.slice(0, -2);
             // var tyear1 = new Date().getFullYear();
             // var tyear2 = new Date().getFullYear();
+            console.log('tdate => '+tdate);
             if(tdate < 15){
                 var month1_full = todayte;
                 var month1 = parseFloat(month1_full.toString().slice(4) - 1);
+                console.log('month1 => '+month1);
                 var date2 = new Date();
                 date2.setMonth(month1);
                 date2.setDate(0);
                 var month2 = date2.getMonth();
+                console.log('month2 => '+month2);
                 if(month2 < 1){
                     month2 += 12;
                     tyear2 = (parseFloat(tyear2) - 1);
@@ -654,10 +657,12 @@
             }else{
                 var month1_full = todayte;
                 var month1 = parseFloat(month1_full.toString().slice(4))+1;
+                console.log('month1 => '+month1);
                 var date2 = new Date();
                 date2.setMonth(month1);
                 date2.setDate(0);
                 var month2 = date2.getMonth();
+                console.log('month2 => '+month2);
                 if(month2 < 1){
                     month2 += 12;
                     tyear2 = (parseFloat(tyear2) - 1);
