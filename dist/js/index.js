@@ -2,7 +2,7 @@ function fetchMosbycombox(url) {
     // console.log("TRIGGERED: fetchMosbycombox(url) == "+url);
     
     $('.loader-sp.t_four').removeClass('hidden');
-    $('.t_four').addClass('hidden');
+    $('.col-md-12.t_four').addClass('hidden');
     $('#mosbycombox').addClass('hidden');
     $('.t_four_state').addClass('hidden');
     $.ajax({
@@ -121,6 +121,7 @@ function fetchMosbycombox(url) {
     },
     error: function (request, status, error) {
             $('.t_four_state').removeClass('hidden');
+            $('.col-md-12.t_four').addClass('hidden');
             $('#mosbycombox').addClass('hidden');
             $('.loader-sp.t_four').addClass('hidden');
             console.log('MainDash: error fetching json. :- '+error);
