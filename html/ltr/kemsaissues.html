@@ -629,6 +629,10 @@
         function getPeriod(todayte, past) {
           // -------------find currentDate & factor for >15th -------------
             var tdate = new Date().getDate();
+            if(past){
+                tdate = todayte.slice(4);
+                console.log('other_tdate: '+tdate);
+            }
             console.log('past: '+past + ' & todayte: '+todayte);
             if(past){
                 tdate = 2;
