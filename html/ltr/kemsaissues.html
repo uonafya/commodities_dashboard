@@ -629,9 +629,9 @@
         function getPeriod(todayte, past) {
           // -------------find currentDate & factor for >15th -------------
             var tdate = new Date().getDate();
-            console.log('past: '+past + 'todayte: '+todayte);
+            console.log('past: '+past + ' & todayte: '+todayte);
             if(past){
-                tdate = 20;
+                tdate = 2;
             }
             var tyear1 = todayte.slice(0, -2);
             // var tyear2 = todayte.slice(0, -2);
@@ -649,11 +649,7 @@
                     month2 = 12;
                     tyear2 = (parseFloat(tyear2) - 1);
                 }
-                if(past){
-                    month1 = parseFloat(month1_full.toString().slice(4)-4);
-                }else{
-                    month1 = parseFloat(month2)-1;
-                }
+                month1 = parseFloat(month2)-1;
                 if(month1 < 1){
                     month1 = 12;
                     tyear1 = (parseFloat(tyear1) - 1);
@@ -662,7 +658,11 @@
                 console.log('month2 => '+month2);
             }else{
                 var month1_full = todayte;
-                var month1 = parseFloat(month1_full.toString().slice(4))+1;
+                // if(!past){
+                    var month1 = parseFloat(month1_full.toString().slice(4))+1;
+                // }else{
+                //     var month1 = parseFloat(month1_full.toString().slice(4));
+                // }
                 var date2 = new Date();
                 // date2.setMonth(month1);
                 date2.setDate(1);
