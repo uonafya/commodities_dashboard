@@ -117,11 +117,11 @@ function getKIssues(url,tou) {
             $('.issu_status').addClass('hidden');
             $('#nat-iss').removeClass('hidden');
         },
-        error: function(error){
+        error: function(request, status, error){
             $('.issu_status').removeClass('hidden');
             $('.issues-loader').addClass('hidden');
             $('#nat-iss').addClass('hidden');
-            $('.issu_status').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+            $('.issu_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
 
         }
     });

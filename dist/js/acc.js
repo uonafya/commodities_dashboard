@@ -176,7 +176,7 @@ function fetchAccountability(url,orgun) {
             $('.acc_loader').addClass('hidden');
             $('#acc_table').addClass('hidden');
             $('.acc_status').removeClass('hidden');
-            $('.acc_status').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+            $('.acc_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
 
         }
     });

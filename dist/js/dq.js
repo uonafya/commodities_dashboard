@@ -134,7 +134,7 @@ $.ajax({
         $('#pc1, .pc1').addClass('hidden');
         $('.detailsrow').addClass('hidden');
         console.log('DQ: error fetching json. :- '+error);
-        $('.pieone_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        $('.pieone_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
 }
@@ -219,7 +219,7 @@ $('#dq-column').addClass('hidden');
         $('.loader-sp.dqcol').addClass('hidden');
         $('#dq-column').addClass('hidden');
         console.log('DQ: error fetching json. :- '+error);
-        $('.dqcol_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        $('.dqcol_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
 }
@@ -340,7 +340,7 @@ $.ajax({
         $('#detailsTabBtn').addClass('disabled').removeClass('active');
         $('#detailsTabBtn').addClass('disabledTab').removeClass('active');
         console.log('DQ WB Completeness: error fetching json. Status: '+status+' & Error:- '+error);
-        $('.wbdata_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        $('.wbdata_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
 }
@@ -563,7 +563,7 @@ function getConsist(consturl,commd){
             $('.loader-sp.piethree').addClass('hidden');
             $('#pc3, .pc3').addClass('hidden');
             console.log('DQ Consistency: error fetching json. :- '+error);
-            $('.piethree_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+            $('.piethree_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
 }

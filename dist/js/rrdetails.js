@@ -102,7 +102,7 @@ function fetchRRDetails(rdurl,ounit)
         $('.loader-sp.rrdb').removeClass('hidden');
         $('.rrdetailsbox').addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
-        $('.rdstate').html('<div class ="alert alert-danger"><strong>Facility Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        $('.rdstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
 }
@@ -222,7 +222,7 @@ function fetchSubRRDetails(scrdurl,ounit)
         $('.loader-sp.sp-sub').addClass('hidden');
         $(".rrdetailsbox-sub").addClass('hidden');
         console.log('Reporting Rate Details: error fetching json. :- '+error);
-        $('.rdstate-sub').html('<div class ="alert alert-danger"><strong>Sub-county Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        $('.rdstate-sub').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
 }
