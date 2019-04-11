@@ -53,8 +53,10 @@ function getKIssues(url,tou) {
             $('#ounit').html(data.metaData.items[data.metaData.dimensions.ou[0]].name);
             var thedxissued = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length/2);
             var thedxreceived = data.metaData.dimensions.dx.splice(0,data.metaData.dimensions.dx.length);
-            var peri_0 = data.metaData.dimensions.pe[0]
-            var peri_1 = data.metaData.dimensions.pe[1]
+            var peri_0 = data.metaData.dimensions.pe[0];
+            var peri_1 = data.metaData.dimensions.pe[1];
+            console.log('peri_0 => '+peri_0);
+            console.log('peri_1 => '+peri_1);
             $.each(thedxissued, function (index, issdId) {
                 var recvdId = thedxreceived[index];
                 var iss_val = getVal(data.rows, issdId, peri_0);
