@@ -640,12 +640,10 @@
             if(parseFloat(tdate) < 15){
                 var month1_full = todayte;
                 var month1 = parseFloat(month1_full.toString().slice(4) - 1);
-                console.log('month1 => '+month1);
                 var date2 = new Date();
                 date2.setMonth(month1);
                 date2.setDate(0);
                 var month2 = date2.getMonth();
-                console.log('month2 => '+month2);
                 if(month2 < 1){
                     month2 += 12;
                     tyear2 = (parseFloat(tyear2) - 1);
@@ -654,15 +652,15 @@
                     month1 += 12;
                     tyear1 = (parseFloat(tyear1) - 1);
                 }
+                console.log('month1 => '+month1);
+                console.log('month2 => '+month2);
             }else{
                 var month1_full = todayte;
                 var month1 = parseFloat(month1_full.toString().slice(4))+1;
-                console.log('month1 => '+month1);
                 var date2 = new Date();
                 date2.setMonth(month1);
                 date2.setDate(0);
                 var month2 = date2.getMonth();
-                console.log('month2 => '+month2);
                 if(month2 < 1){
                     month2 += 12;
                     tyear2 = (parseFloat(tyear2) - 1);
@@ -671,6 +669,8 @@
                     month1 += 12;
                     tyear1 = (parseFloat(tyear1) - 1);
                 }
+                console.log('month1 => '+month1);
+                console.log('month2 => '+month2);
             }
             if(parseFloat(month1) < 10){month1 = "0"+month1}
             if(parseFloat(month2) < 10){month2 = "0"+month2}
