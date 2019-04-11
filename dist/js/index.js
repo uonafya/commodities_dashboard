@@ -123,7 +123,7 @@ function fetchMosbycombox(url) {
             $('#mosbycombox').addClass('hidden');
             $('.loader-sp.t_four').addClass('hidden');
             console.log('MainDash: error fetching json. :- '+error);
-            $('.t_four_state').html('div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div');
+            $('.t_four_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
 }
@@ -336,7 +336,7 @@ function fetchNumberHealthFA(urlfa,itemnames,countyid,periodid){
             $('.number_healthfa').addClass('hidden');
             $('.loader-sp.t_two').addClass('hidden');
             console.log('MainDash: error fetching json. :- '+error);
-            $('.t_two_state').html('div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div');
+            $('.t_two_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
 }
@@ -438,7 +438,7 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
                 $('.adjc_soh_mos').addClass('hidden');
                 $('.loader-sp.t_three').addClass('hidden');
                 console.log('MainDash: error fetching json. :- '+error);
-                $('.t_three_state').html('div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div');
+                $('.t_three_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             }
         });
 }
