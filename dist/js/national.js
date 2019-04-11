@@ -28,24 +28,26 @@ function getKIssues(url,tou) {
                 data: "tou_deets",
                 crossDomain: true,
                 success: function (tou_d) {
-                    console.log('tou data ==> '+JSON.stringify(tou_d));
+                    if(parseFloat(tou_d.level) < 5){
+                        $.ajax({
+                            type: "GET",
+                            url: fac_url,
+                            data: "datau",
+                            crossDomain: true,
+                            success: function (datau) {
+                                $.each(datau.organisationUnits, function (indx2, facil) { 
+                                    orgu_opts+='<option value='+facil.id+'>'+facil.name+'</option>';
+                                });
+                                $('#facility-dropdown').empty();
+                                $('#facility-dropdown').append('<option disabled selected>Select facility</option>');
+                                $('#facility-dropdown').append(orgu_opts);
+                            }
+                        });
+                    }
                 }
             })
 
-            $.ajax({
-                type: "GET",
-                url: fac_url,
-                data: "datau",
-                crossDomain: true,
-                success: function (datau) {
-                    $.each(datau.organisationUnits, function (indx2, facil) { 
-                        orgu_opts+='<option value='+facil.id+'>'+facil.name+'</option>';
-                    });
-                    $('#facility-dropdown').empty();
-                    $('#facility-dropdown').append('<option disabled selected>Select facility</option>');
-                    $('#facility-dropdown').append(orgu_opts);
-                }
-            });
+            
             
             
             $('#ounit').html(data.metaData.items[data.metaData.dimensions.ou[0]].name);
