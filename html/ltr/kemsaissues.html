@@ -567,17 +567,14 @@
 		var subcountyou = $("#subcounty-dropdown").val();
         var periodval = therdate;
 
-        var the_ogu = 'HfVjCurKxh2'; //Kenya
-        if(subcountyou != null){
-            the_ogu = subcountyou;
-        }else{
-            the_ogu = 'HfVjCurKxh2'; //Kenya
+        if(subcountyou!=null)
+        {
+            var the_ogu = subcountyou;
         }
-        if(countyou != null){
-            the_ogu = countyou;
-        }else{
-            the_ogu = 'HfVjCurKxh2'; //Kenya
+        if(ounit == null && subcountyou ==null){
+            var the_ogu = myOU();
         }
+        
         var past = true;
         console.log("the_ogu: "+the_ogu + " & periodval: "+periodval);
         getKIssues('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:DdH8pSpAye1;KX5GNhIFVEi;TadaDiw445z;oaAGBrhae4e;DqIUpIvlrkg;PjeoBWvkTaN;dcJ0Mm47UuG;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW&dimension=pe:'+getPeriod(periodval, past)+'&filter=ou:'+the_ogu+'&displayProperty=NAME&outputIdScheme=UID',the_ogu);
