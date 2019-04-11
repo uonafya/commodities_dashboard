@@ -639,7 +639,7 @@
             console.log('tdate => '+tdate);
             if(parseFloat(tdate) < 15){
                 var month1_full = todayte;
-                var month1 = parseFloat(month1_full.toString().slice(4) - 1);
+                var month1 = parseFloat(month1_full.toString().slice(4));
                 var date2 = new Date();
                 date2.setMonth(month1);
                 date2.setDate(0);
