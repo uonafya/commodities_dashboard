@@ -133,7 +133,7 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
     $('.loader-sp.t_one').removeClass('hidden');
     $('.t_one_state').removeClass('hidden');
     $('.percent_healthfa').addClass('hidden');
-    $('malaria_commodity_table.t_one').addClass('hidden');
+    $('.malaria_commodity_table.t_one').addClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -224,10 +224,11 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
     },
     error: function (request, status, error) {
             $('.loader-sp.t_one').addClass('hidden');
+            $('.t_one').addClass('hidden');
             $('.t_one_state').removeClass('hidden');
             $('.percent_healthfa').addClass('hidden');
             $('malaria_commodity_table.t_one').addClass('hidden');
-            console.log('MainDash: error fetching json. :- '+error);
+            console.log('MainDash: error fetching json. Error:- '+error + '& Status:- '+status);
             $('.t_one_state').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
