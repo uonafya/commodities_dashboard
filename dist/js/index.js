@@ -217,6 +217,7 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
         });	
         //$('#zero_config').DataTable();
         $('.t_one.loader-sp').addClass('hidden');
+        $('.t_one_state').addClass('hidden');
         $('.malaria_commodity_table.t_one').removeClass('hidden');
         $('.percent_healthfa').removeClass('hidden');
 
@@ -431,6 +432,7 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
             });	
             //$('#zero_config').DataTable();
             $('.t_three.loader-sp').addClass('hidden');
+            $('.t_three_state ').addClass('hidden');
             $('.malaria_commodity_table.t_three').removeClass('hidden');
             $('table.adjc_soh_mos').removeClass('hidden');
 
