@@ -170,5 +170,6 @@ function downloadTable(tableid) {
     } );
 }
 
+$('#period-dropdown, input[name="period-dropdown"], input[name="period"]').attr('autocomplete', 'off');
 $('#county-dropdown option[value='+myOU()+']').attr('selected', 'selected');
 //---------------------------end custom---------------------------//
