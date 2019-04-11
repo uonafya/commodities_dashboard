@@ -565,13 +565,19 @@
 		var therdate = dateparts[1]+''+dateparts[0];
 		var countyou = $("#county-dropdown").val();
 		var subcountyou = $("#subcounty-dropdown").val();
+		var facilityou = $("#facility-dropdown").val();
         var periodval = therdate;
 
         if(subcountyou!=null)
         {
             var the_ogu = subcountyou;
         }
-        if(the_ogu == null && subcountyou ==null){
+        if(facilityou!=null)
+        {
+            var the_ogu = facilityou;
+        }
+        
+        if(the_ogu == null && subcountyou ==null && facilityou == null){
             var the_ogu = myOU();
         }
         
