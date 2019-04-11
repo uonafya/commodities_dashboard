@@ -630,8 +630,8 @@
           // -------------find currentDate & factor for >15th -------------
             var tdate = new Date().getDate();
             if(past){
-                tdate = todayte.slice(4);
-                console.log('other_tdate: '+tdate);
+                tday = todayte.slice(4);
+                console.log('other_tday: '+tday);
             }
             console.log('past: '+past + ' & todayte: '+todayte);
             var tyear1 = todayte.slice(0, -2);
@@ -639,13 +639,15 @@
             var tyear2 = tyear1;
             
             console.log('tdate => '+tdate);
-            if(parseFloat(tdate) < 15){
+            if(parseFloat(tdate) < 15 || past){
                 var month1_full = todayte;
                 var month1;
                 var date2 = new Date();
                 // date2.setMonth(month1);
                 date2.setDate(1);
                 var month2 = date2.getMonth();
+
+                if(past){tdate = parseFloat(tday); month2 = tday;}
                 if(month2 < 1){
                     month2 = 12;
                     tyear2 = (parseFloat(tyear2) - 1);
