@@ -21,6 +21,17 @@ function getKIssues(url,tou) {
             $('#month2_title').html(data.metaData.items[data.metaData.dimensions.pe[0]].name)
             var fac_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
             // var fac_url = 'http://localhost/pmi/json/tAbBVBbueqD.json';
+            
+            $.ajax({
+                type: "GET",
+                url: 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?fields=id,level',
+                data: "tou_deets",
+                crossDomain: true,
+                success: function (tou_d) {
+                    console.log('tou data ==> '+JSON.stringify(tou_d));
+                }
+            })
+
             $.ajax({
                 type: "GET",
                 url: fac_url,
