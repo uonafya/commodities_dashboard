@@ -10,7 +10,7 @@ function myOU() {
         data: '',
         success: function (resp) {
             ous = resp.organisationUnits;
-            dataViewOU = resp.dataViewOrganisationUnits[0];
+            dataViewOU = resp.organisationUnits[0];
             my_data_ou = dataViewOU["id"];
             var level;
             $.ajax({
