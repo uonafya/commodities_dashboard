@@ -176,7 +176,7 @@ function fetchRDTs(rdturl,orgu,peri)
                     });
 
                     // title fill
-                        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+myOU()+'.json?fields=id,name';
+                        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
                         $.ajax({      
                             dataType: "json",
                             url: url,
