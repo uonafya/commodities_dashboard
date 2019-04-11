@@ -488,7 +488,7 @@
 			facility.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
-			dropdown.prop('selectedIndex', 1);
+			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 1);}else{dropdown.prop('selectedIndex', 0)};
 			
 			facility.append('<option selected="true" disabled>Select Facility</option>');
 			facility.prop('selectedIndex', 0);

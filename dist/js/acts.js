@@ -198,7 +198,7 @@ function fetchACTs(acturl,orgu,peri)
             console.log('ACTs: error fetching json. :- '+error);
             $('.actdata').addClass('hidden');
             $('.act_status').removeClass('hidden');
-            $('.act_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+            $('.act_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
 }
