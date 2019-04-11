@@ -682,7 +682,7 @@
                 console.log('month1 => '+month1);
                 console.log('month2 => '+month2);
             }
-            if(parseFloat(month1) < 10 && !past){month1 = "0"+month1}
+            if(parseFloat(month1) < 10){month1 = "0"+month1}
             if(parseFloat(month2) < 10 && !past){month2 = "0"+month2}
             console.log("month1: "+ month1 + " && month2: "+month2);
             var period_string = tyear1+""+month1+";"+tyear2+""+month2;
