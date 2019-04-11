@@ -2,6 +2,7 @@ function fetchMosbycombox(url) {
     // console.log("TRIGGERED: fetchMosbycombox(url) == "+url);
     
     $('.loader-sp.t_four').removeClass('hidden');
+    $('.t_four').addClass('hidden');
     $('#mosbycombox').addClass('hidden');
     $('.t_four_state').addClass('hidden');
     $.ajax({
@@ -119,7 +120,7 @@ function fetchMosbycombox(url) {
         $('.t_four_state').addClass('hidden');
     },
     error: function (request, status, error) {
-            $('.loader-sp.t_four').addClass('hidden');
+            $('.t_four_state').removeClass('hidden');
             $('#mosbycombox').addClass('hidden');
             $('.loader-sp.t_four').addClass('hidden');
             console.log('MainDash: error fetching json. :- '+error);
@@ -328,11 +329,13 @@ function fetchNumberHealthFA(urlfa,itemnames,countyid,periodid){
         $('.t_two.loader-sp').addClass('hidden');
         $('.number_healthfa').removeClass('hidden');
         $('.malaria_commodity_table.t_two').removeClass('hidden');
+        $('.t_two_state').addClass('hidden');
 
         // downloadable('number_healthfa');
     },
     error: function (request, status, error) {
             $('.loader-sp.t_two').addClass('hidden');
+            $('.t_two_state').removeClass('hidden');
             $('.number_healthfa').addClass('hidden');
             $('.loader-sp.t_two').addClass('hidden');
             console.log('MainDash: error fetching json. :- '+error);
