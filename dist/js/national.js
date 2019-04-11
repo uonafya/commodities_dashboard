@@ -59,7 +59,8 @@ function getKIssues(url,tou) {
             console.log('peri_1 => '+peri_1);
             $.each(thedxissued, function (index, issdId) {
                 var recvdId = thedxreceived[index];
-                var iss_val = getVal(data.rows, issdId, peri_0);
+                // var iss_val = getVal(data.rows, issdId, peri_0);
+                var iss_val = getVal(data.rows, issdId, peri_1);
                 if(iss_val == undefined){
                     iss_val = 0;
                 }
