@@ -254,7 +254,7 @@ function getNational(nat_url) {
             $('.natstate').removeClass('hidden');
             $("#national-container").addClass('hidden');
             console.log('Error fetching json. :- ERROR: '+error + '& STATUS:'+status);
-            $('.natstate').html('<div class ="alert alert-danger"><strong>sData Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+            $('.natstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
 }
