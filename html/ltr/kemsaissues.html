@@ -657,11 +657,12 @@
                 console.log('month2 => '+month2);
             }else{
                 var month1_full = todayte;
-                var month1 = parseFloat(month1_full.toString().slice(4));
+                var month1 = parseFloat(month1_full.toString().slice(4))+1;
                 var date2 = new Date();
                 // date2.setMonth(month1);
                 date2.setDate(1);
-                var month2 = date2.getMonth();
+                // var month2 = date2.getMonth();
+                var month2 = month1 + 1;
                 if(month2 < 1){
                     month2 = 12;
                     tyear2 = (parseFloat(tyear2) - 1);
