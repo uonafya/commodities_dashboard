@@ -557,9 +557,11 @@ function getConsist(consturl,commd,the_orgu){
 
             // title fill
                 var dfrom = data.metaData.items[data.metaData.dimensions.pe[0]].name;
+                console.log('dfrom='+dfrom);
                 var dlength = data.metaData.dimensions.pe.length;
+                console.log('dlength='+dlength);
                 var dto = data.metaData.items[data.metaData.dimensions.pe[dlength]].name;
-                console.log('dfrom='+dfrom+' & dlength='+dlength+'dto='+dto);
+                console.log('dto='+dto);
                 
                 var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+the_orgu+'.json?fields=id,name';
                 $.ajax({      
