@@ -548,7 +548,10 @@ function getConsist(consturl,commd,the_orgu){
                 if(commd.includes('.')){
                     commd = commd.split('.')[0];
                 }
+                console.log('commd ni-> '+commd);
+                
                 commodity_name = commodities_array[commd].name;
+                console.log('commodity_name-> '+commodity_name);
                 // $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commd+'.json', function (data){
                 //     commodity_name = data.displayName; 
                 // });
