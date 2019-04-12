@@ -525,6 +525,8 @@
 			{  
 				subcounty.empty();
 				$('#facility-dropdown').empty();
+                facility.append('<option selected="true" disabled>Select Facility</option>');
+				facility.prop('selectedIndex', 0);
 				var countyid = $(this).val();
 				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 				subcounty.prop('selectedIndex', 0);
