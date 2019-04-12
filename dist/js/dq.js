@@ -574,11 +574,13 @@ function getConsist(consturl,commd,the_orgu){
             
             pieThree(commodities_array[commd].name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
+            $('.piethree_state').addClass('hidden');
             $('#pc3, .pc3').removeClass('hidden');
         },
         error: function (request, status, error) {
             $('.loader-sp.piethree').addClass('hidden');
             $('#pc3, .pc3').addClass('hidden');
+            $('.piethree_state').removeClass('hidden');
             console.log('DQ Consistency: error fetching json. :- '+error);
             $('.piethree_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
