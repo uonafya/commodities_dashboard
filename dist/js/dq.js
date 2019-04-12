@@ -558,7 +558,7 @@ function getConsist(consturl,commd,the_orgu){
             // title fill
                 var dfrom = data.metaData.items[data.metaData.dimensions.pe[0]].name;
                 console.log('dfrom='+dfrom);
-                var dlength = parseFloat(data.metaData.dimensions.pe.length);
+                var dlength = parseFloat(data.metaData.dimensions.pe.length)-1;
                 console.log('dlength='+dlength);
                 var dto = data.metaData.items[data.metaData.dimensions.pe[dlength]].name;
                 console.log('dto='+dto);
