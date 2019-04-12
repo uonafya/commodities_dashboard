@@ -1,6 +1,7 @@
 function getConco(ccurl,commodity){
-$('.loader-sp.pieone').removeClass('hidden');
-$('#pc1, .pc1').addClass('hidden');
+    $('.loader-sp.pieone').removeClass('hidden');
+    $('#pc1, .pc1').addClass('hidden');
+    sleep(3000);
 $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -147,9 +148,10 @@ $.ajax({
 // );
 
 function getCompa(courl){
-$('.loader-sp.dqcol').removeClass('hidden');
-$('#dq-column').addClass('hidden');
-  var adj_url = courl;
+    $('.loader-sp.dqcol').removeClass('hidden');
+    $('#dq-column').addClass('hidden');
+    var adj_url = courl;
+    sleep(3000);
   $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -227,6 +229,7 @@ $('#dq-column').addClass('hidden');
 function getWBData(wburl,orgun){
 $('#wbdata').addClass('hidden');
 $('.loader-sp.wbdata').removeClass('hidden');
+sleep(3000);
 $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -349,6 +352,7 @@ $.ajax({
 
 
 function wbDetail(json_data, lastperiod){
+    sleep(3000);
     //-----------------------------------------------------detail 
         
         // ~~~~~~~~~~~~~~~~~~~~~~~~REPORTED~~~~~~~~~~~~~~~~~~~~~~~~
@@ -438,6 +442,7 @@ function wbDetail(json_data, lastperiod){
 function getConsist(consturl,commd,the_orgu){
     $('#pc3, .pc3').addClass('hidden');
     $('.loader-sp.piethree').removeClass('hidden');
+    sleep(3000);
     $.ajax({
         type: 'GET',
         crossDomain: true,
