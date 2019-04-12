@@ -186,7 +186,7 @@ function fetchSubRRDetails(scrdurl,ounit)
                     dataType: "json",
                     url: url,
                     success: function(datax) {          
-                        $("#ttitle").html(datax['name']+'.');
+                        $("#ttitle").html(datax['name']);
                     }
                 });    
             // END title fill
