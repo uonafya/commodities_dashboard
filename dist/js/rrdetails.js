@@ -3,7 +3,7 @@ function fetchRRDetails(rdurl,ounit)
 {
     console.log('rdurl is:-> '+rdurl);
     $('#facility_rr').addClass('hidden');
-    // $('.loader-sp').removeClass('hidden');
+    $('.loader-sp').removeClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -72,6 +72,8 @@ function fetchRRDetails(rdurl,ounit)
                     url: url,
                     success: function(datax) {      
                         $("#ttitle").html(datax['name']+'.');
+                        console.log('datax: -> '+JSON.stringify(datax));
+                        
                     }
                 });    
             // END title fill
