@@ -66,14 +66,14 @@ function fetchRRDetails(rdurl,ounit)
             // tableData += footer;
 
             // title fill
-                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
-                console.log('loading title....');
+                var urlt = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
+                console.log('loading title.... URL: '+urlt);
                 $.ajax({      
                     dataType: "json",
-                    url: url,
-                    success: function(datax) {      
-                        $("#ttitle").html(datax['name']+'.');
-                        console.log('datax: -> '+JSON.stringify(datax));
+                    url: urlt,
+                    success: function(data_t) {      
+                        $("#ttitle").html( data_t['name'] );
+                        console.log('data_t: -> '+JSON.stringify(data_t));
                         
                     }
                 });    
