@@ -171,7 +171,14 @@ function fetchSubRRDetails(scrdurl,ounit)
 						var reportval = getReport(data.rows,pentry,entry);
 						if(reportval)
 						{
-							tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'/'+exp_count+'</td>';	
+							if(reportval==exp_count)
+							{
+								tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'/'+exp_count+'</td>';
+							}
+							else
+							{
+								tableDataSub += '<td style="background-color: #ffeb9c;">'+reportval+'/'+exp_count+'</td>';
+							}	
 						}
 						else
 						{
