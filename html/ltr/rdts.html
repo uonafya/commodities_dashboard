@@ -386,10 +386,17 @@
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
+        var todayte = new Date().getDate();
+        if(parseFloat(todayte) < 15){
+            var mnthLessBy = -2
+        }else{
+            var mnthLessBy = -1
+        }
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             MinMonth: '-1y',
-            MaxMonth: -1,
+            // MaxMonth: -1,
+            MaxMonth: mnthLessBy,
             MinYear: 0,
             MaxYear: 0,
             OnAfterChooseMonth: function() {  

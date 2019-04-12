@@ -561,11 +561,18 @@
 
     <script>
         var daterange = [];
+        var todayte = new Date().getDate();
+        if(parseFloat(todayte) < 15){
+            var mnthLessBy = -2
+        }else{
+            var mnthLessBy = -1
+        }
         $('#period-dropdownFrom').MonthPicker({ 
             Button: false,
             Disabled: false,
             // MinMonth: '-1y',
-            MaxMonth: -1,
+            // MaxMonth: -1,
+            MaxMonth: mnthLessBy,
             MinYear: 0,
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
@@ -579,7 +586,8 @@
             Button: false,
             Disabled: false,
             // MinMonth: '-1y',
-            MaxMonth: -1,
+            // MaxMonth: -1,
+            MaxMonth: mnthLessBy,
             MinYear: 0,
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
