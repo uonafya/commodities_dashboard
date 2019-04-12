@@ -50,13 +50,13 @@ function fetchRRDetails(rdurl,ounit)
                         var reportval = getReport(data.rows,pentry,entry);
                         if(reportval)
                         {
-                            if(reportval==exp_count)
+                            if(reportval==rpt_count)
 							{
-								tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'/'+exp_count+'</td>';
+								tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'/'+rpt_count+'</td>';
 							}
 							else
 							{
-								tableDataSub += '<td style="background-color: #ffeb9c;">'+reportval+'/'+exp_count+'</td>';
+								tableDataSub += '<td style="background-color: #ffeb9c;">'+reportval+'/'+rpt_count+'</td>';
 							}
                         }
                         else
