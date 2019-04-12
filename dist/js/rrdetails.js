@@ -67,6 +67,7 @@ function fetchRRDetails(rdurl,ounit)
 
             // title fill
                 var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
+                console.log('loading title....');
                 $.ajax({      
                     dataType: "json",
                     url: url,
@@ -183,14 +184,14 @@ function fetchSubRRDetails(scrdurl,ounit)
 				}
             })
             // title fill
-                // var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
-                // $.ajax({      
-                //     dataType: "json",
-                //     url: url,
-                //     success: function(datax) {          
-                //         $("#ttitle").html(datax['name']+'.');
-                //     }
-                // });    
+                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
+                $.ajax({      
+                    dataType: "json",
+                    url: url,
+                    success: function(datax) {          
+                        $("#ttitle").html(datax['name']+'.');
+                    }
+                });    
             // END title fill
 
             tableDataSub += '</tbody>';
