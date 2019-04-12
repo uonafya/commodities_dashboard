@@ -52,11 +52,11 @@ function fetchRRDetails(rdurl,ounit)
                         {
                             if(reportval==rpt_count)
 							{
-								tableDataSub += '<td style="background-color: #77ff77;">'+reportval+'/'+rpt_count+'</td>';
+								tableData += '<td style="background-color: #77ff77;">'+reportval+'/'+rpt_count+'</td>';
 							}
 							else
 							{
-								tableDataSub += '<td style="background-color: #ffeb9c;">'+reportval+'/'+rpt_count+'</td>';
+								tableData += '<td style="background-color: #ffeb9c;">'+reportval+'/'+rpt_count+'</td>';
 							}
                         }
                         else
