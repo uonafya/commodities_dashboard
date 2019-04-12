@@ -100,6 +100,7 @@ function fetchRRDetails(rdurl,ounit)
             $('.loader-sp.rrdb').addClass('hidden');
             $('#facility_rr').addClass('hidden');
             $('.rrdetailsbox').addClass('hidden');
+            $('.rdstate').removeClass('hidden');
             console.log('Reporting Rate Details: error fetching json. :- '+error);
             $('.rdstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
