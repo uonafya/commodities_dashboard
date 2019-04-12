@@ -522,7 +522,7 @@
 			dropdown.empty();
 			subcounty.empty();
 			dropdown.append('<option selected="true" disabled>Select County</option>');
-			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
+			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 1);}else{dropdown.prop('selectedIndex', 0);dropdown.find(option[value=myOU()]).attr('selected', true)};
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
@@ -577,7 +577,7 @@
             // ounit = myOU();
 
             //define the constants
-            var ounit = 'HfVjCurKxh2';
+            var ounit = 'vvOK1BxTbet';
             if( myOU() != 'HfVjCurKxh2' ){
                 ounit = myOU();
             }
