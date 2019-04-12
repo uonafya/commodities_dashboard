@@ -33,6 +33,7 @@ function fetchRDTs(rdturl,orgu,peri)
     $('#rdt_table').addClass('hidden');
     $('.rdtdata').addClass('hidden');
     $('.loader-sp').removeClass('hidden');
+    sleep(3000);
             // $.getJSON(rdturl, function (data){
             $.ajax({
                 type: 'GET',
