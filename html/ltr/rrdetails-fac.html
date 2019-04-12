@@ -455,7 +455,7 @@
                 getOrgUnit(ounit, period);
                 
                 var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                var scrdurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
+                var scrdurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 fetchRRDetails(url,ounit);
                 // fetchSubRRDetails(scrdurl)
                 
@@ -526,7 +526,7 @@
             
             period = date_range_string;
             var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:LEVEL-3;'+theou+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:LEVEL-5;'+theou+'&displayProperty=NAME&outputIdScheme=UID';
             fetchRRDetails(url, theou);
             daterange = [];
             $('#period-dropdown').val(null);
