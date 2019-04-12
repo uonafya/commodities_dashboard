@@ -687,6 +687,9 @@
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
+        var todayte = new Date().getDay;
+        console.log('todayte ==> '+todayte);
+        
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             MinMonth: '-1y',
