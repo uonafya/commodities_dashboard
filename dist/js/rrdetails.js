@@ -3,7 +3,7 @@ function fetchRRDetails(rdurl,ounit)
 {
     console.log('rdurl is:-> '+rdurl);
     $('#facility_rr').addClass('hidden');
-    $('.loader-sp.rrdb').removeClass('hidden');
+    // $('.loader-sp').removeClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -76,7 +76,7 @@ function fetchRRDetails(rdurl,ounit)
                 });    
             // END title fill
                     
-            $('.loader-sp.rrdb').addClass('hidden');
+            $('.loader-sp').addClass('hidden');
             $("#facility_rr").removeClass('hidden');
             if($.fn.DataTable.isDataTable("#facility_rr")){
                 $('#facility_rr').DataTable().destroy();
@@ -97,12 +97,12 @@ function fetchRRDetails(rdurl,ounit)
 
         },
         error: function (request, status, error) {
-            $('.loader-sp.rrdb').addClass('hidden');
-            $('#facility_rr').addClass('hidden');
-            $('.rrdetailsbox').addClass('hidden');
-            $('.rdstate').removeClass('hidden');
-            console.log('Reporting Rate Details: error fetching json. :- '+error);
-            $('.rdstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        $('.loader-sp').addClass('hidden');
+        $('#facility_rr').addClass('hidden');
+        $('.loader-sp.rrdb').removeClass('hidden');
+        $('.rrdetailsbox').addClass('hidden');
+        console.log('Reporting Rate Details: error fetching json. :- '+error);
+        $('.rdstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
 }
@@ -181,14 +181,14 @@ function fetchSubRRDetails(scrdurl,ounit)
 				}
             })
             // title fill
-                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
-                $.ajax({      
-                    dataType: "json",
-                    url: url,
-                    success: function(datax) {          
-                        $("#ttitle").html(datax['name']);
-                    }
-                });    
+                // var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
+                // $.ajax({      
+                //     dataType: "json",
+                //     url: url,
+                //     success: function(datax) {          
+                //         $("#ttitle").html(datax['name']+'.');
+                //     }
+                // });    
             // END title fill
 
             tableDataSub += '</tbody>';
