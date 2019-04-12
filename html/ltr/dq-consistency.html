@@ -343,7 +343,9 @@ color: transparent;}
             <!-- ============================================================== -->
             <div class="container-fluid">
                 <!-- ============================================================== -->
-                
+                <div class="col-md-12">
+                    <h5 id="ttitle" class="text-center"></h5>
+                </div>
                 <div role="tabpanel">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
@@ -662,7 +664,7 @@ color: transparent;}
         var month_to = '201807';
         var commd = 'iOARK31NdLp.HWtHCLAwprR';
         commd = commd.split('.')[0];
-        getConsist(consturl,commd);
+        getConsist(consturl,commd,ounit);
 
 
         $("#county-dropdown").change(function() 
@@ -674,7 +676,7 @@ color: transparent;}
                     commd = commd.split('.')[0];
                 }
                 var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                getConsist(consturl,commd);
+                getConsist(consturl,commd,theou);
             }
         );
         
@@ -687,7 +689,7 @@ color: transparent;}
                     commd = commd.split('.')[0];
                 }
                 var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                getConsist(consturl,commd);
+                getConsist(consturl,commd,theou);
             }
         );
 
@@ -704,7 +706,7 @@ color: transparent;}
                 }
                 
                 var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                getConsist(consturl,commd);
+                getConsist(consturl,commd,theou);
             }
         );
 
@@ -723,7 +725,7 @@ color: transparent;}
             
             // var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+period+'&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             // var commd = 'iOARK31NdLp.HWtHCLAwprR';
-            // getConsist(consturl,commd);
+            // getConsist(consturl,commd,'tAbBVBbueqD');
         }
         
         //change of period		
@@ -760,7 +762,7 @@ color: transparent;}
             }
             var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             console.log("filter url: "+consturl);
-            getConsist(consturl,commd);
+            getConsist(consturl,commd,theou);
             daterange = [];
             $('#period-dropdown').val(null);
             $('#period-dropdownTo').val(null);

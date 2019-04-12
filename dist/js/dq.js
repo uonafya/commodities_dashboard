@@ -435,7 +435,7 @@ function wbDetail(json_data, lastperiod){
 
 
 
-function getConsist(consturl,commd){
+function getConsist(consturl,commd,the_orgu){
     $('#pc3, .pc3').addClass('hidden');
     $('.loader-sp.piethree').removeClass('hidden');
     $.ajax({
@@ -555,6 +555,20 @@ function getConsist(consturl,commd){
             // commodity name
 
 
+            // title fill
+                var dfrom = data.metaData.items[data.metaData.dimensions.pe[0]].name;
+                var dlength = data.metaData.dimensions.pe.length;
+                var dto = data.metaData.items[data.metaData.dimensions.pe[dlength]].name;
+                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+the_orgu+'.json?fields=id,name';
+                $.ajax({      
+                    dataType: "json",
+                    url: url,
+                    success: function(datax) {          
+                        $("#ttitle").html(datax['name']+', '+dfrom+' - '+dto);
+                    }
+                });    
+            // END title fill
+            
             pieThree(commodities_array[commd].name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
             $('#pc3, .pc3').removeClass('hidden');
