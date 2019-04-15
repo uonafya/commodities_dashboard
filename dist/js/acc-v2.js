@@ -153,7 +153,9 @@ function fetchAccountability(url,orgun) {
                 tabl+='<td class="text-right" id="'+ou+'_totalPcAccounted"></td>';
                 tabl+='</tr>';
                 
+				/*
                 tabl+='<tr><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td><td> &nbsp; &nbsp; </td></tr>';
+				*/
                 $('#acc_table tbody').append(tabl);
 
                 $.each(commodities_id_ki_arr, function (comki_indx, com_ki) {
