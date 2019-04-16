@@ -19,7 +19,7 @@ function fetchRRDetails(rdurl,ounit)
             header += '<th>Name</th>';
 
             $.each(data.metaData.dimensions.pe, function (pkey, pentry){
-                header += '<th>'+dateToStr(pentry)+'</th>';	
+                header += '<th class="text=right">'+dateToStr(pentry)+'</th>';	
                 // console.log("HEAD: "+pentry);		
             })
 
@@ -31,7 +31,7 @@ function fetchRRDetails(rdurl,ounit)
 
             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
             {
-                    footer += '<th>'+dateToStr(pentry)+'</th>';			
+                    footer += '<th class="text=right">'+dateToStr(pentry)+'</th>';			
             })
 
             footer += '</tr></tfoot>';
@@ -156,7 +156,7 @@ function fetchSubRRDetails(scrdurl,ounit)
 
             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
             {
-                    footer += '<th>'+dateToStr(pentry)+'</th>';			
+                    footer += '<th class="text=right">'+dateToStr(pentry)+'</th>';			
             })
 
             footer += '</tr></tfoot>';
