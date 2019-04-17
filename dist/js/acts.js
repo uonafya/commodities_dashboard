@@ -133,11 +133,11 @@ function fetchACTs(acturl,orgu,peri)
                                                             if(dxval<0)
                                                                     bgcolor = '#ffcccc'
                                                             if (dxval >= 0 && dxval< 3)
-                                                                    bgcolor = '#ffeb9c'
+                                                                    bgcolor = '#ffc7ce'
                                                             if (dxval >= 3 && dxval<= 6)
                                                                     bgcolor = '#7bd48d'
                                                             if(dxval>6)
-                                                                    bgcolor = '#85bfe0'
+                                                                    bgcolor = '#ffeb9c'
 
                                                             tableData += '<td class="text-right" bgcolor="'+bgcolor+'">'+formatNumber(dxval)+'</td>';
                                                     }						
