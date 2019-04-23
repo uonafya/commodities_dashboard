@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <title>Health Commodities Dashboard</title>
+    <!-- Custom CSS -->
+    <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" /><link href="../../dist/css/style.min.css" rel="stylesheet"><link href="../../dist/css/custom.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
+                        <b class="logo-icon p-l-10">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!--<img src="../../assets/images/logo-icon.png" alt="homepage" class="light-logo" />-->
+                           
+                        </b>
+                        <!--End Logo icon -->
+                         <!-- Logo text -->
+                        <span class="logo-text">
+                             <!-- dark Logo text -->
+                             <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" />
+                            
+                        </span>
+                        <!-- Logo icon -->
+                        <!-- <b class="logo-icon"> -->
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!-- <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+                            
+                        <!-- </b> -->
+                        <!--End Logo icon -->
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-right">
+                        <li class="nav-item search-box hidden"><a href="https://testhis.uonbi.ac.ke/dhis/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper fullw m-l-0 width-100">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="auth-wrapper bcwhite d-flex no-block justify-content-center align-items-center">
+                    <div class="auth-box">
+                        <div class="row m-b-10">
+                            <!-- Form -->
+                            <div class="col-md-6 text-center landing-card">
+                                <a href="index.html" class="active">
+                                    <img src="../../assets/images/logo-icon.png" class="centr"/><br/>
+                                    <label>Malaria Dashboard</label>
+                                </a>
+                            </div>
+                            <div class="col-md-6 text-center landing-card">
+                                <a href="#">
+                                    <img src="../../assets/images/logo-icon.png" class="centr"/><br/>
+                                    <label>HIV Dashboard</label>
+                                </a>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <!-- Form -->
+                            <div class="col-md-6 text-center landing-card">
+                                <a href="#">
+                                    <img src="../../assets/images/logo-icon.png" class="centr"/><br/>
+                                    <label>TB Dashboard</label>
+                                </a>
+                            </div>
+                            <div class="col-md-6 text-center landing-card">
+                                <a href="#">
+                                    <img src="../../assets/images/logo-icon.png" class="centr"/><br/>
+                                    <label>Family Planning Dashboard</label>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Charts -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                All Rights Reserved. Health Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../../assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="../../dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="../../dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+    <!-- this page js -->
+    <script src="../../assets/libs/chart/matrix.interface.js"></script>
+    <script src="../../assets/libs/chart/excanvas.min.js"></script>
+    <script src="../../assets/libs/flot/jquery.flot.js"></script>
+    <script src="../../assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="../../assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="../../assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="../../assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="../../assets/libs/chart/jquery.peity.min.js"></script>
+    <script src="../../assets/libs/chart/matrix.charts.js"></script>
+    <script src="../../assets/libs/chart/jquery.flot.pie.min.js"></script>
+    <script src="../../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="../../assets/libs/chart/turning-series.js"></script>
+    <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <!-- <script src="../../assets/libs/chart/chart.js"></script> -->
+    <script src="../../assets/extra-libs/landing/filter.js"></script>
+    
+</body>
+
+</html>
