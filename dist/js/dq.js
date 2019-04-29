@@ -286,7 +286,7 @@ $.ajax({
         var per_from = json_data.metaData.items[json_data.metaData.dimensions.pe[0]].name;
         var per_to = json_data.metaData.items[json_data.metaData.dimensions.pe[parseFloat(json_data.metaData.dimensions.pe.length)-1]].name;
         // title fill
-            var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
+            var url = 'https://hiskenya.org/api/organisationUnits/'+orgun+'.json?fields=id,name';
             $.ajax({      
                 dataType: "json",
                 url: url,
@@ -453,7 +453,7 @@ function getConsist(consturl,commd,the_orgu){
             var theItems = data.metaData.items;
             var theDims = data.metaData.dimensions;
             var theDx = data.metaData.dimensions.dx;
-            $.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
+            $.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
                 var theComms = data.metaData.dimensions.dx;                
                 // popComms(theComms);
             });
@@ -557,7 +557,7 @@ function getConsist(consturl,commd,the_orgu){
                 
                 commodity_name = commodities_array[commd].name;
                 console.log('commodity_name-> '+commodity_name);
-                // $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commd+'.json', function (data){
+                // $.getJSON('https://hiskenya.org/api/26/dataElements/'+commd+'.json', function (data){
                 //     commodity_name = data.displayName; 
                 // });
             // commodity name
@@ -567,7 +567,7 @@ function getConsist(consturl,commd,the_orgu){
                 var dfrom = data.metaData.items[data.metaData.dimensions.pe[0]].name;
                 var dlength = parseFloat(data.metaData.dimensions.pe.length)-1;
                 var dto = data.metaData.items[data.metaData.dimensions.pe[dlength]].name;                
-                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+the_orgu+'.json?fields=id,name';
+                var url = 'https://hiskenya.org/api/organisationUnits/'+the_orgu+'.json?fields=id,name';
                 $.ajax({      
                     dataType: "json",
                     url: url,
@@ -595,7 +595,7 @@ function getConsist(consturl,commd,the_orgu){
 
 
 // function getMFLcode(dhis_code) {
-//     mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,name,code&paging=false';
+//     mfl_url = 'https://hiskenya.org/api/organisationUnits.json?fields=id,name,code&paging=false';
 //     $.ajax({
 //         type: 'GET',
 //         crossDomain: true,
@@ -639,7 +639,7 @@ function makeList(name){
     
     var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
     $.each(commodity_id_arrays_clean, function (index, commodity_id) {
-        $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data) 
+        $.getJSON('https://hiskenya.org/api/26/dataElements/'+commodity_id+'.json', function (data) 
         {
            var co_ar = []
            var commodity_name = data.displayName; 

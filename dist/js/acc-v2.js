@@ -190,7 +190,7 @@ function fetchAccountability(url,orgun) {
                 $('#'+ou+'_totalPcAccounted').html(tot_acc.toFixed(1));
 
                 // title fill
-                    var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
+                    var url = 'https://hiskenya.org/api/organisationUnits/'+orgun+'.json?fields=id,name';
                     $.ajax({      
                         dataType: "json",
                         url: url,

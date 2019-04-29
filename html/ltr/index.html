@@ -65,7 +65,7 @@
                     
                     <ul class="navbar-nav float-right">
                         <li class="nav-item search-box m-l-10">
-                            <a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a>
+                            <a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a>
                         </li>
                     </ul>
                 </div>
@@ -407,7 +407,7 @@
 		function getOrgUnits()
 		{
 			// var url = '../../assets/json/orgunitsmal.json';
-			var url = 'https://testhis.uonbi.ac.ke/api/29/dataSets/JPaviRmSsJW.json';
+			var url = 'https://hiskenya.org/api/26/dataSets/JPaviRmSsJW.json';
 			
 			//get the org units				
 				
@@ -464,7 +464,7 @@
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			// $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
 			{
 				//console.log(data.organisationUnits);
@@ -482,7 +482,7 @@
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-                $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+                $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
                 // $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
@@ -571,7 +571,7 @@
 			//define the constants
             
             // Populate dropdown with list of sub counties
-            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
                 $.each(data.organisationUnits, function (key, entry){
                     if(entry.parent.id==countyid){		
                         $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
@@ -584,12 +584,12 @@
 			var periodid = 'LAST_MONTH';
             // sleep(3000);
             //load the mos by commodity 
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:'+countyid+'&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:'+countyid+'&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';
             fetchMosbycombox(url);
                     
             
             //% of health facilities                
-            var urlfa = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:'+countyid+';LEVEL-5&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';
+            var urlfa = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:'+countyid+';LEVEL-5&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';
             // var urlfa = 'http://localhost/pmi/json/urlfa.json';
             
             var itemnames = ["AL6","AL12","AL18","AL24","AS inj","SP tabs","RDTs"];
@@ -601,7 +601,7 @@
             fetchNumberHealthFA(urlfa,itemnames,countyid,periodid);
                     
             //adjc FA
-            var urlcon = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;Vw7Yg5sKLkW&dimension=ou:'+countyid+'&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';
+            var urlcon = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:Wg31yLDAehm;CK20eip3oTe;BiwM8SUgpJ1;KLoeF6isJCz;jwofVi31cHY;nvJsVaN8FOB;f5mBCkj0aSu;Vw7Yg5sKLkW&dimension=ou:'+countyid+'&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';
             // fetchAdjSOH(urlcon);
             console.log(urlcon);
             var alnames = ["AL6","AL12","AL18","AL24","AL all","AS inj","SP tabs","RDTs"];
@@ -772,7 +772,7 @@
 			//get expected reports
 			function getExpectedUnits(uid, period)
 			{
-				var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+period+'&dimension=dx:JPaviRmSsJW.EXPECTED_REPORTS&dimension=ou:'+uid+'&displayProperty=NAME&outputIdScheme=UID';
+				var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:JPaviRmSsJW.EXPECTED_REPORTS&dimension=ou:'+uid+'&displayProperty=NAME&outputIdScheme=UID';
 				
 				var count = 0;
 					

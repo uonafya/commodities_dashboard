@@ -10,16 +10,13 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>Malaria Commodities Dashboard</title>
-    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../dist/js/mflcode.js" rel="preload" as="script"></script>
+    <title>Comparison | Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
-    <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="../../assets/extra-libs/DataTables/buttons.dataTables.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" /><link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../dist/css/style.min.css" rel="stylesheet">
     <link href="../../dist/css/custom.css" rel="stylesheet">
-	<link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,29 +53,178 @@
                     <!-- ============================================================== -->
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->
-                        <b class="logo-icon p-l-10"> </b>
+                        <b class="logo-icon p-l-10">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!--<img src="../../assets/images/logo-icon.png" alt="homepage" class="light-logo" />-->
+                           
+                        </b>
+                        <!--End Logo icon -->
+                         <!-- Logo text -->
                         <span class="logo-text">
                              <!-- dark Logo text -->
                              <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" />
+                            
                         </span>
+                        <!-- Logo icon -->
+                        <!-- <b class="logo-icon"> -->
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!-- <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+                            
+                        <!-- </b> -->
+                        <!--End Logo icon -->
                     </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
                     <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
                     <ul class="navbar-nav float-left mr-auto">
                         <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                        <!-- ============================================================== -->
+                        <!-- create new -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown hidden">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
+                             <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>   
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item search-box hidden"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search position-absolute">
+                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
+                            </form>
+                        </li>
                     </ul>
-                    <ul class="navbar-nav float-right">
-                        <li class="nav-item search-box"><a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown hidden">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
+                            </a>
+                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown hidden">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+                                <ul class="list-style-none">
+                                    <li>
+                                        <div class="">
+                                             <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Event today</h5> 
+                                                        <span class="mail-desc">Just a reminder that event</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Settings</h5> 
+                                                        <span class="mail-desc">You can customize this template</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Pavan kumar</h5> 
+                                                        <span class="mail-desc">Just see the my admin!</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-danger btn-circle"><i class="fa fa-link"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Luanch Admin</h5> 
+                                                        <span class="mail-desc">Just see the my new admin!</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown hidden">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                <div class="dropdown-divider"></div>
+                                <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
                     </ul>
                 </div>
             </nav>
         </header>
-        
-        
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
         <aside class="left-sidebar" data-sidebarbg="skin5">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
@@ -104,7 +250,7 @@
                                     <!-- RR -->
                                     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting </span></a>
                                         <ul aria-expanded="false" class="collapse  first-level">
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate Trend</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate Summary</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Facility Reporting Rate</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Sub-county Reporting Rate</span></a></li>
                                         </ul>
@@ -133,39 +279,47 @@
                                 </ul>
                             </li>
                             <!-- end County -->
-                            <!-- National -->
-                            <li class="sidebar-item"> 
-                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
-                                </ul>
-                            </li>
-                            <!-- end National -->
+
+<!-- National -->
+<li class="sidebar-item"> 
+	<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+	<ul aria-expanded="false" class="collapse  first-level">
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
+		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+	</ul>
+</li>
+<!-- end National -->
                         </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
             <!-- End Sidebar scroll-->
         </aside>
-        
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
         <div class="page-wrapper">
-            
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
-                            <h4 class="page-title m-t-10">
-                                <span id="thetitle"></span>
+                            <h6 class="page-title m-t-10">
+                                Total ALs Vs Weight
                                 &nbsp; &nbsp;
-                            </h4>
+                            </h6>
                         </div>
                         <div class="col-md-7 col-sm-6 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
-                                <div class="col-md-11 col-sm-11 col-xs-11">
+                                <div class="col-md-11 col-sm-11 col-xs-12">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
@@ -179,10 +333,7 @@
                                             <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
                                         </div> 
                                     </div>
-                                </div>  
-                                <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><i class="fa fa-undo"></i></a>
-                                </div>                              
+                                </div>                                
                             </div>
                             
                         </div>
@@ -212,8 +363,8 @@
                
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"></h5>
-                                <div class="act_status row"></div>
+                                <h5 class="card-title">Total ALs Vs Weight</h5>
+                                <div class="sp_status row"></div>
                                 <div class="row">
                                     <div class="loader-sp">
                                         <div class="loader loader--style3" title="2">
@@ -232,44 +383,31 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row actdata">
-                                    <h5 id="ttitle"></h5>
+                                <div class="row spdata">
                                     <div class="table-responsive">
-                                        <table id="acts_table" class="table table-condensed slimtable table-bordered actsbox hidden">
+                                        <table id="sp_table" class="table table-condensed slimtable table-bordered spbox hidden">
                                         <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Code</th>
-                                                <th class="text-right">RR%</th>
-												<th class="text-right">OT RR%</th>
-                                                <th class="text-right">AL6 Latest SOH</th>
-                                                <th class="text-right">AL6 MOS</th>
-                                                <th class="text-right">AL12 Latest SOH</th>
-                                                <th class="text-right">AL12 MOS</th>
-                                                <th class="text-right">AL18 Latest SOH</th>
-                                                <th class="text-right">AL18 MOS</th>
-                                                <th class="text-right">AL24 Latest SOH</th>
-                                                <th class="text-right">AL24 MOS</th>
-                                                <th class="text-right">ACTs MOS</th>
-                                            </tr>		
+											<tr>
+                                                <th>Organization Unit</th>
+                                                <th>MFL Code</th>
+                                                <th>Reporting Month and Year</th>
+												<th>Total no. of AL tabs dispensed (A)</th>
+												<th>Total no. of tabs expected based on weight band (B)</th>
+												<th>Variance (A – B)</th>
+												<th>% variance(B-A)/(A)</th>
+                                            </tr>                                            		
                                         </thead>
                                         <tbody>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Code</th>
-                                                <th>RR%</th>
-												<th>OT RR%</th>
-                                                <th>AL6 Latest SOH</th>
-                                                <th>AL6 MOS</th>
-                                                <th>AL12 Latest SOH</th>
-                                                <th>AL12 MOS</th>
-                                                <th>AL18 Latest SOH</th>
-                                                <th>AL18 MOS</th>
-                                                <th>AL24 Latest SOH</th>
-                                                <th>AL24 MOS</th>
-                                                <th>ACTs MOS</th>
+												<th>Organization Unit</th>
+                                                <th>MFL Code</th>
+                                                <th>Reporting Month and Year</th>
+												<th>Total no. of AL tabs dispensed (A)</th>
+												<th>Total no. of tabs expected based on weight band (B)</th>
+												<th>Variance (A – B)</th>
+												<th>% variance(B-A)/(A)</th>
                                             </tr>		
                                         </tfoot>
                                         </table>
@@ -279,18 +417,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
-            </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
@@ -314,8 +440,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <!-- <script src="../../assets/libs/jquery/dist/jquery.min.js"></script> -->
-    <script src="../../dist/js/defaults.js"></script>
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -327,21 +452,14 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/acts.js"></script>
+	<script src="../../dist/js/mflcode.js"></script>
     <script src="../../dist/js/custom.min.js"></script>
-    <script src="../../dist/js/custom.js"></script>
+	<script src="../../dist/js/custom.js"></script>
+	
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-
-    <script src="../../assets/extra-libs/DataTables/dataTables.buttons.min.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>
-    <script src="../../assets/extra-libs/jszip/jszip.min.js"></script>
-    <script src="../../assets/extra-libs/pdfmake/pdfmake.min.js"></script>
-    <script src="../../assets/extra-libs/pdfmake/vfs_fonts.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.html5.min.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.print.min.js"></script>
     	
 	<!-- *********** MonthPicker ************** -->
     <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
@@ -350,17 +468,10 @@
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
-        var todayte = new Date().getDate();
-        if(parseFloat(todayte) < 15){
-            var mnthLessBy = -2
-        }else{
-            var mnthLessBy = -1
-        }
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             MinMonth: '-1y',
-            // MaxMonth: -1,
-            MaxMonth: mnthLessBy,
+            MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
@@ -385,27 +496,21 @@
 			perioddwn.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
-			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
+			dropdown.prop('selectedIndex', 0);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-            subcounty.prop('selectedIndex', 0);
-            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
-                var myou = myOU();
-                $.each(data.organisationUnits, function (key, entry) 
-                {				
-                    if(entry.parent.id==myou)
-                    {							
-                        subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
-                    }				
-                })		 
-            });	
+			subcounty.prop('selectedIndex', 0);
 			
 			perioddwn.append('<option selected="true" disabled>Select Period</option>');
 			perioddwn.prop('selectedIndex', 0);
 
 			//const url = 'https://api.myjson.com/bins/7xq2x';
+			
+			//const url = 'http://localhost/commodity_dashboard/commodities_dashboard/html/ltr/totalactsvsweight.json';
 
 			//populate dropdown with list of counties
+			//$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			
 			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
@@ -423,7 +528,9 @@
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				//$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data)
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -438,65 +545,29 @@
 	</script>
 			
 	<script>
-        var my_ou = myOU();
-        fetchACTs('https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;zLR3PBVPgN5;c0MB4RmVjxk.rPAsF4cpNxm;bJILAolJsSJ;qnZmg5tNSMy.rPAsF4cpNxm;jtGNoWcdNcx;gVp1KSFI69G.rPAsF4cpNxm;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+myOU()+'&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID',my_ou,'LAST_MONTH');
 	$(document).ready(function() 
 	{
-            
-            var ounit = $("#county-dropdown").val();
-            // var ounit = 'tAbBVBbueqD';
-            // ounit = myOU();
-            var subcountyou = $("#subcounty-dropdown").val();
-            if(subcountyou!=null)
-            {
-                var ounit = subcountyou;
-            }
-            if(ounit == null && subcountyou ==null){
-                var ounit = 'tAbBVBbueqD';
-                ounit = myOU();
-            }
-            //define the constants
-            var ounit = myOU();
-			//define the constants
-            
-            // Populate dropdown with list of sub counties
-            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
-                $.each(data.organisationUnits, function (key, entry){
-                    if(entry.parent.id==ounit){		
-                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
-                    }
-                })
-            });
-            $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
-
-
-            var sDate = $('#period-dropdown').val();
-            var period = 'LAST_MONTH';
-            if(sDate.length > 2){
-                var dateparts = sDate.split('/', 2);
-                period = dateparts[1]+''+dateparts[0];
-            }else{
-                var period = 'LAST_MONTH';   
-            }
-        
-            // alert('sDate: '+sDate + 'typeof sDate:'+typeof sDate + ' & period: ' + period);
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;zLR3PBVPgN5;c0MB4RmVjxk.rPAsF4cpNxm;bJILAolJsSJ;qnZmg5tNSMy.rPAsF4cpNxm;jtGNoWcdNcx;gVp1KSFI69G.rPAsF4cpNxm;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';			
-            // var url = 'http://localhost/pmi/json/acts.json';
-            fetchACTs(url,ounit,period);
-            
+            var ounit = 'tAbBVBbueqD';
+            var period = '201805';
+         			
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+			var url = 'http://localhost/malaria/commodities_dashboard/assets/json/mflcode.json';
+            fetchSP(url);
             $("#county-dropdown").change(function() 
             {
-                ounit1 = $(this).val();
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;zLR3PBVPgN5;c0MB4RmVjxk.rPAsF4cpNxm;bJILAolJsSJ;qnZmg5tNSMy.rPAsF4cpNxm;jtGNoWcdNcx;gVp1KSFI69G.rPAsF4cpNxm;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit1+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchACTs(url,ounit1,period);
+                ounit = $(this).val();
+                				
+				var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchSP(url);				
                 
             });
 
             $("#subcounty-dropdown").change(function() 
             {
-                ounit2 = $(this).val();
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;zLR3PBVPgN5;c0MB4RmVjxk.rPAsF4cpNxm;bJILAolJsSJ;qnZmg5tNSMy.rPAsF4cpNxm;jtGNoWcdNcx;gVp1KSFI69G.rPAsF4cpNxm;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit2+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchACTs(url,ounit2,period);
+                ounit = $(this).val();                
+				
+				var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchSP(url);
                 
             });
 					
@@ -516,17 +587,87 @@
             {
                 var ounit = subcountyou;
             }
-            if(ounit == null && subcountyou ==null){
-                var ounit = myOU();
-            }
             
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;zLR3PBVPgN5;c0MB4RmVjxk.rPAsF4cpNxm;bJILAolJsSJ;qnZmg5tNSMy.rPAsF4cpNxm;jtGNoWcdNcx;gVp1KSFI69G.rPAsF4cpNxm;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            // var url = 'http://localhost/pmi/json/acts3.json'
-            fetchACTs(url,ounit,period);
+            //var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+			
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+            fetchSP(url);
         }
         
-    
+        //function to process the total acts vs weight url
+        function fetchSP(spurl)
+        {
+            $('#sp_table').addClass('hidden');
+            $('.spdata').addClass('hidden');
+            $('.loader-sp').removeClass('hidden');
+            $('.loader-sp').css('display','block');
 
+            $.getJSON(spurl, function (data){
+            $.ajax({
+                type: 'GET',
+                crossDomain: true,
+                url: spurl,                    
+                success: function (data) {
+
+                    //create the org units array
+                    //var orgunits = [];
+                    //var dxids = [];
+
+                    //var tableData = '<table>';
+                    var tableData = '';	
+					
+					var mflcodes = [];
+															
+                    $.each(data.metaData.dimensions.ou, function (key, entry) 
+                    {
+						$.each(data.rows, function (rkey, rentry) 
+						{			
+								
+							var dxid = rentry[0];
+							var orgunit = rentry[2];
+							var dxval = rentry[3];
+							if(dxid=='VBbnGNfZWDU.NhSoXUMPK2K')
+							{
+								if(orgunit==entry)
+								{
+									mflcodes[orgunit] = dxval;	
+								}
+							}
+								
+						})
+						console.log(mflcodes[entry]);
+						console.log(data.metaData.items[entry].name);
+						
+						return;
+						//console.log(mflcodes);												
+												
+                    })
+
+                    //tableData += '<table>';	
+                    //console.log(tableData)
+					
+                    $('#sp_table').removeClass('hidden');
+                    $('.spdata').removeClass('hidden');
+                    $('.loader-sp').addClass('hidden');
+                    $('.loader-sp').css('display','none');					
+					
+					$('#sp_table').DataTable().destroy();
+                    $("table.spbox tbody").empty();
+                    $("table.spbox tbody").append(tableData);	
+                    //$('#sp_table').DataTable();                                                          
+                    //$('#sp_table').DataTable().fnDraw();					
+                },
+				
+                error: function (request, status, error) {
+                    $('.loader-sp').addClass('hidden');
+                    $('#sp_table').addClass('hidden');
+                    console.log('totalactsvsweight: error fetching json. :- '+error);
+                    $('spdata').addClass('hidden');
+                    $('.sp_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+					}
+				});
+			})
+		}
 </script>
 
 </body>
