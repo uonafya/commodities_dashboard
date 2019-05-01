@@ -35,7 +35,7 @@ function fetchMosbycombox(url) {
                 var dxcode = rentry[0];
                 if(dxcode==entry)
                 {
-                    mosVals.push(parseFloat(rentry[2]));
+                    mosVals.push(parseFloat(rentry[3]));
                 }									
             })
         })	
