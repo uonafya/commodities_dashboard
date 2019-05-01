@@ -56,15 +56,15 @@ function fetchACTs(acturl,orgu,peri)
             //push only if not in
             $.each(data.rows, function (rowkey, rowentry) 
             {
-                    //console.log(rowentry[1]);
-                    //console.log(orgunits.indexOf(rowentry[1]))
-                    if(orgunits.indexOf(rowentry[1])>=0)
+                    //console.log(rowentry[2]);
+                    //console.log(orgunits.indexOf(rowentry[2]))
+                    if(orgunits.indexOf(rowentry[2])>=0)
                     {
                             //console.log(orgunits);
                     }
                     else
                     {
-                            orgunits.push(rowentry[1]);
+                            orgunits.push(rowentry[2]);
                     }	
 
             })
@@ -87,7 +87,7 @@ function fetchACTs(acturl,orgu,peri)
                     dxids = [];
                     $.each(data.rows, function (rkey, rentry) 
                     {
-                            var dxcode = rentry[1];
+                            var dxcode = rentry[2];
 
                             if(dxcode==entry)
                             {
@@ -120,8 +120,8 @@ function fetchACTs(acturl,orgu,peri)
                                     $.each(data.rows, function (rkey, rentry) 
                                     {					
                                             var dxid = rentry[0];
-                                            var dxcode = rentry[1];
-                                            var dxval = rentry[2];
+                                            var dxcode = rentry[2];
+                                            var dxval = rentry[3];
 
                                             if(dxentry==dxid)
                                             {						
