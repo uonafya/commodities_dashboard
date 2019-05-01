@@ -351,24 +351,6 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
     $('.t_three.loader-sp').removeClass('hidden');
     $('.malaria_commodity_table.t_three').addClass('hidden');
     $('.adjc_soh_mos').addClass('hidden');
-    var sohval = [];
-    // var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+countyid+'&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';
-    var urlphy = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;Mmy9MoUdbhZ;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;eFqDcjgvt39.ZxUQw1ay1cw&dimension=pe:'+periodid+'&filter=ou:'+countyid+'&displayProperty=NAME&outputIdScheme=UID';
-    $.getJSON(urlphy, function (zdata) {
-        var counter = 0;
-        $.each(zdata.metaData.dimensions.dx, function (key, entry) 
-        {
-            //console.log(entry);                        
-            var valsoh = getSOH(zdata.rows,entry);
-            sohval.push(valsoh);
-            
-            //increment the counter
-            counter++;
-        })
-    });	
-    
-    sleep(2300);
-
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -381,19 +363,7 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
             var countercon = 0;
             var lizt = '';
             var thedx = data.metaData.dimensions.dx;
-
-            var adj_cons_arr = thedx.slice(0, 8);
-            var adj_cons_arr_vals = [];
-            $.each(adj_cons_arr, function (inx, oneAdj) { 
-                var oneAdj_val = getValue(data.rows, oneAdj);
-                if(oneAdj_val == undefined || oneAdj_val == null || oneAdj_val == ''){
-                     adj_cons_arr_vals.push(0);
-                }else{
-                    adj_cons_arr_vals.push(oneAdj_val);
-                }
-            });
-            console.log('he: '+adj_cons_arr_vals);
-                
+             
             var phy_count_arr = thedx.slice(8, 16);
             var phy_count_arr_vals = [];
             $.each(phy_count_arr, function (inx2, onePhy) { 
@@ -404,9 +374,21 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
                     phy_count_arr_vals.push(onePhy_val);
                 }
             });
-            console.log('hehe: '+phy_count_arr_vals);
+            // console.log('phy: '+phy_count_arr_vals);
+
+            var adj_cons_arr = thedx.slice(16, 24);
+            var adj_cons_arr_vals = [];
+            $.each(adj_cons_arr, function (inx, oneAdj) { 
+                var oneAdj_val = getValue(data.rows, oneAdj);
+                if(oneAdj_val == undefined || oneAdj_val == null || oneAdj_val == ''){
+                     adj_cons_arr_vals.push(0);
+                }else{
+                    adj_cons_arr_vals.push(oneAdj_val);
+                }
+            });
+            // console.log('adj: '+adj_cons_arr_vals);
             
-            var mos_arr = thedx.slice(16, 24);
+            var mos_arr = thedx.slice(0, 8);
             var mos_arr_vals = [];
             $.each(mos_arr, function (inx0, oneMOS) { 
                 var oneMOS_val = getValue(data.rows, oneMOS);
@@ -416,9 +398,8 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
                     mos_arr_vals.push(oneMOS_val);
                 }
             });
-            console.log('hehehe: '+mos_arr_vals);
+            // console.log('mos: '+mos_arr_vals);
             
-            // console.log('adj_cons_arr_vals: '+JSON.stringify(adj_cons_arr_vals));
             
             
             $.each(adj_cons_arr, function (key, entry) {
@@ -430,11 +411,13 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
                 //get the consumption value
                 // adjc = getConsumption(data.rows,entry);
                 adjc = adj_cons_arr_vals[key];
+                
 
                 // phycount = parseFloat(sohval[countercon]);
                 phycount = phy_count_arr_vals[key]
 
-                mos = parseFloat(phycount/adjc);
+                // mos = parseFloat(phycount/adjc);
+                mos = mos_arr_vals[key];
 
                 //set the bg color for the MOS
                 var bgcolor = '#ffffff';
@@ -504,7 +487,7 @@ function getSOH(rows, entry) {
 var mysoh = 0;
 $.each(rows, function (rkey, rentry) {
 		if (entry == rentry[0]) {
-				mysoh = rentry[2];
+				mysoh = rentry[3];
 		}
 })
 		return parseFloat(mysoh);
@@ -516,7 +499,7 @@ function getConsumption(rows, entry) {
     var conval = 0;
     $.each(rows, function (rkey, rentry) {
         if (entry == rentry[0]) {
-            conval = rentry[2];
+            conval = rentry[3];
         }
     })
     return parseFloat(conval);
@@ -526,7 +509,7 @@ function getValue(arrayy, searchTerm) {
     var the_val = 0;
     $.each(arrayy, function (indx, arrayItem) {
         if (searchTerm == arrayItem[0]) {
-            the_val = parseFloat(arrayItem[2]);
+            the_val = parseFloat(arrayItem[3]);
         }
     });
     return parseFloat(the_val);
