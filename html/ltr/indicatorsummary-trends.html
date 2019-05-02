@@ -508,7 +508,7 @@
             });
             
             // populate commodities dropdown
-			$.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-1&dimension=pe:LAST_MONTH', function (data) 
+			$.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:HfGVoCZAwtd;nK8sqMAeQHY;wOKbEd8Dbi3;ZcngDQJKiEg;SSARcWY2Ge1;AX1co0SXobM;UUNwkYQhYgX&dimension=ou:LEVEL-1&dimension=pe:LAST_MONTH', function (data) 
 			{
 				$.each(data.metaData.dimensions.dx, function (key, dx) 
 				{						
@@ -636,10 +636,10 @@
                 var theou = 'HfVjCurKxh2';
                 theou = myOU();
             }
-            var commos = 'zLR3PBVPgN5';
+            var commos = 'HfGVoCZAwtd';
             var commo_val = $('#commodity-dropdown').val();
             if(commo_val == null || commo_val == '' || commo_val == undefined){
-                commos = 'zLR3PBVPgN5';
+                commos = 'HfGVoCZAwtd';
             }else{
                 commos = $('#commodity-dropdown').val();
             }
@@ -693,17 +693,17 @@
             });
             $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
 
-            getTrends('https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID');
+            getTrends('https://hiskenya.org/api/26/analytics.json?dimension=dx:HfGVoCZAwtd&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID');
             // getTrends('http://localhost/pmi/json/indicator_trends.json');
 
             $("#county-dropdown").change(function() 
             {
                 var theou = $(this).val(); 
                 var period =  'LAST_6_MONTHS';
-                var commos = 'zLR3PBVPgN5';
+                var commos = 'HfGVoCZAwtd';
                 var commo_val = $('#commodity-dropdown').val();
                 if(commo_val == null || commo_val == '' || commo_val == undefined){
-                    commos = 'zLR3PBVPgN5';
+                    commos = 'HfGVoCZAwtd';
                 }else{
                     commos = $('#commodity-dropdown').val();
                 }
@@ -715,10 +715,10 @@
             {
                 var theou = $(this).val();  
                 var period =  'LAST_6_MONTHS';
-                var commos = 'zLR3PBVPgN5';
+                var commos = 'HfGVoCZAwtd';
                 var commo_val = $('#commodity-dropdown').val();
                 if(commo_val == null || commo_val == '' || commo_val == undefined){
-                    commos = 'zLR3PBVPgN5';
+                    commos = 'HfGVoCZAwtd';
                 }else{
                     commos = $('#commodity-dropdown').val();
                 }
