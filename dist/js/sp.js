@@ -135,7 +135,7 @@ function checkOUs(ouid){
                                                                     if(dxval>6)
                                                                             bgcolor = '#ffeb9c'
 
-                                                                    tableData += '<td class="text-right" style="background-color:'+bgcolor+' !important;">'+formatNumber(dxval)+'</td>';
+                                                                    tableData += '<td class="text-right" style="background-color:'+bgcolor+'">'+formatNumber(dxval)+'</td>';
                                                             }						
                                                     }						
                                             })				

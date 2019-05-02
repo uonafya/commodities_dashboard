@@ -126,7 +126,7 @@ function fetchRDTs(rdturl,orgu,peri)
                                                             {
                                                                     //console.log(rentry);		
                                                                     //var notfoundRow = false;
-                                                                    var bgcolor = '#ffffff';
+                                                                    var bgcolor = '#fefeff';
                                                                     if(dxval<0)
                                                                             bgcolor = '#ffcccc'
                                                                     if (dxval >= 0 && dxval< 3)
