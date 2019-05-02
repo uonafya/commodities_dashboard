@@ -604,14 +604,14 @@
                 var period = 'LAST_MONTH';   
             }
             
-            var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;EtG9ozt2joA.miM6uIJ2cWx;TNWcde51FIt;imheYfA1Kiw.rPAsF4cpNxm;AX1co0SXobM&dimension=ou:LEVEL-5'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;EtG9ozt2joA.miM6uIJ2cWx;TNWcde51FIt;imheYfA1Kiw.rPAsF4cpNxm;AX1co0SXobM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
 			console.log(url);
             // var url = 'http://localhost/pmi/json/artesunate.json'
             fetchSP(url,ounit,period);
             $("#county-dropdown").change(function() 
             {
                 ounit1 = $(this).val();
-                var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;EtG9ozt2joA.miM6uIJ2cWx;TNWcde51FIt;imheYfA1Kiw.rPAsF4cpNxm;AX1co0SXobM&dimension=ou:LEVEL-5'+ounit1+'&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;EtG9ozt2joA.miM6uIJ2cWx;TNWcde51FIt;imheYfA1Kiw.rPAsF4cpNxm;AX1co0SXobM&dimension=ou:LEVEL-5;'+ounit1+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchSP(url,ounit1,period);
                 
             });
@@ -619,7 +619,7 @@
             $("#subcounty-dropdown").change(function() 
             {
                 ounit2 = $(this).val();
-                var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;EtG9ozt2joA.miM6uIJ2cWx;TNWcde51FIt;imheYfA1Kiw.rPAsF4cpNxm;AX1co0SXobM&dimension=ou:LEVEL-5'+ounit2+'&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;EtG9ozt2joA.miM6uIJ2cWx;TNWcde51FIt;imheYfA1Kiw.rPAsF4cpNxm;AX1co0SXobM&dimension=ou:LEVEL-5;'+ounit2+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchSP(url,ounit2,period);
                 
             });
@@ -644,7 +644,7 @@
             ounit = myOU();
         }
         
-        var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;EtG9ozt2joA.miM6uIJ2cWx;TNWcde51FIt;imheYfA1Kiw.rPAsF4cpNxm;AX1co0SXobM&dimension=ou:LEVEL-5'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+        var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;EtG9ozt2joA.miM6uIJ2cWx;TNWcde51FIt;imheYfA1Kiw.rPAsF4cpNxm;AX1co0SXobM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
         // var url = 'http://localhost/pmi/json/artesunate.json'
         fetchSP(url);
     }
