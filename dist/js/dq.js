@@ -24,7 +24,7 @@ $.ajax({
 
 
         //populate commodities filter
-        console.log('dataaaaaaa'+data);
+        
         var theItems = data.metaData.items;
         var theDims = data.metaData.dimensions;
         var theComms = data.metaData.dimensions.dx;
@@ -158,8 +158,7 @@ function getCompa(courl){
     url: adj_url,                    
     success: function (thedata) {
         var per_arr = thedata.metaData.dimensions.pe;
-        var commd = the
-        Data.dimensions.dx;
+        var commd = theData.dimensions.dx;
         var pop_title = thedata.metaData.items.uP0zJ2XmSkM.name;
         var thedata_rows = thedata.rows;
         var totadj_title = thedata.metaData.items.my9LjD9rLl6.name;
