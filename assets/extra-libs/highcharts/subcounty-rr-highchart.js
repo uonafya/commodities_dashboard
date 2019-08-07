@@ -1,4 +1,6 @@
 function fetchScRR(scurl){
+    console.log("running subcounty-RR with the URL: "+scurl);
+    
     $('.rrates.loader-sp').removeClass('hidden');
     $('#sc_rrchart').addClass('hidden');
     $.ajax({
@@ -9,6 +11,8 @@ function fetchScRR(scurl){
             var scjson = data;
             
             countiesdata=scjson.rows;
+            console.log("scjson== "+JSON.stringify(scjson));
+            
 
             var thecounties = [];
             var therate = [];
