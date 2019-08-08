@@ -75,6 +75,7 @@ function fetchRRDetails(theperiod,ounit)
                 url: 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-2&displayProperty=NAME&outputIdScheme=UID',
                 data: "data",
                 success: function (resp) {
+                    console.log("SUCCESSFULLY FETCHING COUNTY SUMMARY FOR: "+resp.metaData.items[entry].name);
                     $.each(resp.metaData.dimensions.ou, function (key, entry){                                                        
                         tableData += '<tr>';	
                         tableData += '<td>'+resp.metaData.items[entry].name+'</td>';
@@ -86,17 +87,17 @@ function fetchRRDetails(theperiod,ounit)
                                 {
                                     if(reportval==rpt_count)
                                     {
-                                        tableData += '<td style="background-color: #77ff77;">'+reportval+'/'+rpt_count+'</td>';
+                                        tableData += '<td style="background-color: #77ff77;" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
                                     }
                                     else
                                     {
-                                        tableData += '<td style="background-color: #ffeb9c;">'+reportval+'/'+rpt_count+'</td>';
+                                        tableData += '<td style="background-color: #ffeb9c;" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
                                     }
                                 }
                                 else
                                 {
                                     var bgcolor = '#ffeb9c';
-                                    tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'/'+rpt_count+'</td>';
+                                    tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
                                 }
                         })
                         tableData += '</tr>';	
