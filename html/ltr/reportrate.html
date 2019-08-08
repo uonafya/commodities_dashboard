@@ -405,8 +405,8 @@
                 $('#county-dropdown').prop('selectedIndex', 0);
             }
             
-            var rrurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:'+mou+'&displayProperty=NAME&outputIdScheme=UID';
-            var onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+mou+'&displayProperty=NAME&outputIdScheme=UID';
+            var rrurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;LAST_12_MONTHS&filter=ou:'+myOU()+'&displayProperty=NAME&outputIdScheme=UID';
+            var onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+myOU()+'&displayProperty=NAME&outputIdScheme=UID';
             // var rrurl = 'http://localhost/pmi/json/rr-national.json';
             // var onurl = 'http://localhost/pmi/json/otrr-national.json';
             fetchRR(rrurl, onurl);
@@ -414,7 +414,7 @@
             //fixing latest subcounty to 201805
             // var scurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:201805&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
             // var scurl = 'http://localhost/pmi/json/scurl.json';
-            var scurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
+            var scurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+myOU()+'&displayProperty=NAME&outputIdScheme=UID';
             // var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
             fetchScRR(scurl);
         });
