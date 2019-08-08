@@ -519,6 +519,9 @@
                 var theou = 'tAbBVBbueqD';
                 theou = myOU();
             }
+            if(theou == undefined){
+                theou = 'tAbBVBbueqD';
+            }
             
             var filtered_url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
             var filtered_onurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
