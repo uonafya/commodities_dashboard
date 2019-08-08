@@ -11,11 +11,13 @@
             crossDomain: true,
             url: rrurl,
             success: function (rrData) {
+                console.log("rrData: "+JSON.stringify(rrData));
                 $.ajax({
                     type: 'GET',
                     crossDomain: true,
                     url: onurl,                    
                     success: function (onData) {
+                        console.log("onData: "+JSON.stringify(onData));
                         plotGraph(rrData, onData);
                         $('.loader-sp').addClass('hidden');
                     },
