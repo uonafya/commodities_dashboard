@@ -104,7 +104,7 @@ function fetchRRDetails(theperiod,ounit)
                         })
                         summary_row += '</tr>';	
                     })
-                    clog('COUNTY SUMMARY ROW='+summary_row);
+                    console.log('COUNTY SUMMARY ROW='+summary_row);
                     tableData+=summary_row;
                 }
             });
