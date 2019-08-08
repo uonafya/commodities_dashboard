@@ -2,7 +2,7 @@
 // function fetchRRDetails(rdurl,ounit)
 function fetchRRDetails(theperiod,ounit)
 {
-    var rdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
+    var rdurl = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
     console.log('rdurl is:-> '+rdurl);
     $('#facility_rr').addClass('hidden');
     $('.loader-sp').removeClass('hidden');
