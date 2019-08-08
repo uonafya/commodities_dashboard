@@ -158,7 +158,7 @@ function fetchRRDetails(theperiod,ounit)
                     summary_row += '</tr>';	
                 })
                 console.log('COUNTY SUMMARY ROW='+summary_row);
-                $('#facility_rr tbody').append()
+                $('#facility_rr tbody').append(summary_row);
             }
         });
     });
