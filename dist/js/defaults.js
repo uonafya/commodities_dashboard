@@ -42,3 +42,6 @@ function myOU() {
     });
     return my_county;
 }
+$(document).ready( function(){
+    $("#county-dropdown").prepend("<option value='HfVjCurKxh2'>Kenya</option>")
+} );
