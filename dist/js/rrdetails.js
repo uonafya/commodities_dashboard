@@ -148,7 +148,7 @@ function fetchRRDetails(theperiod,ounit)
             $('#facility_rr').addClass('hidden');
             $('.loader-sp.rrdb').removeClass('hidden');
             $('.rrdetailsbox').addClass('hidden');
-            console.log('Reporting Rate Details: error fetching json. :- '+error);
+            console.log('Reporting Rate Details: error fetching json. :- '+error + ' ::: '+JSON.stringify(request));
             // $('.rdstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             $('.rdstate').html('<div class ="alert alert-danger"><strong>'+status+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
