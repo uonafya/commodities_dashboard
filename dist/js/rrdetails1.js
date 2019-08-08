@@ -179,7 +179,7 @@ function fetchSubRRDetails(scrdurl)
 //get the org unit
 function getOrgUnit(uid, period)
 {
-var url = 'https://hiskenya.org/api/organisationUnits/'+uid+'.json?fields=id,name';
+var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+uid+'.json?fields=id,name';
 
 $.ajax({      
   dataType: "json",

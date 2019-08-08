@@ -19,12 +19,12 @@ function getKIssues(url,tou) {
             $('.ttitle').html(ttitle);
             $('#month1_title, .month1_title').html(data.metaData.items[data.metaData.dimensions.pe[0]].name)
             $('#month2_title').html(data.metaData.items[data.metaData.dimensions.pe[1]].name)
-            var fac_url = 'https://hiskenya.org/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
+            var fac_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
             // var fac_url = 'http://localhost/pmi/json/tAbBVBbueqD.json';
             
             $.ajax({
                 type: "GET",
-                url: 'https://hiskenya.org/api/organisationUnits/'+tou+'.json?fields=id,level',
+                url: 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?fields=id,level',
                 data: "tou_deets",
                 crossDomain: true,
                 success: function (tou_d) {

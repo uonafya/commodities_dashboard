@@ -73,7 +73,7 @@ function fetchRRDetails(rdurl,ounit)
             // tableData += footer;
 
             // title fill
-                var urlt = 'https://hiskenya.org/api/organisationUnits/'+ounit+'.json?fields=id,name';
+                var urlt = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
                 console.log('loading title.... URL: '+urlt);
                 $.ajax({      
                     dataType: "json",
@@ -198,7 +198,7 @@ function fetchSubRRDetails(scrdurl,ounit)
 				}
             })
             // title fill
-                var url = 'https://hiskenya.org/api/organisationUnits/'+ounit+'.json?fields=id,name';
+                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+ounit+'.json?fields=id,name';
                 $.ajax({      
                     dataType: "json",
                     url: url,
@@ -253,7 +253,7 @@ function fetchSubRRDetails(scrdurl,ounit)
 //get the org unit
 function getOrgUnit(uid, period)
 {
-var url = 'https://hiskenya.org/dhis/api/organisationUnits/'+uid+'.json?fields=id,name';
+var url = 'https://testhis.uonbi.ac.ke/dhis/api/organisationUnits/'+uid+'.json?fields=id,name';
 
 $.ajax({      
   dataType: "json",
