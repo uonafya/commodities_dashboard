@@ -1,4 +1,4 @@
-function myOU() {
+async function myOU() {
     var dataViewOU;
     var ous;
     var my_data_ou;
@@ -40,5 +40,5 @@ function myOU() {
         },
         error: function () {}
     });
-    return my_county;
+    return await my_county;
 }
