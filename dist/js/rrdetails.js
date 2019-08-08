@@ -75,8 +75,8 @@ function fetchRRDetails(theperiod,ounit)
                 url: 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-2&displayProperty=NAME&outputIdScheme=UID',
                 data: "data",
                 success: function (resp) {
-                    console.log("SUCCESSFULLY FETCHING COUNTY SUMMARY FOR: "+resp.metaData.items[entry].name);
                     $.each(resp.metaData.dimensions.ou, function (key, entry){                                                        
+                        console.log("SUCCESSFULLY FETCHING COUNTY SUMMARY FOR: "+resp.metaData.items[entry].name);
                         tableData += '<tr>';	
                         tableData += '<td>'+resp.metaData.items[entry].name+'</td>';
                         $.each(resp.metaData.dimensions.pe, function (pkey, pentry) 
