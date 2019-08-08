@@ -744,6 +744,7 @@ color: transparent;}
             }
             var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             console.log("filter url: "+consturl);
+			var commd = $("#commodity-picker").val();
             getConsist(consturl,commd,theou);
             daterange = [];
             $('#period-dropdown').val(null);
