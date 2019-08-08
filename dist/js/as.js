@@ -136,7 +136,7 @@ function fetchAS(asurl,orgu,peri)
             //$('#as_table').DataTable();                                                          
             $('#as_table').DataTable({
                 dom: 'Bfrtlip',
-                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]], 
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
                 ],

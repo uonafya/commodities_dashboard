@@ -100,9 +100,17 @@ function fetchRRDetails(rdurl,ounit)
             // console.log("tableData: "+tableData);
             $('#facility_rr').DataTable({
                 dom: 'Bfrtip',
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]], 
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+                    'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
+                ],
+                initComplete: function () {
+                    $(this.api().column(1).nodes()).css({ "background-color": "white" });
+                    $(this.api().column(3).nodes()).css({ "background-color": "white" });
+                    $(this.api().column(4).nodes()).css({ "background-color": "white" });
+                    $(this.api().column(5).nodes()).css({ "background-color": "white" });
+                    // $(this.api().column(6).nodes()).css({ "background-color": "white" });
+                }
             });
 
         },
