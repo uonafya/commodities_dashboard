@@ -24,7 +24,7 @@ $.ajax({
 
 
         //populate commodities filter
-
+        
         var theItems = data.metaData.items;
         var theDims = data.metaData.dimensions;
         var theComms = data.metaData.dimensions.dx;

@@ -19,11 +19,12 @@
                     },
                     plotOptions: {
                         pie: {
+                            
                             allowPointSelect: true,
                             colors: ['#7bd48d','#ffc7ce'],
                             cursor: 'pointer',
                             dataLabels: {
-                                enabled: false
+                                enabled: true
                             },
                             showInLegend: true
                         }
@@ -66,7 +67,7 @@
                             cursor: 'pointer',
                             colors: ['#7bd48d','#ffc7ce'],
                             dataLabels: {
-                                enabled: false
+                                enabled: true
                             },
                             showInLegend: true
                         }
