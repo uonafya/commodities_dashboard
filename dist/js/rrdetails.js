@@ -276,7 +276,7 @@ function fetchSubRRDetails(scrdurl,ounit)
     error: function (request, status, error) {
         $('.loader-sp.sp-sub').addClass('hidden');
         $(".rrdetailsbox-sub").addClass('hidden');
-        console.log('Reporting Rate Details: error fetching json. :- '+error);
+        console.log('Reporting Rate Details: error fetching json. Status: '+status+' ::: Error: '+error + '. ||| '+JSON.stringify(request));
         $('.rdstate-sub').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
