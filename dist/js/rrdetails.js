@@ -70,6 +70,40 @@ function fetchRRDetails(theperiod,ounit)
                 tableData += '</tr>';	
             })
 
+            $.ajax({
+                type: "GET",
+                url: 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-2&displayProperty=NAME&outputIdScheme=UID',
+                data: "data",
+                success: function (resp) {
+                    $.each(resp.metaData.dimensions.ou, function (key, entry){                                                        
+                        tableData += '<tr>';	
+                        tableData += '<td>'+resp.metaData.items[entry].name+'</td>';
+                        $.each(resp.metaData.dimensions.pe, function (pkey, pentry) 
+                        {
+                                var rpt_count = getExpectedSub(resp.rows,pentry,entry);
+                                var reportval = getReport(resp.rows,pentry,entry);
+                                if(reportval)
+                                {
+                                    if(reportval==rpt_count)
+                                    {
+                                        tableData += '<td style="background-color: #77ff77;">'+reportval+'/'+rpt_count+'</td>';
+                                    }
+                                    else
+                                    {
+                                        tableData += '<td style="background-color: #ffeb9c;">'+reportval+'/'+rpt_count+'</td>';
+                                    }
+                                }
+                                else
+                                {
+                                    var bgcolor = '#ffeb9c';
+                                    tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'/'+rpt_count+'</td>';
+                                }
+                        })
+                        tableData += '</tr>';	
+                    })
+                }
+            });
+
             tableData += '</tbody>';
             //footer line
             // tableData += footer;
@@ -109,13 +143,14 @@ function fetchRRDetails(theperiod,ounit)
 
         },
         error: function (request, status, error) {
-        $('.loader-sp').addClass('hidden');
-        $('#facility_rr').addClass('hidden');
-        $('.loader-sp.rrdb').removeClass('hidden');
-        $('.rrdetailsbox').addClass('hidden');
-        console.log('Reporting Rate Details: error fetching json. :- '+error);
-        $('.rdstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-    }
+            $('.loader-sp').addClass('hidden');
+            $('#facility_rr').addClass('hidden');
+            $('.loader-sp.rrdb').removeClass('hidden');
+            $('.rrdetailsbox').addClass('hidden');
+            console.log('Reporting Rate Details: error fetching json. :- '+error);
+            // $('.rdstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+            $('.rdstate').html('<div class ="alert alert-danger"><strong>'+status+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        }
 });
 }
 
