@@ -19,8 +19,7 @@ function fetchMosbycombox(url) {
         //apply the labeling to the data
         var theperiod = data.metaData.dimensions.pe[0];
         var theorgunit = data.metaData.dimensions.ou[0];
-		console.log(theorgunit);
-		
+				
 		//min max plot lines
 		var minval = 9;
 		var maxval = 18; 
