@@ -75,33 +75,37 @@ function fetchRRDetails(theperiod,ounit)
                 url: 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-2&displayProperty=NAME&outputIdScheme=UID',
                 data: "data",
                 success: function (resp) {
+                    var summary_row = ''
                     $.each(resp.metaData.dimensions.ou, function (key, entry){                                                        
                         console.log("SUCCESSFULLY FETCHING COUNTY SUMMARY FOR: "+resp.metaData.items[entry].name);
-                        tableData += '<tr>';	
-                        tableData += '<td>'+resp.metaData.items[entry].name+'</td>';
+                        summary_row += '<tr>';	
+                        summary_row += '<td> SUMMARY: '+resp.metaData.items[entry].name+'</td>';
                         $.each(resp.metaData.dimensions.pe, function (pkey, pentry) 
                         {
+                            console.log('looooooooopinggggg through :pe');
                                 var rpt_count = getExpectedSub(resp.rows,pentry,entry);
                                 var reportval = getReport(resp.rows,pentry,entry);
                                 if(reportval)
                                 {
                                     if(reportval==rpt_count)
                                     {
-                                        tableData += '<td style="background-color: #77ff77;" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
+                                        summary_row += '<td style="background-color: #77ff77;" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
                                     }
                                     else
                                     {
-                                        tableData += '<td style="background-color: #ffeb9c;" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
+                                        summary_row += '<td style="background-color: #ffeb9c;" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
                                     }
                                 }
                                 else
                                 {
                                     var bgcolor = '#ffeb9c';
-                                    tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
+                                    summary_row += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
                                 }
                         })
-                        tableData += '</tr>';	
+                        summary_row += '</tr>';	
                     })
+                    clog('COUNTY SUMMARY ROW='+summary_row);
+                    tableData+=summary_row;
                 }
             });
 
