@@ -1,9 +1,15 @@
 //function toprocess the acts url
-function fetchRRDetails(rdurl,ounit)
+// function fetchRRDetails(rdurl,ounit)
+function fetchRRDetails(theperiod,ounit)
 {
+    var rdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
     console.log('rdurl is:-> '+rdurl);
     $('#facility_rr').addClass('hidden');
     $('.loader-sp').removeClass('hidden');
+    var summary_row = ''
+
+    
+    
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -100,29 +106,63 @@ function fetchRRDetails(rdurl,ounit)
             // console.log("tableData: "+tableData);
             $('#facility_rr').DataTable({
                 dom: 'Bfrtip',
-                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]], 
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
-                ],
-                initComplete: function () {
-                    $(this.api().column(1).nodes()).css({ "background-color": "white" });
-                    $(this.api().column(3).nodes()).css({ "background-color": "white" });
-                    $(this.api().column(4).nodes()).css({ "background-color": "white" });
-                    $(this.api().column(5).nodes()).css({ "background-color": "white" });
-                    // $(this.api().column(6).nodes()).css({ "background-color": "white" });
-                }
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
             });
 
         },
         error: function (request, status, error) {
-        $('.loader-sp').addClass('hidden');
-        $('#facility_rr').addClass('hidden');
-        $('.loader-sp.rrdb').removeClass('hidden');
-        $('.rrdetailsbox').addClass('hidden');
-        console.log('Reporting Rate Details: error fetching json. :- '+error);
-        $('.rdstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-    }
-});
+            $('.loader-sp').addClass('hidden');
+            $('#facility_rr').addClass('hidden');
+            $('.loader-sp.rrdb').removeClass('hidden');
+            $('.rrdetailsbox').addClass('hidden');
+            console.log('Reporting Rate Details: error fetching json. :- '+error + ' ::: '+JSON.stringify(request));
+            // $('.rdstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+            $('.rdstate').html('<div class ="alert alert-danger"><strong>'+status+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        }
+    });
+
+    sleep(2000);
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-2&displayProperty=NAME&outputIdScheme=UID',
+            data: "data",
+            success: function (resp) {
+                $.each(resp.metaData.dimensions.ou, function (key, entry){                                                        
+                    console.log("SUCCESSFULLY FETCHING COUNTY SUMMARY FOR: "+resp.metaData.items[entry].name);
+                    summary_row += '<tr style="font-size: 1.16em;">';	
+                    summary_row += '<td> SUMMARY: '+resp.metaData.items[entry].name+'</td>';
+                    $.each(resp.metaData.dimensions.pe, function (pkey, pentry) 
+                    {
+                            var rpt_count = getExpectedSub(resp.rows,pentry,entry);
+                            var reportval = getReport(resp.rows,pentry,entry);
+                            if(reportval)
+                            {
+                                if(reportval==rpt_count)
+                                {
+                                    summary_row += '<td style="background-color: #77ff77;" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
+                                }
+                                else
+                                {
+                                    summary_row += '<td style="background-color: #ffeb9c;" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
+                                }
+                            }
+                            else
+                            {
+                                var bgcolor = '#ffeb9c';
+                                summary_row += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
+                            }
+                    })
+                    summary_row += '</tr>';	
+                })
+                console.log('COUNTY SUMMARY ROW='+summary_row);
+                $('#facility_rr tbody').append(summary_row);
+            }
+        });
+    });
+    
 }
 
 
@@ -246,7 +286,7 @@ function fetchSubRRDetails(scrdurl,ounit)
     error: function (request, status, error) {
         $('.loader-sp.sp-sub').addClass('hidden');
         $(".rrdetailsbox-sub").addClass('hidden');
-        console.log('Reporting Rate Details: error fetching json. :- '+error);
+        console.log('Reporting Rate Details: error fetching json. Status: '+status+' ::: Error: '+error + '. ||| '+JSON.stringify(request));
         $('.rdstate-sub').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
     }
 });
@@ -261,7 +301,7 @@ function fetchSubRRDetails(scrdurl,ounit)
 //get the org unit
 function getOrgUnit(uid, period)
 {
-var url = 'https://hiskenya.org/dhis/api/organisationUnits/'+uid+'.json?fields=id,name';
+var url = 'https://hiskenya.org/api/organisationUnits/'+uid+'.json?fields=id,name';
 
 $.ajax({      
   dataType: "json",
@@ -364,7 +404,7 @@ function checkExpected(rows,orgunit)
 	//loop through the rows
 	$.each(rows, function (rkey, rentry) 
 	{
-		console.log(rentry);
+		// console.log(rentry);
 		//check for orgunit and period
 		if(rentry[0]=='JPaviRmSsJW.EXPECTED_REPORTS' && rentry[2]==orgunit)
 		{                                    

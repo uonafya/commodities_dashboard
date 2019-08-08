@@ -464,7 +464,8 @@
             var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:LEVEL-3;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
             // var url = 'http://localhost/pmi/json/reportingdeets.json'
             // var scrdurl = 'http://localhost/pmi/json/subreportingdetails.json'
-            fetchRRDetails(url,ounit);
+            // fetchRRDetails(url,ounit);
+            fetchRRDetails('LAST_6_MONTHS',ounit);
             fetchSubRRDetails(scrdurl,ounit)
             
             $("#county-dropdown").change(function() 
@@ -475,7 +476,8 @@
                 
                 var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
                 var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:LEVEL-3;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchRRDetails(url,ounit);
+                // fetchRRDetails(url,ounit);
+                fetchRRDetails('LAST_6_MONTHS',ounit);
                 fetchSubRRDetails(scrdurl,ounit)
                 
             });
@@ -486,7 +488,8 @@
                 getOrgUnit(ounit, period);
                 var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
                 var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:LEVEL-3;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchRRDetails(url,ounit);
+                // fetchRRDetails(url,ounit);
+                fetchRRDetails('LAST_6_MONTHS',ounit);
                 
             });
 					
@@ -546,7 +549,8 @@
             period = date_range_string;
             var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
             var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:LEVEL-3;'+theou+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchRRDetails(url,theou);
+            // fetchRRDetails(url,theou);
+            fetchRRDetails(date_range_string,theou);
             daterange = [];
             $('#period-dropdown').val(null);
             $('#period-dropdownTo').val(null);
