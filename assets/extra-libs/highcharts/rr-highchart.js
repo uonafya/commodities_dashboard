@@ -1,5 +1,6 @@
     
     function fetchRR(rrurl, onurl){
+        console.log("running fetchRR with the URLs rrurl, onurl: "+rrurl+'  ||  '+onurl);
         $('.rrates.loader-sp').removeClass('hidden');
         $('#rrchart').addClass('hidden');
         $('.loader-sp.rrates').removeClass('hidden');
