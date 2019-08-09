@@ -34,6 +34,8 @@ function myOU() {
 
                     if(my_county == 'HfVjCurKxh2'){
                         // my_county = 'vvOK1BxTbet';
+                    }else{
+                        $('a.nationalink').addClass('hidden')
                     }
                 }
             });
