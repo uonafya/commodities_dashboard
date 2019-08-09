@@ -411,8 +411,8 @@
             // var onurl = 'http://localhost/pmi/json/ontime-reporting.json';
             fetchRR(rrurl, onurl);
 
-            //fixing latest subcounty to 201805
-            var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:201805&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
+            //fixing latest subcounty to LAST_MONTH
+            var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
             // var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+myOU()+'&displayProperty=NAME&outputIdScheme=UID';
             // var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
             fetchScRR(scurl);
@@ -436,9 +436,9 @@
                 periodval = 'LAST_12_MONTHS';
 			}
 			
-            var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;'+periodval+'&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+'&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
 			console.log('filtered_url: '+filtered_url);
-            var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+'&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
 			console.log('filtered_onurl: '+filtered_onurl);
             var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             console.log('filtersub_url: '+filtersub_url);
