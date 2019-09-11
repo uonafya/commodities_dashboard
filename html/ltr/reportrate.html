@@ -125,7 +125,7 @@
 
 <!-- National -->
 <li class="sidebar-item"> 
-	<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+	<a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
 	<ul aria-expanded="false" class="collapse  first-level">
 		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
 		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
@@ -411,8 +411,8 @@
             // var onurl = 'http://localhost/pmi/json/ontime-reporting.json';
             fetchRR(rrurl, onurl);
 
-            //fixing latest subcounty to 201805
-            var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:201805&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
+            //fixing latest subcounty to LAST_MONTH
+            var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
             // var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+myOU()+'&displayProperty=NAME&outputIdScheme=UID';
             // var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
             fetchScRR(scurl);
@@ -436,7 +436,7 @@
                 periodval = 'LAST_12_MONTHS';
 			}
 			
-            var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:;'+periodval+'&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+'&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
 			console.log('filtered_url: '+filtered_url);
             var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
 			console.log('filtered_onurl: '+filtered_onurl);
@@ -456,7 +456,7 @@
 			
 			if(periodval.length < 2 || periodval == null)
 			{
-				periodval = 'LAST_MONTH';
+				periodval = 'LAST_12_MONTHS';
 			}
 			
             // var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
