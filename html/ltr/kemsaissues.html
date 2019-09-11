@@ -287,7 +287,7 @@
                                 
                                 <!-- National -->
                                 <li class="sidebar-item"> 
-                                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                                    <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                                     <ul aria-expanded="false" class="collapse  first-level">
                                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
                                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
@@ -602,8 +602,10 @@
 	<script language="JavaScript">
         // getKIssues('http://localhost/pmi/json/kissues.json','HfVjCurKxh2');
         var the_ogu = 'HfVjCurKxh2';
+		
         getKIssues('https://hiskenya.org/api/26/analytics.json?dimension=pe:'+getLastMonthPeriod()+'&dimension=dx:jfUzb86mBSP.DTnItSklSr8;HwvUHnslwbh.DTnItSklSr8;OLYLVMDHEj8.DTnItSklSr8;UJeKVZzAnfS.DTnItSklSr8;naztfZrbMtd.DTnItSklSr8;EtG9ozt2joA.DTnItSklSr8;Umi8ZsiqBHw.DTnItSklSr8;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;eFqDcjgvt39.EJ8nUfcupBq&filter=ou:'+the_ogu+'&displayProperty=NAME&outputIdScheme=UID','HfVjCurKxh2');
-        // getKIssues('http://localhost/pmi/json/ki.json','HfVjCurKxh2');
+		
+        //getKIssues('http://localhost/pmilive/json/kemsafacissues.json','HfVjCurKxh2');
 
         $("#county-dropdown").change(function(){  
             var county_id = $(this).val();

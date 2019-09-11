@@ -14,12 +14,20 @@ function fetchMosbycombox(url) {
         //create the org units array
         var orgunits = [];
         var dxids = [];
-        var mosVals = new Array();  
-                    
+        var mosVals = new Array();		
+		                    
         //apply the labeling to the data
         var theperiod = data.metaData.dimensions.pe[0];
         var theorgunit = data.metaData.dimensions.ou[0];
-                    
+				
+		//min max plot lines
+		var minval = 9;
+		var maxval = 18; 
+		if(theorgunit!='HfVjCurKxh2')
+		{
+			var minval = 3;
+			var maxval = 6;
+		}
         
         var curorg = data.metaData.items[theorgunit].name;
         var curpe = data.metaData.items[theperiod].name;
@@ -29,15 +37,22 @@ function fetchMosbycombox(url) {
         var tableData = '';
         							
         $.each(data.metaData.dimensions.dx, function (key, entry) 
-        {				
+        {	
+			var rowFound = 0;
             $.each(data.rows, function (rkey, rentry) 
             {		
                 var dxcode = rentry[0];
                 if(dxcode==entry)
                 {
+					rowFound = 1;
                     mosVals.push(parseFloat(rentry[3]));
                 }									
             })
+			//if not found set the value to zero
+			if(rowFound==0)
+			{
+				mosVals.push(0);
+			}
         })	
 
         Highcharts.chart('mosbycombox', {
@@ -69,7 +84,7 @@ function fetchMosbycombox(url) {
                 plotLines: [{
                     color: '#FF0000',
                     width: 2,
-                    value: 9,
+                    value: minval,
                     label: {
                         text: 'Min',
                         align: 'right'
@@ -78,7 +93,7 @@ function fetchMosbycombox(url) {
                 {
                     color: '#00FF00',
                     width: 2,
-                    value: 18,
+                    value: maxval,
                     label: {
                         text: 'Max',
                         align: 'right'
