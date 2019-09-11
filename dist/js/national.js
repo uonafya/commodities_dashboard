@@ -140,6 +140,74 @@ function getNational(nat_url) {
     $('.natsum-loader, .rrdb').removeClass('hidden');
     $('.natstate').removeClass('hidden');
     $('#national-container').addClass('hidden');
+	
+	//process the other endpoints
+	var kemsamosurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:A3hCPRmBEc1;VJjIApOdBDM;xifzJdZepGL;m5JchlPXYGh;AcHIhCDHQ5q;ImjyH2PKcrb;MqaP08m7qpB&dimension=pe:LAST_MONTH&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID';
+	
+	var pendingmosurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:E8WZg2xUe6D;LzIEVzUpWIG;UW54RautAEK;V00M1X2mgCp;Rf9K17Q8KA5;ELorMg0kQhA;W1VReF5uwnI&dimension=pe:LAST_MONTH&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID';
+	
+	//var kemsamosurl = 'http://localhost/pmilive/kemsadata.json';
+	
+	//var pendingmosurl = 'http://localhost/pmilive/pendingdata.json';
+	
+	//var nat_url = 'http://localhost/pmilive/facilitydata.json';
+	
+	var kemsamos = $.ajax({ 
+		type: 'GET',
+		crossDomain: true,
+		url: kemsamosurl,
+		success: function(result) 
+		{
+			return result;
+		}                     
+	});
+	 
+	var pendingmos = $.ajax({ 
+		type: 'GET',
+		crossDomain: true,
+		url: kemsamosurl,
+		success: function(result) 
+		{
+			return result;
+		}                     
+	});
+	
+		
+	var kemsaVals = new Array();
+	
+	var pendingVals = new Array();
+	 
+	//$.when(kemsamos).done(function(kemsadata) 
+	$.when(kemsamos, pendingmos).done(function(kemsadata, pendingdata)
+	{			
+        //loop through the kemsa mos row values							
+        $.each(kemsadata[0].metaData.dimensions.dx, function (key, entry) 
+        {
+			console.log(entry);
+            $.each(kemsadata[0].rows, function (rkey, rentry) 
+            {		
+                var dxcode = rentry[0];
+                if(dxcode==entry)
+                {
+                    kemsaVals.push(parseFloat(rentry[2]));
+                }									
+            })
+        })
+		
+		//loop through the pending mos row values							
+        $.each(pendingdata[0].metaData.dimensions.dx, function (key, entry) 
+        {	
+			console.log(entry);
+            $.each(pendingdata[0].rows, function (rkey, rentry) 
+            {		
+                var dxcode = rentry[0];
+                if(dxcode==entry)
+                {
+                    pendingVals.push(parseFloat(rentry[2]));
+                }									
+            })
+        })
+		
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -166,8 +234,7 @@ function getNational(nat_url) {
         var perio = data.metaData.items[data.metaData.dimensions.pe[0]].name;
         var orgu = data.metaData.items[data.metaData.dimensions.ou[0]].name;
         $('.card-title').html('National Summary: '+orgu+' - '+perio);
-        console.log(stockVals);
-        
+                
         $('#national-container').highcharts({
             chart: {
                 type: 'bar'
@@ -247,10 +314,10 @@ function getNational(nat_url) {
         colors: ['#8497b0', '#c55a11', '#92d050'],
             series: [{
                 name: 'Pending Stock',
-                data: [1.6, 0.1, 0.1, 0.1, 0, 0.1, 28.9]
+                data: pendingVals
             }, {
                 name: 'KEMSA Stock',
-                data: [3, 0.0, 4.9, 3.7, 9, 5.3, 12.0]
+                data: kemsaVals
             }, {
                 name: 'Facility Stock',
                 data: stockVals
@@ -265,6 +332,7 @@ function getNational(nat_url) {
             $('.natstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
+	}); //when done
 }
 
 
