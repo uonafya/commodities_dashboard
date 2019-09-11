@@ -178,6 +178,7 @@
                                         <div class="col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Period to" disabled class="form-control" id="period-dropdownTo"/> 
                                         </div>
+                                        <input type="hidden" name="h_period" id="h_period" value="LAST_12_MONTHS"/>
                                     </div>
                                 </div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
@@ -428,7 +429,7 @@
             			
 			var countyou = $("#county-dropdown").val();
 			var subcountyou = $("#subcounty-dropdown").val();
-			var periodval = $("#period-dropdown").val();
+			var periodval = $("#h_period").val();//var periodval = $("#period-dropdown").val();
             // periodval = '';
 			
 			if(periodval.length < 2 || periodval == null)
@@ -438,7 +439,8 @@
 			
             var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+'&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
 			console.log('filtered_url: '+filtered_url);
-            var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            // var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
 			console.log('filtered_onurl: '+filtered_onurl);
             var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             console.log('filtersub_url: '+filtersub_url);
@@ -451,7 +453,7 @@
 		{
             var countyou = $("#county-dropdown").val();
 			var subcountyou = $("#subcounty-dropdown").val();
-			var periodval = $("#period-dropdown").val();
+			var periodval = $("#h_period").val();//var periodval = $("#period-dropdown").val();
             periodval = '';
 			
 			if(periodval.length < 2 || periodval == null)
@@ -459,9 +461,9 @@
 				periodval = 'LAST_12_MONTHS';
 			}
 			
-            // var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+';LAST_12_MONTHS&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=NAME';
-            
-            var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            // var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+'&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            // var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             
             console.log(filtered_url);
@@ -495,7 +497,20 @@
             var therdate = dateparts[1]+''+dateparts[0];
             var period = therdate;
             daterange.push(period);
+            findPeriodRange(daterange);
             filtByPeriod(daterange);
+        }
+        
+        function findPeriodRange(drange){
+            var date_range_string = '';
+            var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
+            var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
+            var full_dates_arr = dateRange(startDate, endDate);
+            $.each(full_dates_arr, function (indexs, onedate) {
+                var adate = onedate.split('-');
+                date_range_string += adate[0]+adate[1]+';';
+            })
+            $('#h_period').val(date_range_string);
         }
 
         function filtByPeriod(drange){
