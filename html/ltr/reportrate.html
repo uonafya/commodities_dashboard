@@ -402,8 +402,10 @@
             mou = 'HfVjCurKxh2';
             if( myOU() != 'HfVjCurKxh2' ){
                 mou = myOU();
+                var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
             }else{
                 $('#county-dropdown').prop('selectedIndex', 0);
+                var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-2;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
             }
             
             var rrurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:LAST_12_MONTHS&filter=ou:'+mou+'&displayProperty=NAME&outputIdScheme=UID';
@@ -413,7 +415,6 @@
             fetchRR(rrurl, onurl);
 
             //fixing latest subcounty to LAST_MONTH
-            var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
             // var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+myOU()+'&displayProperty=NAME&outputIdScheme=UID';
             // var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
             fetchScRR(scurl);
