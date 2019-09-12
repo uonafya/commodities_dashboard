@@ -135,16 +135,16 @@ function getKIssues(url,tou) {
     });
 }
 
-function getNational(nat_url) {
+function getNational(nat_url,periodval) {
         
     $('.natsum-loader, .rrdb').removeClass('hidden');
     $('.natstate').removeClass('hidden');
     $('#national-container').addClass('hidden');
 	
 	//process the other endpoints
-	var kemsamosurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:A3hCPRmBEc1;VJjIApOdBDM;xifzJdZepGL;m5JchlPXYGh;AcHIhCDHQ5q;ImjyH2PKcrb;MqaP08m7qpB&dimension=pe:LAST_MONTH&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID';
+	var kemsamosurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:A3hCPRmBEc1;VJjIApOdBDM;xifzJdZepGL;m5JchlPXYGh;AcHIhCDHQ5q;ImjyH2PKcrb;MqaP08m7qpB&dimension=pe:'+periodval+'&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID';
 	
-	var pendingmosurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:E8WZg2xUe6D;LzIEVzUpWIG;UW54RautAEK;V00M1X2mgCp;Rf9K17Q8KA5;ELorMg0kQhA;W1VReF5uwnI&dimension=pe:LAST_MONTH&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID';
+	var pendingmosurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:E8WZg2xUe6D;LzIEVzUpWIG;UW54RautAEK;V00M1X2mgCp;Rf9K17Q8KA5;ELorMg0kQhA;W1VReF5uwnI&dimension=pe:'+periodval+'&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID';
 	
 	//var kemsamosurl = 'http://localhost/pmilive/kemsadata.json';
 	

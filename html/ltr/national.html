@@ -558,7 +558,7 @@
             var periodval = therdate;	
 
             var fil_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
-            getNational(fil_url);
+            getNational(fil_url,periodval);
         }
     </script>
 
@@ -569,8 +569,9 @@
     var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
 
     // var url = 'http://localhost/pmi/json/national-summary.json';
+	var perval = 'LAST_MONTH';
 
-    getNational(url);
+    getNational(url,perval);
     //populate dropdown with list of counties
     
 });
