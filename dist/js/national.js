@@ -165,7 +165,7 @@ function getNational(nat_url) {
 	var pendingmos = $.ajax({ 
 		type: 'GET',
 		crossDomain: true,
-		url: kemsamosurl,
+		url: pendingmosurl,
 		success: function(result) 
 		{
 			return result;
