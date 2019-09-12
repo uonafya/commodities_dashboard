@@ -2,7 +2,8 @@
 // function fetchRRDetails(rdurl,ounit)
 function fetchRRDetails(theperiod,ounit)
 {
-    var rdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
+    // var rdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
+    var rdurl = theperiod
     console.log('rdurl is:-> '+rdurl);
     $('#facility_rr').addClass('hidden');
     $('.loader-sp').removeClass('hidden');
@@ -127,7 +128,8 @@ function fetchRRDetails(theperiod,ounit)
     $(document).ready(function () {
         $.ajax({
             type: "GET",
-            url: 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-2&displayProperty=NAME&outputIdScheme=UID',
+            // url: 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-2&displayProperty=NAME&outputIdScheme=UID',
+            url: theperiod,
             data: "data",
             success: function (resp) {
                 $.each(resp.metaData.dimensions.ou, function (key, entry){                                                        
