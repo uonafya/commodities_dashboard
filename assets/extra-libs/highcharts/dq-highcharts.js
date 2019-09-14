@@ -110,7 +110,7 @@
                         pie: {
                             allowPointSelect: true,
                             cursor: 'pointer',
-                            colors: ['#7bd48d','#ffc7ce'],
+                            colors: ['#ffc7ce', '#7bd48d'],
                             dataLabels: {
                                 enabled: false
                             },

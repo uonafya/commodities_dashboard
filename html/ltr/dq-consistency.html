@@ -285,13 +285,20 @@ color: transparent;}
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">             
+                                            <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">
+                                                <option value="iOARK31NdLp">Artesunate Injection</option>
+                                                <option value="BnGDrFwyQp9">Artemether-Lumefantrine 20/120 Tabs 6s</option>
+                                                <option value="c0MB4RmVjxk">Artemether-Lumefantrine 20/120 Tabs 12s</option>
+                                                <option value="qnZmg5tNSMy">Artemether-Lumefantrine 20/120 Tabs 18s</option>
+                                                <option value="gVp1KSFI69G">Artemether-Lumefantrine 20/120 Tabs 24s</option>
+                                                <option value="imheYfA1Kiw">Sulphadoxine Pyrimethamine Tabs</option>
+                                                <option value="cPlWFYbBacW">Rapid Diagnostic Test</option>
                                             </select>
                                         </div> 
                                         <div class="col-md-2 col-sm-2 col-xs-12">
                                             <input type="text" placeholder="Period from" class="form-control" id="period-dropdown"/> 
                                         </div> 
-                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12 hidden">
                                             <input type="text" placeholder="Period to" class="form-control" id="period-dropdownTo"/> 
                                         </div> 
                                     </div>
@@ -535,28 +542,28 @@ color: transparent;}
                 
                 var subcounty = $('#subcounty-dropdown');
                 // commoditypickerpopulation
-                    var commoditypicker = $('#commodity-picker');
-                    $.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+myOU()+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
-                        var commarr = data.metaData.dimensions.dx;
-                        commoditypicker.empty();
-                        var comm_id_arr = [];
-                        commoditypicker.append('<option selected value="">Select Commodity</option>');
-                        $.each(commarr, function(indx, comm_id_long){
-                            var comm_id = comm_id_long.split('.')[0];
-                            comm_id_arr.push(comm_id);
-                            // console.log("comm_id:  "+comm_id);
-                        });
+                    // var commoditypicker = $('#commodity-picker');
+                    // $.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+myOU()+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
+                    //     var commarr = data.metaData.dimensions.dx;
+                    //     commoditypicker.empty();
+                    //     var comm_id_arr = [];
+                    //     commoditypicker.append('<option selected value="">Select Commodity</option>');
+                    //     $.each(commarr, function(indx, comm_id_long){
+                    //         var comm_id = comm_id_long.split('.')[0];
+                    //         comm_id_arr.push(comm_id);
+                    //         // console.log("comm_id:  "+comm_id);
+                    //     });
                         
-                        var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
-                        $.each(commodity_id_arrays_clean, function (index, commodity_id) {
-                            $.getJSON('https://hiskenya.org/api/26/dataElements/'+commodity_id+'.json', function (data) 
-                            {
-                            var commodity_name = data.displayName; 
-                            var commodity_id = data.id;
-                            commoditypicker.append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
-                            });
-                        });		 
-                    });
+                    //     var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
+                    //     $.each(commodity_id_arrays_clean, function (index, commodity_id) {
+                    //         $.getJSON('https://hiskenya.org/api/26/dataElements/'+commodity_id+'.json', function (data) 
+                    //         {
+                    //         var commodity_name = data.displayName; 
+                    //         var commodity_id = data.id;
+                    //         commoditypicker.append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
+                    //         });
+                    //     });		 
+                    // });
                 // commoditypickerpopulation
                 var perioddwn = $('#period-dropdown');
                 var perioddwnTo = $('#period-dropdownTo');
@@ -646,12 +653,12 @@ color: transparent;}
         });
         $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
-        var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-        // var consturl = 'http://localhost/pmi/json/consistency.json';
+        var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx::iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=pe:LAST_BIMONTH&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+        // var consturl = 'http://localhost/pmi/json/consistency3c.json';
         var month_from = '201806';
         var month_to = '201807';
-        var commd = 'iOARK31NdLp.HWtHCLAwprR';
-        commd = commd.split('.')[0];
+        var commd = 'iOARK31NdLp';
+        // commd = commd.split('.')[0];
         getConsist(consturl,commd,ounit);
 
 
@@ -660,10 +667,10 @@ color: transparent;}
                 var theou = $(this).val();
                 var commd = $("#commodity-picker").val();
                 if(commd == null || commd == undefined || commd == ''){
-                    var commd = 'iOARK31NdLp.HWtHCLAwprR';
-                    commd = commd.split('.')[0];
+                    var commd = 'iOARK31NdLp';
+                    // commd = commd.split('.')[0];
                 }
-                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:LAST_BIMONTH&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
         );
@@ -673,27 +680,27 @@ color: transparent;}
             {  
                 var theou = $(this).val();
                 if(commd == null || commd == undefined || commd == ''){
-                    var commd = 'iOARK31NdLp.HWtHCLAwprR';
-                    commd = commd.split('.')[0];
+                    var commd = 'iOARK31NdLp';
+                    // commd = commd.split('.')[0];
                 }
-                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:LAST_BIMONTH&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
         );
 
         $("#commodity-picker").change(function() 
             {  
+                // var commd = $(this).val();
                 var commd = $(this).val();
                 var theou = $('#subcounty-dropdown').val();
-                if(theou == null || theou == ''){
-                    var theou = $('#county-dropdown').val();
-                    if(theou == null || theou == ''){
-                        var theou = 'tAbBVBbueqD';
+                if(theou == null || theou == '' || theou == undefined){
+                    theou = $('#county-dropdown').val();
+                    if(theou == null || theou == '' || theou == undefined){
+                        theou = 'tAbBVBbueqD';
                         theou = myOU();
                     }
                 }
-                
-                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:LAST_BIMONTH&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
         );
@@ -705,15 +712,30 @@ color: transparent;}
             var therdate = dateparts[1]+''+dateparts[0];
             var period = therdate;
             daterange.push(period);
+
+            var the_period = getPeriod(period, false);
+            console.log(`VvV the period == ${the_period}`);
             
             //
-                $('#period-dropdownTo').removeAttr('disabled');
-                $('#period-dropdownTo').trigger('click');
+                // $('#period-dropdownTo').removeAttr('disabled');
+                // $('#period-dropdownTo').trigger('click');
             //
-            
-            // var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+period+'&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            // var commd = 'iOARK31NdLp.HWtHCLAwprR';
-            // getConsist(consturl,commd,'tAbBVBbueqD');
+            var theou = $('#subcounty-dropdown').val();
+            if(theou == null || theou == '' || theou == undefined){
+                theou = $('#county-dropdown').val();
+                if(theou == null || theou == '' || theou == undefined){
+                    theou = 'tAbBVBbueqD';
+                    theou = myOU();
+                }
+            }
+
+            if(commd == null || commd == undefined || commd == ''){
+                var commd = 'iOARK31NdLp';
+                // commd = commd.split('.')[0];
+            }
+
+            var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+the_period+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            getConsist(consturl,commd,theou);
         }
         
         //change of period		

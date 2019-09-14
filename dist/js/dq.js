@@ -472,18 +472,26 @@ function getConsist(consturl,commd,the_orgu){
             var nodisctbl = '';
             var disctbl = '';
 
+            console.clear();
+            var the_period = getPeriod('201808', false);
+            console.log(`VvV the period == ${the_period}`);
             $.each(theous, function(index, oneou){
                 var ou_filtered = filterItems(therows,oneou);
-                
-                var the_dx_0 = filterItems(ou_filtered,theDx[0]);
-                var the_dx_1 = filterItems(ou_filtered,theDx[1]);
+                // var the_dx_0 = filterItems(ou_filtered,theDx[0]);
+                // var the_dx_1 = filterItems(ou_filtered,theDx[1]);
+
+                var the_dx_0 = theDx.splice(0,theDx.length/2);
+                var the_dx_1 = theDx.splice(0,theDx.length);
+
+                // console.log(`YYY the_dx_0 === ${the_dx_0}`);
+                // console.log(`ZZZ the_dx_1 === ${the_dx_1}`);
                 // console.log("the Dx 1 ni: "+theDx[1]);
                 if(the_dx_0[0] != undefined && the_dx_1[0] != undefined){
                     if(the_dx_0[0][3]==the_dx_1[0][3]){
                         compliant_facility_count = compliant_facility_count+1;
                         nodisc_facilities_names.push(theItems[oneou].name);
                         nodisc_facilities_codes.push(oneou);
-                        nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
+                        nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>('+oneou+') '+getMFLcode(oneou)+'</td></tr>';
                     }
                 }
                         
@@ -493,7 +501,7 @@ function getConsist(consturl,commd,the_orgu){
                 if(!nodisc_facilities_codes.includes(the_ou)){
                     disc_facilities_codes.push(the_ou);
                     disc_facilities_names.push(theItems[the_ou].name);
-                    disctbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+getMFLcode(the_ou)+'</td></tr>';
+                    disctbl += '<tr><td>'+theItems[the_ou].name+'</td><td>('+the_ou+') '+getMFLcode(the_ou)+'</td></tr>';
                 }
             });
             $('#noDiscData').DataTable().destroy();
@@ -577,7 +585,7 @@ function getConsist(consturl,commd,the_orgu){
                 });    
             // END title fill
             
-            pieThree(commodities_array[commd].name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
+            pieThree(commodities_array[commd].name + ' for '+ the_period,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
             $('.piethree_state').addClass('hidden');
             $('#pc3, .pc3').removeClass('hidden');
@@ -728,3 +736,66 @@ function sleep(milliseconds)
 				}
 		}
 }
+function getPeriod(todayte, past) {
+    // -------------find currentDate & factor for >15th -------------
+      var tdate = new Date().getDate();
+      if(past){
+          tday = todayte.slice(4);
+          console.log('other_tday: '+tday);
+      }
+      console.log('past: '+past + ' & todayte: '+todayte);
+      var tyear1 = todayte.slice(0, -2);
+      // var tyear2 = todayte.slice(0, -2);
+      var tyear2 = tyear1;
+      
+      console.log('tdate => '+tdate);
+      if(parseFloat(tdate) < 15 || past){
+          var month1_full = todayte;
+          var month1;
+          var date2 = new Date();
+          // date2.setMonth(month1);
+          date2.setDate(1);
+          var month2 = date2.getMonth();
+
+          if(past){tdate = parseFloat(tday); month2 = tday;}
+          if(month2 < 1){
+              month2 = 12;
+              tyear2 = (parseFloat(tyear2) - 1);
+          }
+          month1 = parseFloat(month2)-1;
+          if(month1 < 1){
+              month1 = 12;
+              tyear1 = (parseFloat(tyear1) - 1);
+          }
+          console.log('month1 => '+month1);
+          console.log('month2 => '+month2);
+      }else{
+          var month1_full = todayte;
+          // if(!past){
+              var month1 = parseFloat(month1_full.toString().slice(4))+1;
+          // }else{
+          //     var month1 = parseFloat(month1_full.toString().slice(4));
+          // }
+          var date2 = new Date();
+          // date2.setMonth(month1);
+          date2.setDate(1);
+          // var month2 = date2.getMonth();
+          var month2 = month1 + 1;
+          if(month2 < 1){
+              month2 = 12;
+              tyear2 = (parseFloat(tyear2) - 1);
+          }
+          if(month1 < 1){
+              month1 = 12;
+              tyear1 = (parseFloat(tyear1) - 1);
+          }
+          console.log('month1 => '+month1);
+          console.log('month2 => '+month2);
+      }
+      if(parseFloat(month1) < 10){month1 = "0"+month1}
+      if(parseFloat(month2) < 10 && !past){month2 = "0"+month2}
+      console.log("month1: "+ month1 + " && month2: "+month2);
+      var period_string = tyear1+""+month1+";"+tyear2+""+month2;
+      return period_string
+    // -------------find currentDate & factor for >15th -------------
+  }
