@@ -440,6 +440,7 @@ function wbDetail(json_data, lastperiod){
 
 
 function getConsist(consturl,commd,the_orgu){
+    console.log("consturl ==>>==>> "+consturl);
     $('#pc3, .pc3').addClass('hidden');
     $('.loader-sp.piethree').removeClass('hidden');
     sleep(3000);
@@ -472,7 +473,7 @@ function getConsist(consturl,commd,the_orgu){
             var nodisctbl = '';
             var disctbl = '';
 
-            console.clear();
+            // console.clear();
             var the_period = getPeriod('201808', false);
             console.log(`VvV the period == ${the_period}`);
             $.each(theous, function(index, oneou){
@@ -799,3 +800,21 @@ function getPeriod(todayte, past) {
       return period_string
     // -------------find currentDate & factor for >15th -------------
   }
+//   console.clear();
+
+  function getCurrentPeriod() {
+    var per_y = new Date().getFullYear();
+    var per_m = new Date().getMonth();
+    if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+    var per = per_y+""+per_m;
+    return(getPeriod(per, false))
+}
+// function getLastMonthPeriod() {
+//     var per_y = new Date().getFullYear();
+//     var per_m = new Date().getMonth();
+//     per_m = parseFloat(per_m) - 1;
+//     if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
+//     if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+//     var per = per_y+""+per_m;
+//     return(getPeriod(per, false))
+// }
