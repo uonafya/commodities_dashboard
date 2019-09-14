@@ -657,7 +657,7 @@ color: transparent;}
         });
         $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
-        var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=pe:'+getCurrentPeriod()+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+        var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=pe:'+getThePeriod()+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
         // var consturl = 'http://localhost/pmi/json/consistency3c.json';
         var month_from = '201806';
         var month_to = '201807';
@@ -674,7 +674,7 @@ color: transparent;}
                     var commd = 'iOARK31NdLp';
                     // commd = commd.split('.')[0];
                 }
-                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+getCurrentPeriod()+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+getThePeriod()+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
         );
@@ -687,7 +687,7 @@ color: transparent;}
                     var commd = 'iOARK31NdLp';
                     // commd = commd.split('.')[0];
                 }
-                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+getCurrentPeriod()+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+getThePeriod()+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
         );
@@ -704,7 +704,7 @@ color: transparent;}
                         theou = myOU();
                     }
                 }
-                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+getCurrentPeriod()+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+getThePeriod()+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
         );
@@ -797,9 +797,11 @@ color: transparent;}
             return dates;
         }
         downloadTable("noDiscData");
-        function getCurrentPeriod() {
+        function getThePeriod() {
             var per_y = new Date().getFullYear();
-            var per_m = new Date().getMonth() -1;
+            var per_m = new Date().getMonth();
+            per_m = parseFloat(per_m) - 1;
+            if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
             return(getPerio(per, false))
