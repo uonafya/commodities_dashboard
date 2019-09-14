@@ -800,7 +800,7 @@ color: transparent;}
         function getThePeriod() {
             var per_y = new Date().getFullYear();
             var per_m = new Date().getMonth();
-            per_m = parseFloat(per_m) - 1;
+            per_m = parseFloat(per_m);
             if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
