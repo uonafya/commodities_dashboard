@@ -586,7 +586,7 @@ function getConsist(consturl,commd,the_orgu){
                 });    
             // END title fill
             
-            pieThree(commodities_array[commd].name + ' for '+ the_period,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
+            pieThree(commodities_array[commd].name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
             $('.loader-sp.piethree').addClass('hidden');
             $('.piethree_state').addClass('hidden');
             $('#pc3, .pc3').removeClass('hidden');
