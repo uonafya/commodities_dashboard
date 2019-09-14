@@ -802,13 +802,7 @@ function getPeriod(todayte, past) {
   }
 //   console.clear();
 
-  function getCurrentPeriod() {
-    var per_y = new Date().getFullYear();
-    var per_m = new Date().getMonth();
-    if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
-    var per = per_y+""+per_m;
-    return(getPeriod(per, false))
-}
+  
 // function getLastMonthPeriod() {
 //     var per_y = new Date().getFullYear();
 //     var per_m = new Date().getMonth();

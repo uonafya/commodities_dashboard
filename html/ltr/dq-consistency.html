@@ -374,7 +374,7 @@ color: transparent;}
                                                         <br>
                                                         <h5 class="pc3">No Discrepancy: <br/> <span class="noDiscCount text-center fa-2x text-bold "></span></h5>
                                                         <br>
-                                                        <h5 class="pc3">Descrepancy <br/> <span class="text-center fa-2x text-bold discCount"></span></h5>
+                                                        <h5 class="pc3">Discrepancy <br/> <span class="text-center fa-2x text-bold discCount"></span></h5>
                                                         <br>
                                                         <h5 class="pc3">Total Facilities <br/> <span class="text-center fa-2x text-bold totFacil"></span></h5>
                                                         <br>
@@ -797,6 +797,13 @@ color: transparent;}
             return dates;
         }
         downloadTable("noDiscData");
+        function getCurrentPeriod() {
+            var per_y = new Date().getFullYear();
+            var per_m = new Date().getMonth();
+            if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+            var per = per_y+""+per_m;
+            return(getPeriod(per, false))
+        }
     </script>
 	
 </body>
