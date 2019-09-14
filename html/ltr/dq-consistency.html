@@ -799,7 +799,7 @@ color: transparent;}
         downloadTable("noDiscData");
         function getCurrentPeriod() {
             var per_y = new Date().getFullYear();
-            var per_m = new Date().getMonth();
+            var per_m = new Date().getMonth() -1;
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
             return(getPerio(per, false))
