@@ -478,20 +478,27 @@ function getConsist(consturl,commd,the_orgu){
             console.log(`VvV the period == ${the_period}`);
             $.each(theous, function(index, oneou){
                 var ou_filtered = filterItems(therows,oneou);
-                // var the_dx_0 = filterItems(ou_filtered,theDx[0]);
-                // var the_dx_1 = filterItems(ou_filtered,theDx[1]);
+                console.log("[[[therows]]] ", JSON.stringify(therows));
+                console.log("[[[ou_filt]]] ", JSON.stringify(ou_filtered));
+                // var the_dx_opbl = filterItems(ou_filtered,theDx[0]);
+                // var the_dx_phyc = filterItems(ou_filtered,theDx[1]);
 
-                var the_dx_0 = theDx.splice(0,theDx.length/2);
-                var the_dx_1 = theDx.splice(0,theDx.length);
+                var the_dx_opbl = theDx.splice(0,theDx.length/2);
+                var the_dx_phyc = theDx.splice(0,theDx.length);
 
-                // console.log(`YYY the_dx_0 === ${the_dx_0}`);
-                // console.log(`ZZZ the_dx_1 === ${the_dx_1}`);
+                console.log(`YYY the_dx_opbl === ${the_dx_opbl}`);
+                console.log(`ZZZ the_dx_phyc === ${the_dx_phyc}`);
                 // console.log("the Dx 1 ni: "+theDx[1]);
-                if(the_dx_0[0] != undefined && the_dx_1[0] != undefined){
-                    if(the_dx_0[0][3]==the_dx_1[0][3]){
+                if(the_dx_opbl[0] != undefined && the_dx_phyc[0] != undefined){
+                    var rows_phyc = filterItems(ou_filtered, the_dx_phyc);
+                    var rows_opbl = filterItems(ou_filtered, the_dx_opbl);
+                    console.log("[[[rows_phyc]]] ", JSON.stringify(rows_phyc));
+                    console.log("[[[rows_opbl]]] ", JSON.stringify(rows_opbl));
+                    if(rows_phyc[0][3]==rows_opbl[0][3]){
                         compliant_facility_count = compliant_facility_count+1;
                         nodisc_facilities_names.push(theItems[oneou].name);
                         nodisc_facilities_codes.push(oneou);
+                        var valuus = 
                         nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>('+oneou+') '+getMFLcode(oneou)+'</td></tr>';
                     }
                 }
