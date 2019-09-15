@@ -474,32 +474,32 @@ function getConsist(consturl,commd,the_orgu){
             var disctbl = '';
 
             // console.clear();
-            var the_period = getPeriod('201808', false);
+            var the_period = getTheCurrentPeriod();
             console.log(`VvV the period == ${the_period}`);
+            console.log("[[[therows]]] ", JSON.stringify(therows));
             $.each(theous, function(index, oneou){
                 var ou_filtered = filterItems(therows,oneou);
-                console.log("[[[therows]]] ", JSON.stringify(therows));
                 console.log("[[[ou_filt]]] ", JSON.stringify(ou_filtered));
                 // var the_dx_opbl = filterItems(ou_filtered,theDx[0]);
                 // var the_dx_phyc = filterItems(ou_filtered,theDx[1]);
 
                 var the_dx_opbl = theDx.splice(0,theDx.length/2);
                 var the_dx_phyc = theDx.splice(0,theDx.length);
-
-                console.log(`YYY the_dx_opbl === ${the_dx_opbl}`);
-                console.log(`ZZZ the_dx_phyc === ${the_dx_phyc}`);
-                // console.log("the Dx 1 ni: "+theDx[1]);
-                if(the_dx_opbl[0] != undefined && the_dx_phyc[0] != undefined){
-                    var rows_phyc = filterItems(ou_filtered, the_dx_phyc);
-                    var rows_opbl = filterItems(ou_filtered, the_dx_opbl);
+                // console.log(`YYY the_dx_opbl === ${the_dx_opbl}`);
+                // console.log(`ZZZ the_dx_phyc === ${the_dx_phyc}`);
+                if(the_dx_opbl != undefined && the_dx_phyc != undefined){
+                    var rows_phyc = filterItems(ou_filtered, the_dx_phyc[0]);
+                    var rows_opbl = filterItems(ou_filtered, the_dx_opbl[0]);
                     console.log("[[[rows_phyc]]] ", JSON.stringify(rows_phyc));
                     console.log("[[[rows_opbl]]] ", JSON.stringify(rows_opbl));
-                    if(rows_phyc[0][3]==rows_opbl[0][3]){
-                        compliant_facility_count = compliant_facility_count+1;
-                        nodisc_facilities_names.push(theItems[oneou].name);
-                        nodisc_facilities_codes.push(oneou);
-                        var valuus = '';
-                        nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>('+oneou+') '+getMFLcode(oneou)+'</td></tr>';
+                    sleep(1000);
+                    if(rows_phyc[0] != undefined || rows_opbl[0] != undefined){
+                        if(rows_phyc[0][3]==rows_opbl[0][3]){
+                            compliant_facility_count = compliant_facility_count+1;
+                            nodisc_facilities_names.push(theItems[oneou].name);
+                            nodisc_facilities_codes.push(oneou);
+                            nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>('+oneou+') '+getMFLcode(oneou)+'</td></tr>';
+                        }
                     }
                 }
                         
@@ -749,14 +749,14 @@ function getPeriod(todayte, past) {
       var tdate = new Date().getDate();
       if(past){
           tday = todayte.slice(4);
-          console.log('other_tday: '+tday);
+        //   console.log('other_tday: '+tday);
       }
-      console.log('past: '+past + ' & todayte: '+todayte);
+    //   console.log('past: '+past + ' & todayte: '+todayte);
       var tyear1 = todayte.slice(0, -2);
       // var tyear2 = todayte.slice(0, -2);
       var tyear2 = tyear1;
       
-      console.log('tdate => '+tdate);
+    //   console.log('tdate => '+tdate);
       if(parseFloat(tdate) < 15 || past){
           var month1_full = todayte;
           var month1;
@@ -775,8 +775,8 @@ function getPeriod(todayte, past) {
               month1 = 12;
               tyear1 = (parseFloat(tyear1) - 1);
           }
-          console.log('month1 => '+month1);
-          console.log('month2 => '+month2);
+        //   console.log('month1 => '+month1);
+        //   console.log('month2 => '+month2);
       }else{
           var month1_full = todayte;
           // if(!past){
@@ -797,18 +797,27 @@ function getPeriod(todayte, past) {
               month1 = 12;
               tyear1 = (parseFloat(tyear1) - 1);
           }
-          console.log('month1 => '+month1);
-          console.log('month2 => '+month2);
+        //   console.log('month1 => '+month1);
+        //   console.log('month2 => '+month2);
       }
       if(parseFloat(month1) < 10){month1 = "0"+month1}
       if(parseFloat(month2) < 10 && !past){month2 = "0"+month2}
-      console.log("month1: "+ month1 + " && month2: "+month2);
+    //   console.log("month1: "+ month1 + " && month2: "+month2);
       var period_string = tyear1+""+month1+";"+tyear2+""+month2;
       return period_string
     // -------------find currentDate & factor for >15th -------------
   }
 //   console.clear();
 
+function getTheCurrentPeriod() {
+    var per_y = new Date().getFullYear();
+    var per_m = new Date().getMonth();
+    per_m = parseFloat(per_m) -1;
+    if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
+    if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+    var per = per_y+""+per_m;
+    return(getPerio(per, false))
+}
   
 // function getLastMonthPeriod() {
 //     var per_y = new Date().getFullYear();
