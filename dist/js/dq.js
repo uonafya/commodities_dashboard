@@ -475,11 +475,11 @@ function getConsist(consturl,commd,the_orgu){
 
             // console.clear();
             var the_period = getTheCurrentPeriod();
-            console.log(`VvV the period == ${the_period}`);
-            console.log("[[[therows]]] ", JSON.stringify(therows));
+            // console.log(`VvV the period == ${the_period}`);
+            // console.log("[[[therows]]] ", JSON.stringify(therows));
             $.each(theous, function(index, oneou){
                 var ou_filtered = filterItems(therows,oneou);
-                console.log("[[[ou_filt]]] ", JSON.stringify(ou_filtered));
+                // console.log("[[[ou_filt]]] ", JSON.stringify(ou_filtered));
                 // var the_dx_opbl = filterItems(ou_filtered,theDx[0]);
                 // var the_dx_phyc = filterItems(ou_filtered,theDx[1]);
 
@@ -490,8 +490,8 @@ function getConsist(consturl,commd,the_orgu){
                 if(the_dx_opbl != undefined && the_dx_phyc != undefined){
                     var rows_phyc = filterItems(ou_filtered, the_dx_phyc[0]);
                     var rows_opbl = filterItems(ou_filtered, the_dx_opbl[0]);
-                    console.log("[[[rows_phyc]]] ", JSON.stringify(rows_phyc));
-                    console.log("[[[rows_opbl]]] ", JSON.stringify(rows_opbl));
+                    // console.log("[[[rows_phyc]]] ", JSON.stringify(rows_phyc));
+                    // console.log("[[[rows_opbl]]] ", JSON.stringify(rows_opbl));
                     if(rows_phyc[0] != undefined && rows_opbl[0] != undefined){
                         if(rows_phyc[0][3]==rows_opbl[0][3]){
                             compliant_facility_count = compliant_facility_count+1;

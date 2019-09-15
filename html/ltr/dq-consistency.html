@@ -659,7 +659,7 @@ color: transparent;}
         });
         $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
-        var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=pe:'+getThePeriod()+'&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+        var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=pe:'+getThePeriod()+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
         // var consturl = 'http://localhost/pmi/json/consistency-full-ke.json';
         var month_from = '201806';
         var month_to = '201807';
