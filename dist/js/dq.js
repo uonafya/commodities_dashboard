@@ -493,7 +493,7 @@ function getConsist(consturl,commd,the_orgu){
                     console.log("[[[rows_phyc]]] ", JSON.stringify(rows_phyc));
                     console.log("[[[rows_opbl]]] ", JSON.stringify(rows_opbl));
                     sleep(1000);
-                    if(rows_phyc[0] != undefined || rows_opbl[0] != undefined){
+                    if(rows_phyc[0] != undefined && rows_opbl[0] != undefined){
                         if(rows_phyc[0][3]==rows_opbl[0][3]){
                             compliant_facility_count = compliant_facility_count+1;
                             nodisc_facilities_names.push(theItems[oneou].name);
