@@ -498,7 +498,7 @@ function getConsist(consturl,commd,the_orgu){
                         compliant_facility_count = compliant_facility_count+1;
                         nodisc_facilities_names.push(theItems[oneou].name);
                         nodisc_facilities_codes.push(oneou);
-                        var valuus = 
+                        var valuus = '';
                         nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>('+oneou+') '+getMFLcode(oneou)+'</td></tr>';
                     }
                 }
