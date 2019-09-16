@@ -508,7 +508,7 @@ function getConsist(consturl,commd,the_orgu){
                                 compliant_facility_count = compliant_facility_count+1;
                                 nodisc_facilities_names.push(theItems[oneou].name);
                                 nodisc_facilities_codes.push(oneou);
-                                nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>('+oneou+') '+"getMFLcode(oneou)"+'</td></tr>';
+                                nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Phyc Clos: '+phy_arr[0][3]+'  && Open  Bal: '+opbl_arr[0][3]+'</small> </td><td>'+getMFLcode(oneou)+'</td></tr>';
                             }
                         }
                     }
@@ -520,7 +520,7 @@ function getConsist(consturl,commd,the_orgu){
                 if(!nodisc_facilities_codes.includes(the_ou)){
                     disc_facilities_codes.push(the_ou);
                     disc_facilities_names.push(theItems[the_ou].name);
-                    disctbl += '<tr><td>'+theItems[the_ou].name+'</td><td>('+the_ou+') '+"getMFLcode(the_ou)"+'</td></tr>';
+                    disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+getMFLcode(the_ou)+'</td></tr>';
                 }
             });
             $('#noDiscData').DataTable().destroy();
