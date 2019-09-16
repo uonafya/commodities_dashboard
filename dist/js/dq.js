@@ -475,6 +475,7 @@ function getConsist(consturl,commd,the_orgu){
 
             // console.clear();
             var the_period = getTheCurrentPeriod();
+            var the_period = data.metaData.dimensions.pe;
             // console.log(`VvV the period == ${the_period}`);
             // console.log("[[[therows]]] ", JSON.stringify(therows));
             $.each(theous, function(index, oneou){
@@ -493,11 +494,22 @@ function getConsist(consturl,commd,the_orgu){
                     // console.log("[[[rows_phyc]]] ", JSON.stringify(rows_phyc));
                     // console.log("[[[rows_opbl]]] ", JSON.stringify(rows_opbl));
                     if(rows_phyc[0] != undefined && rows_opbl[0] != undefined){
-                        if(rows_phyc[0][3]==rows_opbl[0][3]){
-                            compliant_facility_count = compliant_facility_count+1;
-                            nodisc_facilities_names.push(theItems[oneou].name);
-                            nodisc_facilities_codes.push(oneou);
-                            nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>('+oneou+') '+getMFLcode(oneou)+'</td></tr>';
+                        // var date_0 = '"'+the_period.split(';')[0]+'"'; var date_1 = '"'+the_period.split(';')[1]+'"';
+                        var date_0 = the_period[0];
+                        var date_1 = the_period[1];
+                        // console.log("date_0 ", date_0);
+                        // console.log("date_1 ", date_1);
+                        var phy_arr = filterItems(rows_phyc, date_0);
+                        var opbl_arr = filterItems(rows_opbl, date_1);
+                        // console.log("[phy_arr] ", JSON.stringify(phy_arr));
+                        // console.log("[opbl_arr] ", JSON.stringify(opbl_arr));
+                        if(phy_arr[0] != undefined && opbl_arr[0] != undefined && phy_arr[0] != null && opbl_arr[0] != null){
+                            if(phy_arr[0][3]==opbl_arr[0][3]){
+                                compliant_facility_count = compliant_facility_count+1;
+                                nodisc_facilities_names.push(theItems[oneou].name);
+                                nodisc_facilities_codes.push(oneou);
+                                nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>('+oneou+') '+"getMFLcode(oneou)"+'</td></tr>';
+                            }
                         }
                     }
                 }
@@ -508,7 +520,7 @@ function getConsist(consturl,commd,the_orgu){
                 if(!nodisc_facilities_codes.includes(the_ou)){
                     disc_facilities_codes.push(the_ou);
                     disc_facilities_names.push(theItems[the_ou].name);
-                    disctbl += '<tr><td>'+theItems[the_ou].name+'</td><td>('+the_ou+') '+getMFLcode(the_ou)+'</td></tr>';
+                    disctbl += '<tr><td>'+theItems[the_ou].name+'</td><td>('+the_ou+') '+"getMFLcode(the_ou)"+'</td></tr>';
                 }
             });
             $('#noDiscData').DataTable().destroy();
