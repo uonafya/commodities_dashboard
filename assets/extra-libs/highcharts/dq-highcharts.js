@@ -124,12 +124,12 @@
                         name: 'Consistency',
                         colorByPoint: true,
                         data: [{
-                            name: 'No discrepancy',
+                            name: 'Discrepancy',
                             y: nodisc,
                             sliced: true,
                             selected: true
                         }, {
-                            name: 'Discrepancy',
+                            name: 'No discrepancy',
                             y: disc
                         }]
                     }]
