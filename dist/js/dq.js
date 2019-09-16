@@ -508,7 +508,7 @@ function getConsist(consturl,commd,the_orgu){
                                 compliant_facility_count = compliant_facility_count+1;
                                 nodisc_facilities_names.push(theItems[oneou].name);
                                 nodisc_facilities_codes.push(oneou);
-                                nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Phyc Clos: '+phy_arr[0][3]+'  && Open  Bal: '+opbl_arr[0][3]+'</small> </td><td>'+getMFLcode(oneou)+'</td></tr>';
+                                nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Phyc Clos: ['+date_0+']: '+phy_arr[0][3]+'  && Open  Bal: ['+date_1+']: '+opbl_arr[0][3]+'</small> </td><td>'+getMFLcode(oneou)+'</td></tr>';
                             }
                         }
                     }
