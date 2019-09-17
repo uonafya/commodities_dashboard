@@ -176,6 +176,7 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
             var overstock = 0;
             var stockok = 0;
             var understock = 0;
+			var stockout = 0;
             
             //define the table
             tableData += '<tr>';
@@ -202,7 +203,11 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
                     if(mosval>0 && mosval<3)
                     {
                         understock++;
-                    }						
+                    }
+					if(mosval<=0)
+                    {
+                        stockout++;
+                    }
                 }					
             })
                             countname++;
@@ -212,10 +217,12 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
             var overpercent = (overstock/totalorgs)*100;
             var okpercent = (stockok/totalorgs)*100;
             var underpercent = (understock/totalorgs)*100;
+			var stockoutpercent = (stockout/totalorgs)*100;
             
             tableData += '<td class="text-right" bgcolor="#ffeb9c">'+formatNumber(overpercent.toFixed(1))+'%</td>';
             tableData += '<td class="text-right" bgcolor="#7bd48d">'+formatNumber(okpercent.toFixed(1))+'%</td>';
-            tableData += '<td class="text-right" bgcolor="#ffc7ce">'+formatNumber(underpercent.toFixed(1))+'%</td>';				
+            tableData += '<td class="text-right" bgcolor="#ffc7ce">'+formatNumber(underpercent.toFixed(1))+'%</td>';
+			tableData += '<td class="text-right" bgcolor="#ff0000">'+formatNumber(stockoutpercent.toFixed(1))+'%</td>';			
             tableData += '</tr>';	
         })
 
