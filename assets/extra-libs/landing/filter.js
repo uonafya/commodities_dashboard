@@ -34,7 +34,7 @@ function filterMain(countyid, subcountyid, periodid) {
 
         //parse adjusted consumption and physical count
         //parse the data for mos number
-        fetchNumberHealthFA(urlfa,itemnames,countyid,periodid);
+        //fetchNumberHealthFA(urlfa,itemnames,countyid,periodid); //commented out after removing the dashboard table right bottom
 
 
         //adjc FA
