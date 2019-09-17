@@ -1,4 +1,4 @@
-function fetchScRR(scurl){
+function fetchScRR(scurl, myou){
     $('.rrates.loader-sp').removeClass('hidden');
     $('#sc_rrchart').addClass('hidden');
     $.ajax({
@@ -17,8 +17,15 @@ function fetchScRR(scurl){
                 therate.push(parseFloat(acounty[3]));
             });
 
+            console.log('kenyaa1', myou)
 
+            if (myou == 'HfVjCurKxh2'){
+                $('#sc_rrchart').addClass('hidden');
 
+            }else
+            {
+                $('#sc_rrchart').removeClass('hidden');
+            }
 
             $('#sub_rrchart').empty();
             $('#sub_rrchart #thesubchart').remove();
@@ -99,8 +106,8 @@ function fetchScRR(scurl){
                 }]
             });
             // end Highcharts
-            $('.rrates.loader-sp').addClass('hidden');
-            $('#sc_rrchart').removeClass('hidden');
+            // $('.rrates.loader-sp').addClass('hidden');
+            // $('#sc_rrchart').removeClass('hidden');
         },
         error: function (request, status, error) {
             $('.rrates.loader-sp').addClass('hidden');
