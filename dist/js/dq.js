@@ -523,7 +523,7 @@ function getConsist(consturl,commd,the_orgu){
                 if(!nodisc_facilities_codes.includes(the_ou)){
                     disc_facilities_codes.push(the_ou);
                     disc_facilities_names.push(theItems[the_ou].name);
-                    disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
+                    disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+getMFLcode(the_ou)+'</td></tr>';
                     // disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
                 }
             });
