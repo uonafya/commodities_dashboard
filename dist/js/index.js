@@ -204,7 +204,7 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
                     {
                         understock++;
                     }
-					if(mosval<0)
+					if(mosval<=0)
                     {
                         stockout++;
                     }
@@ -222,7 +222,7 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
             tableData += '<td class="text-right" bgcolor="#ffeb9c">'+formatNumber(overpercent.toFixed(1))+'%</td>';
             tableData += '<td class="text-right" bgcolor="#7bd48d">'+formatNumber(okpercent.toFixed(1))+'%</td>';
             tableData += '<td class="text-right" bgcolor="#ffc7ce">'+formatNumber(underpercent.toFixed(1))+'%</td>';
-			tableData += '<td class="text-right" bgcolor="#ffc7ce">'+formatNumber(underpercent.toFixed(1))+'%</td>';			
+			tableData += '<td class="text-right" bgcolor="#ff0000">'+formatNumber(stockoutpercent.toFixed(1))+'%</td>';			
             tableData += '</tr>';	
         })
 
