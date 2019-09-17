@@ -454,6 +454,7 @@ function getConsist(consturl,commd,the_orgu){
             var theItems = data.metaData.items;
             var theDims = data.metaData.dimensions;
             var theDx = data.metaData.dimensions.dx;
+            var thePe = data.metaData.dimensions.pe;
             $.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
                 var theComms = data.metaData.dimensions.dx;                
                 // popComms(theComms);
@@ -473,54 +474,57 @@ function getConsist(consturl,commd,the_orgu){
             var nodisctbl = '';
             var disctbl = '';
 
-            // console.clear();
-            var the_period = getTheCurrentPeriod();
-            var the_period = data.metaData.dimensions.pe;
-            // console.log(`VvV the period == ${the_period}`);
-            // console.log("[[[therows]]] ", JSON.stringify(therows));
+            
+            // var the_period = getTheCurrentPeriod();
+            var commodity_0 = theDx[1].split('.')[1];
+            if(commodity_0 == "rPAsF4cpNxm"){
+                phycount_commodity_code = theDx[1];
+            }
+            var commodity_1 = theDx[0].split('.')[1];
+            if(commodity_1 == "HWtHCLAwprR"){
+                openbal_commodity_code = theDx[0];
+            }
+            if( parseFloat(thePe[0]) < parseFloat(thePe[1]) ){
+                var period_from = thePe[0];
+                var period_to = thePe[1];
+            }else{
+                var period_from = thePe[1];
+                var period_to = thePe[0];
+            }
+            var thirar = []
             $.each(theous, function(index, oneou){
-                var ou_filtered = filterItems(therows,oneou);
-                // console.log("[[[ou_filt]]] ", JSON.stringify(ou_filtered));
-                // var the_dx_opbl = filterItems(ou_filtered,theDx[0]);
-                // var the_dx_phyc = filterItems(ou_filtered,theDx[1]);
-
-                var the_dx_opbl = theDx.splice(0,theDx.length/2);
-                var the_dx_phyc = theDx.splice(0,theDx.length);
-                // console.log(`YYY the_dx_opbl === ${the_dx_opbl}`);
-                // console.log(`ZZZ the_dx_phyc === ${the_dx_phyc}`);
-                if(the_dx_opbl != undefined && the_dx_phyc != undefined){
-                    var rows_phyc = filterItems(ou_filtered, the_dx_phyc[0]);
-                    var rows_opbl = filterItems(ou_filtered, the_dx_opbl[0]);
-                    // console.log("[[[rows_phyc]]] ", JSON.stringify(rows_phyc));
-                    // console.log("[[[rows_opbl]]] ", JSON.stringify(rows_opbl));
-                    if(rows_phyc[0] != undefined && rows_opbl[0] != undefined){
-                        // var date_0 = '"'+the_period.split(';')[0]+'"'; var date_1 = '"'+the_period.split(';')[1]+'"';
-                        var date_0 = the_period[0];
-                        var date_1 = the_period[1];
-                        // console.log("date_0 ", date_0);
-                        // console.log("date_1 ", date_1);
-                        var phy_arr = filterItems(rows_phyc, date_0);
-                        var opbl_arr = filterItems(rows_opbl, date_1);
-                        // console.log("[phy_arr] ", JSON.stringify(phy_arr));
-                        // console.log("[opbl_arr] ", JSON.stringify(opbl_arr));
-                        if(phy_arr[0] != undefined && opbl_arr[0] != undefined && phy_arr[0] != null && opbl_arr[0] != null){
-                            if(phy_arr[0][3]==opbl_arr[0][3]){
-                                compliant_facility_count = compliant_facility_count+1;
-                                nodisc_facilities_names.push(theItems[oneou].name);
-                                nodisc_facilities_codes.push(oneou);
-                                nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Phyc Clos: ['+date_0+']: '+phy_arr[0][3]+'  && Open  Bal: ['+date_1+']: '+opbl_arr[0][3]+'</small> </td><td>'+getMFLcode(oneou)+'</td></tr>';
-                            }
-                        }
+                var closing_bal = null;
+                var opening_bal = null;
+                $.each(therows, function (indx, onerow) { 
+                   if(onerow[2] == oneou && onerow[0] == phycount_commodity_code && onerow[1] == period_from){
+                       closing_bal = onerow[3];
+                    }
+                    if(onerow[2] == oneou && onerow[0] == openbal_commodity_code && onerow[1] == period_to){
+                        opening_bal = onerow[3];
+                    }
+                    // if(opening_bal != null && closing_bal != null){
+                    //     if(parseFloat(opening_bal) === parseFloat(closing_bal)){
+                    //         thirar.push(oneou)
+                    //     }
+                    // }
+                });
+                if(opening_bal != null && closing_bal != null){
+                    if(parseFloat(opening_bal) === parseFloat(closing_bal)){
+                        compliant_facility_count = compliant_facility_count+1;
+                        nodisc_facilities_names.push(theItems[oneou].name);
+                        nodisc_facilities_codes.push(oneou);
+                        nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
+                        // nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Phyc Clos: ['+thePe[0]+']: '+closing_bal+'  && Open  Bal: ['+thePe[1]+']: '+opening_bal+'</small> </td><td>'+"getMFLcode(oneou)"+'</td></tr>';
                     }
                 }
-                        
             });
             $.each(theDims.ou,(inex,valou)=>{
                 let the_ou = valou;
                 if(!nodisc_facilities_codes.includes(the_ou)){
                     disc_facilities_codes.push(the_ou);
                     disc_facilities_names.push(theItems[the_ou].name);
-                    disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+getMFLcode(the_ou)+'</td></tr>';
+                    disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+getMFLcode(the_ou)+'</td></tr>';
+                    // disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
                 }
             });
             $('#noDiscData').DataTable().destroy();
