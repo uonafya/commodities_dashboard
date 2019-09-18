@@ -223,7 +223,7 @@
                     type: 'line'
                 },
                 exporting: {
-                    enabled: false
+                    enabled: true
                 },
                 title: {
                     text: thetitle
