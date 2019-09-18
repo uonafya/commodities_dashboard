@@ -1,4 +1,9 @@
 function getConco(ccurl,commodity){
+    if( commodity.split('.')[1] != undefined || commodity.split('.')[1] != null || commodity.split('.')[1] != ''){
+        var commodity = commodity.split('.')[0];
+    }
+    console.log('commodity => '+commodity);
+    console.log("conco_url ==> "+ccurl);
     $('.loader-sp.pieone').removeClass('hidden');
     $('#pc1, .pc1').addClass('hidden');
     sleep(3000);
@@ -41,40 +46,56 @@ $.ajax({
         var compliant_facilities_codes = [];
         var non_compliant_facilities_names = [];
         var non_compliant_facilities_codes = [];
-        var therows_filtered_by_commodity = filterItems(therows,commodity);
+        commodity_begbal = commodity+'.HWtHCLAwprR';
+        commodity_closbal = commodity+'.rPAsF4cpNxm';
+        var therows_filtered_by_commodity_begbal = filterItems(therows,commodity_begbal);
+        var therows_filtered_by_commodity_closbal = filterItems(therows,commodity_closbal);
+        var therows_filtered_by_commodity = therows_filtered_by_commodity_begbal.concat( therows_filtered_by_commodity_closbal );
+        
+        // console.log("therows_filtered_by_commodity_begbal: "+JSON.stringify(therows_filtered_by_commodity_begbal));
+        // console.log("therows_filtered_by_commodity_closbal: "+JSON.stringify(therows_filtered_by_commodity_closbal));
         // console.log("filtered ROWS ni: "+JSON.stringify(therows_filtered_by_commodity));
         var equaltbl = '';
         $.each(theous, function(index, oneou){
             // var ou_name = theItems[oneou].name;
-            var ou_filtered = filterItems(therows_filtered_by_commodity,oneou);
+            var ou_filtered_from = [];
+            var ou_filtered_to = [];
+            ou_filtered_from = filterItems(therows_filtered_by_commodity_begbal,oneou);
+            ou_filtered_to = filterItems(therows_filtered_by_commodity_closbal,oneou);
             // if(ou_filtered == [] || ou_filtered == ''){}else{
                 // $.each(ou_filtered, function(idx, ou_fl){
                     // var filt_from = '201806';
                     var filt_from = thePer[thePer.length - 2];
                     // var filt_to = '201807'
                     var filt_to = thePer[thePer.length - 1];
-                    var ou_fil_from = filterItems(ou_filtered,filt_from);
-                    var ou_fil_to = filterItems(ou_filtered,filt_to);
-                    // alert("commodity is: "+commodity.split('.')[0]);
+                    var ou_fil_from = [];
+                    var ou_fil_to = [];
+                    ou_fil_from = filterItems(ou_filtered_from,filt_to);
+                    ou_fil_to = filterItems(ou_filtered_to,filt_from);
+                    // console.log("ou_fil_from: => "+ou_fil_from);
+                    // console.log("ou_fil_to: => "+ou_fil_to);
                     var commo_s = commodity.split('.')[0];
                     $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u>');
                     $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
-                    // console.log('TITLE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
-                    // $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u>' + getCommodityName(commo_s) + '</u>');
                     if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
-                        // console.log("OU: "+theItems[oneou].name+" ||  Opening SOH: "+ou_fil_from[0][3]);
-                        // console.log("OU: "+theItems[oneou].name+" ||  Closing SOH: "+ou_fil_to[0][3]);
-                        // if(1==1){
                         if(ou_fil_from[0][3]==ou_fil_to[0][3]){
                             compliant_facility_count = compliant_facility_count+1;
                             compliant_facilities_names.push(theItems[oneou].name);
                             compliant_facilities_codes.push(oneou);
+                            // equaltbl += `<tr><td>${theItems[oneou].name}</td>
+                            //     <td>${"getMFLcode(oneou)"}
+                            //         <br/>
+                            //         <small> ${ data.metaData.items[ou_fil_from[0][0]].name }</small> || <small>${ data.metaData.items[ou_fil_to[0][0]].name } </small> <br/>
+                            //         <small>Opening: ${ou_fil_from[0][3]} (${ou_fil_from[0][2]})</small> || <small>Closing: ${ou_fil_to[0][3]} (${ou_fil_to[0][2]}) </small>
+                            //     </td>
+                            // </tr>`;
                             equaltbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
                         }
                         // }
                         // console.log("ou_fil_from: "+JSON.stringify(ou_fil_from));
                         // console.log("ou_fil_to: "+JSON.stringify(ou_fil_to));
                     }
+                    ou_fil_from = ou_fil_to = ou_filtered = [];
                 // });
             // }
         });
