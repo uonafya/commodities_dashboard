@@ -245,6 +245,7 @@
                         text: 'Reporting rate (%)'
                     },
                     categories: [0, 20, 40, 60, 80, 100],
+                    min: 0,
                     max: 100,
                     showFirstLabel: false
                 },

@@ -74,9 +74,13 @@ function getTrends(the_url, ounit) {
                         }
                     });
                     overstock_arr['data'].push(overstock);
+                    overstock_arr['color'] = ('#1aa3aa');
                     stockok_arr['data'].push(stockok);
+                    stockok_arr['color'] = ('#009900');
                     understock_arr['data'].push(understock);
+                    understock_arr['color'] = ('#f4bd3b');
                     stockout_arr['data'].push(stockout);
+                    stockout_arr['color'] = ('#ff2222');
                 });
                 thedata.push(overstock_arr);
                 thedata.push(stockok_arr);
@@ -111,6 +115,9 @@ function getTrends(the_url, ounit) {
                             enabled: true
                         },
                         enableMouseTracking: false
+                    },
+                    series: {
+                        colors: [ '#ffc7ce', '#7bd48d', '#ffeb9c', '#ff0000']
                     }
                 },
                 series: thedata

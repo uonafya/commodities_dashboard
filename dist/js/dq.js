@@ -7,158 +7,146 @@ function getConco(ccurl,commodity){
     $('.loader-sp.pieone').removeClass('hidden');
     $('#pc1, .pc1').addClass('hidden');
     sleep(3000);
-$.ajax({
-    type: 'GET',
-    crossDomain: true,
-    url: ccurl,                    
-    success: function (data) {
-
-        
-        //commodities and their names array
-        var commodities_array = {
-            'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
-            'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
-            'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
-            'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
-            'iOARK31NdLp':{name:'Artesunate Injection'},
-            'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
-            'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
-        }
-        // console.log("xoo: "+JSON.stringify(commodities_array));
-        //commodities and their names array
-
-
-        //populate commodities filter
-        
-        var theItems = data.metaData.items;
-        var theDims = data.metaData.dimensions;
-        var theComms = data.metaData.dimensions.dx;
-        var thePer = data.metaData.dimensions.pe;
-        popComms(theComms);
-        
-        // var thedx = theDims.dx;
-        // var theperiod = theDims.pe;
-        var theous = theDims.ou;
-        var therows = data.rows;
-        var facility_count = theous.length;
-        var compliant_facility_count = 0;
-        var compliant_facilities_names = [];
-        var compliant_facilities_codes = [];
-        var non_compliant_facilities_names = [];
-        var non_compliant_facilities_codes = [];
-        commodity_begbal = commodity+'.HWtHCLAwprR';
-        commodity_closbal = commodity+'.rPAsF4cpNxm';
-        var therows_filtered_by_commodity_begbal = filterItems(therows,commodity_begbal);
-        var therows_filtered_by_commodity_closbal = filterItems(therows,commodity_closbal);
-        var therows_filtered_by_commodity = therows_filtered_by_commodity_begbal.concat( therows_filtered_by_commodity_closbal );
-        
-        // console.log("therows_filtered_by_commodity_begbal: "+JSON.stringify(therows_filtered_by_commodity_begbal));
-        // console.log("therows_filtered_by_commodity_closbal: "+JSON.stringify(therows_filtered_by_commodity_closbal));
-        // console.log("filtered ROWS ni: "+JSON.stringify(therows_filtered_by_commodity));
-        var equaltbl = '';
-        $.each(theous, function(index, oneou){
-            // var ou_name = theItems[oneou].name;
-            var ou_filtered_from = [];
-            var ou_filtered_to = [];
-            ou_filtered_from = filterItems(therows_filtered_by_commodity_begbal,oneou);
-            ou_filtered_to = filterItems(therows_filtered_by_commodity_closbal,oneou);
-            // if(ou_filtered == [] || ou_filtered == ''){}else{
-                // $.each(ou_filtered, function(idx, ou_fl){
-                    // var filt_from = '201806';
-                    var filt_from = thePer[thePer.length - 2];
-                    // var filt_to = '201807'
-                    var filt_to = thePer[thePer.length - 1];
-                    var ou_fil_from = [];
-                    var ou_fil_to = [];
-                    ou_fil_from = filterItems(ou_filtered_from,filt_to);
-                    ou_fil_to = filterItems(ou_filtered_to,filt_from);
-                    // console.log("ou_fil_from: => "+ou_fil_from);
-                    // console.log("ou_fil_to: => "+ou_fil_to);
-                    var commo_s = commodity.split('.')[0];
-                    $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u>');
-                    $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
-                    if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
-                        if(ou_fil_from[0][3]==ou_fil_to[0][3]){
-                            compliant_facility_count = compliant_facility_count+1;
-                            compliant_facilities_names.push(theItems[oneou].name);
-                            compliant_facilities_codes.push(oneou);
-                            // equaltbl += `<tr><td>${theItems[oneou].name}</td>
-                            //     <td>${"getMFLcode(oneou)"}
-                            //         <br/>
-                            //         <small> ${ data.metaData.items[ou_fil_from[0][0]].name }</small> || <small>${ data.metaData.items[ou_fil_to[0][0]].name } </small> <br/>
-                            //         <small>Opening: ${ou_fil_from[0][3]} (${ou_fil_from[0][2]})</small> || <small>Closing: ${ou_fil_to[0][3]} (${ou_fil_to[0][2]}) </small>
-                            //     </td>
-                            // </tr>`;
-                            equaltbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
-                        }
-                        // }
-                        // console.log("ou_fil_from: "+JSON.stringify(ou_fil_from));
-                        // console.log("ou_fil_to: "+JSON.stringify(ou_fil_to));
+    $.ajax({
+        type: 'GET',
+        crossDomain: true,
+        url: ccurl,                    
+        success: function (data) {
+            console.log("fetching valid OUs");
+            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
+            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id]&filter=id:ilike:JPaviRmSsJW&paging=false';
+            $.ajax({
+                type: "GET",
+                crossDomain: true,
+                url: valid_ous_url,
+                success: function (validata) {
+                    
+                    console.log("fetching valid OUs success");
+                    //commodities and their names array
+                    var commodities_array = {
+                        'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
+                        'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
+                        'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
+                        'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
+                        'iOARK31NdLp':{name:'Artesunate Injection'},
+                        'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
+                        'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
                     }
-                    ou_fil_from = ou_fil_to = ou_filtered = [];
-                // });
-            // }
-        });
-        $('#equalSOH').DataTable().destroy();
-        $('#equalSOH tbody').empty();
-        $('#equalSOH tbody').append(equaltbl);
-        var nonequaltbl = '';
-        // alert(JSON.stringify(compliant_facilities_codes));
-        $.each(theDims.ou,(inex,valou)=>{
-            let the_ou = valou;
-            if(!compliant_facilities_codes.includes(the_ou)){
-                non_compliant_facilities_codes.push(the_ou);
-                non_compliant_facilities_names.push(theItems[the_ou].name);
-                nonequaltbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+getMFLcode(the_ou)+'</td></tr>';
-            }
-        });
-        // alert(JSON.stringify(non_compliant_facilities_codes));
-        $('#notEqualSOH').DataTable().destroy();
-        $('#notEqualSOH tbody').empty();
-        $('#notEqualSOH tbody').append(nonequaltbl);
-        // $(document).ready(function() {
-            $('#equalSOH').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+        
+                    var theItems = data.metaData.items;
+                    var theDims = data.metaData.dimensions;
+                    var theComms = data.metaData.dimensions.dx;
+                    var thePer = data.metaData.dimensions.pe;
+                    popComms(theComms);
+                    
+                    // var thedx = theDims.dx;
+                    // var theperiod = theDims.pe;
+                    var theous = theDims.ou;
+                    var therows = data.rows;
+                    var facility_count = theous.length;
+                    var compliant_facility_count = 0;
+                    var compliant_facilities_names = [];
+                    var compliant_facilities_codes = [];
+                    var non_compliant_facilities_names = [];
+                    var non_compliant_facilities_codes = [];
+                    commodity_begbal = commodity+'.HWtHCLAwprR';
+                    commodity_closbal = commodity+'.rPAsF4cpNxm';
+                    var therows_filtered_by_commodity_begbal = filterItems(therows,commodity_begbal);
+                    var therows_filtered_by_commodity_closbal = filterItems(therows,commodity_closbal);
+                    var therows_filtered_by_commodity = therows_filtered_by_commodity_begbal.concat( therows_filtered_by_commodity_closbal );
+                    
+                    // console.log("therows_filtered_by_commodity_begbal: "+JSON.stringify(therows_filtered_by_commodity_begbal));
+                    // console.log("therows_filtered_by_commodity_closbal: "+JSON.stringify(therows_filtered_by_commodity_closbal));
+                    // console.log("filtered ROWS ni: "+JSON.stringify(therows_filtered_by_commodity));
+                    var equaltbl = '';
+                    $.each(theous, function(index, oneou){
+                        if(validata.dataSets[0].organisationUnits.includes(oneou)){
+                            var ou_filtered_from = [];
+                            var ou_filtered_to = [];
+                            ou_filtered_from = filterItems(therows_filtered_by_commodity_begbal,oneou);
+                            ou_filtered_to = filterItems(therows_filtered_by_commodity_closbal,oneou);
+                            var filt_from = thePer[thePer.length - 2];
+                            var filt_to = thePer[thePer.length - 1];
+                            var ou_fil_from = [];
+                            var ou_fil_to = [];
+                            ou_fil_from = filterItems(ou_filtered_from,filt_to);
+                            ou_fil_to = filterItems(ou_filtered_to,filt_from);
+                            var commo_s = commodity.split('.')[0];
+                            $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u>');
+                            $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
+                            if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
+                                if(ou_fil_from[0][3]==ou_fil_to[0][3]){
+                                    compliant_facility_count = compliant_facility_count+1;
+                                    compliant_facilities_names.push(theItems[oneou].name);
+                                    compliant_facilities_codes.push(oneou);
+                                    equaltbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
+                                }
+                            }
+                            ou_fil_from = ou_fil_to = ou_filtered = [];
+                        }
+                    });
+                    $('#equalSOH').DataTable().destroy();
+                    $('#equalSOH tbody').empty();
+                    $('#equalSOH tbody').append(equaltbl);
+                    var nonequaltbl = '';
+                    // alert(JSON.stringify(compliant_facilities_codes));
+                    $.each(theDims.ou,(inex,valou)=>{
+                        let the_ou = valou;
+                        if(!compliant_facilities_codes.includes(the_ou) && validata.dataSets[0].organisationUnits.includes(oneou) ){
+                            non_compliant_facilities_codes.push(the_ou);
+                            non_compliant_facilities_names.push(theItems[the_ou].name);
+                            nonequaltbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+getMFLcode(the_ou)+'</td></tr>';
+                        }
+                    });
+                    // alert(JSON.stringify(non_compliant_facilities_codes));
+                    $('#notEqualSOH').DataTable().destroy();
+                    $('#notEqualSOH tbody').empty();
+                    $('#notEqualSOH tbody').append(nonequaltbl);
+                    // $(document).ready(function() {
+                        $('#equalSOH').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                'copy', 'csv', 'excel', 'pdf', 'print'
+                            ]
+                        });
+                        $('#notEqualSOH').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                'copy', 'csv', 'excel', 'pdf', 'print'
+                            ]
+                        });
+                    // });
+                    $(document).ready(function () {
+                        var total_facils = parseFloat(compliant_facilities_codes.length) + parseFloat(non_compliant_facilities_codes.length);
+                        var tot_eq_perc = (parseFloat(compliant_facilities_codes.length)*100)/total_facils;
+                        var tot_neq_perc = (parseFloat(non_compliant_facilities_codes.length)*100)/total_facils;
+                        $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_eq_perc.toFixed(1) + '%)</small>');
+                        $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_neq_perc.toFixed(1) + '%)</small>');
+                        $('.totFacil').html(total_facils);
+                    });
+        
+                    var non_compliant_facility_count = facility_count - compliant_facility_count;
+                    // console.log("total_facilities = "+facility_count);
+                    // console.log("compliant_facilities = "+compliant_facility_count);
+                    // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
+                    var commo_s = commodity.split('.')[0];
+                    // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
+                    pieOne('Data Quality: Concordance',commodities_array[commo_s].name,compliant_facility_count,non_compliant_facility_count);
+                    // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
+                    $('.loader-sp.pieone').addClass('hidden');
+                    $('#pc1, .pc1').removeClass('hidden');
+                    $('.detailsrow').removeClass('hidden');
+                }
             });
-            $('#notEqualSOH').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
-        // });
-        $(document).ready(function () {
-            var total_facils = parseFloat(compliant_facilities_codes.length) + parseFloat(non_compliant_facilities_codes.length);
-            var tot_eq_perc = (parseFloat(compliant_facilities_codes.length)*100)/total_facils;
-            var tot_neq_perc = (parseFloat(non_compliant_facilities_codes.length)*100)/total_facils;
-            $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_eq_perc.toFixed(1) + '%)</small>');
-            $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_neq_perc.toFixed(1) + '%)</small>');
-            $('.totFacil').html(total_facils);
-        });
-
-        var non_compliant_facility_count = facility_count - compliant_facility_count;
-        // console.log("total_facilities = "+facility_count);
-        // console.log("compliant_facilities = "+compliant_facility_count);
-        // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
-        var commo_s = commodity.split('.')[0];
-        // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
-        pieOne('Data Quality: Concordance',commodities_array[commo_s].name,compliant_facility_count,non_compliant_facility_count);
-        // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
-        $('.loader-sp.pieone').addClass('hidden');
-        $('#pc1, .pc1').removeClass('hidden');
-        $('.detailsrow').removeClass('hidden');
-    },
-    error: function (request, status, error) {
-        $('.loader-sp.pieone').addClass('hidden');
-        $('#pc1, .pc1').addClass('hidden');
-        $('.detailsrow').addClass('hidden');
-        console.log('DQ: error fetching json. :- '+error);
-        $('.pieone_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-    }
-});
+        },
+        error: function (request, status, error) {
+            $('.loader-sp.pieone').addClass('hidden');
+            $('#pc1, .pc1').addClass('hidden');
+            $('.detailsrow').addClass('hidden');
+            console.log('DQ: error fetching json. :- '+error);
+            $('.pieone_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+        }
+    });
 }
 // $("#commodity-dropdown").change(function() 
 //     {  
@@ -470,169 +458,171 @@ function getConsist(consturl,commd,the_orgu){
         crossDomain: true,
         url: consturl,                    
         success: function (data) {
-            //populate commodities filter
-			var theou = 'tAbBVBbueqD';
-            var theItems = data.metaData.items;
-            var theDims = data.metaData.dimensions;
-            var theDx = data.metaData.dimensions.dx;
-            var thePe = data.metaData.dimensions.pe;
-            $.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
-                var theComms = data.metaData.dimensions.dx;                
-                // popComms(theComms);
-            });
-            
-            
-            // var thedx = theDims.dx;
-            // var theperiod = theDims.pe;
-            var theous = theDims.ou;
-            var therows = data.rows;
-            var facility_count = theous.length;
-            var compliant_facility_count = 0;
-            var nodisc_facilities_names = [];
-            var nodisc_facilities_codes = [];
-            var disc_facilities_names = [];
-            var disc_facilities_codes = [];
-            var nodisctbl = '';
-            var disctbl = '';
+            console.log("fetching valid OUs");
+            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
+            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id]&filter=id:ilike:JPaviRmSsJW&paging=false';
+            $.ajax({
+                type: "GET",
+                crossDomain: true,
+                url: valid_ous_url,
+                success: function (validata) {
+                    console.log("fetching valid OUs success");
+                    
+                    var theItems = data.metaData.items;
+                    var theDims = data.metaData.dimensions;
+                    var theDx = data.metaData.dimensions.dx;
+                    var thePe = data.metaData.dimensions.pe;            
+                    
+                    // var thedx = theDims.dx;
+                    // var theperiod = theDims.pe;
+                    var theous = theDims.ou;
+                    var therows = data.rows;
+                    var facility_count = theous.length;
+                    var compliant_facility_count = 0;
+                    var nodisc_facilities_names = [];
+                    var nodisc_facilities_codes = [];
+                    var disc_facilities_names = [];
+                    var disc_facilities_codes = [];
+                    var nodisctbl = '';
+                    var disctbl = '';
 
-            
-            // var the_period = getTheCurrentPeriod();
-            var commodity_0 = theDx[1].split('.')[1];
-            if(commodity_0 == "rPAsF4cpNxm"){
-                phycount_commodity_code = theDx[1];
-            }
-            var commodity_1 = theDx[0].split('.')[1];
-            if(commodity_1 == "HWtHCLAwprR"){
-                openbal_commodity_code = theDx[0];
-            }
-            if( parseFloat(thePe[0]) < parseFloat(thePe[1]) ){
-                var period_from = thePe[0];
-                var period_to = thePe[1];
-            }else{
-                var period_from = thePe[1];
-                var period_to = thePe[0];
-            }
-            var thirar = []
-            $.each(theous, function(index, oneou){
-                var closing_bal = null;
-                var opening_bal = null;
-                $.each(therows, function (indx, onerow) { 
-                   if(onerow[2] == oneou && onerow[0] == phycount_commodity_code && onerow[1] == period_from){
-                       closing_bal = onerow[3];
+                    // var the_period = getTheCurrentPeriod();
+                    var commodity_0 = theDx[1].split('.')[1];
+                    if(commodity_0 == "rPAsF4cpNxm"){
+                        phycount_commodity_code = theDx[1];
                     }
-                    if(onerow[2] == oneou && onerow[0] == openbal_commodity_code && onerow[1] == period_to){
-                        opening_bal = onerow[3];
+                    var commodity_1 = theDx[0].split('.')[1];
+                    if(commodity_1 == "HWtHCLAwprR"){
+                        openbal_commodity_code = theDx[0];
                     }
-                    // if(opening_bal != null && closing_bal != null){
-                    //     if(parseFloat(opening_bal) === parseFloat(closing_bal)){
-                    //         thirar.push(oneou)
-                    //     }
-                    // }
-                });
-                if(opening_bal != null && closing_bal != null){
-                    if(parseFloat(opening_bal) === parseFloat(closing_bal)){
-                        compliant_facility_count = compliant_facility_count+1;
-                        nodisc_facilities_names.push(theItems[oneou].name);
-                        nodisc_facilities_codes.push(oneou);
-                        nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
-                        // nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Phyc Clos: ['+thePe[0]+']: '+closing_bal+'  && Open  Bal: ['+thePe[1]+']: '+opening_bal+'</small> </td><td>'+"getMFLcode(oneou)"+'</td></tr>';
+                    if( parseFloat(thePe[0]) < parseFloat(thePe[1]) ){
+                        var period_from = thePe[0];
+                        var period_to = thePe[1];
+                    }else{
+                        var period_from = thePe[1];
+                        var period_to = thePe[0];
                     }
+                    var thirar = []
+                    $.each(theous, function(index, oneou){
+                        if(validata.dataSets[0].organisationUnits.includes(oneou)){
+                            var closing_bal = null;
+                            var opening_bal = null;
+                            $.each(therows, function (indx, onerow) { 
+                            if(onerow[2] == oneou && onerow[0] == phycount_commodity_code && onerow[1] == period_from){
+                                closing_bal = onerow[3];
+                                }
+                                if(onerow[2] == oneou && onerow[0] == openbal_commodity_code && onerow[1] == period_to){
+                                    opening_bal = onerow[3];
+                                }
+                            });
+                            if(opening_bal != null && closing_bal != null){
+                                if(parseFloat(opening_bal) === parseFloat(closing_bal)){
+                                    compliant_facility_count = compliant_facility_count+1;
+                                    nodisc_facilities_names.push(theItems[oneou].name);
+                                    nodisc_facilities_codes.push(oneou);
+                                    nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
+                                    // nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Phyc Clos: ['+thePe[0]+']: '+closing_bal+'  && Open  Bal: ['+thePe[1]+']: '+opening_bal+'</small> </td><td>'+"getMFLcode(oneou)"+'</td></tr>';
+                                }
+                            }
+                        }
+                    });
+                    $.each(theDims.ou,(inex,valou)=>{
+                        let the_ou = valou;
+                        if(!nodisc_facilities_codes.includes(the_ou) && validata.dataSets[0].organisationUnits.includes(the_ou) ){
+                            disc_facilities_codes.push(the_ou);
+                            disc_facilities_names.push(theItems[the_ou].name);
+                            disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+getMFLcode(the_ou)+'</td></tr>';
+                            // disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
+                        }
+                    });
+                    $('#noDiscData').DataTable().destroy();
+                    $('#noDiscData tbody').empty();
+                    $('#noDiscData').append(nodisctbl);
+
+                    $('#discData').DataTable().destroy();
+                    $('#discData tbody').empty();
+                    $('#discData').append(disctbl);
+                    
+                    //
+                    var total_facils = parseFloat(disc_facilities_codes.length) + parseFloat(nodisc_facilities_codes.length);
+                    var tot_nodisc = (parseFloat(nodisc_facilities_codes.length)*100)/total_facils;
+                    var tot_disc = (parseFloat(disc_facilities_codes.length)*100)/total_facils;
+                    $('#discCount, .discCount').html(total_facils-compliant_facility_count + '&nbsp;  <small>(' + tot_disc.toFixed(1) + '%)</small>');
+                    $('#noDiscCount, .noDiscCount').html(compliant_facility_count + '&nbsp;  <small>(' + tot_nodisc.toFixed(1) + '%)</small>');
+                    $('.totFacil').html(total_facils);
+                    //
+
+                    // $(document).ready(function() {
+                        $('#noDiscData').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                'copy', 'csv', 'excel', 'pdf', 'print'
+                            ]
+                        });
+                        $('#discData').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                'copy', 'csv', 'excel', 'pdf', 'print'
+                            ]
+                        });
+                    // });
+
+                    var non_compliant_facility_count = facility_count - compliant_facility_count;
+                    // console.log("total_facilities = "+facility_count);
+                    // console.log("compliant_facilities = "+compliant_facility_count);
+                    // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
+                    // non_compliant_facility_count = 90;
+                    // compliant_facility_count = 10;
+                    // console.log("non ni:"+non_compliant_facility_count);
+                    // console.log("ni ni:"+compliant_facility_count);
+                    
+
+                    var commodities_array = {
+                        'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
+                        'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
+                        'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
+                        'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
+                        'iOARK31NdLp':{name:'Artesunate Injection'},
+                        'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
+                        'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
+                    }
+
+                    // commodity name
+                        var commodity_name = '';
+                        if(commd.includes('.')){
+                            commd = commd.split('.')[0];
+                        }
+                        console.log('commd ni-> '+commd);
+                        
+                        commodity_name = commodities_array[commd].name;
+                        console.log('commodity_name-> '+commodity_name);
+                        // $.getJSON('https://hiskenya.org/api/26/dataElements/'+commd+'.json', function (data){
+                        //     commodity_name = data.displayName; 
+                        // });
+                    // commodity name
+
+
+                    // title fill
+                        var dfrom = data.metaData.items[data.metaData.dimensions.pe[0]].name;
+                        var dlength = parseFloat(data.metaData.dimensions.pe.length)-1;
+                        var dto = data.metaData.items[data.metaData.dimensions.pe[dlength]].name;                
+                        var url = 'https://hiskenya.org/api/organisationUnits/'+the_orgu+'.json?fields=id,name';
+                        $.ajax({      
+                            dataType: "json",
+                            url: url,
+                            success: function(datax) {          
+                                $("#ttitle").html(datax['name']+', '+dfrom+' - '+dto);
+                            }
+                        });    
+                    // END title fill
+                    
+                    pieThree(commodities_array[commd].name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
+                    $('.loader-sp.piethree').addClass('hidden');
+                    $('.piethree_state').addClass('hidden');
+                    $('#pc3, .pc3').removeClass('hidden');
                 }
             });
-            $.each(theDims.ou,(inex,valou)=>{
-                let the_ou = valou;
-                if(!nodisc_facilities_codes.includes(the_ou)){
-                    disc_facilities_codes.push(the_ou);
-                    disc_facilities_names.push(theItems[the_ou].name);
-                    disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+getMFLcode(the_ou)+'</td></tr>';
-                    // disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
-                }
-            });
-            $('#noDiscData').DataTable().destroy();
-            $('#noDiscData tbody').empty();
-            $('#noDiscData').append(nodisctbl);
-
-            $('#discData').DataTable().destroy();
-            $('#discData tbody').empty();
-            $('#discData').append(disctbl);
             
-            //
-            var total_facils = parseFloat(disc_facilities_codes.length) + parseFloat(nodisc_facilities_codes.length);
-            var tot_nodisc = (parseFloat(nodisc_facilities_codes.length)*100)/total_facils;
-            var tot_disc = (parseFloat(disc_facilities_codes.length)*100)/total_facils;
-            $('#discCount, .discCount').html(total_facils-compliant_facility_count + '&nbsp;  <small>(' + tot_disc.toFixed(1) + '%)</small>');
-            $('#noDiscCount, .noDiscCount').html(compliant_facility_count + '&nbsp;  <small>(' + tot_nodisc.toFixed(1) + '%)</small>');
-            $('.totFacil').html(total_facils);
-            //
-
-            // $(document).ready(function() {
-                $('#noDiscData').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ]
-                });
-                $('#discData').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ]
-                });
-            // });
-
-            var non_compliant_facility_count = facility_count - compliant_facility_count;
-            // console.log("total_facilities = "+facility_count);
-            // console.log("compliant_facilities = "+compliant_facility_count);
-            // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
-            // non_compliant_facility_count = 90;
-            // compliant_facility_count = 10;
-            // console.log("non ni:"+non_compliant_facility_count);
-            // console.log("ni ni:"+compliant_facility_count);
-            
-
-            var commodities_array = {
-                'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
-                'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
-                'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
-                'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
-                'iOARK31NdLp':{name:'Artesunate Injection'},
-                'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
-                'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
-            }
-
-            // commodity name
-                var commodity_name = '';
-                if(commd.includes('.')){
-                    commd = commd.split('.')[0];
-                }
-                console.log('commd ni-> '+commd);
-                
-                commodity_name = commodities_array[commd].name;
-                console.log('commodity_name-> '+commodity_name);
-                // $.getJSON('https://hiskenya.org/api/26/dataElements/'+commd+'.json', function (data){
-                //     commodity_name = data.displayName; 
-                // });
-            // commodity name
-
-
-            // title fill
-                var dfrom = data.metaData.items[data.metaData.dimensions.pe[0]].name;
-                var dlength = parseFloat(data.metaData.dimensions.pe.length)-1;
-                var dto = data.metaData.items[data.metaData.dimensions.pe[dlength]].name;                
-                var url = 'https://hiskenya.org/api/organisationUnits/'+the_orgu+'.json?fields=id,name';
-                $.ajax({      
-                    dataType: "json",
-                    url: url,
-                    success: function(datax) {          
-                        $("#ttitle").html(datax['name']+', '+dfrom+' - '+dto);
-                    }
-                });    
-            // END title fill
-            
-            pieThree(commodities_array[commd].name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
-            $('.loader-sp.piethree').addClass('hidden');
-            $('.piethree_state').addClass('hidden');
-            $('#pc3, .pc3').removeClass('hidden');
         },
         error: function (request, status, error) {
             $('.loader-sp.piethree').addClass('hidden');
