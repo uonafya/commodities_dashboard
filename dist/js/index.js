@@ -19,14 +19,22 @@ function fetchMosbycombox(url) {
         //apply the labeling to the data
         var theperiod = data.metaData.dimensions.pe[0];
         var theorgunit = data.metaData.dimensions.ou[0];
+
+        //console.log('richard',theorgunit)
 				
 		//min max plot lines
 		var minval = 9;
-		var maxval = 18; 
+        var maxval = 18; 
+        var yaxismax = 24;
+        var yaxismin = 0;
+        
 		if(theorgunit!='HfVjCurKxh2')
 		{
 			var minval = 3;
-			var maxval = 6;
+            var maxval = 6;
+            var yaxismax = 10;
+            var yaxismin = 0
+
 		}
         
         var curorg = data.metaData.items[theorgunit].name;
@@ -72,8 +80,8 @@ function fetchMosbycombox(url) {
                 }
             },
             yAxis: {
-                min: 0,
-                max: 24,
+                min: yaxismin,
+                max: yaxismax,
                 title: {
                     text: 'Months of Stock',
                     align: 'high'
