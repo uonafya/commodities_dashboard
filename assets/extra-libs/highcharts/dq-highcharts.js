@@ -284,13 +284,18 @@
                     },
             
                     plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: false
+                        },
                         series: {
                             label: {
                                 connectorAllowed: false
                             }
                         }
                     },
-            
                     series: [{
                         name: 'Yes',
                         data: reported

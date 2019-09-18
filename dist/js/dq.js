@@ -92,7 +92,7 @@ function getConco(ccurl,commodity){
                     // alert(JSON.stringify(compliant_facilities_codes));
                     $.each(theDims.ou,(inex,valou)=>{
                         let the_ou = valou;
-                        if(!compliant_facilities_codes.includes(the_ou) && validata.dataSets[0].organisationUnits.includes(oneou) ){
+                        if(!compliant_facilities_codes.includes(the_ou) && validata.dataSets[0].organisationUnits.includes(the_ou) ){
                             non_compliant_facilities_codes.push(the_ou);
                             non_compliant_facilities_names.push(theItems[the_ou].name);
                             nonequaltbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+getMFLcode(the_ou)+'</td></tr>';
