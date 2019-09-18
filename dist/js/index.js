@@ -19,14 +19,22 @@ function fetchMosbycombox(url) {
         //apply the labeling to the data
         var theperiod = data.metaData.dimensions.pe[0];
         var theorgunit = data.metaData.dimensions.ou[0];
+
+        //console.log('richard',theorgunit)
 				
 		//min max plot lines
 		var minval = 9;
-		var maxval = 18; 
+        var maxval = 18; 
+        var yaxismax = 24;
+        var yaxismin = 0;
+        
 		if(theorgunit!='HfVjCurKxh2')
 		{
 			var minval = 3;
-			var maxval = 6;
+            var maxval = 6;
+            var yaxismax = 10;
+            var yaxismin = 0
+
 		}
         
         var curorg = data.metaData.items[theorgunit].name;
@@ -72,8 +80,8 @@ function fetchMosbycombox(url) {
                 }
             },
             yAxis: {
-                min: 0,
-                max: 24,
+                min: yaxismin,
+                max: yaxismax,
                 title: {
                     text: 'Months of Stock',
                     align: 'high'
@@ -213,16 +221,20 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
                             countname++;
             
             
+			nomos = totalorgs-(overstock+stockok+understock+stockout);
                             
             var overpercent = (overstock/totalorgs)*100;
             var okpercent = (stockok/totalorgs)*100;
             var underpercent = (understock/totalorgs)*100;
 			var stockoutpercent = (stockout/totalorgs)*100;
+			var nomospercent = (nomos/totalorgs)*100;
             
-            tableData += '<td class="text-right" bgcolor="#ffeb9c">'+formatNumber(overpercent.toFixed(1))+'%</td>';
-            tableData += '<td class="text-right" bgcolor="#7bd48d">'+formatNumber(okpercent.toFixed(1))+'%</td>';
-            tableData += '<td class="text-right" bgcolor="#ffc7ce">'+formatNumber(underpercent.toFixed(1))+'%</td>';
-			tableData += '<td class="text-right" bgcolor="#ff0000">'+formatNumber(stockoutpercent.toFixed(1))+'%</td>';			
+            tableData += '<td class="text-right" bgcolor="#ffeb9c">'+overstock+' ('+formatNumber(overpercent.toFixed(0))+'%)</td>';
+            tableData += '<td class="text-right" bgcolor="#7bd48d">'+stockok+' ('+formatNumber(okpercent.toFixed(0))+'%)</td>';
+            tableData += '<td class="text-right" bgcolor="#ffc7ce">'+understock+' ('+formatNumber(underpercent.toFixed(0))+'%)</td>';
+			tableData += '<td class="text-right" bgcolor="#ff0000">'+stockout+' ('+formatNumber(stockoutpercent.toFixed(0))+'%)</td>';
+			tableData += '<td class="text-right">'+nomos+' ('+formatNumber(nomospercent.toFixed(0))+'%)</td>';
+			tableData += '<td class="text-right">'+formatNumber(totalorgs)+'</td>';	
             tableData += '</tr>';	
         })
 
@@ -326,7 +338,7 @@ function fetchNumberHealthFA(urlfa,itemnames,countyid,periodid){
                 }					
             })	
             countname++;
-            nomos = totalorgs-(overstock+stockok+understock+stockout)
+            nomos = totalorgs-(overstock+stockok+understock+stockout);
             
             tableData += '<td class="text-right" bgcolor="#ffeb9c">'+formatNumber(overstock)+'</td>';
             tableData += '<td class="text-right" bgcolor="#7bd48d">'+formatNumber(stockok)+'</td>';
