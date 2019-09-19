@@ -375,9 +375,9 @@ color: transparent;}
                                                     </div>
                                                     <div class="col-md-3">
                                                         <br>
-                                                        <h5 class="pc3">No Discrepancy: <br/> <span class="discCount text-center fa-2x text-bold "></span></h5>
+                                                        <h5 class="pc3">No Discrepancy: <br/> <span class="noDiscCount text-center fa-2x text-bold "></span></h5>
                                                         <br>
-                                                        <h5 class="pc3">Discrepancy <br/> <span class="text-center fa-2x text-bold noDiscCount"></span></h5>
+                                                        <h5 class="pc3">Discrepancy <br/> <span class="text-center fa-2x text-bold discCount"></span></h5>
                                                         <br>
                                                         <h5 class="pc3">Total Facilities <br/> <span class="text-center fa-2x text-bold totFacil"></span></h5>
                                                         <br>
@@ -547,7 +547,7 @@ color: transparent;}
                 var subcounty = $('#subcounty-dropdown');
                 // commoditypickerpopulation
                     // var commoditypicker = $('#commodity-picker');
-                    // $.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+myOU()+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
+                    // $.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+myOU()+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
                     //     var commarr = data.metaData.dimensions.dx;
                     //     commoditypicker.empty();
                     //     var comm_id_arr = [];
@@ -661,9 +661,7 @@ color: transparent;}
         $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
         var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=pe:'+getThePeriod()+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-        // var consturl = 'http://localhost/pmi/json/consistency3d.json';
-        var month_from = '201806';
-        var month_to = '201807';
+        // var consturl = 'http://localhost/pmi/json/consistency4a.json';
         var commd = 'iOARK31NdLp';
         // commd = commd.split('.')[0];
         getConsist(consturl,commd,ounit);
@@ -692,9 +690,9 @@ color: transparent;}
         $("#subcounty-dropdown").change(function() 
             {  
                 var theou = $(this).val();
+                var commd = $('#commodity-picker').val();
                 if(commd == null || commd == undefined || commd == ''){
                     var commd = 'iOARK31NdLp';
-                    // commd = commd.split('.')[0];
                 }
                 var perr0 =  $('#h_period').val();
                 if( perr0 == '' || perr0 == null || perr0 == undefined ){
@@ -711,6 +709,9 @@ color: transparent;}
             {  
                 // var commd = $(this).val();
                 var commd = $(this).val();
+                if(commd == null || commd == undefined || commd == ''){
+                    var commd = 'iOARK31NdLp';
+                }
                 var theou = $('#subcounty-dropdown').val();
                 if(theou == null || theou == '' || theou == undefined){
                     theou = $('#county-dropdown').val();
@@ -774,30 +775,30 @@ color: transparent;}
             filtByPeriod(daterange);
         }
 
-        function filtByPeriod(drange){
-            var date_range_string = '';
-            var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
-            var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
-            var full_dates_arr = dateRange(startDate, endDate);
-            $.each(full_dates_arr, function (indexs, onedate) {
-                var adate = onedate.split('-');
-                date_range_string += adate[0]+adate[1]+';';
-            })
-            if($('#subcounty-dropdown').val() != null){
-                var theou = $('#subcounty-dropdown').val();
-            } else if($('#county-dropdown').val() != null){
-                var theou = $('#county-dropdown').val();
-            } else{
-                var theou = myOU();
-            }
-            var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            console.log("filter url: "+consturl);
-			var commd = $("#commodity-picker").val();
-            getConsist(consturl,commd,theou);
-            daterange = [];
-            $('#period-dropdown').val(null);
-            $('#period-dropdownTo').val(null);
-        }
+        // function filtByPeriod(drange){
+        //     var date_range_string = '';
+        //     var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
+        //     var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
+        //     var full_dates_arr = dateRange(startDate, endDate);
+        //     $.each(full_dates_arr, function (indexs, onedate) {
+        //         var adate = onedate.split('-');
+        //         date_range_string += adate[0]+adate[1]+';';
+        //     })
+        //     if($('#subcounty-dropdown').val() != null){
+        //         var theou = $('#subcounty-dropdown').val();
+        //     } else if($('#county-dropdown').val() != null){
+        //         var theou = $('#county-dropdown').val();
+        //     } else{
+        //         var theou = myOU();
+        //     }
+        //     var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+        //     console.log("filter url: "+consturl);
+		// 	var commd = $("#commodity-picker").val();
+        //     getConsist(consturl,commd,theou);
+        //     daterange = [];
+        //     $('#period-dropdown').val(null);
+        //     $('#period-dropdownTo').val(null);
+        // }
 
         
         function dateRange(startDate, endDate) {
@@ -822,7 +823,7 @@ color: transparent;}
         function getThePeriod() {
             var per_y = new Date().getFullYear();
             var per_m = new Date().getMonth();
-            per_m = parseFloat(per_m) -1;
+            per_m = parseFloat(per_m) -2;
             if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;

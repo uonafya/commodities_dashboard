@@ -224,16 +224,20 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
                             countname++;
             
             
+			nomos = totalorgs-(overstock+stockok+understock+stockout);
                             
             var overpercent = (overstock/totalorgs)*100;
             var okpercent = (stockok/totalorgs)*100;
             var underpercent = (understock/totalorgs)*100;
 			var stockoutpercent = (stockout/totalorgs)*100;
+			var nomospercent = (nomos/totalorgs)*100;
             
-            tableData += '<td class="text-right" bgcolor="#ffeb9c">'+formatNumber(overpercent.toFixed(1))+'%</td>';
-            tableData += '<td class="text-right" bgcolor="#7bd48d">'+formatNumber(okpercent.toFixed(1))+'%</td>';
-            tableData += '<td class="text-right" bgcolor="#ffc7ce">'+formatNumber(underpercent.toFixed(1))+'%</td>';
-			tableData += '<td class="text-right" bgcolor="#ff0000">'+formatNumber(stockoutpercent.toFixed(1))+'%</td>';			
+            tableData += '<td class="text-right" bgcolor="#ffeb9c">'+overstock+' ('+formatNumber(overpercent.toFixed(0))+'%)</td>';
+            tableData += '<td class="text-right" bgcolor="#7bd48d">'+stockok+' ('+formatNumber(okpercent.toFixed(0))+'%)</td>';
+            tableData += '<td class="text-right" bgcolor="#ffc7ce">'+understock+' ('+formatNumber(underpercent.toFixed(0))+'%)</td>';
+			tableData += '<td class="text-right" bgcolor="#ff0000">'+stockout+' ('+formatNumber(stockoutpercent.toFixed(0))+'%)</td>';
+			tableData += '<td class="text-right">'+nomos+' ('+formatNumber(nomospercent.toFixed(0))+'%)</td>';
+			tableData += '<td class="text-right">'+formatNumber(totalorgs)+'</td>';	
             tableData += '</tr>';	
         })
 
@@ -337,7 +341,7 @@ function fetchNumberHealthFA(urlfa,itemnames,countyid,periodid){
                 }					
             })	
             countname++;
-            nomos = totalorgs-(overstock+stockok+understock+stockout)
+            nomos = totalorgs-(overstock+stockok+understock+stockout);
             
             tableData += '<td class="text-right" bgcolor="#ffeb9c">'+formatNumber(overstock)+'</td>';
             tableData += '<td class="text-right" bgcolor="#7bd48d">'+formatNumber(stockok)+'</td>';

@@ -285,7 +285,15 @@ color: transparent;}
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commodity"> 
+                                            <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">
+                                                <option value="" disabled selected>Select commodity</option>
+                                                <option value="iOARK31NdLp">Artesunate Injection</option>
+                                                <option value="BnGDrFwyQp9">Artemether-Lumefantrine 20/120 Tabs 6s</option>
+                                                <option value="c0MB4RmVjxk">Artemether-Lumefantrine 20/120 Tabs 12s</option>
+                                                <option value="qnZmg5tNSMy">Artemether-Lumefantrine 20/120 Tabs 18s</option>
+                                                <option value="gVp1KSFI69G">Artemether-Lumefantrine 20/120 Tabs 24s</option>
+                                                <option value="imheYfA1Kiw">Sulphadoxine Pyrimethamine Tabs</option>
+                                                <option value="cPlWFYbBacW">Rapid Diagnostic Test</option>
                                             </select>
                                         </div> 
                                         <!-- <div class="col-md-2 col-sm-2 col-xs-12">
@@ -293,6 +301,7 @@ color: transparent;}
                                         </div>  -->
                                         <div class="col-md-2 col-sm-2 col-xs-12">
                                             <input type="text" placeholder="Select period" class="form-control" id="period-dropdownTo"/> 
+                                            <input type="hidden" name="h_period" id="h_period"/>
                                         </div> 
                                     </div>
                                 </div>
@@ -544,28 +553,28 @@ color: transparent;}
 
 
 			//populate dropdown with list of commodities
-			$.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) 
-			{
-                var commarr = data.metaData.dimensions.dx;
-				commoditypicker.empty();
-                var comm_id_arr = [];
-                commoditypicker.append('<option selected value="">Select Commodity</option>');
-                $.each(commarr, function(indx, comm_id_long){
-                    var comm_id = comm_id_long.split('.')[0];
-                    comm_id_arr.push(comm_id);
-                    // console.log("comm_id:  "+comm_id);
-                });
+			// $.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID', function (data) 
+			// {
+            //     var commarr = data.metaData.dimensions.dx;
+			// 	commoditypicker.empty();
+            //     var comm_id_arr = [];
+            //     commoditypicker.append('<option selected value="">Select Commodity</option>');
+            //     $.each(commarr, function(indx, comm_id_long){
+            //         var comm_id = comm_id_long.split('.')[0];
+            //         comm_id_arr.push(comm_id);
+            //         // console.log("comm_id:  "+comm_id);
+            //     });
                 
-                var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
-                $.each(commodity_id_arrays_clean, function (index, commodity_id) {
-                    $.getJSON('https://hiskenya.org/api/26/dataElements/'+commodity_id+'.json', function (data) 
-                    {
-                    var commodity_name = data.displayName; 
-                    var commodity_id = data.id;
-                    commoditypicker.append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
-                    });
-                });		 
-            });
+            //     var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
+            //     $.each(commodity_id_arrays_clean, function (index, commodity_id) {
+            //         $.getJSON('https://hiskenya.org/api/26/dataElements/'+commodity_id+'.json', function (data) 
+            //         {
+            //         var commodity_name = data.displayName; 
+            //         var commodity_id = data.id;
+            //         commoditypicker.append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
+            //         });
+            //     });		 
+            // });
 
             //populate dropdown with list of counties
 			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
@@ -578,7 +587,7 @@ color: transparent;}
 				})		 
             });
             
-            // $.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;tAbBVBbueqD&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) 
+            // $.getJSON('https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;tAbBVBbueqD&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID', function (data) 
             // {			
             //     $.each(data.metaData.dimensions.dx, function (key, entry) 
             //     {				
@@ -587,7 +596,7 @@ color: transparent;}
                         
             // });
 			
-            $('#commodity-picker').append('<option selected="true" disabled>Select commodity</option>');
+            // $('#commodity-picker').append('<option selected="true" disabled>Select commodity</option>');
 			$("#county-dropdown").change(function() 
 			{  
 				subcounty.empty();
@@ -627,6 +636,9 @@ color: transparent;}
         
         //define the constants
         var theou = myOU();
+        if(theou == undefined || theou == null){
+            theou = 'tAbBVBbueqD';
+        }
         //define the constants
                
         // Populate dropdown with list of sub counties
@@ -639,8 +651,8 @@ color: transparent;}
         });
         $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
 
-        var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;qKzosKQPl6G&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-        // var ccurl = 'http://localhost/pmi/json/concordance1.json'
+        var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID';
+        // var ccurl = 'http://localhost/pmi/json/conco2d.json'
         var commodity = 'iOARK31NdLp.HWtHCLAwprR';
         
         getConco(ccurl,commodity);
@@ -652,7 +664,17 @@ color: transparent;}
         $("#county-dropdown").change(function() 
             {  
                 var theou = $(this).val();
-                var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
+                var commd = $("#commodity-picker").val();
+                if(commd == null || commd == undefined || commd == ''){
+                    commd = 'iOARK31NdLp';
+                }
+                var perr1 =  $('#h_period').val();
+                if( perr1 == '' || perr1 == null || perr1 == undefined ){
+                    perr1 = getThePeriod();
+                }else{
+                    perr1 = getPerio(perr1, true)
+                }
+                var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr1+'&displayProperty=NAME&outputIdScheme=UID';
                 var commodity = 'iOARK31NdLp.HWtHCLAwprR';
                 getConco(ccurl,commodity);
             }
@@ -661,17 +683,35 @@ color: transparent;}
         $("#subcounty-dropdown").change(function() 
             {  
                 var theou = $(this).val();
-                var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-                var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-                getConco(ccurl,commodity);
+                var commd = $("#commodity-picker").val();
+                if(commd == null || commd == undefined || commd == ''){
+                    commd = 'iOARK31NdLp';
+                }
+                var perr0 =  $('#h_period').val();
+                if( perr0 == '' || perr0 == null || perr0 == undefined ){
+                    perr0 = getThePeriod();
+                }else{
+                    perr0 = getPerio(perr0, true)
+                }
+                var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID';
+                getConco(ccurl,commd);
             }
         );
 
         $("#commodity-picker").change(function() 
             {     
-                commodity = $(this).val();
-                var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
-                // var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+thecomm+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID';
+                var commd = $(this).val();
+                if(commd == null || commd == undefined || commd == ''){
+                    commd = 'iOARK31NdLp';                    
+                }
+                var perr0 = $('#h_period').val();
+                if( perr0 == '' || perr0 == null || perr0 == undefined ){
+                    perr0 = getThePeriod();
+                }else{
+                    perr0 = getPerio(perr0, true)
+                }
+                var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID';
+                // var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+thecomm+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID';
                 getConco(ccurl,commodity);
                 //console.log('testeing date'+date_range_string);
             }
@@ -690,12 +730,13 @@ color: transparent;}
         //         $('#period-dropdownTo').trigger('click');
             //
             // var theou = 'tAbBVBbueqD';
-            // var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            // var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             // var commodity = 'iOARK31NdLp.HWtHCLAwprR';
             // getConco(ccurl,commodity);
         //}
 
         //change of period to
+        
         function datePickedTo(sDate)
         {
             var dateparts = sDate.split('/', 2);           
@@ -710,38 +751,27 @@ color: transparent;}
                dateparts[0] = 12;
                var therdate1 = dateparts[1]+''+dateparts[0];
                var therdate1 = therdate1.toString();
-
            }else{
             dateparts[1] = dateparts[1];
             dateparts[0] = dateparts[0]-1;
             var therdate1 = dateparts[1]+''+dateparts[0];
             var therdate1 = therdate1.toString();
-
-
            }
 
-           console.log ('kkkkkkk1111', therdate1);
-
-           
-          
             var period = therdate;        
             var period1 = therdate1;          
             daterange.push(period);
             daterange1.push(period1);            
-            $('#period-dropdownTo').trigger('click');
-            
+            var perr = $('#h_period').val(therdate);
             filtByPeriod(daterange, daterange1);
         }
 
         function filtByPeriod(drange, drange1){
             var date_range_string = '';
             var startDate = drange1[drange1.length-1].substring(0,4)+'-'+drange1[drange1.length-1].substring(4)+'-01';
-            //var startDate = drange1[0].substring(0,4)+'-'+drange1[0].substring(4)+'-01';
-            console.log('kkkkkkkkkk'+startDate );            
+            //var startDate = drange1[0].substring(0,4)+'-'+drange1[0].substring(4)+'-01';          
             var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
-            console.log('gggggggg'+endDate);
             var full_dates_arr = dateRange(startDate, endDate);
-            console.log('gggggggg'+endDate);
             $.each(full_dates_arr, function (indexs, onedate) {
                 var adate = onedate.split('-');
                 date_range_string += adate[0]+adate[1]+';';
@@ -753,20 +783,20 @@ color: transparent;}
             } else{
                 var theou = myOU();
             }
-            if($('#period-dropdownTo').val() == null){
-                var date_range_string = 'LAST_MONTH';
-            }else{
-                var date_range_string = date_range_string;
-             }
-          var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID'; 
-          //var ccurl = 'http://localhost:81/commodities_dashboard1/commodities1.json';
-            console.log('filter_url: '+ccurl);
+            if(theou == undefined || theou == null ){
+                theou = 'tAbBVBbueqD';
+            }
             var commd = $("#commodity-picker").val();
-            if (commd=='')
-                {
-            var commd = 'iOARK31NdLp.HWtHCLAwprR';
-                }
+            if(commd == null || commd == undefined || commd == ''){
+                commd = 'iOARK31NdLp';
+            }
 
+            if($('#h_period').val() == null){
+                date_range_string = getThePeriod();
+            }else{
+                date_range_string = getPerio($('#h_period').val(), true)
+             }
+          var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID'; 
             getConco(ccurl,commd);
             daterange = [];
             $('#period-dropdown').val(null);
@@ -800,6 +830,70 @@ color: transparent;}
         }
         downloadTable("equalSOH");
 
+        function getThePeriod() {
+            var per_y = new Date().getFullYear();
+            var per_m = new Date().getMonth();
+            per_m = parseFloat(per_m) -2;
+            if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
+            if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+            var per = per_y+""+per_m;
+            return(getPerio(per, false))
+        }
+        function getPerio(todayte, past) {
+            // -------------find currentDate & factor for >15th -------------
+            var tdate = new Date().getDate();
+            if(past){
+                tday = todayte.slice(4);
+            }
+            var tyear1 = todayte.slice(0, -2);
+            // var tyear2 = todayte.slice(0, -2);
+            var tyear2 = tyear1;
+            
+            if(parseFloat(tdate) < 15 || past){
+                var month1_full = todayte;
+                var month1;
+                var date2 = new Date();
+                // date2.setMonth(month1);
+                date2.setDate(1);
+                var month2 = date2.getMonth();
+
+                if(past){tdate = parseFloat(tday); month2 = tday;}
+                if(month2 < 1){
+                    month2 = 12;
+                    tyear2 = (parseFloat(tyear2) - 1);
+                }
+                month1 = parseFloat(month2)-1;
+                if(month1 < 1){
+                    month1 = 12;
+                    tyear1 = (parseFloat(tyear1) - 1);
+                }
+            }else{
+                var month1_full = todayte;
+                // if(!past){
+                    var month1 = parseFloat(month1_full.toString().slice(4))+1;
+                // }else{
+                //     var month1 = parseFloat(month1_full.toString().slice(4));
+                // }
+                var date2 = new Date();
+                // date2.setMonth(month1);
+                date2.setDate(1);
+                // var month2 = date2.getMonth();
+                var month2 = month1 + 1;
+                if(month2 < 1){
+                    month2 = 12;
+                    tyear2 = (parseFloat(tyear2) - 1);
+                }
+                if(month1 < 1){
+                    month1 = 12;
+                    tyear1 = (parseFloat(tyear1) - 1);
+                }
+            }
+            if(parseFloat(month1) < 10){month1 = "0"+month1}
+            if(parseFloat(month2) < 10 && !past){month2 = "0"+month2}
+            var period_string = tyear1+""+month1+";"+tyear2+""+month2;
+            return period_string
+            // -------------find currentDate & factor for >15th -------------
+        }
     </script>
 	
 </body>
