@@ -175,7 +175,7 @@ function fetchAccountability(url,orgun) {
                         var kione_value = kione_val[0][3];
                     }
                     var kione_id2 = ou+"_ki_cell_"+comki_indx;
-                    kissue_arr.push(kione_val);
+                    //kissue_arr.push(kione_val);
                     $("#"+kione_id2).html(kione_value);
                 });
 
@@ -193,7 +193,7 @@ function fetchAccountability(url,orgun) {
                 $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
 
                 var tot_neg = sumArr(closbal_arr) + sumArr(negadj_arr) + sumArr(qtydisp_arr);
-                var tot_pos = sumArr(opsoh_arr) + sumArr(posadj_arr) + sumArr(kissue_arr);
+                var tot_pos = sumArr(opsoh_arr) + sumArr(posadj_arr) + sumArr(kemsi_arr);
                 var tot_acc = (tot_neg/tot_pos)*100
                 $('#'+ou+'_totalPcAccounted').html(tot_acc.toFixed(1));
 
