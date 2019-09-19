@@ -136,7 +136,7 @@ function getConco(ccurl,commodity){
                     // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
                     var commo_s = commodity.split('.')[0];
                     // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
-                    pieOne('Data Quality: Concordance',commodities_array[commo_s].name,compliant_facility_count,non_compliant_facility_count);
+                    pieOne('Data Quality: Concordance',commodities_array[commo_s].name,tot_eq_perc,tot_neq_perc);
                     // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
                     $('.loader-sp.pieone').addClass('hidden');
                     $('#pc1, .pc1').removeClass('hidden');
@@ -496,7 +496,7 @@ function getConsist(consturl,commd,the_orgu){
                     $.each(validata.dataSets[0].organisationUnits, function (inv, vou) { 
                         valid_orgs.push(vou.id);
                     });
-                    console.log("valid_orgs "+ JSON.stringify(valid_orgs));
+                    // console.log("valid_orgs "+ JSON.stringify(valid_orgs));
                     var theItems = data.metaData.items;
                     var theDims = data.metaData.dimensions;
                     var theDx = data.metaData.dimensions.dx;
@@ -515,42 +515,98 @@ function getConsist(consturl,commd,the_orgu){
                     var nodisctbl = '';
                     var disctbl = '';
 
-                    // var the_period = getTheCurrentPeriod();
-                    var commodity_0 = theDx[1].split('.')[1];
-                    if(commodity_0 == "rPAsF4cpNxm"){
-                        phycount_commodity_code = theDx[1];
+
+
+                    var begbal_code = '';
+                    if(theDx[0].split('.')[1] == "HWtHCLAwprR"){
+                        begbal_code = theDx[0];
                     }
-                    var commodity_1 = theDx[0].split('.')[1];
-                    if(commodity_1 == "HWtHCLAwprR"){
-                        openbal_commodity_code = theDx[0];
+                    qty_recv_code = '';
+                    if(theDx[1].split('.')[1] == "yuvCdaFqdCW"){
+                        qty_recv_code = theDx[1];
                     }
-                    if( parseFloat(thePe[0]) < parseFloat(thePe[1]) ){
-                        var period_from = thePe[0];
-                        var period_to = thePe[1];
-                    }else{
-                        var period_from = thePe[1];
-                        var period_to = thePe[0];
+                    pos_adj_code = '';
+                    if(theDx[2].split('.')[1] == "CckV73xy6HB"){
+                        pos_adj_code = theDx[2];
                     }
+                    neg_adj_code = '';
+                    if(theDx[3].split('.')[1] == "w77uMi1KzOH"){
+                        neg_adj_code = theDx[3];
+                    }
+                    qty_disp_code = '';
+                    if(theDx[4].split('.')[1] == "unVIt2C0cdW"){
+                        qty_disp_code = theDx[4];
+                    }
+                    phy_count_code = '';
+                    if(theDx[5].split('.')[1] == "rPAsF4cpNxm"){
+                        phy_count_code = theDx[5];
+                    }
+                    // if( parseFloat(thePe[0]) < parseFloat(thePe[1]) ){
+                    //     var period_from = thePe[0];
+                    //     var period_to = thePe[1];
+                    // }else{
+                    //     var period_from = thePe[1];
+                    //     var period_to = thePe[0];
+                    // }
                     var thirar = []
                     $.each(theous, function(index, oneou){
                         if(valid_orgs.includes(oneou)){
-                            var closing_bal = null;
-                            var opening_bal = null;
-                            $.each(therows, function (indx, onerow) { 
-                            if(onerow[2] == oneou && onerow[0] == phycount_commodity_code && onerow[1] == period_from){
-                                closing_bal = onerow[3];
+                            // var closing_bal = null;
+                            // var opening_bal = null;
+                            //positives - negatives should be == closing soh/physical
+
+                            var sum_pos = 0; //SUM OF begin_bal + qty_received + pos_adj
+                            var sum_neg = 0; //SUM OF qty_dispensed + neg_adj
+                            var clos_bal = 0; //PHY_COUNT
+                            
+                            // --------------
+                            var begin_bal = 0;
+                            var qty_received = 0;
+                            var pos_adj = 0;
+                            // --------------
+                            var qty_disp = 0;
+                            var neg_adj = 0;
+                            $.each(therows, function (indx, onerow) {
+                                var valuee = onerow[2];
+                                var ouu = onerow[1];
+                                if(valuee == null || valuee == undefined){
+                                    valuee = 0
                                 }
-                                if(onerow[2] == oneou && onerow[0] == openbal_commodity_code && onerow[1] == period_to){
-                                    opening_bal = onerow[3];
+                                // <<-------------POSITIVES--------------
+                                if(ouu == oneou && onerow[0] == begbal_code){
+                                    begin_bal = begin_bal + valuee;
                                 }
+                                if(ouu == oneou && onerow[0] == qty_recv_code){
+                                    qty_received = qty_received + valuee;          
+                                }
+                                if(ouu == oneou && onerow[0] == pos_adj_code){
+                                    pos_adj = pos_adj + valuee;
+                                }
+                                sum_pos = begin_bal + qty_received + pos_adj;
+                                // >>-------------end POSITIVES--------------
+
+                                // <<-------------NEGATIVES--------------
+                                if(ouu == oneou && onerow[0] == qty_disp_code){
+                                    qty_disp = qty_disp + valuee;
+                                }
+                                if(ouu == oneou && onerow[0] == neg_adj_code){
+                                    neg_adj = neg_adj + valuee;
+                                }
+                                sum_neg = qty_disp + neg_adj;
+                                // >>-------------end NEGATIVES--------------
+                                if(ouu == oneou && onerow[0] == phy_count_code){
+                                    clos_bal = clos_bal + valuee;
+                                }
+
                             });
-                            if(opening_bal != null && closing_bal != null){
-                                if(parseFloat(opening_bal) === parseFloat(closing_bal)){
+                            var difference = sum_pos - sum_neg;
+                            if(true){
+                                if(parseFloat(difference) === parseFloat(clos_bal)){
                                     compliant_facility_count = compliant_facility_count+1;
                                     nodisc_facilities_names.push(theItems[oneou].name);
                                     nodisc_facilities_codes.push(oneou);
-                                    nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
-                                    // nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Phyc Clos: ['+thePe[0]+']: '+closing_bal+'  && Open  Bal: ['+thePe[1]+']: '+opening_bal+'</small> </td><td>'+"getMFLcode(oneou)"+'</td></tr>';
+                                    // nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+"getMFLcode(oneou)"+'</td></tr>';
+                                    nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Sum_Pos: '+sum_pos+' && Sum_Neg: '+sum_neg+'  && Diff: '+difference+' && Clos_Bal: '+clos_bal+'</small> </td><td>'+"getMFLcode(oneou)"+'</td></tr>';
                                 }
                             }
                         }
@@ -560,8 +616,8 @@ function getConsist(consturl,commd,the_orgu){
                         if(!nodisc_facilities_codes.includes(the_ou) && valid_orgs.includes(the_ou) ){
                             disc_facilities_codes.push(the_ou);
                             disc_facilities_names.push(theItems[the_ou].name);
-                            disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+getMFLcode(the_ou)+'</td></tr>';
-                            // disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
+                            // disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
+                            disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
                         }
                     });
                     $('#noDiscData').DataTable().destroy();
@@ -580,6 +636,8 @@ function getConsist(consturl,commd,the_orgu){
                     $('#noDiscCount, .noDiscCount').html(compliant_facility_count + '&nbsp;  <small>(' + tot_nodisc.toFixed(1) + '%)</small>');
                     $('.totFacil').html(total_facils);
                     //
+                    var with_discrepancy_number = tot_disc;
+                    var no_discrepancy_number = tot_nodisc;
 
                     // $(document).ready(function() {
                         $('#noDiscData').DataTable({
@@ -645,7 +703,7 @@ function getConsist(consturl,commd,the_orgu){
                         });    
                     // END title fill
                     
-                    pieThree(commodities_array[commd].name,'Internal Data Consistency',compliant_facility_count,non_compliant_facility_count);
+                    pieThree(commodities_array[commd].name,'Internal Data Consistency',with_discrepancy_number, no_discrepancy_number);
                     $('.loader-sp.piethree').addClass('hidden');
                     $('.piethree_state').addClass('hidden');
                     $('#pc3, .pc3').removeClass('hidden');

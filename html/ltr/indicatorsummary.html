@@ -819,9 +819,9 @@ function fetchIS(url,ounit,period) {
                         $("table.indicatorsumm tbody").append(tableData);
                         $('.indicatorsumm').DataTable( {
                             //data-xport
-                            dom: 'Bfrtip',
+                            dom: 'Bfrtlip',
                             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]], 
-                            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+                            buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'],
                             //data-xport
                             initComplete: function () {
                                 this.api().columns(0).every( function () {

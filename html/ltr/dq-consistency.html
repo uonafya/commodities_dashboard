@@ -302,9 +302,9 @@ color: transparent;}
                                             <input type="hidden" name="h_period" id="h_period"/>
                                         </div> 
 
-                                        <div class="col-md-2 col-sm-2 col-xs-12 hidden">
+                                        <!-- <div class="col-md-2 col-sm-2 col-xs-12 hidden">
                                             <input type="text" placeholder="Period to" class="form-control" id="period-dropdownTo"/> 
-                                        </div> 
+                                        </div>  -->
                                     </div>
                                 </div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
@@ -511,7 +511,7 @@ color: transparent;}
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             Disabled: false,
-            MinMonth: '-1y',
+            MinMonth: '-2y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -523,19 +523,19 @@ color: transparent;}
             }
         });
 
-        $('#period-dropdownTo').MonthPicker({
-            Button: false,
-            Disabled: false,
-            // MinMonth: '-1y',
-            // MaxMonth: -1,
-            MaxMonth: mnthLessBy,
-            MinYear: 0,
-            MaxYear: 0,
-            OnAfterChooseMonth: function() {  
-                var sDate = $(this).val();
-                datePickedTo(sDate);
-            }
-        });
+        // $('#period-dropdownTo').MonthPicker({
+        //     Button: false,
+        //     Disabled: false,
+        //     // MinMonth: '-1y',
+        //     // MaxMonth: -1,
+        //     MaxMonth: mnthLessBy,
+        //     MinYear: 0,
+        //     MaxYear: 0,
+        //     OnAfterChooseMonth: function() {  
+        //         var sDate = $(this).val();
+        //         datePickedTo(sDate);
+        //     }
+        // });
     </script>
     <!-- *********** end MonthPicker ************** -->
     
@@ -661,7 +661,7 @@ color: transparent;}
         $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
         var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=pe:'+getThePeriod()+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-        // var consturl = 'http://localhost/pmi/json/consistency4a.json';
+        // var consturl = 'http://localhost/pmi/json/conco-v2-small.json';
         var commd = 'iOARK31NdLp';
         // commd = commd.split('.')[0];
         getConsist(consturl,commd,ounit);
@@ -678,9 +678,10 @@ color: transparent;}
                 var perr1 =  $('#h_period').val();
                 if( perr1 == '' || perr1 == null || perr1 == undefined ){
                     perr1 = getThePeriod();
-                }else{
-                    perr1 = getPerio(perr1, true)
                 }
+                // else{
+                //     perr1 = getPerio(perr1, true)
+                // }
                 var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+perr1+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
@@ -697,9 +698,10 @@ color: transparent;}
                 var perr0 =  $('#h_period').val();
                 if( perr0 == '' || perr0 == null || perr0 == undefined ){
                     perr0 = getThePeriod();
-                }else{
-                    perr0 = getPerio(perr0, true)
                 }
+                // else{
+                //     perr0 = getPerio(perr0, true)
+                // }
                 var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+perr0+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
@@ -723,9 +725,10 @@ color: transparent;}
                 var perr =  $('#h_period').val();
                 if( perr == '' || perr == null || perr == undefined ){
                     perr = getThePeriod()
-                }else{
-                    perr = getPerio(perr, true)
                 }
+                // else{
+                //     perr = getPerio(perr, true)
+                // }
                 var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+perr+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
@@ -740,9 +743,8 @@ color: transparent;}
             $('#h_period').val(period);
             daterange.push(period);
 
-            var the_period = getPerio(period, true);
-            // console.log(`VvV the period == ${the_period}`);
-            
+            var the_period = period;
+            // var the_period = getPerio(period, true);
             //
                 // $('#period-dropdownTo').removeAttr('disabled');
                 // $('#period-dropdownTo').trigger('click');
@@ -766,69 +768,72 @@ color: transparent;}
         }
         
         //change of period		
-        function datePickedTo(sDate)
-        {
-            var dateparts = sDate.split('/', 2);
-            var therdate = dateparts[1]+''+dateparts[0];
-            var period = therdate;
-            daterange.push(period);
-            filtByPeriod(daterange);
-        }
+            // function datePickedTo(sDate){
+            //     var dateparts = sDate.split('/', 2);
+            //     var therdate = dateparts[1]+''+dateparts[0];
+            //     var period = therdate;
+            //     daterange.push(period);
+            //     filtByPeriod(daterange);
+            // }
 
-        // function filtByPeriod(drange){
-        //     var date_range_string = '';
-        //     var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
-        //     var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
-        //     var full_dates_arr = dateRange(startDate, endDate);
-        //     $.each(full_dates_arr, function (indexs, onedate) {
-        //         var adate = onedate.split('-');
-        //         date_range_string += adate[0]+adate[1]+';';
-        //     })
-        //     if($('#subcounty-dropdown').val() != null){
-        //         var theou = $('#subcounty-dropdown').val();
-        //     } else if($('#county-dropdown').val() != null){
-        //         var theou = $('#county-dropdown').val();
-        //     } else{
-        //         var theou = myOU();
-        //     }
-        //     var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-        //     console.log("filter url: "+consturl);
-		// 	var commd = $("#commodity-picker").val();
-        //     getConsist(consturl,commd,theou);
-        //     daterange = [];
-        //     $('#period-dropdown').val(null);
-        //     $('#period-dropdownTo').val(null);
-        // }
+            // function filtByPeriod(drange){
+            //     var date_range_string = '';
+            //     var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
+            //     var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
+            //     var full_dates_arr = dateRange(startDate, endDate);
+            //     $.each(full_dates_arr, function (indexs, onedate) {
+            //         var adate = onedate.split('-');
+            //         date_range_string += adate[0]+adate[1]+';';
+            //     })
+            //     if($('#subcounty-dropdown').val() != null){
+            //         var theou = $('#subcounty-dropdown').val();
+            //     } else if($('#county-dropdown').val() != null){
+            //         var theou = $('#county-dropdown').val();
+            //     } else{
+            //         var theou = myOU();
+            //     }
+            //     var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            //     console.log("filter url: "+consturl);
+            // 	var commd = $("#commodity-picker").val();
+            //     getConsist(consturl,commd,theou);
+            //     daterange = [];
+            //     $('#period-dropdown').val(null);
+            //     $('#period-dropdownTo').val(null);
+            // }
 
-        
-        function dateRange(startDate, endDate) {
-            var start      = startDate.split('-');
-            var end        = endDate.split('-');
-            var startYear  = parseInt(start[0]);
-            var endYear    = parseInt(end[0]);
-            var dates      = [];
+            
+            // function dateRange(startDate, endDate) {
+            //     var start      = startDate.split('-');
+            //     var end        = endDate.split('-');
+            //     var startYear  = parseInt(start[0]);
+            //     var endYear    = parseInt(end[0]);
+            //     var dates      = [];
 
-            for(var i = startYear; i <= endYear; i++) {
-                var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
-                var startMon = i === startYear ? parseInt(start[1])-1 : 0;
-                for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
-                var month = j+1;
-                var displayMonth = month < 10 ? '0'+month : month;
-                dates.push([i, displayMonth, '01'].join('-'));
-                }
-            }
-            return dates;
-        }
+            //     for(var i = startYear; i <= endYear; i++) {
+            //         var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
+            //         var startMon = i === startYear ? parseInt(start[1])-1 : 0;
+            //         for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
+            //         var month = j+1;
+            //         var displayMonth = month < 10 ? '0'+month : month;
+            //         dates.push([i, displayMonth, '01'].join('-'));
+            //         }
+            //     }
+            //     return dates;
+            // }
+        /////////
         downloadTable("noDiscData");
         function getThePeriod() {
             var per_y = new Date().getFullYear();
             var per_m = new Date().getMonth();
-            per_m = parseFloat(per_m) -2;
+            // per_m = parseFloat(per_m) -2;
+            per_m = parseFloat(per_m);
             if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
-            return(getPerio(per, false))
+            return per
+            // return(getPerio(per, false))
         }
+        
         function getPerio(todayte, past) {
             // -------------find currentDate & factor for >15th -------------
             var tdate = new Date().getDate();
