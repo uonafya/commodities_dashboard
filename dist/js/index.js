@@ -27,13 +27,13 @@ function fetchMosbycombox(url) {
         var maxval = 18; 
         var yaxismax = 24;
         var yaxismin = 0;
-        
+
 		if(theorgunit!='HfVjCurKxh2')
 		{
 			var minval = 3;
             var maxval = 6;
             var yaxismax = 10;
-            var yaxismin = 0
+            var yaxismin = 0;
 
 		}
         
@@ -72,6 +72,9 @@ function fetchMosbycombox(url) {
             },
             subtitle: {
                 text: 'Source: HIS Kenya'
+            },
+            exporting: {
+                enabled: true
             },
             xAxis: {						
                 categories: ['AL6', 'AL12', 'AL18', 'AL24', 'AL all', 'AS inj','SP tabs', 'RDTs'],

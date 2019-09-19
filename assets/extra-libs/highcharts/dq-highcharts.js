@@ -8,6 +8,9 @@
                         plotShadow: false,
                         type: 'pie'
                     },
+                    exporting: {
+                        enabled: true
+                    },
                     title: {
                         text: thename
                     },
@@ -58,6 +61,9 @@
                     title: {
                         text: 'Artesunate inj'
                     },
+                    exporting: {
+                        enabled: true
+                    },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                     },
@@ -102,6 +108,9 @@
                     },
                     subtitle: {
                         text: title
+                    },
+                    exporting: {
+                        enabled: true
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -165,6 +174,9 @@
                             showInLegend: true
                         }
                     },
+                    exporting: {
+                        enabled: true
+                    },
                     series: [{
                         name: 'Brands',
                         colorByPoint: true,
@@ -194,6 +206,9 @@
                     },
                     subtitle: {
                         text: null
+                    },
+                    exporting: {
+                        enabled: true
                     },
                     xAxis: {
                         categories: per_arr,
@@ -275,8 +290,10 @@
                         text: 'period'
                       },
                       categories: perd
-                    }
-                    ,
+                    },
+                    exporting: {
+                        enabled: true
+                    },
                     legend: {
                         layout: 'vertical',
                         align: 'right',
@@ -284,13 +301,18 @@
                     },
             
                     plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: false
+                        },
                         series: {
                             label: {
                                 connectorAllowed: false
                             }
                         }
                     },
-            
                     series: [{
                         name: 'Yes',
                         data: reported

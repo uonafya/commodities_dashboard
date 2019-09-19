@@ -107,6 +107,7 @@ function fetchRRDetails(theperiod,ounit)
             // console.log("tableData: "+tableData);
             $('#facility_rr').DataTable({
                 dom: 'Bfrtip',
+                ordering: false,
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]

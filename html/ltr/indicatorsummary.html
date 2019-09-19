@@ -220,7 +220,7 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                Indicator Summary
+                                Indicator Summary 
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
@@ -820,6 +820,7 @@ function fetchIS(url,ounit,period) {
                         $('.indicatorsumm').DataTable( {
                             //data-xport
                             dom: 'Bfrtip',
+                            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]], 
                             buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
                             //data-xport
                             initComplete: function () {

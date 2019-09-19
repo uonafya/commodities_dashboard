@@ -21,6 +21,12 @@ function fetchRRDetails(theperiod,ounit)
                 crossDomain: true,
                 url: valid_ous_url,
                 success: function (validata) {
+                    console.log("fetching valid OUs success");
+                    var valid_orgs = [];
+                    $.each(validata.dataSets[0].organisationUnits, function (inv, vou) { 
+                        valid_orgs.push(vou.id);
+                    });
+                    console.log("valid_orgs "+ JSON.stringify(valid_orgs));
                     $('#facility_rr').removeClass('hidden');
                     var header = '';
                     var footer = '';
@@ -54,7 +60,7 @@ function fetchRRDetails(theperiod,ounit)
                     tableData += '<tbody>';
 
                     $.each(data.metaData.dimensions.ou, function (key, entry){      
-                        if(validata.dataSets[0].organisationUnits.includes(entry)){                                                  
+                        if(valid_orgs.includes(entry)){                                                  
                             tableData += '<tr>';	
                             tableData += '<td>'+data.metaData.items[entry].name+'</td>';
                             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 

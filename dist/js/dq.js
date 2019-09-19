@@ -14,7 +14,7 @@ function getConco(ccurl,commodity){
         success: function (data) {
             console.log("fetching valid OUs");
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
-            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id]&filter=id:ilike:JPaviRmSsJW&paging=false';
+            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
             $.ajax({
                 type: "GET",
                 crossDomain: true,
@@ -22,6 +22,11 @@ function getConco(ccurl,commodity){
                 success: function (validata) {
                     
                     console.log("fetching valid OUs success");
+                    var valid_orgs = [];
+                    $.each(validata.dataSets[0].organisationUnits, function (inv, vou) { 
+                        valid_orgs.push(vou.id);
+                    });
+                    console.log("valid_orgs "+ JSON.stringify(valid_orgs));
                     //commodities and their names array
                     var commodities_array = {
                         'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
@@ -60,7 +65,7 @@ function getConco(ccurl,commodity){
                     // console.log("filtered ROWS ni: "+JSON.stringify(therows_filtered_by_commodity));
                     var equaltbl = '';
                     $.each(theous, function(index, oneou){
-                        if(validata.dataSets[0].organisationUnits.includes(oneou)){
+                        if(valid_orgs.includes(oneou)){
                             var ou_filtered_from = [];
                             var ou_filtered_to = [];
                             ou_filtered_from = filterItems(therows_filtered_by_commodity_begbal,oneou);
@@ -92,7 +97,7 @@ function getConco(ccurl,commodity){
                     // alert(JSON.stringify(compliant_facilities_codes));
                     $.each(theDims.ou,(inex,valou)=>{
                         let the_ou = valou;
-                        if(!compliant_facilities_codes.includes(the_ou) && validata.dataSets[0].organisationUnits.includes(oneou) ){
+                        if(!compliant_facilities_codes.includes(the_ou) && valid_orgs.includes(the_ou) ){
                             non_compliant_facilities_codes.push(the_ou);
                             non_compliant_facilities_names.push(theItems[the_ou].name);
                             nonequaltbl += '<tr><td>'+theItems[the_ou].name+'</td><td>'+getMFLcode(the_ou)+'</td></tr>';
@@ -459,15 +464,19 @@ function getConsist(consturl,commd,the_orgu){
         url: consturl,                    
         success: function (data) {
             console.log("fetching valid OUs");
-            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
-            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id]&filter=id:ilike:JPaviRmSsJW&paging=false';
+            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_092019.json';
+            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
             $.ajax({
                 type: "GET",
                 crossDomain: true,
                 url: valid_ous_url,
                 success: function (validata) {
                     console.log("fetching valid OUs success");
-                    
+                    var valid_orgs = [];
+                    $.each(validata.dataSets[0].organisationUnits, function (inv, vou) { 
+                        valid_orgs.push(vou.id);
+                    });
+                    console.log("valid_orgs "+ JSON.stringify(valid_orgs));
                     var theItems = data.metaData.items;
                     var theDims = data.metaData.dimensions;
                     var theDx = data.metaData.dimensions.dx;
@@ -504,7 +513,7 @@ function getConsist(consturl,commd,the_orgu){
                     }
                     var thirar = []
                     $.each(theous, function(index, oneou){
-                        if(validata.dataSets[0].organisationUnits.includes(oneou)){
+                        if(valid_orgs.includes(oneou)){
                             var closing_bal = null;
                             var opening_bal = null;
                             $.each(therows, function (indx, onerow) { 
@@ -528,7 +537,7 @@ function getConsist(consturl,commd,the_orgu){
                     });
                     $.each(theDims.ou,(inex,valou)=>{
                         let the_ou = valou;
-                        if(!nodisc_facilities_codes.includes(the_ou) && validata.dataSets[0].organisationUnits.includes(the_ou) ){
+                        if(!nodisc_facilities_codes.includes(the_ou) && valid_orgs.includes(the_ou) ){
                             disc_facilities_codes.push(the_ou);
                             disc_facilities_names.push(theItems[the_ou].name);
                             disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+getMFLcode(the_ou)+'</td></tr>';
