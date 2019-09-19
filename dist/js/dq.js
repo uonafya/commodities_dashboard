@@ -418,13 +418,33 @@ function wbDetail(json_data, lastperiod){
 
         var not_rp_fac_codes = [];
         var tbldata2 = '';
-        $.each(json_data.metaData.dimensions.ou,(inex,valou)=>{
-            let the_ou = valou;
-            if(!rp_fac_codes.includes(the_ou)){
-                not_rp_fac_codes.push(the_ou);
-                tbldata2 += '<tr>';
-                tbldata2 += '<td>' + json_data.metaData.items[the_ou].name + '</td><td>' + getMFLcode(the_ou) + '</td>'
-                tbldata2 += '</tr>';
+        console.log("fetching valid OUs");
+        // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
+        var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
+        $.ajax({
+            type: "GET",
+            crossDomain: true,
+            url: valid_ous_url,
+            success: function (validata) {
+                
+                console.log("fetching valid OUs success");
+                var valid_orgs = [];
+                $.each(validata.dataSets[0].organisationUnits, function (inv, vou) { 
+                    valid_orgs.push(vou.id);
+                });
+                console.log("valid_orgs "+ JSON.stringify(valid_orgs));
+                
+                $.each(json_data.metaData.dimensions.ou,(inex,valou)=>{
+                    if(valid_orgs.includes(the_ou)){
+                        let the_ou = valou;
+                        if(!rp_fac_codes.includes(the_ou)){
+                            not_rp_fac_codes.push(the_ou);
+                            tbldata2 += '<tr>';
+                            tbldata2 += '<td>' + json_data.metaData.items[the_ou].name + '</td><td>' + getMFLcode(the_ou) + '</td>'
+                            tbldata2 += '</tr>';
+                        }
+                    }
+                });
             }
         });
         $('#detailTableNotReport tbody').append(tbldata2);
