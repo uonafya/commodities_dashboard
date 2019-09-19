@@ -119,9 +119,10 @@ function fetchRRDetails(theperiod,ounit)
                     }
                     // console.log("tableData: "+tableData);
                     $('#facility_rr').DataTable({
-                        dom: 'Bfrtip',
+                        dom: 'Bfrtlip',
+                        ordering: false,
                         buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print'
+                            'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
                         ]
                     });
                 }
@@ -249,10 +250,10 @@ function fetchSubRRDetails(scrdurl,ounit)
             }
             // console.log("tableDataSub: "+tableDataSub);
             $('#subcounty_rr').DataTable({
-                dom: 'Bfrtip',
+                dom: 'Bfrtlip',
                 ordering: false,
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                    'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
                 ]
             });
 
