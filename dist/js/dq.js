@@ -13,7 +13,7 @@ function getConco(ccurl,commodity){
         url: ccurl,                    
         success: function (data) {
             console.log("fetching valid OUs");
-            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
+            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_092019.json';
             var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
             $.ajax({
                 type: "GET",
@@ -582,7 +582,9 @@ function getConsist(consturl,commd,the_orgu){
                                 if(ouu == oneou && onerow[0] == pos_adj_code){
                                     pos_adj = pos_adj + valuee;
                                 }
-                                sum_pos = begin_bal + qty_received + pos_adj;
+                                if(begin_bal != null && qty_received != null && pos_adj != null){
+                                    sum_pos = begin_bal + qty_received + pos_adj;
+                                }
                                 // >>-------------end POSITIVES--------------
 
                                 // <<-------------NEGATIVES--------------
@@ -592,20 +594,23 @@ function getConsist(consturl,commd,the_orgu){
                                 if(ouu == oneou && onerow[0] == neg_adj_code){
                                     neg_adj = neg_adj + valuee;
                                 }
-                                sum_neg = qty_disp + neg_adj;
+                                if(qty_disp != null && neg_adj != null && clos_bal){
+                                    sum_neg = qty_disp + neg_adj;
+                                }
                                 // >>-------------end NEGATIVES--------------
+
                                 if(ouu == oneou && onerow[0] == phy_count_code){
                                     clos_bal = clos_bal + valuee;
                                 }
 
                             });
                             var difference = sum_pos - sum_neg;
-                            if(true){
+                            if(sum_neg != null && sum_pos != null){
                                 if(parseFloat(difference) === parseFloat(clos_bal)){
                                     compliant_facility_count = compliant_facility_count+1;
                                     nodisc_facilities_names.push(theItems[oneou].name);
                                     nodisc_facilities_codes.push(oneou);
-                                    // nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+"getMFLcode(oneou)"+'</td></tr>';
+                                    // nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
                                     nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Sum_Pos: '+sum_pos+' && Sum_Neg: '+sum_neg+'  && Diff: '+difference+' && Clos_Bal: '+clos_bal+'</small> </td><td>'+"getMFLcode(oneou)"+'</td></tr>';
                                 }
                             }
@@ -616,7 +621,7 @@ function getConsist(consturl,commd,the_orgu){
                         if(!nodisc_facilities_codes.includes(the_ou) && valid_orgs.includes(the_ou) ){
                             disc_facilities_codes.push(the_ou);
                             disc_facilities_names.push(theItems[the_ou].name);
-                            // disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
+                            // disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+getMFLcode(the_ou)+'</td></tr>';
                             disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
                         }
                     });
