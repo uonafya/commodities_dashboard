@@ -128,9 +128,9 @@ function fetchAccountability(url,orgun) {
                     }
                     
                     var sum_pos = parseFloat(opsoh[3])+parseFloat(posadj[3])+parseFloat(k_is_val);
-                    // console.log("sum_pos: "+sum_pos);
+                    console.log("sum_pos: "+sum_pos);
                     var sum_neg = parseFloat(qtydisp[3])+parseFloat(negadj[3])+parseFloat(closbal[3]);
-                    // console.log("sum_neg: "+sum_neg);
+                    console.log("sum_neg: "+sum_neg);
                     var per_acc_for = parseFloat(sum_neg)/parseFloat(sum_pos);
                     per_acc_for = per_acc_for*100;
                     // console.log("per_acc_for: "+per_acc_for);
