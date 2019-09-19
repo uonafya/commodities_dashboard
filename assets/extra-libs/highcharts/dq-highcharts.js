@@ -9,7 +9,11 @@
                         type: 'pie'
                     },
                     exporting: {
-                        enabled: true
+                        buttons: {
+                            contextButton: {
+                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+                            }
+                        }
                     },
                     title: {
                         text: thename
@@ -62,7 +66,11 @@
                         text: 'Artesunate inj'
                     },
                     exporting: {
-                        enabled: true
+                        buttons: {
+                            contextButton: {
+                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+                            }
+                        }
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -110,7 +118,11 @@
                         text: title
                     },
                     exporting: {
-                        enabled: true
+                        buttons: {
+                            contextButton: {
+                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+                            }
+                        }
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -175,7 +187,11 @@
                         }
                     },
                     exporting: {
-                        enabled: true
+                        buttons: {
+                            contextButton: {
+                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+                            }
+                        }
                     },
                     series: [{
                         name: 'Brands',
@@ -208,7 +224,11 @@
                         text: null
                     },
                     exporting: {
-                        enabled: true
+                        buttons: {
+                            contextButton: {
+                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+                            }
+                        }
                     },
                     xAxis: {
                         categories: per_arr,
@@ -292,7 +312,11 @@
                       categories: perd
                     },
                     exporting: {
-                        enabled: true
+                        buttons: {
+                            contextButton: {
+                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+                            }
+                        }
                     },
                     legend: {
                         layout: 'vertical',
