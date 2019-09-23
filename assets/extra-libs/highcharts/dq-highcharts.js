@@ -146,12 +146,12 @@
                         colorByPoint: true,
                         data: [{
                             name: 'Discrepancy',
-                            y: nodisc,
+                            y: disc,
                             sliced: true,
                             selected: true
                         }, {
                             name: 'No discrepancy',
-                            y: disc
+                            y: nodisc
                         }]
                     }]
                 });
@@ -325,13 +325,18 @@
                     },
             
                     plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: false
+                        },
                         series: {
                             label: {
                                 connectorAllowed: false
                             }
                         }
                     },
-            
                     series: [{
                         name: 'Yes',
                         data: reported

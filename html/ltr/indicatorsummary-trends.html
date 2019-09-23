@@ -695,7 +695,7 @@
             $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
 
             getTrends('https://hiskenya.org/api/26/analytics.json?dimension=dx:HfGVoCZAwtd&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID');
-            // getTrends('http://localhost/pmi/json/indicator_trends.json');
+            // getTrends('http://localhost/pmi/json/is-trends.json');
 
             $("#county-dropdown").change(function() 
             {
