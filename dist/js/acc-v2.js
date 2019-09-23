@@ -144,7 +144,7 @@ function fetchAccountability(url,orgun) {
                     // console.log("per_acc_for: "+per_acc_for);
 					
 					var bgcolor = '#ff0000';
-					if(per_acc_for>=95 || per_acc_for<=105)
+					if(per_acc_for>=95 && per_acc_for<=105)
 					{
 						bgcolor = '#7bd48d';
 					}
@@ -153,7 +153,15 @@ function fetchAccountability(url,orgun) {
 						bgcolor = '#ff0000';
 					}
 					
-                    tabl+='<td class="text-right" bgcolor="'+bgcolor+'">'+per_acc_for.toFixed(1)+'%</td>';
+					//check if value is a number
+					if(isNaN(per_acc_for))	
+					{
+						tabl+='<td class="text-right"> - </td>';
+					}
+					else
+					{
+						tabl+='<td class="text-right" bgcolor="'+bgcolor+'">'+per_acc_for.toFixed(1)+'%</td>';
+					}
                     pcacc_arr.push(per_acc_for);
 
                     // ----------END data cells----------
@@ -208,7 +216,7 @@ function fetchAccountability(url,orgun) {
                 var tot_acc = (tot_neg/tot_pos)*100
 				
 				var bgcolor = '#ff0000';
-				if(tot_acc>=95 || tot_acc<=105)
+				if(tot_acc>=95 && tot_acc<=105)
 				{
 					bgcolor = '#7bd48d';
 				}
