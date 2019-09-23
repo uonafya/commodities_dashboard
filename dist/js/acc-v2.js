@@ -153,10 +153,10 @@ function fetchAccountability(url,orgun) {
 						bgcolor = '#ff0000';
 					}
 					
-					//check if value is a number
+					//Check if value is a number
 					if(isNaN(per_acc_for))	
 					{
-						tabl+='<td class="text-right"> - </td>';
+						tabl+='<td class="text-right" bgcolor="'+bgcolor+'"> - </td>';
 					}
 					else
 					{
