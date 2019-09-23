@@ -76,12 +76,17 @@ function getKIssues(url,tou) {
                 }
 
                 var total_recvd = parseFloat(recvd_val_month1) + parseFloat(recvd_val_month2);
+				
+				//imheYfA1Kiw
+                if(issdId == 'EtG9ozt2joA.DTnItSklSr8')
+				{
+                    iss_val *= 1000;
+                }
 
                 var diff_val = parseFloat(total_recvd)-parseFloat(iss_val);
                 if(iss_val>total_recvd){}else{} 
-                if(issdId == 'imheYfA1Kiw'){
-                    iss_val *= 1000
-                }
+				
+				
 
                 var diff_perc = (diff_val/iss_val)*100;
                 if(diff_perc<0){
@@ -123,11 +128,11 @@ function getKIssues(url,tou) {
 					}
 					else
 					{
-						calcperc = diff_perc.toFixed(1);
+						calcperc = diff_perc.toFixed(1)+'%';
 					}
 				}
                 
-                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+list_products[procounter]+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month1)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month2)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(total_recvd)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val.toFixed(1))+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
+                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+list_products[procounter]+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month1)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month2)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(total_recvd)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val.toFixed(1))+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+calcperc+'</td></tr>';
 				 
 				 procounter++;
                 
