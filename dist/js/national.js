@@ -76,12 +76,17 @@ function getKIssues(url,tou) {
                 }
 
                 var total_recvd = parseFloat(recvd_val_month1) + parseFloat(recvd_val_month2);
+				
+				//imheYfA1Kiw
+                if(issdId == 'EtG9ozt2joA.DTnItSklSr8')
+				{
+                    iss_val *= 1000;
+                }
 
                 var diff_val = parseFloat(total_recvd)-parseFloat(iss_val);
                 if(iss_val>total_recvd){}else{} 
-                if(issdId == 'imheYfA1Kiw'){
-                    iss_val *= 1000
-                }
+				
+				
 
                 var diff_perc = (diff_val/iss_val)*100;
                 if(diff_perc<0){
