@@ -145,12 +145,12 @@
                         name: 'Consistency',
                         colorByPoint: true,
                         data: [{
-                            name: `Discrepancy ( ${disc/(disc+nodisc)*100}% )`,
+                            name: `Discrepancy (${disc/(disc+nodisc)*100}%)`,
                             y: disc,
                             sliced: true,
                             selected: true
                         }, {
-                            name: `No discrepancy ( ${nodisc/(disc+nodisc)*100}% )`,
+                            name: `No discrepancy (${nodisc/(disc+nodisc)*100}%)`,
                             y: nodisc
                         }]
                     }]
