@@ -625,7 +625,7 @@ color: transparent;}
         $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
         var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.yuvCdaFqdCW;iOARK31NdLp.CckV73xy6HB;iOARK31NdLp.unVIt2C0cdW;iOARK31NdLp.w77uMi1KzOH;iOARK31NdLp.rPAsF4cpNxm&dimension=pe:'+getThePeriod()+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-        // var consturl = 'http://localhost/pmi/json/conco-v2-small.json';
+        // var consturl = 'http://localhost/pmi/json/consistency-5.json';
         var commd = 'iOARK31NdLp';
         // commd = commd.split('.')[0];
         getConsist(consturl,commd,ounit);
