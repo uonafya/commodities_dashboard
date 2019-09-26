@@ -142,7 +142,26 @@ function fetchAccountability(url,orgun) {
                     var per_acc_for = parseFloat(sum_neg)/parseFloat(sum_pos);
                     per_acc_for = per_acc_for*100;
                     // console.log("per_acc_for: "+per_acc_for);
-                    tabl+='<td class="text-right">'+per_acc_for.toFixed(1)+'%</td>';
+					
+					var bgcolor = '#ff0000';
+					if(per_acc_for>=95 && per_acc_for<=105)
+					{
+						bgcolor = '#7bd48d';
+					}
+					else
+					{
+						bgcolor = '#ff0000';
+					}
+					
+					//Check if value is a number
+					if(isNaN(per_acc_for))	
+					{
+						tabl+='<td class="text-right" bgcolor="'+bgcolor+'"> - </td>';
+					}
+					else
+					{
+						tabl+='<td class="text-right" bgcolor="'+bgcolor+'">'+per_acc_for.toFixed(1)+'%</td>';
+					}
                     pcacc_arr.push(per_acc_for);
 
                     // ----------END data cells----------
@@ -175,7 +194,7 @@ function fetchAccountability(url,orgun) {
                         var kione_value = kione_val[0][3];
                     }
                     var kione_id2 = ou+"_ki_cell_"+comki_indx;
-                    kissue_arr.push(kione_val);
+                    //kissue_arr.push(kione_val);
                     $("#"+kione_id2).html(kione_value);
                 });
 
@@ -193,8 +212,19 @@ function fetchAccountability(url,orgun) {
                 $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
 
                 var tot_neg = sumArr(closbal_arr) + sumArr(negadj_arr) + sumArr(qtydisp_arr);
-                var tot_pos = sumArr(opsoh_arr) + sumArr(posadj_arr) + sumArr(kissue_arr);
+                var tot_pos = sumArr(opsoh_arr) + sumArr(posadj_arr) + sumArr(kemsi_arr);
                 var tot_acc = (tot_neg/tot_pos)*100
+				
+				var bgcolor = '#ff0000';
+				if(tot_acc>=95 && tot_acc<=105)
+				{
+					bgcolor = '#7bd48d';
+				}
+				else
+				{
+					bgcolor = '#ff0000';
+				}
+				$('#'+ou+'_totalPcAccounted').css('background-color',bgcolor);
                 $('#'+ou+'_totalPcAccounted').html(tot_acc.toFixed(1));
 
                 // title fill

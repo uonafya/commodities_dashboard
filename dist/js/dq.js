@@ -15,6 +15,8 @@ function getConco(ccurl,commodity){
             console.log("fetching valid OUs");
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_092019.json';
             var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
+           // var valid_ous_url = 
+
             $.ajax({
                 type: "GET",
                 crossDomain: true,
@@ -128,19 +130,31 @@ function getConco(ccurl,commodity){
                         $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_eq_perc.toFixed(1) + '%)</small>');
                         $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_neq_perc.toFixed(1) + '%)</small>');
                         $('.totFacil').html(total_facils);
+                        var non_compliant_facility_count = facility_count - compliant_facility_count;
+                        // console.log("total_facilities = "+facility_count);
+                        // console.log("compliant_facilities = "+compliant_facility_count);
+                        // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
+                        var commo_s = commodity.split('.')[0];
+                        // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
+                        pieOne('Data Quality: Concordance',commodities_array[commo_s].name,tot_eq_perc,tot_neq_perc);
+                        // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
+                        $('.loader-sp.pieone').addClass('hidden');
+                        $('#pc1, .pc1').removeClass('hidden');
+                        $('.detailsrow').removeClass('hidden');
+                       
                     });
         
-                    var non_compliant_facility_count = facility_count - compliant_facility_count;
-                    // console.log("total_facilities = "+facility_count);
-                    // console.log("compliant_facilities = "+compliant_facility_count);
-                    // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
-                    var commo_s = commodity.split('.')[0];
-                    // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
-                    pieOne('Data Quality: Concordance',commodities_array[commo_s].name,tot_eq_perc,tot_neq_perc);
-                    // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
-                    $('.loader-sp.pieone').addClass('hidden');
-                    $('#pc1, .pc1').removeClass('hidden');
-                    $('.detailsrow').removeClass('hidden');
+                    // var non_compliant_facility_count = facility_count - compliant_facility_count;
+                    // // console.log("total_facilities = "+facility_count);
+                    // // console.log("compliant_facilities = "+compliant_facility_count);
+                    // // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
+                    // var commo_s = commodity.split('.')[0];
+                    // // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
+                    // pieOne('Data Quality: Concordance',commodities_array[commo_s].name,tot_eq_perc,tot_neq_perc);
+                    // // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
+                    // $('.loader-sp.pieone').addClass('hidden');
+                    // $('#pc1, .pc1').removeClass('hidden');
+                    // $('.detailsrow').removeClass('hidden');
                 }
             });
         },
