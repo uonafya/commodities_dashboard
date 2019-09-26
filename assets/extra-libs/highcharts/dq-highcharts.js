@@ -11,7 +11,8 @@
                     exporting: {
                         buttons: {
                             contextButton: {
-                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label'],
+                                text: "Save"
                             }
                         }
                     },
@@ -52,56 +53,6 @@
             //-------------------end 1--------------------------
 
 
-            //-------------------2--------------------------
-             
-            // function pieTwo(x,y){
-            //     Highcharts.chart('pc2', {
-            //         chart: {
-            //             plotBackgroundColor: null,
-            //             plotBorderWidth: null,
-            //             plotShadow: false,
-            //             type: 'pie'
-            //         },
-            //         title: {
-            //             text: 'Artesunate inj'
-            //         },
-            //         exporting: {
-            //             buttons: {
-            //                 contextButton: {
-            //                     menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
-            //                 }
-            //             }
-            //         },
-            //         tooltip: {
-            //             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            //         },
-            //         plotOptions: {
-            //             pie: {
-            //                 allowPointSelect: true,
-            //                 cursor: 'pointer',
-            //                 colors: ['#7bd48d','#ffc7ce'],
-            //                 dataLabels: {
-            //                     enabled: true
-            //                 },
-            //                 showInLegend: true
-            //             }
-            //         },
-            //         series: [{
-            //             name: 'Brands',
-            //             colorByPoint: true,
-            //             data: [{
-            //                 name: 'Opening SOH = Closing SOH previous month',
-            //                 y: x
-            //             }, {
-            //                 name: 'Opening SOH ≠ Closing SOH previous month',
-            //                 y: y
-            //             }]
-            //         }]
-            //     });
-            // };
-            //-------------------end 2--------------------------
-
-
             //-------------------3--------------------------
             function pieThree(title,subtitle,disc,nodisc){
                 Highcharts.chart('pc3', {
@@ -120,7 +71,8 @@
                     exporting: {
                         buttons: {
                             contextButton: {
-                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label'],
+                                text: "Save"
                             }
                         }
                     },
@@ -157,58 +109,6 @@
                 });
             };
             //-------------------end 3--------------------------
-
-
-
-            //-------------------4--------------------------
-            // Build the chart
-            function pieFour(x,y){
-                Highcharts.chart('pc4', {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Internal Data Consistency (Artesunate inj)'
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: false
-                            },
-                            showInLegend: true
-                        }
-                    },
-                    exporting: {
-                        buttons: {
-                            contextButton: {
-                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Brands',
-                        colorByPoint: true,
-                        data: [{
-                            name: 'No discrepancy',
-                            y: 10.85
-                        }, {
-                            name: 'Discrepancy',
-                            y: 4.67
-                        }]
-                    }]
-                });
-            };
-            //-------------------end 4--------------------------
-
-
 
 
             //-------------------column--------------------------
