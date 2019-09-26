@@ -144,23 +144,25 @@ function fetchAccountability(url,orgun) {
                     // console.log("per_acc_for: "+per_acc_for);
 					
 					var bgcolor = '#ff0000';
+					var fcolor = '#202020';
 					if(per_acc_for>=95 && per_acc_for<=105)
 					{
-						bgcolor = '#7bd48d';
+                        bgcolor = '#7bd48d';
 					}
 					else
 					{
-						bgcolor = '#ff0000';
+                        bgcolor = '#ff0000';
+                        fcolor = '#fffcfc';
 					}
 					
 					//Check if value is a number
 					if(isNaN(per_acc_for))	
 					{
-						tabl+='<td class="text-right" bgcolor="'+bgcolor+'"> - </td>';
+						tabl+='<td class="text-right" bgcolor="'+bgcolor+'" style="color: '+fcolor+'"> - </td>';
 					}
 					else
 					{
-						tabl+='<td class="text-right" bgcolor="'+bgcolor+'">'+per_acc_for.toFixed(1)+'%</td>';
+						tabl+='<td class="text-right" bgcolor="'+bgcolor+'" style="color: '+fcolor+'">'+per_acc_for.toFixed(1)+'%</td>';
 					}
                     pcacc_arr.push(per_acc_for);
 
