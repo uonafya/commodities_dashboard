@@ -244,11 +244,7 @@
                     title: {
                         text: 'Reporting rate (%)'
                     },
-<<<<<<< HEAD
-                    categories: [0, 20, 40, 60, 80, 100],
-=======
                    // categories: [0, 20, 40, 60, 80, 100],
->>>>>>> rrate
                     min: 0,
                     max: 100,
                     showFirstLabel: false

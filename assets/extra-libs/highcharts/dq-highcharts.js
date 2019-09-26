@@ -40,10 +40,10 @@
                         name: 'Percentage',
                         colorByPoint: true,
                         data: [{
-                            name: 'Opening SOH = Closing SOH previous month',
+                            name: `Opening SOH = Closing SOH previous month  (${compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100}%)`,
                             y: compliant_facility_count
                         }, {
-                            name: 'Opening SOH ≠ Closing SOH previous month',
+                            name: `Opening SOH ≠ Closing SOH previous month  (${non_compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100}%)`,
                             y: non_compliant_facility_count
                         }]
                     }]
@@ -54,51 +54,51 @@
 
             //-------------------2--------------------------
              
-            function pieTwo(x,y){
-                Highcharts.chart('pc2', {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Artesunate inj'
-                    },
-                    exporting: {
-                        buttons: {
-                            contextButton: {
-                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
-                            }
-                        }
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            colors: ['#7bd48d','#ffc7ce'],
-                            dataLabels: {
-                                enabled: true
-                            },
-                            showInLegend: true
-                        }
-                    },
-                    series: [{
-                        name: 'Brands',
-                        colorByPoint: true,
-                        data: [{
-                            name: 'Opening SOH = Closing SOH previous month',
-                            y: x
-                        }, {
-                            name: 'Opening SOH ≠ Closing SOH previous month',
-                            y: y
-                        }]
-                    }]
-                });
-            };
+            // function pieTwo(x,y){
+            //     Highcharts.chart('pc2', {
+            //         chart: {
+            //             plotBackgroundColor: null,
+            //             plotBorderWidth: null,
+            //             plotShadow: false,
+            //             type: 'pie'
+            //         },
+            //         title: {
+            //             text: 'Artesunate inj'
+            //         },
+            //         exporting: {
+            //             buttons: {
+            //                 contextButton: {
+            //                     menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+            //                 }
+            //             }
+            //         },
+            //         tooltip: {
+            //             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            //         },
+            //         plotOptions: {
+            //             pie: {
+            //                 allowPointSelect: true,
+            //                 cursor: 'pointer',
+            //                 colors: ['#7bd48d','#ffc7ce'],
+            //                 dataLabels: {
+            //                     enabled: true
+            //                 },
+            //                 showInLegend: true
+            //             }
+            //         },
+            //         series: [{
+            //             name: 'Brands',
+            //             colorByPoint: true,
+            //             data: [{
+            //                 name: 'Opening SOH = Closing SOH previous month',
+            //                 y: x
+            //             }, {
+            //                 name: 'Opening SOH ≠ Closing SOH previous month',
+            //                 y: y
+            //             }]
+            //         }]
+            //     });
+            // };
             //-------------------end 2--------------------------
 
 
@@ -145,12 +145,12 @@
                         name: 'Consistency',
                         colorByPoint: true,
                         data: [{
-                            name: 'Discrepancy',
+                            name: `Discrepancy ( ${disc/(disc+nodisc)*100}% )`,
                             y: disc,
                             sliced: true,
                             selected: true
                         }, {
-                            name: 'No discrepancy',
+                            name: `No discrepancy ( ${nodisc/(disc+nodisc)*100}% )`,
                             y: nodisc
                         }]
                     }]
