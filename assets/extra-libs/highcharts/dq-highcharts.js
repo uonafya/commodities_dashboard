@@ -12,7 +12,8 @@
                         buttons: {
                             contextButton: {
                                 menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label'],
-                                text: "Save"
+                                symbol: null,
+                                text: "Export"
                             }
                         }
                     },
@@ -72,7 +73,8 @@
                         buttons: {
                             contextButton: {
                                 menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label'],
-                                text: "Save"
+                                symbol: null,
+                                text: "Export"
                             }
                         }
                     },
