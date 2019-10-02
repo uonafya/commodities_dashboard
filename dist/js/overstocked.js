@@ -82,7 +82,7 @@ function overstocked(overstockurl,orgu,commodity)
                            
                             
                             
-                            facility_count+=1;
+                            
                                 
                                 if(orgunits.indexOf(entry)>=0)
                                  {
@@ -114,25 +114,28 @@ function overstocked(overstockurl,orgu,commodity)
                                                                 
                                     $.each(orgunits,function (key, value) 
                                     {
-            
+                                         
                                         //calculate the difference
                                         
-                                            if(orgunitmos[value]>6)
-                                            {							
+                                            if(orgunitmos[value]>6)                                            
+                                            {		
+                                                facility_count+=1;
+
                                                 var diffmos = (6/parseFloat(orgunitmos[value]))*parseFloat(orgunitphy[value]);
                                                 orgunitdiff[value] = (parseFloat(orgunitphy[value])-diffmos).toFixed(0);
                                             
     
-                                                tableData += '<tr><td>'+data.metaData.items[value].name+'</td><td>'+getMFLcode()+'</td><td>'+orgunitmos[value]+'</td><td>'+orgunitphy[value]+'</td><td>'+orgunitdiff[value]+'</td></tr>' ;
+                                                tableData += '<tr><td>'+data.metaData.items[value].name+'</td><td>'+getMFLcode(data.metaData.dimensions.ou)+'</td><td>'+orgunitmos[value]+'</td><td>'+orgunitphy[value]+'</td><td>'+orgunitdiff[value]+'</td></tr>' ;
                                                 
                                                 
                                             }
-                                            console.log(tableData)
+                                            
                             
                                                         
                                                
                                             
-                                        })							
+                                        })	
+                                        						
                                                 
                                    
                                 

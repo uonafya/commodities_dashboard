@@ -473,19 +473,19 @@
     
 
 
-        if(theou == undefined || theou == null){
+        if(theou == undefined || theou == null || theou == ''){
             theou = 'tAbBVBbueqD';
         }
 
         $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
 
 
-       // var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commdata.indicator+';'+commdata.commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID'
+        var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commdata[0].indicator+';'+commdata[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID'
 
         
         // https://hiskenya.org/api/26/analytics.json?dimension=dx:SSARcWY2Ge1;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;iRK9uABUTVZ&dimension=pe:201905&displayProperty=NAME&outputIdScheme=UID
 
-        var understockurl = 'https://api.myjson.com/bins/r4gnx';
+        //var understockurl = 'https://api.myjson.com/bins/r4gnx';
        
       
 
@@ -538,6 +538,7 @@
                 var commd = $(this).val();
                 
                 var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+                
 
                 if(getcommd == null || getcommd == undefined || getcommd == ''){
                     getcommd = ASinj;                    
@@ -594,6 +595,9 @@
             var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
             
             var full_dates_arr = dateRange(startDate, endDate);
+            var commd = $("#commodity-picker").val();
+            var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+            
             $.each(full_dates_arr, function (indexs, onedate) {
                 var adate = onedate.split('-');
                 date_range_string += adate[0]+adate[1]+';';
@@ -605,12 +609,10 @@
             } else{
                 var theou = myOU();
             }
-            if(theou == undefined || theou == null ){
+            if(theou == undefined || theou == null || theou == ''){
                 theou = 'tAbBVBbueqD';
             }
-            var commd = $("#commodity-picker").val();
-            var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
-            
+          
             if(getcommd == null || getcommd == undefined || getcommd == ''){
                 getcommd = ASinj;
             }
