@@ -123,7 +123,7 @@ function overstocked(overstockurl,orgu,commodity)
 
                                                 var diffmos = (6/parseFloat(orgunitmos[value]))*parseFloat(orgunitphy[value]);
                                                 orgunitdiff[value] = (parseFloat(orgunitphy[value])-diffmos).toFixed(0);
-                                             console.log('kenya',data.metaData.dimensions.ou[])
+                                            
     
                                                 tableData += '<tr><td>'+data.metaData.items[value].name+'</td><td>'+getMFLcode(data.metaData.dimensions.ou)+'</td><td>'+orgunitmos[value]+'</td><td>'+orgunitphy[value]+'</td><td>'+orgunitdiff[value]+'</td></tr>' ;
                                                 
@@ -134,7 +134,8 @@ function overstocked(overstockurl,orgu,commodity)
                                                         
                                                
                                             
-                                        })							
+                                        })	
+                                        						
                                                 
                                    
                                 

@@ -187,13 +187,13 @@
                                         <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">
                                                 <option value="" disabled selected>Select commodity</option>
-                                                <option value="iOARK31NdLp">Artesunate Injection</option>
-                                                <option value="BnGDrFwyQp9">Artemether-Lumefantrine 20/120 Tabs 6s</option>
-                                                <option value="c0MB4RmVjxk">Artemether-Lumefantrine 20/120 Tabs 12s</option>
-                                                <option value="qnZmg5tNSMy">Artemether-Lumefantrine 20/120 Tabs 18s</option>
-                                                <option value="gVp1KSFI69G">Artemether-Lumefantrine 20/120 Tabs 24s</option>
-                                                <option value="imheYfA1Kiw">Sulphadoxine Pyrimethamine Tabs</option>
-                                                <option value="cPlWFYbBacW">Rapid Diagnostic Test</option>
+                                                <option value="ASinj">Artesunate Injection</option>
+                                                <option value="AL6">Artemether-Lumefantrine 20/120 Tabs 6s</option>
+                                                <option value="AL12">Artemether-Lumefantrine 20/120 Tabs 12s</option>
+                                                <option value="AL18">Artemether-Lumefantrine 20/120 Tabs 18s</option>
+                                                <option value="AL24">Artemether-Lumefantrine 20/120 Tabs 24s</option>
+                                                <option value="SP">Sulphadoxine Pyrimethamine Tabs</option>
+                                                <option value="RDT">Rapid Diagnostic Test</option>
                                             </select>
                                         </div> 
                                         <div class="col-md-2 col-sm-2 col-xs-12">
@@ -471,6 +471,8 @@
         if (commdata == undefined || commdata == null || commdata == ''){
             commdata = ASinj;
         }
+
+       
     
 
 
@@ -481,12 +483,12 @@
         $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
 
 
-       // var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commdata.indicator+';'+commdata.commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID'
+        var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commdata[0].indicator+';'+commdata[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID'
 
         
         // https://hiskenya.org/api/26/analytics.json?dimension=dx:SSARcWY2Ge1;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;iRK9uABUTVZ&dimension=pe:201905&displayProperty=NAME&outputIdScheme=UID
 
-        var understockurl = 'https://api.myjson.com/bins/r4gnx';
+        //var understockurl = 'https://api.myjson.com/bins/r4gnx';
        
       
 
@@ -498,16 +500,19 @@
                 var theou = $(this).val();
                 var commd = $("#commodity-picker").val();
                 var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+               
 
                 if(getcommd == null || getcommd == undefined || getcommd == ''){
                     getcommd = ASinj;
                 }
+               
                 var perr1 =  $('#h_period').val();
                 if( perr1 == '' || perr1 == null || perr1 == undefined ){
                     perr1 = getThePeriod();
                 }else{
                     perr1 = getPerio(perr1, true)
                 }
+                
                 var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr1+'&displayProperty=NAME&outputIdScheme=UID'
                     
                 overstocked(understockurl,theou,getcommd);
@@ -519,6 +524,7 @@
                 var theou = $(this).val();
                 var commd = $("#commodity-picker").val();
                 var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+                
                 if(getcommd == null || getcommd == undefined || getcommd == ''){
                     getcommd = ASinj;
                 }
@@ -540,15 +546,20 @@
                 
                 var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
 
+        
+
                 if(getcommd == null || getcommd == undefined || getcommd == ''){
                     getcommd = ASinj;                    
                 }
+
+                
                 var perr0 = $('#h_period').val();
                 if( perr0 == '' || perr0 == null || perr0 == undefined ){
                     perr0 = getThePeriod();
                 }else{
                     perr0 = getPerio(perr0, true)
                 }
+                
                 
                 var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr0+'&displayProperty=NAME&outputIdScheme=UID';
 
@@ -594,6 +605,8 @@
             //var startDate = drange1[0].substring(0,4)+'-'+drange1[0].substring(4)+'-01';          
             var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
             var full_dates_arr = dateRange(startDate, endDate);
+            var commd = $("#commodity-picker").val();
+            var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
             $.each(full_dates_arr, function (indexs, onedate) {
                 var adate = onedate.split('-');
                 date_range_string += adate[0]+adate[1]+';';
@@ -605,11 +618,10 @@
             } else{
                 var theou = myOU();
             }
-            if(theou == undefined || theou == null ){
+            if(theou == undefined || theou == null || theou == ''){
                 theou = 'tAbBVBbueqD';
             }
-            var commd = $("#commodity-picker").val();
-            var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+           
             
             if(getcommd == null || getcommd == undefined || getcommd == ''){
                 getcommd = ASinj;
