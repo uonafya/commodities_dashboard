@@ -595,7 +595,25 @@
             $('#county-dropdown option[value="'+countyid+'"]').prop('selected', 'selected').attr('selected', true);
 
 
-			var periodid = 'LAST_MONTH';
+            var todayte = new Date().getDate();
+            if(parseFloat(todayte) < 15){
+                var periodid = getPreviousPMonth()
+            }else{
+                var periodid = 'LAST_MONTH';
+            }
+
+            function getPreviousPMonth() {
+                var per_y = new Date().getFullYear();
+                var per_m = new Date().getMonth();
+                per_m = parseFloat(per_m) -1;
+                // per_m = parseFloat(per_m);
+                if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
+                if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+                var per = per_y+""+per_m;
+                return per
+                // return(getPerio(per, false))
+            }
+            
             // sleep(3000);
             //load the mos by commodity 
             // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr;Y4O2r9a9QRQ;DUnK0MqACvs;goYRWZ7kJAA;R4VD8EvRxyN&dimension=ou:'+countyid+'&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';

@@ -11,7 +11,9 @@
                     exporting: {
                         buttons: {
                             contextButton: {
-                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label'],
+                                symbol: null,
+                                text: "Export"
                             }
                         }
                     },
@@ -40,66 +42,16 @@
                         name: 'Percentage',
                         colorByPoint: true,
                         data: [{
-                            name: 'Opening SOH = Closing SOH previous month',
+                            name: `Opening SOH = Closing SOH previous month  (${compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100}%)`,
                             y: compliant_facility_count
                         }, {
-                            name: 'Opening SOH ≠ Closing SOH previous month',
+                            name: `Opening SOH ≠ Closing SOH previous month  (${non_compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100}%)`,
                             y: non_compliant_facility_count
                         }]
                     }]
                 });
             };
             //-------------------end 1--------------------------
-
-
-            //-------------------2--------------------------
-             
-            function pieTwo(x,y){
-                Highcharts.chart('pc2', {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Artesunate inj'
-                    },
-                    exporting: {
-                        buttons: {
-                            contextButton: {
-                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
-                            }
-                        }
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            colors: ['#7bd48d','#ffc7ce'],
-                            dataLabels: {
-                                enabled: true
-                            },
-                            showInLegend: true
-                        }
-                    },
-                    series: [{
-                        name: 'Brands',
-                        colorByPoint: true,
-                        data: [{
-                            name: 'Opening SOH = Closing SOH previous month',
-                            y: x
-                        }, {
-                            name: 'Opening SOH ≠ Closing SOH previous month',
-                            y: y
-                        }]
-                    }]
-                });
-            };
-            //-------------------end 2--------------------------
 
 
             //-------------------3--------------------------
@@ -120,7 +72,9 @@
                     exporting: {
                         buttons: {
                             contextButton: {
-                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
+                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label'],
+                                symbol: null,
+                                text: "Export"
                             }
                         }
                     },
@@ -145,70 +99,18 @@
                         name: 'Consistency',
                         colorByPoint: true,
                         data: [{
-                            name: 'Discrepancy',
+                            name: `Discrepancy (${disc/(disc+nodisc)*100}%)`,
                             y: disc,
                             sliced: true,
                             selected: true
                         }, {
-                            name: 'No discrepancy',
+                            name: `No discrepancy (${nodisc/(disc+nodisc)*100}%)`,
                             y: nodisc
                         }]
                     }]
                 });
             };
             //-------------------end 3--------------------------
-
-
-
-            //-------------------4--------------------------
-            // Build the chart
-            function pieFour(x,y){
-                Highcharts.chart('pc4', {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Internal Data Consistency (Artesunate inj)'
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: false
-                            },
-                            showInLegend: true
-                        }
-                    },
-                    exporting: {
-                        buttons: {
-                            contextButton: {
-                                menuItems: ['downloadPNG', 'downloadSVG', 'separator', 'label']
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Brands',
-                        colorByPoint: true,
-                        data: [{
-                            name: 'No discrepancy',
-                            y: 10.85
-                        }, {
-                            name: 'Discrepancy',
-                            y: 4.67
-                        }]
-                    }]
-                });
-            };
-            //-------------------end 4--------------------------
-
-
 
 
             //-------------------column--------------------------
@@ -339,10 +241,12 @@
                     },
                     series: [{
                         name: 'Yes',
-                        data: reported
+                        data: reported,
+                        color: '#9bbb59'
                     }, {
                         name: 'No',
-                        data: didNotReport
+                        data: didNotReport,
+                        color: '#c0504d'
                     }],
             
                     responsive: {

@@ -544,11 +544,11 @@ function getConsist(consturl,commd,the_orgu){
                         pos_adj_code = theDx[2];
                     }
                     neg_adj_code = '';
-                    if(theDx[3].split('.')[1] == "w77uMi1KzOH"){
+                    if(theDx[3].split('.')[1] == "unVIt2C0cdW"){
                         neg_adj_code = theDx[3];
                     }
                     qty_disp_code = '';
-                    if(theDx[4].split('.')[1] == "unVIt2C0cdW"){
+                    if(theDx[4].split('.')[1] == "w77uMi1KzOH"){
                         qty_disp_code = theDx[4];
                     }
                     phy_count_code = '';
@@ -581,51 +581,58 @@ function getConsist(consturl,commd,the_orgu){
                             var qty_disp = 0;
                             var neg_adj = 0;
                             $.each(therows, function (indx, onerow) {
-                                var valuee = onerow[2];
-                                var ouu = onerow[1];
+                                var valuee = onerow[3];
+                                var ouu = onerow[2];
                                 if(valuee == null || valuee == undefined){
                                     valuee = 0
                                 }
                                 // <<-------------POSITIVES--------------
                                 if(ouu == oneou && onerow[0] == begbal_code){
-                                    begin_bal = begin_bal + valuee;
+                                    begin_bal = parseFloat(begin_bal) + parseFloat(valuee);
                                 }
                                 if(ouu == oneou && onerow[0] == qty_recv_code){
-                                    qty_received = qty_received + valuee;          
+                                    qty_received = parseFloat(qty_received) + parseFloat(valuee);          
                                 }
                                 if(ouu == oneou && onerow[0] == pos_adj_code){
-                                    pos_adj = pos_adj + valuee;
+                                    pos_adj = parseFloat(pos_adj) + parseFloat(valuee);
                                 }
                                 if(begin_bal != null && qty_received != null && pos_adj != null){
-                                    sum_pos = begin_bal + qty_received + pos_adj;
+                                    sum_pos = parseFloat(begin_bal) + parseFloat(qty_received) + parseFloat(pos_adj);
                                 }
+
                                 // >>-------------end POSITIVES--------------
 
                                 // <<-------------NEGATIVES--------------
                                 if(ouu == oneou && onerow[0] == qty_disp_code){
-                                    qty_disp = qty_disp + valuee;
+                                    qty_disp = parseFloat(qty_disp) + parseFloat(valuee);
                                 }
                                 if(ouu == oneou && onerow[0] == neg_adj_code){
-                                    neg_adj = neg_adj + valuee;
+                                    neg_adj = parseFloat(neg_adj) + parseFloat(valuee);
                                 }
-                                if(qty_disp != null && neg_adj != null && clos_bal){
-                                    sum_neg = qty_disp + neg_adj;
+                                if(qty_disp != null && neg_adj != null){
+                                    sum_neg = parseFloat(qty_disp) + parseFloat(neg_adj);
                                 }
+
                                 // >>-------------end NEGATIVES--------------
 
                                 if(ouu == oneou && onerow[0] == phy_count_code){
-                                    clos_bal = clos_bal + valuee;
+                                    clos_bal = parseFloat(clos_bal) + parseFloat(valuee);
                                 }
 
                             });
                             var difference = sum_pos - sum_neg;
+                            console.log("sum_neg "+oneou+" == "+sum_neg);
+                            console.log("sum_pos "+oneou+" == "+sum_pos);
+                            console.log("clos_bal "+oneou+" == "+clos_bal);
+                            console.log("diff "+oneou+" == "+difference);
+                            console.log(" =============================== ");
                             if(sum_neg != null && sum_pos != null){
                                 if(parseFloat(difference) === parseFloat(clos_bal)){
                                     compliant_facility_count = compliant_facility_count+1;
                                     nodisc_facilities_names.push(theItems[oneou].name);
                                     nodisc_facilities_codes.push(oneou);
-                                    // nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
-                                    nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Sum_Pos: '+sum_pos+' && Sum_Neg: '+sum_neg+'  && Diff: '+difference+' && Clos_Bal: '+clos_bal+'</small> </td><td>'+"getMFLcode(oneou)"+'</td></tr>';
+                                    nodisctbl += '<tr><td>'+theItems[oneou].name+'</td><td>'+getMFLcode(oneou)+'</td></tr>';
+                                    // nodisctbl += '<tr><td>'+theItems[oneou].name+' <small class="hidethis"><br/><i>('+oneou+')</i> Sum_Pos: '+sum_pos+' && Sum_Neg: '+sum_neg+'  && Diff: '+difference+' && Clos_Bal: '+clos_bal+'</small> </td><td>'+"getMFLcode(oneou)"+'</td></tr>';
                                 }
                             }
                         }
@@ -635,8 +642,8 @@ function getConsist(consturl,commd,the_orgu){
                         if(!nodisc_facilities_codes.includes(the_ou) && valid_orgs.includes(the_ou) ){
                             disc_facilities_codes.push(the_ou);
                             disc_facilities_names.push(theItems[the_ou].name);
-                            // disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+getMFLcode(the_ou)+'</td></tr>';
-                            disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
+                            disctbl += '<tr><td>'+theItems[the_ou].name+' </td><td>'+getMFLcode(the_ou)+'</td></tr>';
+                            // disctbl += '<tr><td>'+theItems[the_ou].name+' <small class="hidethis"><br/><i>('+the_ou+')</i> </small> </td><td>'+"getMFLcode(the_ou)"+'</td></tr>';
                         }
                     });
                     $('#noDiscData').DataTable().destroy();

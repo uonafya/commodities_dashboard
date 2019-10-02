@@ -235,7 +235,7 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
             tableData += '<td class="text-right" bgcolor="#ffeb9c">'+overstock+' ('+formatNumber(overpercent.toFixed(0))+'%)</td>';
             tableData += '<td class="text-right" bgcolor="#7bd48d">'+stockok+' ('+formatNumber(okpercent.toFixed(0))+'%)</td>';
             tableData += '<td class="text-right" bgcolor="#ffc7ce">'+understock+' ('+formatNumber(underpercent.toFixed(0))+'%)</td>';
-			tableData += '<td class="text-right" bgcolor="#ff0000">'+stockout+' ('+formatNumber(stockoutpercent.toFixed(0))+'%)</td>';
+			tableData += '<td class="text-right" bgcolor="#ff0000" style="color: #fff;">'+stockout+' ('+formatNumber(stockoutpercent.toFixed(0))+'%)</td>';
 			tableData += '<td class="text-right">'+nomos+' ('+formatNumber(nomospercent.toFixed(0))+'%)</td>';
 			tableData += '<td class="text-right">'+formatNumber(totalorgs)+'</td>';	
             tableData += '</tr>';	
