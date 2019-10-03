@@ -1,6 +1,7 @@
             //-------------------1--------------------------
             // Highcharts
-            function pieOne(thename,subtitle,compliant_facility_count,non_compliant_facility_count){
+            function pieOne(thename,subtitle,compliant_facility_count,non_compliant_facility_count,compliant_facilities_codes,non_compliant_facilities_codes){
+                console.log('object',non_compliant_facilities_codes.length)
                 Highcharts.chart('pc1', {
                     chart: {
                         plotBackgroundColor: null,
@@ -41,11 +42,12 @@
                     series: [{
                         name: 'Percentage',
                         colorByPoint: true,
+                        valueDecimals: 2,
                         data: [{
-                            name: `Opening SOH = Closing SOH previous month  (${compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100}%)`,
-                            y: compliant_facility_count
+                            name: `Opening SOH = Closing SOH previous month  (${compliant_facilities_codes.length}, ${compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100}%)`,
+                            y: compliant_facility_count     
                         }, {
-                            name: `Opening SOH ≠ Closing SOH previous month  (${non_compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100}%)`,
+                            name: `Opening SOH ≠ Closing SOH previous month  (${non_compliant_facilities_codes.length}, ${non_compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100}%)`,
                             y: non_compliant_facility_count
                         }]
                     }]
@@ -98,6 +100,7 @@
                     series: [{
                         name: 'Consistency',
                         colorByPoint: true,
+                        valueDecimals: 2,
                         data: [{
                             name: `Discrepancy (${disc/(disc+nodisc)*100}%)`,
                             y: disc,
