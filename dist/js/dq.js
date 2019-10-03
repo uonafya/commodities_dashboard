@@ -15,7 +15,7 @@ function getConco(ccurl,commodity){
             console.log("fetching valid OUs");
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_092019.json';
             var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
-           // var valid_ous_url = 
+          // var valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
 
             $.ajax({
                 type: "GET",
@@ -136,7 +136,7 @@ function getConco(ccurl,commodity){
                         // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
                         var commo_s = commodity.split('.')[0];
                         // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
-                        pieOne('Data Quality: Concordance',commodities_array[commo_s].name,tot_eq_perc,tot_neq_perc);
+                        pieOne('Data Quality: Concordance',commodities_array[commo_s].name,tot_eq_perc,tot_neq_perc,compliant_facilities_codes, non_compliant_facilities_codes);
                         // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
                         $('.loader-sp.pieone').addClass('hidden');
                         $('#pc1, .pc1').removeClass('hidden');
@@ -498,7 +498,7 @@ function getConsist(consturl,commd,the_orgu){
         url: consturl,                    
         success: function (data) {
             console.log("fetching valid OUs");
-            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_092019.json';
+            //var valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
             var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
             $.ajax({
                 type: "GET",
@@ -729,7 +729,7 @@ function getConsist(consturl,commd,the_orgu){
                         });    
                     // END title fill
                     
-                    pieThree(commodities_array[commd].name,'Internal Data Consistency',with_discrepancy_number, no_discrepancy_number);
+                    pieThree(commodities_array[commd].name,'Internal Data Consistency',with_discrepancy_number, no_discrepancy_number,disc_facilities_codes,nodisc_facilities_codes);
                     $('.loader-sp.piethree').addClass('hidden');
                     $('.piethree_state').addClass('hidden');
                     $('#pc3, .pc3').removeClass('hidden');
