@@ -1,7 +1,6 @@
             //-------------------1--------------------------
             // Highcharts
             function pieOne(thename,subtitle,compliant_facility_count,non_compliant_facility_count,compliant_facilities_codes,non_compliant_facilities_codes){
-                console.log('object',non_compliant_facilities_codes.length)
                 Highcharts.chart('pc1', {
                     chart: {
                         plotBackgroundColor: null,

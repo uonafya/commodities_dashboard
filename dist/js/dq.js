@@ -136,7 +136,7 @@ function getConco(ccurl,commodity){
                         // console.log("NON_compliant_facilities = "+non_compliant_facility_count);
                         var commo_s = commodity.split('.')[0];
                         // console.log('PIE: commodities_array[commo_s].name:-> '+commodities_array[commo_s].name);
-                        pieOne('Data Quality: Concordance',commodities_array[commo_s].name,tot_eq_perc,tot_neq_perc);
+                        pieOne('Data Quality: Concordance',commodities_array[commo_s].name,tot_eq_perc,tot_neq_perc,compliant_facilities_codes, non_compliant_facilities_codes);
                         // pieOne(getCommodityName(commodity.split('.')[0]),compliant_facility_count,non_compliant_facility_count);
                         $('.loader-sp.pieone').addClass('hidden');
                         $('#pc1, .pc1').removeClass('hidden');
