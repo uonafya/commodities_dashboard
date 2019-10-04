@@ -230,11 +230,17 @@ color: transparent;}
                                     <!-- endSCP -->
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
+                                        <ul aria-expanded="false" class="collapse  first-level">
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <!-- end County -->
                             
-                            <!-- National -->
+                                                        <!-- National -->
                             <li class="sidebar-item"> 
                                 <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
@@ -652,7 +658,7 @@ color: transparent;}
         $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
 
         var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID';
-        // var ccurl = 'http://localhost/pmi/json/conco2d.json'
+        //var ccurl = 'https://api.myjson.com/bins/1gzcbd'
         var commodity = 'iOARK31NdLp.HWtHCLAwprR';
         
         getConco(ccurl,commodity);

@@ -1,6 +1,6 @@
             //-------------------1--------------------------
             // Highcharts
-            function pieOne(thename,subtitle,compliant_facility_count,non_compliant_facility_count){
+            function pieOne(thename,subtitle,compliant_facility_count,non_compliant_facility_count,compliant_facilities_codes,non_compliant_facilities_codes){
                 Highcharts.chart('pc1', {
                     chart: {
                         plotBackgroundColor: null,
@@ -41,11 +41,12 @@
                     series: [{
                         name: 'Percentage',
                         colorByPoint: true,
+                        valueDecimals: 2,
                         data: [{
-                            name: `Opening SOH = Closing SOH previous month  (${compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100}%)`,
-                            y: compliant_facility_count
+                            name: `Opening SOH = Closing SOH previous month  (${compliant_facilities_codes.length}, ${Highcharts.numberFormat((compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100),0)}%)`,
+                            y: compliant_facility_count     
                         }, {
-                            name: `Opening SOH ≠ Closing SOH previous month  (${non_compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100}%)`,
+                            name: `Opening SOH ≠ Closing SOH previous month  (${non_compliant_facilities_codes.length}, ${Highcharts.numberFormat((non_compliant_facility_count/(compliant_facility_count+non_compliant_facility_count)*100),0)}%)`,
                             y: non_compliant_facility_count
                         }]
                     }]
@@ -55,7 +56,7 @@
 
 
             //-------------------3--------------------------
-            function pieThree(title,subtitle,disc,nodisc){
+            function pieThree(title,subtitle,disc,nodisc,disc_facilities_codes,nodisc_facilities_codes){
                 Highcharts.chart('pc3', {
                     chart: {
                         plotBackgroundColor: null,
@@ -87,7 +88,7 @@
                             cursor: 'pointer',
                             colors: ['#ffc7ce', '#7bd48d'],
                             dataLabels: {
-                                enabled: false
+                                enabled: true
                             },
                             showInLegend: true
                         }
@@ -98,13 +99,14 @@
                     series: [{
                         name: 'Consistency',
                         colorByPoint: true,
+                        valueDecimals: 2,
                         data: [{
-                            name: `Discrepancy (${disc/(disc+nodisc)*100}%)`,
+                            name: `Discrepancy (${disc_facilities_codes.length}, ${Highcharts.numberFormat((disc/(disc+nodisc)*100),0)}%)`,
                             y: disc,
                             sliced: true,
                             selected: true
                         }, {
-                            name: `No discrepancy (${nodisc/(disc+nodisc)*100}%)`,
+                            name: `No discrepancy (${nodisc_facilities_codes.length}, ${Highcharts.numberFormat((nodisc/(disc+nodisc)*100),0)}%)`,
                             y: nodisc
                         }]
                     }]
