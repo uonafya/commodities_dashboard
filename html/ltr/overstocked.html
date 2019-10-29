@@ -133,8 +133,8 @@
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
                                         <ul aria-expanded="false" class="collapse  first-level">
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked facilities</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">understocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -484,8 +484,7 @@
 
 
         var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commdata[0].indicator+';'+commdata[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID'
-
-        
+      
         // https://hiskenya.org/api/26/analytics.json?dimension=dx:SSARcWY2Ge1;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;iRK9uABUTVZ&dimension=pe:201905&displayProperty=NAME&outputIdScheme=UID
 
         //var understockurl = 'https://api.myjson.com/bins/r4gnx';
@@ -559,6 +558,7 @@
                 }else{
                     perr0 = getPerio(perr0, true)
                 }
+              
                 
                 
                 var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr0+'&displayProperty=NAME&outputIdScheme=UID';
@@ -620,6 +620,8 @@
             }
             if(theou == undefined || theou == null || theou == ''){
                 theou = 'tAbBVBbueqD';
+            }else{
+                theou = theou
             }
            
             
@@ -629,9 +631,11 @@
 
             if($('#h_period').val() == null){
                 date_range_string = getThePeriod();
+                
             }else{
                 date_range_string = getPerio($('#h_period').val(), true)
-             }
+            }
+
 
             var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID';
             overstocked(understockurl,theou,getcommd);
