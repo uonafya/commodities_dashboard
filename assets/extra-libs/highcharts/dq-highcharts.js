@@ -244,11 +244,11 @@
                     series: [{
                         name: 'Yes',
                         data: reported,
-                        color: '#9bbb59'
+                        color: '#7bd48d'
                     }, {
                         name: 'No',
                         data: didNotReport,
-                        color: '#c0504d'
+                        color: '#ff0000'
                     }],
             
                     responsive: {

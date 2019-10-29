@@ -127,7 +127,7 @@ function understocked(understockurl,orgu,commodity)
                                 })
                             
                                     						
-                                $.each(orgunits, function (key, value) 
+                                $.each(orgunits,function (key, one_ou) 
                                 {
                                    
                                     //  $.each(data.metaData.dimensions.ou, function (key, rentry) {
@@ -141,12 +141,12 @@ function understocked(understockurl,orgu,commodity)
                                         {		
                                             
                                             facility_count+=1;
-                                            var diffmos = (3/parseFloat(orgunitmos[value]))*parseFloat(orgunitphy[value]);
+                                            var diffmos = (3/parseFloat(orgunitmos[one_ou]))*parseFloat(orgunitphy[one_ou]);
                                             //orgunitdiff[value] = diffmos-parseFloat(orgunitphy[value]).toFixed(0);
-                                            orgunitdiff[value] = (diffmos-parseFloat(orgunitphy[value])).toFixed(0);
-                                            
+                                            orgunitdiff[one_ou] = (diffmos-parseFloat(orgunitphy[one_ou])).toFixed(0);
+                                        
 
-                                            tableData += '<tr><td>'+data.metaData.items[value].name+'</td><td>'+getMFLcode(value)+'</td><td>'+orgunitmos[value]+'</td><td>'+orgunitphy[value]+'</td><td>'+orgunitdiff[value]+'</td></tr>' ;
+                                            tableData += '<tr><td>'+data.metaData.items[one_ou].name+'</td><td>'+getMFLcode(one_ou)+'</td><td>'+orgunitmos[one_ou]+'</td><td>'+orgunitphy[one_ou]+'</td><td>'+orgunitdiff[one_ou]+'</td></tr>' ;
                                             
                                             
                                         }

@@ -716,6 +716,19 @@ color: transparent;}
                 }else{
                     perr0 = getPerio(perr0, true)
                 }
+                
+                var theou = null
+                if($('#subcounty-dropdown').val() != null){
+                    theou = $('#subcounty-dropdown').val();
+                } else if($('#county-dropdown').val() != null){
+                    theou = $('#county-dropdown').val();
+                } else{
+                    theou = myOU();
+                }
+                if(theou == undefined || theou == null ){
+                    theou = 'tAbBVBbueqD';
+                }
+                
                 var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID';
                 // var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+thecomm+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID';
                 getConco(ccurl,commodity);
