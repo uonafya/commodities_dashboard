@@ -164,13 +164,13 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
                                 <span id="thetitle">Health Facilities | Overstocked</span>
-                                &nbsp; &nbsp;
+                                &nbsp;
                             </h4>
                         </div>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="col-md-7 col-sm-7 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
                                 <div class="col-md-11 col-sm-11 col-xs-11">
@@ -188,16 +188,16 @@
                                             <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">
                                                 <option value="" disabled selected>Select commodity</option>
                                                 <option value="ASinj">Artesunate Injection</option>
-                                                <option value="AL6">Artemether-Lumefantrine 20/120 Tabs 6s</option>
-                                                <option value="AL12">Artemether-Lumefantrine 20/120 Tabs 12s</option>
-                                                <option value="AL18">Artemether-Lumefantrine 20/120 Tabs 18s</option>
-                                                <option value="AL24">Artemether-Lumefantrine 20/120 Tabs 24s</option>
-                                                <option value="SP">Sulphadoxine Pyrimethamine Tabs</option>
-                                                <option value="RDT">Rapid Diagnostic Test</option>
+                                                <option value="BnGDrFwyQp9">Artemether-Lumefantrine 20/120 Tabs 6s</option>
+                                                <option value="c0MB4RmVjxk">Artemether-Lumefantrine 20/120 Tabs 12s</option>
+                                                <option value="qnZmg5tNSMy">Artemether-Lumefantrine 20/120 Tabs 18s</option>
+                                                <option value="gVp1KSFI69G">Artemether-Lumefantrine 20/120 Tabs 24s</option>
+                                                <option value="imheYfA1Kiw">Sulphadoxine Pyrimethamine Tabs</option>
+                                                <option value="cPlWFYbBacW">Rapid Diagnostic Test</option>
                                             </select>
                                         </div> 
                                         <div class="col-md-2 col-sm-2 col-xs-12">
-                                            <input type="text" placeholder="Period from" class="form-control" id="period-dropdown"/> 
+                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown"/> 
                                             <input type="hidden" name="h_period" id="h_period"/>
                                         </div> 
 
@@ -455,21 +455,36 @@
         var daterange = []
         var daterange1 = []
         var theou = myOU();
-        var commdata = $("#commodity-picker").val();
-        var commoditydata = 
-        [{commd:'AL6',indicator:'HfGVoCZAwtd',commodity:'BnGDrFwyQp9'},
-         {commd:'AL12',indicator:'nK8sqMAeQHY',commodity:'c0MB4RmVjxk'},
-         {commd:'AL18',indicator:'ZcngDQJKiEg',commodity:'qnZmg5tNSMy'},
-         {commd:'AL24',indicator:'wOKbEd8Dbi3',commodity:'gVp1KSFI69G'},
-         {commd:'SP',indicator:'AX1co0SXobM',commodity:'imheYfA1Kiw'},
-         {commd:'RDT',indicator:'UUNwkYQhYgX',commodity:'cPlWFYbBacW'},
-         {commd:'ASinj',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}]
+        var commval = $("#commodity-picker").val();
         
-        var ASinj =[{commd:'ASinj',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}]
+        var commoditydata = 
+        [{commd:'Artemether-Lumefantrine 20/120 Tabs 6s',indicator:'HfGVoCZAwtd',commodity:'BnGDrFwyQp9'},
+         {commd:'Artemether-Lumefantrine 20/120 Tabs 12s',indicator:'nK8sqMAeQHY',commodity:'c0MB4RmVjxk'},
+         {commd:'Artemether-Lumefantrine 20/120 Tabs 18s',indicator:'ZcngDQJKiEg',commodity:'qnZmg5tNSMy'},
+         {commd:'Artemether-Lumefantrine 20/120 Tabs 24s',indicator:'wOKbEd8Dbi3',commodity:'gVp1KSFI69G'},
+         {commd:'Sulphadoxine Pyrimethamine tabs',indicator:'AX1co0SXobM',commodity:'imheYfA1Kiw'},
+         {commd:'Rapid Diagnostic Tests',indicator:'UUNwkYQhYgX',commodity:'cPlWFYbBacW'},
+         {commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'} ]
+        
+        var commdata =[{commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}]
 
 
-        if (commdata == undefined || commdata == null || commdata == ''){
-            commdata = ASinj;
+        if (commval == undefined || commval == null || commval == ''){
+            // commdata = [{commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}];
+        }else if(commval == 'BnGDrFwyQp9'){
+            commdata = {commd:'Artemether-Lumefantrine 20/120 Tabs 6s',indicator:'HfGVoCZAwtd',commodity:'BnGDrFwyQp9'}
+        }else if(commval == 'c0MB4RmVjxk'){
+            commdata = {commd:'Artemether-Lumefantrine 20/120 Tabs 12s',indicator:'nK8sqMAeQHY',commodity:'c0MB4RmVjxk'}
+        }else if(commval == 'qnZmg5tNSMy'){
+            commdata = {commd:'Artemether-Lumefantrine 20/120 Tabs 18s',indicator:'ZcngDQJKiEg',commodity:'qnZmg5tNSMy'}
+        }else if(commval == 'gVp1KSFI69G'){
+            commdata = {commd:'Artemether-Lumefantrine 20/120 Tabs 24s',indicator:'wOKbEd8Dbi3',commodity:'gVp1KSFI69G'}
+        }else if(commval == 'imheYfA1Kiw'){
+            commdata = {commd:'Sulphadoxine Pyrimethamine tabs',indicator:'AX1co0SXobM',commodity:'imheYfA1Kiw'}
+        }else if(commval == 'cPlWFYbBacW'){
+            commdata = {commd:'Rapid Diagnostic Tests',indicator:'UUNwkYQhYgX',commodity:'cPlWFYbBacW'}
+        }else if(commval == 'iOARK31NdLp'){
+            commdata = {commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}
         }
 
        
@@ -487,22 +502,22 @@
       
         // https://hiskenya.org/api/26/analytics.json?dimension=dx:SSARcWY2Ge1;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;iRK9uABUTVZ&dimension=pe:201905&displayProperty=NAME&outputIdScheme=UID
 
-        //var understockurl = 'https://api.myjson.com/bins/r4gnx';
+        // var overstockurl = 'https://api.myjson.com/bins/r4gnx';
        
       
 
-        overstocked(understockurl,theou,commdata);
+        overstocked(overstockurl,theou,commdata);
 
 
         $("#county-dropdown").change(function() 
             {  
                 var theou = $(this).val();
                 var commd = $("#commodity-picker").val();
-                var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+                var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)];
                
 
                 if(getcommd == null || getcommd == undefined || getcommd == ''){
-                    getcommd = ASinj;
+                    getcommd = [{commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}];
                 }
                
                 var perr1 =  $('#h_period').val();
@@ -512,9 +527,9 @@
                     perr1 = getPerio(perr1, true)
                 }
                 
-                var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr1+'&displayProperty=NAME&outputIdScheme=UID'
+                var overstockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr1+'&displayProperty=NAME&outputIdScheme=UID'
                     
-                overstocked(understockurl,theou,getcommd);
+                overstocked(overstockurl,theou,getcommd);
             }
         );
 
@@ -522,10 +537,10 @@
             {  
                 var theou = $(this).val();
                 var commd = $("#commodity-picker").val();
-                var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+                var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)];
                 
                 if(getcommd == null || getcommd == undefined || getcommd == ''){
-                    getcommd = ASinj;
+                    getcommd = [{commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}];
                 }
                 var perr0 =  $('#h_period').val();
                 if( perr0 == '' || perr0 == null || perr0 == undefined ){
@@ -533,24 +548,21 @@
                 }else{
                     perr0 = getPerio(perr0, true)
                 }
-                var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr0+'&displayProperty=NAME&outputIdScheme=UID';
+                var overstockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr0+'&displayProperty=NAME&outputIdScheme=UID';
 
                 
-                overstocked(understockurl,theou,getcommd);
+                overstocked(overstockurl,theou,getcommd);
             }
         );
         $("#commodity-picker").change(function() 
             {     
                 var commd = $(this).val();
                 
-                var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
-
-        
+                var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)];
 
                 if(getcommd == null || getcommd == undefined || getcommd == ''){
-                    getcommd = ASinj;                    
+                    getcommd = [{commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}];                    
                 }
-
                 
                 var perr0 = $('#h_period').val();
                 if( perr0 == '' || perr0 == null || perr0 == undefined ){
@@ -561,9 +573,9 @@
               
                 
                 
-                var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr0+'&displayProperty=NAME&outputIdScheme=UID';
+                var overstockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr0+'&displayProperty=NAME&outputIdScheme=UID';
 
-                overstocked(understockurl,theou,getcommd);
+                overstocked(overstockurl,theou,getcommd);
             
                
             }
@@ -606,7 +618,7 @@
             var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
             var full_dates_arr = dateRange(startDate, endDate);
             var commd = $("#commodity-picker").val();
-            var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+            var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)];
             $.each(full_dates_arr, function (indexs, onedate) {
                 var adate = onedate.split('-');
                 date_range_string += adate[0]+adate[1]+';';
@@ -626,7 +638,7 @@
            
             
             if(getcommd == null || getcommd == undefined || getcommd == ''){
-                getcommd = ASinj;
+                getcommd = [{commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}];
             }
 
             if($('#h_period').val() == null){
@@ -637,8 +649,8 @@
             }
 
 
-            var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID';
-            overstocked(understockurl,theou,getcommd);
+            var overstockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID';
+            overstocked(overstockurl,theou,getcommd);
             // daterange = [];
             $('#period-dropdown').val(null);
             $('#period-dropdownTo').val(null);

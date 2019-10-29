@@ -31,6 +31,8 @@ function checkOUs(ouid){
 function overstocked(overstockurl,orgu,commodity)
 {
     console.log('overstockedurl: '+overstockurl);
+    console.log('orgu: '+orgu);
+    console.log('commodity: '+JSON.stringify(commodity));
     $('#overstocked_table').addClass('hidden');
     $('.overstockeddata').addClass('hidden');
     $('.loader-sp').removeClass('hidden');
@@ -41,7 +43,7 @@ function overstocked(overstockurl,orgu,commodity)
         $.ajax({
             type: 'GET',
             crossDomain: true,
-            url: understockurl,                    
+            url: overstockurl,                    
             success: function (data) {
     
                 //create the org units array
@@ -78,10 +80,6 @@ function overstocked(overstockurl,orgu,commodity)
                         var count = 0;
                         $.each(data.metaData.dimensions.ou, function (key, entry) 
                         {
-                            
-                           
-                            
-                            
                             
                                 
                                 if(orgunits.indexOf(entry)>=0)
@@ -130,24 +128,16 @@ function overstocked(overstockurl,orgu,commodity)
                                                 
                                             }
                                             
-                            
-                                                        
-                                               
-                                            
                                         })	
-                                        						
-                                                
-                                   
-                                
+                                        
                              count++;
                                             
     
                        // tableData += '</tr>';	
                    // }
                     
-                
     
-                $('#thetitle').html('<b>'+commodity[0].commd+'</b> overstocked in <br/> in '+facility_count+' facilities');
+                $('#thetitle').html('<b>'+commodity.commd+'</b> Overstocked in <br/> in '+facility_count+' facilities');
                 //tableData += '<table>';	
                 //console.log(tableData)
                 $('#overstocked_table').removeClass('hidden');
@@ -155,10 +145,10 @@ function overstocked(overstockurl,orgu,commodity)
                 $('.loader-sp').addClass('hidden');
                 // $('.loader-sp').css('display','none');
                 $('.overstocked_status').addClass('hidden');
-                $('#overstocked_table').DataTable().destroy();
-                $("table.actsbox tbody").empty();
                 $('.overstocked_status').addClass('hidden');
-                $("table.actsbox tbody").append(tableData);	
+                $("#overstocked_table tbody").empty();
+                $('#overstocked_table').DataTable().destroy();
+                $("#overstocked_table tbody").append(tableData);	
                 //$('#overstocked_table').DataTable();                                                          
                 $('#overstocked_table').DataTable({
                     dom: 'Bfrtlip',
