@@ -137,7 +137,7 @@ function overstocked(overstockurl,orgu,commodity)
                    // }
                     
     
-                $('#thetitle').html('<b>'+commodity.commd+'</b> Overstocked in <br/> in '+facility_count+' facilities');
+                $('#thetitle').html('<b>'+commodity.commd+'</b> Overstocked in <br/>  '+facility_count+' facilities');
                 //tableData += '<table>';	
                 //console.log(tableData)
                 $('#overstocked_table').removeClass('hidden');
