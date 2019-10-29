@@ -139,13 +139,14 @@ function understocked(understockurl,orgu,commodity)
                                     
                                         if(orgunitmos[value]>0 && orgunitmos[value]<3)
                                         {		
+                                            
                                             facility_count+=1;
                                             var diffmos = (3/parseFloat(orgunitmos[value]))*parseFloat(orgunitphy[value]);
                                             //orgunitdiff[value] = diffmos-parseFloat(orgunitphy[value]).toFixed(0);
                                             orgunitdiff[value] = (diffmos-parseFloat(orgunitphy[value])).toFixed(0);
                                             
 
-                                            tableData += '<tr><td>'+data.metaData.items[value].name+'</td><td>'+getMFLcode()+'</td><td>'+orgunitmos[value]+'</td><td>'+orgunitphy[value]+'</td><td>'+orgunitdiff[value]+'</td></tr>' ;
+                                            tableData += '<tr><td>'+data.metaData.items[value].name+'</td><td>'+getMFLcode(value)+'</td><td>'+orgunitmos[value]+'</td><td>'+orgunitphy[value]+'</td><td>'+orgunitdiff[value]+'</td></tr>' ;
                                             
                                             
                                         }

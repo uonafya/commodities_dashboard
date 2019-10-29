@@ -125,7 +125,7 @@ function overstocked(overstockurl,orgu,commodity)
                                                 orgunitdiff[value] = (parseFloat(orgunitphy[value])-diffmos).toFixed(0);
                                             
     
-                                                tableData += '<tr><td>'+data.metaData.items[value].name+'</td><td>'+getMFLcode(entry)+'</td><td>'+orgunitmos[value]+'</td><td>'+orgunitphy[value]+'</td><td>'+orgunitdiff[value]+'</td></tr>' ;
+                                                tableData += '<tr><td>'+data.metaData.items[value].name+'</td><td>'+getMFLcode(value)+'</td><td>'+orgunitmos[value]+'</td><td>'+orgunitphy[value]+'</td><td>'+orgunitdiff[value]+'</td></tr>' ;
                                                 
                                                 
                                             }
