@@ -167,7 +167,7 @@ function understocked(understockurl,orgu,commodity)
                 
             
 
-            $('#thetitle').html('<b>'+commodity[0].commd+'</b> understocked in <br/> in '+facility_count+' facilities');
+            $('#thetitle').html('<b>'+commodity[0].commd+'</b> understocked in <br/>  '+facility_count+' facilities');
             //tableData += '<table>';	
             //console.log(tableData)
             $('#understocked_table').removeClass('hidden');
