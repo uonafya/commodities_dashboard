@@ -251,6 +251,7 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
             buttons: [
                 'copy', 'csv', 'excel', 'pdf', 'print'
             ],
+			order: []
         });	
         //$('#zero_config').DataTable();
         $('.t_one.loader-sp').addClass('hidden');
