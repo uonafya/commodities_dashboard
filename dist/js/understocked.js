@@ -96,9 +96,6 @@ function understocked(understockurl,orgu,commodity)
                     {
                         
                        
-                        
-                        
-                        
                             
                             if(orgunits.indexOf(entry)>=0)
                              {
@@ -140,8 +137,9 @@ function understocked(understockurl,orgu,commodity)
                                     
                                     //calculate the difference
                                     
-                                        if(orgunitmos[one_ou]<3)
+                                        if(orgunitmos[one_ou]>0 && orgunitmos[one_ou]<3)
                                         {		
+                                            
                                             facility_count+=1;
                                             var diffmos = (3/parseFloat(orgunitmos[one_ou]))*parseFloat(orgunitphy[one_ou]);
                                             //orgunitdiff[value] = diffmos-parseFloat(orgunitphy[value]).toFixed(0);
@@ -169,7 +167,7 @@ function understocked(understockurl,orgu,commodity)
                 
             
 
-            $('#thetitle').html('<b>'+commodity[0].commd+'</b> understocked in <br/> in '+facility_count+' facilities');
+            $('#thetitle').html('<b>'+commodity[0].commd+'</b> understocked in <br/>  '+facility_count+' facilities');
             //tableData += '<table>';	
             //console.log(tableData)
             $('#understocked_table').removeClass('hidden');

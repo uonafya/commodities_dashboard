@@ -186,7 +186,7 @@
                                         <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">
                                                 <option value="" disabled selected>Select commodity</option>
-                                                <option value="ASinj">Artesunate Injection</option>
+                                                <option value="iOARK31NdLp">Artesunate Injection</option>
                                                 <option value="BnGDrFwyQp9">Artemether-Lumefantrine 20/120 Tabs 6s</option>
                                                 <option value="c0MB4RmVjxk">Artemether-Lumefantrine 20/120 Tabs 12s</option>
                                                 <option value="qnZmg5tNSMy">Artemether-Lumefantrine 20/120 Tabs 18s</option>
@@ -457,19 +457,22 @@
         var commdata = $("#commodity-picker").val();
         var commoditydata = 
         [{commd:'Artemether-Lumefantrine 20/120 Tabs 6s',indicator:'HfGVoCZAwtd',commodity:'BnGDrFwyQp9'},
-         {commd:'Artemether-Lumefantrine 20/120 Tabs 12s',indicator:'nK8sqMAeQHY',commodity:'c0MB4RmVjxk'},
-         {commd:'Artemether-Lumefantrine 20/120 Tabs 18s',indicator:'ZcngDQJKiEg',commodity:'qnZmg5tNSMy'},
-         {commd:'Artemether-Lumefantrine 20/120 Tabs 24s',indicator:'wOKbEd8Dbi3',commodity:'gVp1KSFI69G'},
-         {commd:'Sulphadoxine Pyrimethamine tabs',indicator:'AX1co0SXobM',commodity:'imheYfA1Kiw'},
-         {commd:'Rapid Diagnostic Tests',indicator:'UUNwkYQhYgX',commodity:'cPlWFYbBacW'},
-         {commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}]
-        
+        {commd:'Artemether-Lumefantrine 20/120 Tabs 12s',indicator:'nK8sqMAeQHY',commodity:'c0MB4RmVjxk'},
+        {commd:'Artemether-Lumefantrine 20/120 Tabs 18s',indicator:'ZcngDQJKiEg',commodity:'qnZmg5tNSMy'},
+        {commd:'Artemether-Lumefantrine 20/120 Tabs 24s',indicator:'wOKbEd8Dbi3',commodity:'gVp1KSFI69G'},
+        {commd:'Sulphadoxine Pyrimethamine tabs',indicator:'AX1co0SXobM',commodity:'imheYfA1Kiw'},
+        {commd:'Rapid Diagnostic Tests',indicator:'UUNwkYQhYgX',commodity:'cPlWFYbBacW'},
+        {commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'} ]
+                
         var ASinj =[{commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp'}]
 
 
         if (commdata == undefined || commdata == null || commdata == ''){
             commdata = ASinj;
+        }else {
+            var commdata = [commoditydata.find(commodity => commodity.commodity === commdata)];
         }
+
     
 
 
@@ -480,7 +483,7 @@
         $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
 
 
-        var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commdata[0].indicator+';'+commdata[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID'
+       var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commdata[0].indicator+';'+commdata[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID'
 
         
         // https://hiskenya.org/api/26/analytics.json?dimension=dx:SSARcWY2Ge1;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;iRK9uABUTVZ&dimension=pe:201905&displayProperty=NAME&outputIdScheme=UID
@@ -496,10 +499,12 @@
             {  
                 var theou = $(this).val();
                 var commd = $("#commodity-picker").val();
-                var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+                var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)]
 
                 if(getcommd == null || getcommd == undefined || getcommd == ''){
                     getcommd = ASinj;
+                }else{
+                    getcommd = getcommd
                 }
                 var perr1 =  $('#h_period').val();
                 if( perr1 == '' || perr1 == null || perr1 == undefined ){
@@ -517,9 +522,11 @@
             {  
                 var theou = $(this).val();
                 var commd = $("#commodity-picker").val();
-                var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+                var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)]
                 if(getcommd == null || getcommd == undefined || getcommd == ''){
                     getcommd = ASinj;
+                }else{
+                    getcommd = getcommd;
                 }
                 var perr0 =  $('#h_period').val();
                 if( perr0 == '' || perr0 == null || perr0 == undefined ){
@@ -537,11 +544,13 @@
             {     
                 var commd = $(this).val();
                 
-                var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+                var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)]
                 
 
                 if(getcommd == null || getcommd == undefined || getcommd == ''){
                     getcommd = ASinj;                    
+                }else{
+                    getcommd = getcommd;
                 }
                 var perr0 = $('#h_period').val();
                 if( perr0 == '' || perr0 == null || perr0 == undefined ){
@@ -596,7 +605,7 @@
             
             var full_dates_arr = dateRange(startDate, endDate);
             var commd = $("#commodity-picker").val();
-            var getcommd = [commoditydata.find(commodity => commodity.commd === commd)];
+            var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)];
             
             $.each(full_dates_arr, function (indexs, onedate) {
                 var adate = onedate.split('-');
@@ -611,12 +620,15 @@
             }
             if(theou == undefined || theou == null || theou == ''){
                 theou = 'tAbBVBbueqD';
+            }else{
+                theou = theou
             }
           
             if(getcommd == null || getcommd == undefined || getcommd == ''){
                 getcommd = ASinj;
+            }else{
+                getcommd = getcommd;
             }
-            console.log('mama',getcommd[0].indicator)
 
             if($('#h_period').val() == null){
                 date_range_string = getThePeriod();
