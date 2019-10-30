@@ -137,7 +137,7 @@ function understocked(understockurl,orgu,commodity)
                                     
                                     //calculate the difference
                                     
-                                        if(orgunitmos[value]>0 && orgunitmos[value]<3)
+                                        if(orgunitmos[one_ou]>0 && orgunitmos[one_ou]<3)
                                         {		
                                             
                                             facility_count+=1;
