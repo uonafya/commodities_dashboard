@@ -2,7 +2,7 @@ function getConco(ccurl,commodity){
     if( commodity.split('.')[1] != undefined || commodity.split('.')[1] != null || commodity.split('.')[1] != ''){
         var commodity = commodity.split('.')[0];
     }
-    console.log('commodity => '+commodity);
+    // console.log('commodity => '+commodity);
     console.log("conco_url ==> "+ccurl);
     $('.loader-sp.pieone').removeClass('hidden');
     $('#pc1, .pc1').addClass('hidden');
@@ -12,8 +12,9 @@ function getConco(ccurl,commodity){
         crossDomain: true,
         url: ccurl,                    
         success: function (data) {
-            console.log("fetching valid OUs");
+            // console.log("fetching valid OUs");
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_092019.json';
+            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_4.json';
             var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
           // var valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
 
@@ -23,21 +24,15 @@ function getConco(ccurl,commodity){
                 url: valid_ous_url,
                 success: function (validata) {
                     
-                    console.log("fetching valid OUs success");
+                    // console.log("fetching valid OUs success");
                     var valid_orgs = [];
                     $.each(validata.dataSets[0].organisationUnits, function (inv, vou) { 
                         valid_orgs.push(vou.id);
                     });
-                    console.log("valid_orgs "+ JSON.stringify(valid_orgs));
+                    // console.log("valid_orgs "+ JSON.stringify(valid_orgs));
                     //commodities and their names array
                     var commodities_array = {
-                        'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'},
-                        'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'},
-                        'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'},
-                        'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'},
-                        'iOARK31NdLp':{name:'Artesunate Injection'},
-                        'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'},
-                        'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
+                        'c0MB4RmVjxk':{name:'Artemether-Lumefantrine 20/120 Tabs 12s'}, 'BnGDrFwyQp9':{name:'Artemether-Lumefantrine 20/120 Tabs 6s'}, 'qnZmg5tNSMy':{name:'Artemether-Lumefantrine 20/120 Tabs 18s'}, 'gVp1KSFI69G':{name:'Artemether-Lumefantrine 20/120 Tabs 24s'}, 'iOARK31NdLp':{name:'Artesunate Injection'}, 'imheYfA1Kiw':{name:'Sulphadoxine Pyrimethamine Tabs'}, 'cPlWFYbBacW':{name:'Rapid Diagnostic Tests'}
                     }
         
                     var theItems = data.metaData.items;
@@ -81,8 +76,26 @@ function getConco(ccurl,commodity){
                             var commo_s = commodity.split('.')[0];
                             $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u>');
                             $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
-                            if(ou_fil_from[0] != undefined && ou_fil_to[0] != undefined){
-                                if(ou_fil_from[0][3]==ou_fil_to[0][3]){
+                            var val_fr = 0;
+                            var val_to = 0;
+                            if(ou_fil_from[0] == undefined){
+                                ou_fil_from[0] = [0,0,0,0]
+                            }
+                            if(ou_fil_to[0] == undefined){
+                                ou_fil_to[0] = [0,0,0,0]
+                            }
+                            if(ou_fil_from[0][3] == null || ou_fil_from[0][3] == undefined){
+                                val_fr = 0
+                            }else{
+                                val_fr = ou_fil_from[0][3]
+                            }
+                            if(ou_fil_to[0][3] == null || ou_fil_to[0][3] == undefined){
+                                val_to = 0
+                            }else{
+                                val_to = ou_fil_to[0][3]
+                            }
+                            if(true){
+                                if(val_fr==val_to){
                                     compliant_facility_count = compliant_facility_count+1;
                                     compliant_facilities_names.push(theItems[oneou].name);
                                     compliant_facilities_codes.push(oneou);
@@ -127,8 +140,8 @@ function getConco(ccurl,commodity){
                         var total_facils = parseFloat(compliant_facilities_codes.length) + parseFloat(non_compliant_facilities_codes.length);
                         var tot_eq_perc = (parseFloat(compliant_facilities_codes.length)*100)/total_facils;
                         var tot_neq_perc = (parseFloat(non_compliant_facilities_codes.length)*100)/total_facils;
-                        $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_eq_perc.toFixed(1) + '%)</small>');
-                        $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_neq_perc.toFixed(1) + '%)</small>');
+                        $('#equalCount, .equalCount').html(compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_eq_perc.toFixed(0) + '%)</small>');
+                        $('#notEqualCount, .notEqualCount').html(non_compliant_facilities_codes.length + '&nbsp;  <small>(' + tot_neq_perc.toFixed(0) + '%)</small>');
                         $('.totFacil').html(total_facils);
                         var non_compliant_facility_count = facility_count - compliant_facility_count;
                         // console.log("total_facilities = "+facility_count);
@@ -163,7 +176,7 @@ function getConco(ccurl,commodity){
             $('#pc1, .pc1').addClass('hidden');
             $('.detailsrow').addClass('hidden');
             console.log('DQ: error fetching json. :- '+error);
-            $('.pieone_state').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+            $('.pieone_state').html('<div class ="alert alert-danger"><strong>'+request.status+': '+request.statusText+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
 }
@@ -281,7 +294,7 @@ $.ajax({
             });
             reported.push(total);
         });
-        console.log("reported: "+reported);
+        // console.log("reported: "+reported);
         $.each(json_data.metaData.dimensions.pe,(index,period)=>{
             let expected_t = 0;
             $.each(json_data.rows,(i_index,one_row)=>{
@@ -292,7 +305,7 @@ $.ajax({
             });
             expected.push(expected_t);
         });
-        console.log("expected: "+expected);
+        // console.log("expected: "+expected);
         
         let didNotReport = [];
         $.each(reported,(index,value)=>{
@@ -432,7 +445,7 @@ function wbDetail(json_data, lastperiod){
 
         var not_rp_fac_codes = [];
         var tbldata2 = '';
-        console.log("fetching valid OUs");
+        // console.log("fetching valid OUs");
         // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
         var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
         $.ajax({
@@ -441,12 +454,12 @@ function wbDetail(json_data, lastperiod){
             url: valid_ous_url,
             success: function (validata) {
                 
-                console.log("fetching valid OUs success");
+                // console.log("fetching valid OUs success");
                 var valid_orgs = [];
                 $.each(validata.dataSets[0].organisationUnits, function (inv, vou) { 
                     valid_orgs.push(vou.id);
                 });
-                console.log("valid_orgs "+ JSON.stringify(valid_orgs));
+                // console.log("valid_orgs "+ JSON.stringify(valid_orgs));
                 
                 $.each(json_data.metaData.dimensions.ou,(inex,valou)=>{
                     if(valid_orgs.includes(the_ou)){
@@ -497,15 +510,16 @@ function getConsist(consturl,commd,the_orgu){
         crossDomain: true,
         url: consturl,                    
         success: function (data) {
-            console.log("fetching valid OUs");
-            //var valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
+            // console.log("fetching valid OUs");
+            // var valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
+            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_4.json';
             var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
             $.ajax({
                 type: "GET",
                 crossDomain: true,
                 url: valid_ous_url,
                 success: function (validata) {
-                    console.log("fetching valid OUs success");
+                    // console.log("fetching valid OUs success");
                     var valid_orgs = [];
                     $.each(validata.dataSets[0].organisationUnits, function (inv, vou) { 
                         valid_orgs.push(vou.id);
@@ -529,29 +543,27 @@ function getConsist(consturl,commd,the_orgu){
                     var nodisctbl = '';
                     var disctbl = '';
 
-
-
                     var begbal_code = '';
                     if(theDx[0].split('.')[1] == "HWtHCLAwprR"){
                         begbal_code = theDx[0];
                     }
-                    qty_recv_code = '';
+                    var qty_recv_code = '';
                     if(theDx[1].split('.')[1] == "yuvCdaFqdCW"){
                         qty_recv_code = theDx[1];
                     }
-                    pos_adj_code = '';
+                    var pos_adj_code = '';
                     if(theDx[2].split('.')[1] == "CckV73xy6HB"){
                         pos_adj_code = theDx[2];
                     }
-                    neg_adj_code = '';
+                    var neg_adj_code = '';
                     if(theDx[3].split('.')[1] == "unVIt2C0cdW"){
                         neg_adj_code = theDx[3];
                     }
-                    qty_disp_code = '';
+                    var qty_disp_code = '';
                     if(theDx[4].split('.')[1] == "w77uMi1KzOH"){
                         qty_disp_code = theDx[4];
                     }
-                    phy_count_code = '';
+                    var phy_count_code = '';
                     if(theDx[5].split('.')[1] == "rPAsF4cpNxm"){
                         phy_count_code = theDx[5];
                     }
@@ -580,54 +592,150 @@ function getConsist(consturl,commd,the_orgu){
                             // --------------
                             var qty_disp = 0;
                             var neg_adj = 0;
-                            $.each(therows, function (indx, onerow) {
-                                var valuee = onerow[3];
-                                var ouu = onerow[2];
-                                if(valuee == null || valuee == undefined){
-                                    valuee = 0
-                                }
-                                // <<-------------POSITIVES--------------
-                                if(ouu == oneou && onerow[0] == begbal_code){
-                                    begin_bal = parseFloat(begin_bal) + parseFloat(valuee);
-                                }
-                                if(ouu == oneou && onerow[0] == qty_recv_code){
-                                    qty_received = parseFloat(qty_received) + parseFloat(valuee);          
-                                }
-                                if(ouu == oneou && onerow[0] == pos_adj_code){
-                                    pos_adj = parseFloat(pos_adj) + parseFloat(valuee);
-                                }
-                                if(begin_bal != null && qty_received != null && pos_adj != null){
-                                    sum_pos = parseFloat(begin_bal) + parseFloat(qty_received) + parseFloat(pos_adj);
-                                }
 
-                                // >>-------------end POSITIVES--------------
 
-                                // <<-------------NEGATIVES--------------
-                                if(ouu == oneou && onerow[0] == qty_disp_code){
-                                    qty_disp = parseFloat(qty_disp) + parseFloat(valuee);
+                            //-----------JUMUIA----------------
+                                //-----------begbal----------------
+                                var begin_bal_val = 0;
+                                var opening_balance = therows.filter( one_ob_row=>one_ob_row[2]==oneou ).filter( one_ob_row=>one_ob_row[0]==begbal_code )[0];
+                                if(opening_balance != undefined || opening_balance != null){
+                                    if(opening_balance[3] == undefined || opening_balance[3] == null){
+                                        begin_bal_val = 0;
+                                    }else{
+                                        begin_bal_val = opening_balance[3];
+                                    }
+                                }else{
+                                    begin_bal_val = 0;
                                 }
-                                if(ouu == oneou && onerow[0] == neg_adj_code){
-                                    neg_adj = parseFloat(neg_adj) + parseFloat(valuee);
+                                // console.log("begin_bal_val ==> "+begin_bal_val);
+                                //-----------begbal----------------
+                                //-----------qty_received----------------
+                                var qty_received_val = 0;
+                                var qty_receiveds = therows.filter( one_ob_row=>one_ob_row[2]==oneou ).filter( one_ob_row=>one_ob_row[0]==qty_recv_code )[0];
+                                if(qty_receiveds != undefined || qty_receiveds != null){
+                                    if(qty_receiveds[3] == undefined || qty_receiveds[3] == null){
+                                        qty_received_val = 0;
+                                    }else{
+                                        qty_received_val = qty_receiveds[3];
+                                    }
+                                }else{
+                                    qty_received_val = 0;
                                 }
-                                if(qty_disp != null && neg_adj != null){
-                                    sum_neg = parseFloat(qty_disp) + parseFloat(neg_adj);
+                                // console.log("qty_received_val ==> "+qty_received_val);
+                                //-----------qty_received----------------
+                                //-----------pos_adj----------------
+                                var pos_adj_val = 0;
+                                var pos_adjs = therows.filter( one_ob_row=>one_ob_row[2]==oneou ).filter( one_ob_row=>one_ob_row[0]==pos_adj_code )[0];
+                                if(pos_adjs != undefined || pos_adjs != null){
+                                    if(pos_adjs[3] == undefined || pos_adjs[3] == null){
+                                        pos_adj_val = 0;
+                                    }else{
+                                        pos_adj_val = pos_adjs[3];
+                                    }
+                                }else{
+                                    pos_adj_val = 0;
                                 }
+                                // console.log("pos_adj_val ==> "+pos_adj_val);
+                                //-----------pos_adj----------------
 
-                                // >>-------------end NEGATIVES--------------
-
-                                if(ouu == oneou && onerow[0] == phy_count_code){
-                                    clos_bal = parseFloat(clos_bal) + parseFloat(valuee);
+                                //-----------qty_disp----------------
+                                var qty_disp_val = 0;
+                                var qty_disps = therows.filter( one_ob_row=>one_ob_row[2]==oneou ).filter( one_ob_row=>one_ob_row[0]==qty_disp_code )[0];
+                                if(qty_disps != undefined || qty_disps != null){
+                                    if(qty_disps[3] == undefined || qty_disps[3] == null){
+                                        qty_disp_val = 0;
+                                    }else{
+                                        qty_disp_val = qty_disps[3];
+                                    }
+                                }else{
+                                    qty_disp_val = 0;
                                 }
+                                // console.log("qty_disp_val ==> "+qty_disp_val);
+                                //-----------qty_disp----------------
+                                //-----------neg_adj----------------
+                                var neg_adj_val = 0;
+                                var neg_adjs = therows.filter( one_ob_row=>one_ob_row[2]==oneou ).filter( one_ob_row=>one_ob_row[0]==neg_adj_code )[0];
+                                if(neg_adjs != undefined || neg_adjs != null){
+                                    if(neg_adjs[3] == undefined || neg_adjs[3] == null){
+                                        neg_adj_val = 0;
+                                    }else{
+                                        neg_adj_val = neg_adjs[3];
+                                    }
+                                }else{
+                                    neg_adj_val = 0;
+                                }
+                                // console.log("neg_adj_val ==> "+neg_adj_val);
+                                //-----------neg_adj----------------
+                                
+                                //-----------phy_count----------------
+                                var phy_count_val = 0;
+                                var phy_counts = therows.filter( one_ob_row=>one_ob_row[2]==oneou ).filter( one_ob_row=>one_ob_row[0]==phy_count_code )[0];
+                                if(phy_counts != undefined || phy_counts != null){
+                                    if(phy_counts[3] == undefined || phy_counts[3] == null){
+                                        phy_count_val = 0;
+                                    }else{
+                                        phy_count_val = phy_counts[3];
+                                    }
+                                }else{
+                                    phy_count_val = 0;
+                                }
+                                // console.log("phy_count_val ==> "+phy_count_val);
+                                //-----------phy_count----------------
 
-                            });
+                                sum_pos = parseFloat(begin_bal_val)+parseFloat(qty_received_val)+parseFloat(pos_adj_val)
+                                sum_neg = parseFloat(qty_disp_val)+parseFloat(neg_adj_val)
+                            //-----------JUMUIA----------------
+
+                            // $.each(therows, function (indx, onerow) {
+                            //     var valuee = onerow[3];
+                            //     var ouu = onerow[2];
+                            //     if(valuee == null || valuee == undefined){
+                            //         valuee = 0
+                            //     }
+                            //     // <<-------------POSITIVES--------------
+                            //     if(ouu == oneou && onerow[0] == begbal_code){
+                            //         begin_bal = parseFloat(begin_bal) + parseFloat(valuee);
+                            //     }
+                            //     if(ouu == oneou && onerow[0] == qty_recv_code){
+                            //         qty_received = parseFloat(qty_received) + parseFloat(valuee);          
+                            //     }
+                            //     if(ouu == oneou && onerow[0] == pos_adj_code){
+                            //         pos_adj = parseFloat(pos_adj) + parseFloat(valuee);
+                            //     }
+                            //     if(begin_bal != null && qty_received != null && pos_adj != null){
+                            //         sum_pos = parseFloat(begin_bal) + parseFloat(qty_received) + parseFloat(pos_adj);
+                            //     }
+
+                            //     // >>-------------end POSITIVES--------------
+
+                            //     // <<-------------NEGATIVES--------------
+                            //     if(ouu == oneou && onerow[0] == qty_disp_code){
+                            //         qty_disp = parseFloat(qty_disp) + parseFloat(valuee);
+                            //     }
+                            //     if(ouu == oneou && onerow[0] == neg_adj_code){
+                            //         neg_adj = parseFloat(neg_adj) + parseFloat(valuee);
+                            //     }
+                            //     if(qty_disp != null && neg_adj != null){
+                            //         sum_neg = parseFloat(qty_disp) + parseFloat(neg_adj);
+                            //     }
+
+                            //     // >>-------------end NEGATIVES--------------
+
+                            //     if(ouu == oneou && onerow[0] == phy_count_code){
+                            //         clos_bal = parseFloat(clos_bal) + parseFloat(valuee);
+                            //     }
+
+                            // });
+
+
                             var difference = sum_pos - sum_neg;
-                            console.log("sum_neg "+oneou+" == "+sum_neg);
-                            console.log("sum_pos "+oneou+" == "+sum_pos);
-                            console.log("clos_bal "+oneou+" == "+clos_bal);
-                            console.log("diff "+oneou+" == "+difference);
-                            console.log(" =============================== ");
+                            // console.log("sum_neg "+oneou+" == "+sum_neg);
+                            // console.log("sum_pos "+oneou+" == "+sum_pos);
+                            // console.log("clos_bal "+oneou+" == "+clos_bal);
+                            // console.log("diff "+oneou+" == "+difference);
+                            // console.log(" =============================== ");
                             if(sum_neg != null && sum_pos != null){
-                                if(parseFloat(difference) === parseFloat(clos_bal)){
+                                if(parseFloat(difference) === parseFloat(phy_count_val)){
                                     compliant_facility_count = compliant_facility_count+1;
                                     nodisc_facilities_names.push(theItems[oneou].name);
                                     nodisc_facilities_codes.push(oneou);
@@ -658,8 +766,8 @@ function getConsist(consturl,commd,the_orgu){
                     var total_facils = parseFloat(disc_facilities_codes.length) + parseFloat(nodisc_facilities_codes.length);
                     var tot_nodisc = (parseFloat(nodisc_facilities_codes.length)*100)/total_facils;
                     var tot_disc = (parseFloat(disc_facilities_codes.length)*100)/total_facils;
-                    $('#discCount, .discCount').html(total_facils-compliant_facility_count + '&nbsp;  <small>(' + tot_disc.toFixed(1) + '%)</small>');
-                    $('#noDiscCount, .noDiscCount').html(compliant_facility_count + '&nbsp;  <small>(' + tot_nodisc.toFixed(1) + '%)</small>');
+                    $('#discCount, .discCount').html(total_facils-compliant_facility_count + '&nbsp;  <small>(' + tot_disc.toFixed(0) + '%)</small>');
+                    $('#noDiscCount, .noDiscCount').html(compliant_facility_count + '&nbsp;  <small>(' + tot_nodisc.toFixed(0) + '%)</small>');
                     $('.totFacil').html(total_facils);
                     //
                     var with_discrepancy_number = tot_disc;
@@ -705,10 +813,10 @@ function getConsist(consturl,commd,the_orgu){
                         if(commd.includes('.')){
                             commd = commd.split('.')[0];
                         }
-                        console.log('commd ni-> '+commd);
+                        // console.log('commd ni-> '+commd);
                         
                         commodity_name = commodities_array[commd].name;
-                        console.log('commodity_name-> '+commodity_name);
+                        // console.log('commodity_name-> '+commodity_name);
                         // $.getJSON('https://hiskenya.org/api/26/dataElements/'+commd+'.json', function (data){
                         //     commodity_name = data.displayName; 
                         // });
@@ -724,7 +832,8 @@ function getConsist(consturl,commd,the_orgu){
                             dataType: "json",
                             url: url,
                             success: function(datax) {          
-                                $("#ttitle").html(datax['name']+', '+dfrom+' - '+dto);
+                                // $("#ttitle").html(datax['name']+', '+dfrom+' - '+dto);
+                                $("#ttitle").html(datax['name']+', '+dto);
                             }
                         });    
                     // END title fill
