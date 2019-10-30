@@ -105,8 +105,8 @@
                 for(x=0;x<monthswithdata.length;x++){
                     var array1=monthswithdata[x];
                     if(array1[1]===eachallmonths){
-                        console.log('object',array1[1]);
-                        var findata = parseFloat(array1[2]);
+                        var findata = parseFloat(array1[2]);                        
+                        console.log('object1',array1);
                         console.log('findata: '+JSON.stringify(findata));
                         var lenudate = dateToStr(array1[1]);
                         finalRRdata.push(findata);
@@ -195,7 +195,7 @@
                         var array12=monthswithdata2[x];
                         
                         if(array12[1]===eachallmonths2){
-                            var findata2 = parseFloat(array12[3]);
+                            var findata2 = parseFloat(array12[2]);
                             console.log('findata2: '+JSON.stringify(findata2));
                             var lenudate2 = dateToStr(array12[1]);
                             finalondata2.push(findata2);
