@@ -414,15 +414,16 @@
             }
             
            var rrurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:LAST_12_MONTHS&filter=ou:'+mou+'&displayProperty=NAME&outputIdScheme=UID';
-            //var rrurl = 'https://api.myjson.com/bins/18af45';
+            //var rrurl = 'https://api.myjson.com/bins/xppds';
             var onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+mou+'&displayProperty=NAME&outputIdScheme=UID';
+            //var onurl = 'https://api.myjson.com/bins/jb0jk';
             // var rrurl = 'http://localhost/pmi/json/reporting-kisumu.json';
             // var onurl = 'http://localhost/pmi/json/ontime-reporting.json';
             fetchRR(rrurl, onurl);
 
             //fixing latest subcounty to LAST_MONTH
-           var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
-            //var scurl = 'https://api.myjson.com/bins/izhwl';
+          var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+mou+'&displayProperty=NAME&outputIdScheme=UID';
+            //var scurl = 'https://api.myjson.com/bins/jt0ow';
             // var scurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+myOU()+'&displayProperty=NAME&outputIdScheme=UID';
             // var scurl = 'http://localhost/pmi/json/subcountiesrates.json';
           
