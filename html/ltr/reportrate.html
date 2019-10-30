@@ -414,9 +414,10 @@
             }
             
            var rrurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:LAST_12_MONTHS&filter=ou:'+mou+'&displayProperty=NAME&outputIdScheme=UID';
-            //var rrurl = 'https://api.myjson.com/bins/xppds';
-            var onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+mou+'&displayProperty=NAME&outputIdScheme=UID';
-            //var onurl = 'https://api.myjson.com/bins/jb0jk';
+
+           // var rrurl = 'https://api.myjson.com/bins/1h411k';
+            var onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_12_MONTHS&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&filter=ou:'+mou+'&displayProperty=NAME&outputIdScheme=UID';
+           // var onurl = 'https://api.myjson.com/bins/l0rjc';
             // var rrurl = 'http://localhost/pmi/json/reporting-kisumu.json';
             // var onurl = 'http://localhost/pmi/json/ontime-reporting.json';
             fetchRR(rrurl, onurl);
@@ -454,7 +455,7 @@
             // var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
 			console.log('filtered_onurl: '+filtered_onurl);
-            var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             console.log('filtersub_url: '+filtersub_url);
 			fetchScRR(filtersub_url, countyou );
             fetchRR(filtered_url, filtered_onurl);
@@ -476,7 +477,7 @@
             // var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+'&filter=ou:'+subcountyou+'&displayProperty=NAME&outputIdScheme=UID';
             // var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
-            var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             
             console.log(filtered_url);
             
@@ -543,8 +544,11 @@
                 theou = myOU();
             }
             
-            var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
-            var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
+            var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';          
+            //var filtered_url = 'https://api.myjson.com/bins/19b90o'
+
+           var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';  
+            //var filtered_onurl = 'https://api.myjson.com/bins/d5uco'
             
             console.log("pe fi: "+filtered_url+"    &&&&&&   "+filtered_onurl);
             
