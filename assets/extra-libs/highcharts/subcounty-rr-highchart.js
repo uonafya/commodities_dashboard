@@ -1,11 +1,15 @@
 function fetchScRR(scurl, myou){
     $('.rrates.loader-sp').removeClass('hidden');
+    $('.rrstate').addClass('hidden');
+    $('.loader-sp').removeClass('hidden');
     $('#sc_rrchart').addClass('hidden');
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: scurl,
         success: function (data) {
+            $('.rrates.loader-sp').addClass('hidden');
+            $('.rrstate').addClass('hidden');
             var scjson = data;
             
             countiesdata=scjson.rows;
@@ -62,10 +66,10 @@ function fetchScRR(scurl, myou){
                     type: 'bar'
                 },
                 title: {
-                    text: 'Latest Reporting Rate by Sub-County (MCF)'
+                    text: 'Latest Reporting Rate by Sub-County (MCF) for '
                 },
                 subtitle: {
-                    text: ' '
+                    text: data.metaData.items[data.metaData.dimensions.pe[0]].name
                 },
                 exporting: {
                     enabled: false
@@ -112,8 +116,11 @@ function fetchScRR(scurl, myou){
         error: function (request, status, error) {
             $('.rrates.loader-sp').addClass('hidden');
             $('#sc_rrchart').addClass('hidden');
+            $('.rrates.loader-sp').addClass('hidden');
+            $('.rrstate').removeClass('hidden');
             console.log('Subcounty-RRates: error fetching json. :- '+error);
             $('#sc_rrchart').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+            $('.rrstate').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
 }
