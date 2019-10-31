@@ -60,12 +60,15 @@
             
             $.each(monthswithdata, function (index, ydate) {
                 var date8 = ydate[1];
+                // console.log('kenya', date8)
                 var data8 = ydate[3];
                 theorigdate.push(date8);
                 var ydata = parseFloat(data8).toFixed(2);
                 matched_data.push(ydata);
                 var month8 = date8.substr(0, date8.indexOf(" "));
+                // console.log('kenya', month8)
                 var year8 = date8.replace(month8+' ','');
+                // console.log('ontimekrnya1', year8)
                 if(month8 == 'January'){ 
                     var nudate = year8+'01';
                 } if(month8 == 'February'){ 
@@ -91,7 +94,7 @@
                 } if(month8 == 'December'){ 
                     var nudate = year8+'12';
                 }
-                minid8.push(date8);
+                minid8.push(date8);              
                 // converted_date_arr.push(nudate);
             });
             var xc = 0;
@@ -102,7 +105,8 @@
                 for(x=0;x<monthswithdata.length;x++){
                     var array1=monthswithdata[x];
                     if(array1[1]===eachallmonths){
-                        var findata = parseFloat(array1[2]);
+                        var findata = parseFloat(array1[2]);                        
+                        console.log('object1',array1);
                         console.log('findata: '+JSON.stringify(findata));
                         var lenudate = dateToStr(array1[1]);
                         finalRRdata.push(findata);
@@ -123,8 +127,8 @@
             // console.log('allmonths.Length: '+JSON.stringify(allmonths.length));
             // console.log('monthswithdata: '+JSON.stringify(monthswithdata));
             // console.log('monthswithdata.Length: '+JSON.stringify(monthswithdata.length));
-            console.log('final: '+JSON.stringify(finalRRdata));
-            console.log('months: '+JSON.stringify(finalRRmonths));
+            // console.log('final: '+JSON.stringify(finalRRdata));
+            // console.log('months: '+JSON.stringify(finalRRmonths));
 
             
             //////////////////////////////////////////ontime
@@ -141,14 +145,14 @@
                 var actualdatarr2=[];
                 var ondatarr=[];
                 $.each(monthswithdata2, function (index, ydate2) {
-                    var date82 = ydate2[1];
+                    var date82 = ydate2[1];        
                     var data82 = ydate2[2];
                     var ondt = parseFloat(ydate2[3]);
-                    ondatarr.push(ondt);
+                    ondatarr.push(ondt);                    
                     theorigdate2.push(date82);
-                    var ydata2 = parseFloat(ydate2[2]).toFixed(2);
+                    var ydata2 = parseFloat(data82).toFixed(2);   
                     matched_data2.push(ydata2);
-                    var month82 = date82.substr(0, date82.indexOf(" "));
+                    var month82 = date82.substr(0, date82.indexOf(" "));   
                     var year82 = date82.replace(month82+' ','');
                     if(month82 == 'January'){ 
                         var nudate2 = year82+'01';
@@ -177,41 +181,73 @@
                     }
                     //UID Fix
                     nudate2 = date82;
+                    //console.log('kenya',nudate2)
                     //End UID Fix
                     converted_date_arr2.push(nudate2);
                 });
 
-                $.each(allmonths2, function (index, eachallmonths22) {
-                    var dateful2 = onjson.metaData.items[eachallmonths22].name;
-                    fulldate_arr2.push(dateful2);
-                });
-
-                $.each(fulldate_arr2, function(idx, fulldate_val2) {
-                    if ($.inArray(fulldate_val2, theorigdate2) !== -1) {
-                        matched_full_dates2.push(fulldate_val2);
+                var xc1 = 0;
+                var finalondata2 = [];
+                var finalonmonths2 = [];
+                $.each(allmonths2, function (index, eachallmonths2) {
+                    // theinfo = giveVal(monthswithdata, eachallmonths2);               
+                    for(x=0;x<monthswithdata2.length;x++){                       
+                        var array12=monthswithdata2[x];
+                        
+                        if(array12[1]===eachallmonths2){
+                            var findata2 = parseFloat(array12[2]);
+                            console.log('findata2: '+JSON.stringify(findata2));
+                            var lenudate2 = dateToStr(array12[1]);
+                            finalondata2.push(findata2);
+                            finalonmonths2.push(lenudate2);
+                            xc1=0;
+                            break;
+                        }else xc1=1;
+                     
                     }
-                    var seriesval2 = 0;
-                    $.each(monthswithdata2, function (index, rr_row12) {
-                        if(fulldate_val2 == rr_row12[1]){
-                            seriesval2 = rr_row12[2];
-                            actualdatarr2.push(parseFloat(seriesval2));
-                        }
-                    });
+                    if(xc1 === 1){
+                        // finalRRdata.push(parseFloat(array1[2]));
+                        finalondata2.push(0.0);
+                        finalonmonths2.push(dateToStr(eachallmonths2));
+                        xc1 = 0;
+                    }
                 });
 
-                var mchdl2 = actualdatarr2.length;
-                while (mchdl2 < 12) {
-                    var zer02 = parseFloat(0);
-                    actualdatarr2.push(zer02);
-                    mchdl2++
-                }
 
-                var ondatalength = ondatarr.length;
-                while (ondatalength < 12) {
-                    var addedZero = parseFloat(0);
-                    ondatarr.push(addedZero);
-                    ondatalength++
-                }
+                // $.each(allmonths2, function (index, eachallmonths22) {
+                //     var dateful2 = onjson.metaData.items[eachallmonths22].name;
+                //     fulldate_arr2.push(dateful2);
+                // });
+
+                // $.each(fulldate_arr2, function(idx, fulldate_val2) {
+                //     if ($.inArray(fulldate_val2, theorigdate2) !== -1) {
+                //         matched_full_dates2.push(fulldate_val2);
+                //     }
+                //     var seriesval2 = 0;
+                //     $.each(monthswithdata2, function (index, rr_row12) {
+                //         if(fulldate_val2 == rr_row12[1]){
+                //             seriesval2 = rr_row12[2];
+                //             actualdatarr2.push(parseFloat(seriesval2));
+                //         }
+                //     });
+                // });
+
+                // var mchdl2 = actualdatarr2.length;
+                // while (mchdl2 < 12) {
+                //     var zer02 = parseFloat(0);
+                //     actualdatarr2.push(zer02);
+                //     mchdl2++
+
+                // }
+               
+                // var ondatalength = ondatarr.length;
+
+                
+                // while (ondatalength < 12) {
+                //     var addedZero = parseFloat(0);
+                //     ondatarr.push(addedZero);
+                //     ondatalength++
+                // }
             //////////////////////////////////////////end ontime
 
             $('#rrchart').empty();
@@ -262,7 +298,7 @@
                     data: finalRRdata
                 }, {
                     name: 'OT: '+thesubtitle,
-                    data: ondatarr,
+                    data: finalondata2,
                     color: '#f93535'
                 }]
             });
