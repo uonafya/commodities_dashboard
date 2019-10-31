@@ -152,7 +152,7 @@ function fetchRRDetails(theperiod,ounit)
             data: "data",
             success: function (resp) {
                 $.each(resp.metaData.dimensions.ou, function (key, entry){                                                        
-                    console.log("SUCCESSFULLY FETCHING COUNTY SUMMARY FOR: "+resp.metaData.items[entry].name);
+                    // console.log("SUCCESSFULLY FETCHING COUNTY SUMMARY FOR: "+resp.metaData.items[entry].name);
                     summary_row += '<tr style="font-size: 1.16em;">';	
                     summary_row += '<td> SUMMARY: '+resp.metaData.items[entry].name+'</td>';
                     $.each(resp.metaData.dimensions.pe, function (pkey, pentry) 
@@ -178,7 +178,7 @@ function fetchRRDetails(theperiod,ounit)
                     })
                     summary_row += '</tr>';	
                 })
-                console.log('COUNTY SUMMARY ROW='+summary_row);
+                // console.log('COUNTY SUMMARY ROW='+summary_row);
                 $('#facility_rr tbody').append(summary_row);
             }
         });
