@@ -1,8 +1,9 @@
     
     function fetchRR(rrurl, onurl){
-        $('.rrates.loader-sp').removeClass('hidden');
-        $('#rrchart').addClass('hidden');
         $('.loader-sp.rrates').removeClass('hidden');
+        $('#rrchart').addClass('hidden');
+        $('.rrstate').addClass('hidden');
+        $('.loader-sp').removeClass('hidden');
         $('#sc_rrchart').addClass('hidden');
         $('.rrdata').addClass('hidden');
         $.ajax({
@@ -27,6 +28,7 @@
                 $('.rrates.loader-sp').addClass('hidden');
                 $('#rrchart').removeClass('hidden');
                 $('#sc_rrchart').removeClass('hidden');
+                $('.rrstate').addClass('hidden');
                 $('.rrdata').removeClass('hidden');
             },
             error: function (request, status, error) {
@@ -34,6 +36,7 @@
                 $('#rrchart').addClass('hidden');
                 $('#sc_rrchart').addClass('hidden');
                 $('.rrdata').addClass('hidden');
+                $('.rrstate').removeClass('hidden');
                 console.log('RRates: error fetching json. :- '+error);
                 $('.rrstate').html('<div class ="alert alert-danger"><strong>Graph Error</strong><br/>Failed to load this graph. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             }
@@ -43,7 +46,7 @@
             var rrjson = rrData;
             var ouid = rrjson.metaData.dimensions.ou[0];
             var thetitle = rrjson.metaData.items['JPaviRmSsJW.REPORTING_RATE'].name;
-            var thesubtitle = rrjson.metaData.items[ouid].name;
+            var thesubtitle = rrjson.metaData.items[ouid].name + '  ('+rrjson.metaData.items[rrjson.metaData.dimensions.pe[0]].name+' - '+rrjson.metaData.items[rrjson.metaData.dimensions.pe[rrjson.metaData.dimensions.pe.length-1]].name+')';
             var allmonths = rrjson.metaData.dimensions.pe;
             var monthswithdata = rrjson.rows;
             
@@ -106,8 +109,8 @@
                     var array1=monthswithdata[x];
                     if(array1[1]===eachallmonths){
                         var findata = parseFloat(array1[2]);                        
-                        console.log('object1',array1);
-                        console.log('findata: '+JSON.stringify(findata));
+                        // console.log('object1',array1);
+                        // console.log('findata: '+JSON.stringify(findata));
                         var lenudate = dateToStr(array1[1]);
                         finalRRdata.push(findata);
                         finalRRmonths.push(lenudate);
@@ -196,7 +199,7 @@
                         
                         if(array12[1]===eachallmonths2){
                             var findata2 = parseFloat(array12[2]);
-                            console.log('findata2: '+JSON.stringify(findata2));
+                            // console.log('findata2: '+JSON.stringify(findata2));
                             var lenudate2 = dateToStr(array12[1]);
                             finalondata2.push(findata2);
                             finalonmonths2.push(lenudate2);
