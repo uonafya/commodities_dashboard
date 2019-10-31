@@ -146,9 +146,9 @@ function overstocked(overstockurl,orgu,commodity)
                 // $('.loader-sp').css('display','none');
                 $('.overstocked_status').addClass('hidden');
                 $('.overstocked_status').addClass('hidden');
-                $("#overstocked_table tbody").empty();
+                $("table.overstocked_table tbody").empty();
                 $('#overstocked_table').DataTable().destroy();
-                $("#overstocked_table tbody").append(tableData);	
+                $("table.overstocked_table tbody").append(tableData);	
                 //$('#overstocked_table').DataTable();                                                          
                 $('#overstocked_table').DataTable({
                     dom: 'Bfrtlip',

@@ -176,9 +176,9 @@ function understocked(understockurl,orgu,commodity)
             // $('.loader-sp').css('display','none');
             $('.understocked_status').addClass('hidden');
             $('#understocked_table').DataTable().destroy();
-            $("table.actsbox tbody").empty();
+            $("table.understocked_table tbody").empty();
             $('.understocked_status').addClass('hidden');
-            $("table.actsbox tbody").append(tableData);	
+            $("table.understocked_table tbody").append(tableData);	
             //$('#understocked_table').DataTable();                                                          
             $('#understocked_table').DataTable({
                 dom: 'Bfrtlip',
