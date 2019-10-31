@@ -608,8 +608,9 @@
             $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
             var period = 'LAST_MONTH';
-			         			
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:E1J6vMP5hFO;Gwr4lywXLiM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+
+			var url = 'https://api.myjson.com/bins/h9ddw'         			
+            //var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:E1J6vMP5hFO;Gwr4lywXLiM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
             fetchSP(url);
             $("#county-dropdown").change(function() 
             {
@@ -762,13 +763,14 @@
                     $("table.spbox tbody").append(tableData);	
                     //$('#sp_table').DataTable(); 
                     $('#sp_table').DataTable( {
-                        dom: 'Bfrtip',
+                       
+                        dom: 'Bfrtlip',
                         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                         buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print'
+                            'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
                         ],
-                        ordering: false,
-                        orderable: false
+                        // ordering: false,
+                        // orderable: false
                     });                                                                           
                     //$('#sp_table').DataTable().fnDraw();					
                 },
