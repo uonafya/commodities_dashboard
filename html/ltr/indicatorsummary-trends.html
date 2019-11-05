@@ -691,18 +691,36 @@
 			//define the constants
             
             // Populate dropdown with list of sub counties
-            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
-                $.each(data.organisationUnits, function (key, entry){
-                    if(entry.parent.id==theou){		
-                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
-                    }
-                })
-            });
+            // $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+            //     $.each(data.organisationUnits, function (key, entry){
+            //         if(entry.parent.id==theou){		
+            //             $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+            //         }
+            //     })
+            // });
             $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
 
             getTrends('https://hiskenya.org/api/26/analytics.json?dimension=dx:HfGVoCZAwtd&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID');
             // getTrends('http://localhost/pmi/json/is-trends.json');
-
+            $("#county-dropdown").change(function() 
+			{  
+				$("#subcounty-dropdown").empty();
+				var countyid = $(this).val();
+				$("#subcounty-dropdown").append('<option selected="true" disabled>Select Sub County</option>');
+				$("#subcounty-dropdown").prop('selectedIndex', 0);
+				
+				// Populate dropdown with list of sub counties
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				{			
+					$.each(data.organisationUnits, function (key, entry) 
+					{				
+						if(entry.parent.id==countyid)
+						{
+							$("#subcounty-dropdown").append($('<option></option>').attr('value', entry.id).text(entry.name));
+						}				
+					})		 
+				});		
+			});
             $("#county-dropdown").change(function() 
             {
                 var theou = $(this).val(); 
@@ -722,7 +740,6 @@
             {
                 var theou = $(this).val();  
                 var period =  'LAST_6_MONTHS';
-                var commos = 'HfGVoCZAwtd';
                 var commo_val = $('#commodity-dropdown').val();
                 if(commo_val == null || commo_val == '' || commo_val == undefined){
                     commos = 'HfGVoCZAwtd';
@@ -737,14 +754,16 @@
             $('#commodity-dropdown').change(function(){
                 var period = 'LAST_6_MONTHS';
                 var commos = $(this).val();
-                var theou = 'HfVjCurKxh2';
-                theou = myOU();
 
-                if($('#county-dropdown').val() != null || $('#county-dropdown').val() != ''){
+                var theou = myOU();
+                if($('#county-dropdown').val() != null && $('#county-dropdown').val() != ''){
                     theou = $('#county-dropdown').val();
                 }
-                if($('#subcounty-dropdown').val() != null || $('#subcounty-dropdown').val() != ''){
+                if($('#subcounty-dropdown').val() != null && $('#subcounty-dropdown').val() != ''){
                     theou = $('#subcounty-dropdown').val();
+                }
+                if(theou == null || theou == ''){
+                    theou = 'HfVjCurKxh2';
                 }
                 var theurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commos+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
                 getTrends(theurl,theou);
