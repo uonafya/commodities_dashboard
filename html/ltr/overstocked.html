@@ -261,7 +261,7 @@
                                 <div class="row overstockeddata">
                                     <h5 id="ttitle"></h5>
                                     <div class="table-responsive">
-                                        <table id="overstocked_table" class="table table-condensed slimtable table-bordered actsbox hidden">
+                                        <table id="overstocked_table" class="table table-condensed slimtable table-bordered overstocked_table hidden">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -498,11 +498,11 @@
         $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
 
 
-       // var overstockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commdata[0].indicator+';'+commdata[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID'
+       var overstockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commdata[0].indicator+';'+commdata[0].commodity+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID'
       
         // https://hiskenya.org/api/26/analytics.json?dimension=dx:SSARcWY2Ge1;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;iRK9uABUTVZ&dimension=pe:201905&displayProperty=NAME&outputIdScheme=UID
 
-        var overstockurl = 'https://api.myjson.com/bins/r4gnx';
+        //var overstockurl = 'https://api.myjson.com/bins/r4gnx';
        
       
 

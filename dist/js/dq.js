@@ -462,8 +462,8 @@ function wbDetail(json_data, lastperiod){
                 // console.log("valid_orgs "+ JSON.stringify(valid_orgs));
                 
                 $.each(json_data.metaData.dimensions.ou,(inex,valou)=>{
+                    let the_ou = valou;
                     if(valid_orgs.includes(the_ou)){
-                        let the_ou = valou;
                         if(!rp_fac_codes.includes(the_ou)){
                             not_rp_fac_codes.push(the_ou);
                             tbldata2 += '<tr>';
