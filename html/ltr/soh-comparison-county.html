@@ -606,8 +606,10 @@
             
             var period = 'LAST_MONTH'; //Last month
 
-            //var url = 'pmi.json';
+            var url = 'sohcomparison.json';
+			/*
             var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:jfUzb86mBSP.miM6uIJ2cWx;HwvUHnslwbh.miM6uIJ2cWx;OLYLVMDHEj8.miM6uIJ2cWx;UJeKVZzAnfS.miM6uIJ2cWx;naztfZrbMtd.miM6uIJ2cWx;EtG9ozt2joA.miM6uIJ2cWx;Umi8ZsiqBHw.miM6uIJ2cWx;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+			*/
             fetchSOHCompa(url,ounit);
             $("#county-dropdown").change(function() 
             {
@@ -715,37 +717,98 @@
                 
                 count++;
             })
-                    //console.log(dxidsadjc)
+                
+				//console.log(dxidsadjc)
                 var adjcvalues = [];
                 
-                var hfsvalues = [];
-                    
+                var hfsvalues = [];   
+
+				//get commodities with values adjc							 
+				 var adjcvals = [];
+				 $.each(dxidsadjc, function (rowkey, rowentry) 
+				{
+					$.each(data.rows, function (rowkey1, rowentry2)
+					{  
+						if(rowentry2[0]==rowentry)
+						{
+							if(adjcvals.indexOf(rowentry2[0])>=0)
+							{
+								//console.log(kemsaidvals);
+							}
+							else
+							{
+								adjcvals.push(rowentry2[0]);
+								//console.log(kemsaidvals);
+							}
+						}						
+					})
+				  
+				})
+				
+				console.log(adjcvals);
                 
                 //get Adjusted values
                 $.each(dxidsadjc, function (rowkey, rowentry) 
-                {   
-                    $.each(data.rows, function (rowkey1, rowentry2)
-                    {    
-                        if(rowentry==rowentry2[0])
-                        {   
-                           adjcvalues.push(rowentry2[3]);
-                        } 
-                    })                         
+                {
+					if(adjcvals.indexOf(rowentry)>=0)
+					{
+						$.each(data.rows, function (rowkey1, rowentry2)
+						{    
+							if(rowentry==rowentry2[0])
+							{   
+							   adjcvalues.push(rowentry2[3]);
+							} 
+						}) 
+					}
+					else
+					{
+						adjcvalues.push(0);
+					}
                  })
                 
-                                    
+                
+				//get commodities with values HFs							 
+				 var hfidvals = [];
+				 $.each(dxidshfs, function (rowkey, rowentry) 
+				{
+					$.each(data.rows, function (rowkey1, rowentry2)
+					{  
+						if(rowentry2[0]==rowentry)
+						{
+							if(hfidvals.indexOf(rowentry2[0])>=0)
+							{
+								//console.log(kemsaidvals);
+							}
+							else
+							{
+								hfidvals.push(rowentry2[0]);
+								//console.log(kemsaidvals);
+							}
+						}						
+					})
+				  
+				})
+				
+				console.log(hfidvals);
+
                     
                //get hfs values
                $.each(dxidshfs, function (rowkey, rowentry) 
                 {
-                     
-                    $.each(data.rows, function (rowkey1, rowentry2)
-                    {                      
-                        if(rowentry==rowentry2[0])
-                        {   
-                           hfsvalues.push(rowentry2[3]);
-                        }
-                    })
+                    if(hfidvals.indexOf(rowentry)>=0)
+					{
+						$.each(data.rows, function (rowkey1, rowentry2)
+						{                      
+							if(rowentry==rowentry2[0])
+							{   
+							   hfsvalues.push(rowentry2[3]);
+							}
+						})
+					}
+					else
+					{
+						hfsvalues.push(0);
+					}
                  })
                     //output each row to table
                   for(var i=0;i<products.length;i++)
