@@ -170,29 +170,33 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-5 col-sm-5 col-xs-12">
+                        <div class="col-md-4 col-sm-8 col-xs-12">
                             <h4 class="page-title m-t-10">
                                 Accountability for commodities issued to health facilities
                             </h4>
                         </div>
-						<div class="col-md-7 col-sm-7 col-xs-12">
+						<div class="col-md-8 col-sm-8 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
                                 <div class="col-md-11 col-sm-11 col-xs-11">
                                     <div class="row">
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                             </select>
                                         </div>										
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <select class="form-control m-r-5" id="subcounty-dropdown" placeholder="Subcounty" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <select class="form-control m-r-5" id="facility-dropdown" name="facility" placeholder="Facility">                   
+                                            </select> 
+                                        </div> 
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <input type="text" class="form-control" id="period-dropdown" placeholder="Period from"/> 
                                         </div> 
                                         
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <input type="text" class="form-control" disabled id="period-dropdownto" placeholder="Period to"/> 
                                         </div> 
                                         
@@ -429,6 +433,8 @@
 			var dropdown = $('#county-dropdown');
 			
 			var subcounty = $('#subcounty-dropdown');
+
+            var facilitydwn = $('#facility-dropdown');
 			
 			var perioddwn = $('#period-dropdown');
             var perioddwnTo = $('#period-dropdownto');
@@ -444,6 +450,9 @@
             dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
 			// if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
 			
+            $('#facility-dropdown').append('<option selected="true" disabled>Select facility</option>');
+			$('#facility-dropdown').prop('selectedIndex', 0);
+
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
             $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
@@ -487,6 +496,26 @@
 						if(entry.parent.id==countyid)
 						{
 							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+						}				
+					})		 
+				});		
+			});
+			
+			$("#subcounty-dropdown").change(function() 
+			{  
+				facilitydwn.empty();
+				var subcountyid = $(this).val();
+				facilitydwn.append('<option selected="true" disabled>Select Facility</option>');
+				facilitydwn.prop('selectedIndex', 0);
+				
+				// Populate dropdown with list of sub counties
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:5&fields=id,name,level,parent&paging=false', function (dataa) 
+				{			
+					$.each(dataa.organisationUnits, function (key, fty) 
+					{				
+						if(fty.parent.id==subcountyid)
+						{
+							facilitydwn.append($('<option></option>').attr('value', fty.id).text(fty.name));
 						}				
 					})		 
 				});		
@@ -542,6 +571,17 @@
             });
 
             $("#subcounty-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+				var period =  getPeriod();
+                // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+period+'&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+				
+                fetchAccountability(url,ounit);
+                
+            });
+
+            $("#facility-dropdown").change(function() 
             {
                 ounit = $(this).val();
 				var period =  getPeriod();
