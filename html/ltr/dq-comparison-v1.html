@@ -530,7 +530,7 @@ color: transparent;}
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             Disabled: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
@@ -544,7 +544,7 @@ color: transparent;}
         $('#period-dropdownTo').MonthPicker({
             Button: false,
             Disabled: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
@@ -574,6 +574,7 @@ color: transparent;}
 			perioddwn.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
+            dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
 			dropdown.prop('selectedIndex', 0);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');

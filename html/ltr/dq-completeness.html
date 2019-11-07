@@ -579,7 +579,7 @@ color: transparent;}
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             Disabled: false,
-            MinMonth: '-1y',
+            MinMonth: '-3y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -594,7 +594,7 @@ color: transparent;}
         $('#period-dropdownTo').MonthPicker({
             Button: false,
             Disabled: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -621,7 +621,8 @@ color: transparent;}
 			// subcounty.empty();
 			// perioddwn.empty();
 
-			// dropdown.append('<option selected="true" disabled>Select County</option>');
+			dropdown.append('<option selected="true" disabled>Select County</option>');
+            dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
 			// dropdown.prop('selectedIndex', 0);
 			
 			// subcounty.append('<option selected="true" disabled>Select Sub County</option>');
@@ -647,7 +648,7 @@ color: transparent;}
 			// $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
 			{
 				//console.log(data.organisationUnits);
-                dropdown.append($('<option disabled selected="true">Select county</option>'));
+                // dropdown.append($('<option disabled selected="true">Select county</option>'));
 				$.each(data.organisationUnits, function (key, entry) 
 				{						
 					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
