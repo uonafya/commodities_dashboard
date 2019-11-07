@@ -528,7 +528,7 @@
                 countyou = subcountyou;
             }
             
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+countyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+countyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,countyou,periodval);
         }
         
@@ -572,8 +572,8 @@
         $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
         
         var period = 'LAST_MONTH';
-        var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
-        // var url = 'http://localhost/pmi/json/indicatorsummary.json';
+        var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
+        //var url = 'http://localhost/pmilive/summary.json';
         fetchIS(url,ounit,period);
 		//parse the data for mos percentage
         
@@ -583,7 +583,7 @@
         {
             var ounit = $(this).val(); 
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,ounit,period);
         });
         
@@ -591,7 +591,7 @@
         {
             var ounit = $(this).val();  
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,ounit,period);
         });
 });
@@ -615,151 +615,270 @@ function fetchIS(url,ounit,period) {
             var theperiod = data.metaData.dimensions.pe[0];
             var theorgunit = ounit;
 			
-			var Den=getExpectedUnits(ounit, theperiod); //orgunits.length;
+			var Den=5923; //getExpectedUnits(ounit, theperiod); //orgunits.length;
             
             var curpe = data.metaData.items[theperiod].name;
             
             getOrgUnit(theorgunit, curpe);
 
-            var tableData = '';                        
+            var tableData = '';   
+
+			//reporting rate			
+            $.each(data.metaData.dimensions.dx, function (key, entry) 
+            {
+					if(entry=='JPaviRmSsJW.REPORTING_RATE')
+					{
+						//define the variables to hold the counter
+						var rratecount = 0;
+						var rrate = 0;
+
+						//define the table
+
+						//console.log(data.metaData.items[entry].name);
+
+						//for each dimension get the value
+						$.each(data.rows, function (rkey, rentry) 
+						{	
+								var dxid = rentry[0];
+								var rrval = parseFloat(rentry[2]);
+
+								if(dxid==entry)
+								{
+									rratecount++;	
+									rrate = rrate+rrval;
+								}					
+						})	
+						var acceptable=90;
+						var target=95;
+						var rrate=(rrate);
+						
+						var rrpercent = (rratecount/Den)*100;
+
+						var bgc = '#ffffff';
+						if(rrpercent>=acceptable){
+							if(rrpercent >= target){
+								bgc  = '#c6efce';
+							}else{
+								bgc  = '#ffeb9c';
+							}
+						}else{
+							bgc = '#ffc7ce';
+						}
+
+						tableData += '<tr>';
+						tableData += '<td>Reporting Rate - Anti Malarials</td>';
+						tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(rratecount)+'</td>';                                
+						tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
+						tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(rrpercent.toFixed(1))+'%</td>';
+						tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
+						tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
+						tableData += '</tr>';	
+					}
+            })
+			
+			//reporting rate on time
+            $.each(data.metaData.dimensions.dx, function (key, entry) 
+            {
+					if(entry=='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
+					{
+						//define the variables to hold the counter
+						var rratecount = 0;
+						var rrate = 0;
+
+						//define the table
+
+						//console.log(data.metaData.items[entry].name);
+
+						//for each dimension get the value
+						$.each(data.rows, function (rkey, rentry) 
+						{	
+								var dxid = rentry[0];
+								var rrval = parseFloat(rentry[2]);
+
+								if(dxid==entry)
+								{
+									rratecount++;	
+									rrate = rrate+rrval;
+								}					
+						})	
+						var acceptable=90;
+						var target=95;
+						var rrate=(rrate);
+						
+						var rrpercent = (rratecount/Den)*100;
+
+						var bgc = '#ffffff';
+						if(rrpercent>=acceptable){
+							if(rrpercent >= target){
+								bgc  = '#c6efce';
+							}else{
+								bgc  = '#ffeb9c';
+							}
+						}else{
+							bgc = '#ffc7ce';
+						}
+
+						tableData += '<tr>';
+						tableData += '<td>On Time Reporting - Anti Malarials</td>';
+						tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(rratecount)+'</td>';                                
+						tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
+						tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(rrpercent.toFixed(1))+'%</td>';
+						tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
+						tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
+						tableData += '</tr>';	
+					}
+            })
             
             //stocked according to plan
             $.each(data.metaData.dimensions.dx, function (key, entry) 
             {	
-                    //define the variables to hold the counter
-                    var stockok = 0;
+					if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
+					{
+						//define the variables to hold the counter
+						var stockok = 0;
 
-                    //define the table
+						//define the table
 
-                    //console.log(data.metaData.items[entry].name);
+						//console.log(data.metaData.items[entry].name);
 
-                    //for each dimension get the value
-                    $.each(data.rows, function (rkey, rentry) 
-                    {	
-                            var dxid = rentry[0];
-                            var mosval = parseFloat(rentry[2]);
+						//for each dimension get the value
+						$.each(data.rows, function (rkey, rentry) 
+						{	
+								var dxid = rentry[0];
+								var mosval = parseFloat(rentry[2]);
 
-                            if(dxid==entry)
-                            {
-                                    if(mosval>=3 && mosval<=6)
-                                    {
-                                            stockok++;
-                                    }						
-                            }					
-                    })	
-                    var acceptable=70;
-                    var target=90;
-                    var stockok=(stockok);
-                    var org=(orgunits.length);
-                    var okpercent = (stockok/orgunits.length)*100;
+								if(dxid==entry)
+								{
+										if(mosval>=3 && mosval<=6)
+										{
+												stockok++;
+										}						
+								}					
+						})	
+						var acceptable=70;
+						var target=90;
+						var stockok=(stockok);
+						var org=(orgunits.length);
+						var okpercent = (stockok/Den)*100;
 
-                    var bgc = '#ffffff';
-                    if(okpercent>=acceptable){
-                        if(okpercent >= target){
-                            bgc  = '#c6efce';
-                        }else{
-                            bgc  = '#ffeb9c';
-                        }
-                    }else{
-                        bgc = '#ffc7ce';
-                    }
+						var bgc = '#ffffff';
+						if(okpercent>=acceptable){
+							if(okpercent >= target){
+								bgc  = '#c6efce';
+							}else{
+								bgc  = '#ffeb9c';
+							}
+						}else{
+							bgc = '#ffc7ce';
+						}
 
-                    tableData += '<tr>';
-                    tableData += '<td>HFs stocked according to plan</td>';
-                    tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                    tableData += '<td class="text-right">'+formatNumber(stockok)+'</td>';                                
-                    tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
-                    tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(okpercent.toFixed(1))+'%</td>';
-                    tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
-                    tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
-                    tableData += '</tr>';	
+						tableData += '<tr>';
+						tableData += '<td>HFs stocked according to plan</td>';
+						tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(stockok)+'</td>';                                
+						tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
+						tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(okpercent.toFixed(1))+'%</td>';
+						tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
+						tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
+						tableData += '</tr>';	
+					}
             })
 
-                        //overstocked
-			$.each(data.metaData.dimensions.dx, function (key, entry) {
-				//define the variables to hold the counter
-				var overstock = 0;								
-				$.each(data.rows, function (rkey, rentry) {	
-					var dxid = rentry[0];
-					var mosval = parseFloat(rentry[2]);
-					//console.log(parseFloat(rentry[2]));
-					if(dxid==entry){
-						//console.log(mosval);
-						if(mosval>6){
-							overstock++;
-						}										
-					}					
-				})	
-				var acceptable = 15;
-                var target = 5;
-				var overOrg=(orgunits.length);
-				var overstock = (overstock);			
-				var overpercent = (overstock/orgunits.length)*100;
+            //overstocked
+			$.each(data.metaData.dimensions.dx, function (key, entry) 
+			{
+				if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
+				{
+					//define the variables to hold the counter
+					var overstock = 0;								
+					$.each(data.rows, function (rkey, rentry) {	
+						var dxid = rentry[0];
+						var mosval = parseFloat(rentry[2]);
+						//console.log(parseFloat(rentry[2]));
+						if(dxid==entry){
+							//console.log(mosval);
+							if(mosval>6){
+								overstock++;
+							}										
+						}					
+					})	
+					var acceptable = 15;
+					var target = 5;
+					var overOrg=(orgunits.length);
+					var overstock = (overstock);			
+					var overpercent = (overstock/Den)*100;
 
-                var bgc = '#ffffff';
-                if(overpercent<=acceptable){
-                    if(overpercent<target){
-                        bgc  = '#c6efce';
-                    }else{
-                        bgc  = '#ffeb9c';
-                    }
-                }else{
-                    bgc = '#ffc7ce';
-                }
+					var bgc = '#ffffff';
+					if(overpercent<=acceptable){
+						if(overpercent<target){
+							bgc  = '#c6efce';
+						}else{
+							bgc  = '#ffeb9c';
+						}
+					}else{
+						bgc = '#ffc7ce';
+					}
 
-                    tableData += '<tr>';
-                    tableData += '<td>HFs over-stocked</td>';
-                    tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                    tableData += '<td class="text-right">'+formatNumber(overstock)+'</td>';                                
-                    tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
-                    tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(overpercent.toFixed(1))+'%</td>';
-                    tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
-                    tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
-                    tableData += '</tr>';
+						tableData += '<tr>';
+						tableData += '<td>HFs over-stocked</td>';
+						tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(overstock)+'</td>';                                
+						tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
+						tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(overpercent.toFixed(1))+'%</td>';
+						tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
+						tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
+						tableData += '</tr>';
+					}
             })
                 
                 
                 //under stocked
-            $.each(data.metaData.dimensions.dx, function (key, entry){	
-                //define the variables to hold the counter
-				var understock = 0;
-				
-				//for each dimension get the value
-				$.each(data.rows, function (rkey, rentry) {	
-					var dxid = rentry[0];
-					var mosval = parseFloat(rentry[2]);
-					if(dxid==entry){
-						if(mosval>0 && mosval<3){
-							understock++;
-						}						
-					}					
-				})	
-				var acceptable = 15;
-                var target = 5;
-				var understock=(understock);
-				var org=(orgunits.length);
-				var underpercent = (understock/orgunits.length)*100;
-                 
-                var bgc = '#ffffff';
-                if(underpercent<=acceptable){
-                    if(underpercent<target){
-                        bgc  = '#c6efce';
-                    }else{
-                        bgc  = '#ffeb9c';
-                    }
-                }else{
-                    bgc = '#ffc7ce';
-                }
+            $.each(data.metaData.dimensions.dx, function (key, entry)
+			{	
+				if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
+				{
+					//define the variables to hold the counter
+					var understock = 0;
+					
+					//for each dimension get the value
+					$.each(data.rows, function (rkey, rentry) {	
+						var dxid = rentry[0];
+						var mosval = parseFloat(rentry[2]);
+						if(dxid==entry){
+							if(mosval>0 && mosval<3){
+								understock++;
+							}						
+						}					
+					})	
+					var acceptable = 15;
+					var target = 5;
+					var understock=(understock);
+					var org=(orgunits.length);
+					var underpercent = (understock/Den)*100;
+					 
+					var bgc = '#ffffff';
+					if(underpercent<=acceptable){
+						if(underpercent<target){
+							bgc  = '#c6efce';
+						}else{
+							bgc  = '#ffeb9c';
+						}
+					}else{
+						bgc = '#ffc7ce';
+					}
 
-                tableData += '<tr>';
-                tableData += '<td>HFs under-stocked</td>';
-                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                tableData += '<td class="text-right">'+formatNumber(understock)+'</td>';                                
-                tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
-                tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(underpercent.toFixed(1))+'%</td>';
-                tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
-                tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
-                tableData += '</tr>';
+					tableData += '<tr>';
+					tableData += '<td>HFs under-stocked</td>';
+					tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+					tableData += '<td class="text-right">'+formatNumber(understock)+'</td>';                                
+					tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
+					tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(underpercent.toFixed(1))+'%</td>';
+					tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
+					tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
+					tableData += '</tr>';
+				}
 			})
 
 			//tableData += '<table>';	
@@ -768,51 +887,55 @@ function fetchIS(url,ounit,period) {
 
                 
                 //stockout
-                $.each(data.metaData.dimensions.dx, function (key, entry) {
-                //define the variables to hold the counter
-				var stockout = 0;
-				
-				//define the table
-									
-				//console.log(data.metaData.items[entry].name);
-				
-				//for each dimension get the value
-				$.each(data.rows, function (rkey, rentry) {	
-                    var dxid = rentry[0];
-                    var mosval = parseFloat(rentry[2]);
-                    if(dxid==entry)
-                    {
-                        if(mosval==0){
-                            stockout++;
-                        }						
-                    }					
-				})	
-				var acceptable=10;
-                var target = 0;
-				var stockout=(stockout);
-				var org=(orgunits.length);
-                var stockoutpercent = (stockout/orgunits.length)*100;
-                
-                var bgc = '#ffffff';
-                if(stockoutpercent<=acceptable){
-                    if(stockoutpercent<target){
-                        bgc  = '#c6efce';
-                    }else{
-                        bgc  = '#ffeb9c';
-                    }
-                }else{
-                    bgc = '#ffc7ce';
-                }
-											                                
-                tableData += '<tr>';
-                tableData += '<td>HFs with a stock out</td>';
-                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                tableData += '<td class="text-right">'+formatNumber(stockout)+'</td>';                                
-                tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
-                tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(stockoutpercent.toFixed(1))+'%</td>';
-                tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
-                tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
-                tableData += '</tr>';
+                $.each(data.metaData.dimensions.dx, function (key, entry) 
+				{
+					if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
+					{
+						//define the variables to hold the counter
+						var stockout = 0;
+						
+						//define the table
+											
+						//console.log(data.metaData.items[entry].name);
+						
+						//for each dimension get the value
+						$.each(data.rows, function (rkey, rentry) {	
+							var dxid = rentry[0];
+							var mosval = parseFloat(rentry[2]);
+							if(dxid==entry)
+							{
+								if(mosval==0){
+									stockout++;
+								}						
+							}					
+						})	
+						var acceptable=10;
+						var target = 0;
+						var stockout=(stockout);
+						var org=(orgunits.length);
+						var stockoutpercent = (stockout/Den)*100;
+						
+						var bgc = '#ffffff';
+						if(stockoutpercent<=acceptable){
+							if(stockoutpercent<target){
+								bgc  = '#c6efce';
+							}else{
+								bgc  = '#ffeb9c';
+							}
+						}else{
+							bgc = '#ffc7ce';
+						}
+																					
+						tableData += '<tr>';
+						tableData += '<td>HFs with a stock out</td>';
+						tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+						tableData += '<td class="text-right">'+formatNumber(stockout)+'</td>';                                
+						tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
+						tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(stockoutpercent.toFixed(1))+'%</td>';
+						tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
+						tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
+						tableData += '</tr>';
+					}
                 })
 				
                         $('.loader-sp').addClass('hidden');
@@ -826,6 +949,7 @@ function fetchIS(url,ounit,period) {
                         $('.indicatorsumm').DataTable( {
                             //data-xport
                             dom: 'Bfrtlip',
+							ordering: false,
                             "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]], 
                             buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'],
                             //data-xport
@@ -885,7 +1009,7 @@ function fetchIS(url,ounit,period) {
         {
             var ounit = $(this).val(); 
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,ounit,period);
         });
 
@@ -893,7 +1017,7 @@ function fetchIS(url,ounit,period) {
         {
             var ounit = $(this).val();  
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,ounit,period);
         });
 }
