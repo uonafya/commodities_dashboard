@@ -250,3 +250,20 @@
 .text-right{
   text-align: right;
 }
+
+.em-text{
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.text-black{
+  color: #111;
+}
+.text-red{
+  color: #58160c;
+}
+.text-green{
+  color: #115803;
+}
+.text-blue{
+  color: #110358;
+}
