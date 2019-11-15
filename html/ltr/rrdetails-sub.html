@@ -197,7 +197,7 @@
                                     </div>
                                 </div> 
                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><i class="fa fa-undo"></i></a>
+                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
                                 </div>                                
                             </div>
                         </div>
@@ -338,7 +338,7 @@
         }
         $('#period-dropdown').MonthPicker({ 
             Button: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             Disabled: false,
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
@@ -354,7 +354,7 @@
         $('#period-dropdownTo').MonthPicker({
             Button: false,
             Disabled: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -392,6 +392,7 @@
 			dropdown.empty();
 			subcounty.empty();
 			dropdown.append('<option selected="true" disabled>Select County</option>');
+            dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
 
             //TODO: this fails for some accounts. Why??
 			//if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 1);}else{dropdown.prop('selectedIndex', 0);dropdown.find(option[value=myOU()]).attr('selected', true)};
