@@ -110,20 +110,20 @@ function overstocked(overstockurl,orgu,commodity)
                                     })
                                 
                                                                 
-                                    $.each(orgunits,function (key, value) 
+                                    $.each(orgunits,function (key, one_ou) 
                                     {
                                          
                                         //calculate the difference
                                         
-                                            if(orgunitmos[value]>6)                                            
+                                            if(orgunitmos[one_ou]>6)                                            
                                             {		
                                                 facility_count+=1;
 
-                                                var diffmos = (6/parseFloat(orgunitmos[value]))*parseFloat(orgunitphy[value]);
-                                                orgunitdiff[value] = (parseFloat(orgunitphy[value])-diffmos).toFixed(0);
+                                                var diffmos = (6/parseFloat(orgunitmos[one_ou]))*parseFloat(orgunitphy[one_ou]);
+                                                orgunitdiff[one_ou] = (parseFloat(orgunitphy[one_ou])-diffmos).toFixed(0);
                                             
     
-                                                tableData += '<tr><td>'+data.metaData.items[value].name+'</td><td>'+getMFLcode(value)+'</td><td>'+orgunitmos[value]+'</td><td>'+orgunitphy[value]+'</td><td>'+orgunitdiff[value]+'</td></tr>' ;
+                                                tableData += '<tr><td>'+data.metaData.items[one_ou].name+'</td><td>'+getMFLcode(one_ou)+'</td><td>'+orgunitmos[one_ou]+'</td><td>'+orgunitphy[one_ou]+'</td><td>'+orgunitdiff[one_ou]+'</td></tr>' ;
                                                 
                                                 
                                             }
@@ -145,10 +145,10 @@ function overstocked(overstockurl,orgu,commodity)
                 $('.loader-sp').addClass('hidden');
                 // $('.loader-sp').css('display','none');
                 $('.overstocked_status').addClass('hidden');
-                $('.overstocked_status').addClass('hidden');
-                $("table.overstocked_table tbody").empty();
                 $('#overstocked_table').DataTable().destroy();
-                $("table.overstocked_table tbody").append(tableData);	
+                $("table.overstocked_table tbody").empty();
+                $('.overstocked_status').addClass('hidden');
+                $("table.overstocked_table tbody").append(tableData);
                 //$('#overstocked_table').DataTable();                                                          
                 $('#overstocked_table').DataTable({
                     dom: 'Bfrtlip',
