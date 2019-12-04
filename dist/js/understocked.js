@@ -78,6 +78,7 @@ function understocked(understockurl,orgu,commodity)
             var orgunitmos = [];
 			var orgunitphy = [];
             var orgunitdiff = [];
+            var orgunitamc = [];
             // var uid = data.metaData.dimensions.ou;
 
             
@@ -110,14 +111,20 @@ function understocked(understockurl,orgu,commodity)
 
                                             if(rowkentry[0]==dxids[0] && entry==rowkentry[1])
                                             {
-                                                orgunitmos[entry] = rowkentry[3];																
+                                                orgunitmos[entry] = rowkentry[3];	
+                                               													
                                             }
                                             
                                             //set physical
                                             if(rowkentry[0]==dxids[1] && entry==rowkentry[1])
                                             {
                                                 orgunitphy[entry] = rowkentry[3];	
-                                            }							
+                                            }	
+                                            //set amc
+                                            if(rowkentry[0]==dxids[2] && entry==rowkentry[1])
+                                            {
+                                                orgunitamc[entry] = rowkentry[3];	
+                                            }	
                                             
                                                                         
                                         })
@@ -144,9 +151,10 @@ function understocked(understockurl,orgu,commodity)
                                             var diffmos = (3/parseFloat(orgunitmos[one_ou]))*parseFloat(orgunitphy[one_ou]);
                                             //orgunitdiff[value] = diffmos-parseFloat(orgunitphy[value]).toFixed(0);
                                             orgunitdiff[one_ou] = (diffmos-parseFloat(orgunitphy[one_ou])).toFixed(0);
-                                        
 
-                                            tableData += '<tr><td>'+data.metaData.items[one_ou].name+'</td><td>'+getMFLcode(one_ou)+'</td><td>'+orgunitmos[one_ou]+'</td><td>'+orgunitphy[one_ou]+'</td><td>'+orgunitdiff[one_ou]+'</td></tr>' ;
+                                            
+
+                                            tableData += '<tr><td>'+data.metaData.items[one_ou].name+'</td><td>'+getMFLcode(one_ou)+'</td><td>'+orgunitmos[one_ou]+'</td><td>'+orgunitamc[one_ou]+'</td><td>'+orgunitphy[one_ou]+'</td><td>'+orgunitdiff[one_ou]+'</td></tr>' ;
                                             
                                             
                                         }
