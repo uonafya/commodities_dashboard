@@ -165,6 +165,7 @@ function fetchRDTs(rdturl,orgu,peri)
                     $('#rdt_table').DataTable({
                         dom: 'Bfrtlip',
                         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+						order: [[6, 'asc']],
                         buttons: [
                             'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
                         ],
