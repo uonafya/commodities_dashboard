@@ -168,6 +168,7 @@ function fetchACTs(acturl,orgu,peri)
             $('#acts_table').DataTable({
                 dom: 'Bfrtlip',
                 "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+				order: [[6, 'desc']],
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
                 ],
