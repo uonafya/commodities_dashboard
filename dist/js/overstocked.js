@@ -76,6 +76,7 @@ function overstocked(overstockurl,orgu,commodity)
                 var orgunitmos = [];
                 var orgunitphy = [];
                 var orgunitdiff = [];
+                var orgunitamc = [];
 
                         var count = 0;
                         $.each(data.metaData.dimensions.ou, function (key, entry) 
@@ -100,6 +101,10 @@ function overstocked(overstockurl,orgu,commodity)
                                                 if(rowkentry[0]==dxids[1] && entry==rowkentry[1])
                                                 {
                                                     orgunitphy[entry] = rowkentry[3];	
+                                                }	
+                                                if(rowkentry[0]==dxids[2] && entry==rowkentry[1])
+                                                {
+                                                    orgunitamc[entry] = rowkentry[3];	
                                                 }							
                                                 
                                                                             
@@ -123,7 +128,7 @@ function overstocked(overstockurl,orgu,commodity)
                                                 orgunitdiff[one_ou] = (parseFloat(orgunitphy[one_ou])-diffmos).toFixed(0);
                                             
     
-                                                tableData += '<tr><td>'+data.metaData.items[one_ou].name+'</td><td>'+getMFLcode(one_ou)+'</td><td>'+orgunitmos[one_ou]+'</td><td>'+orgunitphy[one_ou]+'</td><td>'+orgunitdiff[one_ou]+'</td></tr>' ;
+                                                tableData += '<tr><td>'+data.metaData.items[one_ou].name+'</td><td>'+getMFLcode(one_ou)+'</td><td>'+orgunitmos[one_ou]+'</td><td>'+orgunitamc[one_ou]+'</td><td>'+orgunitphy[one_ou]+'</td><td>'+orgunitdiff[one_ou]+'</td></tr>' ;
                                                 
                                                 
                                             }
