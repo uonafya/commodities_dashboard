@@ -416,10 +416,10 @@
                                                 <th class="text-right" colspan="5"><b>Pending Shipments</b></th>
                                             </tr>
                                             <tr>
-                                                <th class="text-right">GOK</th>
+                                                <th class="text-right">PMI/USAID</th>
                                                 <th class="text-right">GF</th>
-                                                <th class="text-right">PMI</th>
-                                                <th class="text-right">GOK CF</th>
+                                                <th class="text-right">UNICEF</th>
+                                                <th class="text-right">GOK</th>
                                                 <th class="text-right"><b>Total</b></th>
                                             </tr>		
                                         </thead>
@@ -429,10 +429,10 @@
                                             <tr>
 												<th>Description</th>
 												<th>Unit of Measure</th>
-                                                <th class="text-right">GOK</th>
+                                                <th class="text-right">PMI/USAID</th>
                                                 <th class="text-right">GF</th>
-                                                <th class="text-right">PMI</th>
-                                                <th class="text-right">GOK CF</th>
+                                                <th class="text-right">UNICEF</th>
+                                                <th class="text-right">GOK</th>
                                                 <th class="text-right"><b>Total</b></th>
                                             </tr>		
                                         </tfoot>
@@ -502,65 +502,78 @@
             
 			var url = 'pending.json';
 			
-			fetchPenShip(url);                
+			fetchPenShip();                
 					
 	});
 	
         
         //function to process the Pending Shipments url
-        function fetchPenShip(spurl)
-        {
-            $('#sp_table').addClass('hidden');
+        function fetchPenShip()
+        {	
+			$('#sp_table').addClass('hidden');
             $('.spdata').addClass('hidden');
             $('.loader-sp').removeClass('hidden');
             $('.loader-sp').css('display','block');
-            $.getJSON(spurl, function (data){
-            $.ajax({
+			//get data on PMI stocks
+								
+			//https://hiskenya.org/api/26/dataStore/pending/stocks
+			//var urlstock = 'http://localhost/pmilive/commodities_dashboard/stocks.json';
+			
+			var urlstock = 'https://hiskenya.org/api/26/dataStore/pending/stocks';
+			
+			$.ajax({
                 type: 'GET',
                 crossDomain: true,
-				mimeType: "application/json",
-                url: spurl,                    
-                success: function (data) {
-
-                    //create the funds source array
-                    var funds = [];
+                url: urlstock,                    
+                success: function (data) 
+				{					
+					var pmidata = [];
+					var gfdata = [];
+					var unicefdata = [];
+					var mohdata = [];
+					$.each(data.pmi[0], function (key, entry) 
+					{		
+						pmidata.push(entry);													
+					})
 					
+					$.each(data.gf[0], function (key, entry) 
+					{		
+						gfdata.push(entry);													
+					})
+					
+					$.each(data.unicef[0], function (key, entry) 
+					{		
+						unicefdata.push(entry);													
+					})
+					
+					$.each(data.moh[0], function (key, entry) 
+					{		
+						mohdata.push(entry);													
+					})
+										
 					//create the product array
 					var products = {"PM03ART004": "Artemether-Lumefantrine 20/120 Tabs 6s", "PM03ART005": "Artemether-Lumefantrine 20/120 Tabs 12s",
-                 "PM03ART006": "Artemether-Lumefantrine 20/120 Tabs 18s", "PM03ART007": "Artemether-Lumefantrine 20/120 Tabs 24s",
-                 "PM03ART009": "Artesunate Injection", "PM03SPY001": "Sulphadoxine Pyrimethamine Tabs", "NL05TES067": "Rapid Diagnostic Tests"}
+				 "PM03ART006": "Artemether-Lumefantrine 20/120 Tabs 18s", "PM03ART007": "Artemether-Lumefantrine 20/120 Tabs 24s",
+				 "PM03ART009": "Artesunate Injection", "PM03SPY001": "Sulphadoxine Pyrimethamine Tabs", "NL05TES067": "Rapid Diagnostic Tests"}
 					
 					
 					//create the totals array
 					var producttotals = [];
-                    
+					
 
-                    //var tableData = '<table>';
-                    var tableData = '';
+					//var tableData = '<table>';
+					var tableData = '';
 					
 					var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"];
 
-					var sources = ["USAID", "GF", "PMI", "GOK", "GOK CF"];
+					var sources = ["pmi", "gf","unicef", "moh"];
 					
-                    //push only if not in
-                    $.each(data, function (rowkey, rowentry) 
-                    {
-						//source of funds
-						if(funds.indexOf(rowentry['sourceoffunds'])>=0)
-						{
-							//console.log(orgunits);
-						}
-						else
-						{
-							funds.push(rowentry['sourceoffunds']);
-						}
-                    })
-					
+							
 					//loop trough to populate data
 					var itemcodes = [];
 					
 					var counter = 0
-					
+											
 					//loop through the products
 					$.each(products, function (prokey, proentry) 
 					{
@@ -571,86 +584,101 @@
 						
 						tableData += '<td>'+dxuom[counter]+'</td>';
 						
-						//source of funds				
+						//source of funds	
+						
 						$.each(sources, function (fundskey, fundsentry) 
 						{
 							var sumdues = 0;
-							//loop through all the records
-							$.each(data, function (rowkey, rowentry) 
+							var duesin = 0;
+							
+							if(fundsentry=='pmi')
 							{
-								if(fundsentry==rowentry['sourceoffunds'] && prokey==rowentry['itemcode'])
-								{
-									var duesin = parseFloat(rowentry['duesin']);
-									//RDTS
-									if(prokey=='NL05TES067')
-									{
-										sumdues += duesin*25;	
-									}
-									else if(prokey=='PM03SPY001')
-									{
-										sumdues += duesin*1000;	
-									}
-									else
-									{
-										sumdues += duesin;	
-									}									
-								}									
-							})
+								var duesin = parseFloat(pmidata[counter]);
+							}
+							
+							if(fundsentry=='gf')
+							{
+								var duesin = parseFloat(gfdata[counter]);
+							}
+							
+							if(fundsentry=='unicef')
+							{
+								var duesin = parseFloat(unicefdata[counter]);
+							}
+							
+							if(fundsentry=='moh')
+							{
+								var duesin = parseFloat(mohdata[counter]);
+							}												
+							
+							//RDTS
+							if(prokey=='NL05TES067')
+							{
+								sumdues += duesin*25;	
+							}
+							else if(prokey=='PM03SPY001')
+							{
+								sumdues += duesin*1000;	
+							}
+							else
+							{
+								sumdues += duesin;	
+							}
+												
 							totalsum += sumdues;
 							tableData += '<td class="text-right">'+formatNumber(sumdues)+ '</td>';																					
 						})
 						tableData += '<td class="text-right">'+formatNumber(totalsum)+ '</td>';
 						tableData += '</tr>';
 						counter++;
-                    })
-
-                    					
-					var tfoot = '';
-					
-					var colspan = sources.length+1;
-					
-					tfoot += '<tr><th rowspan="2">Description</th><th rowspan="2">Unit of Measure</th>                                               <th colspan="'+colspan+'"><center><b>Pending Shipments</b></center></th></tr><tr>';
-					
-					$.each(sources, function (fundskey, fundsentry) 
-					{
-						tfoot += '<th>'+fundsentry+'</th>';
+						//console.log(tableData);
 					})
-					tfoot += '<th><b>Total</b></th></tr>';
 					
-					
-                    $('#sp_table').removeClass('hidden');
-                    $('.spdata').removeClass('hidden');
-                    $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');					
-					
-					$('#sp_table').DataTable().destroy();
-                    $("table.spbox tbody").empty();
-                    $("table.spbox tbody").append(tableData);	
-					$("table.spbox tfoot").empty();
-					$("table.spbox tfoot").append(tfoot);
-					$("table.spbox thead").empty();
-                    $("table.spbox thead").append(tfoot);
-                    $('#sp_table').DataTable(
-            {
-                dom: 'Bfrtip',
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-            }
-        );	
-                    //$('#sp_table').DataTable();                                                          
-                    //$('#sp_table').DataTable().fnDraw();					
-                },
-				
-                error: function (request, status, error) {
+					var tfoot = '';
+							
+							var colspan = sources.length+1;
+							
+							tfoot += '<tr><th rowspan="2">Description</th><th rowspan="2">Unit of Measure</th>                                               <th colspan="'+colspan+'"><center><b>Pending Shipments</b></center></th></tr><tr>';
+							
+							$.each(sources, function (fundskey, fundsentry) 
+							{
+								tfoot += '<th>'+fundsentry.toUpperCase()+'</th>';
+							})
+							tfoot += '<th><b>Total</b></th></tr>';
+							
+							
+							$('#sp_table').removeClass('hidden');
+							$('.spdata').removeClass('hidden');
+							$('.loader-sp').addClass('hidden');
+							$('.loader-sp').css('display','none');					
+							
+							$('#sp_table').DataTable().destroy();
+							$("table.spbox tbody").empty();
+							$("table.spbox tbody").append(tableData);	
+							$("table.spbox tfoot").empty();
+							$("table.spbox tfoot").append(tfoot);
+							$("table.spbox thead").empty();
+							$("table.spbox thead").append(tfoot);
+							$('#sp_table').DataTable(
+					{
+						dom: 'Bfrtip',
+						"ordering": false,
+						buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+					}
+				);
+				},
+                error: function (request, status, error) 
+				{
                     $('.loader-sp').addClass('hidden');
                     $('#sp_table').addClass('hidden');
                     console.log('SP: error fetching json. :- '+error);
                     $('spdata').addClass('hidden');
                     $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-					}
-				});
-			})
+                }
+            });
+			
         }
-        
+
 </script>
 </body>
 
