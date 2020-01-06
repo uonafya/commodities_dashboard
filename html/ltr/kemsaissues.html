@@ -681,11 +681,16 @@
                     month2 = 12;
                     tyear2 = (parseFloat(tyear2) - 1);
                 }
+                
                 month1 = parseFloat(month2);
                 month2 = parseFloat(month1)+1;
                 if(month1 < 1){
                     month1 = 12;
                     tyear1 = (parseFloat(tyear1) - 1);
+                }
+                if(month2 > 12){
+                    month2 = 1;
+                    tyear2 = (parseFloat(tyear2) + 1);
                 }
                 console.log('month1 => '+month1);
                 console.log('month2 => '+month2);
@@ -735,7 +740,7 @@
             if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
-            return(getPeriod(per, false))
+            return(getPeriod(per, true))
         }
 		
 		//check if date field contains a value from a previous selection
