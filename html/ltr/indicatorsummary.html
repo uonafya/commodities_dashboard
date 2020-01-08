@@ -532,6 +532,28 @@
             var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+countyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,countyou,periodval);
         }
+		
+		
+		function getPreviousPMonth() 
+		{
+                var curdate = new Date();
+
+				var today = curdate.getDate();
+
+				if(today<15)
+					curdate.setMonth(curdate.getMonth() - 2);
+				else
+					curdate.setMonth(curdate.getMonth() - 1);
+
+				per_y = curdate.getFullYear();
+				per_m = parseFloat(curdate.getMonth())+1;
+				
+				if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+				var per = per_y+""+per_m;
+				
+                return per
+                // return(getPerio(per, false))
+        }
         
     </script>
     <!-- *********** end MonthPicker ************** -->
@@ -572,8 +594,8 @@
         });
         $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
         
-        var period = 'LAST_MONTH';
-        var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
+        var period = getPreviousPMonth(); //'LAST_MONTH';
+        var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
         //var url = 'http://localhost/pmilive/summary.json';
         fetchIS(url,ounit,period);
 		//parse the data for mos percentage
@@ -1025,7 +1047,7 @@ function getPeriod()
 
     if(periodval == null || periodval=='')
     {
-        periodval = 'LAST_MONTH';
+        periodval = getPreviousPMonth(); //'LAST_MONTH';
     }
     else
     {
