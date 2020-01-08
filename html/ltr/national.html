@@ -568,18 +568,41 @@
             var fil_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:HfGVoCZAwtd;nK8sqMAeQHY;ZcngDQJKiEg;wOKbEd8Dbi3;SSARcWY2Ge1;AX1co0SXobM;UUNwkYQhYgX&dimension=ou:HfVjCurKxh2&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
             getNational(fil_url,periodval);
         }
+		
+		function getPreviousPMonth() 
+		{
+                var curdate = new Date();
+
+				var today = curdate.getDate();
+
+				if(today<15)
+					curdate.setMonth(curdate.getMonth() - 2);
+				else
+					curdate.setMonth(curdate.getMonth() - 1);
+
+				per_y = curdate.getFullYear();
+				per_m = parseFloat(curdate.getMonth())+1;
+				
+				if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+				var per = per_y+""+per_m;
+				
+                return per
+                // return(getPerio(per, false))
+        }
     </script>
 
 	<script language="JavaScript">
-    $(function () {
+    $(function () 
+	{
     
+	var periodval = getPreviousPMonth();
     //process the national mos data    
-    var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:HfGVoCZAwtd;nK8sqMAeQHY;ZcngDQJKiEg;wOKbEd8Dbi3;SSARcWY2Ge1;AX1co0SXobM;UUNwkYQhYgX&dimension=ou:HfVjCurKxh2&filter=pe:LAST_MONTH&displayProperty=NAME&outputIdScheme=UID';
+    var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:HfGVoCZAwtd;nK8sqMAeQHY;ZcngDQJKiEg;wOKbEd8Dbi3;SSARcWY2Ge1;AX1co0SXobM;UUNwkYQhYgX&dimension=ou:HfVjCurKxh2&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
 
     // var url = 'http://localhost/pmi/json/national-summary.json';
 	var perval = 'LAST_MONTH';
 
-    getNational(url,perval);
+    getNational(url,periodval);
     //populate dropdown with list of counties
     
 });
