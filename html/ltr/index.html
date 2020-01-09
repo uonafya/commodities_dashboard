@@ -519,9 +519,11 @@
 
     <script>
         var todayte = new Date().getDate();
-        if(parseFloat(todayte) < 15){
+        if(parseFloat(todayte) < 15)
+		{
             var mnthLessBy = -2
-        }else{
+        }else
+		{
             var mnthLessBy = -1
         }
         $('#period-dropdown').MonthPicker({ 
@@ -555,6 +557,27 @@
             {
                 countyou = subcountyou;
             }
+        }
+		
+		function getPreviousPMonth() 
+		{
+                var curdate = new Date();
+
+				var today = curdate.getDate();
+
+				if(today<15)
+					curdate.setMonth(curdate.getMonth() - 2);
+				else
+					curdate.setMonth(curdate.getMonth() - 1);
+
+				per_y = curdate.getFullYear();
+				per_m = parseFloat(curdate.getMonth())+1;
+				
+				if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+				var per = per_y+""+per_m;
+				
+                return per
+                // return(getPerio(per, false))
         }
         
     </script>
@@ -602,17 +625,7 @@
                 var periodid = 'LAST_MONTH';
             }
 
-            function getPreviousPMonth() {
-                var per_y = new Date().getFullYear();
-                var per_m = new Date().getMonth();
-                per_m = parseFloat(per_m) -1;
-                // per_m = parseFloat(per_m);
-                if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
-                if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
-                var per = per_y+""+per_m;
-                return per
-                // return(getPerio(per, false))
-            }
+            
             
             // sleep(3000);
             //load t b commodity 
@@ -665,7 +678,13 @@
     
                 if(periodval == null || periodval=='')
                 {
-                    periodval = 'LAST_MONTH';
+					var todayte = new Date().getDate();
+					if(parseFloat(todayte) < 15){
+						var periodval = getPreviousPMonth()
+					}else{
+						var periodval = 'LAST_MONTH';
+					}
+                    //periodval = 'LAST_MONTH';
                 }
                 else
                 {
@@ -689,7 +708,12 @@
     
                 if(periodval == null || periodval=='')
                 {
-                    periodval = 'LAST_MONTH';
+                    var todayte = new Date().getDate();
+					if(parseFloat(todayte) < 15){
+						var periodval = getPreviousPMonth()
+					}else{
+						var periodval = 'LAST_MONTH';
+					}
                 }
                 else
                 {                
