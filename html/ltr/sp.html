@@ -341,6 +341,7 @@
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
                                             <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
+                                            <input type="hidden" name="h_period" id="h_period"/> 
                                         </div> 
                                     </div>
                                 </div>  
@@ -496,6 +497,7 @@
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
+                $('#h_period').val(sDate);
                 datePicked(sDate);
             }
         });        
@@ -603,11 +605,9 @@
                 ounit = myOU();
             }
 
-            var sDate = $('#period-dropdown').val();
-            var period = 'LAST_MONTH';
-            if(sDate.length > 2){
-                var dateparts = sDate.split('/', 2);
-                period = dateparts[1]+''+dateparts[0];
+            var sDate = $('#h_period').val();
+            if(sDate.length > 3){
+                var period = sDate
             }else{
                 var period = 'LAST_MONTH';   
             }
@@ -619,6 +619,12 @@
             $("#county-dropdown").change(function() 
             {
                 ounit1 = $(this).val();
+                var sDate = $('#h_period').val();
+                if(sDate.length > 3){
+                    var period = sDate
+                }else{
+                    var period = 'LAST_MONTH';   
+                }
                 var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;EtG9ozt2joA.miM6uIJ2cWx;TNWcde51FIt;imheYfA1Kiw.rPAsF4cpNxm;AX1co0SXobM&dimension=ou:LEVEL-5;'+ounit1+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchSP(url,ounit1,period);
                 
@@ -627,6 +633,12 @@
             $("#subcounty-dropdown").change(function() 
             {
                 ounit2 = $(this).val();
+                var sDate = $('#h_period').val();
+                if(sDate.length > 3){
+                    var period = sDate
+                }else{
+                    var period = 'LAST_MONTH';   
+                }
                 var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;EtG9ozt2joA.miM6uIJ2cWx;TNWcde51FIt;imheYfA1Kiw.rPAsF4cpNxm;AX1co0SXobM&dimension=ou:LEVEL-5;'+ounit2+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchSP(url,ounit2,period);
                 
@@ -642,6 +654,7 @@
         var ounit = $("#county-dropdown").val();
         var subcountyou = $("#subcounty-dropdown").val();
         var period = therdate;
+        $('#h_period').val(period)
         
         if(subcountyou!=null)
         {

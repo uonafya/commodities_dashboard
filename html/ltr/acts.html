@@ -179,11 +179,12 @@
                                             </select>
                                         </div>										
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
+                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                           
                                             </select> 
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
                                             <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
+                                            <input type="hidden" name="h_period" id="h_period"/> 
                                         </div> 
                                     </div>
                                 </div>  
@@ -372,6 +373,7 @@
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
+                $('#h_period').val(sDate);
                 datePicked(sDate);
             }
         });        
@@ -478,14 +480,14 @@
             $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
 
-            var sDate = $('#period-dropdown').val();
-            var period = 'LAST_MONTH';
-            if(sDate.length > 2){
-                var dateparts = sDate.split('/', 2);
-                period = dateparts[1]+''+dateparts[0];
+            var sDate = $('#h_period').val();
+            if(sDate.length > 3){
+                var period = sDate
             }else{
                 var period = 'LAST_MONTH';   
             }
+                
+            
         
             // alert('sDate: '+sDate + 'typeof sDate:'+typeof sDate + ' & period: ' + period);
             var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:'+period+'&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';			
@@ -494,6 +496,13 @@
             
             $("#county-dropdown").change(function() 
             {
+                var sDate = $('#h_period').val();
+                if(sDate.length > 3){
+                var period = sDate
+                }else{
+                var period = 'LAST_MONTH';   
+                }
+
                 ounit1 = $(this).val();
                 // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;zLR3PBVPgN5;c0MB4RmVjxk.rPAsF4cpNxm;bJILAolJsSJ;qnZmg5tNSMy.rPAsF4cpNxm;jtGNoWcdNcx;gVp1KSFI69G.rPAsF4cpNxm;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit1+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
                 var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:'+period+'&dimension=ou:LEVEL-5;'+ounit1+'&displayProperty=NAME&outputIdScheme=UID';
@@ -503,6 +512,13 @@
 
             $("#subcounty-dropdown").change(function() 
             {
+                var sDate = $('#h_period').val();
+                if(sDate.length > 3){
+                var period = sDate
+                }else{
+                var period = 'LAST_MONTH';   
+                }
+                
                 ounit2 = $(this).val();
                 // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;zLR3PBVPgN5;c0MB4RmVjxk.rPAsF4cpNxm;bJILAolJsSJ;qnZmg5tNSMy.rPAsF4cpNxm;jtGNoWcdNcx;gVp1KSFI69G.rPAsF4cpNxm;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit2+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
                 var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:'+period+'&dimension=ou:LEVEL-5;'+ounit2+'&displayProperty=NAME&outputIdScheme=UID';
@@ -521,6 +537,7 @@
             var ounit = $("#county-dropdown").val();
             var subcountyou = $("#subcounty-dropdown").val();
             var period = therdate;
+            $('#h_period').val(period)
             
             if(subcountyou!=null)
             {
