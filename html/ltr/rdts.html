@@ -522,7 +522,7 @@
             if(sDate.length > 3){
                 var period = sDate
             }else{
-                var period = 'LAST_MONTH';   
+                var period = getPreviousPMonth(); //'LAST_MONTH';   
             }
 
             var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;Umi8ZsiqBHw.miM6uIJ2cWx;AecI5IRlRSR;cPlWFYbBacW.rPAsF4cpNxm;UUNwkYQhYgX&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
@@ -535,7 +535,7 @@
                 if(sDate.length > 3){
                     var period = sDate
                 }else{
-                    var period = 'LAST_MONTH';   
+                    var period = getPreviousPMonth(); //'LAST_MONTH';   
                 }
                 var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;Umi8ZsiqBHw.miM6uIJ2cWx;AecI5IRlRSR;cPlWFYbBacW.rPAsF4cpNxm;UUNwkYQhYgX&dimension=ou:LEVEL-5;'+ounit1+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchRDTs(url,ounit1,period);
@@ -549,7 +549,7 @@
                 if(sDate.length > 3){
                     var period = sDate
                 }else{
-                    var period = 'LAST_MONTH';   
+                    var period = getPreviousPMonth(); //'LAST_MONTH';   
                 }
                 var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE;Umi8ZsiqBHw.miM6uIJ2cWx;AecI5IRlRSR;cPlWFYbBacW.rPAsF4cpNxm;UUNwkYQhYgX&dimension=ou:LEVEL-5;'+ounit2+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchRDTs(url,ounit2,period);
@@ -583,7 +583,28 @@
             fetchRDTs(url,ounit,period);
         }
         
-        //function toprocess the SP url
+        //get the previous month
+		function getPreviousPMonth() 
+		{
+			var curdate = new Date();
+
+			var today = curdate.getDate();
+
+			if(today<15)
+				curdate.setMonth(curdate.getMonth() - 2);
+			else
+				curdate.setMonth(curdate.getMonth() - 1);
+
+			per_y = curdate.getFullYear();
+			per_m = parseFloat(curdate.getMonth())+1;
+			
+			if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+			
+			var per = per_y+""+per_m;
+			
+			return per
+			//return(getPerio(per, false))
+        }
         
 </script>
 
