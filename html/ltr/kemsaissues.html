@@ -668,7 +668,7 @@
             var tyear2 = tyear1;
             
             console.log('tdate => '+tdate);
-            if(parseFloat(tdate) < 15 || past){
+            if(parseFloat(tdate) < 15){
                 var month1_full = todayte;
                 var month1;
                 var date2 = new Date();
@@ -714,8 +714,12 @@
                     month1 = 12;
                     tyear1 = (parseFloat(tyear1) - 1);
                 }
-                console.log('month1 => '+month1);
-                console.log('month2 => '+month2);
+                if(month2 > 12){
+                    month2 = 1;
+                    tyear2 = (parseFloat(tyear2) + 1);
+                }
+                console.log('(pastFalse) month1 => '+month1);
+                console.log('(pastFalse) month2 => '+month2);
             }
             if(parseFloat(month1) < 10){month1 = "0"+month1}
             if(parseFloat(month2) < 10){month2 = "0"+month2}
@@ -726,6 +730,7 @@
         }
 
         function getCurrentPeriod() {
+            console.log('running getCurrentPeriod()')
             var per_y = new Date().getFullYear();
             var per_m = new Date().getMonth();
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
@@ -734,10 +739,12 @@
         }
 
         function getLastMonthPeriod() {
+            console.log('running getLastMonthPeriod()')
             var per_y = new Date().getFullYear();
             var per_m = new Date().getMonth();
             per_m = parseFloat(per_m) - 1;
-            if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
+            console.log('per_m == '+per_m)
+            if(parseFloat(per_m) < 0){ per_m = 12+per_m; per_y = parseFloat(per_y) - 1;}
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
             return(getPeriod(per, true))
