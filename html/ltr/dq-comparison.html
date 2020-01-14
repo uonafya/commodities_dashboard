@@ -765,10 +765,15 @@
                         
                         //tableData += '<table>';	
                             //console.log(tableData)
-                    let the_period = data.metaData.items[data.metaData.dimensions.pe[0]].name;
-                    let the_ou = ounit
+                    var the_period = data.metaData.items[data.metaData.dimensions.pe[0]].name;
 
-                    $('.ttitle').html(getMFLcode(the_ou)+' - '+the_period);
+                    $.ajax({      
+                        dataType: "json",
+                        url: 'https://hiskenya.org/api/organisationUnits/'+ounit+'.json?fields=id,name',
+                        success: function(datax) {          
+                            $(".ttitle").html(datax['name']+', '+the_period);
+                        }
+                    });
 					
                     $('#sp_table').removeClass('hidden');
                     $('.spdata').removeClass('hidden');

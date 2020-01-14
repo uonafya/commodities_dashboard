@@ -1,4 +1,4 @@
-function getConco(ccurl,commodity){
+function getConco(ccurl,commodity,the_org_unit){
     if( commodity.split('.')[1] != undefined || commodity.split('.')[1] != null || commodity.split('.')[1] != ''){
         var commodity = commodity.split('.')[0];
     }
@@ -16,7 +16,7 @@ function getConco(ccurl,commodity){
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_092019.json';
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_4.json';
             var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
-          // var valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
+            valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
 
             $.ajax({
                 type: "GET",
@@ -74,7 +74,13 @@ function getConco(ccurl,commodity){
                             ou_fil_from = filterItems(ou_filtered_from,filt_to);
                             ou_fil_to = filterItems(ou_filtered_to,filt_from);
                             var commo_s = commodity.split('.')[0];
-                            $('#thetitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u>');
+                            $.ajax({      
+                                dataType: "json",
+                                url: 'https://hiskenya.org/api/organisationUnits/'+the_org_unit+'.json?fields=id,name',
+                                success: function(datax) {
+                                    $('#thetitle').html(datax['name']+' <br/>Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u>');
+                                }
+                            }); 
                             $('#detailTitle').html('Closing: <u>'+filt_from + '</u> & Opening: <u>' + filt_to + '</u> | Commodity: <u id="commoname">' + commodities_array[commo_s].name + '</u>');
                             var val_fr = 0;
                             var val_to = 0;

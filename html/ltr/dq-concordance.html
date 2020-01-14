@@ -663,7 +663,7 @@ color: transparent;}
         // var ccurl = 'http://localhost/pmi/json/concordance-homabay-aug-sept-19.json'
         var commodity = 'iOARK31NdLp.HWtHCLAwprR';
         
-        getConco(ccurl,commodity);
+        getConco(ccurl,commodity,theou);
 
         
 
@@ -684,7 +684,7 @@ color: transparent;}
                 }
                 var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr1+'&displayProperty=NAME&outputIdScheme=UID';
                 var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-                getConco(ccurl,commodity);
+                getConco(ccurl,commodity,theou);
             }
         );
 
@@ -702,7 +702,7 @@ color: transparent;}
                     perr0 = getPerio(perr0, true)
                 }
                 var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID';
-                getConco(ccurl,commd);
+                getConco(ccurl,commd,theou);
             }
         );
 
@@ -733,7 +733,7 @@ color: transparent;}
                 
                 var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID';
                 // var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+thecomm+'&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID';
-                getConco(ccurl,commodity);
+                getConco(ccurl,commodity,theou);
                 //console.log('testeing date'+date_range_string);
             }
         );
@@ -753,7 +753,7 @@ color: transparent;}
             // var theou = 'tAbBVBbueqD';
             // var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             // var commodity = 'iOARK31NdLp.HWtHCLAwprR';
-            // getConco(ccurl,commodity);
+            // getConco(ccurl,commodity,theou);
         //}
 
         //change of period to
@@ -818,7 +818,7 @@ color: transparent;}
                 date_range_string = getPerio($('#h_period').val(), true)
              }
           var ccurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.rPAsF4cpNxm&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID'; 
-            getConco(ccurl,commd);
+            getConco(ccurl,commd,theou);
             daterange = [];
             $('#period-dropdown').val(null);
             $('#period-dropdownTo').val(null);
