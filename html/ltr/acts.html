@@ -448,8 +448,11 @@
 	</script>
 			
 	<script>
+	
+		var periodval = getPreviousPMonth();
+	
         var my_ou = myOU();
-        fetchACTs('https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:LAST_MONTH&dimension=ou:LEVEL-5;'+my_ou+'&displayProperty=NAME&outputIdScheme=UID',my_ou,'LAST_MONTH');
+        fetchACTs('https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:LAST_MONTH&dimension=ou:LEVEL-5;'+my_ou+'&displayProperty=NAME&outputIdScheme=UID',my_ou,periodval);
 	$(document).ready(function() 
 	{
             
@@ -484,7 +487,7 @@
             if(sDate.length > 3){
                 var period = sDate
             }else{
-                var period = 'LAST_MONTH';   
+                var period = getPreviousPMonth(); //'LAST_MONTH';   
             }
                 
             
@@ -500,7 +503,7 @@
                 if(sDate.length > 3){
                 var period = sDate
                 }else{
-                var period = 'LAST_MONTH';   
+                var period = getPreviousPMonth(); //'LAST_MONTH';   
                 }
 
                 ounit1 = $(this).val();
@@ -516,7 +519,7 @@
                 if(sDate.length > 3){
                 var period = sDate
                 }else{
-                var period = 'LAST_MONTH';   
+                var period = getPreviousPMonth(); //'LAST_MONTH';   
                 }
                 
                 ounit2 = $(this).val();
@@ -551,6 +554,29 @@
             var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:'+period+'&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
             // var url = 'http://localhost/pmi/json/acts3.json'
             fetchACTs(url,ounit,period);
+        }
+		
+		//get the previous month
+		function getPreviousPMonth() 
+		{
+			var curdate = new Date();
+
+			var today = curdate.getDate();
+
+			if(today<15)
+				curdate.setMonth(curdate.getMonth() - 2);
+			else
+				curdate.setMonth(curdate.getMonth() - 1);
+
+			per_y = curdate.getFullYear();
+			per_m = parseFloat(curdate.getMonth())+1;
+			
+			if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+			
+			var per = per_y+""+per_m;
+			
+			return per
+			//return(getPerio(per, false))
         }
         
     
