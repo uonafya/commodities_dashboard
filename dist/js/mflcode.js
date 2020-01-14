@@ -2,7 +2,7 @@
 console.log("--------Preloaded MFLcode script---------")
 var mfl_codes_array = [];
 mfl_url = 'https://hiskenya.org/api/organisationUnits.json?fields=id,code&paging=false';
-//  mfl_url = 'http://localhost/pmi/json/mflcode.json';
+//  mfl_url = 'http://127.0.0.1:8080/assets/json/mflCode.json';
 getMFLarray(mfl_url);
 
 function getMFLarray(mfl_url) {
