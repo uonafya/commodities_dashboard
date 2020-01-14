@@ -320,11 +320,11 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <h6 class="page-title m-t-10">
-                                Total ALs Vs Weight
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <h5 class="page-title m-t-10">
+                                <u>DQ-Comparison:</u> Total ALs Vs Weight
                                 &nbsp; &nbsp;
-                            </h6>
+                            </h5>
                         </div>
                         <div class="col-md-7 col-sm-6 col-xs-12">
                             <small class="">Filter:</small>
@@ -350,16 +350,6 @@
                             </div>
                             
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
-                            <div class="ml-auto text-right m-t-10">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -376,7 +366,7 @@
                
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Total ALs Vs Weight</h5>
+                                >><h5 class="ttitle text-left"></h5> >>
                                 <div class="sp_status row"></div>
                                 <div class="row">
                                     <div class="loader-sp">
@@ -550,7 +540,7 @@
 
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 			
-			//const url = 'http://localhost/commodity_dashboard/commodities_dashboard/html/ltr/totalactsvsweight.json';
+			// const url = 'http://localhost/commodity_dashboard/commodities_dashboard/html/ltr/totalactsvsweight.json';
 
 			//populate dropdown with list of counties
 			//$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
@@ -610,15 +600,16 @@
 
             var period = getPreviousPMonth(); //'LAST_MONTH';
 
-			//var url = 'https://api.myjson.com/bins/h9ddw'         			
+            // var url = 'https://api.myjson.com/bins/h9ddw'
+            // var ounit = 'tAbBVBbueqD'
             var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:E1J6vMP5hFO;Gwr4lywXLiM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchSP(url);
+            fetchSP(url, ounit);
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
                 				
 				var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:E1J6vMP5hFO;Gwr4lywXLiM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchSP(url);				
+                fetchSP(url, ounit);				
                 
             });
 
@@ -627,7 +618,7 @@
                 ounit = $(this).val();                
 				
 				var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:E1J6vMP5hFO;Gwr4lywXLiM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchSP(url);
+                fetchSP(url, ounit);
                 
             });
 					
@@ -672,11 +663,11 @@
             //var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
 			
             var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:E1J6vMP5hFO;Gwr4lywXLiM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchSP(url);
+            fetchSP(url, ounit);
         }
         
         //function to process the total acts vs weight url
-        function fetchSP(spurl)
+        function fetchSP(spurl, ounit)
         {
             $('#sp_table').addClass('hidden');
             $('.spdata').addClass('hidden');
@@ -760,20 +751,24 @@
 								
 								tableData += '<td>'+data.metaData.items[entry].name+'</td>';
 								
-								//console.log(data.metaData.items[entry].name);
+                                //console.log(data.metaData.items[entry].name);
 								tableData += '<td>'+mflcodes[entry]+'</td>';
 								tableData += '<td>'+data.metaData.dimensions.pe+ '</td>';
 								tableData += '<td>'+dxcalvals[0]+'</td>';
 								tableData += '<td>'+dxcalvals[1]+'</td>';								
 								tableData += '<td>'+Math.trunc(diffcal)+ '</td>';							
 								tableData += '<td>'+Math.trunc(percentdiff).toFixed(1)+ '</td>';
-
+                                
 								tableData += '</tr>';
 							}							
-                    })
+                        })
+                        
+                        //tableData += '<table>';	
+                            //console.log(tableData)
+                    let the_period = data.metaData.items[data.metaData.dimensions.pe[0]].name;
+                    let the_ou = ounit
 
-                    //tableData += '<table>';	
-                    //console.log(tableData)
+                    $('.ttitle').html(getMFLcode(the_ou)+' - '+the_period);
 					
                     $('#sp_table').removeClass('hidden');
                     $('.spdata').removeClass('hidden');
