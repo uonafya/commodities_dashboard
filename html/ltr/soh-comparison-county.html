@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>County All Malaria Commodities | Malaria Commodities Dashboard</title>
+    <title>All Malaria Commodities | Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
@@ -670,6 +670,7 @@
         function fetchSOHCompa(spurl,ounit)
         {
             // $.getJSON(spurl, function (data){
+                console.log('spurl', spurl)
             $.ajax({
                 type: 'GET',
                 crossDomain: true,
