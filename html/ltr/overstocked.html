@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" /><link href="../../dist/css/style.min.css" rel="stylesheet">
     <link href="../../dist/css/custom.css" rel="stylesheet">
 	<link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
-    <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet"> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -691,14 +691,23 @@
         }
 
         function getThePeriod() {
-            var per_y = new Date().getFullYear();
-            var per_m = new Date().getMonth();
-            per_m = parseFloat(per_m) -2;
-            if(per_m < 1){per_m=1}
-            if(parseFloat(per_m) < 0){ per_m = 12; per_y = parseFloat(per_y) - 1;}
+
+            var curdate = new Date();
+
+            var today = curdate.getDate();
+
+            if(today<15)
+                curdate.setMonth(curdate.getMonth() - 2);
+            else
+                curdate.setMonth(curdate.getMonth() - 1);
+
+            per_y = curdate.getFullYear();
+            per_m = parseFloat(curdate.getMonth())+1;
+
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
-            return(getPerio(per, false))
+
+            return per
         }
         function getPerio(todayte, past) {
             // -------------find currentDate & factor for >15th -------------
