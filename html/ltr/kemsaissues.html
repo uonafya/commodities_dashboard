@@ -501,7 +501,7 @@
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
-                console.log("sdate ni -----> "+sDate);
+                //console.log("sdate ni -----> "+sDate);
                 datePicked(sDate);
             }
         });        
@@ -606,7 +606,7 @@
         }
         
         var past = true;
-        console.log("the_ogu: "+the_ogu + " & periodval: "+periodval);
+        //console.log("the_ogu: "+the_ogu + " & periodval: "+periodval);
         getKIssues('https://hiskenya.org/api/26/analytics.json?dimension=pe:'+getPeriod(periodval, past)+'&dimension=dx:jfUzb86mBSP.DTnItSklSr8;HwvUHnslwbh.DTnItSklSr8;OLYLVMDHEj8.DTnItSklSr8;UJeKVZzAnfS.DTnItSklSr8;naztfZrbMtd.DTnItSklSr8;EtG9ozt2joA.DTnItSklSr8;Umi8ZsiqBHw.DTnItSklSr8;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;eFqDcjgvt39.EJ8nUfcupBq&filter=ou:'+the_ogu+'&displayProperty=NAME&outputIdScheme=UID',the_ogu);
 		
     }
@@ -632,7 +632,7 @@
             var subcounty_id = $(this).val();
             var scurl='https://hiskenya.org/api/26/analytics.json?dimension=pe:'+getActivePeriod()+'&dimension=dx:jfUzb86mBSP.DTnItSklSr8;HwvUHnslwbh.DTnItSklSr8;OLYLVMDHEj8.DTnItSklSr8;UJeKVZzAnfS.DTnItSklSr8;naztfZrbMtd.DTnItSklSr8;EtG9ozt2joA.DTnItSklSr8;Umi8ZsiqBHw.DTnItSklSr8;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;eFqDcjgvt39.EJ8nUfcupBq&filter=ou:'+subcounty_id+'&displayProperty=NAME&outputIdScheme=UID';
             getKIssues(scurl,subcounty_id);
-            console.log("subcounty_filter_url: "+scurl)
+            //console.log("subcounty_filter_url: "+scurl)
         });
 
         $("#facility-dropdown").change(function(){  
@@ -660,14 +660,14 @@
             var tdate = new Date().getDate();
             if(past){
                 tday = todayte.slice(4);
-                console.log('other_tday: '+tday);
+                //console.log('other_tday: '+tday);
             }
-            console.log('past: '+past + ' & todayte: '+todayte);
+            //console.log('past: '+past + ' & todayte: '+todayte);
             var tyear1 = todayte.slice(0, -2);
             // var tyear2 = todayte.slice(0, -2);
             var tyear2 = tyear1;
             
-            console.log('tdate => '+tdate);
+            //console.log('tdate => '+tdate);
             if(parseFloat(tdate) < 15){
                 var month1_full = todayte;
                 var month1;
@@ -692,8 +692,8 @@
                     month2 = 1;
                     tyear2 = (parseFloat(tyear2) + 1);
                 }
-                console.log('month1 => '+month1);
-                console.log('month2 => '+month2);
+                //console.log('month1 => '+month1);
+                //console.log('month2 => '+month2);
             }else{
                 var month1_full = todayte;
                 // if(!past){
@@ -718,19 +718,19 @@
                     month2 = 1;
                     tyear2 = (parseFloat(tyear2) + 1);
                 }
-                console.log('(pastFalse) month1 => '+month1);
-                console.log('(pastFalse) month2 => '+month2);
+                //console.log('(pastFalse) month1 => '+month1);
+                //console.log('(pastFalse) month2 => '+month2);
             }
             if(parseFloat(month1) < 10){month1 = "0"+month1}
             if(parseFloat(month2) < 10){month2 = "0"+month2}
-            console.log("month1: "+ month1 + " && month2: "+month2);
+            //console.log("month1: "+ month1 + " && month2: "+month2);
             var period_string = tyear1+""+month1+";"+tyear2+""+month2;
             return period_string
           // -------------find currentDate & factor for >15th -------------
         }
 
         function getCurrentPeriod() {
-            console.log('running getCurrentPeriod()')
+            //console.log('running getCurrentPeriod()')
             var per_y = new Date().getFullYear();
             var per_m = new Date().getMonth();
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
@@ -739,11 +739,11 @@
         }
 
         function getLastMonthPeriod() {
-            console.log('running getLastMonthPeriod()')
+            //console.log('running getLastMonthPeriod()')
             var per_y = new Date().getFullYear();
             var per_m = new Date().getMonth();
             per_m = parseFloat(per_m) - 1;
-            console.log('per_m == '+per_m)
+            //console.log('per_m == '+per_m)
             if(parseFloat(per_m) < 0){ per_m = 12+per_m; per_y = parseFloat(per_y) - 1;}
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;

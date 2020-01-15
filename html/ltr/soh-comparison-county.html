@@ -570,7 +570,7 @@
 				facility.prop('selectedIndex', 0);
 
 				$.getJSON('https://hiskenya.org/api/organisationUnits/'+subcountyid+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true', function (data) {
-                    console.log("Facilities-data ==> "+JSON.stringify(data));
+                    //console.log("Facilities-data ==> "+JSON.stringify(data));
 					$.each(data.organisationUnits, function (key, entry) {				
 						//if(entry.parent.id==subcountyid){
 							$('#facility-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
@@ -670,7 +670,7 @@
         function fetchSOHCompa(spurl,ounit)
         {
             // $.getJSON(spurl, function (data){
-                console.log('spurl', spurl)
+                //console.log('spurl', spurl)
             $.ajax({
                 type: 'GET',
                 crossDomain: true,
@@ -746,7 +746,7 @@
 				  
 				})
 				
-				console.log(adjcvals);
+				//console.log(adjcvals);
                 
                 //get Adjusted values
                 $.each(dxidsadjc, function (rowkey, rowentry) 
@@ -790,7 +790,7 @@
 				  
 				})
 				
-				console.log(hfidvals);
+				//console.log(hfidvals);
 
                     
                //get hfs values
@@ -823,7 +823,7 @@
 						
 						var hfsmos=(hfsvalues[i])/(adjcvalues[i]);
 						
-						console.log(hfsmos);
+						//console.log(hfsmos);
 						if(isNaN(hfsmos))
 						{
 							hfsmos = 0;
@@ -867,7 +867,7 @@
                 error: function (request, status, error) {
                     $('.loader-sp').addClass('hidden');
                     $('#sp_table').addClass('hidden');
-                    console.log('SP: error fetching json. :- '+error);
+                    //console.log('SP: error fetching json. :- '+error);
                     $('spdata').addClass('hidden');
                     $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
                 }

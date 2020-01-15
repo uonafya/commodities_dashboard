@@ -574,13 +574,13 @@
 			orgunitval.push(orgunitid.id);
 		})
 		
-		console.log(orgunitval);
+		//console.log(orgunitval);
 	
 		var found = orgunitval.indexOf('jmnH1p2LZvJ');
 		
-		console.log(found);
+		//console.log(found);
 		
-		console.log(orgunitval.length);
+		//console.log(orgunitval.length);
 	});
 	
 	
@@ -911,7 +911,7 @@ function fetchIS(url,ounit,period,filtering) {
                     $('.indicatorsumm').addClass('hidden');
                     $('.table-responsive').addClass('hidden');
                     $('.loader-sp').addClass('hidden');
-                    console.log('IndicatorSumm: error fetching json. :- '+error);
+                    //console.log('IndicatorSumm: error fetching json. :- '+error);
                     $('.isstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             }
         });

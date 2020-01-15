@@ -642,8 +642,8 @@
 							}
 								
 						})
-						console.log(mflcodes[entry]);
-						console.log(data.metaData.items[entry].name);
+						//console.log(mflcodes[entry]);
+						//console.log(data.metaData.items[entry].name);
 						
 						return;
 						//console.log(mflcodes);												
@@ -668,7 +668,7 @@
                 error: function (request, status, error) {
                     $('.loader-sp').addClass('hidden');
                     $('#sp_table').addClass('hidden');
-                    console.log('totalactsvsweight: error fetching json. :- '+error);
+                    //console.log('totalactsvsweight: error fetching json. :- '+error);
                     $('spdata').addClass('hidden');
                     $('.sp_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
 					}

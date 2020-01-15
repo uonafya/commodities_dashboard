@@ -452,11 +452,11 @@
 			}
 			
             var filtered_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=pe:'+periodval+'&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
-			console.log('filtered_url: '+filtered_url);
+			//console.log('filtered_url: '+filtered_url);
             // var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:LEVEL-3;'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&filter=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
-            console.log('filtersub_url: '+filtersub_url);
+            //console.log('filtersub_url: '+filtersub_url);
 			fetchScRR(filtersub_url, countyou );
             fetchRR(filtered_url, filtered_onurl);
         });
@@ -479,13 +479,13 @@
             // var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&dimension=ou:'+countyou+'&displayProperty=NAME&outputIdScheme=UID';
             var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+periodval+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&filter=ou:'+subcountyou+'&displayProperty=NAME&outputIdScheme=UID';
             
-            console.log(filtered_url);
+            //console.log(filtered_url);
             
             // var filtersub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&filter=pe:'+periodval+';LAST_12_MONTHS&displayProperty=NAME&outputIdScheme=NAME';
             
             var filteredsub_url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_MONTH&dimension=dx:JPaviRmSsJW.REPORTING_RATE&dimension=ou:'+subcountyou+'&displayProperty=NAME&outputIdScheme=UID';
             
-            console.log(filteredsub_url);
+            //console.log(filteredsub_url);
 			fetchScRR(filteredsub_url, subcountyou);
             fetchRR(filtered_url, filtered_onurl);
         });
@@ -550,7 +550,7 @@
            var filtered_onurl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:JPaviRmSsJW.REPORTING_RATE_ON_TIME&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';  
             //var filtered_onurl = 'https://api.myjson.com/bins/d5uco'
             
-            console.log("pe fi: "+filtered_url+"    &&&&&&   "+filtered_onurl);
+            //console.log("pe fi: "+filtered_url+"    &&&&&&   "+filtered_onurl);
             
             fetchRR(filtered_url, filtered_onurl);
             daterange = [];

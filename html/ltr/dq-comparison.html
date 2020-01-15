@@ -799,7 +799,7 @@
                 error: function (request, status, error) {
                     $('.loader-sp').addClass('hidden');
                     $('#sp_table').addClass('hidden');
-                    console.log('totalactsvsweight: error fetching json. :- '+error);
+                    //console.log('totalactsvsweight: error fetching json. :- '+error);
                     $('spdata').addClass('hidden');
                     $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
 					}
