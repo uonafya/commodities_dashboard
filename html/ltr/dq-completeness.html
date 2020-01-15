@@ -655,12 +655,14 @@ color: transparent;}
 				})		 
 			});
 			subcounty.append('<option selected="true" disabled>Select sub-county</option>');
+            
 			$("#county-dropdown").change(function() 
 			{  
                 subcounty.removeAttr('disabled', true);	
 				subcounty.empty();
 				var countyid = $(this).val();
 				subcounty.prop('selectedIndex', 0);
+                subcounty.append('<option value='+$(this).val()+'>All ('+$(this).text()+')</option>');
 				// Populate dropdown with list of sub counties
 				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				// $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
