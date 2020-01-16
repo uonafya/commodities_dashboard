@@ -16,7 +16,7 @@ function getConco(ccurl,commodity,the_org_unit){
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_092019.json';
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_4.json';
             var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
-            valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
+            // valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
 
             $.ajax({
                 type: "GET",
