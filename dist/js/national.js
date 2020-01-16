@@ -19,12 +19,12 @@ function getKIssues(url,tou) {
             $('.ttitle').html(ttitle);
             $('#month1_title, .month1_title').html(data.metaData.items[data.metaData.dimensions.pe[0]].name)
             $('#month2_title').html(data.metaData.items[data.metaData.dimensions.pe[1]].name)
-            var fac_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
+            var fac_url = 'https://hiskenya.org/api/organisationUnits/'+tou+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true';
             // var fac_url = 'http://localhost/pmi/json/tAbBVBbueqD.json';
             
             $.ajax({
                 type: "GET",
-                url: 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+tou+'.json?fields=id,level',
+                url: 'https://hiskenya.org/api/organisationUnits/'+tou+'.json?fields=id,level',
                 data: "tou_deets",
                 crossDomain: true,
                 success: function (tou_d) {
@@ -57,6 +57,8 @@ function getKIssues(url,tou) {
             var peri_1 = data.metaData.dimensions.pe[1];
             console.log('peri_0 => '+peri_0);
             console.log('peri_1 => '+peri_1);
+			var list_products = ["Artemether-Lumefantrine 20/120 Tabs 6s", "Artemether-Lumefantrine 20/120 Tabs 12s", "Artemether-Lumefantrine 20/120 Tabs 18s", "Artemether-Lumefantrine 20/120 Tabs 24s", "Artesunate Injection", "Sulphadoxine Pyrimethamine Tabs", "Rapid Diagnostic Tests"];
+			var procounter = 0;
             $.each(thedxissued, function (index, issdId) {
                 var recvdId = thedxreceived[index];
                 var iss_val = getVal(data.rows, issdId, peri_0);
@@ -74,9 +76,17 @@ function getKIssues(url,tou) {
                 }
 
                 var total_recvd = parseFloat(recvd_val_month1) + parseFloat(recvd_val_month2);
+				
+				//imheYfA1Kiw
+                if(issdId == 'EtG9ozt2joA.DTnItSklSr8')
+				{
+                    iss_val *= 1000;
+                }
 
                 var diff_val = parseFloat(total_recvd)-parseFloat(iss_val);
-                if(iss_val>total_recvd){}else{}
+                if(iss_val>total_recvd){}else{} 
+				
+				
 
                 var diff_perc = (diff_val/iss_val)*100;
                 if(diff_perc<0){
@@ -100,8 +110,31 @@ function getKIssues(url,tou) {
                     // fcolor = '#ffffff';
                 }
 
-
-                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+data.metaData.items[issdId].name.substr(4)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month1)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month2)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(total_recvd)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val.toFixed(1))+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+diff_perc.toFixed(1)+'%</td></tr>';
+				//data.metaData.items[issdId].name.substring(0,21)
+                //data.metaData.items[issdId].name
+				
+				//check if infinity
+				var calcperc = '';
+				
+				if(iss_val==0 && diff_val>0)
+				{
+					calcperc = 'Infinity';
+				}
+				else
+				{
+					if(iss_val==0 && diff_val==0)
+					{
+						calcperc = '0%';
+					}
+					else
+					{
+						calcperc = diff_perc.toFixed(1)+'%';
+					}
+				}
+                
+                 tdata+='<tr bgcolor="'+bcolor+'"><td bgcolor="'+bcolor+'" style="color: #303030;">'+list_products[procounter]+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(iss_val)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month1)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(recvd_val_month2)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(total_recvd)+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+formatNumber(diff_val.toFixed(1))+'</td><td bgcolor="'+bcolor+'" style="color: #303030;">'+calcperc+'</td></tr>';
+				 
+				 procounter++;
                 
             })
             $('.nat_loader, .loader-sp, .issues-loader').addClass('hidden');
@@ -130,11 +163,79 @@ function getKIssues(url,tou) {
     });
 }
 
-function getNational(nat_url) {
+function getNational(nat_url,periodval) {
         
     $('.natsum-loader, .rrdb').removeClass('hidden');
     $('.natstate').removeClass('hidden');
     $('#national-container').addClass('hidden');
+	
+	//process the other endpoints
+	var kemsamosurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:A3hCPRmBEc1;VJjIApOdBDM;xifzJdZepGL;m5JchlPXYGh;AcHIhCDHQ5q;ImjyH2PKcrb;MqaP08m7qpB&dimension=pe:'+periodval+'&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID';
+	
+	var pendingmosurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:E8WZg2xUe6D;LzIEVzUpWIG;UW54RautAEK;V00M1X2mgCp;Rf9K17Q8KA5;ELorMg0kQhA;W1VReF5uwnI&dimension=pe:'+periodval+'&filter=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID';
+	
+	//var kemsamosurl = 'http://localhost/pmilive/kemsadata.json';
+	
+	//var pendingmosurl = 'http://localhost/pmilive/pendingdata.json';
+	
+	//var nat_url = 'http://localhost/pmilive/facilitydata.json';
+	
+	var kemsamos = $.ajax({ 
+		type: 'GET',
+		crossDomain: true,
+		url: kemsamosurl,
+		success: function(result) 
+		{
+			return result;
+		}                     
+	});
+	 
+	var pendingmos = $.ajax({ 
+		type: 'GET',
+		crossDomain: true,
+		url: pendingmosurl,
+		success: function(result) 
+		{
+			return result;
+		}                     
+	});
+	
+		
+	var kemsaVals = new Array();
+	
+	var pendingVals = new Array();
+	 
+	//$.when(kemsamos).done(function(kemsadata) 
+	$.when(kemsamos, pendingmos).done(function(kemsadata, pendingdata)
+	{			
+        //loop through the kemsa mos row values							
+        $.each(kemsadata[0].metaData.dimensions.dx, function (key, entry) 
+        {
+			console.log(entry);
+            $.each(kemsadata[0].rows, function (rkey, rentry) 
+            {		
+                var dxcode = rentry[0];
+                if(dxcode==entry)
+                {
+                    kemsaVals.push(parseFloat(rentry[2]));
+                }									
+            })
+        })
+		
+		//loop through the pending mos row values							
+        $.each(pendingdata[0].metaData.dimensions.dx, function (key, entry) 
+        {	
+			console.log(entry);
+            $.each(pendingdata[0].rows, function (rkey, rentry) 
+            {		
+                var dxcode = rentry[0];
+                if(dxcode==entry)
+                {
+                    pendingVals.push(parseFloat(rentry[2]));
+                }									
+            })
+        })
+		
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -161,8 +262,7 @@ function getNational(nat_url) {
         var perio = data.metaData.items[data.metaData.dimensions.pe[0]].name;
         var orgu = data.metaData.items[data.metaData.dimensions.ou[0]].name;
         $('.card-title').html('National Summary: '+orgu+' - '+perio);
-        console.log(stockVals);
-        
+                
         $('#national-container').highcharts({
             chart: {
                 type: 'bar'
@@ -242,10 +342,10 @@ function getNational(nat_url) {
         colors: ['#8497b0', '#c55a11', '#92d050'],
             series: [{
                 name: 'Pending Stock',
-                data: [1.6, 0.1, 0.1, 0.1, 0, 0.1, 28.9]
+                data: pendingVals
             }, {
                 name: 'KEMSA Stock',
-                data: [3, 0.0, 4.9, 3.7, 9, 5.3, 12.0]
+                data: kemsaVals
             }, {
                 name: 'Facility Stock',
                 data: stockVals
@@ -260,6 +360,7 @@ function getNational(nat_url) {
             $('.natstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
     });
+	}); //when done
 }
 
 

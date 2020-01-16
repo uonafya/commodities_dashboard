@@ -136,7 +136,7 @@
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
                                         </ul>
-                                    </li>
+                                    </li>                                   
                                 </ul>
                             </li>
                             <!-- end County -->
@@ -165,32 +165,49 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                <span id="thetitle"></span>
+                                <span id="thetitle">Health Facilities | Understocked</span>
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
-                        <div class="col-md-7 col-sm-6 col-xs-12">
+                        <div class="col-md-9 col-sm-9 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
                                 <div class="col-md-11 col-sm-11 col-xs-11">
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <select class="form-control m-r-5" aria-placeholder="Select County" placeholder="Select County" id="county-dropdown" name="county">   
+                                                                                             
                                             </select>
                                         </div>										
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                           
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <select class="form-control m-r-5" aria-placeholder="Subcounty" placeholder="Subcounty" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
-                                            <input type="hidden" name="h_period" id="h_period"/> 
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">
+                                                <option value="" disabled selected>Select commodity</option>
+                                                <option value="iOARK31NdLp">Artesunate Injection</option>
+                                                <option value="BnGDrFwyQp9">Artemether-Lumefantrine 20/120 Tabs 6s</option>
+                                                <option value="c0MB4RmVjxk">Artemether-Lumefantrine 20/120 Tabs 12s</option>
+                                                <option value="qnZmg5tNSMy">Artemether-Lumefantrine 20/120 Tabs 18s</option>
+                                                <option value="gVp1KSFI69G">Artemether-Lumefantrine 20/120 Tabs 24s</option>
+                                                <option value="imheYfA1Kiw">Sulphadoxine Pyrimethamine Tabs</option>
+                                                <option value="cPlWFYbBacW">Rapid Diagnostic Test</option>
+                                            </select>
                                         </div> 
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <input type="text" placeholder="Period from" class="form-control" id="period-dropdown"/> 
+                                            <input type="hidden" name="h_period" id="h_period"/>
+                                        </div> 
+
+                                        <!-- <div class="col-md-2 col-sm-2 col-xs-12 hidden">
+                                            <input type="text" placeholder="Period to" class="form-control" id="period-dropdownTo"/> 
+                                        </div>  -->
                                     </div>
-                                </div>  
+                                </div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                     <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
-                                </div>                              
+                                </div>
                             </div>
                             
                         </div>
@@ -221,7 +238,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"></h5>
-                                <div class="act_status row"></div>
+                                <div class="understocked_status row"></div>
                                 <div class="row">
                                     <div class="loader-sp">
                                         <div class="loader loader--style3" title="2">
@@ -240,25 +257,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row actdata">
+                                <div class="row understockeddata">
                                     <h5 id="ttitle"></h5>
                                     <div class="table-responsive">
-                                        <table id="acts_table" class="table table-condensed slimtable table-bordered actsbox hidden">
+                                        <table id="understocked_table" class="table table-condensed slimtable table-bordered understocked_table hidden">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Code</th>
-                                                <th class="text-right">RR%</th>
-												<th class="text-right">OT RR%</th>
-                                                <th class="text-right">AL6 Latest SOH</th>
-                                                <th class="text-right">AL6 MOS</th>
-                                                <th class="text-right">AL12 Latest SOH</th>
-                                                <th class="text-right">AL12 MOS</th>
-                                                <th class="text-right">AL18 Latest SOH</th>
-                                                <th class="text-right">AL18 MOS</th>
-                                                <th class="text-right">AL24 Latest SOH</th>
-                                                <th class="text-right">AL24 MOS</th>
-                                                <th class="text-right">ACTs MOS</th>
+                                                <th>MOS</th>
+                                                <th>AMC</th>
+												<th>Actual Stock</th>
+                                                <th>Understocked by</th>                                               
                                             </tr>		
                                         </thead>
                                         <tbody>
@@ -267,17 +277,10 @@
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Code</th>
-                                                <th>RR%</th>
-												<th>OT RR%</th>
-                                                <th>AL6 Latest SOH</th>
-                                                <th>AL6 MOS</th>
-                                                <th>AL12 Latest SOH</th>
-                                                <th>AL12 MOS</th>
-                                                <th>AL18 Latest SOH</th>
-                                                <th>AL18 MOS</th>
-                                                <th>AL24 Latest SOH</th>
-                                                <th>AL24 MOS</th>
-                                                <th>ACTs MOS</th>
+                                                <th>MOS</th>
+                                                <th>AMC</th>
+												<th>Actual Stock</th>
+                                                <th>Understocked by</th>
                                             </tr>		
                                         </tfoot>
                                         </table>
@@ -336,6 +339,7 @@
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="../../dist/js/acts.js"></script>
+    <script src = '../../dist/js/understocked.js'></script>
     <script src="../../dist/js/custom.min.js"></script>
     <script src="../../dist/js/custom.js"></script>
     <!-- this page js -->
@@ -373,7 +377,6 @@
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
-                $('#h_period').val(sDate);
                 datePicked(sDate);
             }
         });        
@@ -385,8 +388,10 @@
 		{
 			var dropdown = $('#county-dropdown');
 			
-			var subcounty = $('#subcounty-dropdown');
-			
+            var subcounty = $('#subcounty-dropdown');
+            
+            var commodity = $('#commodity-dropdown');
+
 			var perioddwn = $('#period-dropdown');
 
 			dropdown.empty();
@@ -446,144 +451,301 @@
 				});		
 			});
 		});
-	</script>
-			
-	<script>
-	
-		var periodval = getPreviousPMonth();
-	
-        var my_ou = myOU();
-        fetchACTs('https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:LAST_MONTH&dimension=ou:LEVEL-5;'+my_ou+'&displayProperty=NAME&outputIdScheme=UID',my_ou,periodval);
-	$(document).ready(function() 
-	{
-            
-            var ounit = $("#county-dropdown").val();
-            // var ounit = 'tAbBVBbueqD';
-            // ounit = myOU();
-            var subcountyou = $("#subcounty-dropdown").val();
-            if(subcountyou!=null)
-            {
-                var ounit = subcountyou;
-            }
-            if(ounit == null && subcountyou ==null){
-                var ounit = 'tAbBVBbueqD';
-                ounit = myOU();
-            }
-            //define the constants
-            var ounit = myOU();
-			//define the constants
-            
-            // Populate dropdown with list of sub counties
-            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
-                $.each(data.organisationUnits, function (key, entry){
-                    if(entry.parent.id==ounit){		
-                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
-                    }
-                })
-            });
-            $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
+    </script>
+    
+    <script type = "text/javascript">
+        var daterange = []
+        var daterange1 = []
+        var theou = myOU();
+        var commdata = $("#commodity-picker").val();
+        var commoditydata = 
+        [{commd:'Artemether-Lumefantrine 20/120 Tabs 6s',indicator:'HfGVoCZAwtd',commodity:'BnGDrFwyQp9',adjcon:'jfUzb86mBSP'},
+        {commd:'Artemether-Lumefantrine 20/120 Tabs 12s',indicator:'nK8sqMAeQHY',commodity:'c0MB4RmVjxk',adjcon:'HwvUHnslwbh'},
+        {commd:'Artemether-Lumefantrine 20/120 Tabs 18s',indicator:'ZcngDQJKiEg',commodity:'qnZmg5tNSMy',adjcon:'OLYLVMDHEj8'},
+        {commd:'Artemether-Lumefantrine 20/120 Tabs 24s',indicator:'wOKbEd8Dbi3',commodity:'gVp1KSFI69G',adjcon:'UJeKVZzAnfS'},
+        {commd:'Sulphadoxine Pyrimethamine tabs',indicator:'AX1co0SXobM',commodity:'imheYfA1Kiw',adjcon:'EtG9ozt2joA'},
+        {commd:'Rapid Diagnostic Tests',indicator:'UUNwkYQhYgX',commodity:'cPlWFYbBacW',adjcon:'Umi8ZsiqBHw'},
+        {commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp',adjcon:'naztfZrbMtd'}]
+                
+        var ASinj =[{commd:'Artesunate injection',indicator:'SSARcWY2Ge1',commodity:'iOARK31NdLp',adjcon:'naztfZrbMtd'}]
 
 
-            var sDate = $('#h_period').val();
-            if(sDate.length > 3){
-                var period = sDate
-            }else{
-                var period = getPreviousPMonth(); //'LAST_MONTH';   
-            }
-                
-            
-        
-            // alert('sDate: '+sDate + 'typeof sDate:'+typeof sDate + ' & period: ' + period);
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:'+period+'&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';			
-            // var url = 'http://localhost/pmi/json/acts.json';
-            fetchACTs(url,ounit,period);
-            
-            $("#county-dropdown").change(function() 
-            {
-                var sDate = $('#h_period').val();
-                if(sDate.length > 3){
-                var period = sDate
-                }else{
-                var period = getPreviousPMonth(); //'LAST_MONTH';   
-                }
-
-                ounit1 = $(this).val();
-                // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;zLR3PBVPgN5;c0MB4RmVjxk.rPAsF4cpNxm;bJILAolJsSJ;qnZmg5tNSMy.rPAsF4cpNxm;jtGNoWcdNcx;gVp1KSFI69G.rPAsF4cpNxm;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit1+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:'+period+'&dimension=ou:LEVEL-5;'+ounit1+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchACTs(url,ounit1,period);
-                
-            });
-
-            $("#subcounty-dropdown").change(function() 
-            {
-                var sDate = $('#h_period').val();
-                if(sDate.length > 3){
-                var period = sDate
-                }else{
-                var period = getPreviousPMonth(); //'LAST_MONTH';   
-                }
-                
-                ounit2 = $(this).val();
-                // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;zLR3PBVPgN5;c0MB4RmVjxk.rPAsF4cpNxm;bJILAolJsSJ;qnZmg5tNSMy.rPAsF4cpNxm;jtGNoWcdNcx;gVp1KSFI69G.rPAsF4cpNxm;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit2+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:'+period+'&dimension=ou:LEVEL-5;'+ounit2+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchACTs(url,ounit2,period);
-                
-            });
-					
-	});
-	
-	
-        //change of period		
-        function datePicked(sDate)
-        {
-            var dateparts = sDate.split('/', 2);
-            var therdate = dateparts[1]+''+dateparts[0];
-            var ounit = $("#county-dropdown").val();
-            var subcountyou = $("#subcounty-dropdown").val();
-            var period = therdate;
-            $('#h_period').val(period)
-            
-            if(subcountyou!=null)
-            {
-                var ounit = subcountyou;
-            }
-            if(ounit == null && subcountyou ==null){
-                var ounit = myOU();
-            }
-            
-            // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;zLR3PBVPgN5;c0MB4RmVjxk.rPAsF4cpNxm;bJILAolJsSJ;qnZmg5tNSMy.rPAsF4cpNxm;jtGNoWcdNcx;gVp1KSFI69G.rPAsF4cpNxm;p2aNqT2HVyr;Y4O2r9a9QRQ&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;BnGDrFwyQp9.rPAsF4cpNxm;HfGVoCZAwtd;c0MB4RmVjxk.rPAsF4cpNxm;nK8sqMAeQHY;qnZmg5tNSMy.rPAsF4cpNxm;ZcngDQJKiEg;gVp1KSFI69G.rPAsF4cpNxm;wOKbEd8Dbi3;lHPLS1G5CUc&filter=pe:'+period+'&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-            // var url = 'http://localhost/pmi/json/acts3.json'
-            fetchACTs(url,ounit,period);
+        if (commdata == undefined || commdata == null || commdata == ''){
+            commdata = ASinj;
+        }else {
+            var commdata = [commoditydata.find(commodity => commodity.commodity === commdata)];
         }
-		
-		//get the previous month
-		function getPreviousPMonth() 
-		{
-			var curdate = new Date();
 
-			var today = curdate.getDate();
-
-			if(today<15)
-				curdate.setMonth(curdate.getMonth() - 2);
-			else
-				curdate.setMonth(curdate.getMonth() - 1);
-
-			per_y = curdate.getFullYear();
-			per_m = parseFloat(curdate.getMonth())+1;
-			
-			if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
-			
-			var per = per_y+""+per_m;
-			
-			return per
-			//return(getPerio(per, false))
-        }
-        
     
 
-</script>
 
-</body>
+        if(theou == undefined || theou == null || theou == ''){
+            theou = 'tAbBVBbueqD';
+        }
 
-</html>
+        $('#county-dropdown option[value="'+theou+'"]').prop('selected', 'selected');
+
+
+
+       var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commdata[0].indicator+';'+commdata[0].commodity+'.rPAsF4cpNxm;'+commdata[0].adjcon+'.miM6uIJ2cWx&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+getThePeriod()+'&displayProperty=NAME&outputIdScheme=UID'
+
+        
+        // https://hiskenya.org/api/26/analytics.json?dimension=dx:SSARcWY2Ge1;iOARK31NdLp.rPAsF4cpNxm&dimension=ou:LEVEL-5;iRK9uABUTVZ&dimension=pe:201905&displayProperty=NAME&outputIdScheme=UID
+
+        //var understockurl = 'https://api.myjson.com/bins/ephrg';
+       
+      
+
+        understocked(understockurl,theou,commdata);
+
+
+        $("#county-dropdown").change(function() 
+            {  
+                var theou = $(this).val();
+                var commd = $("#commodity-picker").val();
+                var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)]
+
+                if(getcommd == null || getcommd == undefined || getcommd == ''){
+                    getcommd = ASinj;
+                }else{
+                    getcommd = getcommd
+                }
+                var perr1 =  $('#h_period').val();
+                if( perr1 == '' || perr1 == null || perr1 == undefined ){
+                    perr1 = getThePeriod();
+                }else{
+                    perr1 = getPerio(perr1, true)
+                }
+                var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm;'+getcommd[0].adjcon+'.miM6uIJ2cWx&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr1+'&displayProperty=NAME&outputIdScheme=UID'
+                //https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm;'+getcommd[0].adjcon+'.miM6uIJ2cWx&dimension=ou:LEVEL-5;
+                    
+                understocked(understockurl,theou,getcommd);
+            }
+        );
+
+        $("#subcounty-dropdown").change(function() 
+            {  
+                var theou = $(this).val();
+                var commd = $("#commodity-picker").val();
+                var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)]
+                if(getcommd == null || getcommd == undefined || getcommd == ''){
+                    getcommd = ASinj;
+                }else{
+                    getcommd = getcommd;
+                }
+                var perr0 =  $('#h_period').val();
+                if( perr0 == '' || perr0 == null || perr0 == undefined ){
+                    perr0 = getThePeriod();
+                }else{
+                    perr0 = getPerio(perr0, true)
+                }
+                var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm;'+getcommd[0].adjcon+'.miM6uIJ2cWx&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr0+'&displayProperty=NAME&outputIdScheme=UID';
+                
+
+                
+                understocked(understockurl,theou,getcommd);
+            }
+        );
+        $("#commodity-picker").change(function() 
+            {     
+                var commd = $(this).val();
+                
+                var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)]
+                
+
+                if(getcommd == null || getcommd == undefined || getcommd == ''){
+                    getcommd = ASinj;                    
+                }else{
+                    getcommd = getcommd;
+                }
+                var perr0 = $('#h_period').val();
+                if( perr0 == '' || perr0 == null || perr0 == undefined ){
+                    perr0 = getThePeriod();
+                }else{
+                    perr0 = getPerio(perr0, true)
+                }
+                
+                var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm;'+getcommd[0].adjcon+'.miM6uIJ2cWx&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+perr0+'&displayProperty=NAME&outputIdScheme=UID';
+
+                understocked(understockurl,theou,getcommd);
+            
+               
+            }
+
+        );
+
+        function datePicked(sDate)
+        {
+            var dateparts = sDate.split('/', 2);           
+            var therdate = dateparts[1]+''+dateparts[0];
+           // var therdate1 = dateparts[1]+''+dateparts[0];
+            
+            // var therdate1 = therdate1.toString();
+            //console.log ('kkkkkkk1111', dateparts[1]);
+
+           if (dateparts[0] == '01' ){
+               dateparts[1] = dateparts[1]-1;
+               dateparts[0] = 12;
+               var therdate1 = dateparts[1]+''+dateparts[0];
+               var therdate1 = therdate1.toString();
+           }else{
+            dateparts[1] = dateparts[1];
+            dateparts[0] = dateparts[0]-1;
+            var therdate1 = dateparts[1]+''+dateparts[0];
+            var therdate1 = therdate1.toString();
+           }
+
+            var period = therdate;        
+            var period1 = therdate1;          
+            daterange.push(period);
+            daterange1.push(period1);            
+            var perr = $('#h_period').val(therdate);
+            filtByPeriod(daterange, daterange1);
+        }
+
+        function filtByPeriod(drange, drange1){
+            var date_range_string = '';
+            var startDate = drange1[drange1.length-1].substring(0,4)+'-'+drange1[drange1.length-1].substring(4)+'-01';
+            //var startDate = drange1[0].substring(0,4)+'-'+drange1[0].substring(4)+'-01';          
+            var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
+            
+            var full_dates_arr = dateRange(startDate, endDate);
+            var commd = $("#commodity-picker").val();
+            var getcommd = [commoditydata.find(commodity => commodity.commodity === commd)];
+            
+            $.each(full_dates_arr, function (indexs, onedate) {
+                var adate = onedate.split('-');
+                date_range_string += adate[0]+adate[1]+';';
+            })
+            if($('#subcounty-dropdown').val() != null){
+                var theou = $('#subcounty-dropdown').val();
+            } else if($('#county-dropdown').val() != null){
+                var theou = $('#county-dropdown').val();
+            } else{
+                var theou = myOU();
+            }
+            if(theou == undefined || theou == null || theou == ''){
+                theou = 'tAbBVBbueqD';
+            }else{
+                theou = theou
+            }
+          
+            if(getcommd == null || getcommd == undefined || getcommd == ''){
+                getcommd = ASinj;
+            }else{
+                getcommd = getcommd;
+            }
+
+            if($('#h_period').val() == null){
+                date_range_string = getThePeriod();
+            }else{
+                date_range_string = getPerio($('#h_period').val(), true)
+             }
+
+            var understockurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+getcommd[0].indicator+';'+getcommd[0].commodity+'.rPAsF4cpNxm;'+getcommd[0].adjcon+'.miM6uIJ2cWx&dimension=ou:LEVEL-5;'+theou+'&dimension=pe:'+date_range_string+'&displayProperty=NAME&outputIdScheme=UID';
+
+
+            understocked(understockurl,theou,getcommd);
+            // daterange = [];
+            $('#period-dropdown').val(null);
+            $('#period-dropdownTo').val(null);
+        }
+
+        function dateRange(startDate, endDate) {
+            var start      = startDate.split('-');
+            var end        = endDate.split('-');
+            var startYear  = parseInt(start[0]);
+            var endYear    = parseInt(end[0]);
+            var dates      = [];
+
+
+
+            for(var i = startYear; i <= endYear; i++) {
+                var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
+                var startMon = i === startYear ? parseInt(start[1])-1 : 0;
+                for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
+                var month = j+1;            
+                var displayMonth = month < 10 ? '0'+month : month;                
+                dates.push([i, displayMonth, '01'].join('-'));
+                }
+            }
+            return dates;
+        }
+
+        function getThePeriod() {
+            var curdate = new Date();
+
+            var today = curdate.getDate();
+
+            if(today<15)
+                curdate.setMonth(curdate.getMonth() - 2);
+            else
+                curdate.setMonth(curdate.getMonth() - 1);
+
+            per_y = curdate.getFullYear();
+            per_m = parseFloat(curdate.getMonth())+1;
+
+            if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+            var per = per_y+""+per_m;
+
+return per
+        }
+        function getPerio(todayte, past) {
+            // -------------find currentDate & factor for >15th -------------
+            var tdate = new Date().getDate();
+            if(past){
+                tday = todayte.slice(4);
+            }
+            var tyear1 = todayte.slice(0, -2);
+            // var tyear2 = todayte.slice(0, -2);
+            var tyear2 = tyear1;
+            
+            if(parseFloat(tdate) < 15 || past){
+                var month1_full = todayte;
+                var month1;
+                var date2 = new Date();
+                // date2.setMonth(month1);
+                date2.setDate(1);
+                var month2 = date2.getMonth();
+
+                if(past){tdate = parseFloat(tday); month2 = tday;}
+                if(month2 < 1){
+                    month2 = 12;
+                    tyear2 = (parseFloat(tyear2) - 1);
+                }
+                month1 = parseFloat(month2)-1;
+                if(month1 < 1){
+                    month1 = 12;
+                    tyear1 = (parseFloat(tyear1) - 1);
+                }
+            }else{
+                var month1_full = todayte;
+                // if(!past){
+                    var month1 = parseFloat(month1_full.toString().slice(4))+1;
+                // }else{
+                //     var month1 = parseFloat(month1_full.toString().slice(4));
+                // }
+                var date2 = new Date();
+                // date2.setMonth(month1);
+                date2.setDate(1);
+                // var month2 = date2.getMonth();
+                var month2 = month1 + 1;
+                if(month2 < 1){
+                    month2 = 12;
+                    tyear2 = (parseFloat(tyear2) - 1);
+                }
+                if(month1 < 1){
+                    month1 = 12;
+                    tyear1 = (parseFloat(tyear1) - 1);
+                }
+            }
+            if(parseFloat(month1) < 10){month1 = "0"+month1}
+            if(parseFloat(month2) < 10 && !past){month2 = "0"+month2}
+            var period_string = tyear2+""+month2;
+            return period_string
+            // -------------find currentDate & factor for >15th -------------
+        }
+        
+    </script>
+    </body>
+    </html>

@@ -85,6 +85,7 @@ function fetchAccountability(url,orgun) {
                     var rows_filtered_ou_commo3 = filterItems(rows_filtered_ou, com+".w77uMi1KzOH");
                     var rows_filtered_ou_commo4 = filterItems(rows_filtered_ou, com+".unVIt2C0cdW");
                     var rows_filtered_ou_commo5 = filterItems(rows_filtered_ou, com+".rPAsF4cpNxm");
+					var rows_filtered_ou_commo6 = filterItems(rows_filtered_ou, com+".yuvCdaFqdCW");
                     tabl+='<tr><td>'+data.metaData.items[ou].name+'</td><td>'+commodities_name_arr[com_indx]+'</td>';
                     // ----------data cells----------
                     var opsoh = filterItems(rows_filtered_ou_commo1,com+".HWtHCLAwprR")[0];
@@ -97,9 +98,16 @@ function fetchAccountability(url,orgun) {
                     // console.log('posADJ == '+posadj);
                     tabl+='<td class="text-right">'+formatNumber(posadj[3])+'</td>';
                     posadj_arr.push(posadj[3]);
-                    
+                    /*
                     tabl+='<td class="text-right">'+formatNumber(ki_cells[com_indx])+'</td>';
                     kemsi_arr.push(ki_cells[com_indx]);
+					*/
+					//Quantity received this period
+					var qtyrec = filterItems(rows_filtered_ou_commo6,com+".yuvCdaFqdCW")[0];
+                    if(qtyrec == undefined){qtyrec = [0,0,0,0];}
+                    kemsi_arr.push(qtyrec[3]);
+                    tabl+='<td class="text-right">'+formatNumber(qtyrec[3])+'</td>';
+					//end qty received
 
                     var qtydisp = filterItems(rows_filtered_ou_commo3,com+".w77uMi1KzOH")[0];
                     if(qtydisp == undefined){qtydisp = [0,0,0,0];}
@@ -127,14 +135,35 @@ function fetchAccountability(url,orgun) {
                         k_is_val = parseFloat(kiar[com_indx]);
                     }
                     
-                    var sum_pos = parseFloat(opsoh[3])+parseFloat(posadj[3])+parseFloat(k_is_val);
-                    // console.log("sum_pos: "+sum_pos);
+                    var sum_pos = parseFloat(opsoh[3])+parseFloat(posadj[3])+parseFloat(qtyrec[3]);
+                    //console.log("sum_pos: "+sum_pos);
                     var sum_neg = parseFloat(qtydisp[3])+parseFloat(negadj[3])+parseFloat(closbal[3]);
-                    // console.log("sum_neg: "+sum_neg);
+                    //console.log("sum_neg: "+sum_neg);
                     var per_acc_for = parseFloat(sum_neg)/parseFloat(sum_pos);
                     per_acc_for = per_acc_for*100;
                     // console.log("per_acc_for: "+per_acc_for);
-                    tabl+='<td class="text-right">'+per_acc_for.toFixed(1)+'%</td>';
+					
+					var bgcolor = '#ff0000';
+					var fcolor = '#202020';
+					if(per_acc_for>=95 && per_acc_for<=105)
+					{
+                        bgcolor = '#7bd48d';
+					}
+					else
+					{
+                        bgcolor = '#ff0000';
+                        fcolor = '#fffcfc';
+					}
+					
+					//Check if value is a number
+					if(isNaN(per_acc_for))	
+					{
+						tabl+='<td class="text-right" bgcolor="'+bgcolor+'" style="color: '+fcolor+'"> - </td>';
+					}
+					else
+					{
+						tabl+='<td class="text-right" bgcolor="'+bgcolor+'" style="color: '+fcolor+'">'+per_acc_for.toFixed(1)+'%</td>';
+					}
                     pcacc_arr.push(per_acc_for);
 
                     // ----------END data cells----------
@@ -167,7 +196,7 @@ function fetchAccountability(url,orgun) {
                         var kione_value = kione_val[0][3];
                     }
                     var kione_id2 = ou+"_ki_cell_"+comki_indx;
-                    kissue_arr.push(kione_val);
+                    //kissue_arr.push(kione_val);
                     $("#"+kione_id2).html(kione_value);
                 });
 
@@ -185,12 +214,23 @@ function fetchAccountability(url,orgun) {
                 $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
 
                 var tot_neg = sumArr(closbal_arr) + sumArr(negadj_arr) + sumArr(qtydisp_arr);
-                var tot_pos = sumArr(opsoh_arr) + sumArr(posadj_arr) + sumArr(kissue_arr);
+                var tot_pos = sumArr(opsoh_arr) + sumArr(posadj_arr) + sumArr(kemsi_arr);
                 var tot_acc = (tot_neg/tot_pos)*100
+				
+				var bgcolor = '#ff0000';
+				if(tot_acc>=95 && tot_acc<=105)
+				{
+					bgcolor = '#7bd48d';
+				}
+				else
+				{
+					bgcolor = '#ff0000';
+				}
+				$('#'+ou+'_totalPcAccounted').css('background-color',bgcolor);
                 $('#'+ou+'_totalPcAccounted').html(tot_acc.toFixed(1));
 
                 // title fill
-                    var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgun+'.json?fields=id,name';
+                    var url = 'https://hiskenya.org/api/organisationUnits/'+orgun+'.json?fields=id,name';
                     $.ajax({      
                         dataType: "json",
                         url: url,

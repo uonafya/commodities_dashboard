@@ -27,15 +27,20 @@
                     series: [{
                         name: 'Brands',
                         colorByPoint: true,
-                        data: [{
-                            name: 'No discrepancy',
-                            y: compliant_facility_count,
-                            sliced: true,
-                            selected: true
-                        }, {
-                            name: 'Discrepancy',
-                            y: non_compliant_facility_count
-                        }]
+                        data: [
+                            {
+                                name: 'Discrepancy',
+                                y: non_compliant_facility_count,
+                                color: '#c0504d'
+                            },
+                            {
+                                name: 'No discrepancy',
+                                y: compliant_facility_count,
+                                sliced: true,
+                                selected: true,
+                                color: '#9bbb59'
+                            }
+                        ]
                     }]
                 });
             };

@@ -14,7 +14,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" /><link href="../../dist/css/style.min.css" rel="stylesheet"><link href="../../dist/css/custom.css" rel="stylesheet">
+    <link href="../../dist/css/style.min.css" rel="stylesheet"><link href="../../dist/css/custom.css" rel="stylesheet">
     <link href="../../dist/css/datatables/buttons.dataTables.min.css" rel="stylesheet">
     <link href="../../dist/css/datatables/jquery.dataTables.min.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
@@ -121,7 +121,101 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right"><li class="nav-item search-box hidden"><a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
-                    
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown hidden">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
+                            </a>
+                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown hidden">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+                                <ul class="list-style-none">
+                                    <li>
+                                        <div class="">
+                                             <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Event today</h5> 
+                                                        <span class="mail-desc">Just a reminder that event</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Settings</h5> 
+                                                        <span class="mail-desc">You can customize this template</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Pavan kumar</h5> 
+                                                        <span class="mail-desc">Just see the my admin!</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-danger btn-circle"><i class="fa fa-link"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Luanch Admin</h5> 
+                                                        <span class="mail-desc">Just see the my new admin!</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown hidden">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                <div class="dropdown-divider"></div>
+                                <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
                     </ul>
                 </div>
             </nav>
@@ -139,72 +233,31 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                            <!-- County -->
-                            <li class="sidebar-item">
-                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">County </span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <!-- SS -->
-                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Stock Status </span></a>
+                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="weightbands.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Weight Band</span></a></li> --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Stock Status </span></a><ul aria-expanded="false" class="collapse  first-level">
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">ACTs</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li></ul></li>
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Details </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Facility</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Sub-county</span></a></li></ul></li></ul></li>
+                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sssummary.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">SS Summary</span></a></li> -->
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Data Quality </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-completeness.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Completeness</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-concordance.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Concordance</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-consistency.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consistency</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Comparison</span></a></li> </ul></li>
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Supply Chain Performance </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary-trends.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Trends</span></a></li><!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> Detailed</span></a></li> --></ul></li>
+                            <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rationalization.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Rationalization</span></a></li>	 --><li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a><ul aria-expanded="false" class="collapse  first-level"><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National Summary</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">SOH Comparison</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Pending Shipments</span></a></li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
                                         <ul aria-expanded="false" class="collapse  first-level">
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AL</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison-county.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
                                         </ul>
-                                    </li>
-                                    <!-- endSS -->
-                                    <!-- RR -->
-                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting </span></a>
-                                        <ul aria-expanded="false" class="collapse  first-level">
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate Trend</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Facility Reporting Rate</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Sub-county Reporting Rate</span></a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- endRR -->
-                                    <!-- DQ -->
-                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Data Quality </span></a>
-                                        <ul aria-expanded="false" class="collapse  first-level">
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-completeness.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Completeness</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-concordance.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Concordance</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-consistency.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consistency</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dq-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Comparison</span></a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- endDQ -->
-                                    <!-- SCP -->
-                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Supply Chain Performance</span></a>
-                                        <ul aria-expanded="false" class="collapse  first-level">
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Summary</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="indicatorsummary-trends.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Trends</span></a></li>
-                                            <!-- endSCP -->
-                                        </ul>
-                                    </li>
-                                    <!-- endSCP -->
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                    </li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Accountability</span></a></li></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
                                         <ul aria-expanded="false" class="collapse  first-level">
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
                                         </ul>
                                     </li>
-                                </ul>
-                            </li>
-                            <!-- end County -->
-
-<!-- National -->
-<li class="sidebar-item"> 
-	<a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
-	<ul aria-expanded="false" class="collapse  first-level">
-		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
-		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
-		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
-		<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
-	</ul>
-</li>
-<!-- end National -->
+                            </ul>
                         </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -226,14 +279,14 @@
                     <div class="col-12 d-flex no-block align-items-center">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <h4 class="page-title m-t-10">
-                                Indicator Summary 
+                                Indicator Summary
                                 &nbsp; &nbsp;
                             </h4>
                         </div>
                         <div class="col-md-10 col-sm-9 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
-                                <div class="col-md-11 col-sm-11 col-xs-11">
+                                <div class="col-md-11 col-sm-11 col-xs-12">
                                     <div class="row">
                                         <div class="col-md-3 col-sm-3 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
@@ -253,9 +306,7 @@
                                         </div>  -->
                                     </div>
                                 </div>
-                                <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
-                                </div>
+                                
                             </div>
                             
                         </div>
@@ -296,11 +347,11 @@
                                             <tr>                                                
                                                 <th><b> &nbsp; Parameter &nbsp; </b></th>
                                                 <th><b> &nbsp; &nbsp; &nbsp; Item &nbsp; &nbsp; &nbsp; </b></th>
-                                                <th class="text-right"><b>Num</b></th>
-                                                <th class="text-right"><b>Den</b></th>
-                                                <th class="text-right"><b>Result</b></th>
-                                                <th class="text-right"><b>Target</b></th>
-                                                <th class="text-right"><b>Acceptable</b></th>
+                                                <th><b>Num</b></th>
+                                                <th><b>Den</b></th>
+                                                <th><b>Result</b></th>
+                                                <th><b>Target</b></th>
+                                                <th><b>Acceptable</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>                                            
@@ -358,7 +409,6 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../dist/js/defaults.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -388,20 +438,10 @@
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
             dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
-			// if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
+			dropdown.prop('selectedIndex', 0);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-            subcounty.prop('selectedIndex', 0);
-            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
-                var myou = myOU();
-                $.each(data.organisationUnits, function (key, entry) 
-                {				
-                    if(entry.parent.id==myou)
-                    {							
-                        subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
-                    }				
-                })		 
-            });	
+			subcounty.prop('selectedIndex', 0);
 			
 			perioddwn.append('<option selected="true" disabled>Select Period</option>');
 			perioddwn.prop('selectedIndex', 0);
@@ -448,22 +488,15 @@
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <!-- <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script> -->
 
-    <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
+    
     <script src="../../dist/js/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../dist/js/datatables/dataTables.buttons.min.js"></script>
+    <script src="../../dist/js/datatables//dataTables.buttons.min.js"></script>
     <script src="../../dist/js/datatables/buttons.flash.min.js"></script>
     <script src="../../dist/js/datatables/jszip.min.js"></script>
     <script src="../../dist/js/datatables/pdfmake.min.js"></script>
     <script src="../../dist/js/datatables/vfs_fonts.js"></script>
     <script src="../../dist/js/datatables/buttons.html5.min.js"></script>
     <script src="../../dist/js/datatables/buttons.print.min.js"></script>
-    <script src="../../assets/extra-libs/DataTables/dataTables.buttons.min.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>
-    <script src="../../assets/extra-libs/jszip/jszip.min.js"></script>
-    <script src="../../assets/extra-libs/pdfmake/pdfmake.min.js"></script>
-    <script src="../../assets/extra-libs/pdfmake/vfs_fonts.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.html5.min.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.print.min.js"></script>
 
     <script>
         /****************************************
@@ -486,17 +519,10 @@
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
-        var todayte = new Date().getDate();
-        if(parseFloat(todayte) < 15){
-            var mnthLessBy = -2
-        }else{
-            var mnthLessBy = -1
-        }
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             MinMonth: '-3y',
-            // MaxMonth: -1,
-            MaxMonth: mnthLessBy,
+            MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
@@ -516,13 +542,7 @@
 
             if(countyou == null)
             {
-                // countyou = 'tAbBVBbueqD';
-                // countyou = myOU();
-
-                //define the constants
-                var countyou = myOU();
-                //define the constants
-                
+                countyou = 'tAbBVBbueqD';
             }
 
             if(subcountyou != null)
@@ -530,30 +550,9 @@
                 countyou = subcountyou;
             }
             
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+countyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchIS(url,countyou,periodval);
-        }
-		
-		
-		function getPreviousPMonth() 
-		{
-                var curdate = new Date();
-
-				var today = curdate.getDate();
-
-				if(today<15)
-					curdate.setMonth(curdate.getMonth() - 2);
-				else
-					curdate.setMonth(curdate.getMonth() - 1);
-
-				per_y = curdate.getFullYear();
-				per_m = parseFloat(curdate.getMonth())+1;
-				
-				if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
-				var per = per_y+""+per_m;
-				
-                return per
-                // return(getPerio(per, false))
+            var filtering = true;
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+countyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
+            fetchIS(url,countyou,periodval,filtering);
         }
         
     </script>
@@ -564,40 +563,38 @@
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/modules/export-data.js"></script>
 	<script type="text/javascript">
-    
-    $('.parameterfilt').addClass('hidden');
-    $('.parameter2filt').addClass('hidden');
-    while($('.parameterfilt').length > 1){
-        alert('should be deleting')
-        $('.parameterfilt').last().remove();
-        $('.parameter2filt').last().remove();
-    }
-        // Stock calculations
+	
+	
+	//get the org units
+	var orgunitval = [];
+	$.getJSON('../../assets/json/orgunitsmal.json', function(data) 
+	{         
+		
+		$.each(data.dataSets[0].organisationUnits, function (key, orgunitid) 
+		{			
+			orgunitval.push(orgunitid.id);
+		})
+		
+		//console.log(orgunitval);
+	
+		var found = orgunitval.indexOf('jmnH1p2LZvJ');
+		
+		//console.log(found);
+		
+		//console.log(orgunitval.length);
+	});
+	
+	
+	
+		
+    // Stock calculations
 	$(document).ready(function() 
 	{
-        $('.parameterfilt').removeClass('hidden');
-        $('.parameter2filt').removeClass('hidden');
-
-        // var ounit = 'tAbBVBbueqD';
-        // ounit = myOU();
-
-        //define the constants
-            var ounit = myOU();
-        //define the constants
-        
-        // Populate dropdown with list of sub counties
-        $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
-            $.each(data.organisationUnits, function (key, entry){
-                if(entry.parent.id==ounit){		
-                    $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
-                }
-            })
-        });
-        $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
-        
-        var period = getPreviousPMonth(); //'LAST_MONTH';
-        var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-        //var url = 'http://localhost/pmilive/summary.json';
+        var ounit = 'tAbBVBbueqD';
+        var period = '201805';
+        var filtering = false;
+        var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;tAbBVBbueqD&filter=pe:201805&displayProperty=NAME&outputIdScheme=UID';
+        // var url = 'http://localhost/pmi/json/indicatorsummary.json';
         fetchIS(url,ounit,period);
 		//parse the data for mos percentage
         
@@ -607,21 +604,23 @@
         {
             var ounit = $(this).val(); 
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchIS(url,ounit,period);
+            var filtering = true;
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            fetchIS(url,ounit,period,filtering);
         });
         
         $("#subcounty-dropdown").change(function() 
         {
             var ounit = $(this).val();  
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchIS(url,ounit,period);
+            var filtering = true;
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            fetchIS(url,ounit,period,filtering);
         });
 });
 
 
-function fetchIS(url,ounit,period) {
+function fetchIS(url,ounit,period,filtering) {
     $('#zero_config.table').addClass('hidden');
     $('.loader-sp.is-sub').removeClass('hidden');
     $.ajax({
@@ -629,276 +628,171 @@ function fetchIS(url,ounit,period) {
             crossDomain: true,
             url: url,                    
             success: function (data) {
-            var orgunits = data.metaData.dimensions.ou;
-						            
+                
+                var orgunits = data.metaData.dimensions.ou;
+                var Den=orgunits.length;
+            
             //apply the title
             var theperiod = data.metaData.dimensions.pe[0];
             var theorgunit = ounit;
-			
-			var Den=getExpectedUnits(ounit, theperiod); //orgunits.length;
             
             var curpe = data.metaData.items[theperiod].name;
             
             getOrgUnit(theorgunit, curpe);
 
-            var tableData = '';   
-
-			//reporting rate			
-            $.each(data.metaData.dimensions.dx, function (key, entry) 
-            {
-					if(entry=='JPaviRmSsJW.REPORTING_RATE')
-					{
-						//define the variables to hold the counter
-						var rratecount = 0;
-						var rrate = 0;
-
-						//define the table
-
-						//console.log(data.metaData.items[entry].name);
-
-						//for each dimension get the value
-						$.each(data.rows, function (rkey, rentry) 
-						{	
-								var dxid = rentry[0];
-								var rrval = parseFloat(rentry[2]);
-
-								if(dxid==entry)
-								{
-									rratecount++;	
-									rrate = rrate+rrval;
-								}					
-						})	
-						var acceptable=90;
-						var target=95;
-						var rrate=(rrate);
-						
-						var rrpercent = (rratecount/Den)*100;
-
-						var bgc = '#ffffff';
-						if(rrpercent>=acceptable){
-							if(rrpercent >= target){
-								bgc  = '#c6efce';
-							}else{
-								bgc  = '#ffeb9c';
-							}
-						}else{
-							bgc = '#ffc7ce';
-						}
-
-						tableData += '<tr>';
-						tableData += '<td>Reporting Rate - Anti Malarials</td>';
-						tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-						tableData += '<td class="text-right">'+formatNumber(rratecount)+'</td>';                                
-						tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
-						tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(rrpercent.toFixed(1))+'%</td>';
-						tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
-						tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
-						tableData += '</tr>';	
-					}
-            })
-			
-			//reporting rate on time
-            $.each(data.metaData.dimensions.dx, function (key, entry) 
-            {
-					if(entry=='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
-					{
-						//define the variables to hold the counter
-						var rratecount = 0;
-						var rrate = 0;
-
-						//define the table
-
-						//console.log(data.metaData.items[entry].name);
-
-						//for each dimension get the value
-						$.each(data.rows, function (rkey, rentry) 
-						{	
-								var dxid = rentry[0];
-								var rrval = parseFloat(rentry[2]);
-
-								if(dxid==entry)
-								{
-									rratecount++;	
-									rrate = rrate+rrval;
-								}					
-						})	
-						var acceptable=90;
-						var target=95;
-						var rrate=(rrate);
-						
-						var rrpercent = (rratecount/Den)*100;
-
-						var bgc = '#ffffff';
-						if(rrpercent>=acceptable){
-							if(rrpercent >= target){
-								bgc  = '#c6efce';
-							}else{
-								bgc  = '#ffeb9c';
-							}
-						}else{
-							bgc = '#ffc7ce';
-						}
-
-						tableData += '<tr>';
-						tableData += '<td>On Time Reporting - Anti Malarials</td>';
-						tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-						tableData += '<td class="text-right">'+formatNumber(rratecount)+'</td>';                                
-						tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
-						tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(rrpercent.toFixed(1))+'%</td>';
-						tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
-						tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
-						tableData += '</tr>';	
-					}
-            })
+            var tableData = '';                        
             
             //stocked according to plan
             $.each(data.metaData.dimensions.dx, function (key, entry) 
             {	
-					if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
-					{
-						//define the variables to hold the counter
-						var stockok = 0;
+                    //define the variables to hold the counter
+                    var stockok = 0;
 
-						//define the table
+                    //define the table
 
-						//console.log(data.metaData.items[entry].name);
+                    //console.log(data.metaData.items[entry].name);
 
-						//for each dimension get the value
-						$.each(data.rows, function (rkey, rentry) 
-						{	
-								var dxid = rentry[0];
-								var mosval = parseFloat(rentry[2]);
+                    //for each dimension get the value
+                    $.each(data.rows, function (rkey, rentry) 
+                    {	
+                            var dxid = rentry[0];
+                            var mosval = parseFloat(rentry[2]);
 
-								if(dxid==entry)
-								{
-										if(mosval>=3 && mosval<=6)
-										{
-												stockok++;
-										}						
-								}					
-						})	
-						var acceptable=70;
-						var target=90;
-						var stockok=(stockok);
-						var org=(orgunits.length);
-						var okpercent = (stockok/Den)*100;
+                            if(dxid==entry)
+                            {
+                                    if(mosval>=3 && mosval<=6)
+                                    {
+                                            stockok++;
+                                    }						
+                            }					
+                    })	
+                    var acceptable=70;
+                    var target=90;
+                    var stockok=(stockok);
+                    var org=(orgunits.length);
+                    var okpercent = (stockok/orgunits.length)*100;
 
-						var bgc = '#ffffff';
-						if(okpercent>=acceptable){
-							if(okpercent >= target){
-								bgc  = '#c6efce';
-							}else{
-								bgc  = '#ffeb9c';
-							}
-						}else{
-							bgc = '#ffc7ce';
-						}
+                    var bgc = '#ffffff';
+                    if(okpercent>=acceptable){
+                        if(okpercent >= target){
+                            bgc  = '#c6efce';
+                        }else{
+                            bgc  = '#ffeb9c';
+                        }
+                    }else{
+                        bgc = '#ffc7ce';
+                    }
 
-						tableData += '<tr>';
-						tableData += '<td>HFs stocked according to plan</td>';
-						tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-						tableData += '<td class="text-right">'+formatNumber(stockok)+'</td>';                                
-						tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
-						tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(okpercent.toFixed(1))+'%</td>';
-						tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
-						tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
-						tableData += '</tr>';	
-					}
+                    tableData += '<tr>';
+                    tableData += '<td>HFs stocked according to plan</td>';
+                    tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                    tableData += '<td>'+stockok+'</td>';                                
+                    tableData += '<td>'+Den+'</td>';                                
+                    tableData += '<td bgcolor="'+bgc+'">'+okpercent.toFixed(1)+'%</td>';
+                    tableData += '<td>'+target+ '%</td>';
+                    tableData += '<td>'+acceptable+ '%</td>';
+                    tableData += '</tr>';	
             })
 
-            //overstocked
+                        //overstocked
 			$.each(data.metaData.dimensions.dx, function (key, entry) 
 			{
-				if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
-				{
-					//define the variables to hold the counter
-					var overstock = 0;								
-					$.each(data.rows, function (rkey, rentry) {	
-						var dxid = rentry[0];
-						var mosval = parseFloat(rentry[2]);
-						//console.log(parseFloat(rentry[2]));
-						if(dxid==entry){
-							//console.log(mosval);
-							if(mosval>6){
-								overstock++;
-							}										
-						}					
-					})	
-					var acceptable = 15;
-					var target = 5;
-					var overOrg=(orgunits.length);
-					var overstock = (overstock);			
-					var overpercent = (overstock/Den)*100;
+				//define the variables to hold the counter
+				var overstock = 0;								
 
-					var bgc = '#ffffff';
-					if(overpercent<=acceptable){
-						if(overpercent<target){
-							bgc  = '#c6efce';
-						}else{
-							bgc  = '#ffeb9c';
-						}
-					}else{
-						bgc = '#ffc7ce';
-					}
+				$.each(data.rows, function (rkey, rentry) 
+				{	
+					var dxid = rentry[0];
+					var mosval = parseFloat(rentry[2]);
+					//console.log(parseFloat(rentry[2]));
+					if(dxid==entry)
+					{
+						//console.log(mosval);
+						if(mosval>6)
+						{
+							overstock++;
+						}										
+					}					
+				})	
+				var acceptable = 15;
+                                var target = 5;
+				var overOrg=(orgunits.length);
+				var overstock = (overstock);			
+				var overpercent = (overstock/orgunits.length)*100;
 
-						tableData += '<tr>';
-						tableData += '<td>HFs over-stocked</td>';
-						tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-						tableData += '<td class="text-right">'+formatNumber(overstock)+'</td>';                                
-						tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
-						tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(overpercent.toFixed(1))+'%</td>';
-						tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
-						tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
-						tableData += '</tr>';
-					}
-            })
+                var bgc = '#ffffff';
+                if(overpercent<=acceptable){
+                    if(overpercent<target){
+                        bgc  = '#c6efce';
+                    }else{
+                        bgc  = '#ffeb9c';
+                    }
+                }else{
+                    bgc = '#ffc7ce';
+                }
+
+                tableData += '<tr>';
+                tableData += '<td>HFs over-stocked</td>';
+                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                tableData += '<td>'+overstock+'</td>';                                
+                tableData += '<td>'+Den+'</td>';                                
+                tableData += '<td bgcolor="'+bgc+'">'+overpercent.toFixed(1)+'%</td>';
+                tableData += '<td>'+target+ '%</td>';
+                tableData += '<td>'+acceptable+ '%</td>';
+                tableData += '</tr>';
+                })
                 
                 
                 //under stocked
-            $.each(data.metaData.dimensions.dx, function (key, entry)
-			{	
-				if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
-				{
-					//define the variables to hold the counter
-					var understock = 0;
+                $.each(data.metaData.dimensions.dx, function (key, entry) 
+                {	
+                //define the variables to hold the counter
+				var understock = 0;
+				
+				//define the table				
+				//tableData += '<td>'+data.metaData.items[entry].name+'</td>';							
+				//console.log(data.metaData.items[entry].name);
+				
+				//for each dimension get the value
+				$.each(data.rows, function (rkey, rentry) 
+				{	
+					var dxid = rentry[0];
+					var mosval = parseFloat(rentry[2]);
 					
-					//for each dimension get the value
-					$.each(data.rows, function (rkey, rentry) {	
-						var dxid = rentry[0];
-						var mosval = parseFloat(rentry[2]);
-						if(dxid==entry){
-							if(mosval>0 && mosval<3){
-								understock++;
-							}						
-						}					
-					})	
-					var acceptable = 15;
-					var target = 5;
-					var understock=(understock);
-					var org=(orgunits.length);
-					var underpercent = (understock/Den)*100;
-					 
-					var bgc = '#ffffff';
-					if(underpercent<=acceptable){
-						if(underpercent<target){
-							bgc  = '#c6efce';
-						}else{
-							bgc  = '#ffeb9c';
-						}
-					}else{
-						bgc = '#ffc7ce';
-					}
+					if(dxid==entry)
+					{
+						if(mosval>0 && mosval<3)
+						{
+							understock++;
+						}						
+					}					
+				})	
+				var acceptable = 15;
+                                var target = 5;
+				var understock=(understock);
+				var org=(orgunits.length);
+				var underpercent = (understock/orgunits.length)*100;
+                 
+                var bgc = '#ffffff';
+                if(underpercent<=acceptable){
+                    if(underpercent<target){
+                        bgc  = '#c6efce';
+                    }else{
+                        bgc  = '#ffeb9c';
+                    }
+                }else{
+                    bgc = '#ffc7ce';
+                }
 
-					tableData += '<tr>';
-					tableData += '<td>HFs under-stocked</td>';
-					tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-					tableData += '<td class="text-right">'+formatNumber(understock)+'</td>';                                
-					tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
-					tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(underpercent.toFixed(1))+'%</td>';
-					tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
-					tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
-					tableData += '</tr>';
-				}
+                tableData += '<tr>';
+                tableData += '<td>HFs under-stocked</td>';
+                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                tableData += '<td>'+understock+'</td>';                                
+                tableData += '<td>'+Den+'</td>';                                
+                tableData += '<td bgcolor="'+bgc+'">'+underpercent.toFixed(1)+'%</td>';
+                tableData += '<td>'+target+ '%</td>';
+                tableData += '<td>'+acceptable+ '%</td>';
+                tableData += '</tr>';
 			})
 
 			//tableData += '<table>';	
@@ -908,110 +802,110 @@ function fetchIS(url,ounit,period) {
                 
                 //stockout
                 $.each(data.metaData.dimensions.dx, function (key, entry) 
-				{
-					if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
-					{
-						//define the variables to hold the counter
-						var stockout = 0;
-						
-						//define the table
-											
-						//console.log(data.metaData.items[entry].name);
-						
-						//for each dimension get the value
-						$.each(data.rows, function (rkey, rentry) {	
-							var dxid = rentry[0];
-							var mosval = parseFloat(rentry[2]);
-							if(dxid==entry)
-							{
-								if(mosval==0){
-									stockout++;
-								}						
-							}					
-						})	
-						var acceptable=10;
-						var target = 0;
-						var stockout=(stockout);
-						var org=(orgunits.length);
-						var stockoutpercent = (stockout/Den)*100;
-						
-						var bgc = '#ffffff';
-						if(stockoutpercent<=acceptable){
-							if(stockoutpercent<target){
-								bgc  = '#c6efce';
-							}else{
-								bgc  = '#ffeb9c';
-							}
-						}else{
-							bgc = '#ffc7ce';
-						}
-																					
-						tableData += '<tr>';
-						tableData += '<td>HFs with a stock out</td>';
-						tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-						tableData += '<td class="text-right">'+formatNumber(stockout)+'</td>';                                
-						tableData += '<td class="text-right">'+formatNumber(Den)+'</td>';                                
-						tableData += '<td class="text-right" bgcolor="'+bgc+'">'+formatNumber(stockoutpercent.toFixed(1))+'%</td>';
-						tableData += '<td class="text-right">'+formatNumber(target)+ '%</td>';
-						tableData += '<td class="text-right">'+formatNumber(acceptable)+ '%</td>';
-						tableData += '</tr>';
-					}
+		{	
+                //define the variables to hold the counter
+				var stockout = 0;
+				
+				//define the table
+									
+				//console.log(data.metaData.items[entry].name);
+				
+				//for each dimension get the value
+				$.each(data.rows, function (rkey, rentry) 
+				{	
+                                    var dxid = rentry[0];
+                                    var mosval = parseFloat(rentry[2]);
+
+                                    if(dxid==entry)
+                                    {
+                                        if(mosval==0)
+                                        {
+                                            stockout++;
+                                        }						
+                                    }					
+				})	
+				var acceptable=10;
+                                var target = 0;
+				var stockout=(stockout);
+				var org=(orgunits.length);
+                var stockoutpercent = (stockout/orgunits.length)*100;
+                
+                var bgc = '#ffffff';
+                if(stockoutpercent<=acceptable){
+                    if(stockoutpercent<target){
+                        bgc  = '#c6efce';
+                    }else{
+                        bgc  = '#ffeb9c';
+                    }
+                }else{
+                    bgc = '#ffc7ce';
+                }
+											                                
+                tableData += '<tr>';
+                tableData += '<td>HFs with a stock out</td>';
+                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                tableData += '<td>'+stockout+'</td>';                                
+                tableData += '<td>'+Den+'</td>';                                
+                tableData += '<td bgcolor="'+bgc+'">'+stockoutpercent.toFixed(1)+'%</td>';
+                tableData += '<td>'+target+ '%</td>';
+                tableData += '<td>'+acceptable+ '%</td>';
+                tableData += '</tr>';
                 })
 				
                         $('.loader-sp').addClass('hidden');
                         $('.table-responsive').removeClass('hidden');
                         $('.indicatorsumm').removeClass('hidden');
                         $('.indicatorsumm').DataTable().destroy();
-                        $('#zero_config').DataTable().destroy();
                         $("table.indicatorsumm tbody").empty();
-                        $("table.indicatorsumm thead .form-control").remove();
+
                         $("table.indicatorsumm tbody").append(tableData);
                         $('.indicatorsumm').DataTable( {
                             //data-xport
-                            dom: 'Bfrtlip',
-							ordering: false,
-                            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]], 
-                            buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'],
+                            dom: 'Bfrtip',
+                            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
                             //data-xport
+
                             initComplete: function () {
-                                this.api().columns(0).every( function () {
-                                    var column = this;
-                                    var select = $('<select class="form-control parameterfilt"><option value="">Filter parameter</option></select>')
-                                        .appendTo( $(column.header()) )
-                                        .on( 'change', function () {
-                                            var val = $.fn.dataTable.util.escapeRegex(
-                                                $(this).val()
-                                            );
-                                            column
-                                                .search( val ? '^'+val+'$' : '', true, false )
-                                                .draw();
+                                if(!filtering){
+                                    this.api().columns(0).every( function () {
+                                        var column = this;
+                                        var select = $('<select class="form-control"><option value="">Filter parameter</option></select>')
+                                            .appendTo( $(column.header()) )
+                                            .on( 'change', function () {
+                                                var val = $.fn.dataTable.util.escapeRegex(
+                                                    $(this).val()
+                                                );
+                                                column
+                                                    .search( val ? '^'+val+'$' : '', true, false )
+                                                    .draw();
+                                            } );
+                                        column.data().unique().sort().each( function ( d, j ) {
+                                                select.append( '<option value="'+d+'">'+d+'</option>' );
                                         } );
-                                    column.data().unique().sort().each( function ( d, j ) {
-                                            select.append( '<option value="'+d+'">'+d+'</option>' );
                                     } );
-                                } );
-                                this.api().columns(1).every( function () {
-                                    var column = this;
-                                    var select = $('<select class="form-control parameter2filt"><option value="">Filter items</option></select>')
-                                        .appendTo( $(column.header()) )
-                                        .on( 'change', function () {
-                                            var val = $.fn.dataTable.util.escapeRegex(
-                                                $(this).val()
-                                            );
-                                            column
-                                                .search( val ? '^'+val+'$' : '', true, false )
-                                                .draw();
+                                    this.api().columns(1).every( function () {
+                                        var column = this;
+                                        var select = $('<select class="form-control"><option value="">Filter items</option></select>')
+                                            .appendTo( $(column.header()) )
+                                            .on( 'change', function () {
+                                                var val = $.fn.dataTable.util.escapeRegex(
+                                                    $(this).val()
+                                                );
+                                                column
+                                                    .search( val ? '^'+val+'$' : '', true, false )
+                                                    .draw();
+                                            } );
+                                        column.data().unique().sort().each( function ( d, j ) {
+                                                select.append( '<option value="'+d+'">'+d+'</option>' );
                                         } );
-                                    column.data().unique().sort().each( function ( d, j ) {
-                                            select.append( '<option value="'+d+'">'+d+'</option>' );
                                     } );
-                                } );
+                                }
                             }
                         });	                                                        
-                        //$('.indicatorsumm').DataTable().draw();
+                        $('.indicatorsumm').DataTable().draw();
                         $('#zero_config.table').removeClass('hidden');
                         $('.loader-sp.is-sub').addClass('hidden');
-                        $('.isstate').addClass('hidden');
 
                 },
                 error: function (request, status, error) {
@@ -1019,7 +913,7 @@ function fetchIS(url,ounit,period) {
                     $('.table-responsive').addClass('hidden');
                     $('.loader-sp').addClass('hidden');
                     //console.log('IndicatorSumm: error fetching json. :- '+error);
-                    $('.isstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                    $('.isstate').html('<div class ="alert alert-danger"><strong>Data Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             }
         });
         
@@ -1029,16 +923,18 @@ function fetchIS(url,ounit,period) {
         {
             var ounit = $(this).val(); 
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchIS(url,ounit,period);
+            var filtering = true;
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            fetchIS(url,ounit,period,filtering);
         });
 
         $("#subcounty-dropdown").change(function() 
         {
             var ounit = $(this).val();  
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchIS(url,ounit,period);
+            var filtering = true;
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            fetchIS(url,ounit,period,filtering);
         });
 }
 //get the period
@@ -1048,7 +944,7 @@ function getPeriod()
 
     if(periodval == null || periodval=='')
     {
-        periodval = getPreviousPMonth(); //'LAST_MONTH';
+        periodval = '201805';
     }
     else
     {
@@ -1076,26 +972,6 @@ function getOrgUnit(uid, period)
     });    
 }
 
-//get expected reports
-function getExpectedUnits(uid, period)
-{
-	var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:JPaviRmSsJW.EXPECTED_REPORTS&dimension=ou:'+uid+'&displayProperty=NAME&outputIdScheme=UID';
-	
-	var count = 0;
-	    
-    $.ajax({      
-      dataType: "json",
-      url: url, //Relative or absolute path to response.php file   
-	  async:false,
-      success: function(data) 
-      {          
-          count = parseInt(data.rows[0][3]);
-      }
-    });
-		
-	return count;
-}
-
 //set the background color
 function getBgColor(dxval)
 {
@@ -1112,9 +988,8 @@ function getBgColor(dxval)
     return bgcolor;
 }
 
-//downloadTable("zero_config");
-</script>
-<!-- end MOS by Commodity -->
+	</script>
+	<!-- end MOS by Commodity -->
 
 </body>
 

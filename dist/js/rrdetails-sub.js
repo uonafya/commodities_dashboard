@@ -2,135 +2,114 @@
 // function fetchRRDetails(rdurl,ounit)
 function fetchRRDetails(theperiod,ounit)
 {
-    // var rdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
-    var rdurl = theperiod
+    var rdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
+    // var rdurl = theperiod
     console.log('rdurl is:-> '+rdurl);
     $('#facility_rr').addClass('hidden');
     $('.loader-sp').removeClass('hidden');
-    var summary_row = ''
-
     
     
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: rdurl,                    
-        success: function (data) {     
+        success: function (data) {                  
+            $('#facility_rr').removeClass('hidden');
+            var header = '';
+            var footer = '';
+            var tableData = '';
             
-            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
-            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id]&filter=id:ilike:JPaviRmSsJW&paging=false';
-            $.ajax({
-                type: "GET",
-                crossDomain: true,
-                url: valid_ous_url,
-                success: function (validata) {
-                    console.log("fetching valid OUs success");
-                    var valid_orgs = [];
-                    $.each(validata.dataSets[0].organisationUnits, function (inv, vou) { 
-                        valid_orgs.push(vou.id);
-                    });
-                    console.log("valid_orgs "+ JSON.stringify(valid_orgs));
-                    
-                    $('#facility_rr').removeClass('hidden');
-                    var header = '';
-                    var footer = '';
-                    var tableData = '';
-                    
-                    //put the header
-                    header += '<thead><tr>';	
-                    header += '<th>Name</th>';
+            //put the header
+            header += '<thead><tr>';	
+            header += '<th>Name</th>';
 
-                    $.each(data.metaData.dimensions.pe, function (pkey, pentry){
-                        header += '<th class="text-right">'+dateToStr(pentry)+'</th>';	
-                        // console.log("HEAD: "+pentry);		
-                    })
+            $.each(data.metaData.dimensions.pe, function (pkey, pentry){
+                header += '<th class="text-right">'+dateToStr(pentry)+'</th>';	
+                // console.log("HEAD: "+pentry);		
+            })
 
-                    header += '</tr></thead>';
+            header += '</tr></thead>';
 
-                    //put the footer
-                    footer += '<tfoot><tr>';	
-                    footer += '<th>Name</th>';
+            //put the footer
+            footer += '<tfoot><tr>';	
+            footer += '<th>Name</th>';
 
-                    $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-                    {
-                            footer += '<th class="text-right">'+dateToStr(pentry)+'</th>';			
-                    })
+            $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
+            {
+                    footer += '<th class="text-right">'+dateToStr(pentry)+'</th>';			
+            })
 
-                    footer += '</tr></tfoot>';
+            footer += '</tr></tfoot>';
 
-                    tableData += header;
+            tableData += header;
 
-                    //start body
-                    tableData += '<tbody>';
+            //start body
+            tableData += '<tbody>';
 
-                    $.each(data.metaData.dimensions.ou, function (key, entry){    
-                        if(valid_orgs.includes(entry)){                                                    
-                            tableData += '<tr>';	
-                            tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                            $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
-                            {
-                                    var rpt_count = getExpectedSub(data.rows,pentry,entry);
-                                    var reportval = getReport(data.rows,pentry,entry);
-                                    if(reportval)
-                                    {
-                                        if(reportval==rpt_count)
-                                        {
-                                            tableData += '<td style="background-color: #77ff77;">'+reportval+'/'+rpt_count+'</td>';
-                                        }
-                                        else
-                                        {
-                                            tableData += '<td style="background-color: #ffeb9c;">'+reportval+'/'+rpt_count+'</td>';
-                                        }
-                                    }
-                                    else
-                                    {
-                                        var bgcolor = '#ffeb9c';
-                                        tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'/'+rpt_count+'</td>';
-                                    }
-                            })
-                            tableData += '</tr>';	
+            $.each(data.metaData.dimensions.ou, function (key, entry){                                                        
+                tableData += '<tr>';	
+                tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
+                {
+						var rpt_count = getExpectedSub(data.rows,pentry,entry);
+                        var reportval = getReport(data.rows,pentry,entry);
+                        if(reportval)
+                        {
+                            if(reportval==rpt_count)
+							{
+								tableData += '<td style="background-color: #77ff77;">'+reportval+'/'+rpt_count+'</td>';
+							}
+							else
+							{
+								tableData += '<td style="background-color: #ffeb9c;">'+reportval+'/'+rpt_count+'</td>';
+							}
                         }
-                    })
+                        else
+                        {
+                            var bgcolor = '#ffeb9c';
+                            tableData += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'">'+reportval+'/'+rpt_count+'</td>';
+                        }
+                })
+                tableData += '</tr>';	
+            })
 
-                    tableData += '</tbody>';
-                    //footer line
-                    // tableData += footer;
+            tableData += '</tbody>';
+            //footer line
+            // tableData += footer;
 
-                    // title fill
-                        var urlt = 'https://hiskenya.org/api/organisationUnits/'+ounit+'.json?fields=id,name';
-                        console.log('loading title.... URL: '+urlt);
-                        $.ajax({      
-                            dataType: "json",
-                            url: urlt,
-                            success: function(data_t) {      
-                                $("#ttitle").html( data_t['name'] );
-                                console.log('data_t: -> '+JSON.stringify(data_t));
-                                
-                            }
-                        });    
-                    // END title fill
-                            
-                    $('.loader-sp').addClass('hidden');
-                    $("#facility_rr").removeClass('hidden');
-                    if($.fn.DataTable.isDataTable("#facility_rr")){
-                        $('#facility_rr').DataTable().destroy();
-                        $("#facility_rr").empty();
-                        $("#facility_rr").append(tableData);
-                    }else{
-                        // $("#facility_rr").append('<tbody>');
-                        $("#facility_rr").append(tableData);
-                        // $("#facility_rr").append('</tbody>');
+            // title fill
+                var urlt = 'https://hiskenya.org/api/organisationUnits/'+ounit+'.json?fields=id,name';
+                console.log('loading title.... URL: '+urlt);
+                $.ajax({      
+                    dataType: "json",
+                    url: urlt,
+                    success: function(data_t) {      
+                        $("#ttitle").html( data_t['name'] );
+                        console.log('data_t: -> '+JSON.stringify(data_t));
+                        
                     }
-                    // console.log("tableData: "+tableData);
-                    $('#facility_rr').DataTable({
-                        dom: 'Bfrtlip',
-                        ordering: false,
-                        buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
-                        ]
-                    });
-                }
+                });    
+            // END title fill
+                    
+            $('.loader-sp').addClass('hidden');
+            $("#facility_rr").removeClass('hidden');
+            if($.fn.DataTable.isDataTable("#facility_rr")){
+                $('#facility_rr').DataTable().destroy();
+                $("#facility_rr").empty();
+                $("#facility_rr").append(tableData);
+            }else{
+                // $("#facility_rr").append('<tbody>');
+                $("#facility_rr").append(tableData);
+                // $("#facility_rr").append('</tbody>');
+            }
+            // console.log("tableData: "+tableData);
+            $('#facility_rr').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
             });
+
         },
         error: function (request, status, error) {
             $('.loader-sp').addClass('hidden');
@@ -141,47 +120,6 @@ function fetchRRDetails(theperiod,ounit)
             // $('.rdstate').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
             $('.rdstate').html('<div class ="alert alert-danger"><strong>'+status+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
         }
-    });
-
-    sleep(2000);
-    $(document).ready(function () {
-        $.ajax({
-            type: "GET",
-            // url: 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-2&displayProperty=NAME&outputIdScheme=UID',
-            url: theperiod,
-            data: "data",
-            success: function (resp) {
-                $.each(resp.metaData.dimensions.ou, function (key, entry){                                                        
-                    // console.log("SUCCESSFULLY FETCHING COUNTY SUMMARY FOR: "+resp.metaData.items[entry].name);
-                    summary_row += '<tr style="font-size: 1.16em;">';	
-                    summary_row += '<td> SUMMARY: '+resp.metaData.items[entry].name+'</td>';
-                    $.each(resp.metaData.dimensions.pe, function (pkey, pentry) 
-                    {
-                            var rpt_count = getExpectedSub(resp.rows,pentry,entry);
-                            var reportval = getReport(resp.rows,pentry,entry);
-                            if(reportval)
-                            {
-                                if(reportval==rpt_count)
-                                {
-                                    summary_row += '<td style="background-color: #77ff77;" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
-                                }
-                                else
-                                {
-                                    summary_row += '<td style="background-color: #ffeb9c;" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
-                                }
-                            }
-                            else
-                            {
-                                var bgcolor = '#ffeb9c';
-                                summary_row += '<td style="border: 1px solid #fff;" bgcolor="'+bgcolor+'" class="text-bold">'+reportval+'/'+rpt_count+'</td>';
-                            }
-                    })
-                    summary_row += '</tr>';	
-                })
-                // console.log('COUNTY SUMMARY ROW='+summary_row);
-                $('#facility_rr tbody').append(summary_row);
-            }
-        });
     });
     
 }
@@ -295,10 +233,9 @@ function fetchSubRRDetails(scrdurl,ounit)
             }
             // console.log("tableDataSub: "+tableDataSub);
             $('#subcounty_rr').DataTable({
-                dom: 'Bfrtlip',
-                ordering: false,
+                dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
+                    'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
 

@@ -10,20 +10,19 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>All Malaria Commodities | Malaria Commodities Dashboard</title>
+    <title>Comparison | Malaria Commodities Dashboard</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
     <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="../../assets/extra-libs/DataTables/buttons.dataTables.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" /><link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../dist/css/style.min.css" rel="stylesheet">
     <link href="../../dist/css/custom.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 
@@ -251,7 +250,7 @@
                                     <!-- RR -->
                                     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reporting </span></a>
                                         <ul aria-expanded="false" class="collapse  first-level">
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate Trend</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reportrate.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reporting Rate Summary</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-fac.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Facility Reporting Rate</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rrdetails-sub.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Sub-county Reporting Rate</span></a></li>
                                         </ul>
@@ -318,38 +317,42 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <h4 class="page-title m-t-10">
-                                County All Malaria Commodities
-                            </h4>
+                        <div class="col-md-2 col-sm-3 col-xs-12">
+                            <h6 class="page-title m-t-10">
+                                Total ALs Vs Weight
+                                &nbsp; &nbsp;
+                            </h6>
                         </div>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="col-md-7 col-sm-6 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
-                                <div class="col-md-11 col-sm-11 col-xs-11">
+                                <div class="col-md-11 col-sm-11 col-xs-12">
                                     <div class="row">
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                             </select>
                                         </div>										
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="facility-dropdown" placeholder="Select Facility" name="facility">                                                
-                                            </select> 
-                                        </div> 
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
                                         </div> 
                                     </div>
-                                </div> 
-                                <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
                                 </div>                                
                             </div>
                             
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
+                            <div class="ml-auto text-right m-t-10">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                    </ol>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -367,7 +370,7 @@
                
                         <div class="card">
                             <div class="card-body">
-								<h5 class="card-title ttitle sohtitle"></h5>
+                                <h5 class="card-title">Total ALs Vs Weight</h5>
                                 <div class="sp_status row"></div>
                                 <div class="row">
                                     <div class="loader-sp">
@@ -387,22 +390,33 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row spdata">
                                     <div class="table-responsive">
                                         <table id="sp_table" class="table table-condensed slimtable table-bordered spbox hidden">
                                         <thead>
 											<tr>
-                                                <th><b>Description</b></th>
-                                                <th><b>Unit of Measure</b></th>
-                                                <th class="text-right"><b>Adjusted AMC</b></th>
-                                                <th class="text-right"><b>Latest SOH</b></th>
-												<th class="text-right"><b>Months of Stock (MOS)</b></th>
-                                            </tr>                                              
+                                                <th>Organization Unit</th>
+                                                <th>MFL Code</th>
+                                                <th>Reporting Month and Year</th>
+												<th>Total no. of AL tabs dispensed (A)</th>
+												<th>Total no. of tabs expected based on weight band (B)</th>
+												<th>Variance (A – B)</th>
+												<th>% variance(B-A)/(A)</th>
+                                            </tr>                                            		
                                         </thead>
                                         <tbody>
                                         </tbody>
-
+                                        <tfoot>
+                                            <tr>
+												<th>Organization Unit</th>
+                                                <th>MFL Code</th>
+                                                <th>Reporting Month and Year</th>
+												<th>Total no. of AL tabs dispensed (A)</th>
+												<th>Total no. of tabs expected based on weight band (B)</th>
+												<th>Variance (A – B)</th>
+												<th>% variance(B-A)/(A)</th>
+                                            </tr>		
+                                        </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -434,7 +448,6 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../dist/js/defaults.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -446,19 +459,14 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+	<script src="../../dist/js/mflcode.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+	<script src="../../dist/js/custom.js"></script>
+	
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-        
-    <script src="../../assets/extra-libs/DataTables/dataTables.buttons.min.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>
-    <script src="../../assets/extra-libs/jszip/jszip.min.js"></script>
-    <script src="../../assets/extra-libs/pdfmake/pdfmake.min.js"></script>
-    <script src="../../assets/extra-libs/pdfmake/vfs_fonts.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.html5.min.js"></script>
-    <script src="../../assets/extra-libs/DataTables/buttons.print.min.js"></script>
     	
 	<!-- *********** MonthPicker ************** -->
     <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
@@ -467,17 +475,10 @@
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
-        var todayte = new Date().getDate();
-        if(parseFloat(todayte) < 15){
-            var mnthLessBy = -2
-        }else{
-            var mnthLessBy = -1
-        }
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             MinMonth: '-3y',
-            // MaxMonth: -1,
-            MaxMonth: mnthLessBy,
+            MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
@@ -495,41 +496,28 @@
 			
 			var subcounty = $('#subcounty-dropdown');
 			
-            var facility = $('#facility-dropdown');
-			
 			var perioddwn = $('#period-dropdown');
 
 			dropdown.empty();
 			subcounty.empty();
 			perioddwn.empty();
-			facility.empty();
 
-            dropdown.append('<option selected="true" disabled>Select County</option>');
-            dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
-			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
-			
-			facility.append('<option selected="true" disabled>Select Facility</option>');
-			facility.prop('selectedIndex', 0);
+			dropdown.append('<option selected="true" disabled>Select County</option>');
+			dropdown.prop('selectedIndex', 0);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
-            subcounty.prop('selectedIndex', 0);
-            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
-                var myou = myOU();
-                $.each(data.organisationUnits, function (key, entry) 
-                {				
-                    if(entry.parent.id==myou)
-                    {							
-                        subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
-                    }				
-                })		 
-            });	
+			subcounty.prop('selectedIndex', 0);
 			
 			perioddwn.append('<option selected="true" disabled>Select Period</option>');
 			perioddwn.prop('selectedIndex', 0);
 
 			//const url = 'https://api.myjson.com/bins/7xq2x';
+			
+			//const url = 'http://localhost/commodity_dashboard/commodities_dashboard/html/ltr/totalactsvsweight.json';
 
 			//populate dropdown with list of counties
+			//$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			
 			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
@@ -542,16 +530,15 @@
 			$("#county-dropdown").change(function() 
 			{  
 				subcounty.empty();
-				$('#facility-dropdown').empty();
-                facility.append('<option selected="true" disabled>Select Facility</option>');
-				facility.prop('selectedIndex', 0);
 				var countyid = $(this).val();
 				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 				subcounty.prop('selectedIndex', 0);
                 subcounty.append('<option value='+$(this).val()+'>All subcounties</option>');
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				//$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data)
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -562,80 +549,33 @@
 					})		 
 				});		
 			});
-			
-			$("#subcounty-dropdown").change(function() 
-			{  
-				$('#facility-dropdown').empty();
-				var subcountyid = $(this).val();
-				facility.append('<option selected="true" disabled>Select Facility</option>');
-				facility.prop('selectedIndex', 0);
-
-				$.getJSON('https://hiskenya.org/api/organisationUnits/'+subcountyid+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true', function (data) {
-                    //console.log("Facilities-data ==> "+JSON.stringify(data));
-					$.each(data.organisationUnits, function (key, entry) {				
-						//if(entry.parent.id==subcountyid){
-							$('#facility-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
-						//}				
-					})
-				});
-			});
 		});
 	</script>
 			
 	<script>
 	$(document).ready(function() 
 	{
-            // var ounit = 'HfVjCurKxh2'; //Kenya
-            // ounit = myOU(); //Kenya
-
-            //define the constants
-            var ounit = 'HfVjCurKxh2';
-            if( myOU() != 'HfVjCurKxh2' ){
-                ounit = myOU();
-            }
-			//define the constants
-            
-            // Populate dropdown with list of sub counties
-            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
-                $.each(data.organisationUnits, function (key, entry){
-                    if(entry.parent.id==ounit){		
-                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
-                    }
-                })
-            });
-            $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
-            
-            var period = getPreviousPMonth(); //'LAST_MONTH';
-
-            //var url = 'sohcomparison.json';
-			
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:jfUzb86mBSP.miM6uIJ2cWx;HwvUHnslwbh.miM6uIJ2cWx;OLYLVMDHEj8.miM6uIJ2cWx;UJeKVZzAnfS.miM6uIJ2cWx;naztfZrbMtd.miM6uIJ2cWx;EtG9ozt2joA.miM6uIJ2cWx;Umi8ZsiqBHw.miM6uIJ2cWx;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
-			
-            fetchSOHCompa(url,ounit);
+            var ounit = 'tAbBVBbueqD';
+            var period = '201805';
+         			
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+			var url = 'http://localhost/malaria/commodities_dashboard/assets/json/mflcode.json';
+            fetchSP(url);
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
-				var period =  getPeriod();
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:jfUzb86mBSP.miM6uIJ2cWx;HwvUHnslwbh.miM6uIJ2cWx;OLYLVMDHEj8.miM6uIJ2cWx;UJeKVZzAnfS.miM6uIJ2cWx;naztfZrbMtd.miM6uIJ2cWx;EtG9ozt2joA.miM6uIJ2cWx;Umi8ZsiqBHw.miM6uIJ2cWx;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
-                fetchSOHCompa(url,ounit);
+                				
+				var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchSP(url);				
                 
             });
 
             $("#subcounty-dropdown").change(function() 
             {
-                ounit = $(this).val();
-				var period =  getPeriod();
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:jfUzb86mBSP.miM6uIJ2cWx;HwvUHnslwbh.miM6uIJ2cWx;OLYLVMDHEj8.miM6uIJ2cWx;UJeKVZzAnfS.miM6uIJ2cWx;naztfZrbMtd.miM6uIJ2cWx;EtG9ozt2joA.miM6uIJ2cWx;Umi8ZsiqBHw.miM6uIJ2cWx;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
-                fetchSOHCompa(url,ounit);
-                
-            });
-
-            $("#facility-dropdown").change(function() 
-            {
-                ounit = $(this).val();
-				var period =  getPeriod();
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:jfUzb86mBSP.miM6uIJ2cWx;HwvUHnslwbh.miM6uIJ2cWx;OLYLVMDHEj8.miM6uIJ2cWx;UJeKVZzAnfS.miM6uIJ2cWx;naztfZrbMtd.miM6uIJ2cWx;EtG9ozt2joA.miM6uIJ2cWx;Umi8ZsiqBHw.miM6uIJ2cWx;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
-                fetchSOHCompa(url,ounit);
+                ounit = $(this).val();                
+				
+				var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:201805&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchSP(url);
                 
             });
 					
@@ -650,292 +590,92 @@
             var ounit = $("#county-dropdown").val();
             var subcountyou = $("#subcounty-dropdown").val();
             var period = therdate;
-			
-			if(ounit == null)
+            
+            if(subcountyou!=null)
             {
-                ounit = 'HfVjCurKxh2';
-                ounit = myOU();
-            }
-
-            if(subcountyou != null)
-            {
-                ounit = subcountyou;
+                var ounit = subcountyou;
             }
             
-            //var url = 'pmi.json';
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:jfUzb86mBSP.miM6uIJ2cWx;HwvUHnslwbh.miM6uIJ2cWx;OLYLVMDHEj8.miM6uIJ2cWx;UJeKVZzAnfS.miM6uIJ2cWx;naztfZrbMtd.miM6uIJ2cWx;EtG9ozt2joA.miM6uIJ2cWx;Umi8ZsiqBHw.miM6uIJ2cWx;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
-            fetchSOHCompa(url,ounit);
+            //var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+			
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:Cf4Z9t3hcOm;RgNuR0oNfFQ&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+            fetchSP(url);
         }
         
-        //function toprocess the SP url
-        function fetchSOHCompa(spurl,ounit)
+        //function to process the total acts vs weight url
+        function fetchSP(spurl)
         {
-            // $.getJSON(spurl, function (data){
-                //console.log('spurl', spurl)
+            $('#sp_table').addClass('hidden');
+            $('.spdata').addClass('hidden');
+            $('.loader-sp').removeClass('hidden');
+            $('.loader-sp').css('display','block');
+
+            $.getJSON(spurl, function (data){
             $.ajax({
                 type: 'GET',
                 crossDomain: true,
                 url: spurl,                    
                 success: function (data) {
-                    
-                var tableData = '';
-                  
-            var dxidsadjc = [];            
-            var dxidshfs = [];
 
-            var count =0;
-            //var counter2=7;
-            //products to be displayed
-            var products=["Artemether-Lumefantrine 20/120 Tabs 6s", "Artemether-Lumefantrine 20/120 Tabs 12s",
-             "Artemether-Lumefantrine 20/120 Tabs 18s", "Artemether-Lumefantrine 20/120 Tabs 24s", 
-             "Artesunate Injection", "Sulphadoxine Pyrimethamine Tabs", "Rapid Diagnostic Tests"]
-            
-            //doses for each product
-            var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"] ;
-			
-			//apply the title
-            var theperiod = data.metaData.dimensions.pe[0];
-            			            
-            var curpe = data.metaData.items[theperiod].name;
-            
-            getOrgUnit(ounit, curpe);
-			//end apply title
-                    
-            //get dimensions of products
-            $.each(data.metaData.dimensions.dx, function (dxkey, dxentry, ) 
-            {
-                //id for Adjusted AMC
-                if(count<=6)
-                {
-                    dxidsadjc.push(dxentry);
-                 
-                }				
-                
-                //id for hfs
-                if(count>6 && count<=13)
-                {
-                    dxidshfs.push(dxentry);
-                }
-                
-                count++;
-            })
-                
-				//console.log(dxidsadjc)
-                var adjcvalues = [];
-                
-                var hfsvalues = [];   
+                    //create the org units array
+                    //var orgunits = [];
+                    //var dxids = [];
 
-				//get commodities with values adjc							 
-				 var adjcvals = [];
-				 $.each(dxidsadjc, function (rowkey, rowentry) 
-				{
-					$.each(data.rows, function (rowkey1, rowentry2)
-					{  
-						if(rowentry2[0]==rowentry)
-						{
-							if(adjcvals.indexOf(rowentry2[0])>=0)
+                    //var tableData = '<table>';
+                    var tableData = '';	
+					
+					var mflcodes = [];
+															
+                    $.each(data.metaData.dimensions.ou, function (key, entry) 
+                    {
+						$.each(data.rows, function (rkey, rentry) 
+						{			
+								
+							var dxid = rentry[0];
+							var orgunit = rentry[2];
+							var dxval = rentry[3];
+							if(dxid=='VBbnGNfZWDU.NhSoXUMPK2K')
 							{
-								//console.log(kemsaidvals);
+								if(orgunit==entry)
+								{
+									mflcodes[orgunit] = dxval;	
+								}
 							}
-							else
-							{
-								adjcvals.push(rowentry2[0]);
-								//console.log(kemsaidvals);
-							}
-						}						
-					})
-				  
-				})
-				
-				//console.log(adjcvals);
-                
-                //get Adjusted values
-                $.each(dxidsadjc, function (rowkey, rowentry) 
-                {
-					if(adjcvals.indexOf(rowentry)>=0)
-					{
-						$.each(data.rows, function (rowkey1, rowentry2)
-						{    
-							if(rowentry==rowentry2[0])
-							{   
-							   adjcvalues.push(rowentry2[3]);
-							} 
-						}) 
-					}
-					else
-					{
-						adjcvalues.push(0);
-					}
-                 })
-                
-                
-				//get commodities with values HFs							 
-				 var hfidvals = [];
-				 $.each(dxidshfs, function (rowkey, rowentry) 
-				{
-					$.each(data.rows, function (rowkey1, rowentry2)
-					{  
-						if(rowentry2[0]==rowentry)
-						{
-							if(hfidvals.indexOf(rowentry2[0])>=0)
-							{
-								//console.log(kemsaidvals);
-							}
-							else
-							{
-								hfidvals.push(rowentry2[0]);
-								//console.log(kemsaidvals);
-							}
-						}						
-					})
-				  
-				})
-				
-				//console.log(hfidvals);
-
-                    
-               //get hfs values
-               $.each(dxidshfs, function (rowkey, rowentry) 
-                {
-                    if(hfidvals.indexOf(rowentry)>=0)
-					{
-						$.each(data.rows, function (rowkey1, rowentry2)
-						{                      
-							if(rowentry==rowentry2[0])
-							{   
-							   hfsvalues.push(rowentry2[3]);
-							}
+								
 						})
-					}
-					else
-					{
-						hfsvalues.push(0);
-					}
-                 })
-                    //output each row to table
-                  for(var i=0;i<products.length;i++)
-				  {				
+						//console.log(mflcodes[entry]);
+						//console.log(data.metaData.items[entry].name);
 						
-						if(typeof hfsvalues[i]=='undefined')
-							hfsvalues[i] = 0;
+						return;
+						//console.log(mflcodes);												
+												
+                    })
 
-						if(typeof adjcvalues[i]=='undefined')
-							adjcvalues[i] = 0;
-						
-						var hfsmos=(hfsvalues[i])/(adjcvalues[i]);
-						
-						//console.log(hfsmos);
-						if(isNaN(hfsmos))
-						{
-							hfsmos = 0;
-						}
-
-						//var totalmos=(total)/(adjcvalues[i]);
-                      
-						tableData += '<tr>';
-
-						tableData += '<td>'+ products[i] +'</td>';     
-						tableData += '<td>'+dxuom[i]+'</td>';
-						tableData += '<td class="text-right">'+formatNumber(Math.trunc(adjcvalues[i]).toLocaleString())+'</td>';
-						//tableData += '<td class="text-right">'+formatNumber(Math.trunc(kemsavalues[i]).toLocaleString())+'</td>';
-						tableData += '<td class="text-right">'+formatNumber(Math.trunc(hfsvalues[i]).toLocaleString())+'</td>';
-						//tableData += '<td class="text-right">'+formatNumber(Math.trunc(total).toLocaleString())+'</td>';
-						//tableData += '<td class="text-right">'+formatNumber(kemsamos.toFixed(1))+'</td>';
-						tableData += '<td class="text-right">'+formatNumber(hfsmos.toFixed(1))+'</td>';
-						//tableData += '<td class="text-right">'+formatNumber(totalmos.toFixed(1))+'</td>';
-                                 
-						tableData += '</tr>';
-                  }
-          
+                    //tableData += '<table>';	
+                    //console.log(tableData)
+					
                     $('#sp_table').removeClass('hidden');
                     $('.spdata').removeClass('hidden');
                     $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');
-                    
-                    $('#sp_table').DataTable().destroy();
+                    $('.loader-sp').css('display','none');					
+					
+					$('#sp_table').DataTable().destroy();
                     $("table.spbox tbody").empty();
                     $("table.spbox tbody").append(tableData);	
-                    //$('#sp_table').DataTable();         
-                    $('#sp_table').DataTable( {
-                        dom: 'Bfrtip',
-                        buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print'
-                        ],
-                        ordering: false,
-                        orderable: false
-                    });                                                 
-             },
+                    //$('#sp_table').DataTable();                                                          
+                    //$('#sp_table').DataTable().fnDraw();					
+                },
+				
                 error: function (request, status, error) {
                     $('.loader-sp').addClass('hidden');
                     $('#sp_table').addClass('hidden');
-                    //console.log('SP: error fetching json. :- '+error);
+                    //console.log('totalactsvsweight: error fetching json. :- '+error);
                     $('spdata').addClass('hidden');
-                    $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-                }
-            });
-    }
-	
-	//display the label
-	//GET THE org unit name
-	function getOrgUnit(uid, period)
-	{
-		var url = 'https://hiskenya.org/api/organisationUnits/'+uid+'.json?fields=id,name';
-		
-		$.ajax({      
-		  dataType: "json",
-		  url: url, //Relative or absolute path to response.php file      
-		  success: function(data) 
-		  {          
-			  $("h5.sohtitle").html(data['name']+' - '+period);
-		  }
-		});    
-	}
-	
-	//get the period
-	function getPeriod()
-	{
-		var periodval = $("#period-dropdown").val();
-
-		if(periodval == null || periodval=='')
-		{
-			periodval = getPreviousPMonth(); //'LAST_MONTH';
+                    $('.sp_status').html('<div class ="alert alert-danger col-md-12"><strong>Error</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+					}
+				});
+			})
 		}
-		else
-		{
-			var dateparts = periodval.split('/', 2);
-
-			var therdate = dateparts[1]+''+dateparts[0];                
-			var periodval = therdate;
-		}
-		
-		return periodval;
-    }
-	
-	
-	//get the previous month
-	function getPreviousPMonth() 
-	{
-		var curdate = new Date();
-
-		var today = curdate.getDate();
-
-		if(today<15)
-			curdate.setMonth(curdate.getMonth() - 2);
-		else
-			curdate.setMonth(curdate.getMonth() - 1);
-
-		per_y = curdate.getFullYear();
-		per_m = parseFloat(curdate.getMonth())+1;
-		
-		if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
-		
-		var per = per_y+""+per_m;
-		
-		return per
-		//return(getPerio(per, false))
-	}
-    
-    //downloadTable('sp_table');
 </script>
 
 </body>

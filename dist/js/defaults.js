@@ -5,7 +5,8 @@ function myOU() {
     var my_county;
     var my_subcounty;
     $.ajax({
-        url:'https://testhis.uonbi.ac.ke/api/me.json',
+        url:'https://hiskenya.org/api/me.json',
+        // url:'http://localhost/pmi/json/me.json',
         async: false,
         data: '',
         success: function (resp) {
@@ -15,7 +16,7 @@ function myOU() {
             var level;
             $.ajax({
                 type: "GET",
-                url: "https://testhis.uonbi.ac.ke/api/organisationUnits/"+my_data_ou+".json",
+                url: "https://hiskenya.org/api/organisationUnits/"+my_data_ou+".json",
                 async: false,
                 data: "fields=ancestors,level",
                 success: function (response) {
@@ -34,6 +35,8 @@ function myOU() {
 
                     if(my_county == 'HfVjCurKxh2'){
                         // my_county = 'vvOK1BxTbet';
+                    }else{
+                        // $('a.nationalink').addClass('hidden')
                     }
                 }
             });
@@ -42,3 +45,6 @@ function myOU() {
     });
     return my_county;
 }
+$(document).ready( function(){
+    $("#county-dropdown").prepend("<option value='HfVjCurKxh2'>Kenya</option>")
+} );

@@ -351,9 +351,9 @@ color: transparent;}
                             </li>
                             <!-- end County -->
                             
-                            <!-- National -->
+                                                        <!-- National -->
                             <li class="sidebar-item"> 
-                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                                <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
@@ -512,7 +512,7 @@ color: transparent;}
     <script src="../../assets/extra-libs/highcharts/dq-highcharts.js"></script>
  
     <script type="text/javascript">
-        var courl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:u4t9H8XyU9P&displayProperty=NAME&outputIdScheme=UID';
+        var courl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:u4t9H8XyU9P&displayProperty=NAME&outputIdScheme=UID';
         // var courl = 'http://localhost/pmi/json/dq-compa.json';
         getCompa(courl);
     </script>
@@ -530,7 +530,7 @@ color: transparent;}
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             Disabled: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
@@ -544,7 +544,7 @@ color: transparent;}
         $('#period-dropdownTo').MonthPicker({
             Button: false,
             Disabled: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
@@ -574,6 +574,7 @@ color: transparent;}
 			perioddwn.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
+            dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
 			dropdown.prop('selectedIndex', 0);
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
@@ -585,7 +586,7 @@ color: transparent;}
 			// const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
             // $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
 			{
 				//console.log(data.organisationUnits);
@@ -602,9 +603,10 @@ color: transparent;}
 				var countyid = $(this).val();
 				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
                 subcounty.prop('selectedIndex', 0);
+                subcounty.append('<option value='+$(this).val()+'>All subcounties</option>');
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
                 // $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
@@ -618,7 +620,7 @@ color: transparent;}
                 
                 
                 var theou = $(this).val();
-                var courl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
+                var courl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
                 getCompa(courl);
                 
             });
@@ -626,7 +628,7 @@ color: transparent;}
             $("#subcounty-dropdown").change(function() 
 			{  
                 var theou = $(this).val();
-                var courl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
+                var courl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:LAST_6_MONTHS&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
                 getCompa(courl);
 			});
 		});
@@ -677,10 +679,10 @@ color: transparent;}
                 var theou = 'tAbBVBbueqD';
             }
             
-            var courl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
+            var courl = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+date_range_string+'&dimension=dx:uP0zJ2XmSkM;kyqESkKkALD;my9LjD9rLl6&filter=ou:'+theou+'&displayProperty=NAME&outputIdScheme=UID';
             getCompa(courl);
 
-            console.log('filter_url: '+courl);
+            //console.log('filter_url: '+courl);
             daterange = [];
             $('#period-dropdown').val(null);
             $('#period-dropdownTo').val(null);

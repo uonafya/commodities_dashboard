@@ -68,7 +68,7 @@
                         <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
                     </ul>
                     <ul class="navbar-nav float-right">
-                        <li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                        <li class="nav-item search-box"><a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
                     </ul>
                 </div>
             </nav>
@@ -130,12 +130,19 @@
                                     </li>
                                     <!-- endSCP -->
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
+                                        <ul aria-expanded="false" class="collapse  first-level">
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <!-- end County -->
-                            <!-- National -->
+                                                        <!-- National -->
                             <li class="sidebar-item"> 
-                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                                <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
@@ -163,36 +170,40 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-5 col-sm-5 col-xs-12">
+                        <div class="col-md-4 col-sm-8 col-xs-12">
                             <h4 class="page-title m-t-10">
                                 Accountability for commodities issued to health facilities
                             </h4>
                         </div>
-						<div class="col-md-7 col-sm-7 col-xs-12">
+						<div class="col-md-8 col-sm-8 col-xs-12">
                             <small class="">Filter:</small>
                             <div class="row">
                                 <div class="col-md-11 col-sm-11 col-xs-11">
                                     <div class="row">
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                             </select>
                                         </div>										
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <select class="form-control m-r-5" id="subcounty-dropdown" placeholder="Subcounty" name="subcounty">                                                
                                             </select> 
                                         </div> 
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <select class="form-control m-r-5" id="facility-dropdown" name="facility" placeholder="Facility">                   
+                                            </select> 
+                                        </div> 
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <input type="text" class="form-control" id="period-dropdown" placeholder="Period from"/> 
                                         </div> 
                                         
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
                                             <input type="text" class="form-control" disabled id="period-dropdownto" placeholder="Period to"/> 
                                         </div> 
                                         
                                     </div>
                                 </div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                        <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><i class="fa fa-undo"></i></a>
+                                        <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
                                 </div>
                             </div>
                             
@@ -235,7 +246,8 @@
                                 </div>
                                 <div class="row accdata">
                                     <div class="col-md-12">
-										<h4 id="ttitle"></h4>
+                                        <h4 id="ttitle"></h4>
+                                        
                                         <table id="acc_table" class="table hidden table-striped table-condensed slimtable table-bordered accbox">
                                             <thead>
                                                 <tr>
@@ -243,7 +255,7 @@
                                                     <th>Item</th>
                                                     <th class="text-right">Opening SOH</th>
                                                     <th class="text-right">+ve Adj</th>
-                                                    <th class="text-right">KEMSA Issues</th>
+                                                    <th class="text-right">Qty Received</th>
                                                     <th class="text-right">Qty Disp</th>
                                                     <th class="text-right">-ve Adj</th>
                                                     <th class="text-right">Closing SOH</th>
@@ -253,6 +265,8 @@
                                             <tbody>
                                             </tbody>
                                         </table>
+                                        <hr class="m-t-0 m-b-0"/>
+                                        <p><b>% accounted for = </b> <i><span class="em-text text-black">(</span> <u>Quantity dispensed</u> <span class="em-text text-green">+</span> <u>Negative adjustment</u> <span class="em-text text-green">+</span> <u>Closing balance</u><span class="em-text text-black">)</span> <span class="em-text text-green">&#247;</span> <span class="em-text text-black">(</span> <u>Opening balance</u> <span class="em-text text-green">+</span> <u>Positive adjustment</u> <span class="em-text text-green">+</span> <u>Quantity received</u><span class="em-text text-black">)</span> <span class="em-text text-green">&times;</span> 100</i></p>
                                     </div>
                                 </div>
 
@@ -266,7 +280,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved. Malaria Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
+                All Rights Reserved. Malaria Commodities Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -333,7 +347,7 @@
         }
         $('#period-dropdown').MonthPicker({ 
             Button: false,
-            MinMonth: '-1y',
+            MinMonth: '-3y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -347,7 +361,7 @@
         $('#period-dropdownto').MonthPicker({
             Button: false,
             Disabled: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -378,6 +392,28 @@
             daterange.push(period);
             filtByPeriod(daterange);
         }
+		
+		function getPreviousPMonth() 
+		{
+                var curdate = new Date();
+
+				var today = curdate.getDate();
+
+				if(today<15)
+					curdate.setMonth(curdate.getMonth() - 2);
+				else
+					curdate.setMonth(curdate.getMonth() - 1);
+
+				per_y = curdate.getFullYear();
+				per_m = parseFloat(curdate.getMonth())+1;
+				
+				if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+				
+				var per = per_y+""+per_m;
+				
+                return per
+                //return(getPerio(per, false))
+        }
 
         function filtByPeriod(drange){
             var date_range_string = '';
@@ -389,25 +425,25 @@
                 date_range_string += adate[0]+adate[1]+';';
             })
 
-            var ounit = $("#county-dropdown").val();
+            var org_unit = $("#county-dropdown").val();
             var subcountyou = $("#subcounty-dropdown").val();
             var periodval = date_range_string;
 
-            if(ounit == null)
-            {
-                ounit = 'HfVjCurKxh2';
-                ounit = myOU();;
+            if(org_unit == null || org_unit == undefined || org_unit == ''){
+                org_unit = subcountyou;
             }
-
-            if(subcountyou != null)
-            {
-                ounit = subcountyou;
+            if(org_unit == null || org_unit == undefined || org_unit == ''){
+                org_unit = myOU();
             }
+            if(org_unit == null || org_unit == undefined || org_unit == ''){
+                org_unit = 'HfVjCurKxh2';
+            }
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+periodval+'&dimension=ou:'+org_unit+'&displayProperty=NAME&outputIdScheme=UID';
             
-            var filtering = true;
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;DdH8pSpAye1.NhSoXUMPK2K;KX5GNhIFVEi.NhSoXUMPK2K;TadaDiw445z.NhSoXUMPK2K;oaAGBrhae4e.NhSoXUMPK2K;DqIUpIvlrkg.NhSoXUMPK2K;PjeoBWvkTaN.NhSoXUMPK2K;dcJ0Mm47UuG.NhSoXUMPK2K;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+periodval+'&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-			            
-            fetchAccountability(url,ounit);
+			// var url = 'http://localhost/pmi/json/acc-v2.json';
+			
+									            
+            fetchAccountability(url,org_unit);
         }
         
     </script>
@@ -419,6 +455,8 @@
 			var dropdown = $('#county-dropdown');
 			
 			var subcounty = $('#subcounty-dropdown');
+
+            var facilitydwn = $('#facility-dropdown');
 			
 			var perioddwn = $('#period-dropdown');
             var perioddwnTo = $('#period-dropdownto');
@@ -431,11 +469,15 @@
 			perioddwn.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
-			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
+            dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
+			// if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
 			
+            $('#facility-dropdown').append('<option selected="true" disabled>Select facility</option>');
+			$('#facility-dropdown').prop('selectedIndex', 0);
+
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
-            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
                 var myou = myOU();
                 $.each(data.organisationUnits, function (key, entry) 
                 {				
@@ -452,7 +494,7 @@
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -467,15 +509,36 @@
 				var countyid = $(this).val();
 				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
 				subcounty.prop('selectedIndex', 0);
+                subcounty.append('<option value='+$(this).val()+'>All subcounties</option>');
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
 						if(entry.parent.id==countyid)
 						{
 							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+						}				
+					})		 
+				});		
+			});
+			
+			$("#subcounty-dropdown").change(function() 
+			{  
+				facilitydwn.empty();
+				var subcountyid = $(this).val();
+				facilitydwn.append('<option selected="true" disabled>Select Facility</option>');
+				facilitydwn.prop('selectedIndex', 0);
+				
+				// Populate dropdown with list of sub counties
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:5&fields=id,name,level,parent&paging=false', function (dataa) 
+				{			
+					$.each(dataa.organisationUnits, function (key, fty) 
+					{				
+						if(fty.parent.id==subcountyid)
+						{
+							facilitydwn.append($('<option></option>').attr('value', fty.id).text(fty.name));
 						}				
 					})		 
 				});		
@@ -487,33 +550,45 @@
 	$(document).ready(function() 
 	{
             //define the constants
-            var ounit = myOU();
+            var org_unit = $('#county-dropdown').val();
+            var subc = $('#county-dropdown').val();
+            if(org_unit == null || org_unit == undefined || org_unit == ''){
+                org_unit = subc;
+            }
+            if(org_unit == null || org_unit == undefined || org_unit == ''){
+                org_unit = myOU();
+            }
+            if(org_unit == null || org_unit == undefined || org_unit == ''){
+                org_unit = 'HfVjCurKxh2';
+            }
 			//define the constants
             
             // Populate dropdown with list of sub counties
-            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
                 $.each(data.organisationUnits, function (key, entry){
-                    if(entry.parent.id==ounit){		
+                    if(entry.parent.id==org_unit){		
                         $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
                     }
                 })
             });
-            $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
+            $('#county-dropdown option[value="'+org_unit+'"]').prop('selected', 'selected');
 
 
-            var period = 'LAST_MONTH';
-            // var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;DdH8pSpAye1.NhSoXUMPK2K;KX5GNhIFVEi.NhSoXUMPK2K;TadaDiw445z.NhSoXUMPK2K;oaAGBrhae4e.NhSoXUMPK2K;DqIUpIvlrkg.NhSoXUMPK2K;PjeoBWvkTaN.NhSoXUMPK2K;dcJ0Mm47UuG.NhSoXUMPK2K;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+period+'&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+            var period = getPreviousPMonth(); //'LAST_MONTH';
+            // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+period+'&dimension=ou:'+org_unit+'&displayProperty=NAME&outputIdScheme=UID';
+			
+			//var url = 'http://localhost/pmilive/accountability.json';
             
-			console.log(url);
-            fetchAccountability(url,ounit);
+			//console.log(url);
+            fetchAccountability(url,org_unit);
 			
             $("#county-dropdown").change(function() 
             {
-                ounit = $(this).val();
+                var ounit = $(this).val();
 				var period =  getPeriod();
-                // var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;DdH8pSpAye1.NhSoXUMPK2K;KX5GNhIFVEi.NhSoXUMPK2K;TadaDiw445z.NhSoXUMPK2K;oaAGBrhae4e.NhSoXUMPK2K;DqIUpIvlrkg.NhSoXUMPK2K;PjeoBWvkTaN.NhSoXUMPK2K;dcJ0Mm47UuG.NhSoXUMPK2K;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+period+'&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+                // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+period+'&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchAccountability(url,ounit);
                 
             });
@@ -522,8 +597,19 @@
             {
                 ounit = $(this).val();
 				var period =  getPeriod();
-                // var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;DdH8pSpAye1.NhSoXUMPK2K;KX5GNhIFVEi.NhSoXUMPK2K;TadaDiw445z.NhSoXUMPK2K;oaAGBrhae4e.NhSoXUMPK2K;DqIUpIvlrkg.NhSoXUMPK2K;PjeoBWvkTaN.NhSoXUMPK2K;dcJ0Mm47UuG.NhSoXUMPK2K;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+period+'&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+                // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+period+'&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+				
+                fetchAccountability(url,ounit);
+                
+            });
+
+            $("#facility-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+				var period =  getPeriod();
+                // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.HWtHCLAwprR;BnGDrFwyQp9.CckV73xy6HB;gVp1KSFI69G.CckV73xy6HB;qnZmg5tNSMy.CckV73xy6HB;c0MB4RmVjxk.CckV73xy6HB;iOARK31NdLp.CckV73xy6HB;imheYfA1Kiw.CckV73xy6HB;cPlWFYbBacW.CckV73xy6HB;BnGDrFwyQp9.yuvCdaFqdCW;c0MB4RmVjxk.yuvCdaFqdCW;qnZmg5tNSMy.yuvCdaFqdCW;gVp1KSFI69G.yuvCdaFqdCW;iOARK31NdLp.yuvCdaFqdCW;imheYfA1Kiw.yuvCdaFqdCW;cPlWFYbBacW.yuvCdaFqdCW;BnGDrFwyQp9.w77uMi1KzOH;c0MB4RmVjxk.w77uMi1KzOH;qnZmg5tNSMy.w77uMi1KzOH;gVp1KSFI69G.w77uMi1KzOH;iOARK31NdLp.w77uMi1KzOH;imheYfA1Kiw.w77uMi1KzOH;cPlWFYbBacW.w77uMi1KzOH;BnGDrFwyQp9.unVIt2C0cdW;c0MB4RmVjxk.unVIt2C0cdW;qnZmg5tNSMy.unVIt2C0cdW;gVp1KSFI69G.unVIt2C0cdW;iOARK31NdLp.unVIt2C0cdW;imheYfA1Kiw.unVIt2C0cdW;cPlWFYbBacW.unVIt2C0cdW;BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=pe:'+period+'&dimension=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
 				
                 fetchAccountability(url,ounit);
                 
@@ -536,7 +622,7 @@ function getPeriod(){
 
     if(periodval == null || periodval=='')
     {
-        periodval = 'LAST_MONTH';
+        periodval = getPreviousPMonth(); //'LAST_MONTH';
     }
     else
     {

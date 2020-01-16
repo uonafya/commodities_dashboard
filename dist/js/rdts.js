@@ -1,6 +1,6 @@
 var arr_valz = [];
 var valid_ous_array = [];
-var valid_url = 'https://testhis.uonbi.ac.ke/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
+var valid_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
 // var valid_url = 'http://localhost/pmi/json/valid_ous.json';
 getValidOUs(valid_url);
 
@@ -126,7 +126,7 @@ function fetchRDTs(rdturl,orgu,peri)
                                                             {
                                                                     //console.log(rentry);		
                                                                     //var notfoundRow = false;
-                                                                    var bgcolor = '#ffffff';
+                                                                    var bgcolor = '#fefeff';
                                                                     if(dxval<0)
                                                                             bgcolor = '#ffcccc'
                                                                     if (dxval >= 0 && dxval< 3)
@@ -165,6 +165,7 @@ function fetchRDTs(rdturl,orgu,peri)
                     $('#rdt_table').DataTable({
                         dom: 'Bfrtlip',
                         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+						order: [[6, 'desc']],
                         buttons: [
                             'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
                         ],
@@ -177,7 +178,7 @@ function fetchRDTs(rdturl,orgu,peri)
                     });
 
                     // title fill
-                        var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
+                        var url = 'https://hiskenya.org/api/organisationUnits/'+orgu+'.json?fields=id,name';
                         $.ajax({      
                             dataType: "json",
                             url: url,
@@ -207,7 +208,7 @@ function fetchRDTs(rdturl,orgu,peri)
      // fetch mfl codes
 
      var mfl_codes_array = [];
-     mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,code&paging=false';
+     mfl_url = 'https://hiskenya.org/api/organisationUnits.json?fields=id,code&paging=false';
     //  mfl_url = 'http://localhost/pmi/json/mflcode.json';
      getMFLarray(mfl_url);
 

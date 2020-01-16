@@ -14,12 +14,28 @@ function fetchMosbycombox(url) {
         //create the org units array
         var orgunits = [];
         var dxids = [];
-        var mosVals = new Array();  
-                    
+        var mosVals = new Array();		
+		                    
         //apply the labeling to the data
         var theperiod = data.metaData.dimensions.pe[0];
         var theorgunit = data.metaData.dimensions.ou[0];
-                    
+
+        //console.log('richard',theorgunit)
+				
+		//min max plot lines
+		var minval = 9;
+        var maxval = 18; 
+        var yaxismax = 24;
+        var yaxismin = 0;
+
+		if(theorgunit!='HfVjCurKxh2')
+		{
+			var minval = 3;
+            var maxval = 6;
+            var yaxismax = 10;
+            var yaxismin = 0;
+
+		}
         
         var curorg = data.metaData.items[theorgunit].name;
         var curpe = data.metaData.items[theperiod].name;
@@ -29,15 +45,22 @@ function fetchMosbycombox(url) {
         var tableData = '';
         							
         $.each(data.metaData.dimensions.dx, function (key, entry) 
-        {				
+        {	
+			var rowFound = 0;
             $.each(data.rows, function (rkey, rentry) 
             {		
                 var dxcode = rentry[0];
                 if(dxcode==entry)
                 {
-                    mosVals.push(parseFloat(rentry[2]));
+					rowFound = 1;
+                    mosVals.push(parseFloat(rentry[3]));
                 }									
             })
+			//if not found set the value to zero
+			if(rowFound==0)
+			{
+				mosVals.push(0);
+			}
         })	
 
         Highcharts.chart('mosbycombox', {
@@ -50,6 +73,9 @@ function fetchMosbycombox(url) {
             subtitle: {
                 text: 'Source: HIS Kenya'
             },
+            exporting: {
+                enabled: true
+            },
             xAxis: {						
                 categories: ['AL6', 'AL12', 'AL18', 'AL24', 'AL all', 'AS inj','SP tabs', 'RDTs'],
                 title: {
@@ -57,8 +83,8 @@ function fetchMosbycombox(url) {
                 }
             },
             yAxis: {
-                min: 0,
-                max: 24,
+                min: yaxismin,
+                max: yaxismax,
                 title: {
                     text: 'Months of Stock',
                     align: 'high'
@@ -69,7 +95,7 @@ function fetchMosbycombox(url) {
                 plotLines: [{
                     color: '#FF0000',
                     width: 2,
-                    value: 9,
+                    value: minval,
                     label: {
                         text: 'Min',
                         align: 'right'
@@ -78,7 +104,7 @@ function fetchMosbycombox(url) {
                 {
                     color: '#00FF00',
                     width: 2,
-                    value: 18,
+                    value: maxval,
                     label: {
                         text: 'Max',
                         align: 'right'
@@ -161,6 +187,7 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
             var overstock = 0;
             var stockok = 0;
             var understock = 0;
+			var stockout = 0;
             
             //define the table
             tableData += '<tr>';
@@ -187,20 +214,30 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
                     if(mosval>0 && mosval<3)
                     {
                         understock++;
-                    }						
+                    }
+					if(mosval<=0)
+                    {
+                        stockout++;
+                    }
                 }					
             })
                             countname++;
             
             
+			nomos = totalorgs-(overstock+stockok+understock+stockout);
                             
             var overpercent = (overstock/totalorgs)*100;
             var okpercent = (stockok/totalorgs)*100;
             var underpercent = (understock/totalorgs)*100;
+			var stockoutpercent = (stockout/totalorgs)*100;
+			var nomospercent = (nomos/totalorgs)*100;
             
-            tableData += '<td class="text-right" bgcolor="#ffeb9c">'+formatNumber(overpercent.toFixed(1))+'%</td>';
-            tableData += '<td class="text-right" bgcolor="#7bd48d">'+formatNumber(okpercent.toFixed(1))+'%</td>';
-            tableData += '<td class="text-right" bgcolor="#ffc7ce">'+formatNumber(underpercent.toFixed(1))+'%</td>';				
+            tableData += '<td class="text-right" bgcolor="#ffeb9c">'+overstock+' ('+formatNumber(overpercent.toFixed(0))+'%)</td>';
+            tableData += '<td class="text-right" bgcolor="#7bd48d">'+stockok+' ('+formatNumber(okpercent.toFixed(0))+'%)</td>';
+            tableData += '<td class="text-right" bgcolor="#ffc7ce">'+understock+' ('+formatNumber(underpercent.toFixed(0))+'%)</td>';
+			tableData += '<td class="text-right" bgcolor="#ff0000" style="color: #fff;">'+stockout+' ('+formatNumber(stockoutpercent.toFixed(0))+'%)</td>';
+			tableData += '<td class="text-right">'+nomos+' ('+formatNumber(nomospercent.toFixed(0))+'%)</td>';
+			tableData += '<td class="text-right">'+formatNumber(totalorgs)+'</td>';	
             tableData += '</tr>';	
         })
 
@@ -214,6 +251,7 @@ function fetchPercHealthFA(urlfa,itemnames,countyid,periodid){
             buttons: [
                 'copy', 'csv', 'excel', 'pdf', 'print'
             ],
+			order: []
         });	
         //$('#zero_config').DataTable();
         $('.t_one.loader-sp').addClass('hidden');
@@ -304,7 +342,7 @@ function fetchNumberHealthFA(urlfa,itemnames,countyid,periodid){
                 }					
             })	
             countname++;
-            nomos = totalorgs-(overstock+stockok+understock+stockout)
+            nomos = totalorgs-(overstock+stockok+understock+stockout);
             
             tableData += '<td class="text-right" bgcolor="#ffeb9c">'+formatNumber(overstock)+'</td>';
             tableData += '<td class="text-right" bgcolor="#7bd48d">'+formatNumber(stockok)+'</td>';
@@ -351,21 +389,6 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
     $('.t_three.loader-sp').removeClass('hidden');
     $('.malaria_commodity_table.t_three').addClass('hidden');
     $('.adjc_soh_mos').addClass('hidden');
-    var sohval = [];
-    var urlphy = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;c0MB4RmVjxk.rPAsF4cpNxm;qnZmg5tNSMy.rPAsF4cpNxm;gVp1KSFI69G.rPAsF4cpNxm;MUxtqmB3VL6;iOARK31NdLp.rPAsF4cpNxm;imheYfA1Kiw.rPAsF4cpNxm;cPlWFYbBacW.rPAsF4cpNxm&dimension=ou:'+countyid+'&filter=pe:'+periodid+'&displayProperty=NAME&outputIdScheme=UID';
-    $.getJSON(urlphy, function (zdata) {
-        var counter = 0;
-        $.each(zdata.metaData.dimensions.dx, function (key, entry) 
-        {
-            //console.log(entry);                        
-            var valsoh = getSOH(zdata.rows,entry);
-            sohval.push(valsoh);
-            
-            //increment the counter
-            counter++;
-        })
-    });	
-    sleep(2300);
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -376,21 +399,63 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
             var adjc = '';
             var mos = '';
             var countercon = 0;
-            					
-            $.each(data.metaData.dimensions.dx, function (key, entry) 
-            {
-                //define the table
-                                            
+            var lizt = '';
+            var thedx = data.metaData.dimensions.dx;
+             
+            var phy_count_arr = thedx.slice(8, 16);
+            var phy_count_arr_vals = [];
+            $.each(phy_count_arr, function (inx2, onePhy) { 
+                var onePhy_val = getValue(data.rows, onePhy);
+                if(onePhy_val == undefined || onePhy_val == null || onePhy_val == ''){
+                    phy_count_arr_vals.push(0);
+                }else{
+                    phy_count_arr_vals.push(onePhy_val);
+                }
+            });
+            // console.log('phy: '+phy_count_arr_vals);
+
+            var adj_cons_arr = thedx.slice(16, 24);
+            var adj_cons_arr_vals = [];
+            $.each(adj_cons_arr, function (inx, oneAdj) { 
+                var oneAdj_val = getValue(data.rows, oneAdj);
+                if(oneAdj_val == undefined || oneAdj_val == null || oneAdj_val == ''){
+                     adj_cons_arr_vals.push(0);
+                }else{
+                    adj_cons_arr_vals.push(oneAdj_val);
+                }
+            });
+            // console.log('adj: '+adj_cons_arr_vals);
+            
+            var mos_arr = thedx.slice(0, 8);
+            var mos_arr_vals = [];
+            $.each(mos_arr, function (inx0, oneMOS) { 
+                var oneMOS_val = getValue(data.rows, oneMOS);
+                if(oneMOS_val == undefined || oneMOS_val == null || oneMOS_val == ''){
+                    mos_arr_vals.push(0);
+                }else{
+                    mos_arr_vals.push(oneMOS_val);
+                }
+            });
+            // console.log('mos: '+mos_arr_vals);
+            
+            
+            
+            $.each(adj_cons_arr, function (key, entry) {
+                // console.log(key+')  DX: id='+entry+' & name='+data.metaData.items[entry].name);
                 tableData += '<tr>';
-                //tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-                tableData += '<td>'+alnames[countercon]+'</td>';							
-                //console.log(data.metaData.items[entry].name);
+                // tableData += '<td><small>'+data.metaData.items[entry].name+'</small></td>';
+                tableData += '<td>'+alnames[countercon]+'</td>';
 
                 //get the consumption value
-                adjc = getConsumption(data.rows,entry);
-                phycount = parseFloat(sohval[countercon]);
+                // adjc = getConsumption(data.rows,entry);
+                adjc = adj_cons_arr_vals[key];
+                
 
-                mos = parseFloat(phycount/adjc);
+                // phycount = parseFloat(sohval[countercon]);
+                phycount = phy_count_arr_vals[key]
+
+                // mos = parseFloat(phycount/adjc);
+                mos = mos_arr_vals[key];
 
                 //set the bg color for the MOS
                 var bgcolor = '#ffffff';
@@ -419,13 +484,16 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
                 countercon++;
             })
 
+            
             //tableData += '<table>';	
             //console.log(tableData)			
             $("table.adjc_soh_mos").DataTable().destroy();
             $("table.adjc_soh_mos tbody").empty();	
             $("table.adjc_soh_mos tbody").append(tableData);	
             $("table.adjc_soh_mos").DataTable({
-                dom: 'Bfrtip',
+                dom: 'Brtip',
+                "ordering": false,
+                "paging": false,
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ],
@@ -457,7 +525,7 @@ function getSOH(rows, entry) {
 var mysoh = 0;
 $.each(rows, function (rkey, rentry) {
 		if (entry == rentry[0]) {
-				mysoh = rentry[2];
+				mysoh = rentry[3];
 		}
 })
 		return parseFloat(mysoh);
@@ -466,15 +534,30 @@ $.each(rows, function (rkey, rentry) {
 //get the adjusted consumption value
 //function to get value from loop
 function getConsumption(rows, entry) {
-var conval = 0;
+    var conval = 0;
+    $.each(rows, function (rkey, rentry) {
+        if (entry == rentry[0]) {
+            conval = rentry[3];
+        }
+    })
+    return parseFloat(conval);
+}
 
-$.each(rows, function (rkey, rentry) {
-		if (entry == rentry[0]) {
-				conval = rentry[2];
-		}
-})
+function getValue(arrayy, searchTerm) {
+    var the_val = 0;
+    $.each(arrayy, function (indx, arrayItem) {
+        if (searchTerm == arrayItem[0]) {
+            the_val = parseFloat(arrayItem[3]);
+        }
+    });
+    return parseFloat(the_val);
+}
 
-return parseFloat(conval);
+
+function filterItems(array,query) {
+    return array.filter(function(el) {
+        return el.indexOf(query) > -1;
+    })
 }
 
 //sleep function

@@ -75,7 +75,7 @@
                         <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
 
                     </ul>
-                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
                     </ul>
                 </div>
             </nav>
@@ -132,13 +132,20 @@
                                     </li>
                                     <!-- endSCP -->
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
+                                        <ul aria-expanded="false" class="collapse  first-level">
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <!-- end County -->
                         
-                        <!-- National -->
+<!-- National -->
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                            <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
@@ -146,6 +153,7 @@
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
                             </ul>
                         </li>
+                        <!-- end National -->
                         <!-- end National -->
                         </ul>
                 </nav>
@@ -191,10 +199,11 @@
                                         <div class="col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Period to" disabled class="form-control" id="period-dropdownTo"/> 
                                         </div>
+                                        <input type="hidden" name="h_period" id="h_period"/>
                                     </div>
                                 </div>  
                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><i class="fa fa-undo"></i></a>
+                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
                                 </div>                              
                             </div>
                         </div>
@@ -254,7 +263,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved. Malaria Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
+                All Rights Reserved. Malaria Commodities Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -325,7 +334,7 @@
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             Disabled: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -340,7 +349,7 @@
         $('#period-dropdownTo').MonthPicker({
             Button: false,
             Disabled: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -377,11 +386,12 @@
 			dropdown.empty();
 			subcounty.empty();
 			dropdown.append('<option selected="true" disabled>Select County</option>');
-			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
+            dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
+			// if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
-            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
                 var myou = myOU();
                 $.each(data.organisationUnits, function (key, entry) 
                 {				
@@ -394,7 +404,7 @@
 			
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -411,7 +421,7 @@
 				subcounty.prop('selectedIndex', 0);
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -439,7 +449,7 @@
 			//define the constants
             
             // Populate dropdown with list of sub counties
-            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
                 $.each(data.organisationUnits, function (key, entry){
                     if(entry.parent.id==ounit){		
                         $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
@@ -452,21 +462,23 @@
             
             //get the org name
             getOrgUnit(ounit, period);
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            var scrdurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            // var url = 'http://localhost/pmi/json/reportingdeets.json'
-            // var scrdurl = 'http://localhost/pmi/json/subreportingdetails.json'
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            //var url = 'http://localhost/pmi/json/reportingdeets.json'
+            //var scrdurl = 'http://localhost/pmi/json/subreportingdetails.json'
             fetchRRDetails(url,ounit);
             // fetchSubRRDetails(scrdurl);
             
             $("#county-dropdown").change(function() 
             {
                 ounit = $(this).val();
-                period = 'LAST_6_MONTHS';
-                getOrgUnit(ounit, period);
-                
-                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                var scrdurl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var cperiod = 'LAST_6_MONTHS';
+                if( $('#h_period').val() != null && $('#h_period').val() != '' ){
+                    cperiod = $('#h_period').val();
+                }
+                getOrgUnit(ounit, cperiod);
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+cperiod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+cperiod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 fetchRRDetails(url,ounit);
                 // fetchSubRRDetails(scrdurl)
                 
@@ -474,12 +486,15 @@
             $("#subcounty-dropdown").change(function() 
             {
                 ounit = $(this).val();
-                period = 'LAST_6_MONTHS';
-                getOrgUnit(ounit, period);
-                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var speriod = 'LAST_6_MONTHS';
+                if( $('#h_period').val() != null && $('#h_period').val() != '' ){
+                    speriod = $('#h_period').val();
+                }
+                getOrgUnit(ounit, speriod);
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+speriod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+speriod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 fetchRRDetails(url,ounit);
-                
+                // fetchSubRRDetails(scrdurl)
             });
 					
     });
@@ -522,6 +537,8 @@
                 date_range_string += adate[0]+adate[1]+';';
             })
 
+            $('#h_period').val(date_range_string);
+
             var cty_val = $('#county-dropdown').val();
             var sbty_val = $('#subcounty-dropdown').val();
 
@@ -536,12 +553,12 @@
             } 
             
             period = date_range_string;
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:LEVEL-5;'+theou+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:LEVEL-5;'+theou+'&displayProperty=NAME&outputIdScheme=UID';
             fetchRRDetails(url, theou);
             daterange = [];
-            $('#period-dropdown').val(null);
-            $('#period-dropdownTo').val(null);
+            // $('#period-dropdown').val(null);
+            // $('#period-dropdownTo').val(null);
         }
 
         function dateRange(startDate, endDate) {

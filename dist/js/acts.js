@@ -1,6 +1,6 @@
 var arr_valz = [];
 var valid_ous_array = [];
-var valid_url = 'https://testhis.uonbi.ac.ke/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
+var valid_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
 // var valid_url = 'http://localhost/pmi/json/valid_ous.json';
 getValidOUs(valid_url);
 
@@ -168,6 +168,7 @@ function fetchACTs(acturl,orgu,peri)
             $('#acts_table').DataTable({
                 dom: 'Bfrtlip',
                 "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+				order: [[12, 'desc']],
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
                 ],
@@ -179,7 +180,7 @@ function fetchACTs(acturl,orgu,peri)
                 }
             });
             // title fill
-                var url = 'https://testhis.uonbi.ac.ke/api/organisationUnits/'+orgu+'.json?fields=id,name';
+                var url = 'https://hiskenya.org/api/organisationUnits/'+orgu+'.json?fields=id,name';
                 $.ajax({      
                     dataType: "json",
                     url: url,
@@ -211,7 +212,7 @@ function fetchACTs(acturl,orgu,peri)
      // fetch mfl codes
 
      var mfl_codes_array = [];
-     mfl_url = 'https://testhis.uonbi.ac.ke/api/organisationUnits.json?fields=id,code&paging=false';
+     mfl_url = 'https://hiskenya.org/api/organisationUnits.json?fields=id,code&paging=false';
     //  mfl_url = 'http://localhost/pmi/json/mflcode.json';
      getMFLarray(mfl_url);
 

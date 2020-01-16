@@ -2,7 +2,7 @@ function getTrends(the_url, ounit) {
     console.log("the_url: "+the_url);
     var subtitle = '';
 
-    $.getJSON("https://testhis.uonbi.ac.ke/api/29/organisationUnits/"+ounit+".json?fields=name", function (data2) 
+    $.getJSON("https://hiskenya.org/api/26/organisationUnits/"+ounit+".json?fields=name", function (data2) 
     {
             subtitle = data2.name + " &";
             console.log('subtitle: '+subtitle);
@@ -74,9 +74,13 @@ function getTrends(the_url, ounit) {
                         }
                     });
                     overstock_arr['data'].push(overstock);
+                    overstock_arr['color'] = ('#1aa3aa');
                     stockok_arr['data'].push(stockok);
+                    stockok_arr['color'] = ('#009900');
                     understock_arr['data'].push(understock);
+                    understock_arr['color'] = ('#f4bd3b');
                     stockout_arr['data'].push(stockout);
+                    stockout_arr['color'] = ('#ff2222');
                 });
                 thedata.push(overstock_arr);
                 thedata.push(stockok_arr);
@@ -111,6 +115,9 @@ function getTrends(the_url, ounit) {
                             enabled: true
                         },
                         enableMouseTracking: false
+                    },
+                    series: {
+                        colors: [ '#ffc7ce', '#7bd48d', '#ffeb9c', '#ff0000']
                     }
                 },
                 series: thedata

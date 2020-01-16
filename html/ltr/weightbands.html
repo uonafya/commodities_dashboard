@@ -116,7 +116,7 @@
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/dhis-web-dashboard-integration/index.html" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://hiskenya.org/dhis-web-dashboard-integration/index.html" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
@@ -273,18 +273,31 @@
                                     </li>
                                     <!-- endSCP -->
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
+                                        <ul aria-expanded="false" class="collapse  first-level">
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <!-- end County -->
                                 
                                 <!-- National -->
                                 <li class="sidebar-item"> 
-                                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                                    <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                                     <ul aria-expanded="false" class="collapse  first-level">
                                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
                                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
                                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
                                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
+                                        <ul aria-expanded="false" class="collapse  first-level">
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
+                                        </ul>
+                                    </li>
                                     </ul>
                                 </li>
                                 <!-- end National -->
@@ -384,7 +397,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved. Malaria Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
+                All Rights Reserved. Malaria Commodities Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -421,7 +434,7 @@
 	$(document).ready(function() 
 	{
 		//load the weight band data
-		var url = 'https://testhis.uonbi.ac.ke/api/26/analytics.json?dimension=dx:zB1NW37bi46.LGF6iqCIERd;zB1NW37bi46.Y91nbvpppbG;zB1NW37bi46.lBMSm0aBgXs;zB1NW37bi46.abmGKYBTUWU&dimension=pe:2016&dimension=ou:jkG3zaihdSs;JsH2bnvNt2d;wsBsC6gjHvn;u4t9H8XyU9P;o36zCRjSd4G;vvOK1BxTbet;Hsk1YV8kHkT;HMNARUV2CW4;BoDytkJQ4Qi;nK0A12Q7MvS;pZqQRRW7PHP;ihZsJ8alvtb;qKzosKQPl6G;ob6SxuRcqU4;uyOrcHZBpW0;Y52XNJ50hYb;fVra3Pwta0Q;ptWVfaCIdVx;kphDeKClFch;mYZacFNIB3h;T4urHM47nlm;sPkRcDvhGWA;PFu8alU2KWG;bzOfj0iwfDH;xuFdFy6t9AH;t0J75eHKxz5;CeLsrJOH0g9;NjWSbQTwys4;nrI2khZx3d0;MqnLxQBigG0;ahwTMNAJvrL;QyGNX2DpR4h;j8o6iO4Njsi;sANMZ3lpqGs;R6f9znhg37c;kqJ83J2D72s;XWALbfAPa6n;N7YETT3A9r1;uepLTG8wGWJ;tAbBVBbueqD;KGHhQ5GLd4k;Tvf1zgVZ0K4;mThvosEflAU;BjC1xL40gHo;yhCUgGcCcOo;Ulj33KBau7V;Eey8fT4Im3y;LEVEL-2&displayProperty=NAME&outputIdScheme=UID';
+		var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46.LGF6iqCIERd;zB1NW37bi46.Y91nbvpppbG;zB1NW37bi46.lBMSm0aBgXs;zB1NW37bi46.abmGKYBTUWU&dimension=pe:2016&dimension=ou:jkG3zaihdSs;JsH2bnvNt2d;wsBsC6gjHvn;u4t9H8XyU9P;o36zCRjSd4G;vvOK1BxTbet;Hsk1YV8kHkT;HMNARUV2CW4;BoDytkJQ4Qi;nK0A12Q7MvS;pZqQRRW7PHP;ihZsJ8alvtb;qKzosKQPl6G;ob6SxuRcqU4;uyOrcHZBpW0;Y52XNJ50hYb;fVra3Pwta0Q;ptWVfaCIdVx;kphDeKClFch;mYZacFNIB3h;T4urHM47nlm;sPkRcDvhGWA;PFu8alU2KWG;bzOfj0iwfDH;xuFdFy6t9AH;t0J75eHKxz5;CeLsrJOH0g9;NjWSbQTwys4;nrI2khZx3d0;MqnLxQBigG0;ahwTMNAJvrL;QyGNX2DpR4h;j8o6iO4Njsi;sANMZ3lpqGs;R6f9znhg37c;kqJ83J2D72s;XWALbfAPa6n;N7YETT3A9r1;uepLTG8wGWJ;tAbBVBbueqD;KGHhQ5GLd4k;Tvf1zgVZ0K4;mThvosEflAU;BjC1xL40gHo;yhCUgGcCcOo;Ulj33KBau7V;Eey8fT4Im3y;LEVEL-2&displayProperty=NAME&outputIdScheme=UID';
 		
 		
 		//populate dropdown with list of counties
@@ -446,7 +459,7 @@
 				//console.log(entry);
 				//console.log(entry);	
 						
-				console.log(data.rows);
+				//console.log(data.rows);
 				//for each dimension get the value
 				var count = 0;
 				$.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 

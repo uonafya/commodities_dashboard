@@ -308,7 +308,7 @@ color: transparent;}
                                     <!-- SS -->
                                     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Stock Status </span></a>
                                         <ul aria-expanded="false" class="collapse  first-level">
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">ACTs</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="acts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AL</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li>
@@ -345,13 +345,20 @@ color: transparent;}
                                     </li>
                                     <!-- endSCP -->
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
+                                        <ul aria-expanded="false" class="collapse  first-level">
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <!-- end County -->
                             
-                            <!-- National -->
+                                                        <!-- National -->
                             <li class="sidebar-item"> 
-                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                                <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
@@ -409,7 +416,7 @@ color: transparent;}
                                     </div>
                                 </div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><i class="fa fa-undo"></i></a>
+                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
                                 </div>
                             </div>
                             
@@ -572,7 +579,7 @@ color: transparent;}
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             Disabled: false,
-            MinMonth: '-1y',
+            MinMonth: '-3y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -587,7 +594,7 @@ color: transparent;}
         $('#period-dropdownTo').MonthPicker({
             Button: false,
             Disabled: false,
-            // MinMonth: '-1y',
+            // MinMonth: '-3y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -614,12 +621,13 @@ color: transparent;}
 			// subcounty.empty();
 			// perioddwn.empty();
 
-			// dropdown.append('<option selected="true" disabled>Select County</option>');
+			dropdown.append('<option selected="true" disabled>Select County</option>');
+            dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
 			// dropdown.prop('selectedIndex', 0);
 			
 			// subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             // subcounty.prop('selectedIndex', 0);
-            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
                 var myou = myOU();
                 $.each(data.organisationUnits, function (key, entry) 
                 {				
@@ -636,25 +644,27 @@ color: transparent;}
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			// $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
 			{
 				//console.log(data.organisationUnits);
-                dropdown.append($('<option disabled selected="true">Select county</option>'));
+                // dropdown.append($('<option disabled selected="true">Select county</option>'));
 				$.each(data.organisationUnits, function (key, entry) 
 				{						
 					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
 				})		 
 			});
 			subcounty.append('<option selected="true" disabled>Select sub-county</option>');
+            
 			$("#county-dropdown").change(function() 
 			{  
                 subcounty.removeAttr('disabled', true);	
 				subcounty.empty();
 				var countyid = $(this).val();
 				subcounty.prop('selectedIndex', 0);
+                subcounty.append('<option value='+$(this).val()+'>All subcounties</option>');
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				// $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
 				{			
                     subcounty.append('<option selected="true" disabled>Select sub-county</option>');
@@ -716,7 +726,7 @@ color: transparent;}
 			//define the constants
             
             // Populate dropdown with list of sub counties
-            $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
                 $.each(data.organisationUnits, function (key, entry){
                     if(entry.parent.id==orgun){		
                         $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
@@ -726,7 +736,7 @@ color: transparent;}
             $('#county-dropdown option[value="'+orgun+'"]').prop('selected', 'selected');
 
 
-            var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+perd+'&dimension=ou:'+orgun+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var wburl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+perd+'&dimension=ou:'+orgun+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             // var wburl = 'http://localhost/pmi/json/completeness.json';
             getWBData(wburl,orgun);
         });
@@ -736,7 +746,7 @@ color: transparent;}
         $("#county-dropdown").change(function() 
             {  
                 var theou = $(this).val();
-                var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var wburl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 // var wburl = 'http://localhost/pmi/json/completeness.json';
                 getWBData(wburl,theou);
             }
@@ -745,7 +755,7 @@ color: transparent;}
         $("#subcounty-dropdown").change(function() 
             {  
                 var theou = $(this).val();
-                var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var wburl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 // var wburl = 'http://localhost/pmi/json/completeness.json';
                 getWBData(wburl,theou);
             }
@@ -793,9 +803,9 @@ color: transparent;}
                 var theou = 'tAbBVBbueqD';
                 theou = myOU();
             }
-            var wburl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var wburl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:zB1NW37bi46;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             getWBData(wburl,theou);
-            console.log('filter_url: '+ccurl);
+            //console.log('filter_url: '+ccurl);
             daterange = [];
             $('#period-dropdown').val(null);
             $('#period-dropdownTo').val(null);

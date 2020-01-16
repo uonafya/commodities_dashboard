@@ -169,7 +169,7 @@ color: transparent;}
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
                     </ul>
                 </div>
             </nav>
@@ -231,13 +231,20 @@ color: transparent;}
                                     </li>
                                     <!-- endSCP -->
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
+                                        <ul aria-expanded="false" class="collapse  first-level">
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <!-- end County -->
                         
-                        <!-- National -->
+<!-- National -->
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                            <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
@@ -245,6 +252,7 @@ color: transparent;}
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
                             </ul>
                         </li>
+                        <!-- end National -->
                         <!-- end National -->
 					</ul>
                 </nav>
@@ -285,19 +293,29 @@ color: transparent;}
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">             
+                                            <select class="form-control m-r-5" id="commodity-picker" placeholder="Commodity" name="commd">
+                                                <option value="" disabled selected>Select commodity</option>
+                                                <option value="iOARK31NdLp">Artesunate Injection</option>
+                                                <option value="BnGDrFwyQp9">Artemether-Lumefantrine 20/120 Tabs 6s</option>
+                                                <option value="c0MB4RmVjxk">Artemether-Lumefantrine 20/120 Tabs 12s</option>
+                                                <option value="qnZmg5tNSMy">Artemether-Lumefantrine 20/120 Tabs 18s</option>
+                                                <option value="gVp1KSFI69G">Artemether-Lumefantrine 20/120 Tabs 24s</option>
+                                                <option value="imheYfA1Kiw">Sulphadoxine Pyrimethamine Tabs</option>
+                                                <option value="cPlWFYbBacW">Rapid Diagnostic Test</option>
                                             </select>
                                         </div> 
                                         <div class="col-md-2 col-sm-2 col-xs-12">
-                                            <input type="text" placeholder="Period from" class="form-control" id="period-dropdown"/> 
+                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown"/> 
+                                            <input type="hidden" name="h_period" id="h_period"/>
                                         </div> 
-                                        <div class="col-md-2 col-sm-2 col-xs-12">
+
+                                        <!-- <div class="col-md-2 col-sm-2 col-xs-12 hidden">
                                             <input type="text" placeholder="Period to" class="form-control" id="period-dropdownTo"/> 
-                                        </div> 
+                                        </div>  -->
                                     </div>
                                 </div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><i class="fa fa-undo"></i></a>
+                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
                                 </div>
                             </div>
                             
@@ -364,9 +382,9 @@ color: transparent;}
                                                     </div>
                                                     <div class="col-md-3">
                                                         <br>
-                                                        <h5 class="pc3">No Discrepancy: <br/> <span class="text-center fa-2x text-bold noDiscCount"></span></h5>
+                                                        <h5 class="pc3">No Discrepancy: <br/> <span class="noDiscCount text-center fa-2x text-bold "></span></h5>
                                                         <br>
-                                                        <h5 class="pc3">Descrepancy <br/> <span class="text-center fa-2x text-bold discCount"></span></h5>
+                                                        <h5 class="pc3">Discrepancy <br/> <span class="text-center fa-2x text-bold discCount"></span></h5>
                                                         <br>
                                                         <h5 class="pc3">Total Facilities <br/> <span class="text-center fa-2x text-bold totFacil"></span></h5>
                                                         <br>
@@ -500,7 +518,7 @@ color: transparent;}
         $('#period-dropdown').MonthPicker({ 
             Button: false,
             Disabled: false,
-            MinMonth: '-1y',
+            MinMonth: '-3y',
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -512,19 +530,6 @@ color: transparent;}
             }
         });
 
-        $('#period-dropdownTo').MonthPicker({
-            Button: false,
-            Disabled: false,
-            // MinMonth: '-1y',
-            // MaxMonth: -1,
-            MaxMonth: mnthLessBy,
-            MinYear: 0,
-            MaxYear: 0,
-            OnAfterChooseMonth: function() {  
-                var sDate = $(this).val();
-                datePickedTo(sDate);
-            }
-        });
     </script>
     <!-- *********** end MonthPicker ************** -->
     
@@ -534,30 +539,7 @@ color: transparent;}
                 var dropdown = $('#county-dropdown');
                 
                 var subcounty = $('#subcounty-dropdown');
-                // commoditypickerpopulation
-                    var commoditypicker = $('#commodity-picker');
-                    $.getJSON('https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:BnGDrFwyQp9.rPAsF4cpNxm;BnGDrFwyQp9.HWtHCLAwprR;c0MB4RmVjxk.rPAsF4cpNxm;c0MB4RmVjxk.HWtHCLAwprR;qnZmg5tNSMy.rPAsF4cpNxm;qnZmg5tNSMy.HWtHCLAwprR;gVp1KSFI69G.rPAsF4cpNxm;gVp1KSFI69G.HWtHCLAwprR;iOARK31NdLp.rPAsF4cpNxm;iOARK31NdLp.HWtHCLAwprR;imheYfA1Kiw.rPAsF4cpNxm;imheYfA1Kiw.HWtHCLAwprR;cPlWFYbBacW.rPAsF4cpNxm;cPlWFYbBacW.HWtHCLAwprR&dimension=ou:LEVEL-5;'+myOU()+'&dimension=pe:LAST_6_MONTHS&displayProperty=NAME&outputIdScheme=UID', function (data) {
-                        var commarr = data.metaData.dimensions.dx;
-                        commoditypicker.empty();
-                        var comm_id_arr = [];
-                        commoditypicker.append('<option selected value="">Select Commodity</option>');
-                        $.each(commarr, function(indx, comm_id_long){
-                            var comm_id = comm_id_long.split('.')[0];
-                            comm_id_arr.push(comm_id);
-                            // console.log("comm_id:  "+comm_id);
-                        });
-                        
-                        var commodity_id_arrays_clean = eliminateDuplicates(comm_id_arr);
-                        $.each(commodity_id_arrays_clean, function (index, commodity_id) {
-                            $.getJSON('https://testhis.uonbi.ac.ke/api/29/dataElements/'+commodity_id+'.json', function (data) 
-                            {
-                            var commodity_name = data.displayName; 
-                            var commodity_id = data.id;
-                            commoditypicker.append('<option value="'+commodity_id+'">'+commodity_name+'</option>');
-                            });
-                        });		 
-                    });
-                // commoditypickerpopulation
+                
                 var perioddwn = $('#period-dropdown');
                 var perioddwnTo = $('#period-dropdownTo');
                 perioddwnTo.attr('disabled', true);
@@ -571,11 +553,12 @@ color: transparent;}
                 // commdwn.empty();
     
                 dropdown.append('<option selected="true" disabled>Select County</option>');
-                if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
+                dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
+                // if(myOU()=='tAbBVBbueqD'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
                 
                 subcounty.append('<option selected="true" disabled>Select Sub County</option>');
                 subcounty.prop('selectedIndex', 0);
-                    $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
+                    $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
                     var myou = myOU();
                     $.each(data.organisationUnits, function (key, entry) 
                     {				
@@ -595,7 +578,7 @@ color: transparent;}
                 //const url = 'https://api.myjson.com/bins/7xq2x';
     
                 //populate dropdown with list of counties
-                $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+                $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
                 // $.getJSON('http://localhost/pmi/json/counties.json', function (data) 
                 {
                     //console.log(data.organisationUnits);
@@ -613,9 +596,10 @@ color: transparent;}
                     var countyid = $(this).val();
                     subcounty.append('<option selected="true" disabled>Select Sub County</option>');
                     subcounty.prop('selectedIndex', 0);
+                    subcounty.append('<option value='+$(this).val()+'>All subcounties</option>');
                     
                     // Populate dropdown with list of sub counties
-                    $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+                    $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
                     // $.getJSON('http://localhost/pmi/json/subcounties.json', function (data) 
                     {			
                         $.each(data.organisationUnits, function (key, entry) 
@@ -634,10 +618,13 @@ color: transparent;}
     <script type="text/javascript">
         //define the constants
         var ounit = myOU();
+        if(ounit == undefined || ounit == null){
+            ounit = 'tAbBVBbueqD';
+        }
         //define the constants
         
         // Populate dropdown with list of sub counties
-        $.getJSON('https://testhis.uonbi.ac.ke/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+        $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
             $.each(data.organisationUnits, function (key, entry){
                 if(entry.parent.id==ounit){		
                     $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
@@ -646,12 +633,10 @@ color: transparent;}
         });
         $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
-        var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-        // var consturl = 'http://localhost/pmi/json/consistency.json';
-        var month_from = '201806';
-        var month_to = '201807';
-        var commd = 'iOARK31NdLp.HWtHCLAwprR';
-        commd = commd.split('.')[0];
+        var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:iOARK31NdLp.HWtHCLAwprR;iOARK31NdLp.yuvCdaFqdCW;iOARK31NdLp.CckV73xy6HB;iOARK31NdLp.unVIt2C0cdW;iOARK31NdLp.w77uMi1KzOH;iOARK31NdLp.rPAsF4cpNxm&dimension=pe:'+getThePeriod()+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+       //  var consturl = 'https://api.myjson.com/bins/w9wo1';
+        var commd = 'iOARK31NdLp';
+        // commd = commd.split('.')[0];
         getConsist(consturl,commd,ounit);
 
 
@@ -660,10 +645,18 @@ color: transparent;}
                 var theou = $(this).val();
                 var commd = $("#commodity-picker").val();
                 if(commd == null || commd == undefined || commd == ''){
-                    var commd = 'iOARK31NdLp.HWtHCLAwprR';
-                    commd = commd.split('.')[0];
+                    var commd = 'iOARK31NdLp';
+                    // commd = commd.split('.')[0];
                 }
-                var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var perr1 =  $('#h_period').val();
+                if( perr1 == '' || perr1 == null || perr1 == undefined ){
+                    perr1 = getThePeriod();
+                }
+                // else{
+                //     perr1 = getPerio(perr1, true)
+                // }
+                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.yuvCdaFqdCW;'+commd+'.CckV73xy6HB;'+commd+'.unVIt2C0cdW;'+commd+'.w77uMi1KzOH;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+perr1+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                
                 getConsist(consturl,commd,theou);
             }
         );
@@ -672,28 +665,45 @@ color: transparent;}
         $("#subcounty-dropdown").change(function() 
             {  
                 var theou = $(this).val();
+                var commd = $('#commodity-picker').val();
                 if(commd == null || commd == undefined || commd == ''){
-                    var commd = 'iOARK31NdLp.HWtHCLAwprR';
-                    commd = commd.split('.')[0];
+                    var commd = 'iOARK31NdLp';
                 }
-                var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var perr0 =  $('#h_period').val();
+                if( perr0 == '' || perr0 == null || perr0 == undefined ){
+                    perr0 = getThePeriod();
+                }
+                // else{
+                //     perr0 = getPerio(perr0, true)
+                // }
+                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.yuvCdaFqdCW;'+commd+'.CckV73xy6HB;'+commd+'.unVIt2C0cdW;'+commd+'.w77uMi1KzOH;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+perr0+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
         );
 
         $("#commodity-picker").change(function() 
             {  
+                // var commd = $(this).val();
                 var commd = $(this).val();
+                if(commd == null || commd == undefined || commd == ''){
+                    var commd = 'iOARK31NdLp';
+                }
                 var theou = $('#subcounty-dropdown').val();
-                if(theou == null || theou == ''){
-                    var theou = $('#county-dropdown').val();
-                    if(theou == null || theou == ''){
-                        var theou = 'tAbBVBbueqD';
+                if(theou == null || theou == '' || theou == undefined){
+                    theou = $('#county-dropdown').val();
+                    if(theou == null || theou == '' || theou == undefined){
+                        theou = 'tAbBVBbueqD';
                         theou = myOU();
                     }
                 }
-                
-                var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:LAST_12_MONTHS&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var perr =  $('#h_period').val();
+                if( perr == '' || perr == null || perr == undefined ){
+                    perr = getThePeriod()
+                }
+                // else{
+                //     perr = getPerio(perr, true)
+                // }
+                var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.yuvCdaFqdCW;'+commd+'.CckV73xy6HB;'+commd+'.unVIt2C0cdW;'+commd+'.w77uMi1KzOH;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+perr+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 getConsist(consturl,commd,theou);
             }
         );
@@ -704,72 +714,115 @@ color: transparent;}
             var dateparts = sDate.split('/', 2);
             var therdate = dateparts[1]+''+dateparts[0];
             var period = therdate;
+            $('#h_period').val(period);
             daterange.push(period);
+
+            var the_period = period;
+
+            var commd = $('#commodity-picker').val();
             
-            //
-                $('#period-dropdownTo').removeAttr('disabled');
-                $('#period-dropdownTo').trigger('click');
-            //
-            
-            // var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+period+'&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            // var commd = 'iOARK31NdLp.HWtHCLAwprR';
-            // getConsist(consturl,commd,'tAbBVBbueqD');
-        }
-        
-        //change of period		
-        function datePickedTo(sDate)
-        {
-            var dateparts = sDate.split('/', 2);
-            var therdate = dateparts[1]+''+dateparts[0];
-            var period = therdate;
-            daterange.push(period);
-            filtByPeriod(daterange);
-        }
-
-        function filtByPeriod(drange){
-            var date_range_string = '';
-            var startDate = drange[0].substring(0,4)+'-'+drange[0].substring(4)+'-01';
-            var endDate = drange[drange.length-1].substring(0,4)+'-'+drange[drange.length-1].substring(4)+'-01';
-            var full_dates_arr = dateRange(startDate, endDate);
-            $.each(full_dates_arr, function (indexs, onedate) {
-                var adate = onedate.split('-');
-                date_range_string += adate[0]+adate[1]+';';
-            })
-            if($('#subcounty-dropdown').val() != null){
-                var theou = $('#subcounty-dropdown').val();
-            } else if($('#county-dropdown').val() != null){
-                var theou = $('#county-dropdown').val();
-            } else{
-                var theou = myOU();
-            }
-            var consturl = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:zB1NW37bi46&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            console.log("filter url: "+consturl);
-            getConsist(consturl,commd,theou);
-            daterange = [];
-            $('#period-dropdown').val(null);
-            $('#period-dropdownTo').val(null);
-        }
-
-        
-        function dateRange(startDate, endDate) {
-            var start      = startDate.split('-');
-            var end        = endDate.split('-');
-            var startYear  = parseInt(start[0]);
-            var endYear    = parseInt(end[0]);
-            var dates      = [];
-
-            for(var i = startYear; i <= endYear; i++) {
-                var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
-                var startMon = i === startYear ? parseInt(start[1])-1 : 0;
-                for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
-                var month = j+1;
-                var displayMonth = month < 10 ? '0'+month : month;
-                dates.push([i, displayMonth, '01'].join('-'));
+            var theou = $('#subcounty-dropdown').val();
+            if(theou == null || theou == '' || theou == undefined){
+                theou = $('#county-dropdown').val();
+                if(theou == null || theou == '' || theou == undefined){
+                    theou = 'tAbBVBbueqD';
+                    theou = myOU();
                 }
             }
-            return dates;
+
+            if(commd == null || commd == undefined || commd == ''){
+                var commd = 'iOARK31NdLp';
+                // commd = commd.split('.')[0];
+            }
+
+            var consturl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:'+commd+'.HWtHCLAwprR;'+commd+'.yuvCdaFqdCW;'+commd+'.CckV73xy6HB;'+commd+'.unVIt2C0cdW;'+commd+'.w77uMi1KzOH;'+commd+'.rPAsF4cpNxm'+'&dimension=pe:'+the_period+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            getConsist(consturl,commd,theou);
         }
+        
         downloadTable("noDiscData");
+        function getThePeriod() 		{
+                var curdate = new Date();
+
+				var today = curdate.getDate();
+
+				if(today<15)
+					curdate.setMonth(curdate.getMonth() - 2);
+				else
+					curdate.setMonth(curdate.getMonth() - 1);
+
+				per_y = curdate.getFullYear();
+				per_m = parseFloat(curdate.getMonth())+1;
+				
+				if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+				var per = per_y+""+per_m;
+				
+                return per
+                // return(getPerio(per, false))
+        }
+        
+        function getPerio(todayte, past) {
+            // -------------find currentDate & factor for >15th -------------
+            var tdate = new Date().getDate();
+            if(past){
+                tday = todayte.slice(4);
+                // //console.log('other_tday: '+tday);
+            }
+            // //console.log('past: '+past + ' & todayte: '+todayte);
+            var tyear1 = todayte.slice(0, -2);
+            // var tyear2 = todayte.slice(0, -2);
+            var tyear2 = tyear1;
+            
+            // //console.log('tdate => '+tdate);
+            if(parseFloat(tdate) < 15 || past){
+                var month1_full = todayte;
+                var month1;
+                var date2 = new Date();
+                // date2.setMonth(month1);
+                date2.setDate(1);
+                var month2 = date2.getMonth();
+
+                if(past){tdate = parseFloat(tday); month2 = tday;}
+                if(month2 < 1){
+                    month2 = 12;
+                    tyear2 = (parseFloat(tyear2) - 1);
+                }
+                month1 = parseFloat(month2)-1;
+                if(month1 < 1){
+                    month1 = 12;
+                    tyear1 = (parseFloat(tyear1) - 1);
+                }
+                // //console.log('month1 => '+month1);
+                // //console.log('month2 => '+month2);
+            }else{
+                var month1_full = todayte;
+                // if(!past){
+                    var month1 = parseFloat(month1_full.toString().slice(4))+1;
+                // }else{
+                //     var month1 = parseFloat(month1_full.toString().slice(4));
+                // }
+                var date2 = new Date();
+                // date2.setMonth(month1);
+                date2.setDate(1);
+                // var month2 = date2.getMonth();
+                var month2 = month1 + 1;
+                if(month2 < 1){
+                    month2 = 12;
+                    tyear2 = (parseFloat(tyear2) - 1);
+                }
+                if(month1 < 1){
+                    month1 = 12;
+                    tyear1 = (parseFloat(tyear1) - 1);
+                }
+                // //console.log('month1 => '+month1);
+                // //console.log('month2 => '+month2);
+            }
+            if(parseFloat(month1) < 10){month1 = "0"+month1}
+            if(parseFloat(month2) < 10 && !past){month2 = "0"+month2}
+            // //console.log("month1: "+ month1 + " && month2: "+month2);
+            var period_string = tyear1+""+month1+";"+tyear2+""+month2;
+            return period_string
+            // -------------find currentDate & factor for >15th -------------
+        }
     </script>
 	
 </body>

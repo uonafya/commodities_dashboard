@@ -123,7 +123,7 @@
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://testhis.uonbi.ac.ke/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
@@ -280,13 +280,20 @@
                                     </li>
                                     <!-- endSCP -->
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="accountability.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Accountability</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Health Facility-Followup </span></a>
+                                        <ul aria-expanded="false" class="collapse  first-level">
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="overstocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Overstocked Facilities</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <!-- end County -->
 
                             <!-- National -->
                             <li class="sidebar-item"> 
-                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
+                                <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
@@ -339,7 +346,7 @@
                                     </div>
                                 </div> 
                                 <div class="col-md-1 col-sm-1 col xs-1">
-                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><i class="fa fa-undo"></i></a>
+                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
                                 </div>                               
                             </div>
                             
@@ -409,10 +416,10 @@
                                                 <th class="text-right" colspan="5"><b>Pending Shipments</b></th>
                                             </tr>
                                             <tr>
-                                                <th class="text-right">GOK</th>
+                                                <th class="text-right">PMI/USAID</th>
                                                 <th class="text-right">GF</th>
-                                                <th class="text-right">PMI</th>
-                                                <th class="text-right">GOK CF</th>
+                                                <th class="text-right">UNICEF</th>
+                                                <th class="text-right">GOK</th>
                                                 <th class="text-right"><b>Total</b></th>
                                             </tr>		
                                         </thead>
@@ -422,10 +429,10 @@
                                             <tr>
 												<th>Description</th>
 												<th>Unit of Measure</th>
-                                                <th class="text-right">GOK</th>
+                                                <th class="text-right">PMI/USAID</th>
                                                 <th class="text-right">GF</th>
-                                                <th class="text-right">PMI</th>
-                                                <th class="text-right">GOK CF</th>
+                                                <th class="text-right">UNICEF</th>
+                                                <th class="text-right">GOK</th>
                                                 <th class="text-right"><b>Total</b></th>
                                             </tr>		
                                         </tfoot>
@@ -443,7 +450,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved. Malaria Commodities Dashboard Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
+                All Rights Reserved. Malaria Commodities Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -489,71 +496,84 @@
 	{
             var ounit = 'HfVjCurKxh2';
             var period = 'LAST_MONTH';
-            //var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            //var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
 			
-            var url = 'https://testhis.uonbi.ac.ke/api/29/analytics.json?dimension=ou:HfVjCurKxh2&dimension=pe:LAST_MONTH&dimension=dx:aIek7kTJG6w;yB2FRv1QXkQ;lOZMABBgVI8;F8MqSF1yd89;bMlKVkzH9NQ;XzTaOzw1atl;d5qEwzIeQ6k&displayProperty=NAME&outputIdScheme=UID'
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=ou:HfVjCurKxh2&dimension=pe:LAST_MONTH&dimension=dx:aIek7kTJG6w;yB2FRv1QXkQ;lOZMABBgVI8;F8MqSF1yd89;bMlKVkzH9NQ;XzTaOzw1atl;d5qEwzIeQ6k&displayProperty=NAME&outputIdScheme=UID'
             
 			var url = 'pending.json';
 			
-			fetchPenShip(url);                
+			fetchPenShip();                
 					
 	});
 	
         
         //function to process the Pending Shipments url
-        function fetchPenShip(spurl)
-        {
-            $('#sp_table').addClass('hidden');
+        function fetchPenShip()
+        {	
+			$('#sp_table').addClass('hidden');
             $('.spdata').addClass('hidden');
             $('.loader-sp').removeClass('hidden');
             $('.loader-sp').css('display','block');
-            $.getJSON(spurl, function (data){
-            $.ajax({
+			//get data on PMI stocks
+								
+			//https://hiskenya.org/api/26/dataStore/pending/stocks
+			//var urlstock = 'http://localhost/pmilive/commodities_dashboard/stocks.json';
+			
+			var urlstock = 'https://hiskenya.org/api/26/dataStore/pending/stocks';
+			
+			$.ajax({
                 type: 'GET',
                 crossDomain: true,
-				mimeType: "application/json",
-                url: spurl,                    
-                success: function (data) {
-
-                    //create the funds source array
-                    var funds = [];
+                url: urlstock,                    
+                success: function (data) 
+				{					
+					var pmidata = [];
+					var gfdata = [];
+					var unicefdata = [];
+					var mohdata = [];
+					$.each(data.pmi[0], function (key, entry) 
+					{		
+						pmidata.push(entry);													
+					})
 					
+					$.each(data.gf[0], function (key, entry) 
+					{		
+						gfdata.push(entry);													
+					})
+					
+					$.each(data.unicef[0], function (key, entry) 
+					{		
+						unicefdata.push(entry);													
+					})
+					
+					$.each(data.moh[0], function (key, entry) 
+					{		
+						mohdata.push(entry);													
+					})
+										
 					//create the product array
 					var products = {"PM03ART004": "Artemether-Lumefantrine 20/120 Tabs 6s", "PM03ART005": "Artemether-Lumefantrine 20/120 Tabs 12s",
-                 "PM03ART006": "Artemether-Lumefantrine 20/120 Tabs 18s", "PM03ART007": "Artemether-Lumefantrine 20/120 Tabs 24s",
-                 "PM03ART009": "Artesunate Injection", "PM03SPY001": "Sulphadoxine Pyrimethamine Tabs", "NL05TES067": "Rapid Diagnostic Tests"}
+				 "PM03ART006": "Artemether-Lumefantrine 20/120 Tabs 18s", "PM03ART007": "Artemether-Lumefantrine 20/120 Tabs 24s",
+				 "PM03ART009": "Artesunate Injection", "PM03SPY001": "Sulphadoxine Pyrimethamine Tabs", "NL05TES067": "Rapid Diagnostic Tests"}
 					
 					
 					//create the totals array
 					var producttotals = [];
-                    
+					
 
-                    //var tableData = '<table>';
-                    var tableData = '';
+					//var tableData = '<table>';
+					var tableData = '';
 					
 					var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"];
 
-					var sources = ["USAID", "GF", "PMI", "GOK", "GOK CF"];
+					var sources = ["pmi", "gf","unicef", "moh"];
 					
-                    //push only if not in
-                    $.each(data, function (rowkey, rowentry) 
-                    {
-						//source of funds
-						if(funds.indexOf(rowentry['sourceoffunds'])>=0)
-						{
-							//console.log(orgunits);
-						}
-						else
-						{
-							funds.push(rowentry['sourceoffunds']);
-						}
-                    })
-					
+							
 					//loop trough to populate data
 					var itemcodes = [];
 					
 					var counter = 0
-					
+											
 					//loop through the products
 					$.each(products, function (prokey, proentry) 
 					{
@@ -564,86 +584,101 @@
 						
 						tableData += '<td>'+dxuom[counter]+'</td>';
 						
-						//source of funds				
+						//source of funds	
+						
 						$.each(sources, function (fundskey, fundsentry) 
 						{
 							var sumdues = 0;
-							//loop through all the records
-							$.each(data, function (rowkey, rowentry) 
+							var duesin = 0;
+							
+							if(fundsentry=='pmi')
 							{
-								if(fundsentry==rowentry['sourceoffunds'] && prokey==rowentry['itemcode'])
-								{
-									var duesin = parseFloat(rowentry['duesin']);
-									//RDTS
-									if(prokey=='NL05TES067')
-									{
-										sumdues += duesin*25;	
-									}
-									else if(prokey=='PM03SPY001')
-									{
-										sumdues += duesin*1000;	
-									}
-									else
-									{
-										sumdues += duesin;	
-									}									
-								}									
-							})
+								var duesin = parseFloat(pmidata[counter]);
+							}
+							
+							if(fundsentry=='gf')
+							{
+								var duesin = parseFloat(gfdata[counter]);
+							}
+							
+							if(fundsentry=='unicef')
+							{
+								var duesin = parseFloat(unicefdata[counter]);
+							}
+							
+							if(fundsentry=='moh')
+							{
+								var duesin = parseFloat(mohdata[counter]);
+							}												
+							
+							//RDTS
+							if(prokey=='NL05TES067')
+							{
+								sumdues += duesin*25;	
+							}
+							else if(prokey=='PM03SPY001')
+							{
+								sumdues += duesin*1000;	
+							}
+							else
+							{
+								sumdues += duesin;	
+							}
+												
 							totalsum += sumdues;
 							tableData += '<td class="text-right">'+formatNumber(sumdues)+ '</td>';																					
 						})
 						tableData += '<td class="text-right">'+formatNumber(totalsum)+ '</td>';
 						tableData += '</tr>';
 						counter++;
-                    })
-
-                    					
-					var tfoot = '';
-					
-					var colspan = sources.length+1;
-					
-					tfoot += '<tr><th rowspan="2">Description</th><th rowspan="2">Unit of Measure</th>                                               <th colspan="'+colspan+'"><center><b>Pending Shipments</b></center></th></tr><tr>';
-					
-					$.each(sources, function (fundskey, fundsentry) 
-					{
-						tfoot += '<th>'+fundsentry+'</th>';
+						//console.log(tableData);
 					})
-					tfoot += '<th><b>Total</b></th></tr>';
 					
-					
-                    $('#sp_table').removeClass('hidden');
-                    $('.spdata').removeClass('hidden');
-                    $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');					
-					
-					$('#sp_table').DataTable().destroy();
-                    $("table.spbox tbody").empty();
-                    $("table.spbox tbody").append(tableData);	
-					$("table.spbox tfoot").empty();
-					$("table.spbox tfoot").append(tfoot);
-					$("table.spbox thead").empty();
-                    $("table.spbox thead").append(tfoot);
-                    $('#sp_table').DataTable(
-            {
-                dom: 'Bfrtip',
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-            }
-        );	
-                    //$('#sp_table').DataTable();                                                          
-                    //$('#sp_table').DataTable().fnDraw();					
-                },
-				
-                error: function (request, status, error) {
+					var tfoot = '';
+							
+							var colspan = sources.length+1;
+							
+							tfoot += '<tr><th rowspan="2">Description</th><th rowspan="2">Unit of Measure</th>                                               <th colspan="'+colspan+'"><center><b>Pending Shipments</b></center></th></tr><tr>';
+							
+							$.each(sources, function (fundskey, fundsentry) 
+							{
+								tfoot += '<th>'+fundsentry.toUpperCase()+'</th>';
+							})
+							tfoot += '<th><b>Total</b></th></tr>';
+							
+							
+							$('#sp_table').removeClass('hidden');
+							$('.spdata').removeClass('hidden');
+							$('.loader-sp').addClass('hidden');
+							$('.loader-sp').css('display','none');					
+							
+							$('#sp_table').DataTable().destroy();
+							$("table.spbox tbody").empty();
+							$("table.spbox tbody").append(tableData);	
+							$("table.spbox tfoot").empty();
+							$("table.spbox tfoot").append(tfoot);
+							$("table.spbox thead").empty();
+							$("table.spbox thead").append(tfoot);
+							$('#sp_table').DataTable(
+					{
+						dom: 'Bfrtip',
+						"ordering": false,
+						buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+					}
+				);
+				},
+                error: function (request, status, error) 
+				{
                     $('.loader-sp').addClass('hidden');
                     $('#sp_table').addClass('hidden');
-                    console.log('SP: error fetching json. :- '+error);
+                    //console.log('SP: error fetching json. :- '+error);
                     $('spdata').addClass('hidden');
                     $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-					}
-				});
-			})
+                }
+            });
+			
         }
-        
+
 </script>
 </body>
 
