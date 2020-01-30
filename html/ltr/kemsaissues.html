@@ -339,11 +339,13 @@
                                 <div class="col-md-11 col-sm-11 col-xs-11">
                                     <div class="row">
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
+                                            <select class="form-control m-r-5" id="county-dropdown" name="county">
+                                                <option value="uepLTG8wGWJ">Nyamira County</option><option value="mYZacFNIB3h">Nyandarua County</option><option value="ptWVfaCIdVx">Nyeri County</option><option value="o36zCRjSd4G">Samburu County</option><option value="u4t9H8XyU9P">Siaya County</option><option value="QyGNX2DpR4h">Taita Taveta County</option><option value="JsH2bnvNt2d">Tana River County</option><option value="T4urHM47nlm">Tharaka Nithi County</option><option value="mThvosEflAU">Trans Nzoia County</option><option value="kphDeKClFch">Turkana County</option><option value="pZqQRRW7PHP">Uasin Gishu County</option><option value="sANMZ3lpqGs">Vihiga County</option><option value="CeLsrJOH0g9">Wajir County</option><option value="XWALbfAPa6n">West Pokot County</option>
                                             </select>
                                         </div>										
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
+                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">
+                                                
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
@@ -518,9 +520,9 @@
 			var perioddwn = $('#period-dropdown');
 			var facilitydwn = $('#facility-dropdown');
 
-			dropdown.empty();
-			subcounty.empty();
-			perioddwn.empty();
+			// dropdown.empty();
+			// subcounty.empty();
+			// perioddwn.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
             dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
@@ -724,7 +726,8 @@
             }
             if(parseFloat(month1) < 10){month1 = "0"+month1}
             if(parseFloat(month2) < 10){month2 = "0"+month2}
-            //console.log("month1: "+ month1 + " && month2: "+month2);
+            console.log("p1: "+ month1 + "-"+tyear1);
+            console.log("p2: "+ month2 + "-"+tyear2);
             var period_string = tyear1+""+month1+";"+tyear2+""+month2;
             return period_string
           // -------------find currentDate & factor for >15th -------------
@@ -739,7 +742,7 @@
             return(getPeriod(per, false))
         }
 
-        function getLastMonthPeriod() {
+        function getLastMonth() {
             //console.log('running getLastMonthPeriod()')
             var per_y = new Date().getFullYear();
             var per_m = new Date().getMonth();
@@ -748,7 +751,11 @@
             if(parseFloat(per_m) < 0){ per_m = 12+per_m; per_y = parseFloat(per_y) - 1;}
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
-            return(getPeriod(per, true))
+            return per
+        }
+
+        function getLastMonthPeriod() {
+            return( getPeriod(getLastMonth(), true) )
         }
 		
 		//check if date field contains a value from a previous selection
@@ -758,7 +765,7 @@
 			var periodval
 			if(sDateVal=='')
 			{			
-				periodval = getLastMonthPeriod();
+				periodval = getLastMonth();
 			}
 			else
 			{			
