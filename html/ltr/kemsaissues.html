@@ -765,7 +765,8 @@
 			var periodval;
 			if(sDateVal=='')
 			{			
-				periodval = getLastMonth();
+				last_month = getLastMonth();
+                periodval = getPeriod(last_month, true)
 			}
 			else
 			{			
