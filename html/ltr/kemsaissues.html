@@ -762,7 +762,7 @@
 		function getActivePeriod()
 		{			
 			var sDateVal = $("#period-dropdown").val();
-			var periodval
+			var periodval;
 			if(sDateVal=='')
 			{			
 				periodval = getLastMonth();
@@ -772,10 +772,10 @@
 				var dateparts = sDateVal.split('/', 2);
 				var therdate = dateparts[1]+''+dateparts[0];
 				
-				periodval = therdate;
+				periodval = getPeriod(therdate, true);
 			}
 			
-			return getPeriod(periodval, true);
+			return periodval;
 		}
     </script>
 </body>
