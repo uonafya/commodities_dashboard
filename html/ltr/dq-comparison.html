@@ -397,7 +397,7 @@
 												<th class="text-right">Total no. of AL tabs dispensed (A)</th>
 												<th class="text-right">Total no. of tabs expected based on weight band (B)</th>
 												<th class="text-right">Variance (A – B)</th>
-												<th class="text-right">% variance(B-A)/(A)</th>
+												<th class="text-right">% variance(A-B)/(B)</th>
                                             </tr>                                            		
                                         </thead>
                                         <tbody>
@@ -410,7 +410,7 @@
 												<th class="text-right">Total no. of AL tabs dispensed (A)</th>
 												<th class="text-right">Total no. of tabs expected based on weight band (B)</th>
 												<th class="text-right">Variance (A – B)</th>
-												<th class="text-right">% variance(B-A)/(A)</th>
+												<th class="text-right">% variance(A-B)/(B)</th>
                                             </tr>		
                                         </tfoot>
                                         </table>
@@ -745,7 +745,7 @@
 							{
 								//get the diff calculation
 								var diffcal = dxcalvals[0]-dxcalvals[1];
-								var percentdiff = ((dxcalvals[1]-dxcalvals[0])/dxcalvals[0])*100;
+								var percentdiff = ((dxcalvals[0]-dxcalvals[1])/dxcalvals[1])*100;
 								
 								//define the table
 								tableData += '<tr>';	
