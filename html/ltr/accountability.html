@@ -455,14 +455,9 @@
 			var dropdown = $('#county-dropdown');
 			
 			var subcounty = $('#subcounty-dropdown');
-
-            var facilitydwn = $('#facility-dropdown');
 			
 			var perioddwn = $('#period-dropdown');
-            var perioddwnTo = $('#period-dropdownto');
-            perioddwnTo.attr('disabled', true);
-            perioddwn.val(null);
-            perioddwnTo.val(null);
+			var facilitydwn = $('#facility-dropdown');
 
 			dropdown.empty();
 			subcounty.empty();
@@ -470,11 +465,11 @@
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
             dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
-			// if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
+			dropdown.prop('selectedIndex', 0);
 			
-            $('#facility-dropdown').append('<option selected="true" disabled>Select facility</option>');
+			$('#facility-dropdown').append('<option selected="true" disabled>Select facility</option>');
 			$('#facility-dropdown').prop('selectedIndex', 0);
-
+			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
             $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
@@ -494,7 +489,7 @@
 			//const url = 'https://api.myjson.com/bins/7xq2x';
 
 			//populate dropdown with list of counties
-			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			$.getJSON('https://hiskenya.org/api/26/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
 				$.each(data.organisationUnits, function (key, entry) 
@@ -512,7 +507,7 @@
                 subcounty.append('<option value='+$(this).val()+'>All subcounties</option>');
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				$.getJSON('https://hiskenya.org/api/26/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -523,26 +518,7 @@
 					})		 
 				});		
 			});
-			
-			$("#subcounty-dropdown").change(function() 
-			{  
-				facilitydwn.empty();
-				var subcountyid = $(this).val();
-				facilitydwn.append('<option selected="true" disabled>Select Facility</option>');
-				facilitydwn.prop('selectedIndex', 0);
-				
-				// Populate dropdown with list of sub counties
-				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:5&fields=id,name,level,parent&paging=false', function (dataa) 
-				{			
-					$.each(dataa.organisationUnits, function (key, fty) 
-					{				
-						if(fty.parent.id==subcountyid)
-						{
-							facilitydwn.append($('<option></option>').attr('value', fty.id).text(fty.name));
-						}				
-					})		 
-				});		
-			});
+                        
 		});
 	</script>
 			
