@@ -529,7 +529,8 @@
 				facilitydwn.empty();
 				var subcountyid = $(this).val();
 				facilitydwn.append('<option selected="true" disabled>Select Facility</option>');
-				facilitydwn.prop('selectedIndex', 0);
+                facilitydwn.prop('selectedIndex', 0);
+                facilitydwn.append('<option value='+$(this).val()+'>All subcounties</option>');
 				
 				// Populate dropdown with list of sub counties
 				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:5&fields=id,name,level,parent&paging=false', function (dataa) 
