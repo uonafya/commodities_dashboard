@@ -339,11 +339,13 @@
                                 <div class="col-md-11 col-sm-11 col-xs-11">
                                     <div class="row">
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
+                                            <select class="form-control m-r-5" id="county-dropdown" name="county">
+                                                
                                             </select>
                                         </div>										
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
+                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">
+                                                
                                             </select> 
                                         </div> 
                                         <div class="col-md-3 col-sm-3 col-xs-12">
@@ -661,14 +663,13 @@
             var tdate = new Date().getDate();
             if(past){
                 tday = todayte.slice(4);
-                //console.log('other_tday: '+tday);
+                // console.log('other_tday: '+tday);
             }
             //console.log('past: '+past + ' & todayte: '+todayte);
             var tyear1 = todayte.slice(0, -2);
             // var tyear2 = todayte.slice(0, -2);
             var tyear2 = tyear1;
             
-            //console.log('tdate => '+tdate);
             if(parseFloat(tdate) < 15){
                 var month1_full = todayte;
                 var month1;
@@ -685,16 +686,17 @@
                 
                 month1 = parseFloat(month2);
                 month2 = parseFloat(month1)+1;
-                if(month1 < 1){
+                if(month1 < 1 || month1 == 12){
                     month1 = 12;
-                    tyear1 = (parseFloat(tyear1) - 1);
+                    ty1 = parseFloat(tyear1) - 1
+                    tyear1 = ty1
                 }
                 if(month2 > 12){
                     month2 = 1;
                     tyear2 = (parseFloat(tyear2) + 1);
                 }
-                //console.log('month1 => '+month1);
-                //console.log('month2 => '+month2);
+                // console.log('p1 => '+month1+'-'+tyear1);
+                // console.log('p2 => '+month2+'-'+tyear2);
             }else{
                 var month1_full = todayte;
                 // if(!past){
@@ -711,7 +713,7 @@
                     month2 = 12;
                     tyear2 = (parseFloat(tyear2) - 1);
                 }
-                if(month1 < 1){
+                if(month1 < 1 || month1 == 12){
                     month1 = 12;
                     tyear1 = (parseFloat(tyear1) - 1);
                 }
@@ -724,7 +726,8 @@
             }
             if(parseFloat(month1) < 10){month1 = "0"+month1}
             if(parseFloat(month2) < 10){month2 = "0"+month2}
-            //console.log("month1: "+ month1 + " && month2: "+month2);
+            // console.log("p1: "+ month1 + "-"+tyear1);
+            // console.log("p2: "+ month2 + "-"+tyear2);
             var period_string = tyear1+""+month1+";"+tyear2+""+month2;
             return period_string
           // -------------find currentDate & factor for >15th -------------
@@ -739,7 +742,7 @@
             return(getPeriod(per, false))
         }
 
-        function getLastMonthPeriod() {
+        function getLastMonth() {
             //console.log('running getLastMonthPeriod()')
             var per_y = new Date().getFullYear();
             var per_m = new Date().getMonth();
@@ -748,27 +751,32 @@
             if(parseFloat(per_m) < 0){ per_m = 12+per_m; per_y = parseFloat(per_y) - 1;}
             if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
             var per = per_y+""+per_m;
-            return(getPeriod(per, true))
+            return per
+        }
+
+        function getLastMonthPeriod() {
+            return( getPeriod(getLastMonth(), true) )
         }
 		
 		//check if date field contains a value from a previous selection
 		function getActivePeriod()
 		{			
 			var sDateVal = $("#period-dropdown").val();
-			var periodval
+			var periodval;
 			if(sDateVal=='')
 			{			
-				periodval = getLastMonthPeriod();
+				last_month = getLastMonth();
+                periodval = getPeriod(last_month, true)
 			}
 			else
 			{			
 				var dateparts = sDateVal.split('/', 2);
 				var therdate = dateparts[1]+''+dateparts[0];
 				
-				periodval = therdate;
+				periodval = getPeriod(therdate, true);
 			}
 			
-			return getPeriod(periodval, true);
+			return periodval;
 		}
     </script>
 </body>
