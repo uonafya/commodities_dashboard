@@ -60,6 +60,7 @@ function fetchAccountability(url,orgun) {
                 var kissue_arr = [];
                 var closbal_arr = [];
                 var pcacc_arr = [];
+				var variance_arr = [];
 
                 // console.log('commodities_ki_arr==> '+JSON.stringify(commodities_ki_arr));
                 $.each(commodities_ki_arr, function (index, one_ki) { 
@@ -143,6 +144,12 @@ function fetchAccountability(url,orgun) {
                     per_acc_for = per_acc_for*100;
                     // console.log("per_acc_for: "+per_acc_for);
 					
+					var actual = sum_pos-sum_neg;
+					var variance = actual-parseFloat(closbal[3]);
+					variance_arr.push(variance);
+					
+					tabl+='<td class="text-right">'+formatNumber(variance)+'</td>';
+					
 					var bgcolor = '#ff0000';
 					var fcolor = '#202020';
 					if(per_acc_for>=95 && per_acc_for<=105)
@@ -179,6 +186,7 @@ function fetchAccountability(url,orgun) {
                 tabl+='<td class="text-right" id="'+ou+'_totalQtyDisp"></td>';
                 tabl+='<td class="text-right" id="'+ou+'_totalNveAdj"></td>';
                 tabl+='<td class="text-right" id="'+ou+'_totalClosingSOH"></td>';
+				tabl+='<td class="text-right" id="'+ou+'_totalVariance"></td>';
                 tabl+='<td class="text-right" id="'+ou+'_totalPcAccounted"></td>';
                 tabl+='</tr>';
                 
@@ -212,6 +220,7 @@ function fetchAccountability(url,orgun) {
                 $('#'+ou+'_totalQtyDisp').html(sumArr(qtydisp_arr));
                 $('#'+ou+'_totalNveAdj').html(sumArr(negadj_arr));
                 $('#'+ou+'_totalClosingSOH').html(sumArr(closbal_arr));
+				$('#'+ou+'_totalVariance').html(sumArr(variance_arr));
 
                 var tot_neg = sumArr(closbal_arr) + sumArr(negadj_arr) + sumArr(qtydisp_arr);
                 var tot_pos = sumArr(opsoh_arr) + sumArr(posadj_arr) + sumArr(kemsi_arr);
