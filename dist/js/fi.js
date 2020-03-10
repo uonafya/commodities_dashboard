@@ -26,19 +26,19 @@ function checkOUs(ouid){
 }
 
 
-//function toprocess the RDT url
-function fetchFIs(rdturl,orgu,peri)
+//function toprocess the FI url
+function fetchFIs(fiurl,orgu,peri)
 {
-    // console.log('rdturl: '+rdturl);
+    // console.log('fiurl: '+fiurl);
     $('#fi_table').addClass('hidden');
     $('.fidata').addClass('hidden');
     $('.loader-sp').removeClass('hidden');
     sleep(3000);
-            // $.getJSON(rdturl, function (data){
+            // $.getJSON(fiurl, function (data){
             $.ajax({
                 type: 'GET',
                 crossDomain: true,
-                url: rdturl,                    
+                url: fiurl,                    
                 success: function (data) {
 
                     //create the org units array
