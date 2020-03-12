@@ -162,7 +162,7 @@ function fetchFIs(fiurl,orgu,peri)
                             dataType: "json",
                             url: url,
                             success: function(datax) {          
-                                $("h5#ttitle").html(datax['name']+' - '+data.metaData.items[data.metaData.dimensions.pe[0]].name);
+                                $("#ttitle").html(datax['name']+' - '+data.metaData.items[data.metaData.dimensions.pe[0]].name);
                             }
                         });    
                     // END title fill
