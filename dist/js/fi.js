@@ -128,7 +128,7 @@ function fetchFIs(fiurl,orgu,peri)
                         }
                     })
 
-                    $('#thetitle').html('Facility Issuances <br/> in '+facility_count+' facilities');
+                    $('#thetitle').html('Facility Issues <br/> in '+facility_count+' facilities');
                     //tableData += '<table>';	
                     //console.log(tableData)
                     $('#fi_table').removeClass('hidden');
