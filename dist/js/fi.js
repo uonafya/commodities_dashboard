@@ -67,7 +67,7 @@ function fetchFIs(fiurl,orgu,peri)
                             //define the table
                             tableData += '<tr>';	
                             tableData += '<td>'+data.metaData.items[o_ou].name+'</td>';
-                            tableData += '<td>'+getMFLcode(entry)+'</td>';
+                            tableData += '<td>'+getMFLcode(o_ou)+'</td>';
 
                             //get all the dimensions for the given orgunit
                             dxids = [];
