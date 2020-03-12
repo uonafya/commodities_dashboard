@@ -72,6 +72,9 @@ function getSSMap(nat_url,periodval) {
                                 <table class="p-5 table-bordered slimtable">
                                     <thead>
                                         <tr>
+                                            <th colspan="2" class="text-center text-uppercase">{point.value.ou_name}</th>        
+                                        </tr>
+                                        <tr>
                                             <th>Commodity</th>        
                                             <th>MOS (Months)</th>        
                                         </tr>
@@ -113,15 +116,10 @@ function getSSMap(nat_url,periodval) {
                         colorAxis: {
                             // tickPixelInterval: 100,
                             dataClasses: [
-                                {
-                                    from: -100, to: 0.0009, color: '#C40401', name: 'Stocked out'
-                                }, {
-                                    from: 0.001, to: 2.9999, color: '#ffc7ce', name: 'Understocked'
-                                }, {
-                                    from: 3, to: 6, color: '#7bd48d', name: 'Stock OK'
-                                }, {
-                                    from: 6, to: 1000, color: '#ffeb9c', name: 'Overstocked'
-                                }
+                                // { from: -100, to: 0.0009, color: '#C40401', name: 'Stocked out' }, 
+                                // { from: 0.001, to: 2.9999, color: '#ffc7ce', name: 'Understocked' }, 
+                                // { from: 3, to: 6, color: '#7bd48d', name: 'Stock OK' }, 
+                                // { from: 6, to: 1000, color: '#ffeb9c', name: 'Overstocked' }
                             ]
                         },
                         colors: ['#2f7ed8', '#0d233a', '#8bbc21', '#910000', '#1aadce', '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'],
