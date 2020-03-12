@@ -10,15 +10,15 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>Comparison | Malaria Commodities Dashboard</title>
+    <title>Malaria Commodities Dashboard</title>
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../dist/js/mflcode.js" rel="preload" as="script"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
-    <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" /><link href="../../dist/css/style.min.css" rel="stylesheet">
-    <link href="../../dist/css/custom.css" rel="stylesheet">
     <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="../../assets/extra-libs/DataTables/buttons.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" /><link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../dist/css/custom.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -123,101 +123,7 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
-                        <!-- ============================================================== -->
-                        <!-- Comment -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown hidden">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
-                            </a>
-                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- End Comment -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Messages -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown hidden">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="">
-                                             <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Event today</h5> 
-                                                        <span class="mail-desc">Just a reminder that event</span> 
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Settings</h5> 
-                                                        <span class="mail-desc">You can customize this template</span> 
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Pavan kumar</h5> 
-                                                        <span class="mail-desc">Just see the my admin!</span> 
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-danger btn-circle"><i class="fa fa-link"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Luanch Admin</h5> 
-                                                        <span class="mail-desc">Just see the my new admin!</span> 
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
-                        <!-- ============================================================== -->
-
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown hidden">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
+                        
                     </ul>
                 </div>
             </nav>
@@ -322,11 +228,11 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <h5 class="page-title m-t-10">
-                                <u>DQ-Comparison:</u> Total ALs Vs Weight
+                        <div class="col-md-2 col-sm-3 col-xs-12">
+                            <h4 class="page-title m-t-10">
+                                <span id="thetitle"></span>
                                 &nbsp; &nbsp;
-                            </h5>
+                            </h4>
                         </div>
                         <div class="col-md-7 col-sm-6 col-xs-12">
                             <small class="">Filter:</small>
@@ -343,14 +249,25 @@
                                         </div> 
                                         <div class="col-md-4 col-sm-4 col-xs-12">
                                             <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
+                                            <input type="hidden" name="h_period" id="h_period"/> 
                                         </div> 
                                     </div>
-                                </div> 
+                                </div>   
                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                     <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
-                                </div>                               
+                                </div>                             
                             </div>
                             
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
+                            <div class="ml-auto text-right m-t-10">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                    </ol>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -368,8 +285,8 @@
                
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="ttitle text-left"></h5>
-                                <div class="sp_status row"></div>
+                                <h5 class="card-title"></h5>
+                                <div class="fi_status row"></div>
                                 <div class="row">
                                     <div class="loader-sp">
                                         <div class="loader loader--style3" title="2">
@@ -388,33 +305,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row spdata">
+                                <div class="row fidata">
+                                        <h5 id="ttitle"></h5>
                                     <div class="table-responsive">
-                                        <table id="sp_table" class="table table-condensed slimtable table-bordered spbox hidden">
+                                        <table id="fi_table" class="table table-condensed slimtable table-bordered fibox hidden">
                                         <thead>
-											<tr>
-                                                <th>Organization Unit</th>
-                                                <th>MFL Code</th>
-                                                <th>Reporting Month and Year</th>
-												<th class="text-right">Total no. of AL tabs dispensed (A)</th>
-												<th class="text-right">Total no. of tabs expected based on weight band (B)</th>
-												<th class="text-right">Variance (A – B)</th>
-												<th class="text-right">% variance(A-B)/(B)</th>
-                                            </tr>                                            		
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Code</th>
+                                                <th class="text-right">AL6</th>
+                                                <th class="text-right">AL12</th>
+                                                <th class="text-right">AL18</th>
+                                                <th class="text-right">AL24</th>
+                                                <th class="text-right">AS</th>
+                                                <th class="text-right">SP</th>
+                                                <th class="text-right">RDT</th>
+                                            </tr>		
                                         </thead>
                                         <tbody>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-												<th>Organization Unit</th>
-                                                <th>MFL Code</th>
-                                                <th class="text-right">Reporting Month and Year</th>
-												<th class="text-right">Total no. of AL tabs dispensed (A)</th>
-												<th class="text-right">Total no. of tabs expected based on weight band (B)</th>
-												<th class="text-right">Variance (A – B)</th>
-												<th class="text-right">% variance(A-B)/(B)</th>
-                                            </tr>		
-                                        </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -445,7 +354,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- <script src="../../assets/libs/jquery/dist/jquery.min.js"></script> -->
     <script src="../../dist/js/defaults.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
@@ -458,18 +367,14 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-	<script src="../../dist/js/mflcode.js"></script>
+    <script src="../../dist/js/fi.js"></script>
     <script src="../../dist/js/custom.min.js"></script>
-	<script src="../../dist/js/custom.js"></script>
-	
+    <script src="../../dist/js/custom.js"></script>
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-    <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-    <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-    <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
-        
+
     <script src="../../assets/extra-libs/DataTables/dataTables.buttons.min.js"></script>
     <script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>
     <script src="../../assets/extra-libs/jszip/jszip.min.js"></script>
@@ -477,7 +382,6 @@
     <script src="../../assets/extra-libs/pdfmake/vfs_fonts.js"></script>
     <script src="../../assets/extra-libs/DataTables/buttons.html5.min.js"></script>
     <script src="../../assets/extra-libs/DataTables/buttons.print.min.js"></script>
-
     	
 	<!-- *********** MonthPicker ************** -->
     <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
@@ -501,6 +405,7 @@
             MaxYear: 0,
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
+                $('#h_period').val(sDate);
                 datePicked(sDate);
             }
         });        
@@ -520,9 +425,9 @@
 			subcounty.empty();
 			perioddwn.empty();
 
-			dropdown.append('<option selected="true" disabled>Select County</option>');
+            dropdown.append('<option selected="true" disabled>Select County</option>');
             dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
-			// if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
+			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
 			
 			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
             subcounty.prop('selectedIndex', 0);
@@ -541,12 +446,8 @@
 			perioddwn.prop('selectedIndex', 0);
 
 			//const url = 'https://api.myjson.com/bins/7xq2x';
-			
-			// const url = 'http://localhost/commodity_dashboard/commodities_dashboard/html/ltr/totalactsvsweight.json';
 
 			//populate dropdown with list of counties
-			//$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
-			
 			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
 			{
 				//console.log(data.organisationUnits);
@@ -565,9 +466,7 @@
                 subcounty.append('<option value='+$(this).val()+'>All subcounties</option>');
 				
 				// Populate dropdown with list of sub counties
-				//$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
-				
-				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data)
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
 				{			
 					$.each(data.organisationUnits, function (key, entry) 
 					{				
@@ -584,70 +483,75 @@
 	<script>
 	$(document).ready(function() 
 	{
-            // var ounit = 'tAbBVBbueqD';
-            // ounit = myOU();
+        // var ounit = 'tAbBVBbueqD';
+        // ounit = myOU();
 
-            //define the constants
-            var ounit = myOU();
-			//define the constants
-            
-            // Populate dropdown with list of sub counties
-            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
-                $.each(data.organisationUnits, function (key, entry){
-                    if(entry.parent.id==ounit){		
-                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
-                    }
-                })
-            });
-            $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
+        //define the constants
+        var ounit = myOU();
+        //define the constants
+        
+        // Populate dropdown with list of sub counties
+        $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+            $.each(data.organisationUnits, function (key, entry){
+                if(entry.parent.id==ounit){		
+                    $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+                }
+            })
+        });
+        $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
 
-            var period = getPreviousPMonth(); //'LAST_MONTH';
 
-            // var url = 'https://api.myjson.com/bins/h9ddw'
-            // var ounit = 'tAbBVBbueqD'
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:E1J6vMP5hFO;Gwr4lywXLiM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchSP(url, ounit);
+            var ounit = $("#county-dropdown").val();
+            var subcountyou = $("#subcounty-dropdown").val();
+            if(subcountyou!=null)
+            {
+                var ounit = subcountyou;
+            }
+            if(ounit == null && subcountyou ==null){
+                var ounit = 'HfVjCurKxh2';
+                ounit = myOU();
+            }
+
+            var sDate = $('#h_period').val();
+            if(sDate.length > 3){
+                var period = sDate
+            }else{
+                var period = getPreviousPMonth(); //'LAST_MONTH';   
+            }
+
+            var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:jfUzb86mBSP.DTnItSklSr8;HwvUHnslwbh.DTnItSklSr8;OLYLVMDHEj8.DTnItSklSr8;UJeKVZzAnfS.DTnItSklSr8;naztfZrbMtd.DTnItSklSr8;EtG9ozt2joA.DTnItSklSr8;Umi8ZsiqBHw.DTnItSklSr8&dimension=ou:LEVEL-5'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+            // var url = 'https://json.link/XzcqOsT1OV.json'
+            fetchFIs(url,ounit,period);
             $("#county-dropdown").change(function() 
             {
-                ounit = $(this).val();
-                				
-				var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:E1J6vMP5hFO;Gwr4lywXLiM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchSP(url, ounit);				
+                ounit1 = $(this).val();
+                var sDate = $('#h_period').val();
+                if(sDate.length > 3){
+                    var period = sDate
+                }else{
+                    var period = getPreviousPMonth(); //'LAST_MONTH';   
+                }
+                var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:jfUzb86mBSP.DTnItSklSr8;HwvUHnslwbh.DTnItSklSr8;OLYLVMDHEj8.DTnItSklSr8;UJeKVZzAnfS.DTnItSklSr8;naztfZrbMtd.DTnItSklSr8;EtG9ozt2joA.DTnItSklSr8;Umi8ZsiqBHw.DTnItSklSr8&dimension=ou:LEVEL-5'+ounit1+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchFIs(url,ounit1,period);
                 
             });
 
             $("#subcounty-dropdown").change(function() 
             {
-                ounit = $(this).val();                
-				
-				var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:E1J6vMP5hFO;Gwr4lywXLiM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-                fetchSP(url, ounit);
+                ounit2 = $(this).val();
+                var sDate = $('#h_period').val();
+                if(sDate.length > 3){
+                    var period = sDate
+                }else{
+                    var period = getPreviousPMonth(); //'LAST_MONTH';   
+                }
+                var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:jfUzb86mBSP.DTnItSklSr8;HwvUHnslwbh.DTnItSklSr8;OLYLVMDHEj8.DTnItSklSr8;UJeKVZzAnfS.DTnItSklSr8;naztfZrbMtd.DTnItSklSr8;EtG9ozt2joA.DTnItSklSr8;Umi8ZsiqBHw.DTnItSklSr8&dimension=ou:LEVEL-5'+ounit2+'&displayProperty=NAME&outputIdScheme=UID';
+                fetchFIs(url,ounit2,period);
                 
             });
 					
 	});
 	
-		//get the relevant period
-		function getPreviousPMonth() 
-		{
-                var curdate = new Date();
-
-				var today = curdate.getDate();
-
-				if(today<15)
-					curdate.setMonth(curdate.getMonth() - 2);
-				else
-					curdate.setMonth(curdate.getMonth() - 1);
-
-				per_y = curdate.getFullYear();
-				per_m = parseFloat(curdate.getMonth())+1;
-				
-				if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
-				var per = per_y+""+per_m;
-				
-                return per
-                // return(getPerio(per, false))
-        }
 	
         //change of period		
         function datePicked(sDate)
@@ -657,159 +561,45 @@
             var ounit = $("#county-dropdown").val();
             var subcountyou = $("#subcounty-dropdown").val();
             var period = therdate;
+            $('#h_period').val(period)
             
             if(subcountyou!=null)
             {
                 var ounit = subcountyou;
             }
+            if(ounit == null && subcountyou ==null){
+                var ounit = 'tAbBVBbueqD';
+                ounit = myOU();
+            }
             
-            //var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
-			
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:E1J6vMP5hFO;Gwr4lywXLiM&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-            fetchSP(url, ounit);
+            var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:jfUzb86mBSP.DTnItSklSr8;HwvUHnslwbh.DTnItSklSr8;OLYLVMDHEj8.DTnItSklSr8;UJeKVZzAnfS.DTnItSklSr8;naztfZrbMtd.DTnItSklSr8;EtG9ozt2joA.DTnItSklSr8;Umi8ZsiqBHw.DTnItSklSr8&dimension=ou:LEVEL-5'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+            // var url = 'http://localhost/pmi/json/artesunate.json'
+            fetchFIs(url,ounit,period);
         }
         
-        //function to process the total acts vs weight url
-        function fetchSP(spurl, ounit)
-        {
-            $('#sp_table').addClass('hidden');
-            $('.spdata').addClass('hidden');
-            $('.loader-sp').removeClass('hidden');
-            $('.loader-sp').css('display','block');
+        //get the previous month
+		function getPreviousPMonth() 
+		{
+			var curdate = new Date();
 
-            $.getJSON(spurl, function (data){
-            $.ajax({
-                type: 'GET',
-                crossDomain: true,
-                url: spurl,                    
-                success: function (data) {
+			var today = curdate.getDate();
 
-                    //create the org units array
-                    //var orgunits = [];
-                    //var dxids = [];
+			if(today<15)
+				curdate.setMonth(curdate.getMonth() - 2);
+			else
+				curdate.setMonth(curdate.getMonth() - 1);
 
-                    //var tableData = '<table>';
-                    var tableData = '';	
-					
-					//define the mfl codes
-					var mflcodes = [];
-					$.each(data.metaData.dimensions.ou, function (key, entry) 
-                    {
-						$.each(data.rows, function (rkey, rentry) 
-						{			
-								
-							var dxid = rentry[0];
-							var orgunit = rentry[2];
-							var dxval = rentry[3];
-							if(orgunit==entry)
-							{
-								mflcodes[orgunit] = getMFLcode(entry);
-							}
-								
-						})																		
-												
-                    })
-															
-                    $.each(data.metaData.dimensions.ou, function (key, entry) 
-                    {                            
-							
-							var dxcalvals = [];
-							
-							$.each(data.metaData.dimensions.dx, function (dxkey, dxentry) 
-							{	
-								if(dxentry!='VBbnGNfZWDU.NhSoXUMPK2K')
-								{
-									$.each(data.rows, function (rkey, rentry) 
-									{			
-											
-										var dxid = rentry[0];
-										var orgunit = rentry[2];
-										var dxval = rentry[3];									
-										if(orgunit==entry)
-										{
-											if(dxentry==dxid)							
-											{		
-												dxcalvals.push(dxval);																	
-											}
-										}
-											
-									})
-								}
-							})
-
-													
-							//check if values exist
-							if(dxcalvals[0] === undefined) 
-							{
-								//do something	
-							}
-							else
-							{
-								//get the diff calculation
-								var diffcal = dxcalvals[0]-dxcalvals[1];
-								var percentdiff = ((diffcal)/dxcalvals[1])*100;
-								
-								//define the table
-								tableData += '<tr>';	
-								
-								tableData += '<td>'+data.metaData.items[entry].name+'</td>';
-								
-                                //console.log(data.metaData.items[entry].name);
-								tableData += '<td>'+mflcodes[entry]+'</td>';
-								tableData += '<td>'+data.metaData.dimensions.pe+ '</td>';
-								tableData += '<td>'+dxcalvals[0]+'</td>';
-								tableData += '<td>'+dxcalvals[1]+'</td>';								
-								tableData += '<td>'+Math.trunc(diffcal)+ '</td>';							
-								tableData += '<td>'+Math.trunc(percentdiff).toFixed(1)+ '</td>';
-                                
-								tableData += '</tr>';
-							}							
-                        })
-                        
-                        //tableData += '<table>';	
-                            //console.log(tableData)
-                    var the_period = data.metaData.items[data.metaData.dimensions.pe[0]].name;
-
-                    $.ajax({      
-                        dataType: "json",
-                        url: 'https://hiskenya.org/api/organisationUnits/'+ounit+'.json?fields=id,name',
-                        success: function(datax) {          
-                            $(".ttitle").html(datax['name']+', '+the_period);
-                        }
-                    });
-					
-                    $('#sp_table').removeClass('hidden');
-                    $('.spdata').removeClass('hidden');
-                    $('.loader-sp').addClass('hidden');
-                    $('.loader-sp').css('display','none');					
-					
-					$('#sp_table').DataTable().destroy();
-                    $("table.spbox tbody").empty();
-                    $("table.spbox tbody").append(tableData);	
-                    //$('#sp_table').DataTable(); 
-                    $('#sp_table').DataTable( {
-                        dom: 'Bfrtlip',
-                        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-                        buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
-                        ],
-                        // ordering: false,
-                        // orderable: false
-                    });                                                                           
-                    //$('#sp_table').DataTable().fnDraw();					
-                },
-				
-                error: function (request, status, error) {
-                    $('.loader-sp').addClass('hidden');
-                    $('#sp_table').addClass('hidden');
-                    //console.log('totalactsvsweight: error fetching json. :- '+error);
-                    $('spdata').addClass('hidden');
-                    $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-					}
-				});
-			})
+			per_y = curdate.getFullYear();
+			per_m = parseFloat(curdate.getMonth())+1;
+			
+			if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+			
+			var per = per_y+""+per_m;
+			
+			return per
+			//return(getPerio(per, false))
         }
-       // downloadTable("sp_table");
+        
 </script>
 
 </body>
