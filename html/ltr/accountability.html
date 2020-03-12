@@ -462,6 +462,7 @@
 			dropdown.empty();
 			subcounty.empty();
 			perioddwn.empty();
+            facilitydwn.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
             dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
@@ -528,14 +529,14 @@
                 facilitydwn.append('<option value='+$(this).val()+'>All subcounties</option>');
 				
 				// Populate dropdown with list of sub counties
-				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:5&fields=id,name,level,parent&paging=false', function (dataa) 
+				$.getJSON('https://hiskenya.org/api/organisationUnits/'+subcountyid+'.json?filter=level:eq:5&fields=id,name,level,parent&paging=false', function (dataa) 
 				{			
 					$.each(dataa.organisationUnits, function (key, fty) 
 					{				
-						if(fty.parent.id==subcountyid)
-						{
-							facilitydwn.append($('<option></option>').attr('value', fty.id).text(fty.name));
-						}				
+						// if(fty.parent.id==subcountyid)
+						// {
+							$('#facility-dropdown').append($('<option></option>').attr('value', fty.id).text(fty.name));
+						// }				
 					})		 
 				});		
 			});
