@@ -57,7 +57,7 @@ function fetchFIs(fiurl,orgu,peri)
                             orgunits.push(rowentry[2]);
                         }
                     })
-                    console.log("orgunits = ", orgunits)
+                    // console.log("orgunits = ", orgunits)
 
                     var facility_count  = 0;
                     //console.log(orgunits.length);
@@ -188,7 +188,7 @@ function fetchFIs(fiurl,orgu,peri)
 
      var mfl_codes_array = [];
      mfl_url = 'https://hiskenya.org/api/organisationUnits.json?fields=id,code&paging=false';
-    //  mfl_url = 'http://localhost/pmi/json/mflcode.json';
+    //  mfl_url = 'https://json.link/Gr6ECImaDf.json';
      getMFLarray(mfl_url);
 
      function getMFLarray(mfl_url) {
@@ -210,9 +210,11 @@ function fetchFIs(fiurl,orgu,peri)
          var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
              return v.id === dhis_id;
          });
-         var mfl_id = arr_filterd_by_dhis_code[0].code;
-         if(mfl_id == undefined){
-             mfl_id = 'Not Available';
+         var mfl_id
+         if(arr_filterd_by_dhis_code.length<1){
+            mfl_id = 'Not Available';
+            }else{
+            mfl_id = arr_filterd_by_dhis_code[0].code;
          }
          return mfl_id;
      
