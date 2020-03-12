@@ -524,23 +524,23 @@
 				});		
 			});
 			
-			$("#facility-dropdown").change(function() 
+			$("#subcounty-dropdown").change(function() 
 			{  
 				facilitydwn.empty();
 				var subcountyid = $(this).val();
 				facilitydwn.append('<option selected="true" disabled>Select Facility</option>');
                 facilitydwn.prop('selectedIndex', 0);
-                facilitydwn.append('<option value='+$(this).val()+'>All subcounties</option>');
+                facilitydwn.append('<option value='+$(this).val()+'>All facilities</option>');
 				
-				// Populate dropdown with list of sub counties
-				$.getJSON('https://hiskenya.org/api/organisationUnits/'+subcountyid+'.json?filter=level:eq:5&fields=id,name,level,parent&paging=false', function (dataa) 
+				// Populate dropdown with list of facilities
+				$.getJSON('https://hiskenya.org/api/organisationUnits/'+subcountyid+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true', function (dataa) 
 				{			
 					$.each(dataa.organisationUnits, function (key, fty) 
 					{				
-						// if(fty.parent.id==subcountyid)
-						// {
-							$('#facility-dropdown').append($('<option></option>').attr('value', fty.id).text(fty.name));
-						// }				
+						if(fty.parent.id==subcountyid)
+						{
+							facilitydwn.append($('<option></option>').attr('value', fty.id).text(fty.name));
+						}				
 					})		 
 				});		
 			});
