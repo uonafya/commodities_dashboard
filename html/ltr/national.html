@@ -391,7 +391,22 @@
                                             </div>
                                         </div>
                                     </div>                              
-                                    <div id="national-container" style="width: 600px; height: 400px; margin: 0 auto"></div>       
+                                    <div id="national-container" style="width: 600px; height: 400px; margin: 0 auto"></div>
+									<h3>KEMSA Stock Summary</h3>
+									<table id="kemsa_table" class="table hidden table-striped table-condensed slimtable table-bordered kemsabox">
+										<thead>
+											<tr>												
+												<th>Commodity</th>
+												<th class="text-right">Opening SOH</th>
+												<th class="text-right">Total Receipts</th>
+												<th class="text-right">Total Issues</th>
+												<th class="text-right">Closing SOH</th>
+												<th class="text-right">Pending Stocks</th>												
+											</tr>		
+										</thead>
+										<tbody>
+										</tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -612,6 +627,177 @@
 });
 
 
+</script>
+
+<script>
+	$(document).ready(function() 
+	{
+		//define the constants
+		var ounit = 'HfVjCurKxh2';
+		if( myOU() != 'HfVjCurKxh2' )
+		{
+			ounit = myOU();
+		}
+					
+		var period = getPreviousPMonth(); //'LAST_MONTH';		
+		
+		var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:Aui7lNDOsSF.svPoNZ3VkVx;Aui7lNDOsSF.G3eMNWySdZq;Aui7lNDOsSF.Q9rPivWnD4K;Aui7lNDOsSF.HMTuusGLTUj;Aui7lNDOsSF.sEiFVVjqcfg;Kkh8ZtRWFmX.svPoNZ3VkVx;Kkh8ZtRWFmX.G3eMNWySdZq;Kkh8ZtRWFmX.Q9rPivWnD4K;Kkh8ZtRWFmX.HMTuusGLTUj;Kkh8ZtRWFmX.sEiFVVjqcfg;iZe9QHpC31Y.svPoNZ3VkVx;iZe9QHpC31Y.G3eMNWySdZq;iZe9QHpC31Y.Q9rPivWnD4K;iZe9QHpC31Y.HMTuusGLTUj;iZe9QHpC31Y.sEiFVVjqcfg;E7M967QxxFc.svPoNZ3VkVx;E7M967QxxFc.G3eMNWySdZq;E7M967QxxFc.Q9rPivWnD4K;E7M967QxxFc.HMTuusGLTUj;E7M967QxxFc.sEiFVVjqcfg;Wupc6TOJhcK.svPoNZ3VkVx;Wupc6TOJhcK.G3eMNWySdZq;Wupc6TOJhcK.Q9rPivWnD4K;Wupc6TOJhcK.HMTuusGLTUj;Wupc6TOJhcK.sEiFVVjqcfg;lZCba7Ijb7x.svPoNZ3VkVx;lZCba7Ijb7x.G3eMNWySdZq;lZCba7Ijb7x.Q9rPivWnD4K;lZCba7Ijb7x.HMTuusGLTUj;lZCba7Ijb7x.sEiFVVjqcfg;ALnonKSyDct.svPoNZ3VkVx;ALnonKSyDct.G3eMNWySdZq;ALnonKSyDct.Q9rPivWnD4K;ALnonKSyDct.HMTuusGLTUj;ALnonKSyDct.sEiFVVjqcfg&dimension=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID';
+		
+		//var url = 'http://localhost/pmilive/commodities_dashboard/kemsa.json';
+		
+		fetchKEMSA(url);
+	});
+	
+	
+        //change of period		
+        function datePicked(sDate)
+        {
+            var dateparts = sDate.split('/', 2);
+            var therdate = dateparts[1]+''+dateparts[0];
+            var period = therdate;
+			
+			ounit = 'HfVjCurKxh2';
+            
+            //var url = 'pmi.json';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:Aui7lNDOsSF.svPoNZ3VkVx;Aui7lNDOsSF.G3eMNWySdZq;Aui7lNDOsSF.Q9rPivWnD4K;Aui7lNDOsSF.HMTuusGLTUj;Aui7lNDOsSF.sEiFVVjqcfg;Kkh8ZtRWFmX.svPoNZ3VkVx;Kkh8ZtRWFmX.G3eMNWySdZq;Kkh8ZtRWFmX.Q9rPivWnD4K;Kkh8ZtRWFmX.HMTuusGLTUj;Kkh8ZtRWFmX.sEiFVVjqcfg;iZe9QHpC31Y.svPoNZ3VkVx;iZe9QHpC31Y.G3eMNWySdZq;iZe9QHpC31Y.Q9rPivWnD4K;iZe9QHpC31Y.HMTuusGLTUj;iZe9QHpC31Y.sEiFVVjqcfg;E7M967QxxFc.svPoNZ3VkVx;E7M967QxxFc.G3eMNWySdZq;E7M967QxxFc.Q9rPivWnD4K;E7M967QxxFc.HMTuusGLTUj;E7M967QxxFc.sEiFVVjqcfg;Wupc6TOJhcK.svPoNZ3VkVx;Wupc6TOJhcK.G3eMNWySdZq;Wupc6TOJhcK.Q9rPivWnD4K;Wupc6TOJhcK.HMTuusGLTUj;Wupc6TOJhcK.sEiFVVjqcfg;lZCba7Ijb7x.svPoNZ3VkVx;lZCba7Ijb7x.G3eMNWySdZq;lZCba7Ijb7x.Q9rPivWnD4K;lZCba7Ijb7x.HMTuusGLTUj;lZCba7Ijb7x.sEiFVVjqcfg;ALnonKSyDct.svPoNZ3VkVx;ALnonKSyDct.G3eMNWySdZq;ALnonKSyDct.Q9rPivWnD4K;ALnonKSyDct.HMTuusGLTUj;ALnonKSyDct.sEiFVVjqcfg&dimension=ou:HfVjCurKxh2&displayProperty=NAME&outputIdScheme=UID';
+			
+            fetchKEMSA(url);
+        }
+        
+        //function toprocess the SP url
+        function fetchKEMSA(url)
+        {            
+            $.ajax({
+                type: 'GET',
+                crossDomain: true,
+                url: url,                    
+                success: function (data) 
+				{
+                    
+                var tableData = '';
+                  
+				var dxidsadjc = [];            
+				var dxidshfs = [];
+
+				var count =0;
+				
+				//products to be displayed
+				var products=["Artemether-Lumefantrine 20/120 Tabs 6s", "Artemether-Lumefantrine 20/120 Tabs 12s",
+				 "Artemether-Lumefantrine 20/120 Tabs 18s", "Artemether-Lumefantrine 20/120 Tabs 24s", 
+				 "Artesunate Injection", "Sulphadoxine Pyrimethamine Tabs", "Rapid Diagnostic Tests"]
+				
+				//productids
+				var productids=["Aui7lNDOsSF", "iZe9QHpC31Y","Kkh8ZtRWFmX", "E7M967QxxFc", 
+				 "Wupc6TOJhcK", "lZCba7Ijb7x", "ALnonKSyDct"]
+				 
+				//data elements
+				var dataelement = ["svPoNZ3VkVx","G3eMNWySdZq","Q9rPivWnD4K","HMTuusGLTUj","sEiFVVjqcfg"];
+				
+				//doses for each product
+				var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"] ;
+				
+				//apply the title
+				var theperiod = data.metaData.dimensions.pe[0];
+																		
+				var curpe = data.metaData.items[theperiod].name;														
+				
+				$.each(products, function (index, name)
+				{
+					tableData += '<tr>';
+					tableData += '<td>'+ name +'</td>';  
+					//tableData += '<td>'+dxuom[i]+'</td>';
+					$.each(dataelement, function (id, ref)
+					{
+						var dataval = 0;
+						var rowref = productids[index]+'.'+ref;	
+						console.log(rowref);						
+						$.each(data.rows, function (rowkey, rowentry)
+						{			
+							console.log(rowentry);
+							if(rowentry[0]==rowref)	
+							{
+								dataval = rowentry[3];								
+							}						
+											
+						})
+						tableData += '<td class="text-right">'+parseFloat(dataval)+'</td>';
+					})	
+					tableData += '</tr>';
+				})  
+				
+				$('#kemsa_table').removeClass('hidden');
+				$('.spdata').removeClass('hidden');
+				$('.loader-sp').addClass('hidden');
+				$('.loader-sp').css('display','none');
+				
+				$('#kemsa_table').DataTable().destroy();
+				$("table.kemsabox tbody").empty();
+				$("table.kemsabox tbody").append(tableData);	
+				//$('#sp_table').DataTable();         
+				$('#kemsa_table').DataTable( {
+					dom: 'Bfrtip',
+					buttons: [
+						'copy', 'csv', 'excel', 'pdf', 'print'
+					],
+					ordering: false,
+					orderable: false
+				});                                                 
+             },
+                error: function (request, status, error) {
+                    $('.loader-sp').addClass('hidden');
+                    $('#kemsa_table').addClass('hidden');
+                    //console.log('SP: error fetching json. :- '+error);
+                    $('spdata').addClass('hidden');
+                    $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                }
+            });
+    }
+			
+	//get the period
+	function getPeriod()
+	{
+		var periodval = $("#period-dropdown").val();
+
+		if(periodval == null || periodval=='')
+		{
+			periodval = getPreviousPMonth(); //'LAST_MONTH';
+		}
+		else
+		{
+			var dateparts = periodval.split('/', 2);
+
+			var therdate = dateparts[1]+''+dateparts[0];                
+			var periodval = therdate;
+		}
+		
+		return periodval;
+    }
+	
+	
+	//get the previous month
+	function getPreviousPMonth() 
+	{
+		var curdate = new Date();
+
+		var today = curdate.getDate();
+
+		if(today<15)
+			curdate.setMonth(curdate.getMonth() - 2);
+		else
+			curdate.setMonth(curdate.getMonth() - 1);
+
+		per_y = curdate.getFullYear();
+		per_m = parseFloat(curdate.getMonth())+1;
+		
+		if(parseFloat(per_m) < 10){ per_m = "0"+per_m}
+		
+		var per = per_y+""+per_m;
+		
+		return per
+		//return(getPerio(per, false))
+	}
+    
+    //downloadTable('sp_table');
 </script>
 
 </body>
