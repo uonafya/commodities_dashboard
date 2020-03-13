@@ -135,7 +135,7 @@ $(document).ready(function () {
 function getMyOU() {
     var myou = null;
     $.getJSON("https://hiskenya.org/api/me.json?paging=false", function (data, textStatus, jqXHR) {
-    // $.getJSON("http://localhost/pmi/json/me.json", function (data, textStatus, jqXHR) {
+        // $.getJSON("https://json.link/oXqJ2CQ4c1.json", function (data, textStatus, jqXHR) {
         var my_ous = data.organisationUnits;
         var my_dv_ous = data.dataViewOrganisationUnits;
         var my_ou_0 = my_ous[0].id;
