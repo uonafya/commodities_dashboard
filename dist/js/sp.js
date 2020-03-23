@@ -236,9 +236,10 @@ function checkOUs(ouid){
          var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
              return v.id === dhis_id;
          });
-         var mfl_id = arr_filterd_by_dhis_code[0].code;
-         if(mfl_id == undefined){
-             mfl_id = 'Not Available';
+         if(arr_filterd_by_dhis_code.length<1){
+            mfl_id = 'Not Available';
+            }else{
+            mfl_id = arr_filterd_by_dhis_code[0].code;
          }
          return mfl_id;
      

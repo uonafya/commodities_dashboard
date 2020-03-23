@@ -1,6 +1,6 @@
 {
-    "version": "1.0.2",
-    "name": "Health Commodities Dashboard V2",
+    "version": "1.0.4",
+    "name": "Health Commodities Dashboard",
     "description": "An App to Visualize Malaria Commodities data",
     "launch_path": "html/ltr/landing.html",
     "appType": "APP",
