@@ -476,9 +476,10 @@
         }else{
             var mnthLessBy = -1
         }
+        let twenty15 = `-${parseFloat(new Date().getFullYear()) - 2015}y`;
         $('#period-dropdown').MonthPicker({ 
             Button: false,
-           MinMonth: '-5y',
+           MinMonth: twenty15,
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,

@@ -421,9 +421,10 @@
     <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
 
     <script>
-        $('#period-dropdown').MonthPicker({ 
+        let twenty15 = `-${parseFloat(new Date().getFullYear()) - 2015}y`;
+$('#period-dropdown').MonthPicker({ 
             Button: false,
-           MinMonth: '-5y',
+           MinMonth: twenty15,
             MaxMonth: -1,
             MinYear: 0,
             MaxYear: 0,
