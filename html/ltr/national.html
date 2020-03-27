@@ -494,6 +494,7 @@
             OnAfterChooseMonth: function() {  
                 var sDate = $(this).val();
                 datePicked(sDate);
+				datePickedKemsa(sDate);
             }
         });        
     </script>
@@ -651,7 +652,7 @@
 	
 	
         //change of period		
-        function datePicked(sDate)
+        function datePickedKemsa(sDate)
         {
             var dateparts = sDate.split('/', 2);
             var therdate = dateparts[1]+''+dateparts[0];
