@@ -63,6 +63,7 @@ function fetchFIs(fiurl,orgu,peri)
                     //console.log(orgunits.length);
                     $.each(data.metaData.dimensions.ou, function (key, o_ou) {
                         if(checkOUs(o_ou)){
+                            // console.log(`ou ==> $`);
                             facility_count+=1;
                             //define the table
                             tableData += '<tr>';	
