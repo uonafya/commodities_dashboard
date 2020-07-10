@@ -40,7 +40,7 @@ function fetchFIs(fiurl,orgu,peri)
                 crossDomain: true,
                 url: fiurl,                    
                 success: function (data) {
-
+					
                     //create the org units array
                     var orgunits = [];
                     var dxids = [];
@@ -69,6 +69,7 @@ function fetchFIs(fiurl,orgu,peri)
                             tableData += '<tr>';	
                             tableData += '<td>'+data.metaData.items[o_ou].name+'</td>';
                             tableData += '<td>'+getMFLcode(o_ou)+'</td>';
+							
 
                             //get all the dimensions for the given orgunit
                             dxids = [];

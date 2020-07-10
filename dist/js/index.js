@@ -474,8 +474,18 @@ function fetchAdjSOH(urlcon,alnames,countyid,periodid) {
                     bgcolor = '#ffeb9c';
                     var fcolor = '#222222';
 
-                tableData += '<td class="text-right">'+formatNumber(adjc.toFixed(0))+'</td>';
-                tableData += '<td class="text-right">'+formatNumber(phycount.toFixed(0))+'</td>';
+				//Remove the SOH and Adjc values for AL All
+				if(countercon==4)
+				{
+					tableData += '<td class="text-right"></td>';
+					tableData += '<td class="text-right"></td>';
+				}
+				else
+				{
+					tableData += '<td class="text-right">'+formatNumber(adjc.toFixed(0))+'</td>';
+					tableData += '<td class="text-right">'+formatNumber(phycount.toFixed(0))+'</td>';
+				}		
+								
                 tableData += '<td class="text-right" style="color: '+fcolor+' !important;" bgcolor="'+bgcolor+'">'+formatNumber(mos.toFixed(1))+'</td>';                            					
 
                 tableData += '</tr>';
