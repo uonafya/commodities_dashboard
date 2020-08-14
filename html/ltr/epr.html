@@ -188,7 +188,7 @@
                                                         <span class="mail-desc">Just see the my new admin!</span> 
                                                     </div>
                                                 </div>
-                                            </a>
+                                            </a> 
                                         </div>
                                     </li>
                                 </ul>
@@ -288,9 +288,9 @@
                                                 <select class="form-control m-r-5" id="facility-dropdown" placeholder="Select Facility" name="facility">                                                
                                                 </select> 
                                             </div> 
-                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <!-- <div class="col-md-3 col-sm-3 col-xs-12">
                                                 <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
-                                            </div> 
+                                            </div>  -->
                                         </div>
                                     </div> 
                                     <div class="col-md-1 col-sm-1 col-xs-1">
@@ -329,7 +329,7 @@
 
                                 <div class="row spdata">
                                     <div class="table-responsive">
-                                        <table id="sp_table" class="table table-condensed slimtable table-bordered spbox hidden">
+                                        <table id="epr_table" class="table table-condensed slimtable table-bordered spbox hidden">
                                         <thead>
 											<tr>
                                                 <th><b>Week</b></th>
@@ -377,7 +377,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../../dist/js/defaults.js"></script>
+    <script src="../../dist/js/defaults.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -432,9 +432,172 @@
         });        
     </script>
     <!-- *********** end MonthPicker ************** -->
+    <script>
+		$(document).ready(function() 
+		{
+			var dropdown = $('#county-dropdown');
+			
+			var subcounty = $('#subcounty-dropdown');
+			
+            var facility = $('#facility-dropdown');
+			
+			// var perioddwn = $('#period-dropdown');
+
+			dropdown.empty();
+			subcounty.empty();
+			// perioddwn.empty();
+			facility.empty();
+
+            dropdown.append('<option selected="true" disabled>Select County</option>');
+            dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
+			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
+			
+			facility.append('<option selected="true" disabled>Select Facility</option>');
+			facility.prop('selectedIndex', 0);
+			
+			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+            subcounty.prop('selectedIndex', 0);
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
+                var myou = myOU();
+                $.each(data.organisationUnits, function (key, entry) 
+                {				
+                    if(entry.parent.id==myou)
+                    {							
+                        subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    }				
+                })		 
+            });	
+			
+			// perioddwn.append('<option selected="true" disabled>Select Period</option>');
+			// perioddwn.prop('selectedIndex', 0);
+
+			//const url = 'https://api.myjson.com/bins/7xq2x';
+
+			//populate dropdown with list of counties
+			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			{
+				//console.log(data.organisationUnits);
+				$.each(data.organisationUnits, function (key, entry) 
+				{						
+					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
+				})		 
+			});
+			
+			$("#county-dropdown").change(function() 
+			{  
+				subcounty.empty();
+				$('#facility-dropdown').empty();
+                facility.append('<option selected="true" disabled>Select Facility</option>');
+				facility.prop('selectedIndex', 0);
+				var countyid = $(this).val();
+				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+				subcounty.prop('selectedIndex', 0);
+                subcounty.append('<option value='+$(this).val()+'>All subcounties</option>');
+				
+				// Populate dropdown with list of sub counties
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				{			
+					$.each(data.organisationUnits, function (key, entry) 
+					{				
+						if(entry.parent.id==countyid)
+						{
+							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+						}				
+					})		 
+				});		
+			});
+			
+			$("#subcounty-dropdown").change(function() 
+			{  
+				$('#facility-dropdown').empty();
+				var subcountyid = $(this).val();
+				facility.append('<option selected="true" disabled>Select Facility</option>');
+				facility.prop('selectedIndex', 0);
+
+				$.getJSON('https://hiskenya.org/api/organisationUnits/'+subcountyid+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true', function (data) {
+                    //console.log("Facilities-data ==> "+JSON.stringify(data));
+					$.each(data.organisationUnits, function (key, entry) {				
+						//if(entry.parent.id==subcountyid){
+							$('#facility-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+						//}				
+					})
+				});
+			});
+		});
+	</script>
+			
 		
 	<script>      
         var link = 'https://json.link/v3iK24bUti.json'
+
+    
+	$(document).ready(function() 
+	{
+            // var ounit = 'HfVjCurKxh2'; //Kenya
+            // ounit = myOU(); //Kenya
+
+            //define the constants
+            var ounit = 'HfVjCurKxh2';
+            if( myOU() != 'HfVjCurKxh2' ){
+                ounit = myOU();
+            }
+			//define the constants
+            
+            // Populate dropdown with list of sub counties
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+                $.each(data.organisationUnits, function (key, entry){
+                    if(entry.parent.id==ounit){		
+                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    }
+                })
+            });
+            $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
+
+            var currentyear = parseFloat(new Date().getFullYear())
+            var lastyear = parseFloat(new Date().getFullYear() - 1)
+            var previousyear = parseFloat(new Date().getFullYear()-2)
+            var threeyearsback = parseFloat(new Date().getFullYear()-3)
+            
+            
+
+            //var url = 'sohcomparison.json';
+			
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:cILf2i4484b&dimension=pe:'+currentyear+'W53;'+currentyear+'W52;'+currentyear+'W51;'+currentyear+'W50;'+currentyear+'W49;'+currentyear+'W48;'+currentyear+'W47;'+currentyear+'W46;'+currentyear+'W45;'+currentyear+'W44;'+currentyear+'W43;'+currentyear+'W42;'+currentyear+'W41;'+currentyear+'W40;'+currentyear+'W39;'+currentyear+'W38;'+currentyear+'W37;'+currentyear+'W36;'+currentyear+'W35;'+currentyear+'W34;'+currentyear+'W33;'+currentyear+'W32;'+currentyear+'W31;'+currentyear+'W30;'+currentyear+'W29;'+currentyear+'W28;'+currentyear+'W27;'+currentyear+'W26;'+currentyear+'W25;'+currentyear+'W24;'+currentyear+'W23;'+currentyear+'W22;'+currentyear+'W21;'+currentyear+'W20;'+currentyear+'W19;'+currentyear+'W18;'+currentyear+'W17;'+currentyear+'W16;'+currentyear+'W15;'+currentyear+'W14;'+currentyear+'W13;'+currentyear+'W12;'+currentyear+'W11;'+currentyear+'W10;'+currentyear+'W9;'+currentyear+'W8;'+currentyear+'W7;'+currentyear+'W6;'+currentyear+'W5;'+currentyear+'W4;'+currentyear+'W3;'+currentyear+'W2;'+currentyear+'W1;'+lastyear+'W52;'+lastyear+'W51;'+lastyear+'W50;'+lastyear+'W49;'+lastyear+'W48;'+lastyear+'W47;'+lastyear+'W46;'+lastyear+'W45;'+lastyear+'W44;'+lastyear+'W43;'+lastyear+'W42;'+lastyear+'W41;'+lastyear+'W40;'+lastyear+'W39;'+lastyear+'W38;'+lastyear+'W37;'+lastyear+'W36;'+lastyear+'W35;'+lastyear+'W34;'+lastyear+'W33;'+lastyear+'W32;'+lastyear+'W31;'+lastyear+'W30;'+lastyear+'W29;'+lastyear+'W28;'+lastyear+'W27;'+lastyear+'W26;'+lastyear+'W25;'+lastyear+'W24;'+lastyear+'W23;'+lastyear+'W22;'+lastyear+'W21;'+lastyear+'W20;'+lastyear+'W19;'+lastyear+'W18;'+lastyear+'W17;'+lastyear+'W16;'+lastyear+'W15;'+lastyear+'W14;'+lastyear+'W13;'+lastyear+'W12;'+lastyear+'W11;'+lastyear+'W10;'+lastyear+'W9;'+lastyear+'W8;'+lastyear+'W7;'+lastyear+'W6;'+lastyear+'W5;'+lastyear+'W4;'+lastyear+'W3;'+lastyear+'W2;'+lastyear+'W1;'+previousyear+'W52;'+previousyear+'W51;'+previousyear+'W50;'+previousyear+'W49;'+previousyear+'W48;'+previousyear+'W47;'+previousyear+'W46;'+previousyear+'W45;'+previousyear+'W44;'+previousyear+'W43;'+previousyear+'W42;'+previousyear+'W41;'+previousyear+'W40;'+previousyear+'W39;'+previousyear+'W38;'+previousyear+'W37;'+previousyear+'W36;'+previousyear+'W35;'+previousyear+'W34;'+previousyear+'W33;'+previousyear+'W32;'+previousyear+'W31;'+previousyear+'W30;'+previousyear+'W29;'+previousyear+'W28;'+previousyear+'W27;'+previousyear+'W26;'+previousyear+'W25;'+previousyear+'W24;'+previousyear+'W23;'+previousyear+'W22;'+previousyear+'W21;'+previousyear+'W20;'+previousyear+'W19;'+previousyear+'W18;'+previousyear+'W17;'+previousyear+'W16;'+previousyear+'W15;'+previousyear+'W14;'+previousyear+'W13;'+previousyear+'W12;'+previousyear+'W11;'+previousyear+'W10;'+previousyear+'W9;'+previousyear+'W8;'+previousyear+'W7;'+previousyear+'W6;'+previousyear+'W5;'+previousyear+'W4;'+previousyear+'W3;'+previousyear+'W2;'+previousyear+'W1;'+threeyearsback+'W52;'+threeyearsback+'W51;'+threeyearsback+'W50;'+threeyearsback+'W49;'+threeyearsback+'W48;'+threeyearsback+'W47;'+threeyearsback+'W46;'+threeyearsback+'W45;'+threeyearsback+'W44;'+threeyearsback+'W43;'+threeyearsback+'W42;'+threeyearsback+'W41;'+threeyearsback+'W40;'+threeyearsback+'W39;'+threeyearsback+'W38;'+threeyearsback+'W37;'+threeyearsback+'W36;'+threeyearsback+'W35;'+threeyearsback+'W34;'+threeyearsback+'W33;'+threeyearsback+'W32;'+threeyearsback+'W31;'+threeyearsback+'W30;'+threeyearsback+'W29;'+threeyearsback+'W28;'+threeyearsback+'W27;'+threeyearsback+'W26;'+threeyearsback+'W25;'+threeyearsback+'W24;'+threeyearsback+'W23;'+threeyearsback+'W22;'+threeyearsback+'W21;'+threeyearsback+'W20;'+threeyearsback+'W19;'+threeyearsback+'W18;'+threeyearsback+'W17;'+threeyearsback+'W16;'+threeyearsback+'W15;'+threeyearsback+'W14;'+threeyearsback+'W13;'+threeyearsback+'W12;'+threeyearsback+'W11;'+threeyearsback+'W10;'+threeyearsback+'W9;'+threeyearsback+'W8;'+threeyearsback+'W7;'+threeyearsback+'W6;'+threeyearsback+'W5;'+threeyearsback+'W4;'+threeyearsback+'W3;'+threeyearsback+'W2;'+threeyearsback+'W1&filter=ou:XsRFIn0FhzA&displayProperty=NAME&outputIdScheme=UID'
+
+            getEPR(url);
+
+            
+			
+            // fetchSOHCompa(url,ounit);
+            // $("#county-dropdown").change(function() 
+            // {
+            //     ounit = $(this).val();
+            //     console.log('county changed')
+            //     var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:cILf2i4484b&dimension=pe:'+currentyear+'W53;'+currentyear+'W52;'+currentyear+'W51;'+currentyear+'W50;'+currentyear+'W49;'+currentyear+'W48;'+currentyear+'W47;'+currentyear+'W46;'+currentyear+'W45;'+currentyear+'W44;'+currentyear+'W43;'+currentyear+'W42;'+currentyear+'W41;'+currentyear+'W40;'+currentyear+'W39;'+currentyear+'W38;'+currentyear+'W37;'+currentyear+'W36;'+currentyear+'W35;'+currentyear+'W34;'+currentyear+'W33;'+currentyear+'W32;'+currentyear+'W31;'+currentyear+'W30;'+currentyear+'W29;'+currentyear+'W28;'+currentyear+'W27;'+currentyear+'W26;'+currentyear+'W25;'+currentyear+'W24;'+currentyear+'W23;'+currentyear+'W22;'+currentyear+'W21;'+currentyear+'W20;'+currentyear+'W19;'+currentyear+'W18;'+currentyear+'W17;'+currentyear+'W16;'+currentyear+'W15;'+currentyear+'W14;'+currentyear+'W13;'+currentyear+'W12;'+currentyear+'W11;'+currentyear+'W10;'+currentyear+'W9;'+currentyear+'W8;'+currentyear+'W7;'+currentyear+'W6;'+currentyear+'W5;'+currentyear+'W4;'+currentyear+'W3;'+currentyear+'W2;'+currentyear+'W1;'+lastyear+'W52;'+lastyear+'W51;'+lastyear+'W50;'+lastyear+'W49;'+lastyear+'W48;'+lastyear+'W47;'+lastyear+'W46;'+lastyear+'W45;'+lastyear+'W44;'+lastyear+'W43;'+lastyear+'W42;'+lastyear+'W41;'+lastyear+'W40;'+lastyear+'W39;'+lastyear+'W38;'+lastyear+'W37;'+lastyear+'W36;'+lastyear+'W35;'+lastyear+'W34;'+lastyear+'W33;'+lastyear+'W32;'+lastyear+'W31;'+lastyear+'W30;'+lastyear+'W29;'+lastyear+'W28;'+lastyear+'W27;'+lastyear+'W26;'+lastyear+'W25;'+lastyear+'W24;'+lastyear+'W23;'+lastyear+'W22;'+lastyear+'W21;'+lastyear+'W20;'+lastyear+'W19;'+lastyear+'W18;'+lastyear+'W17;'+lastyear+'W16;'+lastyear+'W15;'+lastyear+'W14;'+lastyear+'W13;'+lastyear+'W12;'+lastyear+'W11;'+lastyear+'W10;'+lastyear+'W9;'+lastyear+'W8;'+lastyear+'W7;'+lastyear+'W6;'+lastyear+'W5;'+lastyear+'W4;'+lastyear+'W3;'+lastyear+'W2;'+lastyear+'W1;'+previousyear+'W52;'+previousyear+'W51;'+previousyear+'W50;'+previousyear+'W49;'+previousyear+'W48;'+previousyear+'W47;'+previousyear+'W46;'+previousyear+'W45;'+previousyear+'W44;'+previousyear+'W43;'+previousyear+'W42;'+previousyear+'W41;'+previousyear+'W40;'+previousyear+'W39;'+previousyear+'W38;'+previousyear+'W37;'+previousyear+'W36;'+previousyear+'W35;'+previousyear+'W34;'+previousyear+'W33;'+previousyear+'W32;'+previousyear+'W31;'+previousyear+'W30;'+previousyear+'W29;'+previousyear+'W28;'+previousyear+'W27;'+previousyear+'W26;'+previousyear+'W25;'+previousyear+'W24;'+previousyear+'W23;'+previousyear+'W22;'+previousyear+'W21;'+previousyear+'W20;'+previousyear+'W19;'+previousyear+'W18;'+previousyear+'W17;'+previousyear+'W16;'+previousyear+'W15;'+previousyear+'W14;'+previousyear+'W13;'+previousyear+'W12;'+previousyear+'W11;'+previousyear+'W10;'+previousyear+'W9;'+previousyear+'W8;'+previousyear+'W7;'+previousyear+'W6;'+previousyear+'W5;'+previousyear+'W4;'+previousyear+'W3;'+previousyear+'W2;'+previousyear+'W1;'+threeyearsback+'W52;'+threeyearsback+'W51;'+threeyearsback+'W50;'+threeyearsback+'W49;'+threeyearsback+'W48;'+threeyearsback+'W47;'+threeyearsback+'W46;'+threeyearsback+'W45;'+threeyearsback+'W44;'+threeyearsback+'W43;'+threeyearsback+'W42;'+threeyearsback+'W41;'+threeyearsback+'W40;'+threeyearsback+'W39;'+threeyearsback+'W38;'+threeyearsback+'W37;'+threeyearsback+'W36;'+threeyearsback+'W35;'+threeyearsback+'W34;'+threeyearsback+'W33;'+threeyearsback+'W32;'+threeyearsback+'W31;'+threeyearsback+'W30;'+threeyearsback+'W29;'+threeyearsback+'W28;'+threeyearsback+'W27;'+threeyearsback+'W26;'+threeyearsback+'W25;'+threeyearsback+'W24;'+threeyearsback+'W23;'+threeyearsback+'W22;'+threeyearsback+'W21;'+threeyearsback+'W20;'+threeyearsback+'W19;'+threeyearsback+'W18;'+threeyearsback+'W17;'+threeyearsback+'W16;'+threeyearsback+'W15;'+threeyearsback+'W14;'+threeyearsback+'W13;'+threeyearsback+'W12;'+threeyearsback+'W11;'+threeyearsback+'W10;'+threeyearsback+'W9;'+threeyearsback+'W8;'+threeyearsback+'W7;'+threeyearsback+'W6;'+threeyearsback+'W5;'+threeyearsback+'W4;'+threeyearsback+'W3;'+threeyearsback+'W2;'+threeyearsback+'W1&filter=ou:XsRFIn0FhzA&displayProperty=NAME&outputIdScheme=UID'
+            //     getEPR(url);
+                
+            // });
+
+            // $("#subcounty-dropdown").change(function() 
+            // {
+            //     ounit = $(this).val();
+            //     console.log('subcounty changed')
+            //     var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:cILf2i4484b&dimension=pe:'+currentyear+'W53;'+currentyear+'W52;'+currentyear+'W51;'+currentyear+'W50;'+currentyear+'W49;'+currentyear+'W48;'+currentyear+'W47;'+currentyear+'W46;'+currentyear+'W45;'+currentyear+'W44;'+currentyear+'W43;'+currentyear+'W42;'+currentyear+'W41;'+currentyear+'W40;'+currentyear+'W39;'+currentyear+'W38;'+currentyear+'W37;'+currentyear+'W36;'+currentyear+'W35;'+currentyear+'W34;'+currentyear+'W33;'+currentyear+'W32;'+currentyear+'W31;'+currentyear+'W30;'+currentyear+'W29;'+currentyear+'W28;'+currentyear+'W27;'+currentyear+'W26;'+currentyear+'W25;'+currentyear+'W24;'+currentyear+'W23;'+currentyear+'W22;'+currentyear+'W21;'+currentyear+'W20;'+currentyear+'W19;'+currentyear+'W18;'+currentyear+'W17;'+currentyear+'W16;'+currentyear+'W15;'+currentyear+'W14;'+currentyear+'W13;'+currentyear+'W12;'+currentyear+'W11;'+currentyear+'W10;'+currentyear+'W9;'+currentyear+'W8;'+currentyear+'W7;'+currentyear+'W6;'+currentyear+'W5;'+currentyear+'W4;'+currentyear+'W3;'+currentyear+'W2;'+currentyear+'W1;'+lastyear+'W52;'+lastyear+'W51;'+lastyear+'W50;'+lastyear+'W49;'+lastyear+'W48;'+lastyear+'W47;'+lastyear+'W46;'+lastyear+'W45;'+lastyear+'W44;'+lastyear+'W43;'+lastyear+'W42;'+lastyear+'W41;'+lastyear+'W40;'+lastyear+'W39;'+lastyear+'W38;'+lastyear+'W37;'+lastyear+'W36;'+lastyear+'W35;'+lastyear+'W34;'+lastyear+'W33;'+lastyear+'W32;'+lastyear+'W31;'+lastyear+'W30;'+lastyear+'W29;'+lastyear+'W28;'+lastyear+'W27;'+lastyear+'W26;'+lastyear+'W25;'+lastyear+'W24;'+lastyear+'W23;'+lastyear+'W22;'+lastyear+'W21;'+lastyear+'W20;'+lastyear+'W19;'+lastyear+'W18;'+lastyear+'W17;'+lastyear+'W16;'+lastyear+'W15;'+lastyear+'W14;'+lastyear+'W13;'+lastyear+'W12;'+lastyear+'W11;'+lastyear+'W10;'+lastyear+'W9;'+lastyear+'W8;'+lastyear+'W7;'+lastyear+'W6;'+lastyear+'W5;'+lastyear+'W4;'+lastyear+'W3;'+lastyear+'W2;'+lastyear+'W1;'+previousyear+'W52;'+previousyear+'W51;'+previousyear+'W50;'+previousyear+'W49;'+previousyear+'W48;'+previousyear+'W47;'+previousyear+'W46;'+previousyear+'W45;'+previousyear+'W44;'+previousyear+'W43;'+previousyear+'W42;'+previousyear+'W41;'+previousyear+'W40;'+previousyear+'W39;'+previousyear+'W38;'+previousyear+'W37;'+previousyear+'W36;'+previousyear+'W35;'+previousyear+'W34;'+previousyear+'W33;'+previousyear+'W32;'+previousyear+'W31;'+previousyear+'W30;'+previousyear+'W29;'+previousyear+'W28;'+previousyear+'W27;'+previousyear+'W26;'+previousyear+'W25;'+previousyear+'W24;'+previousyear+'W23;'+previousyear+'W22;'+previousyear+'W21;'+previousyear+'W20;'+previousyear+'W19;'+previousyear+'W18;'+previousyear+'W17;'+previousyear+'W16;'+previousyear+'W15;'+previousyear+'W14;'+previousyear+'W13;'+previousyear+'W12;'+previousyear+'W11;'+previousyear+'W10;'+previousyear+'W9;'+previousyear+'W8;'+previousyear+'W7;'+previousyear+'W6;'+previousyear+'W5;'+previousyear+'W4;'+previousyear+'W3;'+previousyear+'W2;'+previousyear+'W1;'+threeyearsback+'W52;'+threeyearsback+'W51;'+threeyearsback+'W50;'+threeyearsback+'W49;'+threeyearsback+'W48;'+threeyearsback+'W47;'+threeyearsback+'W46;'+threeyearsback+'W45;'+threeyearsback+'W44;'+threeyearsback+'W43;'+threeyearsback+'W42;'+threeyearsback+'W41;'+threeyearsback+'W40;'+threeyearsback+'W39;'+threeyearsback+'W38;'+threeyearsback+'W37;'+threeyearsback+'W36;'+threeyearsback+'W35;'+threeyearsback+'W34;'+threeyearsback+'W33;'+threeyearsback+'W32;'+threeyearsback+'W31;'+threeyearsback+'W30;'+threeyearsback+'W29;'+threeyearsback+'W28;'+threeyearsback+'W27;'+threeyearsback+'W26;'+threeyearsback+'W25;'+threeyearsback+'W24;'+threeyearsback+'W23;'+threeyearsback+'W22;'+threeyearsback+'W21;'+threeyearsback+'W20;'+threeyearsback+'W19;'+threeyearsback+'W18;'+threeyearsback+'W17;'+threeyearsback+'W16;'+threeyearsback+'W15;'+threeyearsback+'W14;'+threeyearsback+'W13;'+threeyearsback+'W12;'+threeyearsback+'W11;'+threeyearsback+'W10;'+threeyearsback+'W9;'+threeyearsback+'W8;'+threeyearsback+'W7;'+threeyearsback+'W6;'+threeyearsback+'W5;'+threeyearsback+'W4;'+threeyearsback+'W3;'+threeyearsback+'W2;'+threeyearsback+'W1&filter=ou:XsRFIn0FhzA&displayProperty=NAME&outputIdScheme=UID'
+            //     getEPR(url);
+                
+            // });
+
+            $("#facility-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                console.log('facility changed')
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:cILf2i4484b&dimension=pe:'+currentyear+'W53;'+currentyear+'W52;'+currentyear+'W51;'+currentyear+'W50;'+currentyear+'W49;'+currentyear+'W48;'+currentyear+'W47;'+currentyear+'W46;'+currentyear+'W45;'+currentyear+'W44;'+currentyear+'W43;'+currentyear+'W42;'+currentyear+'W41;'+currentyear+'W40;'+currentyear+'W39;'+currentyear+'W38;'+currentyear+'W37;'+currentyear+'W36;'+currentyear+'W35;'+currentyear+'W34;'+currentyear+'W33;'+currentyear+'W32;'+currentyear+'W31;'+currentyear+'W30;'+currentyear+'W29;'+currentyear+'W28;'+currentyear+'W27;'+currentyear+'W26;'+currentyear+'W25;'+currentyear+'W24;'+currentyear+'W23;'+currentyear+'W22;'+currentyear+'W21;'+currentyear+'W20;'+currentyear+'W19;'+currentyear+'W18;'+currentyear+'W17;'+currentyear+'W16;'+currentyear+'W15;'+currentyear+'W14;'+currentyear+'W13;'+currentyear+'W12;'+currentyear+'W11;'+currentyear+'W10;'+currentyear+'W9;'+currentyear+'W8;'+currentyear+'W7;'+currentyear+'W6;'+currentyear+'W5;'+currentyear+'W4;'+currentyear+'W3;'+currentyear+'W2;'+currentyear+'W1;'+lastyear+'W52;'+lastyear+'W51;'+lastyear+'W50;'+lastyear+'W49;'+lastyear+'W48;'+lastyear+'W47;'+lastyear+'W46;'+lastyear+'W45;'+lastyear+'W44;'+lastyear+'W43;'+lastyear+'W42;'+lastyear+'W41;'+lastyear+'W40;'+lastyear+'W39;'+lastyear+'W38;'+lastyear+'W37;'+lastyear+'W36;'+lastyear+'W35;'+lastyear+'W34;'+lastyear+'W33;'+lastyear+'W32;'+lastyear+'W31;'+lastyear+'W30;'+lastyear+'W29;'+lastyear+'W28;'+lastyear+'W27;'+lastyear+'W26;'+lastyear+'W25;'+lastyear+'W24;'+lastyear+'W23;'+lastyear+'W22;'+lastyear+'W21;'+lastyear+'W20;'+lastyear+'W19;'+lastyear+'W18;'+lastyear+'W17;'+lastyear+'W16;'+lastyear+'W15;'+lastyear+'W14;'+lastyear+'W13;'+lastyear+'W12;'+lastyear+'W11;'+lastyear+'W10;'+lastyear+'W9;'+lastyear+'W8;'+lastyear+'W7;'+lastyear+'W6;'+lastyear+'W5;'+lastyear+'W4;'+lastyear+'W3;'+lastyear+'W2;'+lastyear+'W1;'+previousyear+'W52;'+previousyear+'W51;'+previousyear+'W50;'+previousyear+'W49;'+previousyear+'W48;'+previousyear+'W47;'+previousyear+'W46;'+previousyear+'W45;'+previousyear+'W44;'+previousyear+'W43;'+previousyear+'W42;'+previousyear+'W41;'+previousyear+'W40;'+previousyear+'W39;'+previousyear+'W38;'+previousyear+'W37;'+previousyear+'W36;'+previousyear+'W35;'+previousyear+'W34;'+previousyear+'W33;'+previousyear+'W32;'+previousyear+'W31;'+previousyear+'W30;'+previousyear+'W29;'+previousyear+'W28;'+previousyear+'W27;'+previousyear+'W26;'+previousyear+'W25;'+previousyear+'W24;'+previousyear+'W23;'+previousyear+'W22;'+previousyear+'W21;'+previousyear+'W20;'+previousyear+'W19;'+previousyear+'W18;'+previousyear+'W17;'+previousyear+'W16;'+previousyear+'W15;'+previousyear+'W14;'+previousyear+'W13;'+previousyear+'W12;'+previousyear+'W11;'+previousyear+'W10;'+previousyear+'W9;'+previousyear+'W8;'+previousyear+'W7;'+previousyear+'W6;'+previousyear+'W5;'+previousyear+'W4;'+previousyear+'W3;'+previousyear+'W2;'+previousyear+'W1;'+threeyearsback+'W52;'+threeyearsback+'W51;'+threeyearsback+'W50;'+threeyearsback+'W49;'+threeyearsback+'W48;'+threeyearsback+'W47;'+threeyearsback+'W46;'+threeyearsback+'W45;'+threeyearsback+'W44;'+threeyearsback+'W43;'+threeyearsback+'W42;'+threeyearsback+'W41;'+threeyearsback+'W40;'+threeyearsback+'W39;'+threeyearsback+'W38;'+threeyearsback+'W37;'+threeyearsback+'W36;'+threeyearsback+'W35;'+threeyearsback+'W34;'+threeyearsback+'W33;'+threeyearsback+'W32;'+threeyearsback+'W31;'+threeyearsback+'W30;'+threeyearsback+'W29;'+threeyearsback+'W28;'+threeyearsback+'W27;'+threeyearsback+'W26;'+threeyearsback+'W25;'+threeyearsback+'W24;'+threeyearsback+'W23;'+threeyearsback+'W22;'+threeyearsback+'W21;'+threeyearsback+'W20;'+threeyearsback+'W19;'+threeyearsback+'W18;'+threeyearsback+'W17;'+threeyearsback+'W16;'+threeyearsback+'W15;'+threeyearsback+'W14;'+threeyearsback+'W13;'+threeyearsback+'W12;'+threeyearsback+'W11;'+threeyearsback+'W10;'+threeyearsback+'W9;'+threeyearsback+'W8;'+threeyearsback+'W7;'+threeyearsback+'W6;'+threeyearsback+'W5;'+threeyearsback+'W4;'+threeyearsback+'W3;'+threeyearsback+'W2;'+threeyearsback+'W1&filter=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+
+                getEPR(url);
+                
+            });
+					
+	});
  
         var todayYear=new Date().getFullYear();
         function calculateAlertThreshold(y3,y2,y1){
@@ -447,7 +610,19 @@
 
             
         }
-
+function getOrgUnit(uid, period)
+	{
+		var url = 'https://hiskenya.org/api/organisationUnits/'+uid+'.json?fields=id,name';
+		
+		$.ajax({      
+		  dataType: "json",
+		  url: url, //Relative or absolute path to response.php file      
+		  success: function(data) 
+		  {          
+			  $("h5.sohtitle").html(data['name']+' - '+period);
+		  }
+		});    
+	}
         function calculateActionTheshold(y3,y2,y1){
             rawData = [y3,y2,y1]
             var mean
@@ -470,13 +645,16 @@
 
         }
 
+ function getEPR(url){
+
+    console.log(url)
 
 		$(document).ready(function()
         { 
         $.ajax({
                 type: 'GET',
                 crossDomain: true,
-                url: link,                    
+                url: url,                    
                 success: function (data) {
                     
                 var tableData = '';
@@ -488,6 +666,8 @@
             let dyear4
             let alert_threshold
             let action_thershold
+            // var curpe = data.metaData.items[theperiod].name;
+            // getOrgUnit(ounit, curpe);
      
                 for(var i=1;i<=52;i++){
                     var year3 = $.grep(data.rows, function(data){
@@ -578,16 +758,16 @@
                                     
 
                 }    
-                  $('#sp_table').removeClass('hidden');
+                  $('#epr_table').removeClass('hidden');
                     $('.spdata').removeClass('hidden');
                     $('.loader-sp').addClass('hidden');
                     $('.loader-sp').css('display','none');
                     
-                    $('#sp_table').DataTable().destroy();
+                    $('#epr_table').DataTable().destroy();
                     $("table.spbox tbody").empty();
                     $("table.spbox tbody").append(tableData);	
-                    //$('#sp_table').DataTable();         
-                    $('#sp_table').DataTable( {
+                    //$('#epr_table').DataTable();         
+                    $('#epr_table').DataTable( {
                         // dom: 'Bfrtip',
                         // buttons: [
                         //     'copy', 'csv', 'excel', 'pdf', 'print'
@@ -600,7 +780,7 @@
              
                 error: function drawtable (request, status, error) {
                     $('.loader-sp').addClass('hidden');
-                    $('#sp_table').addClass('hidden');
+                    $('#epr_table').addClass('hidden');
                     //console.log('SP: error fetching json. :- '+error);
                     $('spdata').addClass('hidden');
                     $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
@@ -610,6 +790,7 @@
                 }})
 			
 		})
+ }
 
 	</script>
 			
