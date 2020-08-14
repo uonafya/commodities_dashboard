@@ -610,7 +610,7 @@
 
             
         }
-function getOrgUnit(uid, period)
+function getOrgUnit(uid)
 	{
 		var url = 'https://hiskenya.org/api/organisationUnits/'+uid+'.json?fields=id,name';
 		
@@ -619,7 +619,7 @@ function getOrgUnit(uid, period)
 		  url: url, //Relative or absolute path to response.php file      
 		  success: function(data) 
 		  {          
-			  $("h5.sohtitle").html(data['name']+' - '+period);
+			  $("h5.sohtitle").html(data['name'])
 		  }
 		});    
 	}
@@ -667,7 +667,7 @@ function getOrgUnit(uid, period)
             let alert_threshold
             let action_thershold
             // var curpe = data.metaData.items[theperiod].name;
-            // getOrgUnit(ounit, curpe);
+            getOrgUnit(ounit);
      
                 for(var i=1;i<=52;i++){
                     var year3 = $.grep(data.rows, function(data){
