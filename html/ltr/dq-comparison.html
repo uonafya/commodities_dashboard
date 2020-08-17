@@ -678,8 +678,6 @@
             $('.spdata').addClass('hidden');
             $('.loader-sp').removeClass('hidden');
             $('.loader-sp').css('display','block');
-
-            $.getJSON(spurl, function (data){
             $.ajax({
                 type: 'GET',
                 crossDomain: true,
@@ -809,7 +807,6 @@
                     $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
 					}
 				});
-			})
         }
        // downloadTable("sp_table");
 </script>
