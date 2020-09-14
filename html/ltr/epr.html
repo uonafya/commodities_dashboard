@@ -273,7 +273,7 @@
                         <div class="col-12 d-flex no-block align-items-center">
                             <div class="col-md-3 col-sm-3 col-xs-12">
                                 <h4 class="page-title m-t-10">
-                                    EPR Malaria threshold 
+                                    
                                 </h4>
                             </div>
                             <div class="col-md-9 col-sm-9 col-xs-12">
@@ -308,7 +308,10 @@
                     </div>
                 </div>
                 <br>
-               
+                
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="titlelabel"></h4>
+                </div>
                         <div class="card">
                             <div class="card-body">
 								<h5 class="card-title ttitle sohtitle"></h5>
@@ -360,7 +363,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Malaria Threshold</h5>
+                                    <h5 class="card-title"></h5>
                                     <div class="t_four_state col-md-12"></div>                              
                                     <div class="col-md-12 p-10"> 
                                         <div class="loader-sp t_four">
@@ -736,6 +739,11 @@ function getOrgUnit(uid)
                         }      
                         
                     })
+                    var theorgunit = data.metaData.dimensions.ou[0];
+                    var curorg = data.metaData.items[theorgunit].name;
+                    // var curpe = data.metaData.items[theperiod].name;
+        
+                 $("h4.titlelabel").html('EPR Malaria threshold -- '+curorg);
                     
                     tableData += '<tr>';
 
@@ -832,7 +840,6 @@ function getOrgUnit(uid)
 
 
  function getEPRVisul(i,ydata,alert,action) {
-     console.log(ydata)
      Highcharts.setOptions({
     colors: ['#058DC7', '#ED561B' ,'#50B432']
 });
