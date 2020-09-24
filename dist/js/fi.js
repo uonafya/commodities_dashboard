@@ -86,35 +86,35 @@ function fetchFIs(fiurl,orgu,peri)
                             var as_val = 0
                             var sp_val = 0
                             var rdt_val = 0
-                            let data_filteredby_ou = data.rows.filter( dou=>dou[2]==o_ou )
+                            let data_filteredby_ou = data.rows.filter( dou=>dou[1]==o_ou )
                             // console.log("data_filteredby_ou = ", data_filteredby_ou)
                             let al6_data = data_filteredby_ou.filter( a6 => a6[0]== data.metaData.dimensions.dx[0])
                             if(al6_data.length > 0){
-                                al6_val = al6_data[0][3]
+                                al6_val = al6_data[0][2]
                             }
                             let al12_data = data_filteredby_ou.filter( al12 => al12[0]== data.metaData.dimensions.dx[1])
                             if(al12_data.length > 0){
-                                al12_val = al12_data[0][3]
+                                al12_val = al12_data[0][2]
                             }
                             let al18_data = data_filteredby_ou.filter( al18 => al18[0]== data.metaData.dimensions.dx[2])
                             if(al18_data.length > 0){
-                                al18_val = al18_data[0][3]
+                                al18_val = al18_data[0][2]
                             }
                             let al24_data = data_filteredby_ou.filter( al24 => al24[0]== data.metaData.dimensions.dx[3])
                             if(al24_data.length > 0){
-                                al24_val = al24_data[0][3]
+                                al24_val = al24_data[0][2]
                             }
                             let as_data = data_filteredby_ou.filter( as => as[0] == data.metaData.dimensions.dx[4])
                             if(as_data.length > 0){
-                                as_val = as_data[0][3]
+                                as_val = as_data[0][2]
                             }
                             let sp_data = data_filteredby_ou.filter( sp => sp[0] == data.metaData.dimensions.dx[5])
                             if(sp_data.length > 0){
-                                sp_val = sp_data[0][3]
+                                sp_val = sp_data[0][2]
                             }
                             let rdt_data = data_filteredby_ou.filter( rdt => rdt[0] == data.metaData.dimensions.dx[6])
                             if(rdt_data.length > 0){
-                                rdt_val = rdt_data[0][3]
+                                rdt_val = rdt_data[0][2]
                             }
                             
                             tableData += `
