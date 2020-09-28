@@ -873,7 +873,7 @@ function getOrgUnit(uid)
 
                 }   
                 
-                getEPRVisul(weeks,dataaa,alert,action)  
+                getEPRVisul(weeks,dataaa,alert,action,curorg)  
                   $('#epr_table').removeClass('hidden');
                     $('.spdata').removeClass('hidden');
                     $('.loader-sp').addClass('hidden');
@@ -909,7 +909,7 @@ function getOrgUnit(uid)
  }
 
 
- function getEPRVisul(i,ydata,alert,action) {
+ function getEPRVisul(i,ydata,alert,action,orgunit) {
      Highcharts.setOptions({
     colors: ['#058DC7', '#ED561B' ,'#50B432']
 });
@@ -919,7 +919,7 @@ function getOrgUnit(uid)
         zoomType: 'xy'
     },
     title: {
-        text: 'EPR Visualization',
+        text: 'EPR Visualization -- '+orgunit,
         align: 'center'
     },
     subtitle: {
@@ -930,26 +930,11 @@ function getOrgUnit(uid)
         categories: i,
         crosshair: true
     }],
-    yAxis: [{ // Primary yAxis
-        labels: {
-            format: '{value} Cases',
-            style: {
-                color: Highcharts.getOptions().colors[2]
-            }
-        },
-        title: {
-            text: 'Alert Threshold',
-            style: {
-                color: Highcharts.getOptions().colors[2]
-            }
-        },
-        opposite: true
-
-    },
+    yAxis: [
     { // Secondary yAxis
         gridLineWidth: 0,
         title: {
-            text: 'Cases',
+            text: 'Confirmed Malaria Cases',
             style: {
                 color: Highcharts.getOptions().colors[0]
             }
@@ -961,23 +946,8 @@ function getOrgUnit(uid)
             }
         }
 
-    },
-    { // Tertiary yAxis
-        gridLineWidth: 0,
-        title: {
-            text: 'Action Threshold',
-            style: {
-                color: Highcharts.getOptions().colors[1]
-            }
-        },
-        labels: {
-            format: '{value} cases',
-            style: {
-                color: Highcharts.getOptions().colors[1]
-            }
-        },
-        opposite: true
     }
+    
 ],
     tooltip: {
         shared: true
@@ -996,14 +966,12 @@ function getOrgUnit(uid)
     series: [{
         name: '2020',
         type: 'column',
-        yAxis: 1,
         data: ydata,
         
 
     }, {
         name: 'Action Threshold',
         type: 'spline',
-        yAxis: 2,
         data: action,
         marker: {
             enabled: true
