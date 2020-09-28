@@ -514,7 +514,8 @@
             }
 
             var url = 'https://hiskenya.org/api/26/analytics.json?filter=pe:'+period+'&dimension=dx:jfUzb86mBSP.DTnItSklSr8;HwvUHnslwbh.DTnItSklSr8;OLYLVMDHEj8.DTnItSklSr8;UJeKVZzAnfS.DTnItSklSr8;naztfZrbMtd.DTnItSklSr8;EtG9ozt2joA.DTnItSklSr8;Umi8ZsiqBHw.DTnItSklSr8&dimension=ou:LEVEL-5;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
-            // var url = 'https://json.link/XzcqOsT1OV.json'
+            //var url = 'http://localhost/pmilive/commodities_dashboard/html/ltr/facilityissues.json'
+			console.log('Start the processing: '+url);
             fetchFIs(url,ounit,period);
             $("#county-dropdown").change(function() 
             {
