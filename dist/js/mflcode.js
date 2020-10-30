@@ -2,7 +2,7 @@
 console.log("--------Preloaded MFLcode script---------")
 var mfl_codes_array = [];
 mfl_url = 'https://hiskenya.org/api/organisationUnits.json?fields=id,code&paging=false';
-//  mfl_url = 'http://127.0.0.1:8080/assets/json/mflCode.json';
+//  mfl_url = 'https://json.link/mGdKac1zJw.json';
 getMFLarray(mfl_url);
 
 function getMFLarray(mfl_url) {
@@ -24,9 +24,10 @@ if(mfl_codes_array == null){
 	var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
 		return v.id === dhis_id;
 	});
-	var mfl_id = arr_filterd_by_dhis_code[0].code;
-	if(mfl_id == undefined){
+	if(arr_filterd_by_dhis_code.length<1){
 		mfl_id = 'Not Available';
+		}else{
+		mfl_id = arr_filterd_by_dhis_code[0].code;
 	}
 	return mfl_id;
 

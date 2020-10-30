@@ -929,7 +929,7 @@ along with this program.  If not, see
 
         _showYears: function () {
             var _currYear = this._getPickerYear(),
-                _yearDifferential = -4,
+                _yearDifferential = -5,
                 _firstYear = (_currYear + _yearDifferential),
                 AMOUNT_TO_ADD = 12,
                 _thisYear = new Date().getFullYear();

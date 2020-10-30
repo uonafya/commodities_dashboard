@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" /><link href="../../dist/css/style.min.css" rel="stylesheet">
     <link href="../../dist/css/custom.css" rel="stylesheet">
     <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../../dist/css/datatables/buttons.dataTables.min.css" rel="stylesheet">
     <link href="../../dist/css/datatables/jquery.dataTables.min.css" rel="stylesheet">
     <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
@@ -116,7 +117,7 @@
                         <!-- ============================================================== -->
                         <li class="nav-item search-box hidden"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
+                                <input type="text" required="required" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
                             </form>
                         </li>
                     </ul>
@@ -247,7 +248,9 @@
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">LLINS</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison-county.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="facilityissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Facility Issues</span></a></li>
                                         </ul>
                                     </li>
                                     <!-- endSS -->
@@ -287,6 +290,7 @@
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
                                         </ul>
                                     </li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="epr.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Epidemic Monitoring </span></a></li>
                                 </ul>
                             </li>
                             <!-- end County -->
@@ -296,6 +300,7 @@
                                 <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="ss-map.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Stock Status Map</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
@@ -321,60 +326,241 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <h6 class="page-title m-t-10">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <h4 class="page-title m-t-10">
                                 Pending Shipments
                                 &nbsp; &nbsp;
-                            </h6>
+                            </h4>
                         </div>
-                        <div class="col-md-7 col-sm-6 col-xs-12" style="display:none;">
-                            <small class="">Filter:</small>
-                            <div class="row">
-                                <div class="col-md-11 col-sm-11 col-xs-11">
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
-                                            </select>
-                                        </div>										
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
-                                            </select> 
-                                        </div> 
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
-                                        </div> 
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-12">
+                                <!-- filters here -->
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 hidden" id="addPenShip">
+                            <a class="btn btn-info btn-lg" data-toggle="modal" href='#penship-modal'>
+                                <i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;
+                                Update pending shipments
+                            </a>
+                            <div class="modal fade" id="penship-modal">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <form action="#" id="newpenshipform">
+                                            <div class="modal-header">
+                                                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                                                <h4 class="modal-title">Update Pending Shipments</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div role="tabpanel">
+                                                    <!-- Nav tabs -->
+                                                    <ul class="nav nav-tabs" role="tablist">
+                                                        <li role="presentation" class="active">
+                                                            <a href="#pmi" class="active" aria-controls="pmi" role="tab" data-toggle="tab">PMI</a>
+                                                        </li>
+                                                        <li role="presentation">
+                                                            <a href="#gf" aria-controls="gf" role="tab" data-toggle="tab">GlobalFund</a>
+                                                        </li>
+                                                        <li role="presentation">
+                                                            <a href="#unicef" aria-controls="unicef" role="tab" data-toggle="tab">UNICEF</a>
+                                                        </li>
+                                                        <li role="presentation">
+                                                            <a href="#moh" aria-controls="moh" role="tab" data-toggle="tab">MOH</a>
+                                                        </li>
+                                                    </ul>
+                                                
+                                                    <!-- Tab panes -->
+                                                    <div class="tab-content">
+                                                        <div role="tabpanel" class="tab-pane active" id="pmi">
+                                                            <table class="table table-bordered table-condensed slimtable">
+                                                                <thead>
+                                                                    <tr> <th colspan="2" class="text-center"><h3>PMI</h3></th> </tr>
+                                                                    <tr>
+                                                                        <th>COMMODITY</th>
+                                                                        <th>QUANTITY</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 6s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="pmi_AL6" name="pmi-AL6" class="form-control" value="" min="0" title="AL6"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 12s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="pmi_AL12" name="pmi-AL12" class="form-control" value="" min="0" title="AL12"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 18s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="pmi_AL18" name="pmi-AL18" class="form-control" value="" min="0" title="AL18"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 24s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="pmi_AL24" name="pmi-AL24" class="form-control" value="" min="0" title="AL24"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artesunate Injection</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="pmi_AS" name="pmi-AS" class="form-control" value="" min="0" title="AS"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Sulphadoxine Pyrimethamine Tabs</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="pmi_SP" name="pmi-SP" class="form-control" value="" min="0" title="SP"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Rapid Diagnostic Tests</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="pmi_RDT" name="pmi-RDT" class="form-control" value="" min="0" title="RDT"/> </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div role="tabpanel" class="tab-pane" id="gf">
+                                                            <table class="table table-bordered table-condensed slimtable">
+                                                                <thead>
+                                                                    <tr> <th colspan="2" class="text-center"><h3>GlobalFund</h3></th> </tr>
+                                                                    <tr>
+                                                                        <th>COMMODITY</th>
+                                                                        <th>QUANTITY</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 6s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="gf_AL6" name="gf-AL6" class="form-control" value="" min="0" title="AL6"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 12s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="gf_AL12" name="gf-AL12" class="form-control" value="" min="0" title="AL12"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 18s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="gf_AL18" name="gf-AL18" class="form-control" value="" min="0" title="AL18"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 24s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="gf_AL24" name="gf-AL24" class="form-control" value="" min="0" title="AL24"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artesunate Injection</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="gf_AS" name="gf-AS" class="form-control" value="" min="0" title="AS"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Sulphadoxine Pyrimethamine Tabs</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="gf_SP" name="gf-SP" class="form-control" value="" min="0" title="SP"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Rapid Diagnostic Tests</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="gf_RDT" name="gf-RDT" class="form-control" value="" min="0" title="RDT"/> </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div role="tabpanel" class="tab-pane" id="unicef">
+                                                            <table class="table table-bordered table-condensed slimtable">
+                                                                <thead>
+                                                                    <tr> <th colspan="2" class="text-center"><h3>UNICEF</h3></th> </tr>
+                                                                    <tr>
+                                                                        <th>COMMODITY</th>
+                                                                        <th>QUANTITY</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 6s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="unicef_AL6" name="unicef-AL6" class="form-control" value="" min="0" title="AL6"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 12s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="unicef_AL12" name="unicef-AL12" class="form-control" value="" min="0" title="AL12"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 18s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="unicef_AL18" name="unicef-AL18" class="form-control" value="" min="0" title="AL18"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 24s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="unicef_AL24" name="unicef-AL24" class="form-control" value="" min="0" title="AL24"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artesunate Injection</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="unicef_AS" name="unicef-AS" class="form-control" value="" min="0" title="AS"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Sulphadoxine Pyrimethamine Tabs</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="unicef_SP" name="unicef-SP" class="form-control" value="" min="0" title="SP"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Rapid Diagnostic Tests</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="unicef_RDT" name="unicef-RDT" class="form-control" value="" min="0" title="RDT"/> </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div role="tabpanel" class="tab-pane" id="moh">
+                                                            <table class="table table-bordered table-condensed slimtable">
+                                                                <thead>
+                                                                    <tr> <th colspan="2" class="text-center"><h3>MoH</h3></th> </tr>
+                                                                    <tr>
+                                                                        <th>COMMODITY</th>
+                                                                        <th>QUANTITY</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 6s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="moh_AL6" name="moh-AL6" class="form-control" value="" min="0" title="AL6"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 12s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="moh_AL12" name="moh-AL12" class="form-control" value="" min="0" title="AL12"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 18s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="moh_AL18" name="moh-AL18" class="form-control" value="" min="0" title="AL18"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artemether Lumefantrine 20/120 Tabs 24s</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="moh_AL24" name="moh-AL24" class="form-control" value="" min="0" title="AL24"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Artesunate Injection</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="moh_AS" name="moh-AS" class="form-control" value="" min="0" title="AS"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Sulphadoxine Pyrimethamine Tabs</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="moh_SP" name="moh-SP" class="form-control" value="" min="0" title="SP"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="vertical-align:middle;" class="text-center">Rapid Diagnostic Tests</td>
+                                                                        <td style="vertical-align:middle;"> <input type="number" required="required" id="moh_RDT" name="moh-RDT" class="form-control" value="" min="0" title="RDT"/> </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>       
+                                                <div class="col-md-12">
+                                                    <table class="table table-condensed slimtable table-bordered">
+                                                        <tr>
+                                                            <td class="text-center" style="vertical-align:middle;">Date:</td>
+                                                            <td style="vertical-align:middle;"><input type="date" required="required" name="date" id="date" class="form-control" id=""></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>                                         
+                                            </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-success"><b>Save changes</b></button>
+                                            </div>
+                                        </form>
                                     </div>
-                                </div> 
-                                <div class="col-md-1 col-sm-1 col xs-1">
-                                    <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
-                                </div>                               
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">
-                            <div class="ml-auto text-right m-t-10">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                    </ol>
-                                </nav>
+                                </div>
                             </div>
                         </div>
+                                
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
+            
             <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-               
+                
                         <div class="card">
                             <div class="card-body">
 								<script type="text/javascript">
@@ -388,6 +574,16 @@
 								</script>
                                 <h5 class="card-title">Pending Shipments as at: <b><script type="text/javascript">document.write(curdate)</script></b></h5>
                                 <div class="sp_status row"></div>
+                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert hidden" id="alert_msg">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <span> <strong>Success</strong> <br/> New pending shipments saved successfully</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
                                 <div class="row">
                                     <div class="loader-sp">
                                         <div class="loader loader--style3" title="2">
@@ -408,7 +604,7 @@
                                 </div>
                                 <div class="row spdata">
                                     <div class="table-responsive">
-                                        <table id="sp_table" class="table table-condensed slimtable table-bordered spbox hidden">
+                                        <table id="sp_table" class="table table-condensed slimtable slimtable table-bordered spbox hidden">
                                         <thead>
 											<tr>
                                                 <th rowspan="2">Description</th>
@@ -443,29 +639,15 @@
                             </div>
                         </div>
                     </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
+                    
             <footer class="footer text-center">
                 All Rights Reserved. Malaria Commodities Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
             </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
+            
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
+        
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->                                            
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
+    
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
@@ -478,7 +660,9 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+    <script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/pendingshipments.js"></script>
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
@@ -494,191 +678,22 @@
 	<script>
 	$(document).ready(function() 
 	{
-            var ounit = 'HfVjCurKxh2';
-            var period = 'LAST_MONTH';
-            //var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            // var ounit = 'HfVjCurKxh2';
+            // var period = 'LAST_MONTH';
+            // //var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;f5mBCkj0aSu;hBbXgy0QP7u;imheYfA1Kiw.rPAsF4cpNxm;goYRWZ7kJAA&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
 			
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=ou:HfVjCurKxh2&dimension=pe:LAST_MONTH&dimension=dx:aIek7kTJG6w;yB2FRv1QXkQ;lOZMABBgVI8;F8MqSF1yd89;bMlKVkzH9NQ;XzTaOzw1atl;d5qEwzIeQ6k&displayProperty=NAME&outputIdScheme=UID'
+            // var url = 'https://hiskenya.org/api/26/analytics.json?dimension=ou:HfVjCurKxh2&dimension=pe:LAST_MONTH&dimension=dx:aIek7kTJG6w;yB2FRv1QXkQ;lOZMABBgVI8;F8MqSF1yd89;bMlKVkzH9NQ;XzTaOzw1atl;d5qEwzIeQ6k&displayProperty=NAME&outputIdScheme=UID'
             
-			var url = 'pending.json';
+            // var url = 'pending.json';
+            
+
+			var urlstock = 'https://hiskenya.org/api/26/dataStore/pending/stocks';
+            // var urlstock = 'https://json.link/VL6OsMvZr5.json'
 			
-			fetchPenShip();                
+			fetchPenShip(urlstock);                
 					
 	});
 	
-        
-        //function to process the Pending Shipments url
-        function fetchPenShip()
-        {	
-			$('#sp_table').addClass('hidden');
-            $('.spdata').addClass('hidden');
-            $('.loader-sp').removeClass('hidden');
-            $('.loader-sp').css('display','block');
-			//get data on PMI stocks
-								
-			//https://hiskenya.org/api/26/dataStore/pending/stocks
-			//var urlstock = 'http://localhost/pmilive/commodities_dashboard/stocks.json';
-			
-			var urlstock = 'https://hiskenya.org/api/26/dataStore/pending/stocks';
-			
-			$.ajax({
-                type: 'GET',
-                crossDomain: true,
-                url: urlstock,                    
-                success: function (data) 
-				{					
-					var pmidata = [];
-					var gfdata = [];
-					var unicefdata = [];
-					var mohdata = [];
-					$.each(data.pmi[0], function (key, entry) 
-					{		
-						pmidata.push(entry);													
-					})
-					
-					$.each(data.gf[0], function (key, entry) 
-					{		
-						gfdata.push(entry);													
-					})
-					
-					$.each(data.unicef[0], function (key, entry) 
-					{		
-						unicefdata.push(entry);													
-					})
-					
-					$.each(data.moh[0], function (key, entry) 
-					{		
-						mohdata.push(entry);													
-					})
-										
-					//create the product array
-					var products = {"PM03ART004": "Artemether-Lumefantrine 20/120 Tabs 6s", "PM03ART005": "Artemether-Lumefantrine 20/120 Tabs 12s",
-				 "PM03ART006": "Artemether-Lumefantrine 20/120 Tabs 18s", "PM03ART007": "Artemether-Lumefantrine 20/120 Tabs 24s",
-				 "PM03ART009": "Artesunate Injection", "PM03SPY001": "Sulphadoxine Pyrimethamine Tabs", "NL05TES067": "Rapid Diagnostic Tests"}
-					
-					
-					//create the totals array
-					var producttotals = [];
-					
-
-					//var tableData = '<table>';
-					var tableData = '';
-					
-					var dxuom = ["doses", "doses", "doses", "doses", "vials", "tablets", "tests"];
-
-					var sources = ["pmi", "gf","unicef", "moh"];
-					
-							
-					//loop trough to populate data
-					var itemcodes = [];
-					
-					var counter = 0
-											
-					//loop through the products
-					$.each(products, function (prokey, proentry) 
-					{
-						//define the table
-						var totalsum = 0;
-						tableData += '<tr>';	
-						tableData += '<td>'+proentry+'</td>';
-						
-						tableData += '<td>'+dxuom[counter]+'</td>';
-						
-						//source of funds	
-						
-						$.each(sources, function (fundskey, fundsentry) 
-						{
-							var sumdues = 0;
-							var duesin = 0;
-							
-							if(fundsentry=='pmi')
-							{
-								var duesin = parseFloat(pmidata[counter]);
-							}
-							
-							if(fundsentry=='gf')
-							{
-								var duesin = parseFloat(gfdata[counter]);
-							}
-							
-							if(fundsentry=='unicef')
-							{
-								var duesin = parseFloat(unicefdata[counter]);
-							}
-							
-							if(fundsentry=='moh')
-							{
-								var duesin = parseFloat(mohdata[counter]);
-							}												
-							
-							//RDTS
-							if(prokey=='NL05TES067')
-							{
-								sumdues += duesin*25;	
-							}
-							else if(prokey=='PM03SPY001')
-							{
-								sumdues += duesin*1000;	
-							}
-							else
-							{
-								sumdues += duesin;	
-							}
-												
-							totalsum += sumdues;
-							tableData += '<td class="text-right">'+formatNumber(sumdues)+ '</td>';																					
-						})
-						tableData += '<td class="text-right">'+formatNumber(totalsum)+ '</td>';
-						tableData += '</tr>';
-						counter++;
-						//console.log(tableData);
-					})
-					
-					var tfoot = '';
-							
-							var colspan = sources.length+1;
-							
-							tfoot += '<tr><th rowspan="2">Description</th><th rowspan="2">Unit of Measure</th>                                               <th colspan="'+colspan+'"><center><b>Pending Shipments</b></center></th></tr><tr>';
-							
-							$.each(sources, function (fundskey, fundsentry) 
-							{
-								tfoot += '<th>'+fundsentry.toUpperCase()+'</th>';
-							})
-							tfoot += '<th><b>Total</b></th></tr>';
-							
-							
-							$('#sp_table').removeClass('hidden');
-							$('.spdata').removeClass('hidden');
-							$('.loader-sp').addClass('hidden');
-							$('.loader-sp').css('display','none');					
-							
-							$('#sp_table').DataTable().destroy();
-							$("table.spbox tbody").empty();
-							$("table.spbox tbody").append(tableData);	
-							$("table.spbox tfoot").empty();
-							$("table.spbox tfoot").append(tfoot);
-							$("table.spbox thead").empty();
-							$("table.spbox thead").append(tfoot);
-							$('#sp_table').DataTable(
-					{
-						dom: 'Bfrtip',
-						"ordering": false,
-						buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-					}
-				);
-				},
-                error: function (request, status, error) 
-				{
-                    $('.loader-sp').addClass('hidden');
-                    $('#sp_table').addClass('hidden');
-                    //console.log('SP: error fetching json. :- '+error);
-                    $('spdata').addClass('hidden');
-                    $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
-                }
-            });
-			
-        }
-
 </script>
 </body>
 

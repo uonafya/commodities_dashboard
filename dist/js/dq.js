@@ -276,7 +276,7 @@ function getCompa(courl){
 function getWBData(wburl,orgun){
 $('#wbdata').addClass('hidden');
 $('.loader-sp.wbdata').removeClass('hidden');
-sleep(3000);
+sleep(1500);
 $.ajax({
     type: 'GET',
     crossDomain: true,
@@ -289,41 +289,33 @@ $.ajax({
 
         let reported = [];
         let expected = [];
+        let wbdataset = [];
+        var pearr = [];
         // loops though the period
+        var prdoptn = '<option selected="true" disabled>Select period</option>';
         $.each(json_data.metaData.dimensions.pe,(index,period)=>{
             let total = 0;
+            let expected_t = 0;
+            pearr.push( json_data.metaData.items[period].name );
             // Prints out the periods in the row key
             $.each(json_data.rows,(i_index,onerow)=>{
-                if (period === onerow[1] && onerow[0] === "zB1NW37bi46"){
+                if (period === onerow[1] && onerow[0] === json_data.metaData.dimensions.dx[0]){
                     total = total+ 1;
-                }
-            });
-            reported.push(total);
-        });
-        // console.log("reported: "+reported);
-        $.each(json_data.metaData.dimensions.pe,(index,period)=>{
-            let expected_t = 0;
-            $.each(json_data.rows,(i_index,one_row)=>{
-                // console.log("One row == "+one_row);
-                if (period === one_row[1] && one_row[0] === "JPaviRmSsJW.EXPECTED_REPORTS"){
+                } else if (period === one_row[1] && one_row[0] === json_data.metaData.dimensions.dx[0]){
                     expected_t = expected_t + 1;
                 }
             });
+
+            prdoptn += '<option value='+period+'>'+json_data.metaData.items[period].name+'</option>';
+            reported.push(total);
             expected.push(expected_t);
         });
-        // console.log("expected: "+expected);
-        
         let didNotReport = [];
         $.each(reported,(index,value)=>{
             // const facilities = total_facilities
             const facilities = expected[index];
             let empty_reports = facilities - value
             didNotReport.push(empty_reports)
-        });
-        let wbdataset = [];
-        var pearr = [];
-        $.each(json_data.metaData.dimensions.pe,(ind,val)=>{
-            pearr.push(dateToStr(val));
         });
         
         wbdataset.push(pearr);
@@ -344,10 +336,7 @@ $.ajax({
             });    
         // END title fill
         
-        var prdoptn = '<option selected="true" disabled>Select period</option>';
-        $.each(json_data.metaData.dimensions.pe,(inx,prd)=>{
-            prdoptn += '<option value='+prd+'>'+dateToStr(prd)+'</option>';
-        });
+        
         $('#periodfilter').append(prdoptn);
 
         wbDetail(json_data, '');
@@ -399,7 +388,7 @@ $.ajax({
 
 
 function wbDetail(json_data, lastperiod){
-    sleep(3000);
+    sleep(1500);
     //-----------------------------------------------------detail 
         
         // ~~~~~~~~~~~~~~~~~~~~~~~~REPORTED~~~~~~~~~~~~~~~~~~~~~~~~

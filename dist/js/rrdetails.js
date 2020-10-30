@@ -17,8 +17,8 @@ function fetchRRDetails(theperiod,ounit)
         url: rdurl,                    
         success: function (data) {     
             
-            // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
             var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id]&filter=id:ilike:JPaviRmSsJW&paging=false';
+            // var valid_ous_url = 'https://json.link/3AHToDxczD.json';
             $.ajax({
                 type: "GET",
                 crossDomain: true,
@@ -29,7 +29,7 @@ function fetchRRDetails(theperiod,ounit)
                     $.each(validata.dataSets[0].organisationUnits, function (inv, vou) { 
                         valid_orgs.push(vou.id);
                     });
-                    console.log("valid_orgs "+ JSON.stringify(valid_orgs));
+                    // console.log("valid_orgs "+ JSON.stringify(valid_orgs));
                     
                     $('#facility_rr').removeClass('hidden');
                     var header = '';
@@ -39,6 +39,7 @@ function fetchRRDetails(theperiod,ounit)
                     //put the header
                     header += '<thead><tr>';	
                     header += '<th>Name</th>';
+                    header += '<th>Code</th>';
 
                     $.each(data.metaData.dimensions.pe, function (pkey, pentry){
                         header += '<th class="text-right">'+dateToStr(pentry)+'</th>';	
@@ -50,6 +51,7 @@ function fetchRRDetails(theperiod,ounit)
                     //put the footer
                     footer += '<tfoot><tr>';	
                     footer += '<th>Name</th>';
+                    footer += '<th>Code</th>';
 
                     $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
                     {
@@ -67,6 +69,7 @@ function fetchRRDetails(theperiod,ounit)
                         if(valid_orgs.includes(entry)){                                                    
                             tableData += '<tr>';	
                             tableData += '<td>'+data.metaData.items[entry].name+'</td>';
+                            tableData += '<td>'+getMFLcode(entry)+'</td>';
                             $.each(data.metaData.dimensions.pe, function (pkey, pentry) 
                             {
                                     var rpt_count = getExpectedSub(data.rows,pentry,entry);
@@ -438,14 +441,47 @@ function checkExpected(rows,orgunit)
 	return rowval;
 }
 
+ // fetch mfl codes
 
-//sleep function
-function sleep(milliseconds) 
-{
-		var start = new Date().getTime();
-		for (var i = 0; i < 1e7; i++) {
-				if ((new Date().getTime() - start) > milliseconds) {
-						break;
-				}
-		}
-}
+ var mfl_codes_array = [];
+ mfl_url =
+   "https://hiskenya.org/api/organisationUnits.json?fields=id,code&paging=false";
+//   mfl_url = 'https://json.link/Gr6ECImaDf.json';
+ getMFLarray(mfl_url);
+
+ function getMFLarray(mfl_url) {
+   $.getJSON(mfl_url, function(data) {
+     mfl_codes_array = data.organisationUnits;
+     // console.log('mfl_codes_array: '+mfl_codes_array);
+   });
+ }
+
+ //---------- fetch mfl codes
+ // filter by mfl codes
+ function getMFLcode(dhis_id) {
+   if (mfl_codes_array == null) {
+     getMFLarray(mfl_url);
+   }
+   // var ous = data.organisationUnits;
+   var ous = mfl_codes_array;
+   var arr_filterd_by_dhis_code = $.grep(ous, function(v) {
+     return v.id === dhis_id;
+   });
+   if(arr_filterd_by_dhis_code.length<1){
+     mfl_id = 'Not Available';
+     }else{
+     mfl_id = arr_filterd_by_dhis_code[0].code;
+   }
+   return mfl_id;
+ }
+ // filter by mfl codes
+
+ //sleep function
+ function sleep(milliseconds) {
+   var start = new Date().getTime();
+   for (var i = 0; i < 1e7; i++) {
+     if (new Date().getTime() - start > milliseconds) {
+       break;
+     }
+   }
+ }

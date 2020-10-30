@@ -97,7 +97,9 @@
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">LLINS</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison-county.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="facilityissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Facility Issues</span></a></li>
                                         </ul>
                                     </li>
                                     <!-- endSS -->
@@ -137,6 +139,7 @@
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="understocked.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Understocked Facilities</span></a></li>
                                         </ul>
                                     </li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="epr.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Epidemic Monitoring </span></a></li>
                                 </ul>
                             </li>
                             <!-- end County -->
@@ -145,6 +148,7 @@
                                 <a class="sidebar-link has-arrow waves-effect waves-dark nationalink" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">National </span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="national.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">National Summary</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="ss-map.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Stock Status Map</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pendingshipments.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Pending Shipments</span></a></li>
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kemsaissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Issues vs. Receipts</span></a></li>
@@ -259,6 +263,7 @@
                                                     <th class="text-right">Qty Disp</th>
                                                     <th class="text-right">-ve Adj</th>
                                                     <th class="text-right">Closing SOH</th>
+													<th class="text-right">(Expected-Actual)Variance</th>
                                                     <th class="text-right">% accounted for</th>
                                                 </tr>		
                                             </thead>
@@ -345,9 +350,10 @@
         }else{
             var mnthLessBy = -1
         }
+        let twenty15 = `-${parseFloat(new Date().getFullYear()) - 2015}y`;
         $('#period-dropdown').MonthPicker({ 
             Button: false,
-            MinMonth: '-3y',
+           MinMonth: twenty15,
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -361,7 +367,7 @@
         $('#period-dropdownto').MonthPicker({
             Button: false,
             Disabled: false,
-            // MinMonth: '-3y',
+            //MinMonth: twenty15,
             // MaxMonth: -1,
             MaxMonth: mnthLessBy,
             MinYear: 0,
@@ -462,6 +468,7 @@
 			dropdown.empty();
 			subcounty.empty();
 			perioddwn.empty();
+            facilitydwn.empty();
 
 			dropdown.append('<option selected="true" disabled>Select County</option>');
             dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
@@ -519,16 +526,16 @@
 				});		
 			});
 			
-			$("#facility-dropdown").change(function() 
+			$("#subcounty-dropdown").change(function() 
 			{  
 				facilitydwn.empty();
 				var subcountyid = $(this).val();
 				facilitydwn.append('<option selected="true" disabled>Select Facility</option>');
                 facilitydwn.prop('selectedIndex', 0);
-                facilitydwn.append('<option value='+$(this).val()+'>All subcounties</option>');
+                facilitydwn.append('<option value='+$(this).val()+'>All facilities</option>');
 				
-				// Populate dropdown with list of sub counties
-				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:5&fields=id,name,level,parent&paging=false', function (dataa) 
+				// Populate dropdown with list of facilities
+				$.getJSON('https://hiskenya.org/api/organisationUnits/'+subcountyid+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true', function (dataa) 
 				{			
 					$.each(dataa.organisationUnits, function (key, fty) 
 					{				
