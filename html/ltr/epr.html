@@ -660,7 +660,7 @@
             var lastyear = parseFloat(new Date().getFullYear() - 1)
             var previousyear = parseFloat(new Date().getFullYear()-2)
             var threeyearsback = parseFloat(new Date().getFullYear()-3)
-            var ouid = 'st4v8xfqgJf';
+            var ouid = 'st4v8xfqgJf'; // default Org unit
             
             
 
@@ -825,7 +825,7 @@ function getOrgUnit(uid)
                     
                     // var curpe = data.metaData.items[theperiod].name;
                     
-                 $("h4.titlelabel").html('Epidemic Thresholds -- '+curorg);
+					//$("h4.titlelabel").html('Epidemic Thresholds -- '+curorg);
                     
                     tableData += '<tr>';
 
@@ -976,7 +976,7 @@ function getrrate(url){
 
  function getEPRVisul(i,ydata,rrate,alert,action,orgunit) {
      Highcharts.setOptions({
-    colors: ['#058DC7', '#ED561B' ,'#50B432','#000000']
+    colors: ['#058DC7', '#ED561B' ,'#50B432','#750D37']
 });
     
     Highcharts.chart('eprvisual', {
