@@ -301,7 +301,7 @@ $.ajax({
             $.each(json_data.rows,(i_index,onerow)=>{
                 if (period === onerow[1] && onerow[0] === json_data.metaData.dimensions.dx[0]){
                     total = total+ 1;
-                } else if (period === one_row[1] && one_row[0] === json_data.metaData.dimensions.dx[0]){
+                } else if (period === onerow[1] && onerow[0] === json_data.metaData.dimensions.dx[1]){
                     expected_t = expected_t + 1;
                 }
             });
