@@ -662,7 +662,7 @@
             var previousyear = parseFloat(new Date().getFullYear()-2)
             var threeyearsback = parseFloat(new Date().getFullYear()-3)
             var fouryearsback = parseFloat(new Date().getFullYear()-4)
-            var ouid = 'XsRFIn0FhzA';
+            var ouid = 'st4v8xfqgJf';
             
             
 
@@ -837,7 +837,7 @@ function getOrgUnit(uid)
                     
                     // var curpe = data.metaData.items[theperiod].name;
                     
-                 $("h4.titlelabel").html('Epidemic Thresholds -- '+curorg);
+					//$("h4.titlelabel").html('Epidemic Thresholds -- '+curorg);
                     
                     tableData += '<tr>';
 
@@ -974,14 +974,20 @@ function getrrate(url){
                 success: function (data) {  
                  var rratedata= []
                     for(var i=1;i<=52;i++){
-                         $.grep(data.rows, function(data){
+                        var rrdataaa = $.grep(data.rows, function(data){
                         if (i === parseInt(data[1].substr(5,))){
-                           let rrdat = data[2]  
-                            rratedata.push(parseInt(rrdat))
-                            
-                        }
-                        
-                        })
+                        return data[1].substr(5,) === i.toString()
+                        } else{
+                            return null
+                        }                          
+                    })
+                    if (rrdataaa.length > 0){
+                        let rrdata = rrdataaa[0] 
+                        rratedata.push(parseInt(rrdata[2]))
+                     }else{
+                        let rrdata = 0
+                        rratedata.push(parseInt(rrdata))
+                     } 
                     }
                     getEPRVisul(weeks,dataaa,rratedata,alert,action,curorg)
                 }
@@ -995,7 +1001,7 @@ function getrrate(url){
  function getEPRVisul(i,ydata,rrate,alert,action,orgunit) {
     var year = parseFloat(new Date().getFullYear()) 
      Highcharts.setOptions({
-    colors: ['#058DC7', '#ED561B' ,'#50B432','#000000']
+    colors: ['#058DC7', '#ED561B' ,'#50B432','#750D37']
 });
     
     Highcharts.chart('eprvisual', {
