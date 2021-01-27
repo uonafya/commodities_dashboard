@@ -354,7 +354,11 @@
                                             <div class="col-md-3 col-sm-3 col-xs-12">
                                                 <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
                                                 </select>
-                                            </div>										
+                                            </div>		
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <select class="form-control m-r-5" id="region-dropdown" name="region">                                                
+                                                </select>
+                                            </div>											
                                             <div class="col-md-3 col-sm-3 col-xs-12">
                                                 <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
                                                 </select> 
@@ -539,7 +543,8 @@
     <script>
 		$(document).ready(function() 
 		{
-			var dropdown = $('#county-dropdown');
+            var dropdown = $('#county-dropdown');
+            var regiondown = $('#region-dropdown')
 			
 			var subcounty = $('#subcounty-dropdown');
 			
@@ -554,6 +559,10 @@
 
             dropdown.append('<option selected="true" disabled>Select County</option>');
             dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
+            regiondown.append('<option selected="true" disabled>Select Epidiomological zones</option>');
+            regiondown.append('<option value="X5y4kvPkPzP">Malaria EPZ Highland Epidemic Prone</option>');
+            regiondown.append('<option value="Nv5UWERIuLP">Malaria EPZ Seasonal Transmission Zone</option>');
+
 			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
 			
 			facility.append('<option selected="true" disabled>Select Facility</option>');
@@ -589,7 +598,7 @@
 			
 			$("#county-dropdown").change(function() 
 			{  
-				subcounty.empty();
+				regiondown.empty();
 				$('#facility-dropdown').empty();
                 facility.append('<option selected="true" disabled>Select Facility</option>');
 				facility.prop('selectedIndex', 0);
@@ -610,7 +619,25 @@
 					})		 
 				});		
 			});
-			
+            $("#region-dropdown").change(function() 
+			{  
+                dropdown.empty()
+                subcounty.empty();
+                $('#county-dropdown').empty();
+				var regionid = $(this).val();
+				facility.append('<option selected="true" disabled>Select Facility</option>');
+				facility.prop('selectedIndex', 0);
+				$.getJSON('https://hiskenya.org/api/organisationUnitGroups/'+regionid+'.json?fields=id,name,organisationUnits[id,name]?paging=false', function (data) {
+                    // console.log("Facilities-data ==> "+JSON.stringify(data));
+					$.each(data.organisationUnits, function (key, entry) {				
+						//if(entry.parent.id==subcountyid){
+							$('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+						//}				
+					})
+				});
+			});
+            
+
 			$("#subcounty-dropdown").change(function() 
 			{  
 				$('#facility-dropdown').empty();
