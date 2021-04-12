@@ -77,7 +77,7 @@ function fetchMosbycombox(url) {
                 enabled: true
             },
             xAxis: {						
-                categories: ['AL6', 'AL12', 'AL18', 'AL24', 'AL all', 'AS inj','SP tabs', 'RDTs'],
+                categories: ['AL6', 'AL12', 'AL18', 'AL24', 'AL all', 'AS inj','SP tabs', 'RDTs', ''LLINs'],
                 title: {
                     text: 'Commodity'
                 }
