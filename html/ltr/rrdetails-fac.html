@@ -468,8 +468,8 @@
             
             //get the org name
             getOrgUnit(ounit, period);
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS;RRnz4uPHXdl.EXPECTED_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
             //var url = 'https://json.link/pLOCR9p0i6.json'
             //var scrdurl = 'http://localhost/pmi/json/subreportingdetails.json'
             fetchRRDetails(url,ounit);
@@ -483,8 +483,8 @@
                     cperiod = $('#h_period').val();
                 }
                 getOrgUnit(ounit, cperiod);
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+cperiod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+cperiod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS;RRnz4uPHXdl.EXPECTED_REPORTS&dimension=pe:'+cperiod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS&dimension=pe:'+cperiod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 fetchRRDetails(url,ounit);
                 // fetchSubRRDetails(scrdurl)
                 
@@ -497,8 +497,8 @@
                     speriod = $('#h_period').val();
                 }
                 getOrgUnit(ounit, speriod);
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+speriod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+speriod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS;RRnz4uPHXdl.EXPECTED_REPORTS&dimension=pe:'+speriod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS&dimension=pe:'+speriod+'&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
                 fetchRRDetails(url,ounit);
                 // fetchSubRRDetails(scrdurl)
             });
@@ -559,8 +559,8 @@
             } 
             
             period = date_range_string;
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:LEVEL-5;'+theou+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS;RRnz4uPHXdl.EXPECTED_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:'+theou+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS&dimension=pe:'+date_range_string+'&dimension=ou:LEVEL-5;'+theou+'&displayProperty=NAME&outputIdScheme=UID';
             fetchRRDetails(url, theou);
             daterange = [];
             // $('#period-dropdown').val(null);

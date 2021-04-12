@@ -15,7 +15,7 @@ function getConco(ccurl,commodity,the_org_unit){
             // console.log("fetching valid OUs");
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_092019.json';
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_4.json';
-            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
+            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:RRnz4uPHXdl&paging=false';
             // valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
 
             $.ajax({
@@ -442,7 +442,7 @@ function wbDetail(json_data, lastperiod){
         var tbldata2 = '';
         // console.log("fetching valid OUs");
         // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
-        var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
+        var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:RRnz4uPHXdl&paging=false';
         $.ajax({
             type: "GET",
             crossDomain: true,
@@ -508,7 +508,7 @@ function getConsist(consturl,commd,the_orgu){
             // console.log("fetching valid OUs");
             // var valid_ous_url = 'https://api.myjson.com/bins/12oxsp';
             // var valid_ous_url = 'http://localhost/pmi/json/valid_ous_4.json';
-            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
+            var valid_ous_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,level]&filter=id:ilike:RRnz4uPHXdl&paging=false';
             $.ajax({
                 type: "GET",
                 crossDomain: true,

@@ -45,7 +45,7 @@
         function plotGraph(rrData, onData){
             var rrjson = rrData;
             var ouid = rrjson.metaData.dimensions.ou[0];
-            var thetitle = rrjson.metaData.items['JPaviRmSsJW.REPORTING_RATE'].name;
+            var thetitle = rrjson.metaData.items['RRnz4uPHXdl.REPORTING_RATE'].name;
             var thesubtitle = rrjson.metaData.items[ouid].name + '  ('+rrjson.metaData.items[rrjson.metaData.dimensions.pe[0]].name+' - '+rrjson.metaData.items[rrjson.metaData.dimensions.pe[rrjson.metaData.dimensions.pe.length-1]].name+')';
             var allmonths = rrjson.metaData.dimensions.pe;
             var monthswithdata = rrjson.rows;

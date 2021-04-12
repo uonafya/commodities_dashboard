@@ -242,7 +242,7 @@
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">LLINS</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="llin.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">LLINS</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison-county.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="facilityissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Facility Issues</span></a></li>
                                         </ul>
@@ -551,8 +551,8 @@
             
             //get the org name
             getOrgUnit(ounit, period);
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-            var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:LEVEL-3;tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:tAbBVBbueqD;LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+            var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:LEVEL-3;tAbBVBbueqD&displayProperty=NAME&outputIdScheme=UID';
             // var url = 'http://localhost/pmi/json/reportingdeets.json'
             // var scrdurl = 'http://localhost/pmi/json/subreportingdetails.json'
             fetchRRDetails(url);
@@ -564,8 +564,8 @@
                 period = 'LAST_6_MONTHS';
                 getOrgUnit(ounit, period);
                 
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:LEVEL-3;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var scrdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:LEVEL-3;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchRRDetails(url);
                 fetchSubRRDetails(scrdurl)
                 
@@ -575,8 +575,8 @@
                 ounit = $(this).val();
                 period = 'LAST_6_MONTHS';
                 getOrgUnit(ounit, period);
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
-                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:LEVEL-3;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:'+ounit+';LEVEL-5&displayProperty=NAME&outputIdScheme=UID';
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS&dimension=pe:LAST_6_MONTHS&dimension=ou:LEVEL-3;'+ounit+'&displayProperty=NAME&outputIdScheme=UID';
                 fetchRRDetails(url);
                 
             });

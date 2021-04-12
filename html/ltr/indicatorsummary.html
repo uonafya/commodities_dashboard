@@ -150,7 +150,7 @@
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="as.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">AS</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="sp.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">SP</span></a></li>						
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rdts.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">RDTs</span></a></li>
-                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">LLINS</span></a></li>
+                                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="llin.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">LLINS</span></a></li>
                                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="soh-comparison-county.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">All Malaria Commodities</span></a></li>
 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="facilityissues.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Facility Issues</span></a></li>
                                         </ul>
@@ -536,7 +536,7 @@
                 countyou = subcountyou;
             }
             
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+countyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.REPORTING_RATE;RRnz4uPHXdl.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+countyou+'&filter=pe:'+periodval+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,countyou,periodval);
         }
 		
@@ -602,7 +602,7 @@
         $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
         
         var period = getPreviousPMonth(); //'LAST_MONTH';
-        var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+        var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.REPORTING_RATE;RRnz4uPHXdl.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
         //var url = 'http://localhost/pmilive/summary.json';
         fetchIS(url,ounit,period);
 		//parse the data for mos percentage
@@ -613,7 +613,7 @@
         {
             var ounit = $(this).val(); 
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.REPORTING_RATE;RRnz4uPHXdl.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,ounit,period);
         });
         
@@ -621,7 +621,7 @@
         {
             var ounit = $(this).val();  
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.REPORTING_RATE;RRnz4uPHXdl.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,ounit,period);
         });
 });
@@ -652,7 +652,7 @@ function fetchIS(url,ounit,period) {
 			//reporting rate			
             $.each(data.metaData.dimensions.dx, function (key, entry) 
             {
-					if(entry=='JPaviRmSsJW.REPORTING_RATE')
+					if(entry=='RRnz4uPHXdl.REPORTING_RATE')
 					{
 						//define the variables to hold the counter
 						var rratecount = 0;
@@ -706,7 +706,7 @@ function fetchIS(url,ounit,period) {
 			//reporting rate on time
             $.each(data.metaData.dimensions.dx, function (key, entry) 
             {
-					if(entry=='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
+					if(entry=='RRnz4uPHXdl.REPORTING_RATE_ON_TIME')
 					{
 						//define the variables to hold the counter
 						var rratecount = 0;
@@ -760,7 +760,7 @@ function fetchIS(url,ounit,period) {
             //stocked according to plan
             $.each(data.metaData.dimensions.dx, function (key, entry) 
             {	
-					if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
+					if(entry!='RRnz4uPHXdl.REPORTING_RATE' && entry!='RRnz4uPHXdl.REPORTING_RATE_ON_TIME')
 					{
 						//define the variables to hold the counter
 						var stockok = 0;
@@ -815,7 +815,7 @@ function fetchIS(url,ounit,period) {
             //overstocked
 			$.each(data.metaData.dimensions.dx, function (key, entry) 
 			{
-				if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
+				if(entry!='RRnz4uPHXdl.REPORTING_RATE' && entry!='RRnz4uPHXdl.REPORTING_RATE_ON_TIME')
 				{
 					//define the variables to hold the counter
 					var overstock = 0;								
@@ -863,7 +863,7 @@ function fetchIS(url,ounit,period) {
                 //under stocked
             $.each(data.metaData.dimensions.dx, function (key, entry)
 			{	
-				if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
+				if(entry!='RRnz4uPHXdl.REPORTING_RATE' && entry!='RRnz4uPHXdl.REPORTING_RATE_ON_TIME')
 				{
 					//define the variables to hold the counter
 					var understock = 0;
@@ -915,7 +915,7 @@ function fetchIS(url,ounit,period) {
                 //stockout
                 $.each(data.metaData.dimensions.dx, function (key, entry) 
 				{
-					if(entry!='JPaviRmSsJW.REPORTING_RATE' && entry!='JPaviRmSsJW.REPORTING_RATE_ON_TIME')
+					if(entry!='RRnz4uPHXdl.REPORTING_RATE' && entry!='RRnz4uPHXdl.REPORTING_RATE_ON_TIME')
 					{
 						//define the variables to hold the counter
 						var stockout = 0;
@@ -1035,7 +1035,7 @@ function fetchIS(url,ounit,period) {
         {
             var ounit = $(this).val(); 
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.REPORTING_RATE;RRnz4uPHXdl.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,ounit,period);
         });
 
@@ -1043,7 +1043,7 @@ function fetchIS(url,ounit,period) {
         {
             var ounit = $(this).val();  
             var period =  getPeriod();
-            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.REPORTING_RATE;JPaviRmSsJW.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
+            var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.REPORTING_RATE;RRnz4uPHXdl.REPORTING_RATE_ON_TIME;zLR3PBVPgN5;bJILAolJsSJ;jtGNoWcdNcx;p2aNqT2HVyr&dimension=ou:LEVEL-5;'+ounit+'&filter=pe:'+period+'&displayProperty=NAME&outputIdScheme=UID';
             fetchIS(url,ounit,period);
         });
 }
@@ -1085,7 +1085,7 @@ function getOrgUnit(uid, period)
 //get expected reports
 function getExpectedUnits(uid, period)
 {
-	var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:JPaviRmSsJW.EXPECTED_REPORTS&dimension=ou:'+uid+'&displayProperty=NAME&outputIdScheme=UID';
+	var url = 'https://hiskenya.org/api/26/analytics.json?dimension=pe:'+period+'&dimension=dx:RRnz4uPHXdl.EXPECTED_REPORTS&dimension=ou:'+uid+'&displayProperty=NAME&outputIdScheme=UID';
 	
 	var count = 0;
 	    

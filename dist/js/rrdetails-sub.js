@@ -2,7 +2,7 @@
 // function fetchRRDetails(rdurl,ounit)
 function fetchRRDetails(theperiod,ounit)
 {
-    var rdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
+    var rdurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS;RRnz4uPHXdl.EXPECTED_REPORTS&dimension=pe:'+theperiod+'&dimension=ou:'+ounit+';LEVEL-3&displayProperty=NAME&outputIdScheme=UID';
     // var rdurl = theperiod
     console.log('rdurl is:-> '+rdurl);
     $('#facility_rr').addClass('hidden');
@@ -281,7 +281,7 @@ function getReport(rows,period,orgunit)
 	$.each(rows, function (rkey, rentry) 
 	{
 			//check for orgunit and period
-			if(orgunit==rentry[2] && period==rentry[1] && rentry[0]=='JPaviRmSsJW.ACTUAL_REPORTS')
+			if(orgunit==rentry[2] && period==rentry[1] && rentry[0]=='RRnz4uPHXdl.ACTUAL_REPORTS')
 			{                                    
 					rowval = parseInt(rentry[3]);
 			}								
@@ -294,7 +294,7 @@ function getReport(rows,period,orgunit)
 function getExpectedToReport(rows,prd,ounit) {
 	var exp_count = 0;
 	$.each(rows, function (indx, onerow){
-        if(ounit==onerow[2] && prd==onerow[1] && onerow[0]=='JPaviRmSsJW.ACTUAL_REPORTS'){                                    
+        if(ounit==onerow[2] && prd==onerow[1] && onerow[0]=='RRnz4uPHXdl.ACTUAL_REPORTS'){                                    
             exp_count = exp_count + 1;
         }								
 	})		
@@ -311,7 +311,7 @@ function getExpectedSub(rows,period,orgunit)
 	$.each(rows, function (rkey, rentry) 
 	{
 			//check for orgunit and period
-			if(orgunit==rentry[2] && period==rentry[1] && rentry[0]=='JPaviRmSsJW.EXPECTED_REPORTS')
+			if(orgunit==rentry[2] && period==rentry[1] && rentry[0]=='RRnz4uPHXdl.EXPECTED_REPORTS')
 			{                                    
 					rowval = parseInt(rentry[3]);
 			}								
@@ -365,7 +365,7 @@ function checkExpected(rows,orgunit)
 	{
 		// console.log(rentry);
 		//check for orgunit and period
-		if(rentry[0]=='JPaviRmSsJW.EXPECTED_REPORTS' && rentry[2]==orgunit)
+		if(rentry[0]=='RRnz4uPHXdl.EXPECTED_REPORTS' && rentry[2]==orgunit)
 		{                                    
 			rowval = parseInt(rentry[3]);
 			//break;

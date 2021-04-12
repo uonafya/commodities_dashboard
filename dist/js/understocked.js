@@ -1,6 +1,6 @@
 var arr_valz = [];
 var valid_ous_array = [];
-var valid_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
+var valid_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:RRnz4uPHXdl&paging=false';
 // var valid_url = 'http://localhost/pmi/json/valid_ous.json';
 getValidOUs(valid_url);
 

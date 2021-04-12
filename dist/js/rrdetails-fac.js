@@ -2,7 +2,7 @@
 // function fetchRRDetails(rdurl,ounit)
 function fetchRRDetails(theperiod, ounit) {
   var rdurl =
-    "https://hiskenya.org/api/26/analytics.json?dimension=dx:JPaviRmSsJW.ACTUAL_REPORTS;JPaviRmSsJW.EXPECTED_REPORTS&dimension=pe:" +
+    "https://hiskenya.org/api/26/analytics.json?dimension=dx:RRnz4uPHXdl.ACTUAL_REPORTS;RRnz4uPHXdl.EXPECTED_REPORTS&dimension=pe:" +
     theperiod +
     "&dimension=ou:" +
     ounit +
@@ -19,7 +19,7 @@ function fetchRRDetails(theperiod, ounit) {
     success: function(data) {
       // var valid_ous_url = 'http://localhost/pmi/json/valid_ous.json';
       var valid_ous_url =
-        "https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id]&filter=id:ilike:JPaviRmSsJW&paging=false";
+        "https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id]&filter=id:ilike:RRnz4uPHXdl&paging=false";
       $.ajax({
         type: "GET",
         crossDomain: true,
@@ -338,7 +338,7 @@ function fetchRRDetails(theperiod, ounit) {
       if (
         orgunit == rentry[2] &&
         period == rentry[1] &&
-        rentry[0] == "JPaviRmSsJW.ACTUAL_REPORTS"
+        rentry[0] == "RRnz4uPHXdl.ACTUAL_REPORTS"
       ) {
         rowval = parseInt(rentry[3]);
       }
@@ -354,7 +354,7 @@ function fetchRRDetails(theperiod, ounit) {
       if (
         ounit == onerow[2] &&
         prd == onerow[1] &&
-        onerow[0] == "JPaviRmSsJW.ACTUAL_REPORTS"
+        onerow[0] == "RRnz4uPHXdl.ACTUAL_REPORTS"
       ) {
         exp_count = exp_count + 1;
       }
@@ -373,7 +373,7 @@ function fetchRRDetails(theperiod, ounit) {
       if (
         orgunit == rentry[2] &&
         period == rentry[1] &&
-        rentry[0] == "JPaviRmSsJW.EXPECTED_REPORTS"
+        rentry[0] == "RRnz4uPHXdl.EXPECTED_REPORTS"
       ) {
         rowval = parseInt(rentry[3]);
       }
@@ -436,7 +436,7 @@ function fetchRRDetails(theperiod, ounit) {
     $.each(rows, function(rkey, rentry) {
       // console.log(rentry);
       //check for orgunit and period
-      if (rentry[0] == "JPaviRmSsJW.EXPECTED_REPORTS" && rentry[2] == orgunit) {
+      if (rentry[0] == "RRnz4uPHXdl.EXPECTED_REPORTS" && rentry[2] == orgunit) {
         rowval = parseInt(rentry[3]);
         //break;
       }
